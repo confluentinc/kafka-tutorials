@@ -1,0 +1,43 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.15.1"
+        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.2"
+    }
+}
+
+plugins {
+    id "java"
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+version = "0.0.1"
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+apply plugin: "com.commercehub.gradle.plugin.avro"
+apply plugin: "com.github.johnrengelman.shadow"
+
+dependencies {
+    compile "org.apache.avro:avro:1.8.2"
+    implementation "org.apache.kafka:kafka-streams:2.2.0"
+}
+
+jar {
+  manifest {
+    attributes(
+      "Class-Path": configurations.compile.collect { it.getName() }.join(" "),
+      "Main-Class": "io.confluent.developer.FilterEvents"
+    )
+  }
+}
+
+shadowJar {
+   baseName = "kstreams-filter"
+}

@@ -1,0 +1,65 @@
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">1. Get Confluent Platform</h4>
+
+  <p>If you haven't already, get Confluent Platform.</p>
+  <br/>
+  <pre><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">2. Initialize the project</h4>
+
+  <p>To get started, make a new directory for this project:</p>
+  <br/>
+  <pre><code class="shell">mkdir filter-events && cd filter-events</code></pre>
+  <br/>
+
+  <p>Then create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
+  <br/>
+  <pre><code class="groovy">{% include recipes/filtering/kstreams/code/build.gradle %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">3. Create a schema for the events</h4>
+
+  <p>Create a directory for the schemas that represent the events of the stream:</p>
+  <br/>
+  <pre><code class="shell">mkdir -p src/main/avro</code></pre>
+  <br/>
+
+  <p>Then create the following Avro schema file at <code>src/main/avro/user.avsc</code>:</p>
+  <br/>
+  <pre><code class="avro">{% include recipes/filtering/kstreams/code/src/main/avro/user.avsc %}</code></pre>
+  <br/>
+
+  <p>Because we will use this Avro schema in our Java code, we'll need to compile it. Run the following in a terminal:</p>
+  <br/>
+  <pre><code class="shell">gradle build</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">4. Create the Kafka Streams topology</h4>
+
+  <p>Create a directory for the Java files in this project:</p>
+  <br/>
+  <pre><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
+  <br/>
+
+  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>:</p>
+  <br/>
+  <pre><code class="java">{% include recipes/filtering/kstreams/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>
+  <br/>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">5. Compile and run the Kafka Streams program</h4>
+
+  <p>In your terminal, run:</p>
+  <br/>
+  <pre><code class="shell">gradle shadowJar</code></pre>
+  <br/>
+
+  <p>Now that an uberjar for the Kafka Streams application has been built, you can launch it locally with by running:</p>
+  <br/>
+  <pre><code class="shell">java -jar build/libs/kstreams-filter-0.0.1.jar</code></pre>
+</div>

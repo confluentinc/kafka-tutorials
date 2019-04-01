@@ -1,0 +1,103 @@
+---
+---
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confluent Developer: {{ page.recipe_title }}</title>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/dracula.min.css">
+    <link rel="stylesheet" href="{{'/assets/sass/main.css' | prepend: site.baseurl}}">
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column">
+            <h1 class="title is-1">{{ page.recipe_title }}</h1>
+            <div class="tabs">
+              <ul>
+                <li class="is-active"><a>Docker</a></li>
+                <li><a>Confluent Cloud</a></li>
+              </ul>
+            </div>
+            <p><strong>Problem:</strong> {{ page.problem }}</p>
+            <br/>
+
+            <nav class="level">
+              <div class="level-left">
+                <div class="level-item">
+                  <strong>Solve it with:</strong>
+                </div>
+
+                <div class="level-item">
+                  <div class="buttons has-addons" id="software-tab-choices">
+                    <span class="button {% if page.default_tab == 'ksql' %} is-selected {% endif %}"
+                          data-tab="ksql">
+                      KSQL
+                    </span>
+                    <span class="button {% if page.default_tab == 'kstreams' %} is-selected {% endif %}"
+                          data-tab="kstreams">
+                      Kafka Streams
+                    </span>
+                    <span class="button {% if page.default_tab == 'kafka' %} is-selected {% endif %}"
+                          data-tab="kafka">
+                      Vanilla Kafka
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="tab-content">
+      {% if page.ksql_try_it %}
+      {% include recipe-content.html
+      tab="ksql"
+      default_tab=page.default_tab
+      try_it=page.ksql_try_it
+      test_it=page.ksql_test_it
+      take_it_to_prod=page.ksql_take_it_to_prod %}
+      {% else %}
+      {% include contribute-recipe.html
+      tab="ksql"
+      default_tab=page.default_tab %}
+      {% endif %}
+
+      {% if page.kstreams_try_it %}
+      {% include recipe-content.html
+      tab="kstreams"
+      default_tab=page.default_tab
+      try_it=page.kstreams_try_it
+      test_it=page.kstreams_test_it
+      take_it_to_prod=page.kstreams_take_it_to_prod %}
+      {% else %}
+      {% include contribute-recipe.html
+      tab="kstreams"
+      default_tab=page.default_tab %}
+      {% endif %}
+
+      {% if page.kafka_try_it %}
+      {% include recipe-content.html
+      tab="kafka"
+      default_tab=page.default_tab
+      try_it=page.kafka_try_it
+      test_it=page.kafka_test_it
+      take_it_to_prod=page.kafka_take_it_to_prod %}
+      {% else %}
+      {% include contribute-recipe.html
+      tab="kafka"
+      default_tab=page.default_tab %}
+      {% endif %}
+    </div>
+
+    <script src="{{'/assets/js/jquery.min.js' | prepend: site.baseurl}}"></script>
+    <script src="{{'/assets/js/recipe.js' | prepend: site.baseurl}}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

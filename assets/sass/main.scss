@@ -1,0 +1,42 @@
+---
+---
+
+@import "bulma/bulma";
+
+pre {
+    background-color: transparent;
+    padding: 0;
+}
+
+.hljs {
+    padding: 1.25em;
+}
+
+section.section {
+    padding-bottom: 1.5rem;
+}
+
+.confluent-recipes-block {
+    margin-top: 0.7rem;
+}
+
+.recipe-try-it-step {
+    margin-bottom: 30px;
+}
+
+.recipe-list > li {
+    margin-bottom: 0.75rem;
+}
+
+.buttons > .button.is-selected {
+    background-color: #3ab0c8;
+    color: #ffffff;
+}
+
+#tab-content > .recipe-tab {
+    display: none;
+}
+
+#tab-content > .recipe-tab.is-active {
+    display: block;
+}

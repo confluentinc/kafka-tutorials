@@ -1,0 +1,34 @@
+<div data-content="{{ include.tab }}" class="recipe-tab {% if include.default_tab == include.tab %} is-active {% endif %}">
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h2 class="title is-2">Try it</h2>
+          {% include {{ include.try_it }} %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h2 class="title is-2">Test it</h2>
+          {% include {{ include.test_it }} %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column">
+          <h2 class="title is-2">Take it to production</h2>
+          {% include {{ include.take_it_to_prod }} %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
