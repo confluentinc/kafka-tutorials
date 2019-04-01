@@ -20,3 +20,6 @@ sass:
     - node_modules
 
 cp_version: v5.1.2
+
+exclude:
+  - .gradle/
