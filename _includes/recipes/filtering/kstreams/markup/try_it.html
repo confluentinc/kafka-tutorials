@@ -56,10 +56,39 @@
 
   <p>In your terminal, run:</p>
   <br/>
-  <pre><code class="shell">gradle shadowJar</code></pre>
+  <pre><code class="shell">{% include recipes/filtering/kstreams/code/test-artifacts/build-uberjar.sh %}</code></pre>
   <br/>
 
   <p>Now that an uberjar for the Kafka Streams application has been built, you can launch it locally with by running:</p>
   <br/>
-  <pre><code class="shell">java -jar build/libs/kstreams-filter-0.0.1.jar</code></pre>
+  <pre><code class="shell">{% include recipes/filtering/kstreams/code/test-artifacts/run-dev-app.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
+
+  <p>In your terminal, run:</p>
+  <br/>
+  <pre><code class="shell">{% include recipes/filtering/kstreams/code/test-artifacts/console-producer.sh %}</code></pre>
+  <br/>
+
+  <p>When the console producer starts, you'll have a prompt to enter in one line at a time. Each line represents an event. Paste the following into the prompt and press enter:</p>
+  <br/>
+  <pre><code class="json">{% include recipes/filtering/kstreams/code/test-artifacts/input-events.json %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">7. Consume filtered events on the output topic</h4>
+
+  <p>Leaving your original terminal running, open another to consume the events that have been filtered by your application:</p>
+  <br/>
+  <pre><code class="shell">{% include recipes/filtering/kstreams/code/test-artifacts/console-consumer.sh %}</code></pre>
+  <br/>
+
+  <p>After the consumer starts, you should see the following:</p>
+  <br/>
+  <pre><code class="json">{% include recipes/filtering/kstreams/code/test-artifacts/expected-output-events.json %}</code></pre>
+  <br/>
+
+  <p>To continue studying the example, send more events through the input terminal prompt.</p>
 </div>

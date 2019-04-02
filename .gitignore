@@ -3,7 +3,12 @@ target/
 build/
 build-artifacts/
 .gradle/
+.idea/
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
 node_modules/
+gradle/
+gradlew
+gradlew.bat
+code.iml
