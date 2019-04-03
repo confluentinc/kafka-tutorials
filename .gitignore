@@ -1,7 +1,7 @@
 _site/
 target/
 build/
-recipe-artifacts/
+recipe-outputs/
 .gradle/
 .idea/
 .sass-cache/

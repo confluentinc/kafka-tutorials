@@ -1,8 +1,16 @@
 GRADLE := gradle
 STEPS_DIR := recipe-steps
+OUTPUTS_DIR := recipe-outputs
+
+.DEFAULT_GOAL := recipe_outputs
 
 clean:
 	$(GRADLE) clean
+	rm -r $(OUTPUTS_DIR) || true
+	mkdir $(OUTPUTS_DIR)
 
 uberjar: clean
 	./$(STEPS_DIR)/build-uberjar.sh
+
+recipe_outputs:
+	python3 run_recipe.py
