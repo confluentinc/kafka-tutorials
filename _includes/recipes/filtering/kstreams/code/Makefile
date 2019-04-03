@@ -14,3 +14,6 @@ uberjar: clean
 
 recipe_outputs:
 	python3 run_recipe.py
+
+test:
+	diff --strip-trailing-cr $(STEPS_DIR)/expected-output-events.json $(OUTPUTS_DIR)/actual-output-events.json
