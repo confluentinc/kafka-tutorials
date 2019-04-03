@@ -25,6 +25,22 @@ pre.snippet {
     margin-bottom: 15px;
 }
 
+.hero.recipe-hero {
+    background-color: #344fa2;
+
+    .title {
+        color: #ffffff;
+    }
+
+    .recipe-problem {
+        color: #ffffff;
+    }
+
+    strong {
+        color: #ffffff;
+    }
+}
+
 section.section {
     padding-bottom: 1.5rem;
 }
@@ -42,7 +58,7 @@ section.section {
 }
 
 .buttons > .button.is-selected {
-    background-color: #3ab0c8;
+    background-color: #344fa2;
     color: #ffffff;
 }
 

@@ -10,20 +10,21 @@
     <link rel="stylesheet" href="{{'/assets/sass/main.css' | prepend: site.baseurl}}">
   </head>
   <body>
+    {% include nav.html %}
+
+    <section class="hero recipe-hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title is-1">{{ page.recipe_title }}</h1>
+          <p class="recipe-problem"><strong>Problem: </strong>{{ page.problem }}</p>
+        </div>
+      </div>
+    </section>
+
     <section class="section">
       <div class="container">
         <div class="columns">
           <div class="column">
-            <h1 class="title is-1">{{ page.recipe_title }}</h1>
-            <div class="tabs">
-              <ul>
-                <li class="is-active"><a>Docker</a></li>
-                <li><a>Confluent Cloud</a></li>
-              </ul>
-            </div>
-            <p><strong>Problem:</strong> {{ page.problem }}</p>
-            <br/>
-
             <nav class="level">
               <div class="level-left">
                 <div class="level-item">
@@ -36,10 +37,12 @@
                           data-tab="ksql">
                       KSQL
                     </span>
+
                     <span class="button {% if page.default_tab == 'kstreams' %} is-selected {% endif %}"
                           data-tab="kstreams">
                       Kafka Streams
                     </span>
+
                     <span class="button {% if page.default_tab == 'kafka' %} is-selected {% endif %}"
                           data-tab="kafka">
                       Vanilla Kafka
