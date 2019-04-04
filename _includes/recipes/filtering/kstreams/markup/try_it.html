@@ -35,7 +35,8 @@
   <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
 
   <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>:</p>
-  <pre class="snippet"><code class="java">{% include recipes/filtering/kstreams/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>
+  {% capture src_file %}{% include recipes/filtering/kstreams/code/src/main/java/io/confluent/developer/FilterEvents.java %}{% endcapture %}
+  <pre class="snippet"><code class="java">{{ src_file | xml_escape }}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
