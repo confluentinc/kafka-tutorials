@@ -12,7 +12,7 @@ clean:
 uberjar: clean
 	./$(STEPS_DIR)/build-uberjar.sh
 
-recipe_outputs:
+recipe_outputs: uberjar
 	python3 run_recipe.py
 
 test:

@@ -23,3 +23,5 @@ cp_version: v5.1.2
 
 exclude:
   - .gradle/
+  - node_modules/
+  - docker/

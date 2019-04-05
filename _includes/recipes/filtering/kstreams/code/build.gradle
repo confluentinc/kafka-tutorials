@@ -33,6 +33,26 @@ dependencies {
     implementation "org.slf4j:slf4j-simple:1.7.26"
     implementation "org.apache.kafka:kafka-streams:2.2.0"
     implementation "io.confluent:kafka-streams-avro-serde:5.2.0"
+    testCompile "org.apache.kafka:kafka-streams-test-utils:2.2.0"
+    testCompile "junit:junit:4.12"
+}
+
+ext.env = project.hasProperty("env") ? project.env : "dev"
+
+sourceSets {
+    main {
+        resources {
+            srcDir "src/main/resources/$env"
+        }
+    }
+}
+
+test {
+    testLogging {
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+        exceptionFormat = "full"
+    }
 }
 
 jar {

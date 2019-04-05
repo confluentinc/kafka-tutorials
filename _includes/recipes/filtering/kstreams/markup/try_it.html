@@ -13,6 +13,12 @@
 
   <p>Then create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
   <pre class="snippet"><code class="groovy">{% include recipes/filtering/kstreams/code/build.gradle %}</code></pre>
+
+  <p>Next, create a directory for environemnt configuration data:</p>
+  <pre class="snippet"><code class="shell">mkdir -p src/main/resources/dev</code></pre>
+
+  <p>Then create development file at <code>src/main/resources/dev/config.properties:</code></p>
+  <pre class="snippet"><code class="shell">{% include recipes/filtering/kstreams/code/src/main/resources/dev/config.properties %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
