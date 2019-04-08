@@ -43,7 +43,7 @@ public class FilterEventsTest {
     }
 
     @Test
-    public void testIt() throws IOException {
+    public void testFilter() throws IOException {
         FilterEvents fe = new FilterEvents();
         Properties envProps = fe.getEnvProperties();
         Properties streamProps = fe.buildStreamsProperties(envProps);
