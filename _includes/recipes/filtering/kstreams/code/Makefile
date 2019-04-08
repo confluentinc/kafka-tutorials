@@ -17,3 +17,4 @@ recipe_outputs: uberjar
 
 test:
 	diff --strip-trailing-cr $(STEPS_DIR)/expected-output-events.json $(OUTPUTS_DIR)/actual-output-events.json
+	gradle test

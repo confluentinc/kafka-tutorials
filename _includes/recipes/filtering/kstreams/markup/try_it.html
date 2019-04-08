@@ -12,13 +12,13 @@
   <pre class="snippet"><code class="shell">mkdir filter-events && cd filter-events</code></pre>
 
   <p>Then create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
-  <pre class="snippet"><code class="groovy">{% include recipes/filtering/kstreams/code/build.gradle %}</code></pre>
+  <pre class="snippet"><code class="groovy">{% include_raw recipes/filtering/kstreams/code/build.gradle %}</code></pre>
 
-  <p>Next, create a directory for environemnt configuration data:</p>
+  <p>Next, create a directory for development environment configuration data:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/resources/dev</code></pre>
 
-  <p>Then create development file at <code>src/main/resources/dev/config.properties:</code></p>
-  <pre class="snippet"><code class="shell">{% include recipes/filtering/kstreams/code/src/main/resources/dev/config.properties %}</code></pre>
+  <p>Then create development file at <code>src/main/resources/dev/config.properties</code>:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/src/main/resources/dev/config.properties %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
@@ -28,7 +28,7 @@
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
 
   <p>Then create the following Avro schema file at <code>src/main/avro/user.avsc</code>:</p>
-  <pre class="snippet"><code class="avro">{% include recipes/filtering/kstreams/code/src/main/avro/user.avsc %}</code></pre>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/filtering/kstreams/code/src/main/avro/user.avsc %}</code></pre>
 
   <p>Because we will use this Avro schema in our Java code, we'll need to compile it. Run the following in a terminal:</p>
   <pre class="snippet"><code class="shell">gradle build</code></pre>
@@ -48,28 +48,28 @@
   <h4 class="subtitle is-4">5. Compile and run the Kafka Streams program</h4>
 
   <p>In your terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include recipes/filtering/kstreams/code/recipe-steps/build-uberjar.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/build-uberjar.sh %}</code></pre>
 
   <p>Now that an uberjar for the Kafka Streams application has been built, you can launch it locally with by running:</p>
-  <pre class="snippet"><code class="shell">{% include recipes/filtering/kstreams/code/recipe-steps/run-dev-app.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
 
   <p>In your terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include recipes/filtering/kstreams/code/recipe-steps/console-producer.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/console-producer.sh %}</code></pre>
 
   <p>When the console producer starts, you'll have a prompt to enter in one line at a time. Each line represents an event. Paste the following into the prompt and press enter:</p>
-  <pre class="snippet"><code class="json">{% include recipes/filtering/kstreams/code/recipe-steps/input-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kstreams/code/recipe-steps/input-events.json %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">7. Consume filtered events on the output topic</h4>
 
   <p>Leaving your original terminal running, open another to consume the events that have been filtered by your application:</p>
-  <pre class="snippet"><code class="shell">{% include recipes/filtering/kstreams/code/recipe-steps/console-consumer.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/console-consumer.sh %}</code></pre>
 
   <p>After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying the example, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
-  <pre class="snippet"><code class="json">{% include recipes/filtering/kstreams/code/recipe-outputs/actual-output-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kstreams/code/recipe-outputs/actual-output-events.json %}</code></pre>
 </div>

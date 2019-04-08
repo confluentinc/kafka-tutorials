@@ -19,7 +19,7 @@ sass:
     - _sass
     - node_modules
 
-cp_version: v5.1.2
+cp_version: v5.2.1
 
 exclude:
   - .gradle/
