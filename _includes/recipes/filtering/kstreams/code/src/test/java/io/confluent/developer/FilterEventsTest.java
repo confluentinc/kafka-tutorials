@@ -48,8 +48,8 @@ public class FilterEventsTest {
         Properties envProps = fe.getEnvProperties();
         Properties streamProps = fe.buildStreamsProperties(envProps);
 
-        String inputTopic = envProps.getProperty("input.topic");
-        String outputTopic = envProps.getProperty("output.topic");
+        String inputTopic = envProps.getProperty("input.topic.name");
+        String outputTopic = envProps.getProperty("output.topic.name");
 
         Topology topology = fe.buildTopology(envProps);
         TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
