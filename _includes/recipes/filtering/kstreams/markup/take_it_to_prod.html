@@ -17,7 +17,7 @@
   <p>Next, build the Dockerfile to create an image. Write a script for this by first running:</p>
   <pre class="snippet"><code class="shell">mkdir scripts</code></pre>
 
-  <p>Then creating the a file named <code>scripts/build-docker-image.sh</code> with the following content:</p>
+  <p>Then creating the a file named <code>scripts/build-docker-image.sh</code> with the following content. Notice the command line switch to pick up the production version of your configuration file instead of the development one.</p>
   <pre class="snippet"><code class="bash">{% include_raw recipes/filtering/kstreams/code/scripts/build-docker-image.sh %}</code></pre>
 
   <p>And build the image:</p>
