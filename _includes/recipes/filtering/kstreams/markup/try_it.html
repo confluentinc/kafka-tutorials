@@ -17,7 +17,7 @@
   <p>Next, create a directory for development environment configuration data:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/resources/dev</code></pre>
 
-  <p>Then create development file at <code>src/main/resources/dev/config.properties</code>:</p>
+  <p>Then create a development file at <code>src/main/resources/dev/config.properties</code>:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/src/main/resources/dev/config.properties %}</code></pre>
 </div>
 
@@ -30,7 +30,7 @@
   <p>Then create the following Avro schema file at <code>src/main/avro/user.avsc</code>:</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/filtering/kstreams/code/src/main/avro/user.avsc %}</code></pre>
 
-  <p>Because we will use this Avro schema in our Java code, we'll need to compile it. Run the following in a terminal:</p>
+  <p>Because we will use this Avro schema in our Java code, we'll need to compile it. Run the following:</p>
   <pre class="snippet"><code class="shell">gradle build</code></pre>
 </div>
 
