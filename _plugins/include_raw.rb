@@ -1,8 +1,10 @@
 module Jekyll
   module Tags
     class IncludeRawTag < IncludeTag
+      include Filters
+
       def read_file(file, context)
-        "{% raw %}#{super(file, context)}{% endraw %}"
+        "{% raw %}#{xml_escape(super(file, context))}{% endraw %}"
       end
     end
   end
