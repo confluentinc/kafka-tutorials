@@ -25,3 +25,5 @@ exclude:
   - .gradle/
   - node_modules/
   - docker/
+
+google_analytics_tracking_id: UA-56447542-1
