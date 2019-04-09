@@ -8,17 +8,17 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">2. Initialize the project</h4>
 
-  <p>To get started, make a new directory for this project:</p>
+  <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">mkdir filter-events && cd filter-events</code></pre>
 
   <p>Then create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
   <pre class="snippet"><code class="groovy">{% include_raw recipes/filtering/kstreams/code/build.gradle %}</code></pre>
 
-  <p>Next, create a directory for development environment configuration data:</p>
-  <pre class="snippet"><code class="shell">mkdir -p src/main/resources/dev</code></pre>
+  <p>Next, create a directory for configuration data:</p>
+  <pre class="snippet"><code class="shell">mkdir configuration</code></pre>
 
-  <p>Then create a development file at <code>src/main/resources/dev/config.properties</code>:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/src/main/resources/dev/config.properties %}</code></pre>
+  <p>Then create a development file at <code>configuration/dev.properties</code>:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/configuration/dev.properties %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
@@ -50,14 +50,14 @@
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/build-uberjar.sh %}</code></pre>
 
-  <p>Now that an uberjar for the Kafka Streams application has been built, you can launch it locally by running:</p>
+  <p>Now that an uberjar for the Kafka Streams application has been built, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
 
-  <p>In your terminal, run:</p>
+  <p>In a new terminaL terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/console-producer.sh %}</code></pre>
 
   <p>When the console producer starts, you'll have a prompt to enter in one line at a time. Each line represents an event. Paste the following into the prompt and press enter:</p>

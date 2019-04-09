@@ -24,6 +24,8 @@ import java.util.Properties;
 
 public class FilterEventsTest {
 
+    private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+
     public SpecificAvroSerializer<User> makeSerializer(Properties envProps) {
         SpecificAvroSerializer<User> serializer = new SpecificAvroSerializer<>();
         serializer.configure(new HashMap<String, String>() {{
@@ -45,7 +47,7 @@ public class FilterEventsTest {
     @Test
     public void testFilter() throws IOException {
         FilterEvents fe = new FilterEvents();
-        Properties envProps = fe.getEnvProperties();
+        Properties envProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
         Properties streamProps = fe.buildStreamsProperties(envProps);
 
         String inputTopic = envProps.getProperty("input.topic.name");

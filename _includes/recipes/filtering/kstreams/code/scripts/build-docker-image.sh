@@ -7,5 +7,5 @@ set -o xtrace
 
 cd "$(dirname "$0")/.."
 
-gradle -Penv=prod shadowJar
+gradle shadowJar
 docker build -t io.confluent.developer/kstreams-filter:0.0.1 .

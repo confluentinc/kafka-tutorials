@@ -37,16 +37,6 @@ dependencies {
     testCompile "junit:junit:4.12"
 }
 
-ext.env = project.hasProperty("env") ? project.env : "dev"
-
-sourceSets {
-    main {
-        resources {
-            srcDir "src/main/resources/$env"
-        }
-    }
-}
-
 test {
     testLogging {
         outputs.upToDateWhen { false }

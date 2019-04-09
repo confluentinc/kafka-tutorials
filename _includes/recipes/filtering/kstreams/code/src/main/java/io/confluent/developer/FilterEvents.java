@@ -11,8 +11,8 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,16 +20,6 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 public class FilterEvents {
-
-    public Properties getEnvProperties() throws IOException {
-        Properties props = new Properties();
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream is = classloader.getResourceAsStream("config.properties");
-        props.load(is);
-        is.close();
-
-        return props;
-    }
 
     public Properties buildStreamsProperties(Properties envProps) {
         Properties props = new Properties();
@@ -77,9 +67,22 @@ public class FilterEvents {
         client.close();
     }
 
+    public Properties loadEnvProperties(String fileName) throws IOException {
+        Properties envProps = new Properties();
+        FileInputStream input = new FileInputStream(fileName);
+        envProps.load(input);
+        input.close();
+
+        return envProps;
+    }
+
     public static void main(String[] args) throws Exception {
+        if (args.length < 1) {
+            throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");
+        }
+
         FilterEvents fe = new FilterEvents();
-        Properties envProps = fe.getEnvProperties();
+        Properties envProps = fe.loadEnvProperties(args[0]);
         Properties streamProps = fe.buildStreamsProperties(envProps);
         Topology topology = fe.buildTopology(envProps);
 
