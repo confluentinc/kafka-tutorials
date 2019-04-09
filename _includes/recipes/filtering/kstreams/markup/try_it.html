@@ -48,28 +48,28 @@
   <h4 class="subtitle is-4">5. Compile and run the Kafka Streams program</h4>
 
   <p>In your terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/build-uberjar.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
 
   <p>Now that an uberjar for the Kafka Streams application has been built, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/run-dev-app.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
 
   <p>In a new terminaL terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/console-producer.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/console-producer.sh %}</code></pre>
 
   <p>When the console producer starts, you'll have a prompt to enter in one line at a time. Each line represents an event. Paste the following into the prompt and press enter:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kstreams/code/recipe-steps/input-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/input-events.json %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">7. Consume filtered events on the output topic</h4>
 
   <p>Leaving your original terminal running, open another to consume the events that have been filtered by your application:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/console-consumer.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/console-consumer.sh %}</code></pre>
 
   <p>After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying the example, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kstreams/code/recipe-outputs/actual-output-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/outputs/actual-output-events.json %}</code></pre>
 </div>

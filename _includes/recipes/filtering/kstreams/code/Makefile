@@ -1,20 +1,28 @@
 GRADLE := gradle
 STEPS_DIR := recipe-steps
-OUTPUTS_DIR := recipe-outputs
+DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
 
-.DEFAULT_GOAL := recipe_outputs
+uberjar:
+	./$(STEPS_DIR)/dev/build-uberjar.sh
 
-clean:
-	$(GRADLE) clean
-	rm -r $(OUTPUTS_DIR) || true
-	mkdir $(OUTPUTS_DIR)
+build_dev_recipe: uberjar
+	rm -r $(DEV_OUTPUTS_DIR) || true
+	mkdir $(DEV_OUTPUTS_DIR)
+	python3 build_dev_recipe.py
 
-uberjar: clean
-	./$(STEPS_DIR)/build-uberjar.sh
+build_test_recipe:
 
-recipe_outputs: uberjar
-	python3 run_recipe.py
+build_prod_recipe:
 
-test:
-	diff --strip-trailing-cr $(STEPS_DIR)/expected-output-events.json $(OUTPUTS_DIR)/actual-output-events.json
+validate_dev_recipe: build_dev_recipe
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.json $(DEV_OUTPUTS_DIR)/actual-output-events.json
+
+validate_test_recipe: build_test_recipe
 	gradle test
+
+validate_prod_recipe: build_prod_recipe
+	./$(STEPS_DIR)/prod/run-build-script.sh
+
+build_recipe: build_dev_recipe build_test_recipe build_prod_recipe
+
+validate_recipe: validate_dev_recipe validate_test_recipe validate_prod_recipe
