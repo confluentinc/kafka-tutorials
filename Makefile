@@ -1,2 +1,4 @@
-validate_recipes:
-	make -C _includes/recipes/filtering/kstreams/code validate_recipe
+.PHONY: recipes
+
+recipes:
+	make -C _includes/recipes/filtering/kstreams/harness recipe

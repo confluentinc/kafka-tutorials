@@ -7,12 +7,14 @@ if sys.version_info[0] != 3:
     print("This script requires Python 3")
     exit()
 
-producer_script = "recipe-steps/dev/console-producer.sh"
-consumer_script = "recipe-steps/dev/console-consumer.sh"
-run_app_script = "recipe-steps/dev/run-dev-app.sh"
+os.chdir("../code")
 
-inputs_file = "recipe-steps/dev/input-events.json"
-outputs_file = "recipe-steps/dev/outputs/actual-output-events.json"
+producer_script = "../harness/recipe-steps/dev/console-producer.sh"
+consumer_script = "../harness/recipe-steps/dev/console-consumer.sh"
+run_app_script = "../harness/recipe-steps/dev/run-dev-app.sh"
+
+inputs_file = "../harness/recipe-steps/dev/input-events.json"
+outputs_file = "../harness/recipe-steps/dev/outputs/actual-output-events.json"
 
 timeout_ms = 3000
 
