@@ -85,3 +85,7 @@ Since this is a self-testing site, add a test to make sure your recipe's content
 #### 6. Tie into the top-level Makefile
 
 Modify the `Makefile` at the root of the repository to run your recipe as part of the build along with all the others.
+
+### Run the tests
+
+The tests require some Docker containers to be up. In the root directory, cd to the `docker` directory and run `docker-compose up`. When all the containers are available, run `make` at the root of the project.
