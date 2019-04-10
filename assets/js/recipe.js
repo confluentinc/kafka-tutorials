@@ -16,6 +16,6 @@ $(document).ready(function() {
 
     $(element).wrap("<div class='snippet-wrapper'></div>");
     $(element).attr('id', id);
-    $(element).after(`<button class='button is-small copy-btn' data-clipboard-target='#${id}'>Copy</button>`);
+    $(element).after(`<button class='button is-small copy-btn' data-clipboard-target='#${id}'><span class="icon"><i class="far fa-copy"></i></span></button>`);
   });
 });
