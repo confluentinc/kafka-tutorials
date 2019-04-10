@@ -19,6 +19,12 @@ sass:
 exclude:
   - node_modules/
   - docker/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - package.json
+  - package-lock.json
+  - Makefile
 
 cp_version: v5.2.1
 google_analytics_tracking_id: UA-56447542-1
