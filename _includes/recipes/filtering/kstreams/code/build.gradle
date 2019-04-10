@@ -55,5 +55,5 @@ jar {
 }
 
 shadowJar {
-   baseName = "kstreams-filter"
+    archiveName = "kstreams-filter-standalone-${version}.${extension}"
 }
