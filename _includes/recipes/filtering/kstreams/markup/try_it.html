@@ -60,7 +60,7 @@
   <p>In a new terminaL terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/harness/recipe-steps/dev/console-producer.sh %}</code></pre>
 
-  <p>When the console producer starts, you'll have a prompt to enter in one line at a time. Each line represents an event. Paste the following into the prompt and press enter:</p>
+  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an event. To send all of the events below, paste the following into the prompt and press enter:</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kstreams/harness/recipe-steps/dev/input-events.json %}</code></pre>
 </div>
 
