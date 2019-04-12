@@ -1,17 +1,29 @@
-<div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">1. Get Confluent Platform</h4>
 
-  <p>If you haven't already, get Confluent Platform.</p>
-  <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
+
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">0. Install Docker</h4>
+  {% include shared-content/docker-setup.html %}
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">2. Initialize the project</h4>
+  <h4 class="subtitle is-4">1. Initialize the project</h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">mkdir filter-events && cd filter-events</code></pre>
 
-  <p>Then create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
+  <p>Create the following <code>docker-compose.yaml</code> file:</p>
+  <pre class="snippet"><code class="yaml">{% include_raw shared-content/cp-docker-compose.txt %}</code></pre>
+  
+  <p>Download those Docker images:</p>
+  <pre class="snippet"><code class="shell">docker-composer pull</code></pre>
+
+</div>  
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">2. Set up the build</h4>
+
+  <p>Then create the following <a href="https://gradle.org/">Gradle</a> build file, named <code>build.gradle</code> for the project:</p>
   <pre class="snippet"><code class="groovy">{% include_raw recipes/filtering/kstreams/code/build.gradle %}</code></pre>
 
   <p>Next, create a directory for configuration data:</p>
@@ -57,7 +69,7 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
 
-  <p>In a new terminaL terminal, run:</p>
+  <p>In a new terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/harness/recipe-steps/dev/console-producer.sh %}</code></pre>
 
   <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an event. To send all of the events below, paste the following into the prompt and press enter:</p>
