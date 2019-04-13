@@ -2,6 +2,7 @@ filtering:
   title: "Filter a stream of events"
   slug: "/recipes/filter-a-stream-of-events"
   problem: "you have events in a Kafka topic, and you want to filter some of them out so that only those you're interested in appear in another topic."
+  introduction: "Consider a topic of user events. Each has a variety of attributes, like the user's name, favorite number, and favorite color. In this recipe, we'll write a program that creates a new topic which only contains events where the user's favorite color is green."
   status:
     ksql: enabled
     kstreams: enabled

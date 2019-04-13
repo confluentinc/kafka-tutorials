@@ -24,7 +24,7 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">3. Create a schema for the events</h4>
 
-  <p>Create a directory for the schemas that represent the events of the stream:</p>
+  <p>Create a directory for the schemas that represent the user events in the stream:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
 
   <p>Then create the following Avro schema file at <code>src/main/avro/user.avsc</code>:</p>
@@ -40,7 +40,7 @@
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
 
-  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>:</p>
+  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. Notice the <code>buildTopology</code> method, which uses the Kafka Streams DSL. The <code>filter</code> method takes a boolean function to determine whether to pass each event through to the next stage of the topology.</p>
   <pre class="snippet"><code class="java">{% include_raw recipes/filtering/kstreams/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>
 </div>
 

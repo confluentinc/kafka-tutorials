@@ -58,6 +58,18 @@
                 </div>
               </div>
             </nav>
+
+            {% unless page.help_wanted %}
+            <div>
+              <p>{{ site.data.recipes[page.static_data].introduction }}</p>
+
+              <ul class="recipe-navigation">
+                <li><strong><a href="#try-it">Try it</a></strong></li>
+                <li><strong><a href="#test-it">Test it</a></strong></li>
+                <li><strong><a href="#take-it-to-prod">Take it to production</a></strong></li>
+              </ul>
+            </div>
+            {% endunless %}
           </div>
         </div>
       </div>
