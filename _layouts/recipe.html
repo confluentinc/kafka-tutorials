@@ -6,7 +6,7 @@
     {% include gtag.js %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ site.title }}: {{ page.recipe_title }}</title>
+    <title>{{ site.title }}: {{ site.data.recipes[page.static_data].title }}</title>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/dracula.min.css">
     <link rel="stylesheet" href="/assets/sass/main.css">
   </head>
@@ -16,8 +16,8 @@
     <section class="hero recipe-hero">
       <div class="hero-body">
         <div class="container">
-          <h1 class="title is-1">{{ page.recipe_title }}</h1>
-          <p class="recipe-problem"><strong>Problem: </strong>{{ page.problem }}</p>
+          <h1 class="title is-1">{{ site.data.recipes[page.static_data].title }}</h1>
+          <p class="recipe-problem"><strong>Problem: </strong>{{ site.data.recipes[page.static_data].problem }}</p>
         </div>
       </div>
     </section>
@@ -34,20 +34,26 @@
 
                 <div class="level-item">
                   <div class="buttons has-addons" id="software-tab-choices">
-                    <span class="button {% if page.default_tab == 'ksql' %} is-selected {% endif %}"
-                          data-tab="ksql">
+                    {% if site.data.recipes[page.static_data].status.ksql == 'enabled' %}
+                    <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}"
+                       href="{{ site.data.recipes[page.static_data].slug }}/ksql">
                       KSQL
-                    </span>
+                    </a>
+                    {% endif %}
 
-                    <span class="button {% if page.default_tab == 'kstreams' %} is-selected {% endif %}"
-                          data-tab="kstreams">
+                    {% if site.data.recipes[page.static_data].status.kstreams == 'enabled' %}
+                    <a class="button {% if page.stack == 'kstreams' %} is-selected {% endif %}"
+                       href="{{ site.data.recipes[page.static_data].slug }}/kstreams">
                       Kafka Streams
-                    </span>
+                    </a>
+                    {% endif %}
 
-                    <span class="button {% if page.default_tab == 'kafka' %} is-selected {% endif %}"
-                          data-tab="kafka">
+                    {% if site.data.recipes[page.static_data].status.kafka == 'enabled' %}
+                    <a class="button {% if page.stack == 'kafka' %} is-selected {% endif %}"
+                       href="{{ site.data.recipes[page.static_data].slug }}/kafka">
                       Vanilla Kafka
-                    </span>
+                    </a>
+                    {% endif %}
                   </div>
                 </div>
               </div>
@@ -57,44 +63,14 @@
       </div>
     </section>
 
-    <div id="tab-content">
-      {% if page.ksql_try_it %}
-      {% include recipe-content.html
-      tab="ksql"
-      default_tab=page.default_tab
-      try_it=page.ksql_try_it
-      test_it=page.ksql_test_it
-      take_it_to_prod=page.ksql_take_it_to_prod %}
+    <div>
+      {% if page.help_wanted %}
+      {% include contribute-recipe.html %}
       {% else %}
-      {% include contribute-recipe.html
-      tab="ksql"
-      default_tab=page.default_tab %}
-      {% endif %}
-
-      {% if page.kstreams_try_it %}
       {% include recipe-content.html
-      tab="kstreams"
-      default_tab=page.default_tab
-      try_it=page.kstreams_try_it
-      test_it=page.kstreams_test_it
-      take_it_to_prod=page.kstreams_take_it_to_prod %}
-      {% else %}
-      {% include contribute-recipe.html
-      tab="kstreams"
-      default_tab=page.default_tab %}
-      {% endif %}
-
-      {% if page.kafka_try_it %}
-      {% include recipe-content.html
-      tab="kafka"
-      default_tab=page.default_tab
-      try_it=page.kafka_try_it
-      test_it=page.kafka_test_it
-      take_it_to_prod=page.kafka_take_it_to_prod %}
-      {% else %}
-      {% include contribute-recipe.html
-      tab="kafka"
-      default_tab=page.default_tab %}
+      try_it=page.try_it
+      test_it=page.test_it
+      take_it_to_prod=page.take_it_to_prod %}
       {% endif %}
     </div>
 

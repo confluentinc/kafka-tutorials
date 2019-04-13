@@ -1,14 +1,4 @@
 $(document).ready(function() {
-  $('#software-tab-choices .button').on('click', function() {
-    var tab = $(this).data('tab');
-
-    $('#software-tab-choices span').removeClass('is-selected');
-    $(this).addClass('is-selected');
-
-    $('#tab-content > .recipe-tab').removeClass('is-active');
-    $('.recipe-tab[data-content="' + tab + '"]').addClass('is-active');
-  });
-
   var clipboard = new ClipboardJS('.copy-btn');
 
   $('pre').each(function(index, element) {
@@ -19,7 +9,7 @@ $(document).ready(function() {
     $(element).attr('id', id);
     $(element).after(`<button class='button is-small code-btn copy-btn' data-clipboard-target='#${id}'><span class="icon"><i class="far fa-copy"></i></span></button>`);
 
-    //Shrink snippets.
+    //Set up expand buttons.
     var maxHeight = 320;
     var actualHeight = $(element).height();
 

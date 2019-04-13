@@ -1,0 +1,8 @@
+filtering:
+  title: "Filter a stream of events"
+  slug: "/recipes/filter-a-stream-of-events"
+  problem: "you have events in a Kafka topic, and you want to filter some of them out so that only those you're interested in appear in another topic."
+  status:
+    ksql: enabled
+    kstreams: enabled
+    kafka: enabled
