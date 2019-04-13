@@ -16,8 +16,8 @@ pre {
     word-wrap: break-word;
 }
 
-.hljs {
-    padding: 1.25em 4.3em 1.25em 1.25em;
+pre > code.hljs {
+    padding: 2.25em 4.3em 2.25em 1.25em;
 }
 
 pre.snippet {
@@ -74,18 +74,21 @@ section.section {
     display: block;
 }
 
+.button.code-btn {
+    background-color: #efeff3;
+    font-size: 0.65rem;
+}
+
 .copy-btn {
     position: absolute;
     top: 10px;
     right: 1.5em;
-    background-color: #efeff3;
 }
 
 .expand-btn {
     position: absolute;
     top: 10px;
     right: 4em;
-    background-color: #efeff3;
 }
 
 .cta-btn {
