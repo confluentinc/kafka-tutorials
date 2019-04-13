@@ -36,21 +36,21 @@
                   <div class="buttons has-addons" id="software-tab-choices">
                     {% if site.data.recipes[page.static_data].status.ksql == 'enabled' %}
                     <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}"
-                       href="{{ site.data.recipes[page.static_data].slug }}/ksql">
+                       href="{{ site.data.recipes[page.static_data].slug }}/ksql.html">
                       KSQL
                     </a>
                     {% endif %}
 
                     {% if site.data.recipes[page.static_data].status.kstreams == 'enabled' %}
                     <a class="button {% if page.stack == 'kstreams' %} is-selected {% endif %}"
-                       href="{{ site.data.recipes[page.static_data].slug }}/kstreams">
+                       href="{{ site.data.recipes[page.static_data].slug }}/kstreams.html">
                       Kafka Streams
                     </a>
                     {% endif %}
 
                     {% if site.data.recipes[page.static_data].status.kafka == 'enabled' %}
                     <a class="button {% if page.stack == 'kafka' %} is-selected {% endif %}"
-                       href="{{ site.data.recipes[page.static_data].slug }}/kafka">
+                       href="{{ site.data.recipes[page.static_data].slug }}/kafka.html">
                       Vanilla Kafka
                     </a>
                     {% endif %}
