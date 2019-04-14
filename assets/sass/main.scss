@@ -57,6 +57,13 @@ section.section {
     margin-top: 20px;
     padding-left: 30px;
     list-style-type: disc;
+    font-weight: bold;
+}
+
+#toc ul {
+    list-style-type: circle;
+    font-weight: normal;
+    margin-left: 2em;
 }
 
 .recipe-try-it-step {

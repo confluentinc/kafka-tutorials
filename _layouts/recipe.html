@@ -62,12 +62,7 @@
             {% unless page.help_wanted %}
             <div>
               <p>{{ site.data.recipes[page.static_data].introduction }}</p>
-
-              <ul class="recipe-navigation">
-                <li><strong><a href="#try-it">Try it</a></strong></li>
-                <li><strong><a href="#test-it">Test it</a></strong></li>
-                <li><strong><a href="#take-it-to-prod">Take it to production</a></strong></li>
-              </ul>
+              <ul id="toc" class="recipe-navigation"></ul>
             </div>
             {% endunless %}
           </div>
@@ -75,7 +70,7 @@
       </div>
     </section>
 
-    <div>
+    <div class="recipe-markup">
       {% if page.help_wanted %}
       {% include contribute-recipe.html %}
       {% else %}
@@ -87,6 +82,11 @@
     </div>
 
     <script src="/assets/js/jquery.min.js"></script>
+    <script src="/assets/js/jquery.toc.fork.js"></script>
+    <script type="text/javascript">
+      $("#toc").toc({content: "div.recipe-markup", headings: "h1,h2,h3,h4"});
+    </script>
+
     <script src="/assets/js/recipe.js"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
