@@ -13,10 +13,7 @@ import org.apache.kafka.streams.Topology;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
 public class FilterEvents {
@@ -47,21 +44,19 @@ public class FilterEvents {
     }
 
     public void createTopics(Properties envProps) {
-        AdminClient client = AdminClient.create(new HashMap<String, Object>() {{
-            put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        }});
+        Map<String, Object> config = new HashMap<String, Object>();
+        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
+        AdminClient client = AdminClient.create(config);
 
-        List<NewTopic> topics = new ArrayList<NewTopic>() {{
-            add(new NewTopic(
-                    envProps.getProperty("input.topic.name"),
-                    Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
-
-            add(new NewTopic(
-                    envProps.getProperty("output.topic.name"),
-                    Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
-        }};
+        List<NewTopic> topics = new ArrayList<NewTopic>();
+        topics.add(new NewTopic(
+                envProps.getProperty("input.topic.name"),
+                Integer.parseInt(envProps.getProperty("input.topic.partitions")),
+                Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
+        topics.add(new NewTopic(
+                envProps.getProperty("output.topic.name"),
+                Integer.parseInt(envProps.getProperty("output.topic.partitions")),
+                Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();

@@ -2,10 +2,7 @@ package io.confluent.developer;
 
 import io.confluent.developer.avro.User;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
-import org.apache.avro.specific.SpecificRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
@@ -17,10 +14,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 public class FilterEventsTest {
 
@@ -28,18 +22,20 @@ public class FilterEventsTest {
 
     public SpecificAvroSerializer<User> makeSerializer(Properties envProps) {
         SpecificAvroSerializer<User> serializer = new SpecificAvroSerializer<>();
-        serializer.configure(new HashMap<String, String>() {{
-            put("schema.registry.url", envProps.getProperty("schema.registry.url"));
-        }}, false);
+
+        Map<String, String> config = new HashMap<>();
+        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        serializer.configure(config, false);
 
         return serializer;
     }
 
     public SpecificAvroDeserializer<User> makeDeserializer(Properties envProps) {
         SpecificAvroDeserializer<User> deserializer = new SpecificAvroDeserializer<>();
-        deserializer.configure(new HashMap<String, String>() {{
-            put("schema.registry.url", envProps.getProperty("schema.registry.url"));
-        }}, false);
+
+        Map<String, String> config = new HashMap<>();
+        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        deserializer.configure(config, false);
 
         return deserializer;
     }
@@ -74,25 +70,23 @@ public class FilterEventsTest {
         User fred = User.newBuilder().setName("fred").setFavoriteNumber(202).build();
         User sue = User.newBuilder().setName("sue").setFavoriteNumber(0).setFavoriteColor("green").build();
 
-        List<User> input = new ArrayList<User>() {{
-            add(michael);
-            add(tim);
-            add(jill);
-            add(lucas);
-            add(steve);
-            add(sally);
-            add(john);
-            add(fred);
-            add(sue);
-        }};
+        List<User> input = new ArrayList<>();
+        input.add(michael);
+        input.add(tim);
+        input.add(jill);
+        input.add(lucas);
+        input.add(steve);
+        input.add(sally);
+        input.add(john);
+        input.add(fred);
+        input.add(sue);
 
-        List<User> expectedOutput = new ArrayList<User>() {{
-            add(michael);
-            add(tim);
-            add(steve);
-            add(john);
-            add(sue);
-        }};
+        List<User> expectedOutput = new ArrayList<>();
+        expectedOutput.add(michael);
+        expectedOutput.add(tim);
+        expectedOutput.add(steve);
+        expectedOutput.add(john);
+        expectedOutput.add(sue);
 
         for (User user : input) {
             testDriver.pipeInput(inputFactory.create(0L, user));
