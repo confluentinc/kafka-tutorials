@@ -67,11 +67,11 @@ public class FilterEventsTest {
         User michael = User.newBuilder().setName("michael").setFavoriteNumber(42).setFavoriteColor("green").build();
         User tim = User.newBuilder().setName("tim").setFavoriteNumber(8).setFavoriteColor("green").build();
         User jill = User.newBuilder().setName("jill").setFavoriteNumber(500).setFavoriteColor("red").build();
-        User lucas = User.newBuilder().setName("lucas").setFavoriteNumber(71).setFavoriteColor("blue").build();
+        User lucas = User.newBuilder().setName("lucas").setFavoriteNumber(71).setFavoriteColor("").build();
         User steve = User.newBuilder().setName("steve").setFavoriteNumber(23).setFavoriteColor("green").build();
         User sally = User.newBuilder().setName("sally").setFavoriteNumber(63).setFavoriteColor("orange").build();
         User john = User.newBuilder().setName("john").setFavoriteNumber(88).setFavoriteColor("green").build();
-        User fred = User.newBuilder().setName("fred").setFavoriteNumber(202).setFavoriteColor("blue").build();
+        User fred = User.newBuilder().setName("fred").setFavoriteNumber(202).build();
         User sue = User.newBuilder().setName("sue").setFavoriteNumber(0).setFavoriteColor("green").build();
 
         List<User> input = new ArrayList<User>() {{

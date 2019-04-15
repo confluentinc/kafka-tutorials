@@ -40,7 +40,7 @@ public class FilterEvents {
         final String outputTopic = envProps.getProperty("output.topic.name");
 
         builder.<Long, User>stream(inputTopic)
-                .filter((key, user) -> user.getFavoriteColor().equals("green"))
+                .filter((key, user) -> "green".equals(user.getFavoriteColor()))
                 .to(outputTopic);
 
         return builder.build();
