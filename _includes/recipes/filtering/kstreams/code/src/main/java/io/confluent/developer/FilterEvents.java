@@ -44,11 +44,11 @@ public class FilterEvents {
     }
 
     public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<String, Object>();
+        Map<String, Object> config = new HashMap<>();
         config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
         AdminClient client = AdminClient.create(config);
 
-        List<NewTopic> topics = new ArrayList<NewTopic>();
+        List<NewTopic> topics = new ArrayList<>();
         topics.add(new NewTopic(
                 envProps.getProperty("input.topic.name"),
                 Integer.parseInt(envProps.getProperty("input.topic.partitions")),

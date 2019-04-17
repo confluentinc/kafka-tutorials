@@ -15,6 +15,6 @@ test_recipe:
 	(cd ../code ; gradle test)
 
 prod_recipe:
-	(cd ../code ; ./../harness/$(STEPS_DIR)/prod/run-build-script.sh)
+	(cd ../code ; ./../harness/$(STEPS_DIR)/prod/build-image.sh)
 
 recipe: dev_recipe test_recipe prod_recipe
