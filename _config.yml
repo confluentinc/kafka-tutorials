@@ -25,6 +25,7 @@ exclude:
   - package.json
   - package-lock.json
   - Makefile
+  - deploy_to_s3.sh
 
 cp_version: v5.2.1
 google_analytics_tracking_id: UA-56447542-1
