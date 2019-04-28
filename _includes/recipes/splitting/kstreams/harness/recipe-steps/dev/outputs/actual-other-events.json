@@ -1,0 +1,5 @@
+{"name":"lucas","country":{"string":"australia"}}
+{"name":"steve","country":{"string":"canada"}}
+{"name":"fred","country":{"string":""}}
+{"name":"sue","country":null}
+Processed a total of 4 messages

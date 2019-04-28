@@ -7,3 +7,13 @@ filtering:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
+
+splitting:
+  title: "Split a stream of events into substreams"
+  slug: "/recipes/split-a-stream-of-events-into-substreams"
+  problem: "you have events in a single Kafka topic, and you want to split it so that the events are placed into subtopics."
+  introduction: "Consider a topic of user events. Each has a variety of attributes, like the user's name and their current country. In this recipe, we'll write a program that splits the events based on the user's country and creates a new set of Kafka topics."
+  status:
+    ksql: enabled
+    kstreams: enabled
+    kafka: enabled
