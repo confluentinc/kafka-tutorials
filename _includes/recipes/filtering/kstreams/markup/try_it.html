@@ -30,7 +30,7 @@
   <p>Then create the following Avro schema file at <code>src/main/avro/user.avsc</code> for the user events:</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/filtering/kstreams/code/src/main/avro/user.avsc %}</code></pre>
 
-  <p>Because we will use this Avro schema in our Java code, we'll need to compile it. Run the following:</p>
+  <p>Because this Avro schema is used in the Java code, it needs to compile it. Run the following:</p>
   <pre class="snippet"><code class="shell">gradle build</code></pre>
 </div>
 
@@ -40,7 +40,7 @@
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
 
-  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. Notice the <code>buildTopology</code> method, which uses the Kafka Streams DSL. The <code>filter</code> method takes a boolean function of each record's key and value. The function you give it determines whether to pass each event through to the next stage of the topology. Notice how the constant is placed before the <code>equals</code> method; this evades null pointer exceptions when the field being compared is absent.</p>
+  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. Notice the <code>buildTopology</code> method, which uses the Kafka Streams DSL. The <code>filter</code> method takes a boolean function of each record's key and value. The function you give it determines whether to pass each event through to the next stage of the topology.</p>
   <pre class="snippet"><code class="java">{% include_raw recipes/filtering/kstreams/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>
 </div>
 
