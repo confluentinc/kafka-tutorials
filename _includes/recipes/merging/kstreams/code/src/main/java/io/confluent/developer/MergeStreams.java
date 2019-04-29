@@ -40,10 +40,9 @@ public class MergeStreams {
 
         KStream<String, SongEvent> rockSongs = builder.stream(rockTopic);
         KStream<String, SongEvent> classicalSongs = builder.stream(classicalTopic);
+        KStream<String, SongEvent> allSongs = rockSongs.merge(classicalSongs);
 
-        rockSongs.to(allGenresTopic);
-        classicalSongs.to(allGenresTopic);
-
+        allSongs.to(allGenresTopic);
         return builder.build();
     }
 
