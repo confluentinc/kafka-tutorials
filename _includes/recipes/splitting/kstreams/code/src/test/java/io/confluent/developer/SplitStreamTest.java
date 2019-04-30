@@ -1,6 +1,6 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.User;
+import io.confluent.developer.avro.ActingEvent;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -22,8 +22,8 @@ public class SplitStreamTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
-    public SpecificAvroSerializer<User> makeSerializer(Properties envProps) {
-        SpecificAvroSerializer<User> serializer = new SpecificAvroSerializer<>();
+    public SpecificAvroSerializer<ActingEvent> makeSerializer(Properties envProps) {
+        SpecificAvroSerializer<ActingEvent> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
         config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
@@ -32,8 +32,8 @@ public class SplitStreamTest {
         return serializer;
     }
 
-    public SpecificAvroDeserializer<User> makeDeserializer(Properties envProps) {
-        SpecificAvroDeserializer<User> deserializer = new SpecificAvroDeserializer<>();
+    public SpecificAvroDeserializer<ActingEvent> makeDeserializer(Properties envProps) {
+        SpecificAvroDeserializer<ActingEvent> deserializer = new SpecificAvroDeserializer<>();
 
         Map<String, String> config = new HashMap<>();
         config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
@@ -42,12 +42,14 @@ public class SplitStreamTest {
         return deserializer;
     }
 
-    private List<User> readOutputTopic(TopologyTestDriver testDriver, String topic, Deserializer<String> keyDeserializer,
-                                       SpecificAvroDeserializer<User> valueDeserializer) {
-        List<User> results = new ArrayList<>();
+    private List<ActingEvent> readOutputTopic(TopologyTestDriver testDriver,
+                                              String topic,
+                                              Deserializer<String> keyDeserializer,
+                                              SpecificAvroDeserializer<ActingEvent> valueDeserializer) {
+        List<ActingEvent> results = new ArrayList<>();
 
         while (true) {
-            ProducerRecord<String, User> record = testDriver.readOutput(topic, keyDeserializer, valueDeserializer);
+            ProducerRecord<String, ActingEvent> record = testDriver.readOutput(topic, keyDeserializer, valueDeserializer);
 
             if (record != null) {
                 results.add(record.value());
@@ -66,72 +68,84 @@ public class SplitStreamTest {
         Properties streamProps = ss.buildStreamsProperties(envProps);
 
         String inputTopic = envProps.getProperty("input.topic.name");
-        String outputUsaTopic = envProps.getProperty("output.usa.topic.name");
-        String outputMexTopic = envProps.getProperty("output.mex.topic.name");
-        String outputGerTopic = envProps.getProperty("output.ger.topic.name");
+        String outputDramaTopic = envProps.getProperty("output.drama.topic.name");
+        String outputFantasyTopic = envProps.getProperty("output.fantasy.topic.name");
         String outputOtherTopic = envProps.getProperty("output.other.topic.name");
 
         Topology topology = ss.buildTopology(envProps);
         TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
 
         Serializer<String> keySerializer = Serdes.String().serializer();
-        SpecificAvroSerializer<User> valueSerializer = makeSerializer(envProps);
+        SpecificAvroSerializer<ActingEvent> valueSerializer = makeSerializer(envProps);
 
         Deserializer<String> keyDeserializer = Serdes.String().deserializer();
-        SpecificAvroDeserializer<User> valueDeserializer = makeDeserializer(envProps);
+        SpecificAvroDeserializer<ActingEvent> valueDeserializer = makeDeserializer(envProps);
 
-        ConsumerRecordFactory<String, User> inputFactory = new ConsumerRecordFactory<>(keySerializer, valueSerializer);
+        ConsumerRecordFactory<String, ActingEvent> inputFactory = new ConsumerRecordFactory<>(keySerializer, valueSerializer);
 
-        User michael = User.newBuilder().setName("michael").setCountry("united states").build();
-        User tim = User.newBuilder().setName("tim").setCountry("mexico").build();
-        User jill = User.newBuilder().setName("jill").setCountry("germany").build();
-        User lucas = User.newBuilder().setName("lucas").setCountry("australia").build();
-        User steve = User.newBuilder().setName("steve").setCountry("canada").build();
-        User sally = User.newBuilder().setName("sally").setCountry("united states").build();
-        User john = User.newBuilder().setName("john").setCountry("germany").build();
-        User fred = User.newBuilder().setName("fred").setCountry("").build();
-        User sue = User.newBuilder().setName("sue").build();
+        ActingEvent streep = ActingEvent.newBuilder()
+                .setName("Meryl Streep").setTitle("The Iron Lady").setGenre("drama").build();
+        ActingEvent smith = ActingEvent.newBuilder()
+                .setName("Will Smith").setTitle("Men in Black").setGenre("comedy").build();
+        ActingEvent damon = ActingEvent.newBuilder()
+                .setName("Matt Damon").setTitle("The Martian").setGenre("drama").build();
+        ActingEvent garland = ActingEvent.newBuilder()
+                .setName("Judy Garland").setTitle("The Wizard of Oz").setGenre("fantasy").build();
+        ActingEvent aniston = ActingEvent.newBuilder()
+                .setName("Jennifer Aniston").setTitle("Office Space").setGenre("comedy").build();
+        ActingEvent murray = ActingEvent.newBuilder()
+                .setName("Bill Murray").setTitle("Ghostbusters").setGenre("fantasy").build();
+        ActingEvent bale = ActingEvent.newBuilder()
+                .setName("Christian Bale").setTitle("The Dark Knight").setGenre("crime").build();
+        ActingEvent dern = ActingEvent.newBuilder()
+                .setName("Laura Dern").setTitle("Jurassic Park").setGenre("fantasy").build();
+        ActingEvent reeves = ActingEvent.newBuilder()
+                .setName("Keanu Reeves").setTitle("The Matrix").setGenre("fantasy").build();
+        ActingEvent crowe = ActingEvent.newBuilder()
+                .setName("Russell Crowe").setTitle("Gladiator").setGenre("drama").build();
+        ActingEvent keaton = ActingEvent.newBuilder()
+                .setName("Diane Keaton").setTitle("The Godfather: Part II").setGenre("crime").build();
 
-        List<User> input = new ArrayList<>();
-        input.add(michael);
-        input.add(tim);
-        input.add(jill);
-        input.add(lucas);
-        input.add(steve);
-        input.add(sally);
-        input.add(john);
-        input.add(fred);
-        input.add(sue);
+        List<ActingEvent> input = new ArrayList<>();
+        input.add(streep);
+        input.add(smith);
+        input.add(damon);
+        input.add(garland);
+        input.add(aniston);
+        input.add(murray);
+        input.add(bale);
+        input.add(dern);
+        input.add(reeves);
+        input.add(crowe);
+        input.add(keaton);
 
-        List<User> expectedUsa = new ArrayList<>();
-        expectedUsa.add(michael);
-        expectedUsa.add(sally);
+        List<ActingEvent> expectedDrama = new ArrayList<>();
+        expectedDrama.add(streep);
+        expectedDrama.add(damon);
+        expectedDrama.add(crowe);
 
-        List<User> expectedGer = new ArrayList<>();
-        expectedGer.add(jill);
-        expectedGer.add(john);
+        List<ActingEvent> expectedFantasy = new ArrayList<>();
+        expectedFantasy.add(garland);
+        expectedFantasy.add(murray);
+        expectedFantasy.add(dern);
+        expectedFantasy.add(reeves);
 
-        List<User> expectedMex = new ArrayList<>();
-        expectedMex.add(tim);
+        List<ActingEvent> expectedOther = new ArrayList<>();
+        expectedOther.add(smith);
+        expectedOther.add(aniston);
+        expectedOther.add(bale);
+        expectedOther.add(keaton);
 
-        List<User> expectedOther = new ArrayList<>();
-        expectedOther.add(lucas);
-        expectedOther.add(steve);
-        expectedOther.add(fred);
-        expectedOther.add(sue);
-
-        for (User user : input) {
-            testDriver.pipeInput(inputFactory.create(inputTopic, user.getName(), user));
+        for (ActingEvent event : input) {
+            testDriver.pipeInput(inputFactory.create(inputTopic, event.getName(), event));
         }
 
-        List<User> actualUsa = readOutputTopic(testDriver, outputUsaTopic, keyDeserializer, valueDeserializer);
-        List<User> actualGer = readOutputTopic(testDriver, outputGerTopic, keyDeserializer, valueDeserializer);
-        List<User> actualMex = readOutputTopic(testDriver, outputMexTopic, keyDeserializer, valueDeserializer);
-        List<User> actualOther = readOutputTopic(testDriver, outputOtherTopic, keyDeserializer, valueDeserializer);
+        List<ActingEvent> actualDrama = readOutputTopic(testDriver, outputDramaTopic, keyDeserializer, valueDeserializer);
+        List<ActingEvent> actualFantasy = readOutputTopic(testDriver, outputFantasyTopic, keyDeserializer, valueDeserializer);
+        List<ActingEvent> actualOther = readOutputTopic(testDriver, outputOtherTopic, keyDeserializer, valueDeserializer);
 
-        Assert.assertEquals(expectedUsa, actualUsa);
-        Assert.assertEquals(expectedGer, actualGer);
-        Assert.assertEquals(expectedMex, actualMex);
+        Assert.assertEquals(expectedDrama, actualDrama);
+        Assert.assertEquals(expectedFantasy, actualFantasy);
         Assert.assertEquals(expectedOther, actualOther);
     }
 

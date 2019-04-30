@@ -9,9 +9,8 @@ dev_recipe: uberjar
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	python3 build_dev_recipe.py
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-usa-events.json $(DEV_OUTPUTS_DIR)/actual-usa-events.json
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-ger-events.json $(DEV_OUTPUTS_DIR)/actual-ger-events.json
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-mex-events.json $(DEV_OUTPUTS_DIR)/actual-mex-events.json
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-drama-events.json $(DEV_OUTPUTS_DIR)/actual-drama-events.json
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-fantasy-events.json $(DEV_OUTPUTS_DIR)/actual-fantasy-events.json
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-other-events.json $(DEV_OUTPUTS_DIR)/actual-other-events.json
 
 test_recipe:

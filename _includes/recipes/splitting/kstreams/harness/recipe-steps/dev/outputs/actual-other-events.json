@@ -1,5 +1,5 @@
-{"name":"lucas","country":{"string":"australia"}}
-{"name":"steve","country":{"string":"canada"}}
-{"name":"fred","country":{"string":""}}
-{"name":"sue","country":null}
+{"name":"Will Smith","title":"Men in Black","genre":"comedy"}
+{"name":"Jennifer Aniston","title":"Office Space","genre":"comedy"}
+{"name":"Christian Bale","title":"The Dark Knight","genre":"crime"}
+{"name":"Diane Keaton","title":"The Godfather: Part II","genre":"crime"}
 Processed a total of 4 messages

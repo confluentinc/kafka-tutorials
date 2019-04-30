@@ -10,16 +10,14 @@ if sys.version_info[0] != 3:
 os.chdir("../code")
 
 producer_script = "../harness/recipe-steps/dev/console-producer.sh"
-usa_consumer_script = "../harness/recipe-steps/dev/console-consumer-usa.sh"
-mex_consumer_script = "../harness/recipe-steps/dev/console-consumer-mex.sh"
-ger_consumer_script = "../harness/recipe-steps/dev/console-consumer-ger.sh"
+drama_consumer_script = "../harness/recipe-steps/dev/console-consumer-drama.sh"
+fantasy_consumer_script = "../harness/recipe-steps/dev/console-consumer-fantasy.sh"
 other_consumer_script = "../harness/recipe-steps/dev/console-consumer-other.sh"
 run_app_script = "../harness/recipe-steps/dev/run-dev-app.sh"
 
 inputs_file = "../harness/recipe-steps/dev/input-events.json"
-usa_outputs_file = "../harness/recipe-steps/dev/outputs/actual-usa-events.json"
-mex_outputs_file = "../harness/recipe-steps/dev/outputs/actual-mex-events.json"
-ger_outputs_file = "../harness/recipe-steps/dev/outputs/actual-ger-events.json"
+drama_outputs_file = "../harness/recipe-steps/dev/outputs/actual-drama-events.json"
+fantasy_outputs_file = "../harness/recipe-steps/dev/outputs/actual-fantasy-events.json"
 other_outputs_file = "../harness/recipe-steps/dev/outputs/actual-other-events.json"
 
 timeout_ms = 3000
@@ -42,15 +40,13 @@ producer = subprocess.run(["sh", producer_script],
                           stdout=subprocess.PIPE)
 app = subprocess.Popen(["sh", run_app_script], preexec_fn=os.setsid)
 
-usa_consumer = run_consumer(usa_consumer_script)
-mex_consumer = run_consumer(mex_consumer_script)
-ger_consumer = run_consumer(ger_consumer_script)
+drama_consumer = run_consumer(drama_consumer_script)
+fantasy_consumer = run_consumer(fantasy_consumer_script)
 other_consumer = run_consumer(other_consumer_script)
 
 os.killpg(os.getpgid(app.pid), signal.SIGTERM)
 app.terminate()
 
-write_consumer_output(usa_consumer, usa_outputs_file)
-write_consumer_output(mex_consumer, mex_outputs_file)
-write_consumer_output(ger_consumer, ger_outputs_file)
+write_consumer_output(drama_consumer, drama_outputs_file)
+write_consumer_output(fantasy_consumer, fantasy_outputs_file)
 write_consumer_output(other_consumer, other_outputs_file)

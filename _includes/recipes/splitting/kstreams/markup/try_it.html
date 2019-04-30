@@ -27,8 +27,8 @@
   <p>Create a directory for the schemas that represent the events in the stream:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
 
-  <p>Then create the following Avro schema file at <code>src/main/avro/user.avsc</code> for the user events:</p>
-  <pre class="snippet"><code class="avro">{% include_raw recipes/splitting/kstreams/code/src/main/avro/user.avsc %}</code></pre>
+  <p>Then create the following Avro schema file at <code>src/main/avro/acting_event.avsc</code> for the acting appearance events:</p>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/splitting/kstreams/code/src/main/avro/acting_event.avsc %}</code></pre>
 
   <p>Because we will use this Avro schema in our Java code, we'll need to compile it. Run the following:</p>
   <pre class="snippet"><code class="shell">gradle build</code></pre>
@@ -71,25 +71,19 @@
 
   <br/>
 
-  <p>First, to consume the events originating from the United States, run the following:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-usa.sh %}</code></pre>
+  <p>First, to consume the events of drama films, run the following:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-drama.sh %}</code></pre>
 
   <p>This should yield the following messages:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/outputs/actual-usa-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/outputs/actual-drama-events.json %}</code></pre>
 
-  <p>Second, to consume those from the Mexico, run the following:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-mex.sh %}</code></pre>
-
-  <p>This should yield the following messages:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/outputs/actual-mex-events.json %}</code></pre>
-
-  <p>Third, to do the same for Germany, run the following:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-ger.sh %}</code></pre>
+  <p>Second, to consume those from fantasy films, run the following:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-fantasy.sh %}</code></pre>
 
   <p>This should yield the following messages:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/outputs/actual-ger-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/outputs/actual-fantasy-events.json %}</code></pre>
 
-  <p>And finally, to consume all other events that didn't match the prior predicates, run the following:</p>
+  <p>And finally, to consume all the other genres, run the following:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-other.sh %}</code></pre>
 
   <p>This should yield the following messages:</p>

@@ -1,6 +1,6 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.User;
+import io.confluent.developer.avro.ActingEvent;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -35,16 +35,14 @@ public class SplitStream {
         final StreamsBuilder builder = new StreamsBuilder();
         final String inputTopic = envProps.getProperty("input.topic.name");
 
-        KStream<String, User>[] branches = builder.<String, User>stream(inputTopic)
-                .branch((key, user) -> "united states".equals(user.getCountry()),
-                        (key, user) -> "germany".equals(user.getCountry()),
-                        (key, user) -> "mexico".equals(user.getCountry()),
-                        (key, user) -> true);
+        KStream<String, ActingEvent>[] branches = builder.<String, ActingEvent>stream(inputTopic)
+                .branch((key, appearance) -> "drama".equals(appearance.getGenre()),
+                        (key, appearance) -> "fantasy".equals(appearance.getGenre()),
+                        (key, appearance) -> true);
 
-        branches[0].to(envProps.getProperty("output.usa.topic.name"));
-        branches[1].to(envProps.getProperty("output.ger.topic.name"));
-        branches[2].to(envProps.getProperty("output.mex.topic.name"));
-        branches[3].to(envProps.getProperty("output.other.topic.name"));
+        branches[0].to(envProps.getProperty("output.drama.topic.name"));
+        branches[1].to(envProps.getProperty("output.fantasy.topic.name"));
+        branches[2].to(envProps.getProperty("output.other.topic.name"));
 
         return builder.build();
     }
@@ -62,19 +60,14 @@ public class SplitStream {
                 Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("output.usa.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.usa.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.usa.topic.replication.factor"))));
+                envProps.getProperty("output.drama.topic.name"),
+                Integer.parseInt(envProps.getProperty("output.drama.topic.partitions")),
+                Short.parseShort(envProps.getProperty("output.drama.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("output.ger.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.ger.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.ger.topic.replication.factor"))));
-
-        topics.add(new NewTopic(
-                envProps.getProperty("output.mex.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.mex.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.mex.topic.replication.factor"))));
+                envProps.getProperty("output.fantasy.topic.name"),
+                Integer.parseInt(envProps.getProperty("output.fantasy.topic.partitions")),
+                Short.parseShort(envProps.getProperty("output.fantasy.topic.replication.factor"))));
 
         topics.add(new NewTopic(
                 envProps.getProperty("output.other.topic.name"),
