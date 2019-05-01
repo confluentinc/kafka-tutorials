@@ -1,6 +1,6 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.User;
+import io.confluent.developer.avro.Publication;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -23,7 +23,7 @@ public class FilterEvents {
 
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Long().getClass());
+        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
@@ -36,8 +36,8 @@ public class FilterEvents {
         final String inputTopic = envProps.getProperty("input.topic.name");
         final String outputTopic = envProps.getProperty("output.topic.name");
 
-        builder.<Long, User>stream(inputTopic)
-                .filter((key, user) -> "green".equals(user.getFavoriteColor()))
+        builder.<String, Publication>stream(inputTopic)
+                .filter((name, publication) -> "George R. R. Martin".equals(publication.getName()))
                 .to(outputTopic);
 
         return builder.build();

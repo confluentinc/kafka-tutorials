@@ -27,8 +27,8 @@
   <p>Create a directory for the schemas that represent the events in the stream:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
 
-  <p>Then create the following Avro schema file at <code>src/main/avro/user.avsc</code> for the user events:</p>
-  <pre class="snippet"><code class="avro">{% include_raw recipes/filtering/kstreams/code/src/main/avro/user.avsc %}</code></pre>
+  <p>Then create the following Avro schema file at <code>src/main/avro/publication.avsc</code> for the publication events:</p>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/filtering/kstreams/code/src/main/avro/publication.avsc %}</code></pre>
 
   <p>Because this Avro schema is used in the Java code, it needs to compile it. Run the following:</p>
   <pre class="snippet"><code class="shell">gradle build</code></pre>
@@ -40,7 +40,7 @@
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
 
-  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. Notice the <code>buildTopology</code> method, which uses the Kafka Streams DSL. The <code>filter</code> method takes a boolean function of each record's key and value. The function you give it determines whether to pass each event through to the next stage of the topology.</p>
+  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. Notice the <code>buildTopology</code> method, which uses the Kafka Streams DSL. The <code>filter</code> method takes a boolean function of each record's key and value. The function you give it determines whether to pass each event through to the next stage of the topology. In this case, we're only interested in books authored by George R. R. Martin.</p>
   <pre class="snippet"><code class="java">{% include_raw recipes/filtering/kstreams/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>
 </div>
 
@@ -70,6 +70,6 @@
   <p>Leaving your original terminal running, open another to consume the events that have been filtered by your application:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/harness/recipe-steps/dev/console-consumer.sh %}</code></pre>
 
-  <p>After the consumer starts, you should see the following messages. Notice how the program behaves on events where the favorite color is null or the empty string. The prompt will hang, waiting for more events to arrive. To continue studying the example, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
+  <p>After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying the example, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kstreams/harness/recipe-steps/dev/outputs/actual-output-events.json %}</code></pre>
 </div>

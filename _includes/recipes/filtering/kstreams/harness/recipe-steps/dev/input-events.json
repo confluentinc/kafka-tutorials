@@ -1,9 +1,9 @@
-{"name": "michael", "favorite_number": {"int": 42}, "favorite_color": {"string": "green"}}
-{"name": "tim", "favorite_number": {"int": 8}, "favorite_color": {"string": "green"}}
-{"name": "jill", "favorite_number": {"int": 500}, "favorite_color": {"string": "red"}}
-{"name": "lucas", "favorite_number": {"int": 71}, "favorite_color": {"string": ""}}
-{"name": "steve", "favorite_number": {"int": 23}, "favorite_color": {"string": "green"}}
-{"name": "sally", "favorite_number": {"int": 63}, "favorite_color": {"string": "orange"}}
-{"name": "john", "favorite_number": {"int": 88}, "favorite_color": {"string": "green"}}
-{"name": "fred", "favorite_number": {"int": 202}, "favorite_color": null}
-{"name": "sue", "favorite_number": {"int": 0}, "favorite_color": {"string": "green"}}
+{"name": "George R. R. Martin", "title": "A Song of Ice and Fire"}
+{"name": "C.S. Lewis", "title": "The Silver Chair"}
+{"name": "C.S. Lewis", "title": "Perelandra"}
+{"name": "George R. R. Martin", "title": "Fire & Blood"}
+{"name": "J. R. R. Tolkien", "title": "The Hobbit"}
+{"name": "J. R. R. Tolkien", "title": "The Lord of the Rings"}
+{"name": "George R. R. Martin", "title": "A Dream of Spring"}
+{"name": "J. R. R. Tolkien", "title": "The Fellowship of the Ring"}
+{"name": "George R. R. Martin", "title": "The Ice Dragon"}

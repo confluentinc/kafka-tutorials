@@ -1,6 +1,5 @@
-{"name":"michael","favorite_number":{"int":42},"favorite_color":{"string":"green"}}
-{"name":"tim","favorite_number":{"int":8},"favorite_color":{"string":"green"}}
-{"name":"steve","favorite_number":{"int":23},"favorite_color":{"string":"green"}}
-{"name":"john","favorite_number":{"int":88},"favorite_color":{"string":"green"}}
-{"name":"sue","favorite_number":{"int":0},"favorite_color":{"string":"green"}}
-Processed a total of 5 messages
+{"name":"George R. R. Martin","title":"A Song of Ice and Fire"}
+{"name":"George R. R. Martin","title":"Fire & Blood"}
+{"name":"George R. R. Martin","title":"A Dream of Spring"}
+{"name":"George R. R. Martin","title":"The Ice Dragon"}
+Processed a total of 4 messages

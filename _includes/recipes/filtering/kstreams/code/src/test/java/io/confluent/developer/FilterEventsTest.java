@@ -1,6 +1,6 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.User;
+import io.confluent.developer.avro.Publication;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -20,8 +20,8 @@ public class FilterEventsTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
-    public SpecificAvroSerializer<User> makeSerializer(Properties envProps) {
-        SpecificAvroSerializer<User> serializer = new SpecificAvroSerializer<>();
+    public SpecificAvroSerializer<Publication> makeSerializer(Properties envProps) {
+        SpecificAvroSerializer<Publication> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
         config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
@@ -30,8 +30,8 @@ public class FilterEventsTest {
         return serializer;
     }
 
-    public SpecificAvroDeserializer<User> makeDeserializer(Properties envProps) {
-        SpecificAvroDeserializer<User> deserializer = new SpecificAvroDeserializer<>();
+    public SpecificAvroDeserializer<Publication> makeDeserializer(Properties envProps) {
+        SpecificAvroDeserializer<Publication> deserializer = new SpecificAvroDeserializer<>();
 
         Map<String, String> config = new HashMap<>();
         config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
@@ -52,49 +52,48 @@ public class FilterEventsTest {
         Topology topology = fe.buildTopology(envProps);
         TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
 
-        Serializer<Long> keySerializer = Serdes.Long().serializer();
-        SpecificAvroSerializer<User> valueSerializer = makeSerializer(envProps);
+        Serializer<String> keySerializer = Serdes.String().serializer();
+        SpecificAvroSerializer<Publication> valueSerializer = makeSerializer(envProps);
 
-        Deserializer<Long> keyDeserializer = Serdes.Long().deserializer();
-        SpecificAvroDeserializer<User> valueDeserializer = makeDeserializer(envProps);
+        Deserializer<String> keyDeserializer = Serdes.String().deserializer();
+        SpecificAvroDeserializer<Publication> valueDeserializer = makeDeserializer(envProps);
 
-        ConsumerRecordFactory<Long, User> inputFactory = new ConsumerRecordFactory<>(inputTopic, keySerializer, valueSerializer);
+        ConsumerRecordFactory<String, Publication> inputFactory = new ConsumerRecordFactory<>(keySerializer, valueSerializer);
 
-        User michael = User.newBuilder().setName("michael").setFavoriteNumber(42).setFavoriteColor("green").build();
-        User tim = User.newBuilder().setName("tim").setFavoriteNumber(8).setFavoriteColor("green").build();
-        User jill = User.newBuilder().setName("jill").setFavoriteNumber(500).setFavoriteColor("red").build();
-        User lucas = User.newBuilder().setName("lucas").setFavoriteNumber(71).setFavoriteColor("").build();
-        User steve = User.newBuilder().setName("steve").setFavoriteNumber(23).setFavoriteColor("green").build();
-        User sally = User.newBuilder().setName("sally").setFavoriteNumber(63).setFavoriteColor("orange").build();
-        User john = User.newBuilder().setName("john").setFavoriteNumber(88).setFavoriteColor("green").build();
-        User fred = User.newBuilder().setName("fred").setFavoriteNumber(202).build();
-        User sue = User.newBuilder().setName("sue").setFavoriteNumber(0).setFavoriteColor("green").build();
+        Publication iceAndFire = Publication.newBuilder().setName("George R. R. Martin").setTitle("A Song of Ice and Fire").build();
+        Publication silverChair = Publication.newBuilder().setName("C.S. Lewis").setTitle("The Silver Chair").build();
+        Publication perelandra = Publication.newBuilder().setName("C.S. Lewis").setTitle("Perelandra").build();
+        Publication fireAndBlood = Publication.newBuilder().setName("George R. R. Martin").setTitle("Fire & Blood").build();
+        Publication theHobbit = Publication.newBuilder().setName("J. R. R. Tolkien").setTitle("The Hobbit").build();
+        Publication lotr = Publication.newBuilder().setName("J. R. R. Tolkien").setTitle("The Lord of the Rings").build();
+        Publication dreamOfSpring = Publication.newBuilder().setName("George R. R. Martin").setTitle("A Dream of Spring").build();
+        Publication fellowship = Publication.newBuilder().setName("J. R. R. Tolkien").setTitle("The Fellowship of the Ring").build();
+        Publication iceDragon = Publication.newBuilder().setName("George R. R. Martin").setTitle("The Ice Dragon").build();
 
-        List<User> input = new ArrayList<>();
-        input.add(michael);
-        input.add(tim);
-        input.add(jill);
-        input.add(lucas);
-        input.add(steve);
-        input.add(sally);
-        input.add(john);
-        input.add(fred);
-        input.add(sue);
+        List<Publication> input = new ArrayList<>();
+        input.add(iceAndFire);
+        input.add(silverChair);
+        input.add(perelandra);
+        input.add(fireAndBlood);
+        input.add(theHobbit);
+        input.add(lotr);
+        input.add(dreamOfSpring);
+        input.add(fellowship);
+        input.add(iceDragon);
 
-        List<User> expectedOutput = new ArrayList<>();
-        expectedOutput.add(michael);
-        expectedOutput.add(tim);
-        expectedOutput.add(steve);
-        expectedOutput.add(john);
-        expectedOutput.add(sue);
+        List<Publication> expectedOutput = new ArrayList<>();
+        expectedOutput.add(iceAndFire);
+        expectedOutput.add(fireAndBlood);
+        expectedOutput.add(dreamOfSpring);
+        expectedOutput.add(iceDragon);
 
-        for (User user : input) {
-            testDriver.pipeInput(inputFactory.create(0L, user));
+        for (Publication publication : input) {
+            testDriver.pipeInput(inputFactory.create(inputTopic, publication.getName(), publication));
         }
 
-        List<User> actualOutput = new ArrayList<>();
+        List<Publication> actualOutput = new ArrayList<>();
         while (true) {
-            ProducerRecord<Long, User> record = testDriver.readOutput(outputTopic, keyDeserializer, valueDeserializer);
+            ProducerRecord<String, Publication> record = testDriver.readOutput(outputTopic, keyDeserializer, valueDeserializer);
 
             if (record != null) {
                 actualOutput.add(record.value());
