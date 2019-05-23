@@ -7,12 +7,12 @@ import io.confluent.developer.avro.Movie;
 
 public class MovieJsonSerde extends Serdes.WrapperSerde<Movie> {
 
-  public MovieJsonSerde() {
+  private MovieJsonSerde() {
     super(new MovieJsonSerializer(), new MovieJsonDeserializer());
   }
 
-  static public Serde<Movie> MovieJsonSerde() {
+  static public Serde<Movie> newMovieJsonSerde() {
     return new MovieJsonSerde();
   }
-  
+
 }

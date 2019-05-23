@@ -5,6 +5,7 @@ package io.confluent.developer.serialization;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
@@ -18,22 +19,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
 
 import io.confluent.developer.avro.Movie;
-import io.confluent.developer.serialization.util.MovieUtil;
+import io.confluent.devx.kafka.config.ConfigLoader;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
-import static io.confluent.developer.serialization.serde.MovieJsonSerde.MovieJsonSerde;
+import static io.confluent.developer.serialization.serde.MovieJsonSerde.newMovieJsonSerde;
 import static java.lang.Integer.parseInt;
 import static java.lang.Short.parseShort;
 import static org.apache.kafka.common.serialization.Serdes.Long;
 import static org.apache.kafka.common.serialization.Serdes.String;
 
-public abstract class SerializationRecipe implements IRecipe {
+public class SerializationRecipe {
 
-  @Override
-  public Properties buildStreamsProperties(Properties envProps) {
+  private Properties buildStreamsProperties(Properties envProps) {
     Properties props = new Properties();
 
     props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
@@ -46,10 +47,9 @@ public abstract class SerializationRecipe implements IRecipe {
     return props;
   }
 
-  @Override
-  public void createTopics(Properties envProps) {
+  private void createTopics(Properties envProps) {
     Map<String, Object> config = new HashMap<>();
-    
+
     config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
     AdminClient client = AdminClient.create(config);
 
@@ -91,36 +91,73 @@ public abstract class SerializationRecipe implements IRecipe {
           "This program takes one argument: the path to an environment configuration file.");
     }
 
-    new SerializationRecipe() {
+    new SerializationRecipe().runRecipe(args[0]);
+  }
+
+  private Topology buildTopology(Properties envProps) {
+    final String inputTopicName = envProps.getProperty("input.topic.name");
+    final String avroTopicName = envProps.getProperty("output.avro.movies.topic.name");
+    final String jsonTopicName = envProps.getProperty("output.json.movies.topic.name");
+
+    final StreamsBuilder builder = new StreamsBuilder();
+
+    // input topic contains data in `::`-delimited format
+    final KStream<Long, String> rawMoviesStream =
+        builder.stream(inputTopicName, Consumed.with(Long(), String()));
+
+    final KStream<Long, Movie> avroMoviesStream =
+        rawMoviesStream
+            // parsing string to Movie object
+            .mapValues(text -> {
+              String[] tokens = text.split("::");
+              String id = tokens[0];
+              String title = tokens[1];
+              String releaseYear = tokens[2];
+
+              Movie movie = new Movie();
+              movie.setMovieId(Long.parseLong(id));
+              movie.setTitle(title);
+              movie.setReleaseYear(parseInt(releaseYear));
+              return movie;
+            })
+            // extracting movie_id and use it as topic key
+            .map((key, movie) -> new KeyValue<>(movie.getMovieId(), movie));
+
+    // write movie data in avro format
+    avroMoviesStream.to(avroTopicName, Produced.with(Long(), movieAvroSerde(envProps)));
+
+    // write movie data in json format
+    avroMoviesStream.to(jsonTopicName, Produced.with(Long(), newMovieJsonSerde()));
+
+    return builder.build();
+  }
+
+  private void runRecipe(String configPath) {
+    Properties envProps = ConfigLoader.loadConfig(configPath);
+    Properties streamProps = this.buildStreamsProperties(envProps);
+    Topology topology = this.buildTopology(envProps);
+
+    this.createTopics(envProps);
+
+    final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+    final CountDownLatch latch = new CountDownLatch(1);
+
+    // Attach shutdown handler to catch Control-C.
+    Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
       @Override
-      public Topology buildTopology(Properties envProps) {
-
-        final String inputTopicName = envProps.getProperty("input.topic.name");
-        final String avroTopicName = envProps.getProperty("output.avro.movies.topic.name");
-        final String jsonTopicName = envProps.getProperty("output.json.movies.topic.name");
-
-        final StreamsBuilder builder = new StreamsBuilder();
-
-        // input topic contains data in `::`-delimited format
-        final KStream<Long, String> rawMoviesStream =
-            builder.stream(inputTopicName, Consumed.with(Long(), String()));
-
-        final KStream<Long, Movie> avroMoviesStream =
-            rawMoviesStream
-                // parsing string to Movie object
-                .mapValues(MovieUtil::parseMovie)
-                // extracting movie_id and use it as topic key
-                .map((key, movie) -> new KeyValue<>(movie.getMovieId(), movie));
-
-        // write movie data in avro format
-        avroMoviesStream.to(avroTopicName, Produced.with(Long(), movieAvroSerde(envProps)));
-
-        // write movie data in json format
-        avroMoviesStream.to(jsonTopicName, Produced.with(Long(), MovieJsonSerde()));
-
-        return builder.build();
+      public void run() {
+        streams.close();
+        latch.countDown();
       }
-    }.runRecipe(args[0]);
+    });
+
+    try {
+      streams.start();
+      latch.await();
+    } catch (Throwable e) {
+      System.exit(1);
+    }
+    System.exit(0);
   }
 }
 
