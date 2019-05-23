@@ -5,7 +5,6 @@ package io.confluent.developer.serialization;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
@@ -21,11 +20,13 @@ import java.util.Map;
 import java.util.Properties;
 
 import io.confluent.developer.avro.Movie;
-import io.confluent.developer.serialization.serde.MovieJsonDeserializer;
-import io.confluent.developer.serialization.serde.MovieJsonSerializer;
 import io.confluent.developer.serialization.util.MovieUtil;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static io.confluent.developer.serialization.serde.MovieJsonSerde.MovieJsonSerde;
+import static org.apache.kafka.common.serialization.Serdes.Long;
+import static org.apache.kafka.common.serialization.Serdes.String;
 
 public abstract class SerializationRecipe implements IRecipe {
 
@@ -35,8 +36,8 @@ public abstract class SerializationRecipe implements IRecipe {
 
     props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
     props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-    props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-    props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+    props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, String().getClass());
+    props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, String().getClass());
     props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
     props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
 
@@ -69,6 +70,16 @@ public abstract class SerializationRecipe implements IRecipe {
     client.createTopics(topics);
     client.close();
   }
+  
+  SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
+    SpecificAvroSerde<Movie> movieAvroSerde = new SpecificAvroSerde<>();
+    final HashMap serdeConfig = new HashMap() {{
+      put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
+          envProps.getProperty("schema.registry.url"));
+    }};
+    movieAvroSerde.configure(serdeConfig, false);
+    return movieAvroSerde;
+  }
 
   public static void main(String[] args) {
     if (args.length < 1) {
@@ -79,46 +90,30 @@ public abstract class SerializationRecipe implements IRecipe {
     new SerializationRecipe() {
       @Override
       public Topology buildTopology(Properties envProps) {
+
+        final String inputTopicName = envProps.getProperty("input.topic.name");
+        final String avroTopicName = envProps.getProperty("output.avro.movies.topic.name");
+        final String jsonTopicName = envProps.getProperty("output.json.movies.topic.name");
+
         final StreamsBuilder builder = new StreamsBuilder();
 
-        final KStream<Long, String>
-            rawMoviesStream =
-            builder.stream(envProps.getProperty("input.topic.name"),
-                           Consumed.with(
-                               Serdes.Long(),
-                               Serdes.String()));
+        final KStream<Long, String> rawMoviesStream =
+            builder.stream(inputTopicName, Consumed.with(Long(), String()));
 
-        SpecificAvroSerde<Movie> movieSerde = new SpecificAvroSerde<>();
+        final KStream<Long, Movie> avroMoviesStream =
+            rawMoviesStream
+                .mapValues(MovieUtil::parseMovie)
+                .map((key, movie) -> new KeyValue<>(movie.getMovieId(), movie));
 
-        final HashMap serdeConfig = new HashMap() {{
-          put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-              envProps.getProperty("schema.registry.url"));
-        }};
-        movieSerde.configure(serdeConfig, false);
+        // write movie data in avro format
+        avroMoviesStream.to(avroTopicName, Produced.with(Long(), movieAvroSerde(envProps)));
 
-        final KStream<Long, Movie> avroMoviesStream = rawMoviesStream
-            .mapValues(MovieUtil::parseMovie)
-            .map((key, movie) -> new KeyValue<>(movie.getMovieId(), movie));
+        // write movie data in json format
+        avroMoviesStream.to(jsonTopicName, Produced.with(Long(), MovieJsonSerde()));
 
-        avroMoviesStream
-            .to(envProps.getProperty("output.json.movies.topic.name"),
-                Produced.with(Serdes.Long(),
-                              new MovieJsonSerde()));
-
-        avroMoviesStream
-            .to(envProps.getProperty("output.avro.movies.topic.name"),
-                Produced.with(Serdes.Long(),
-                              movieSerde));
         return builder.build();
       }
     }.runRecipe(args[0]);
-
   }
 }
 
-class MovieJsonSerde extends Serdes.WrapperSerde<Movie> {
-
-  public MovieJsonSerde() {
-    super(new MovieJsonSerializer(), new MovieJsonDeserializer());
-  }
-}
