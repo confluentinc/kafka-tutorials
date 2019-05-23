@@ -41,8 +41,7 @@ public class MovieJsonSerde extends Serdes.WrapperSerde<Movie> {
       @Override
       public Movie deserialize(String topic, byte[] data) {
 
-        gson.fromJson(new String(data), Movie.class);
-        return null;
+        return gson.fromJson(new String(data), Movie.class);
       }
 
       @Override
