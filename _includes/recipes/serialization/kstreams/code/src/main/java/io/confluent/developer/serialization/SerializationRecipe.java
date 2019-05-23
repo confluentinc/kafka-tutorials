@@ -57,19 +57,15 @@ public class SerializationRecipe {
     List<NewTopic> topics = new ArrayList<>();
 
     topics.add(new NewTopic(
-        envProps.getProperty("input.topic.name"),
-        parseInt(envProps.getProperty("input.topic.partitions")),
-        parseShort(envProps.getProperty("input.topic.replication.factor"))));
-
+        envProps.getProperty("input.json.movies.topic.name"),
+        parseInt(envProps.getProperty("input.json.movies.topic.partitions")),
+        parseShort(envProps.getProperty("input.json.movies.topic.replication.factor"))));
+    
     topics.add(new NewTopic(
         envProps.getProperty("output.avro.movies.topic.name"),
         parseInt(envProps.getProperty("output.avro.movies.topic.partitions")),
         parseShort(envProps.getProperty("output.avro.movies.topic.replication.factor"))));
 
-    topics.add(new NewTopic(
-        envProps.getProperty("output.json.movies.topic.name"),
-        parseInt(envProps.getProperty("output.json.movies.topic.partitions")),
-        parseShort(envProps.getProperty("output.json.movies.topic.replication.factor"))));
 
     client.createTopics(topics);
     client.close();
@@ -87,39 +83,23 @@ public class SerializationRecipe {
   }
 
   private Topology buildTopology(Properties envProps) {
-    final String inputTopicName = envProps.getProperty("input.topic.name");
-    final String avroTopicName = envProps.getProperty("output.avro.movies.topic.name");
-    final String jsonTopicName = envProps.getProperty("output.json.movies.topic.name");
+    final String inputJsonTopicName = envProps.getProperty("input.json.movies.topic.name");
+    final String outAvroTopicName = envProps.getProperty("output.avro.movies.topic.name");
+    //final String outJsonTopicName = envProps.getProperty("output.avro.movies.topic.name");
 
     final StreamsBuilder builder = new StreamsBuilder();
-
-    // input topic contains data in `::`-delimited format
-    final KStream<Long, String> rawMoviesStream =
-        builder.stream(inputTopicName, Consumed.with(Long(), String()));
+    
+    // topic contains values in json format
+    final KStream<Long, Movie> jsonMoviesStream =
+        builder.stream(inputJsonTopicName, Consumed.with(Long(), new MovieJsonSerde()));
 
     final KStream<Long, Movie> avroMoviesStream =
-        rawMoviesStream
-            // parsing string to Movie object
-            .mapValues(text -> {
-              String[] tokens = text.split("::");
-              String id = tokens[0];
-              String title = tokens[1];
-              String releaseYear = tokens[2];
-
-              Movie movie = new Movie();
-              movie.setMovieId(Long.parseLong(id));
-              movie.setTitle(title);
-              movie.setReleaseYear(parseInt(releaseYear));
-              return movie;
-            })
+        jsonMoviesStream
             // extracting movie_id and use it as topic key
             .map((key, movie) -> new KeyValue<>(movie.getMovieId(), movie));
 
     // write movie data in avro format
-    avroMoviesStream.to(avroTopicName, Produced.with(Long(), movieAvroSerde(envProps)));
-
-    // write movie data in json format
-    avroMoviesStream.to(jsonTopicName, Produced.with(Long(), new MovieJsonSerde()));
+    avroMoviesStream.to(outAvroTopicName, Produced.with(Long(), movieAvroSerde(envProps)));
 
     return builder.build();
   }
