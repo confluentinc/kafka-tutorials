@@ -24,10 +24,10 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 import io.confluent.developer.avro.Movie;
+import io.confluent.developer.serialization.serde.MovieJsonSerde;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
-import static io.confluent.developer.serialization.serde.MovieJsonSerde.newMovieJsonSerde;
 import static java.lang.Integer.parseInt;
 import static java.lang.Short.parseShort;
 import static org.apache.kafka.common.serialization.Serdes.Long;
@@ -128,12 +128,12 @@ public class SerializationRecipe {
     avroMoviesStream.to(avroTopicName, Produced.with(Long(), movieAvroSerde(envProps)));
 
     // write movie data in json format
-    avroMoviesStream.to(jsonTopicName, Produced.with(Long(), newMovieJsonSerde()));
+    avroMoviesStream.to(jsonTopicName, Produced.with(Long(), new MovieJsonSerde()));
 
     return builder.build();
   }
 
-  public Properties loadEnvProperties(String fileName) throws IOException {
+  private Properties loadEnvProperties(String fileName) throws IOException {
     Properties envProps = new Properties();
     FileInputStream input = new FileInputStream(fileName);
     envProps.load(input);
