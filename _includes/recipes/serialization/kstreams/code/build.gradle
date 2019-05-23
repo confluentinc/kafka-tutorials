@@ -26,7 +26,6 @@ repositories {
   maven {
     url "http://packages.confluent.io/maven"
   }
-  maven { url 'https://jitpack.io' }
 }
 
 apply plugin: "com.commercehub.gradle.plugin.avro"
@@ -37,11 +36,8 @@ dependencies {
   implementation "org.slf4j:slf4j-simple:1.7.26"
   implementation "org.apache.kafka:kafka-streams:$kafkaVersion"
   implementation "io.confluent:kafka-streams-avro-serde:$confluentVersion"
-  implementation("com.github.gAmUssA:streaming-utils:-SNAPSHOT") {
-    exclude group: 'org.slf4j', module: 'slf4j-log4j12'
-  }
-
   implementation 'com.google.code.gson:gson:2.8.5'
+
   testCompile "org.apache.kafka:kafka-streams-test-utils:2.2.0"
 
   // Use the latest Groovy version for Spock testing
@@ -69,8 +65,8 @@ jar {
 }
 
 shadowJar {
-  baseName= "kstreams-serialization"
-  classifier="standalone"
+  baseName = "kstreams-serialization"
+  classifier = "standalone"
 }
 
 // Define the main class for the application
