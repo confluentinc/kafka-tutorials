@@ -75,7 +75,7 @@ public class SerializationRecipe {
     client.close();
   }
 
-  SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
+  private SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
     SpecificAvroSerde<Movie> movieAvroSerde = new SpecificAvroSerde<>();
 
     final HashMap<String, String> serdeConfig = new HashMap<>();
@@ -84,15 +84,6 @@ public class SerializationRecipe {
 
     movieAvroSerde.configure(serdeConfig, false);
     return movieAvroSerde;
-  }
-
-  public static void main(String[] args) throws IOException {
-    if (args.length < 1) {
-      throw new IllegalArgumentException(
-          "This program takes one argument: the path to an environment configuration file.");
-    }
-
-    new SerializationRecipe().runRecipe(args[0]);
   }
 
   private Topology buildTopology(Properties envProps) {
@@ -168,6 +159,15 @@ public class SerializationRecipe {
       System.exit(1);
     }
     System.exit(0);
+  }
+
+  public static void main(String[] args) throws IOException {
+    if (args.length < 1) {
+      throw new IllegalArgumentException(
+          "This program takes one argument: the path to an environment configuration file.");
+    }
+
+    new SerializationRecipe().runRecipe(args[0]);
   }
 }
 
