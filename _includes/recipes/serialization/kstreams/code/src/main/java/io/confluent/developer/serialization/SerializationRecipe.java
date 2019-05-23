@@ -25,6 +25,8 @@ import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
 import static io.confluent.developer.serialization.serde.MovieJsonSerde.MovieJsonSerde;
+import static java.lang.Integer.parseInt;
+import static java.lang.Short.parseShort;
 import static org.apache.kafka.common.serialization.Serdes.Long;
 import static org.apache.kafka.common.serialization.Serdes.String;
 
@@ -47,6 +49,7 @@ public abstract class SerializationRecipe implements IRecipe {
   @Override
   public void createTopics(Properties envProps) {
     Map<String, Object> config = new HashMap<>();
+    
     config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
     AdminClient client = AdminClient.create(config);
 
@@ -54,29 +57,30 @@ public abstract class SerializationRecipe implements IRecipe {
 
     topics.add(new NewTopic(
         envProps.getProperty("input.topic.name"),
-        Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-        Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
+        parseInt(envProps.getProperty("input.topic.partitions")),
+        parseShort(envProps.getProperty("input.topic.replication.factor"))));
 
     topics.add(new NewTopic(
         envProps.getProperty("output.avro.movies.topic.name"),
-        Integer.parseInt(envProps.getProperty("output.avro.movies.topic.partitions")),
-        Short.parseShort(envProps.getProperty("output.avro.movies.topic.replication.factor"))));
+        parseInt(envProps.getProperty("output.avro.movies.topic.partitions")),
+        parseShort(envProps.getProperty("output.avro.movies.topic.replication.factor"))));
 
     topics.add(new NewTopic(
         envProps.getProperty("output.json.movies.topic.name"),
-        Integer.parseInt(envProps.getProperty("output.json.movies.topic.partitions")),
-        Short.parseShort(envProps.getProperty("output.json.movies.topic.replication.factor"))));
+        parseInt(envProps.getProperty("output.json.movies.topic.partitions")),
+        parseShort(envProps.getProperty("output.json.movies.topic.replication.factor"))));
 
     client.createTopics(topics);
     client.close();
   }
-  
+
   SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
     SpecificAvroSerde<Movie> movieAvroSerde = new SpecificAvroSerde<>();
-    final HashMap serdeConfig = new HashMap() {{
-      put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-          envProps.getProperty("schema.registry.url"));
-    }};
+
+    final HashMap<String, String> serdeConfig = new HashMap<>();
+    serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
+                    envProps.getProperty("schema.registry.url"));
+
     movieAvroSerde.configure(serdeConfig, false);
     return movieAvroSerde;
   }
@@ -97,12 +101,15 @@ public abstract class SerializationRecipe implements IRecipe {
 
         final StreamsBuilder builder = new StreamsBuilder();
 
+        // input topic contains data in `::`-delimited format
         final KStream<Long, String> rawMoviesStream =
             builder.stream(inputTopicName, Consumed.with(Long(), String()));
 
         final KStream<Long, Movie> avroMoviesStream =
             rawMoviesStream
+                // parsing string to Movie object
                 .mapValues(MovieUtil::parseMovie)
+                // extracting movie_id and use it as topic key
                 .map((key, movie) -> new KeyValue<>(movie.getMovieId(), movie));
 
         // write movie data in avro format
