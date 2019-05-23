@@ -14,6 +14,8 @@ import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +24,6 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 import io.confluent.developer.avro.Movie;
-import io.confluent.devx.kafka.config.ConfigLoader;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
@@ -85,7 +86,7 @@ public class SerializationRecipe {
     return movieAvroSerde;
   }
 
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     if (args.length < 1) {
       throw new IllegalArgumentException(
           "This program takes one argument: the path to an environment configuration file.");
@@ -132,8 +133,17 @@ public class SerializationRecipe {
     return builder.build();
   }
 
-  private void runRecipe(String configPath) {
-    Properties envProps = ConfigLoader.loadConfig(configPath);
+  public Properties loadEnvProperties(String fileName) throws IOException {
+    Properties envProps = new Properties();
+    FileInputStream input = new FileInputStream(fileName);
+    envProps.load(input);
+    input.close();
+
+    return envProps;
+  }
+
+  private void runRecipe(String configPath) throws IOException {
+    Properties envProps = this.loadEnvProperties(configPath);
     Properties streamProps = this.buildStreamsProperties(envProps);
     Topology topology = this.buildTopology(envProps);
 
