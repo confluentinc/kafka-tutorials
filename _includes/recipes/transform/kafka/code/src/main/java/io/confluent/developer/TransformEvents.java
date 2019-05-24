@@ -125,11 +125,11 @@ public class TransformEvents {
             publication.setName(publication.getName().toUpperCase());
             publication.setTitle(publication.getTitle().toUpperCase());
 
-            ProducerRecord<String, Publication> filteredRecord =
+            ProducerRecord<String, Publication> transformedRecord =
                 new ProducerRecord<String, Publication>(outputTopic,
                 publication);
 
-            producer.send(filteredRecord);
+            producer.send(transformedRecord);
 
         }
 
@@ -195,11 +195,11 @@ public class TransformEvents {
                     publication.setName(publication.getName().toUpperCase());
                     publication.setTitle(publication.getTitle().toUpperCase());
         
-                    ProducerRecord<String, Publication> filteredRecord =
+                    ProducerRecord<String, Publication> transformedRecord =
                         new ProducerRecord<String, Publication>(outputTopic,
                         publication);
         
-                    producer.send(filteredRecord);
+                    producer.send(transformedRecord);
         
                 }
 
