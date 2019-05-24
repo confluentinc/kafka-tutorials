@@ -54,5 +54,5 @@ jar {
 }
 
 shadowJar {
-    archiveName = "kstreams-filter-standalone-${version}.${extension}"
+    archiveName = "kafka-filter-standalone-${version}.${extension}"
 }
