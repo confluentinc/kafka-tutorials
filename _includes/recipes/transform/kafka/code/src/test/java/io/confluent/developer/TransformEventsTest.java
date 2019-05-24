@@ -29,7 +29,7 @@ public class TransformEventsTest {
     }
 
     @Test
-    public void testFilter() throws IOException {
+    public void testTransformation() throws IOException {
 
         TransformEvents te = new TransformEvents();
         Properties envProps = te.loadEnvProperties(TEST_CONFIG_FILE);
