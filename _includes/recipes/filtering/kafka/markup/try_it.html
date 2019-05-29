@@ -24,7 +24,7 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">3. Create a schema for the events</h4>
 
-  <p>Create a directory for the schemas that represent the events in the stream:</p>
+  <p>Create a directory for the schemas that represent the events in the topic:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
 
   <p>Then create the following Avro schema file at <code>src/main/avro/publication.avsc</code> for the publication events:</p>
@@ -35,7 +35,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">4. Create the Kafka Streams topology</h4>
+  <h4 class="subtitle is-4">4. Set up the Kafka producer and consumer</h4>
 
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
