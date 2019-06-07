@@ -3,100 +3,341 @@
 
 @import "bulma/bulma";
 
-pre {
-    background-color: transparent;
-    padding: 0;
+body,
+select {
+  font-family: "Roboto", sans-serif;
 }
 
-pre {
-    white-space: pre-wrap;
-    white-space: -moz-pre-wrap;
-    white-space: -pre-wrap;
-    white-space: -o-pre-wrap;
-    word-wrap: break-word;
-}
+body {
+  background: #f9f9fa;
+  font-size: 14px;
+  line-height: 1;
 
-pre > code.hljs {
-    padding: 2.25em 4.3em 2.25em 1.25em;
-}
-
-pre.snippet {
-    margin-top: 15px;
-    margin-bottom: 15px;
+  &.pg-recipe {
+    background: #fff;
+  }
 }
 
 .snippet-wrapper {
-    position: relative;
+  position: relative;
+  margin: 20px 0;
+
+  pre.snippet {
+    background: #f9f9fa;
+    border-radius: 4px;
+    // border: solid 1px #7ed321;
+
+    & > code {
+      background: #f9f9fa;
+      font-family: Inconsolata;
+      font-size: 16px;
+      line-height: 1.69;
+      color: #192048;
+    }
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    background: none;
+    font-size: 20px;
+  }
+
+  .expand-btn {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
 }
 
-.hero.recipe-hero {
-    background-color: #344fa2;
+.pg-recipe {
+  .summary {
+    margin-top: 60px;
+  }
 
-    .title {
-        color: #ffffff;
+  .text {
+    font-size: 18px;
+    font-weight: 300;
+    color: #192048;
+    line-height: 1.56;
+  }
+
+  .subtitle {
+    .text {
+      font-size: 21px;
+      display: inline-block;
+      vertical-align: middle;
     }
 
-    .recipe-problem {
-        color: #ffffff;
+    .num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #d5d6dd;
+      text-align: center;
+      font-size: 18px;
+      color: #fff;
+      font-weight: bold;
+      padding-top: 2px;
+      display: inline-block;
+      margin-right: 10px;
     }
+  }
 
-    strong {
-        color: #ffffff;
+  .recipe-try-it-step {
+    margin-bottom: 60px;
+
+    .text {
+      font-size: 16px;
     }
-}
-
-section.section {
-    padding-bottom: 1.5rem;
-}
-
-.confluent-recipes-block {
-    margin-top: 0.7rem;
+  }
 }
 
 .recipe-navigation {
-    margin-top: 20px;
-    padding-left: 30px;
-    list-style-type: disc;
+  margin-top: 60px;
+  background: #f9f9fa;
+  padding: 40px 30px;
+  display: inline-block;
+
+  > li > a {
+    font-size: 21px;
     font-weight: bold;
+    color: #192048;
+  }
+
+  ul {
+    margin-bottom: 20px;
+    margin-top: 10px;
+
+    a {
+      color: #192048;
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 1.69;
+    }
+  }
 }
 
-#toc ul {
-    list-style-type: circle;
-    font-weight: normal;
-    margin-left: 2em;
+.pg-main {
+  .logo {
+    width: 190px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .hero {
+    .hero-body {
+      padding-bottom: 250px;
+    }
+
+    .headline {
+      align-items: center;
+      text-align: center;
+
+      p {
+        margin-top: 45px;
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 350px;
+  }
 }
 
-.recipe-try-it-step {
-    margin-bottom: 30px;
+.hero {
+  background-color: #f9f9fa;
+  background-image: url("/assets/img/hero.jpg");
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 100px;
+  color: #fff;
+
+  .hero-body {
+    padding-bottom: 90px;
+  }
+
+  .headline {
+    display: flex;
+    flex-direction: column;
+
+    h1 {
+      font-size: 48px;
+      font-weight: bold;
+    }
+
+    h2 {
+      font-size: 78px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      color: #fff;
+      font-size: 22px;
+      margin: 23px 0 0;
+    }
+
+    p {
+      margin-top: 0;
+      max-width: 600px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.72;
+    }
+  }
 }
 
-.recipe-list > li {
-    margin-bottom: 0.75rem;
+.cards {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: -440px;
+  transform: translateX(-50%);
+  left: 50%;
+
+  .card {
+    flex: 1;
+    min-width: 325px;
+    max-width: 325px;
+    margin-right: 46px;
+    padding: 35px 25px 55px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
 }
 
-.buttons > .button.is-selected {
-    background-color: #344fa2;
-    color: #ffffff;
+.card {
+  border-radius: 4px;
+  box-shadow: 0 3px 21px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #192048;
+
+    svg {
+      display: block;
+      margin-bottom: 14px;
+      font-size: 22px;
+    }
+  }
+
+  li {
+    margin-bottom: 15px;
+
+    a {
+      font-size: 15px;
+      color: #2479f7;
+    }
+  }
 }
 
-.button.code-btn {
-    background-color: #efeff3;
-    font-size: 0.65rem;
-}
+.cflt-options {
+  display: none;
+  background: #192048;
+  padding: 5px;
+  border-radius: 4px;
 
-.copy-btn {
-    position: absolute;
-    top: 10px;
-    right: 1.5em;
-}
-
-.expand-btn {
-    position: absolute;
-    top: 10px;
-    right: 4em;
-}
-
-.cta-btn {
-    background-color: #f26724;
+  select {
     color: #fff;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.buttons {
+  border: solid 2px #192048;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 10px;
+
+  .button {
+    margin: 0;
+    border-radius: 4px;
+    border: 0;
+    background: none;
+    text-transform: uppercase;
+    padding: 5px 15px;
+    white-space: nowrap;
+
+    &:hover,
+    &.is-selected {
+      background: #192048;
+      color: #fff;
+    }
+  }
+}
+
+.section .title {
+  font-size: 21px;
+  font-weight: bold;
+  color: #192048;
+  margin-bottom: 16px;
+}
+
+.footer {
+  background: #fff;
+
+  .nav-links {
+    ul {
+      display: inline-block;
+      margin-right: 60px;
+      vertical-align: top;
+      line-height: 2em;
+      margin-bottom: 40px;
+      min-width: 150px;
+    }
+
+    li {
+      &:first-child {
+        font-weight: 500;
+        margin-bottom: 25px;
+      }
+
+      a {
+        color: #2a2a2d;
+        font-weight: 300;
+      }
+    }
+  }
+
+  .social-links {
+    font-size: 0;
+
+    ul {
+      white-space: nowrap;
+    }
+
+    li {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    li a {
+      color: #2a2a2d;
+      font-size: 22px;
+    }
+  }
+}
+
+@media screen and (max-width: 449px) {
+  .cflt-options {
+    display: block;
+  }
+
+  .cflt-tabs {
+    display: none;
+  }
 }
