@@ -8,7 +8,4 @@ build/
 .jekyll-metadata
 node_modules/
 out/
-gradle/
-gradlew
-gradlew.bat
 code.iml
