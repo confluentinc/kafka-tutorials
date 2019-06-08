@@ -92,6 +92,9 @@ public class TransformStream {
     }
 
     public static void main(String[] args) throws Exception {
+
+        System.out.println(args);
+        
         if (args.length < 1) {
             throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");
         }

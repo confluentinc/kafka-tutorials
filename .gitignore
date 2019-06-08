@@ -12,3 +12,5 @@ gradle/
 gradlew
 gradlew.bat
 code.iml
+.vscode
+
