@@ -17,15 +17,20 @@ files = ["create-inputs.sql",
          "continuous-select.sql",
          "print-output-topic.sql"]
 
+start_cli_script = "../harness/recipe-steps/dev/start-cli.sh"
+clean_spool_script = "../harness/recipe-steps/dev/clean-spool.sh"
+copy_outputs_script = "../harness/recipe-steps/dev/copy-docker-outputs.sh"
+
 input_dir = "recipe-steps/dev"
+spool_dir = "recipe-steps/dev/spool-outputs"
 output_dir = "recipe-steps/dev/outputs"
-ksql_cli = "docker exec -it ksql-cli"
+
+unspool_command = "spool off;\n"
 
 def make_spool_command(file_name):
     return "spool '%s';\n" % file_name
 
 def split_io_blocks(coll, line):
-    line = line.decode("utf-8")
     if line.startswith("ksql>"):
         coll.append([line])
     else:
@@ -44,16 +49,21 @@ def shred_spool_text(text):
     blocks = reduce(split_io_blocks, trimmed, [])
     return strip_input(blocks)
 
-unspool_command = "spool off;\n"
+def clean_spool_dir():
+    subprocess.run(["sh", clean_spool_script])
+
+def copy_outputs():
+    subprocess.run(["sh", copy_outputs_script])
 
 inputs = []
 bindings = {}
 
-for f in files:
+for i, f in enumerate(files):
     directory = os.path.splitext(f)[0]
-    spool_file = tempfile.NamedTemporaryFile(delete=False)
-    spool_command = make_spool_command(spool_file.name)
-    bindings[directory] = spool_file
+    spool_name = "spool-" + str(i) + ".log"
+    spool_file_name = "/tmp/spool-outputs/" + spool_name
+    spool_command = make_spool_command(spool_file_name)
+    bindings[directory] = spool_name
     with open(str(input_dir + "/" + f)) as command_seq:
         sql_statements = command_seq.readlines()
         batch = [spool_command] + sql_statements + [unspool_command]
@@ -64,13 +74,15 @@ inputs_file = tempfile.NamedTemporaryFile()
 with open(inputs_file.name, 'w') as f:
     f.write("".join(inputs))
 
-ksql_cli = subprocess.run([ksql_cli], stdin=inputs_file, stdout=subprocess.PIPE)
+clean_spool_dir()
+ksql_cli = subprocess.run(["sh", start_cli_script], stdin=inputs_file, stdout=subprocess.PIPE)
+copy_outputs()
 
 for k, v in bindings.items():
     target_dir = str(output_dir + "/" + k)
     os.makedirs(target_dir)
-    with open(v.name, 'r') as f:
-        content = shred_spool_text(v.readlines())
+    with open(spool_dir + "/" + v, 'r') as f:
+        content = shred_spool_text(f.readlines())
         for index, c in enumerate(content):
             with open(str(target_dir + "/output-" + str(index) + ".log"), 'w') as output_file:
                 output_file.write("".join(c).lstrip())
