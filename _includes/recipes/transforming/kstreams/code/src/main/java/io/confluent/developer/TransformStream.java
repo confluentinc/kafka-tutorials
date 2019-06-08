@@ -34,12 +34,20 @@ public class TransformStream {
         final StreamsBuilder builder = new StreamsBuilder();
         final String inputTopic = envProps.getProperty("input.topic.name");
 
-        KStream<Long, Movie> movies = builder.<String, RawMovie>stream(inputTopic)
-                .map((key, rawMovie) -> new KeyValue<Long, Movie>(rawMovie.getId(), convertRawMovie(rawMovie)));
+        KStream<String, RawMovie> rawMovies = builder.stream(inputTopic);
+        KStream<Long, Movie> movies = rawMovies.map((key, rawMovie) ->
+                new KeyValue<Long, Movie>(rawMovie.getId(), convertRawMovie(rawMovie)));
 
         movies.to("movies", Produced.with(Serdes.Long(), movieAvroSerde(envProps)));
 
         return builder.build();
+    }
+
+    public static Movie convertRawMovie(RawMovie rawMovie) {
+        String titleParts[] = rawMovie.getTitle().split("::");
+        String title = titleParts[0];
+        int releaseYear = Integer.parseInt(titleParts[1]);
+        return new Movie(rawMovie.getId(), title, releaseYear, rawMovie.getGenre());
     }
 
     private SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
@@ -51,13 +59,6 @@ public class TransformStream {
 
         movieAvroSerde.configure(serdeConfig, false);
         return movieAvroSerde;
-    }
-
-    public static Movie convertRawMovie(RawMovie rawMovie) {
-      String titleParts[] = rawMovie.getTitle().split("::");
-      String title = titleParts[0];
-      int releaseYear = Integer.parseInt(titleParts[1]);
-      return new Movie(rawMovie.getId(), title, releaseYear, rawMovie.getGenre());
     }
 
     public void createTopics(Properties envProps) {

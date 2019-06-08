@@ -50,11 +50,11 @@ jar {
   manifest {
     attributes(
       'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'io.confluent.developer.SplitStream'
+      'Main-Class': 'io.confluent.developer.TransformStream'
     )
   }
 }
 
 shadowJar {
-    archiveName = "kstreams-split-standalone-${version}.${extension}"
+    archiveName = "kstreams-transform-standalone-${version}.${extension}"
 }
