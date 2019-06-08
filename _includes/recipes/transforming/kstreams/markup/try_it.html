@@ -73,27 +73,14 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">7. Consume the event subsets from the output topics</h4>
+  <h4 class="subtitle is-4">7. Observe the transformed movies in the output topic</h4>
 
-  <p>Leave your original terminal running. To consume the output events from each of the topic, you'll need to open several new terminal windows. In each instance, the prompt will hang, waiting for more events to arrive. To continue studying the example, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
-
-  <br/>
+  <p>Leave your original terminal running. To consume the events produced by your Streams application you'll need another terminal open. </p>
 
   <p>First, to consume the events of drama films, run the following:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-drama.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kstreams/harness/recipe-steps/dev/console-consumer.sh %}</code></pre>
 
   <p>This should yield the following messages:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/outputs/actual-drama-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kstreams/harness/recipe-steps/dev/outputs/actual-movies.json %}</code></pre>
 
-  <p>Second, to consume those from fantasy films, run the following:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-fantasy.sh %}</code></pre>
-
-  <p>This should yield the following messages:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/outputs/actual-fantasy-events.json %}</code></pre>
-
-  <p>And finally, to consume all the other genres, run the following:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/console-consumer-other.sh %}</code></pre>
-
-  <p>This should yield the following messages:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/splitting/kstreams/harness/recipe-steps/dev/outputs/actual-other-events.json %}</code></pre>
 </div>
