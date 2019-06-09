@@ -1,0 +1,25 @@
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">1. Create a test configuration file</h4>
+
+  <p>First, create a test file at <code>configuration/test.properties</code>:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/configuration/test.properties %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">2. Write a test</h4>
+
+  <p>Then, create a directory for the tests to live in:</p>
+  <pre class="snippet"><code class="shell">mkdir -p src/test/java/io/confluent/developer</code></pre>
+
+  <p>Create the following test file at <code>src/test/java/io/confluent/developer/SplitStreamTest.java</code>. Testing a Kafka streams application requies a bit of test harness code, but happily the <code>org.apache.kafka.streams.TopologyTestDriver</code> class makes this much more pleasant that it would otherwise be.</p>
+  <p>There are two methods in <code>TransformStreamTest</code> annotated with <code>@Test</code>: <code>testMovieConverter()</code> and <code>testTransformStream()</code>. <code>testMovieConverter()</code> is a simple method that tests the string that is core to the transformation action of this Streams application. <code>testMovieConverter()</code> actually runs our Streams topology using the <code>TopologyTestDriver</code> and some mocked data that is set up inside the test method.</p>
+
+  <pre class="snippet"><code class="java">{% include_raw recipes/joining/kstreams/code/src/test/java/io/confluent/developer/TransformStreamTest.java %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">3. Invoke the tests</h4>
+
+  <p>Now run the test, which is as simple as:</p>
+  <pre class="snippet"><code class="shell">gradle test</code></pre>
+</div>
