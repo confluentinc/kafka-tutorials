@@ -9,7 +9,7 @@
   <h4 class="subtitle is-4">2. Initialize the project</h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
-  <pre class="snippet"><code class="shell">mkdir transform-stream && cd transform-stream</code></pre>
+  <pre class="snippet"><code class="shell">mkdir join-stream && cd join-stream</code></pre>
 
   <p>Then create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
   <pre class="snippet"><code class="groovy">{% include_raw recipes/joining/kstreams/code/build.gradle %}</code></pre>
@@ -24,14 +24,19 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">3. Create a schema for the events</h4>
 
+  <p>This recipe uses three streams: one called <coce>movies</coce> that holds movie reference data, one called <code>ratings</code> that holds a stream of inbound movie ratings, and one called <code>rated-movies</code> that holds the result of the join between ratings and movies. Let's create schemas for all three.</p>
+  
   <p>Create a directory for the schemas that represent the events in the stream:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
 
-  <p>Then create the following Avro schema file at <code>src/main/avro/input_movie_event.avsc</code> for the raw movies:</p>
-  <pre class="snippet"><code class="avro">{% include_raw recipes/joining/kstreams/code/src/main/avro/input_movie_event.avsc %}</code></pre>
+  <p>Then create the following Avro schema file at <code>src/main/avro/movie.avsc</code> for the movies lookup table:</p>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/joining/kstreams/code/src/main/avro/movie.avsc %}</code></pre>
 
-  <p>While you're at it, create another Avro schema file at <code>src/main/avro/output_movie_event.avsc</code> for the transformed movies:</p>
-  <pre class="snippet"><code class="avro">{% include_raw recipes/joining/kstreams/code/src/main/avro/output_movie_event.avsc %}</code></pre>
+  <p>Next, create another Avro schema file at <code>src/main/avro/rating.avsc</code> for the stream of ratings:</p>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/joining/kstreams/code/src/main/avro/rating.avsc %}</code></pre>
+
+  <p>And finally, create another Avro schema file at <code>src/main/avro/rated-movie.avsc</code> for the result of the join:</p>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/joining/kstreams/code/src/main/avro/rated-movie.avsc %}</code></pre>
 
   <p>Because we will use this Avro schema in our Java code, we'll need to compile it. The Gradle Avro plugin is a part of the build, so it will see your new Avro files, generate Java code for them, and compile those and all other Java sources. Run this command to get it all done:</p>
   <pre class="snippet"><code class="shell">gradle build</code></pre>
@@ -43,44 +48,71 @@
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
 
-  <p>Then create the following file at <code>src/main/java/io/confluent/developer/TransformStream.java</code>. Let's take a close look at the <code>buildTopology()</code> method, which uses the Kafka Streams DSL.</p>
+  <p>Then create the following file at <code>src/main/java/io/confluent/developer/JoinStreamToTable.java</code>. Let's take a close look at the <code>buildTopology()</code> method, which uses the Kafka Streams DSL.</p>
 
-  <p>The first thing the method does is create an instance of <code>StreamsBuilder</code>, which is the helper object that lets us build our topology. Next we call the <code>stream()</code> method, which creates a <code>KStream</code> object (called <code>rawMovies</code> in this case) out of an underlying Kafka topic. Note the type of that stream is <code>Long, RawMovie</code>, because the topic contains the raw movie objects we want to transform. RawMovie's <code>title</code> field contains the title and the release year together, which we want to make into separate fields in a new object.</p>
+  <p>The first thing the method does is create an instance of <code>StreamsBuilder</code>, which is the helper object that lets us build our topology. Next we call the <code>table()</code> method, which creates a <code>KTable</code> object called <code>movies</code>. This turns a topic full of movie entities into a scalable, key-addressable table of <code>Movie</code> objects. Next we call the <code>stream()</code> method, which creates a <code>KStream</code> object called <code>ratings</code>. This holds our streaming movie ratings in the form of <code>Rating</code> objects.</p>
     
-  <p>We get that transforming work done with the next line, which is a call to the <code>map()</code> method. <code>map()</code> takes each input record and creates a new stream with transformed records in it. Its parameter is a single Java Lambda that takes the input key and value and returns an instance of the <code>KeyValue</code> class with the new record in it. Notice that we are using the <code>movieId</code> as the key, and calling the <code>convertRawMovie()</code> method to turn the <code>RawMovie</code> value into a <code>Movie</code>. The <code>convertRawMovie()</code> method contains the sort of unpleasant string parsing that is a part of many stream processing pipelines, which we are happily able to encapsulate in a single, easily testable method. Any further stages we might build in the pipeline after this point are blissfully unaware that we ever had a string to parse in the first place.
+  <p>With the stream and the table in hand, all that remains is to join them using the <code>join()</code> method. It's a wonderfully simply one-liner, but we have concealed a bit of complexity in the form of the <code>MovieRatingJoiner</code> class. More on that in a moment.</p>
 
-  <pre class="snippet"><code class="java">{% include_raw recipes/joining/kstreams/code/src/main/java/io/confluent/developer/TransformStream.java %}</code></pre>
+  <pre class="snippet"><code class="java">{% include_raw recipes/joining/kstreams/code/src/main/java/io/confluent/developer/JoinStreamToTable.java %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">5. Compile and run the Kafka Streams program</h4>
+  <h4 class="subtitle is-4">5. Implement a ValueJoiner class</h4>
+
+  <p>Create the following file at <code>src/main/java/io/confluent/developer/MovieRatingJoiner.java</code>.</p>
+
+  <p>When you join two tables in a relational database, by default you get a new table containing all of the columns of the left table plus all of the columns of the right table. When you join a stream and a table, you get a new stream, but you must be explicit about the value of that stream—the combination between the value in the stream and the assocaited value in the table. The <code><a href="https://kafka.apache.org/22/javadoc/org/apache/kafka/streams/kstream/ValueJoiner.html">ValueJoiner</a></code> interface in the Streams API does this work. The single <code>apply()</code> method takes the stream and table values as parameters, and returns the value of the joined stream as output. (Their keys are not a part of the equation, because they are equal by definition and do not change in the result.) As you can see here, this is just a matter of creating a <code>RatedMovie</code> object and populating it with the relevant fields of the input movie and rating.</p>
+
+  <p>You can do this in a Java Lambda in the call to the <code>join()</code> method where you're building the stream topology, but the joining logic may become complex, and breaking it off into its own trivially testable class is a good move.</p>
+
+  <pre class="snippet"><code class="java">{% include_raw recipes/joining/kstreams/code/src/main/java/io/confluent/developer/MovieRatingJoiner.java %}</code></pre>
+</div>
+
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">6. Compile and run the Kafka Streams program</h4>
 
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/build-uberjar.sh %}</code></pre>
 
-  <p>Now that an uberjar for the Kafka Streams application has been built, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it:</p>
+  <p>Now that you have an uberjar for the Kafka Streams application, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it. There is always another message to process, so streaming applications don't exit until you force them.</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
+  <h4 class="subtitle is-4">7. Load in some movie reference data</h4>
 
   <p>In a new terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/console-producer.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/console-producer-movies.sh %}</code></pre>
 
-  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an event. To send all of the events below, paste the following into the prompt and press enter:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/input-events.json %}</code></pre>
+  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Copy and paste one line at a time and press enter to send it. Note that these lines contain hard tabs between the key and the value, so retyping them without the tab will not work.</p> 
+  
+  <p>Each line represents a movie we will be able to rate. To send all of the events below, paste the following into the prompt and press enter:</p>
+  <pre class="snippet"><code class="json">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/movies.json %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">7. Observe the transformed movies in the output topic</h4>
+  <h4 class="subtitle is-4">8. Produce some ratings to the input topic</h4>
 
-  <p>Leave your original terminal running. To consume the events produced by your Streams application you'll need another terminal open. </p>
+  <p>In a new terminal, run:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>
+
+  <p>Same as above, when the produce starts up, copy and paste these lines into the terminal. Try doing them one at a time, and skip ahead to the next step to fire up the console consumer, so you can see the results of your work:</p>
+  <pre class="snippet"><code class="json">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/ratings.json %}</code></pre>
+</div>
+
+
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">9. Observe the rated movies in the output topic</h4>
+
+  <p>With the previous three terminals running, start up a console consumer in another terminal to see the results of the stream/table join:</p>
 
   <p>First, to consume the events of drama films, run the following:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/console-consumer.sh %}</code></pre>
 
   <p>This should yield the following messages:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/outputs/actual-movies.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/joining/kstreams/harness/recipe-steps/dev/outputs/rated-movies.json %}</code></pre>
 
 </div>

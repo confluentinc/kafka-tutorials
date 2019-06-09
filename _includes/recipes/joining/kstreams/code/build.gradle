@@ -47,7 +47,7 @@ test {
 }
 
 task run(type: JavaExec) {
-   main = 'io.confluent.developer.TransformStream'
+   main = 'io.confluent.developer.JoinStreamToTable'
    classpath = sourceSets.main.runtimeClasspath
    args = ['configuration/dev.properties']
 }
@@ -56,11 +56,11 @@ jar {
   manifest {
     attributes(
       'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'io.confluent.developer.TransformStream'
+      'Main-Class': 'io.confluent.developer.JoinStreamToTable'
     )
   }
 }
 
 shadowJar {
-    archiveName = "kstreams-transform-standalone-${version}.${extension}"
+    archiveName = "kstreams-join-standalone-${version}.${extension}"
 }
