@@ -25,7 +25,7 @@ public class JoinStreamToTable {
 
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Long().getClass());
+        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
@@ -34,16 +34,25 @@ public class JoinStreamToTable {
 
     public Topology buildTopology(Properties envProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String movieTopic = envProps.getProperty("table.topic.name");
-        final String ratingTopic = envProps.getProperty("stream.topic.name");
-        final String ratedMoviesTopic = envProps.getProperty("output.topic.name");
+        final String movieTopic = envProps.getProperty("movie.topic.name");
+        final String rekeyedMovieTopic = envProps.getProperty("rekeyed.movie.topic.name");
+        final String ratingTopic = envProps.getProperty("rating.topic.name");
+        final String ratedMoviesTopic = envProps.getProperty("rated.movies.topic.name");
         final MovieRatingJoiner joiner = new MovieRatingJoiner();
 
-        KTable<Long, Movie> movies = builder.table(movieTopic);
-        KStream<Long, Rating> ratings = builder.stream(ratingTopic);
-        KStream<Long, RatedMovie> ratedMovie = ratings.join(movies, joiner);
+        KStream<String, Movie> movieStream = builder.<String, Movie>stream(movieTopic)
+                .map((key, movie) -> new KeyValue<>(movie.getId().toString(), movie));
 
-        ratedMovie.to(ratedMoviesTopic, Produced.with(Serdes.Long(), ratedMovieAvroSerde(envProps)));
+        movieStream.to(rekeyedMovieTopic);
+
+        KTable<String, Movie> movies = builder.table(rekeyedMovieTopic);
+
+        KStream<String, Rating> ratings = builder.<String, Rating>stream(ratingTopic)
+                .map((key, rating) -> new KeyValue<>(rating.getId().toString(), rating));
+
+        KStream<String, RatedMovie> ratedMovie = ratings.join(movies, joiner);
+
+        ratedMovie.to(ratedMoviesTopic, Produced.with(Serdes.String(), ratedMovieAvroSerde(envProps)));
 
         return builder.build();
     }
@@ -67,19 +76,24 @@ public class JoinStreamToTable {
         List<NewTopic> topics = new ArrayList<>();
 
         topics.add(new NewTopic(
-                envProps.getProperty("table.topic.name"),
-                Integer.parseInt(envProps.getProperty("table.topic.partitions")),
-                Short.parseShort(envProps.getProperty("table.topic.replication.factor"))));
+                envProps.getProperty("movie.topic.name"),
+                Integer.parseInt(envProps.getProperty("movie.topic.partitions")),
+                Short.parseShort(envProps.getProperty("movie.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("stream.topic.name"),
-                Integer.parseInt(envProps.getProperty("stream.topic.partitions")),
-                Short.parseShort(envProps.getProperty("stream.topic.replication.factor"))));
+                envProps.getProperty("rekeyed.movie.topic.name"),
+                Integer.parseInt(envProps.getProperty("rekeyed.movie.topic.partitions")),
+                Short.parseShort(envProps.getProperty("rekeyed.movie.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("output.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+                envProps.getProperty("rating.topic.name"),
+                Integer.parseInt(envProps.getProperty("rating.topic.partitions")),
+                Short.parseShort(envProps.getProperty("rating.topic.replication.factor"))));
+
+        topics.add(new NewTopic(
+                envProps.getProperty("rated.movies.topic.name"),
+                Integer.parseInt(envProps.getProperty("rated.movies.topic.partitions")),
+                Short.parseShort(envProps.getProperty("rated.movies.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();

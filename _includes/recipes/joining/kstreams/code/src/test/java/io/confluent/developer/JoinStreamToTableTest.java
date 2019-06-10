@@ -23,7 +23,7 @@ public class JoinStreamToTableTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
-    public SpecificAvroSerializer<Movie> makeMovieSerializer(Properties envProps) {
+    private SpecificAvroSerializer<Movie> makeMovieSerializer(Properties envProps) {
         SpecificAvroSerializer<Movie> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
@@ -33,7 +33,7 @@ public class JoinStreamToTableTest {
         return serializer;
     }
 
-    public SpecificAvroSerializer<Rating> makeRatingSerializer(Properties envProps) {
+    private SpecificAvroSerializer<Rating> makeRatingSerializer(Properties envProps) {
         SpecificAvroSerializer<Rating> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
@@ -43,7 +43,7 @@ public class JoinStreamToTableTest {
         return serializer;
     }
 
-    public SpecificAvroDeserializer<RatedMovie> makeRatedMovieDeserializer(Properties envProps) {
+    private SpecificAvroDeserializer<RatedMovie> makeRatedMovieDeserializer(Properties envProps) {
         SpecificAvroDeserializer<RatedMovie> deserializer = new SpecificAvroDeserializer<>();
 
         Map<String, String> config = new HashMap<>();
@@ -55,12 +55,12 @@ public class JoinStreamToTableTest {
 
     private List<RatedMovie> readOutputTopic(TopologyTestDriver testDriver,
                                              String topic,
-                                             Deserializer<Long> keyDeserializer,
+                                             Deserializer<String> keyDeserializer,
                                              SpecificAvroDeserializer<RatedMovie> makeRatedMovieDeserializer) {
         List<RatedMovie> results = new ArrayList<>();
 
         while (true) {
-            ProducerRecord<Long, RatedMovie> record = testDriver.readOutput(topic, keyDeserializer, makeRatedMovieDeserializer);
+            ProducerRecord<String, RatedMovie> record = testDriver.readOutput(topic, keyDeserializer, makeRatedMovieDeserializer);
 
             if (record != null) {
                 results.add(record.value());
@@ -78,22 +78,22 @@ public class JoinStreamToTableTest {
         Properties envProps = jst.loadEnvProperties(TEST_CONFIG_FILE);
         Properties streamProps = jst.buildStreamsProperties(envProps);
 
-        String tableTopic = envProps.getProperty("table.topic.name");
-        String streamTopic = envProps.getProperty("stream.topic.name");
-        String outputTopic = envProps.getProperty("output.topic.name");
+        String tableTopic = envProps.getProperty("movie.topic.name");
+        String streamTopic = envProps.getProperty("rating.topic.name");
+        String outputTopic = envProps.getProperty("rated.movies.topic.name");
 
         Topology topology = jst.buildTopology(envProps);
         TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
 
-        Serializer<Long> keySerializer = Serdes.Long().serializer();
+        Serializer<String> keySerializer = Serdes.String().serializer();
         SpecificAvroSerializer<Movie> movieSerializer = makeMovieSerializer(envProps);
         SpecificAvroSerializer<Rating> ratingSerializer = makeRatingSerializer(envProps);
 
-        Deserializer<Long> longDeserializer = Serdes.Long().deserializer();
+        Deserializer<String> stringDeserializer = Serdes.String().deserializer();
         SpecificAvroDeserializer<RatedMovie> valueDeserializer = makeRatedMovieDeserializer(envProps);
 
-        ConsumerRecordFactory<Long, Movie> movieFactory = new ConsumerRecordFactory<>(keySerializer, movieSerializer);
-        ConsumerRecordFactory<Long, Rating> ratingFactory = new ConsumerRecordFactory<>(keySerializer, ratingSerializer);
+        ConsumerRecordFactory<String, Movie> movieFactory = new ConsumerRecordFactory<>(keySerializer, movieSerializer);
+        ConsumerRecordFactory<String, Rating> ratingFactory = new ConsumerRecordFactory<>(keySerializer, ratingSerializer);
 
         List<Movie> movies = new ArrayList<>();
         movies.add(Movie.newBuilder().setId(294).setTitle("Die Hard").setReleaseYear(1988).build());
@@ -112,14 +112,14 @@ public class JoinStreamToTableTest {
         ratedMovies.add(RatedMovie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setRating(9.6).build());
 
         for(Movie movie : movies) {
-            testDriver.pipeInput(movieFactory.create(tableTopic, movie.getId(), movie));
+            testDriver.pipeInput(movieFactory.create(tableTopic, movie.getId().toString(), movie));
         }
 
         for(Rating rating: ratings) {
-            testDriver.pipeInput(ratingFactory.create(streamTopic, rating.getId(), rating));
+            testDriver.pipeInput(ratingFactory.create(streamTopic, rating.getId().toString(), rating));
         }
 
-        List<RatedMovie> actualOutput = readOutputTopic(testDriver, outputTopic, longDeserializer, valueDeserializer);
+        List<RatedMovie> actualOutput = readOutputTopic(testDriver, outputTopic, stringDeserializer, valueDeserializer);
 
         assertEquals(ratedMovies, actualOutput);
     }

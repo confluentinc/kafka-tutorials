@@ -1,1 +1,1 @@
-docker exec -i schema-registry /usr/bin/kafka-avro-console-producer --topic movies --broker-list broker:9092 --property parse.key=true --property key.schema='{"type":"long"}' --property value.schema="$(< src/main/avro/movie.avsc)"
+docker exec -i schema-registry /usr/bin/kafka-avro-console-producer --topic movies --broker-list broker:9092 --property value.schema="$(< src/main/avro/movie.avsc)"
