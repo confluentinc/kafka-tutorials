@@ -351,6 +351,10 @@ body {
 
 @media screen and (max-width: 1079px) {
   .pg-main {
+    .footer {
+      margin-top: 0;
+    }
+
     .cards {
       flex-direction: column;
       margin-top: 0;
@@ -366,10 +370,6 @@ body {
         &:last-child {
           margin-bottom: 40px;
         }
-      }
-
-      .footer {
-        margin-top: 0;
       }
     }
   }
