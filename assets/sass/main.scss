@@ -55,7 +55,18 @@ body {
   }
 }
 
+.logo {
+  width: 190px;
+  height: auto;
+}
+
 .pg-recipe {
+  .logo {
+    position: absolute;
+    top: 20px;
+    left: 91px;
+  }
+
   .summary {
     margin-top: 60px;
   }
@@ -125,8 +136,6 @@ body {
 
 .pg-main {
   .logo {
-    width: 190px;
-    height: auto;
     margin-bottom: 20px;
   }
 
