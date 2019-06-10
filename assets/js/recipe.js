@@ -45,6 +45,6 @@ $(document).ready(function() {
   });
 
   $(".cflt-options select").on("change", function() {
-    alert(this.value);
+    window.location.href = this.value;
   });
 });

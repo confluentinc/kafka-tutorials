@@ -3,89 +3,96 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  {% include vendors.html %}
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{{ site.title }}</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/sass/main.css" />
-</head>
-<body class="pg-main">
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container">
-        <div class="headline">
-          {% include logo.html %}
-          <h2>Developer</h2>
-          <p>
-            Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
-            sed odio dui. Maecenas sed diam eget risus varius blandit sit amet
-            non magna. Maecenas faucibus mollis interdum.
-          </p>
-        </div>
-        <div class="cards">
-          <div class="card">
-            <div class="title">
-              <i class="fas fa-code"></i>Apply a function to data.
-            </div>
-            <ul>
-              <li>
-                <a href="/recipes/filter-a-stream-of-events/ksql.html"><strong>Transform a stream</strong> of events</a>
-              </li>
-              <li>
-                <a href="/recipes/split-a-stream-of-events-into-substreams/kstreams.html"><strong>Filter a stream</strong> of events</a>
-              </li>
-              <li>
-                <a href="/recipes/filter-a-stream-of-events/kafka.html"><strong>Split a stream of events</strong> into
-                  substreams</a>
-              </li>
-              <li>
-                <a href="#"><strong>Merge many streams</strong> into one stream</a>
-              </li>
-              <li>
-                <a href="#"><strong>Change event serialization</strong> formats</a>
-              </li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="title">
-              <i class="far fa-clock"></i> Collect data over time.
-            </div>
-            <ul>
-              <li>
-                <a href="#">Create <strong>tumbling windows</strong></a>
-              </li>
-              <li>
-                <a href="#">Create <strong>hopping windows</strong></a>
-              </li>
-              <li>
-                <a href="#">Create <strong>session windows</strong></a>
-              </li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="title">
-              <i class="fas fa-code-branch"></i>Join data.
-            </div>
-            <ul>
-              <li>
-                <a href="#"><strong>Join two streams</strong> of events together</a>
-              </li>
-              <li>
-                <a href="#"><strong>Join a stream</strong> and a table together</a>
-              </li>
-              <li>
-                <a href="#"><strong>Join two tables</strong> together</a>
-              </li>
-            </ul>
+  <head>
+    {% include vendors.html %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ site.title }}</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/sass/main.css" />
+  </head>
+  <body class="pg-main">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="headline">
+            {% include logo.html %}
+            <h2>Developer</h2>
+            <p>
+              Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec
+              sed odio dui. Maecenas sed diam eget risus varius blandit sit amet
+              non magna. Maecenas faucibus mollis interdum.
+            </p>
           </div>
         </div>
       </div>
+    </section>
+    <div class="cards">
+      <div class="card">
+        <div class="title">
+          <i class="fas fa-code"></i>Apply a function to data.
+        </div>
+        <ul>
+          <li>
+            <a href="/recipes/filter-a-stream-of-events/ksql.html"
+              ><strong>Transform a stream</strong> of events</a
+            >
+          </li>
+          <li>
+            <a
+              href="/recipes/split-a-stream-of-events-into-substreams/kstreams.html"
+              ><strong>Filter a stream</strong> of events</a
+            >
+          </li>
+          <li>
+            <a href="/recipes/filter-a-stream-of-events/kafka.html"
+              ><strong>Split a stream of events</strong> into substreams</a
+            >
+          </li>
+          <li>
+            <a href="#"><strong>Merge many streams</strong> into one stream</a>
+          </li>
+          <li>
+            <a href="#"><strong>Change event serialization</strong> formats</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="title">
+          <i class="far fa-clock"></i> Collect data over time.
+        </div>
+        <ul>
+          <li>
+            <a href="#">Create <strong>tumbling windows</strong></a>
+          </li>
+          <li>
+            <a href="#">Create <strong>hopping windows</strong></a>
+          </li>
+          <li>
+            <a href="#">Create <strong>session windows</strong></a>
+          </li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="title"><i class="fas fa-code-branch"></i>Join data.</div>
+        <ul>
+          <li>
+            <a href="#"><strong>Join two streams</strong> of events together</a>
+          </li>
+          <li>
+            <a href="#"><strong>Join a stream</strong> and a table together</a>
+          </li>
+          <li>
+            <a href="#"><strong>Join two tables</strong> together</a>
+          </li>
+        </ul>
+      </div>
     </div>
-  </section>
 
-  {% include footer.html %}
-  <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-</body>
+    {% include footer.html %}
+    <script src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </body>
 </html>

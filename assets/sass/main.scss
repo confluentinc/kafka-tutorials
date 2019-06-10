@@ -146,7 +146,7 @@ body {
   }
 
   .footer {
-    margin-top: 350px;
+    margin-top: 200px;
   }
 }
 
@@ -168,12 +168,12 @@ body {
     flex-direction: column;
 
     h1 {
-      font-size: 48px;
+      font-size: 3.4em;
       font-weight: bold;
     }
 
     h2 {
-      font-size: 78px;
+      font-size: 5.5em;
       font-weight: bold;
       text-transform: uppercase;
     }
@@ -197,11 +197,7 @@ body {
 .cards {
   display: flex;
   justify-content: center;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: -440px;
-  transform: translateX(-50%);
-  left: 50%;
+  margin-top: -125px;
 
   .card {
     flex: 1;
@@ -248,6 +244,17 @@ body {
   background: #192048;
   padding: 5px;
   border-radius: 4px;
+  position: relative;
+
+  &:after {
+    content: "▼";
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    pointer-events: none;
+    color: #fff;
+    right: 10px;
+  }
 
   select {
     color: #fff;
@@ -289,6 +296,7 @@ body {
 
 .footer {
   background: #fff;
+  font-size: 14px;
 
   .nav-links {
     ul {
@@ -332,7 +340,37 @@ body {
   }
 }
 
-@media screen and (max-width: 449px) {
+@media screen and (max-width: 1079px) {
+  .pg-main {
+    .cards {
+      flex-direction: column;
+      margin-top: 0;
+      align-items: center;
+
+      .card {
+        margin: 20px 0;
+
+        &:first-child {
+          margin-top: 40px;
+        }
+
+        &:last-child {
+          margin-bottom: 40px;
+        }
+      }
+
+      .footer {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  body {
+    font-size: 10px;
+  }
+
   .cflt-options {
     display: block;
   }
