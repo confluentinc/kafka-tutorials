@@ -95,19 +95,17 @@ public class TransformStreamTest {
 
         ConsumerRecordFactory<String, RawMovie> inputFactory = new ConsumerRecordFactory<>(keySerializer, valueSerializer);
 
-        RawMovie rawDieHard = RawMovie.newBuilder().setId(294).setTitle("Die Hard::1988").setGenre("action").build();
-        RawMovie rawTreeOfLife = RawMovie.newBuilder().setId(354).setTitle("Tree of Life::2011").setGenre("drama").build();;
-
         List<RawMovie> input = new ArrayList<>();
-        input.add(rawDieHard);
-        input.add(rawTreeOfLife);
-
-        Movie dieHard = Movie.newBuilder().setTitle("Die Hard").setId(294).setReleaseYear(1988).setGenre("action").build();
-        Movie treeOfLife = Movie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setGenre("drama").build();;
+        input.add(RawMovie.newBuilder().setId(294).setTitle("Die Hard::1988").setGenre("action").build());
+        input.add(RawMovie.newBuilder().setId(354).setTitle("Tree of Life::2011").setGenre("drama").build());
+        input.add(RawMovie.newBuilder().setId(782).setTitle("A Walk in the Clouds::1995").setGenre("romance").build());
+        input.add(RawMovie.newBuilder().setId(128).setTitle("The Big Lebowski::1998").setGenre("comedy").build());
 
         List<Movie> expectedOutput = new ArrayList<>();
-        expectedOutput.add(dieHard);
-        expectedOutput.add(treeOfLife);
+        expectedOutput.add(Movie.newBuilder().setTitle("Die Hard").setId(294).setReleaseYear(1988).setGenre("action").build());
+        expectedOutput.add(Movie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setGenre("drama").build());
+        expectedOutput.add(Movie.newBuilder().setTitle("A Walk in the Clouds").setId(782).setReleaseYear(1995).setGenre("romance").build());
+        expectedOutput.add(Movie.newBuilder().setTitle("The Big Lebowski").setId(128).setReleaseYear(1998).setGenre("comedy").build());
 
         for (RawMovie rawMovie : input) {
             testDriver.pipeInput(inputFactory.create(inputTopic, rawMovie.getTitle(), rawMovie));
