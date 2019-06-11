@@ -12,7 +12,7 @@ dev_recipe: uberjar
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.json $(DEV_OUTPUTS_DIR)/actual-movie-events.json
 
 test_recipe:
-	(cd ../code ; gradle test)
+	(cd ../code ; gradlew test)
 
 prod_recipe:
 	(cd ../code ; ./../harness/$(STEPS_DIR)/prod/build-image.sh)
