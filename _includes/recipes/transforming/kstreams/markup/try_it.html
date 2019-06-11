@@ -30,8 +30,8 @@
   <p>Then create the following Avro schema file at <code>src/main/avro/input_movie_event.avsc</code> for the raw movies:</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kstreams/code/src/main/avro/input_movie_event.avsc %}</code></pre>
 
-  <p>While you're at it, create another Avro schema file at <code>src/main/avro/output_movie_event.avsc</code> for the transformed movies:</p>
-  <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kstreams/code/src/main/avro/output_movie_event.avsc %}</code></pre>
+  <p>While you're at it, create another Avro schema file at <code>src/main/avro/parsed_movies.avsc</code> for the transformed movies:</p>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kstreams/code/src/main/avro/parsed_movies.avsc %}</code></pre>
 
   <p>Because we will use this Avro schema in our Java code, we'll need to compile it. The Gradle Avro plugin is a part of the build, so it will see your new Avro files, generate Java code for them, and compile those and all other Java sources. Run this command to get it all done:</p>
   <pre class="snippet"><code class="shell">gradle build</code></pre>
