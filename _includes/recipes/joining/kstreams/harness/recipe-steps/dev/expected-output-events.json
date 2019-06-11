@@ -1,5 +1,10 @@
-{"title": "Die Hard", "release_year": 1988, "genre": "action"}
-{"title": "Tree of Life", "release_year": 2011, "genre": "drama"}
-{"title": "Big Trouble in Little China", "release_year": 1986, "genre": "action"}
-{"title": "Real Genius", "release_year": 1982, "genre": "comedy"}
-Processed a total of 4 messages
+{"id":294,"title":"Die Hard","release_year":1988,"rating":8.2}
+{"id":294,"title":"Die Hard","release_year":1988,"rating":8.5}
+{"id":354,"title":"Tree of Life","release_year":2011,"rating":9.9}
+{"id":354,"title":"Tree of Life","release_year":2011,"rating":9.7}
+{"id":782,"title":"A Walk in the Clouds","release_year":1995,"rating":7.8}
+{"id":782,"title":"A Walk in the Clouds","release_year":1995,"rating":7.7}
+{"id":128,"title":"The Big Lebowski","release_year":1998,"rating":8.7}
+{"id":128,"title":"The Big Lebowski","release_year":1998,"rating":8.4}
+{"id":780,"title":"Super Mario Bros.","release_year":1993,"rating":2.1}
+Processed a total of 9 messages

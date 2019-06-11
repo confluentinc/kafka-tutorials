@@ -95,21 +95,35 @@ public class JoinStreamToTableTest {
         ConsumerRecordFactory<String, Movie> movieFactory = new ConsumerRecordFactory<>(keySerializer, movieSerializer);
         ConsumerRecordFactory<String, Rating> ratingFactory = new ConsumerRecordFactory<>(keySerializer, ratingSerializer);
 
+
         List<Movie> movies = new ArrayList<>();
         movies.add(Movie.newBuilder().setId(294).setTitle("Die Hard").setReleaseYear(1988).build());
         movies.add(Movie.newBuilder().setId(354).setTitle("Tree of Life").setReleaseYear(2011).build());
+        movies.add(Movie.newBuilder().setId(782).setTitle("A Walk in the Clouds").setReleaseYear(1998).build());
+        movies.add(Movie.newBuilder().setId(128).setTitle("The Big Lebowski").setReleaseYear(1998).build());
+        movies.add(Movie.newBuilder().setId(780).setTitle("Super Mario Bros.").setReleaseYear(1993).build());
 
         List<Rating> ratings = new ArrayList<>();
-        ratings.add(Rating.newBuilder().setId(294).setRating(8.1).build());
         ratings.add(Rating.newBuilder().setId(294).setRating(8.2).build());
-        ratings.add(Rating.newBuilder().setId(354).setRating(9.2).build());
-        ratings.add(Rating.newBuilder().setId(354).setRating(9.6).build());
+        ratings.add(Rating.newBuilder().setId(294).setRating(8.5).build());
+        ratings.add(Rating.newBuilder().setId(354).setRating(9.9).build());
+        ratings.add(Rating.newBuilder().setId(354).setRating(9.7).build());
+        ratings.add(Rating.newBuilder().setId(782).setRating(7.8).build());
+        ratings.add(Rating.newBuilder().setId(782).setRating(7.7).build());
+        ratings.add(Rating.newBuilder().setId(128).setRating(8.7).build());
+        ratings.add(Rating.newBuilder().setId(128).setRating(8.4).build());
+        ratings.add(Rating.newBuilder().setId(780).setRating(2.1).build());
 
         List<RatedMovie> ratedMovies = new ArrayList<>();
-        ratedMovies.add(RatedMovie.newBuilder().setTitle("Die Hard").setId(294).setReleaseYear(1988).setRating(8.1).build());
         ratedMovies.add(RatedMovie.newBuilder().setTitle("Die Hard").setId(294).setReleaseYear(1988).setRating(8.2).build());
-        ratedMovies.add(RatedMovie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setRating(9.2).build());
-        ratedMovies.add(RatedMovie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setRating(9.6).build());
+        ratedMovies.add(RatedMovie.newBuilder().setTitle("Die Hard").setId(294).setReleaseYear(1988).setRating(8.5).build());
+        ratedMovies.add(RatedMovie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setRating(9.9).build());
+        ratedMovies.add(RatedMovie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setRating(9.7).build());
+        ratedMovies.add(RatedMovie.newBuilder().setId(782).setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(7.8).build());
+        ratedMovies.add(RatedMovie.newBuilder().setId(782).setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(7.7).build());
+        ratedMovies.add(RatedMovie.newBuilder().setId(128).setTitle("The Big Lebowski").setReleaseYear(1998).setRating(8.7).build());
+        ratedMovies.add(RatedMovie.newBuilder().setId(128).setTitle("The Big Lebowski").setReleaseYear(1998).setRating(8.4).build());
+        ratedMovies.add(RatedMovie.newBuilder().setId(780).setTitle("Super Mario Bros.").setReleaseYear(1993).setRating(2.1).build());
 
         for(Movie movie : movies) {
             testDriver.pipeInput(movieFactory.create(tableTopic, movie.getId().toString(), movie));
