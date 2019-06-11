@@ -9,16 +9,14 @@ if sys.version_info[0] != 3:
 
 os.chdir("../code")
 
-producer_script = "../harness/recipe-steps/dev/console-producer.sh"
-drama_consumer_script = "../harness/recipe-steps/dev/console-consumer-drama.sh"
-fantasy_consumer_script = "../harness/recipe-steps/dev/console-consumer-fantasy.sh"
-other_consumer_script = "../harness/recipe-steps/dev/console-consumer-other.sh"
+movie_producer_script = "../harness/recipe-steps/dev/console-producer-movies.sh"
+rating_producer_script = "../harness/recipe-steps/dev/console-producer-ratings.sh"
+rated_movie_consumer_script = "../harness/recipe-steps/dev/console-consumer.sh"
 run_app_script = "../harness/recipe-steps/dev/run-dev-app.sh"
 
-inputs_file = "../harness/recipe-steps/dev/input-events.json"
-drama_outputs_file = "../harness/recipe-steps/dev/outputs/actual-drama-events.json"
-fantasy_outputs_file = "../harness/recipe-steps/dev/outputs/actual-fantasy-events.json"
-other_outputs_file = "../harness/recipe-steps/dev/outputs/actual-other-events.json"
+ratings_file = "../harness/recipe-steps/dev/ratings.json"
+movies_file = "../harness/recipe-steps/dev/movies.json"
+rated_movie_outputs_file = "../harness/recipe-steps/dev/outputs/rated-movies.json"
 
 timeout_ms = 3000
 
@@ -35,18 +33,22 @@ def write_consumer_output(consumer, outputs_file):
     output_file.write(str(consumer.stdout, "UTF-8"))
     output_file.close()
 
-producer = subprocess.run(["sh", producer_script],
-                          stdin=open(inputs_file, "r"),
-                          stdout=subprocess.PIPE)
-app = subprocess.Popen(["sh", run_app_script], preexec_fn=os.setsid)
+movie_producer = subprocess.run(["sh", movie_producer_script],
+                                stdin=open(movies_file, "r"),
+                                stdout=subprocess.PIPE)
+movie_app = subprocess.Popen(["sh", run_app_script], preexec_fn=os.setsid)
 
-drama_consumer = run_consumer(drama_consumer_script)
-fantasy_consumer = run_consumer(fantasy_consumer_script)
-other_consumer = run_consumer(other_consumer_script)
+rating_producer = subprocess.run(["sh", rating_producer_script],
+                                stdin=open(ratings_file, "r"),
+                                stdout=subprocess.PIPE)
+rating_app = subprocess.Popen(["sh", run_app_script], preexec_fn=os.setsid)
 
-os.killpg(os.getpgid(app.pid), signal.SIGTERM)
-app.terminate()
+rated_movie_consumer = run_consumer(rated_movie_consumer_script)
 
-write_consumer_output(drama_consumer, drama_outputs_file)
-write_consumer_output(fantasy_consumer, fantasy_outputs_file)
-write_consumer_output(other_consumer, other_outputs_file)
+os.killpg(os.getpgid(movie_app.pid), signal.SIGTERM)
+movie_app.terminate()
+
+os.killpg(os.getpgid(rating_app.pid), signal.SIGTERM)
+rating_app.terminate()
+
+write_consumer_output(rated_movie_consumer, rated_movie_outputs_file)

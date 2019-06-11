@@ -1,9 +1,102 @@
-{"id":294,"title":"Die Hard","release_year":1988,"rating":"8.2"}
-{"id":294,"title":"Die Hard","release_year":1988,"rating":"8.5"}
-{"id":354,"title":"Tree of Life","release_year":2011,"rating":"9.9"}
-{"id":354,"title":"Tree of Life","release_year":2011,"rating":"9.7"}
-{"id":782,"title":"A Walk in the Clouds","release_year":1995,"rating":"7.8"}
-{"id":782,"title":"A Walk in the Clouds","release_year":1995,"rating":"7.7"}
-{"id":128,"title":"The Big Lebowski","release_year":1988,"rating":"8.7"}
-{"id":128,"title":"The Big Lebowski","release_year":1988,"rating":"8.4"}
-{"id": 780, "title": "Super Mario Bros.", "release_year": 1993,"rating":"2.1"}
+[2019-06-11 12:24:08,900] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
+[2019-06-11 12:24:09,782] INFO ConsumerConfig values: 
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = earliest
+	bootstrap.servers = [broker:9092]
+	check.crcs = true
+	client.dns.lookup = default
+	client.id = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = console-consumer-69429
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	send.buffer.bytes = 131072
+	session.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.1, TLSv1]
+	ssl.endpoint.identification.algorithm = https
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLS
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
+ (org.apache.kafka.clients.consumer.ConsumerConfig)
+[2019-06-11 12:24:09,929] INFO Kafka version: 2.2.0-cp2 (org.apache.kafka.common.utils.AppInfoParser)
+[2019-06-11 12:24:09,929] INFO Kafka commitId: 00d486623990ed9d (org.apache.kafka.common.utils.AppInfoParser)
+[2019-06-11 12:24:09,935] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] Subscribed to topic(s): rated-movies (org.apache.kafka.clients.consumer.KafkaConsumer)
+[2019-06-11 12:24:10,274] INFO Cluster ID: yYkvDftjRFawJe3JFT0ljA (org.apache.kafka.clients.Metadata)
+[2019-06-11 12:24:10,276] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] Discovered group coordinator broker:9092 (id: 2147483646 rack: null) (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2019-06-11 12:24:10,285] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] Revoking previously assigned partitions [] (org.apache.kafka.clients.consumer.internals.ConsumerCoordinator)
+[2019-06-11 12:24:10,286] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] (Re-)joining group (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2019-06-11 12:24:10,300] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] (Re-)joining group (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2019-06-11 12:24:10,316] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] Successfully joined group with generation 1 (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2019-06-11 12:24:10,323] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] Setting newly assigned partitions: rated-movies-0 (org.apache.kafka.clients.consumer.internals.ConsumerCoordinator)
+[2019-06-11 12:24:10,357] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] Resetting offset for partition rated-movies-0 to offset 0. (org.apache.kafka.clients.consumer.internals.Fetcher)
+{"id":294,"title":"Die Hard","release_year":1988,"rating":8.2}
+{"id":294,"title":"Die Hard","release_year":1988,"rating":8.5}
+{"id":354,"title":"Tree of Life","release_year":2011,"rating":9.9}
+{"id":354,"title":"Tree of Life","release_year":2011,"rating":9.7}
+{"id":782,"title":"A Walk in the Clouds","release_year":1995,"rating":7.8}
+{"id":782,"title":"A Walk in the Clouds","release_year":1995,"rating":7.7}
+{"id":128,"title":"The Big Lebowski","release_year":1998,"rating":8.7}
+{"id":128,"title":"The Big Lebowski","release_year":1998,"rating":8.4}
+{"id":780,"title":"Super Mario Bros.","release_year":1993,"rating":2.1}
+{"id":294,"title":"Die Hard","release_year":1988,"rating":8.2}
+{"id":294,"title":"Die Hard","release_year":1988,"rating":8.5}
+{"id":354,"title":"Tree of Life","release_year":2011,"rating":9.9}
+{"id":354,"title":"Tree of Life","release_year":2011,"rating":9.7}
+{"id":782,"title":"A Walk in the Clouds","release_year":1995,"rating":7.8}
+{"id":782,"title":"A Walk in the Clouds","release_year":1995,"rating":7.7}
+{"id":128,"title":"The Big Lebowski","release_year":1998,"rating":8.7}
+{"id":128,"title":"The Big Lebowski","release_year":1998,"rating":8.4}
+{"id":780,"title":"Super Mario Bros.","release_year":1993,"rating":2.1}
+[2019-06-11 12:24:13,946] ERROR Error processing message, terminating consumer process:  (kafka.tools.ConsoleConsumer$)
+org.apache.kafka.common.errors.TimeoutException
+[2019-06-11 12:24:13,966] INFO [Consumer clientId=consumer-1, groupId=console-consumer-69429] Member consumer-1-6adc4fde-d9c1-4d47-a236-8539f17531f9 sending LeaveGroup request to coordinator broker:9092 (id: 2147483646 rack: null) (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+Processed a total of 18 messages
