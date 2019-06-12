@@ -54,5 +54,5 @@ jar {
 }
 
 shadowJar {
-    archiveName = "kafka-transform-standalone-${version}.${extension}"
+    archiveName = "kafka-transforming-standalone-${version}.${extension}"
 }
