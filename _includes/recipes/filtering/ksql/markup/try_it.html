@@ -16,7 +16,9 @@
   <h4 class="subtitle is-4">3. Start the CLI and produce events to the input stream</h4>
 
   <p>To begin developing interactively, open up the KSQL CLI:<p/>
-  <pre class="snippet"><code class="shell">docker exec -it ksql-cli</code></pre>
+  <pre class="snippet"><code class="shell">docker exec -it ksql-cli bash -c 'echo -e "\n\n⏳ Waiting for KSQL to be available before launching CLI\n"; 
+    while [ $(curl -s -o /dev/null -w %{http_code} http://ksql-server:8088/) -eq 000 ] ; do sleep 5 ; done; 
+    ksql http://ksql-server:8088'</code></pre>
 
   <p>First, you'll need to create a Kafka topic and stream to represent the publications. The following creates both in one shot:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/create-inputs.sql %}</code></pre>
