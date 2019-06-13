@@ -12,6 +12,13 @@ Make sure you have the following installed:
 - [bundler](https://bundler.io/)
 - npm
 
+On the Mac you can do this with : 
+
+```
+brew install ruby node
+gem install bundler
+```
+
 ### Installing
 
 #### 1. Clone this repository
