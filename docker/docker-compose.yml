@@ -1,5 +1,5 @@
 ---
-version: '2'
+version: '2.1'
 
 services:
   zookeeper:
@@ -71,12 +71,32 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
       KSQL_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+    healthcheck:
+      # To see the output of the healthcheck run 
+      #   docker inspect ksql-server|jq '.[].State.Health'
+      timeout: 10s
+      # 60 * 5s retries = five minutes
+      interval: 5s
+      retries: 60
+      test:
+      # $ are replaced with $$ to avoid the error 'Invalid interpolation format'
+        - CMD
+        - bash 
+        - -c 
+        - |
+          if [[ $$(curl -s -o /dev/null -w %{http_code} http://ksql-server:8088/info) = 200 ]]; then
+            echo "Woohoo! KSQL Server is up!"
+            exit 0
+          else 
+            echo -e $$(date) "\tKSQL Server HTTP state: " $$(curl -s -o /dev/null -w %{http_code} http://ksql-server:8088/info) " (waiting for 200)"
+            exit 1
+          fi
 
   ksql-cli:
     image: 368821881613.dkr.ecr.us-west-2.amazonaws.com/confluentinc/cp-ksql-cli:838d554
     container_name: ksql-cli
     depends_on:
-      - broker
-      - ksql-server
+      ksql-server:
+        condition: service_healthy
     entrypoint: /bin/sh
     tty: true
