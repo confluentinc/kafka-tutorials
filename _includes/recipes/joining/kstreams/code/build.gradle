@@ -62,5 +62,5 @@ jar {
 }
 
 shadowJar {
-    archiveName = "kstreams-join-standalone-${version}.${extension}"
+    archiveName = "kstreams-stream-table-join-standalone-${version}.${extension}"
 }
