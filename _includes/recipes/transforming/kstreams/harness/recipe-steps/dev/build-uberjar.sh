@@ -1,1 +1,1 @@
-gradle shadowJar
+gradlew shadowJar
