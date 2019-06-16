@@ -26,6 +26,7 @@ exclude:
   - package-lock.json
   - Makefile
   - deploy-to-s3.sh
+  - harness_runner
 
 cp_version: v5.2.1
 google_analytics_tracking_id: UA-56447542-1

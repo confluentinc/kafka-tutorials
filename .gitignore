@@ -8,4 +8,6 @@ build/
 .jekyll-metadata
 node_modules/
 out/
+harness_runner/harness_runner.egg-info
+__pycache__
 code.iml
