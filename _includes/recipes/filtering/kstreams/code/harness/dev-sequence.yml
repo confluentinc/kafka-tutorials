@@ -54,5 +54,5 @@ steps:
   - name: run the consumer
     action: execute
     file: recipe-steps/dev/console-consumer.sh
-    append: --timeout 3000
-    stdout: recipe-steps/dev/outputs/actual-console-output.log
+    append: --timeout-ms 3000
+    stdout: recipe-steps/dev/outputs/actual-output-events.json
