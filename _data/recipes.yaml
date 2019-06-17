@@ -1,3 +1,11 @@
+transforming:
+  title: "Transform a stream of events"
+  slug: "recipes/transform-a-stream-of-events"
+  problem: "you have events in a Kafka topic, and you want to change each event in some way and put it in a new topic."
+  introduction: "Consider a topic with events that represent movies. Each event has a single attribute that combines its title and its release year into a string. In this recipe, we'll write a program that creates a new topic with the title and release date turned into their own attributes."
+  status:
+    kstreams: enabled
+
 filtering:
   title: "Filter a stream of events"
   slug: "/recipes/filter-a-stream-of-events"

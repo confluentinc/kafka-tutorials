@@ -8,4 +8,5 @@ build/
 .jekyll-metadata
 node_modules/
 out/
+.vscode
 code.iml
