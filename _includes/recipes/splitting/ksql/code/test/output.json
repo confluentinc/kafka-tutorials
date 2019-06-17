@@ -1,0 +1,20 @@
+{
+  "outputs": 
+    {
+      "inputs": [
+        {"topic":"ACTINGEVENTS_FANTASY","key": "Bill Murray","value":{"name":"Bill Murray","title":"Ghostbusters","genre":"fantasy"}},
+        {"topic":"ACTINGEVENTS_OTHER","key": "Christian Bale","value":{"name":"Christian Bale","title":"The Dark Knight","genre":"crime"}},
+        {"topic":"ACTINGEVENTS_OTHER","key": "Diane Keaton","value":{"name":"Diane Keaton","title":"The Godfather: Part II","genre":"crime"}},
+        {"topic":"ACTINGEVENTS_OTHER","key": "Jennifer Aniston","value":{"name":"Jennifer Aniston","title":"Office Space","genre":"comedy"}},
+        {"topic":"ACTINGEVENTS_FANTASY","key": "Judy Garland","value":{"name":"Judy Garland","title":"The Wizard of Oz","genre":"fantasy"}},
+        {"topic":"ACTINGEVENTS_FANTASY","key": "Keanu Reeves","value":{"name":"Keanu Reeves","title":"The Matrix","genre":"fantasy"}},
+        {"topic":"ACTINGEVENTS_FANTASY","key": "Laura Dern","value":{"name":"Laura Dern","title":"Jurassic Park","genre":"fantasy"}},
+        {"topic":"ACTINGEVENTS_DRAMA","key": "Matt Damon","value":{"name":"Matt Damon","title":"The Martian","genre":"drama"}},
+        {"topic":"ACTINGEVENTS_DRAMA","key": "Meryl Streep","value":{"name":"Meryl Streep","title":"The Iron Lady","genre":"drama"}},
+        {"topic":"ACTINGEVENTS_DRAMA","key": "Russell Crowe","value":{"name":"Russell Crowe","title":"Gladiator","genre":"drama"}},
+        {"topic":"ACTINGEVENTS_OTHER","key": "Will Smith","value":{"name":"Will Smith","title":"Men in Black","genre":"comedy"}},
+        {"topic":"ACTINGEVENTS_FANTASY","key": "Barret Oliver","value":{"name":"Barret Oliver","title":"The NeverEnding Story","genre":"fantasy"}}
+      ]
+    }
+    
+}
