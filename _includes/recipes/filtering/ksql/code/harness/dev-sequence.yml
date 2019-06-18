@@ -1,0 +1,44 @@
+kind: ksql
+steps:
+  - name: initialize
+    action: execute
+    file: recipe-steps/dev/init.sh
+
+  - name: make the dir structure
+    change_directory: filter-events
+    action: execute
+    file: recipe-steps/dev/make-dirs.sh
+
+  - name: run the CLI in Docker
+    action: docker_ksql_cli_session
+    as: session
+    docker_bootup_file: recipe-steps/dev/start-cli.sh
+    stdin:
+      - name: create input streams
+        file: recipe-steps/dev/create-inputs.sql
+      
+      - name: populate the streams
+        file: recipe-steps/dev/populate-stream.sql
+
+      - name: set the dev props
+        file: recipe-steps/dev/set-properties.sql
+
+      - name: run the transient query
+        file: recipe-steps/dev/transient-query.sql
+
+      - name: run it continuously
+        file: recipe-steps/dev/continuous-select.sql
+
+      - name: print the topic
+        file: recipe-steps/dev/print-output-topic.sql
+
+  - name: Copy down the session to the working dir
+    action: copy_docker_ksql_cli_output
+    proc_alias: session
+    container: ksql-cli
+    stdout:
+      directory: recipe-steps/dev/outputs
+
+  - name: populate the src file
+    action: make_file
+    file: src/statements.sql

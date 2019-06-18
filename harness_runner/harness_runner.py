@@ -1,17 +1,15 @@
 import os
 import yaml
 import signal
-import tempfile
 import subprocess
+import ksql
 
+from util import in_base_dir
 from pprint import pprint
 
 def load_file(file_name):
     with open(file_name, "r") as f:
         return yaml.safe_load(f)
-
-def in_base_dir(context, f):
-    return context["base_dir"] + "/" + f
 
 def change_directory(step):
     if "change_directory" in step:
@@ -71,9 +69,13 @@ def make_file(context, step):
 
     return context
 
-commands = {"execute": execute,
-            "execute_async": execute_async,
-            "make_file": make_file}
+commands = {
+    "execute": execute,
+    "execute_async": execute_async,
+    "make_file": make_file,
+    "docker_ksql_cli_session": ksql.docker_ksql_cli_session,
+    "copy_docker_ksql_cli_output": ksql.copy_docker_ksql_cli_output
+}
 
 def run_command(context, step):
     change_directory(step)
@@ -86,9 +88,12 @@ def run_steps(steps, temp_dir):
     base_dir = os.getcwd()
     os.chdir(temp_dir)
 
-    context = {"base_dir": base_dir,
-               "working_dir": temp_dir,
-               "procs": {}}
+    context = {
+        "base_dir": base_dir,
+        "working_dir": temp_dir,
+        "procs": {},
+        "proc_state": {}
+    }
 
     try:
         for step in steps:
