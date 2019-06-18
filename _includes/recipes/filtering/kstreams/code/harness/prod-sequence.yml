@@ -1,4 +1,3 @@
-kind: kstreams
 steps:
   - name: make the prod props file
     change_directory: filter-events

@@ -1,4 +1,3 @@
-kind: kstreams
 steps:
   - name: make the test props file
     change_directory: filter-events
