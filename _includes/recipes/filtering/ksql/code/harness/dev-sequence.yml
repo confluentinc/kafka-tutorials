@@ -12,6 +12,7 @@ steps:
   - name: run the CLI in Docker
     action: docker_ksql_cli_session
     as: session
+    process: synchronous
     docker_bootup_file: recipe-steps/dev/start-cli.sh
     stdin:
       - name: create input streams

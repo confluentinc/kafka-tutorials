@@ -1,5 +1,6 @@
 import os
 import yaml
+import time
 import signal
 import subprocess
 import ksql
@@ -69,10 +70,15 @@ def make_file(context, step):
 
     return context
 
+def sleep(context, step):
+    time.sleep(step["ms"] / 1000)
+    return context
+
 commands = {
     "execute": execute,
     "execute_async": execute_async,
     "make_file": make_file,
+    "sleep": sleep,
     "docker_ksql_cli_session": ksql.docker_ksql_cli_session,
     "copy_docker_ksql_cli_output": ksql.copy_docker_ksql_cli_output
 }

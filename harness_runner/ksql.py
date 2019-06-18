@@ -72,7 +72,11 @@ def docker_ksql_cli_session(context, step):
     input_sections = build_input_sections(context, step)
     stdin_file = consolidate_input_files(input_sections)
     f = in_base_dir(context, step["docker_bootup_file"])
-    proc = subprocess.run(["sh", f], stdin=stdin_file, stdout=subprocess.PIPE)
+
+    if step["process"] == "asynchronous":
+        proc = subprocess.Popen(["sh", f], stdin=stdin_file, stdout=subprocess.PIPE, preexec_fn=os.setsid)
+    else:
+        proc = subprocess.run(["sh", f], stdin=stdin_file, stdout=subprocess.PIPE)
 
     return persist_proc_state(context, step, input_sections)
 
