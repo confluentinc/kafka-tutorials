@@ -26,6 +26,7 @@ exclude:
   - package-lock.json
   - Makefile
   - deploy-to-s3.sh
+  - harness_runner
 
 ak_javadoc_version: 22
 cp_version: v5.2.1
