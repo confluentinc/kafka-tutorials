@@ -9,62 +9,50 @@
   <h4 class="subtitle is-4">2. Initialize the project</h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
-  <pre class="snippet"><code class="shell">mkdir split-events && cd split-events</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/init.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">3. Start the CLI and produce events to the input stream</h4>
 
   <p>To begin developing interactively, open up the KSQL CLI:<p/>
-  <pre class="snippet"><code class="shell">docker exec -it ksql-cli</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/start-cli.sh %}</code></pre>
 
   <p>First, you'll need to create a Kafka topic and stream to represent the actors. The following creates both in one shot:</p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/create-inputs.sql %}</code></pre>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/create-inputs.sql %}</code></pre>
 
   <p>Then produce the following events to the stream:</p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/populate-stream.sql %}</code></pre>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/populate-stream.sql %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">4. Create a continuous query</h4>
 
   <p>Now that you have stream with some events in it, let's read them out. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:</p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/set-properties.sql %}</code></pre>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/set-properties.sql %}</code></pre>
   
   <p>Let's find all of the drama films. Issue the following transient query. This will block and continue to return results until it's limit is reached or you tell it to stop.</p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/query-drama.sql %}</code></pre>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/query-drama.sql %}</code></pre>
 
   This should yield the following output:
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/outputs/query-drama/output-0.log %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/outputs/query-drama/output-0.log %}</code></pre>
 
   <p>You can also use negative matches, that is, messages that <em>don't</em> match the condition. Run this query to get a list of all films that aren't drama or fantasy.</p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/query-not-drama-fantasy.sql %}</code></pre>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/query-not-drama-fantasy.sql %}</code></pre>
 
   This should yield the following output:
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/outputs/query-not-drama-fantasy/output-0.log %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/outputs/query-not-drama-fantasy/output-0.log %}</code></pre>
 
   <p>Since the output looks right, the next step is to make the queries continuous. Issue the following to create three new streams that are continously populated by the queries:</p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/continuous-select.sql %}</code></pre>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/continuous-select.sql %}</code></pre>
 
-  <p>To check that it's working, print out the contents of one of the output stream's underlying topic. Note that this will block because we have not specified a <code>LIMIT</code> condition. Leave it running for now, and do not cancel it. </p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/print-output-topic.sql %}</code></pre>
+  <p>To check that it's working, print out the contents of one of the output stream's underlying topic.</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
 
   This should yield the following output:
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
 
-  <p>To see how any new message on the source stream is automatically routed to the correct target stream, open a new terminal session and start a new KSQL CLI session:</p>
-
-  <pre class="snippet"><code class="shell">docker exec -it ksql-cli</code></pre>
-
-  <p>With both this and the previous terminal (which should still be running the <code>PRINT</code>) visible, insert a new message in the new terminal session: </p>
-
-  <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/insert-new-record.sql %}</code></pre>
-
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
-
-  <p>In the original terminal session, you will see the new message has been routed to the correct stream, and shown in the <CODE>PRINT</CODE> output: </p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/harness/recipe-steps/dev/outputs/print-output-topic/output-1.log %}</code></pre>
-
+  <p>Try dropping the <code>LIMIT</code> from the print command so that it runs indefinitely. To see how any new message on the source stream is automatically routed to the correct target stream, open a new CLI session and insert a record like we did above.</p>
 </div>
 
 <div class="recipe-try-it-step">

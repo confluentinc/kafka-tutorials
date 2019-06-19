@@ -42,7 +42,6 @@ steps:
 
   - name: run the jar
     action: execute_async
-    as: dev_jar
     file: recipe-steps/dev/run-dev-app.sh
 
   - name: run the producer

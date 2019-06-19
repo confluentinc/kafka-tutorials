@@ -1,6 +1,6 @@
 import os
 import yaml
-import time
+import uuid
 import signal
 import subprocess
 import ksql
@@ -57,7 +57,8 @@ def execute(context, step):
 def execute_async(context, step):
     f = in_base_dir(context, step["file"])
     proc = subprocess.Popen(["sh", f], preexec_fn=os.setsid)
-    context["procs"][step["as"]] = proc
+    proc_id = uuid.uuid4()
+    context["procs"][proc_id] = proc
     return context
 
 def make_file(context, step):
@@ -70,17 +71,11 @@ def make_file(context, step):
 
     return context
 
-def sleep(context, step):
-    time.sleep(step["ms"] / 1000)
-    return context
-
 commands = {
     "execute": execute,
     "execute_async": execute_async,
     "make_file": make_file,
-    "sleep": sleep,
-    "docker_ksql_cli_session": ksql.docker_ksql_cli_session,
-    "copy_docker_ksql_cli_output": ksql.copy_docker_ksql_cli_output
+    "docker_ksql_cli_session": ksql.docker_ksql_cli_session
 }
 
 def run_command(context, step):

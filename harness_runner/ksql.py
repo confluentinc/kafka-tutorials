@@ -43,47 +43,38 @@ def build_input_sections (context, step):
     return result
 
 def consolidate_input_files(input_sections):
+    lines = []
+    for section in input_sections:
+        lines.append(section["spool_command"])
+
+        for command in section["commands"]:
+            lines.append(command)
+
+        lines.append(section["unspool_command"])
+
     consolidated_file = tempfile.NamedTemporaryFile(delete=False)
-
     with open(consolidated_file.name, "w") as f:
-        for section in input_sections:
-            f.write(str(section["spool_command"] + "\n"))
-
-            for command in section["commands"]:
-                f.write(command)
-
-            f.write(str(section["unspool_command"] + "\n"))
+        for line in lines:
+            if line.strip() != "":
+                f.write(line.rstrip() + "\n")
 
     return consolidated_file
 
-def persist_proc_state(context, step, input_sections):
-    proc_alias = step["as"]
-    context["proc_state"][proc_alias] = {}
+def ksql_proc_state(input_sections):
+    result = {}
 
     for section in input_sections:
-        context["proc_state"][proc_alias][section["group_name"]] = {
+        result[section["group_name"]] = {
             "spool_file_name": section["spool_file_name"],
             "spool_path": section["spool_path"]
         }
 
-    return context
+    return result
 
-def docker_ksql_cli_session(context, step):
-    input_sections = build_input_sections(context, step)
-    stdin_file = consolidate_input_files(input_sections)
-    f = in_base_dir(context, step["docker_bootup_file"])
-
-    if step["process"] == "asynchronous":
-        proc = subprocess.Popen(["sh", f], stdin=stdin_file, stdout=subprocess.PIPE, preexec_fn=os.setsid)
-    else:
-        proc = subprocess.run(["sh", f], stdin=stdin_file, stdout=subprocess.PIPE)
-
-    return persist_proc_state(context, step, input_sections)
-
-def copy_spool_files_to_host(context, step):
+def copy_spool_files_to_host(context, step, proc_state):
     temp_dir = tempfile.mkdtemp()
 
-    for group_name, spool_context in context["proc_state"][step["proc_alias"]].items():
+    for group_name, spool_context in proc_state.items():
         path = spool_context["spool_path"]
         cmd = shlex.split("docker cp %s:%s %s" % (step["container"], path, temp_dir))
         subprocess.run(cmd, stdout=subprocess.PIPE)
@@ -109,8 +100,8 @@ def shred_spool_text(text):
     blocks = reduce(split_io_blocks, trimmed, [])
     return strip_input(blocks)
 
-def write_spool_text(context, step, temp_dir):
-    for group_name, spool_context in context["proc_state"][step["proc_alias"]].items():
+def write_spool_text(context, step, proc_state, temp_dir):
+    for group_name, spool_context in proc_state.items():
         f = str(temp_dir + "/" + spool_context["spool_file_name"])
         with open(f, "r") as handle:
             content = shred_spool_text(handle.readlines())
@@ -125,7 +116,19 @@ def write_spool_text(context, step, temp_dir):
                 with open(base_file, "w") as output_file:
                     output_file.write("".join(chunk).lstrip())
 
-def copy_docker_ksql_cli_output(context, step):
-    temp_dir = copy_spool_files_to_host(context, step)
-    write_spool_text(context, step, temp_dir)
+def copy_docker_ksql_cli_output(context, step, proc_state):
+    temp_dir = copy_spool_files_to_host(context, step, proc_state)
+    write_spool_text(context, step, proc_state, temp_dir)
     return context
+
+def run_docker_proc(context, step):
+    input_sections = build_input_sections(context, step)
+    stdin_file = consolidate_input_files(input_sections)
+    f = in_base_dir(context, step["docker_bootup_file"])
+    proc = subprocess.run(["sh", f], stdin=stdin_file, stdout=subprocess.PIPE)
+
+    return ksql_proc_state(input_sections)
+
+def docker_ksql_cli_session(context, step):
+    proc_state = run_docker_proc(context, step)
+    return copy_docker_ksql_cli_output(context, step, proc_state)

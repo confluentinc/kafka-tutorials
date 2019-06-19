@@ -4,7 +4,7 @@ steps:
     file: recipe-steps/dev/init.sh
 
   - name: make the dir structure
-    change_directory: filter-events
+    change_directory: split-events
     action: execute
     file: recipe-steps/dev/make-dirs.sh
 
@@ -15,20 +15,23 @@ steps:
     stdin:
       - name: create input streams
         file: recipe-steps/dev/create-inputs.sql
-      
+
       - name: populate the streams
         file: recipe-steps/dev/populate-stream.sql
 
       - name: set the dev props
         file: recipe-steps/dev/set-properties.sql
 
-      - name: run the transient query
-        file: recipe-steps/dev/transient-query.sql
+      - name: run the drama query transiently
+        file: recipe-steps/dev/query-drama.sql
 
-      - name: run it continuously
+      - name: run a negative transient query
+        file: recipe-steps/dev/query-not-drama-fantasy.sql
+
+      - name: run them continuously
         file: recipe-steps/dev/continuous-select.sql
 
-      - name: print the topic
+      - name: print the topic contents
         file: recipe-steps/dev/print-output-topic.sql
     stdout:
       directory: recipe-steps/dev/outputs
