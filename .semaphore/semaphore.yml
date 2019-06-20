@@ -11,4 +11,5 @@ blocks:
       jobs:
       - name: install harness runner
         commands:
+          - checkout
           - pip3 install -e harness_runner/
