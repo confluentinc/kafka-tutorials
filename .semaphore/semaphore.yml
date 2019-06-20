@@ -1,0 +1,14 @@
+version: v1.0
+name: Confluent Developer pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: "Set up"
+    task:
+      jobs:
+      - name: install harness runner
+        commands:
+          - pip install -e harness-runner/
