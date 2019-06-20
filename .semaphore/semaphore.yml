@@ -1,7 +1,0 @@
-blocks:
-  - name: "Set things up"
-    task:
-      jobs:
-        - name: Install that harness
-          commands:
-            - pip install -e harness_runner/
