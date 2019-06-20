@@ -13,6 +13,7 @@ blocks:
           - checkout
           - sudo pip3 install -e harness_runner/
           - docker-compose -f docker/docker-compose.yml up -d
+          - ./docker/wait-for.sh
       jobs:
         - name: KSQL filter tests
           commands:
