@@ -6,7 +6,7 @@ dev_recipe:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner harness/dev-sequence.yml $(TEMP_DIR)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.json $(DEV_OUTPUTS_DIR)/actual-output-events.json
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.json $(DEV_OUTPUTS_DIR)/actual-movies.json
 
 test_recipe:
 	harness-runner harness/test-sequence.yml $(TEMP_DIR)

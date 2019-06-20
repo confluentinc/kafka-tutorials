@@ -1,4 +1,3 @@
-GRADLE := gradle
 STEPS_DIR := recipe-steps
 DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
 TEST_OUTPUTS_DIR := $(STEPS_DIR)/test/outputs
