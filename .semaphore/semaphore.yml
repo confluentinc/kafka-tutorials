@@ -6,10 +6,18 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: "Set up harness"
+  - name: Set up harness runner
     task:
       jobs:
-      - name: install harness runner
-        commands:
-          - checkout
-          - sudo pip3 install -e harness_runner/
+        - name: install harness runner
+          commands:
+            - checkout
+            - sudo pip3 install -e harness_runner/
+
+  - name: Run the tests
+    task:
+      jobs:
+        - name: KSQL filter tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up
+            - make -C _includes/recipes/filtering/ksql/code recipe
