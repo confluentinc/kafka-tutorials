@@ -12,5 +12,4 @@ blocks:
       - name: install harness runner
         commands:
           - checkout
-          - sudo -s
-          - pip3 install -e harness_runner/
+          - sudo pip3 install -e harness_runner/
