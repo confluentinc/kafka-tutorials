@@ -125,7 +125,7 @@ def run_docker_proc(context, step):
     input_sections = build_input_sections(context, step)
     stdin_file = consolidate_input_files(input_sections)
     f = in_base_dir(context, step["docker_bootup_file"])
-    proc = subprocess.run(["sh", f], stdin=stdin_file, stdout=subprocess.PIPE)
+    proc = subprocess.run(["bash", f], stdin=stdin_file, stdout=subprocess.PIPE)
 
     return ksql_proc_state(input_sections)
 

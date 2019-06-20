@@ -39,7 +39,7 @@ def shell_command_seq(step, f):
 
         return appended
     else:
-        return ["sh", f]
+        return ["bash", f]
 
 def execute(context, step):
     f = in_base_dir(context, step["file"])
@@ -56,7 +56,7 @@ def execute(context, step):
 
 def execute_async(context, step):
     f = in_base_dir(context, step["file"])
-    proc = subprocess.Popen(["sh", f], preexec_fn=os.setsid)
+    proc = subprocess.Popen(["bash", f], preexec_fn=os.setsid)
     proc_id = uuid.uuid4()
     context["procs"][proc_id] = proc
     return context
