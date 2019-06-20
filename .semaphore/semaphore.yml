@@ -15,6 +15,6 @@ blocks:
           - docker-compose -f docker/docker-compose.yml up -d
           - ./docker/wait-for.sh
       jobs:
-        - name: KSQL filter tests
+        - name: KStreams filter tests
           commands:
-            - make -C _includes/recipes/filtering/ksql/code recipe
+            - make -C _includes/recipes/filtering/kstreams/code recipe
