@@ -19,7 +19,7 @@ blocks:
       prologue:
         commands:
           - checkout
-          - docker-compose -d -f docker/docker-compose.yml up
+          - docker-compose -f docker/docker-compose.yml up -d
       jobs:
         - name: KSQL filter tests
           commands:
