@@ -19,5 +19,6 @@ blocks:
       jobs:
         - name: KSQL filter tests
           commands:
+            - checkout
             - docker-compose -f docker/docker-compose.yml up
             - make -C _includes/recipes/filtering/ksql/code recipe
