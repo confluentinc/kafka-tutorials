@@ -6,10 +6,11 @@ agent:
     os_image: ubuntu1804
 
 blocks:
-  - name: "Set up"
+  - name: "Set up harness"
     task:
       jobs:
       - name: install harness runner
         commands:
           - checkout
+          - sudo -s
           - pip3 install -e harness_runner/
