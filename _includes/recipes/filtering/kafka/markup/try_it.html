@@ -9,13 +9,13 @@
   <h4 class="subtitle is-4">2. Initialize the project</h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
-  <pre class="snippet"><code class="shell">mkdir filter-events && cd filter-events</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/init.sh %}</code></pre>
 
   <p>Then create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
   <pre class="snippet"><code class="groovy">{% include_raw recipes/filtering/kafka/code/build.gradle %}</code></pre>
 
   <p>Next, create a directory for configuration data:</p>
-  <pre class="snippet"><code class="shell">mkdir configuration</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/make-configuration-dir.sh %}</code></pre>
 
   <p>Then create a development file at <code>configuration/dev.properties</code>:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/configuration/dev.properties %}</code></pre>
@@ -25,20 +25,20 @@
   <h4 class="subtitle is-4">3. Create a schema for the events</h4>
 
   <p>Create a directory for the schemas that represent the events in the topic:</p>
-  <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
 
   <p>Then create the following Avro schema file at <code>src/main/avro/publication.avsc</code> for the publication events:</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/filtering/kafka/code/src/main/avro/publication.avsc %}</code></pre>
 
   <p>Because this Avro schema is used in the Java code, it needs to compile it. Run the following:</p>
-  <pre class="snippet"><code class="shell">gradle build</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/build-project.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">4. Set up the Kafka producer and consumer</h4>
 
   <p>Create a directory for the Java files in this project:</p>
-  <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/make-src-dir.sh %}</code></pre>
 
   <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. The <code>main</code> method spins up a consumer and producer, which funnel the events of interest from one topic to the other. In this case, we're only interested in books authored by George R. R. Martin.</p>
   <pre class="snippet"><code class="java">{% include_raw recipes/filtering/kafka/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>

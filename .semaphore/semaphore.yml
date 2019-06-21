@@ -19,6 +19,12 @@ blocks:
             - ./docker/wait-for.sh
             - make -C _includes/recipes/transforming/kstreams/code recipe
 
+        - name: Kafka filtering tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/filtering/kafka/code recipe
+
         - name: KStreams filtering tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
