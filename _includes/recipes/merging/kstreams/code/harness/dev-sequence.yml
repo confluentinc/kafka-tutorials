@@ -1,0 +1,65 @@
+steps:
+  - name: initialize
+    action: execute
+    file: recipe-steps/dev/init.sh
+
+  - name: make the build file
+    change_directory: merge-streams
+    action: make_file
+    file: build.gradle
+
+  - name: set up the gradle wrapper
+    action: execute
+    file: recipe-steps/dev/gradle-wrapper.sh
+
+  - name: make the configuration directory
+    action: execute
+    file: recipe-steps/dev/make-configuration-dir.sh
+
+  - name: make the dev props file
+    action: make_file
+    file: configuration/dev.properties
+
+  - name: make a directory for Avro files
+    action: execute
+    file: recipe-steps/dev/make-avro-dir.sh
+
+  - name: make Avro schema
+    action: make_file
+    file: src/main/avro/song_event.avsc
+
+  - name: build the project
+    action: execute
+    file: recipe-steps/dev/build-project.sh
+
+  - name: make the source directory
+    action: execute
+    file: recipe-steps/dev/make-src-dir.sh
+
+  - name: make the main Java file
+    action: make_file
+    file: src/main/java/io/confluent/developer/MergeStreams.java
+
+  - name: make an uberjar
+    action: execute
+    file: recipe-steps/dev/build-uberjar.sh
+
+  - name: run the jar
+    action: execute_async
+    file: recipe-steps/dev/run-dev-app.sh
+
+  - name: run the classical producer
+    action: execute
+    file: recipe-steps/dev/console-producer-rock.sh
+    stdin: recipe-steps/dev/rock-input-events.json
+
+  - name: run the rock producer
+    action: execute
+    file: recipe-steps/dev/console-producer-classical.sh
+    stdin: recipe-steps/dev/classical-input-events.json
+
+  - name: run the consumer
+    action: execute
+    file: recipe-steps/dev/console-consumer.sh
+    append: --timeout-ms 3000
+    stdout: recipe-steps/dev/outputs/actual-output-events.json
