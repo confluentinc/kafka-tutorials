@@ -8,6 +8,10 @@ steps:
     action: make_file
     file: build.gradle
 
+  - name: set up the gradle wrapper
+    action: execute
+    file: recipe-steps/dev/gradle-wrapper.sh
+
   - name: make the configuration directory
     action: execute
     file: recipe-steps/dev/make-configuration-dir.sh

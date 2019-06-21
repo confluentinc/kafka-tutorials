@@ -1,1 +1,1 @@
-gradle build
+./gradlew build
