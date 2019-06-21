@@ -22,3 +22,7 @@ blocks:
         - name: KStreams filtering tests
           commands:
             - make -C _includes/recipes/filtering/kstreams/code recipe
+
+        - name: KStreams splitting tests
+          commands:
+            - make -C _includes/recipes/splitting/kstreams/code recipe
