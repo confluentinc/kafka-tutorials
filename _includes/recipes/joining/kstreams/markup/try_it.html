@@ -30,7 +30,7 @@
   <p>This recipe uses three streams: one called <code>movies</code> that holds movie reference data, one called <code>ratings</code> that holds a stream of inbound movie ratings, and one called <code>rated-movies</code> that holds the result of the join between ratings and movies. Let's create schemas for all three.</p>
   
   <p>Create a directory for the schemas that represent the events in the stream:</p>
-  <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
 
   <p>Then create the following Avro schema file at <code>src/main/avro/movie.avsc</code> for the movies lookup table:</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/joining/kstreams/code/src/main/avro/movie.avsc %}</code></pre>
@@ -42,14 +42,14 @@
   <pre class="snippet"><code class="avro">{% include_raw recipes/joining/kstreams/code/src/main/avro/rated-movie.avsc %}</code></pre>
 
   <p>Because we will use this Avro schema in our Java code, we'll need to compile it. The Gradle Avro plugin is a part of the build, so it will see your new Avro files, generate Java code for them, and compile those and all other Java sources. Run this command to get it all done:</p>
-  <pre class="snippet"><code class="shell">gradlew build</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/build-project.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">4. Create the Kafka Streams topology</h4>
 
   <p>Create a directory for the Java files in this project:</p>
-  <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
 
   <p>Then create the following file at <code>src/main/java/io/confluent/developer/JoinStreamToTable.java</code>. Let's take a close look at the <code>buildTopology()</code> method, which uses the Kafka Streams DSL.</p>
 
