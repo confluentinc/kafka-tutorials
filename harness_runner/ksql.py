@@ -96,7 +96,7 @@ def strip_input(coll):
 
 def shred_spool_text(text):
     results = []
-    trimmed = text[1:-2]
+    trimmed = text[3:-2]
     blocks = reduce(split_io_blocks, trimmed, [])
     return strip_input(blocks)
 

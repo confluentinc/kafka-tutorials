@@ -17,8 +17,11 @@ def change_directory(step):
         os.chdir(step["change_directory"])
 
 def kill_async_process(proc):
-    os.killpg(os.getpgid(proc.pid), signal.SIGTERM)
-    proc.terminate()
+    try:
+        os.killpg(os.getpgid(proc.pid), signal.SIGTERM)
+        proc.terminate()
+    except ProcessLookupError:
+        print(str(proc.pid) + " already exited.")
 
 def record_stdout(context, step, proc):
     stdout = str(proc.stdout, "UTF-8")
@@ -56,7 +59,14 @@ def execute(context, step):
 
 def execute_async(context, step):
     f = in_base_dir(context, step["file"])
-    proc = subprocess.Popen(["bash", f], preexec_fn=os.setsid)
+    command_seq = shell_command_seq(step, f)
+
+    if "stdout" in step:
+        stdout = in_base_dir(context, step["stdout"])
+        proc = subprocess.Popen(command_seq, stdout=open(stdout, "w"), preexec_fn=os.setsid)
+    else:
+        proc = subprocess.Popen(command_seq, preexec_fn=os.setsid)
+
     proc_id = uuid.uuid4()
     context["procs"][proc_id] = proc
     return context
@@ -71,10 +81,15 @@ def make_file(context, step):
 
     return context
 
+def sleep(context, step):
+    time.sleep(step["ms"] / 1000)
+    return context
+
 commands = {
     "execute": execute,
     "execute_async": execute_async,
     "make_file": make_file,
+    "sleep": sleep,
     "docker_ksql_cli_session": ksql.docker_ksql_cli_session
 }
 
