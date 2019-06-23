@@ -19,11 +19,9 @@ blocks:
             - ./docker/wait-for.sh
             - make -C _includes/recipes/transforming/kstreams/code recipe
 
-        - name: Kafka filtering tests
+        - name: KSQL filtering tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
-            - make -C _includes/recipes/filtering/kafka/code recipe
+            - make -C _includes/recipes/filtering/ksql/code recipe
 
         - name: KStreams filtering tests
           commands:
@@ -31,9 +29,11 @@ blocks:
             - ./docker/wait-for.sh
             - make -C _includes/recipes/filtering/kstreams/code recipe
 
-        - name: KSQL filtering tests
+        - name: Kafka filtering tests
           commands:
-            - make -C _includes/recipes/filtering/ksql/code recipe
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/filtering/kafka/code recipe
 
         - name: KStreams splitting tests
           commands:
