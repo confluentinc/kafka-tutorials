@@ -54,19 +54,20 @@ steps:
     stdin: recipe-steps/dev/input-events.json
 
   - name: run the drama consumer
-    action: execute
+    action: execute_async
     file: recipe-steps/dev/console-consumer-drama.sh
-    append: --timeout-ms 3000
     stdout: recipe-steps/dev/outputs/actual-drama-events.json
 
   - name: run the fantasy consumer
-    action: execute
+    action: execute_async
     file: recipe-steps/dev/console-consumer-fantasy.sh
-    append: --timeout-ms 3000
     stdout: recipe-steps/dev/outputs/actual-fantasy-events.json
 
   - name: run the other consumer
-    action: execute
+    action: execute_async
     file: recipe-steps/dev/console-consumer-other.sh
-    append: --timeout-ms 3000
     stdout: recipe-steps/dev/outputs/actual-other-events.json
+
+  - name: wait for the consumers to read the messages
+    action: sleep
+    ms: 5000
