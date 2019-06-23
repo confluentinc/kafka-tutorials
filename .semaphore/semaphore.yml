@@ -19,7 +19,6 @@ blocks:
           commands:
             - bundle exec jekyll build
 
-blocks:
   - name: Run the tests
     task:
       prologue:
