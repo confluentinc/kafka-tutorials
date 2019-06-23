@@ -48,3 +48,7 @@ steps:
   - name: populate the src file
     action: make_file
     file: src/statements.sql
+
+  - name: clean up docker
+    action: execute
+    file: recipe-steps/dev/clean-up.sh
