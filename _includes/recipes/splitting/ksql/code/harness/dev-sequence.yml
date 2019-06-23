@@ -8,6 +8,18 @@ steps:
     action: execute
     file: recipe-steps/dev/make-dirs.sh
 
+  - name: make a Docker Compose file
+    action: make_file
+    file: docker-compose.yml
+
+  - name: bring up the containers
+    action: execute_async
+    file: recipe-steps/dev/docker-compose-up.sh
+
+  - name: wait for the containers to start
+    action: execute
+    file: recipe-steps/dev/wait-for-containers.sh
+
   - name: run the CLI in Docker
     action: docker_ksql_cli_session
     container: ksql-cli

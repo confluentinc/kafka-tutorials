@@ -1,4 +1,3 @@
-GRADLE := gradle
 STEPS_DIR := recipe-steps
 DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
 TEST_OUTPUTS_DIR := $(STEPS_DIR)/test/outputs
@@ -16,7 +15,8 @@ dev_recipe:
 test_recipe:
 	rm -r $(TEST_OUTPUTS_DIR) || true
 	mkdir -p $(TEST_OUTPUTS_DIR)
-	(cd ../code ; ./../harness/recipe-steps/test/run-tests.sh > ../harness/$(TEST_OUTPUTS_DIR)/test-results.log)
+	harness-runner harness/test-sequence.yml $(TEMP_DIR)
+	diff --strip-trailing-cr $(STEPS_DIR)/test/expected-results.log $(TEST_OUTPUTS_DIR)/test-results.log
 
 prod_recipe:
 
