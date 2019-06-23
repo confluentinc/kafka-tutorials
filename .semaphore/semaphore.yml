@@ -31,6 +31,10 @@ blocks:
             - ./docker/wait-for.sh
             - make -C _includes/recipes/filtering/kstreams/code recipe
 
+        - name: KSQL filtering tests
+          commands:
+            - make -C _includes/recipes/filtering/ksql/code recipe
+
         - name: KStreams splitting tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d

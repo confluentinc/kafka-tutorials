@@ -47,9 +47,6 @@ services:
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
-      SCHEMA_REGISTRY_LOG4J_OPTS: '-Dlog4j.configuration=file:/etc/schema-registry/quiet-logging.properties'
-    volumes:
-      - ./schema-registry/log4j.properties:/etc/schema-registry/quiet-logging.properties
 
   ksql-server:
     image: mjdrogalis/ksql-server-fork:0.1.0
@@ -80,3 +77,6 @@ services:
       - ksql-server
     entrypoint: /bin/sh
     tty: true
+    volumes:
+      - ./src:/opt/app/src
+      - ./test:/opt/app/test
