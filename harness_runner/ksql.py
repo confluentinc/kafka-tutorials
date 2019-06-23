@@ -121,11 +121,21 @@ def copy_docker_ksql_cli_output(context, step, proc_state):
     write_spool_text(context, step, proc_state, temp_dir)
     return context
 
+# This is a bad and terrible hack. When Docker in run with -it,
+# which is needed for the KSQL CLI to work properly, Python
+# can't talk to it over a subprocess. This method intercepts
+# the -it flag and transforms it to -i to make it work. Yuck.
+#
+# See: https://stackoverflow.com/questions/43099116/error-the-input-device-is-not-a-tty
+def intercept_tty(cmd_seq):
+    return ["-i" if x=="-it" else x for x in cmd_seq]
+
 def run_docker_proc(context, step):
     input_sections = build_input_sections(context, step)
     stdin_file = consolidate_input_files(input_sections)
     f = in_base_dir(context, step["docker_bootup_file"])
-    proc = subprocess.run(["bash", f], stdin=stdin_file, stdout=subprocess.PIPE)
+    cmd_seq = intercept_tty(["bash", f])
+    proc = subprocess.run(cmd_seq, stdin=stdin_file, stdout=subprocess.PIPE)
 
     return ksql_proc_state(input_sections)
 
