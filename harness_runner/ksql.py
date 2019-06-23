@@ -134,10 +134,11 @@ def run_docker_proc(context, step):
     input_sections = build_input_sections(context, step)
     stdin_file = consolidate_input_files(input_sections)
     f = in_base_dir(context, step["docker_bootup_file"])
-    cmd_seq = intercept_tty(["bash", f])
-    proc = subprocess.run(cmd_seq, stdin=stdin_file, stdout=subprocess.PIPE)
-
-    return ksql_proc_state(input_sections)
+    with open(f, 'r') as handle:
+        base_cmd = shlex.split(handle.read())
+        cmd_seq = intercept_tty(base_cmd)
+        proc = subprocess.run(cmd_seq, stdin=stdin_file, stdout=subprocess.PIPE)
+        return ksql_proc_state(input_sections)
 
 def docker_ksql_cli_session(context, step):
     proc_state = run_docker_proc(context, step)
