@@ -6,6 +6,20 @@ agent:
     os_image: ubuntu1804
 
 blocks:
+  - name: Build the website
+    task:
+      prologue:
+        commands:
+          - checkout
+          - npm install
+          - gem install bundler --no-ri --no-rdoc
+          - bundle install
+      jobs:
+        - name: Compile with Jekyll
+          commands:
+            - bundle exec jekyll build
+
+blocks:
   - name: Run the tests
     task:
       prologue:
