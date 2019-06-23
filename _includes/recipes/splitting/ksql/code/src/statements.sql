@@ -12,7 +12,7 @@ CREATE STREAM actingevents_fantasy AS
      WHERE GENRE='fantasy';
 
 CREATE STREAM actingevents_other AS 
-    SELECT NAME, TITLE, GENRE 
+    SELECT NAME, TITLE
       FROM ACTINGEVENTS 
      WHERE GENRE != 'drama' 
        AND GENRE != 'fantasy';
