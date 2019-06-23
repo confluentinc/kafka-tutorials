@@ -1,15 +1,21 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">1. Get Confluent Platform</h4>
-
-  <p>If you haven't already, get Confluent Platform.</p>
-  <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
-</div>
-
-<div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">2. Initialize the project</h4>
+  <h4 class="subtitle is-4">1. Initialize the project</h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/init.sh %}</code></pre>
+
+  <p>Then make the following directories to set up its structure:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/make-dirs.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">2. Get Confluent Platform</h4>
+
+  <p>Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:</p>
+  <pre class="snippet"><code class="dockerfile">{% include_raw recipes/splitting/ksql/code/docker-compose.yml %}</code></pre>
+
+  <p>And launch it by running:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/docker-compose-up.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
@@ -58,9 +64,6 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">5. Write your statements to a file</h4>
 
-  <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a directory for your statements like so:</p>
-  <pre class="snippet"><code class="sql">mkdir src</code></pre>
-  
-  <p>And create a file at <code>src/statements.sql</code> with the following content:</p>
+  <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at <code>src/statements.sql</code> with the following content:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/src/statements.sql %}</code></pre>
 </div>

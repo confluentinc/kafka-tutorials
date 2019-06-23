@@ -1,1 +1,1 @@
-mkdir split-events && cd split-events
+mkdir split-stream && cd split-stream

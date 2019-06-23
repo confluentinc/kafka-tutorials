@@ -4,7 +4,7 @@ steps:
     file: recipe-steps/dev/init.sh
 
   - name: make the dir structure
-    change_directory: split-events
+    change_directory: split-stream
     action: execute
     file: recipe-steps/dev/make-dirs.sh
 
