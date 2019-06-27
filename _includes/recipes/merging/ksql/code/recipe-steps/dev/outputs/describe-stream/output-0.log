@@ -1,0 +1,29 @@
+Name                 : ALL_SONGS
+Type                 : STREAM
+Key field            : 
+Key format           : STRING
+Timestamp field      : Not set - using <ROWTIME>
+Value format         : AVRO
+Kafka topic          : all_songs (partitions: 1, replication: 1)
+
+ Field   | Type                      
+-------------------------------------
+ ROWTIME | BIGINT           (system) 
+ ROWKEY  | VARCHAR(STRING)  (system) 
+ ARTIST  | VARCHAR(STRING)           
+ TITLE   | VARCHAR(STRING)           
+ GENRE   | VARCHAR(STRING)           
+-------------------------------------
+
+Queries that write from this STREAM
+-----------------------------------
+InsertQuery_0 : INSERT INTO all_songs SELECT artist, title, 'rock' AS genre FROM rock_songs;
+InsertQuery_1 : INSERT INTO all_songs SELECT artist, title, 'classical' AS genre FROM classical_songs;
+
+For query topology and execution plan please run: EXPLAIN <QueryId>
+
+Local runtime statistics
+------------------------
+
+
+(Statistics of the local KSQL server interaction with the Kafka topic all_songs)
