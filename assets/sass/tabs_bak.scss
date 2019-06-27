@@ -1,0 +1,69 @@
+.cflt-options {
+  background: #192048;
+  padding: 5px;
+  border-radius: 4px;
+  position: relative;
+
+  &:after {
+    content: "▼";
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    pointer-events: none;
+    color: #fff;
+    right: 10px;
+  }
+
+  select {
+    color: #fff;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+
+.cflt-tabs {
+  .buttons {
+
+  }
+}
+
+.buttons {
+  border: solid 2px #192048;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 10px;
+
+  .button {
+    color: #fff;
+    font-weight: 500;
+    margin: 0;
+    border-radius: 4px;
+    border: solid 2px #192048;
+    background: none;
+    text-transform: uppercase;
+    padding: 5px 15px;
+    white-space: nowrap;
+    border-radius: 18px;
+
+    &:hover {
+      border-color: #fff;
+    }
+
+    &.is-selected {
+      background: #fff;
+      border-color: #fff;
+      color: #192048;
+    }
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .cflt-options {
+    display: block;
+  }
+
+  .cflt-tabs {
+    display: none;
+  }
+}

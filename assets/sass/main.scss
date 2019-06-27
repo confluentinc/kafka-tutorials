@@ -2,6 +2,10 @@
 ---
 
 @import "bulma/bulma";
+@import "_vars";
+@import "_mixins";
+@import "_footer";
+@import "recipe";
 
 body,
 select {
@@ -13,8 +17,9 @@ body {
   font-size: 14px;
   line-height: 1;
 
-  &.pg-recipe {
-    background: #fff;
+  .section.top {
+    padding-top: 15px;
+    padding-bottom: 15px;
   }
 }
 
@@ -32,113 +37,29 @@ body {
       font-family: Inconsolata;
       font-size: 16px;
       line-height: 1.69;
-      color: #192048;
+      color: $baseColor;
     }
   }
 
-  .copy-btn {
+  .icon {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
     border: 0;
     background: none;
     font-size: 20px;
-  }
+    cursor: pointer;
 
-  .expand-btn {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-}
-
-.logo {
-  width: 190px;
-  height: auto;
-}
-
-.pg-recipe {
-  .logo {
-    position: absolute;
-    top: 20px;
-    left: 91px;
-  }
-
-  .summary {
-    margin-top: 60px;
-  }
-
-  .text {
-    font-size: 18px;
-    font-weight: 300;
-    color: #192048;
-    line-height: 1.56;
-  }
-
-  .subtitle {
-    .text {
-      font-size: 21px;
-      display: inline-block;
-      vertical-align: middle;
+    &.copy-btn {
+      right: 10px;
     }
 
-    .num {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      background: #d5d6dd;
-      text-align: center;
-      font-size: 18px;
-      color: #fff;
-      font-weight: bold;
-      padding-top: 2px;
-      display: inline-block;
-      margin-right: 10px;
-    }
-  }
-
-  .recipe-try-it-step {
-    margin-bottom: 60px;
-
-    .text {
-      font-size: 16px;
-    }
-  }
-}
-
-.recipe-navigation {
-  margin-top: 60px;
-  background: #f9f9fa;
-  padding: 40px 30px;
-  display: inline-block;
-
-  > li > a {
-    font-size: 21px;
-    font-weight: bold;
-    color: #192048;
-  }
-
-  ul {
-    margin-bottom: 20px;
-    margin-top: 10px;
-
-    a {
-      color: #192048;
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.69;
+    &.expand-btn {
+      right: 37px;
     }
   }
 }
 
 .pg-main {
-  .logo {
-    margin-bottom: 20px;
-  }
-
   .hero {
     .hero-body {
       padding-bottom: 250px;
@@ -155,13 +76,13 @@ body {
   }
 
   .footer {
-    margin-top: 200px;
+    margin-top: 130px;
   }
 }
 
 .hero {
   background-color: #f9f9fa;
-  background-image: url("/assets/img/hero.jpg");
+  background-image: url("/assets/img/hero.png");
   background-position: 0 0;
   background-repeat: no-repeat;
   background-size: cover;
@@ -169,7 +90,7 @@ body {
   color: #fff;
 
   .hero-body {
-    padding-bottom: 90px;
+    padding-top: 20px;
   }
 
   .headline {
@@ -177,28 +98,53 @@ body {
     flex-direction: column;
 
     h1 {
-      font-size: 3.4em;
+      font-size: 42px;
       font-weight: bold;
     }
 
     h2 {
-      font-size: 5.5em;
+      font-size: 71px;
       font-weight: bold;
       text-transform: uppercase;
+      line-height: 1.2;
     }
+  }
+}
 
-    .subtitle {
-      color: #fff;
-      font-size: 22px;
-      margin: 23px 0 0;
-    }
+.cards-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-    p {
-      margin-top: 0;
-      max-width: 600px;
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 1.72;
+  .card-cta {
+    display: flex;
+    padding: 50px;
+    margin-top: 45px;
+    width: 1067px;
+    font-size: 28px;
+    font-weight: bold;
+    color: $baseColor;
+    align-items: center;
+
+    > div {
+      flex: 1;
+
+      &:first-child {
+        flex: 5;
+        line-height: 1.2;
+      }
+
+      a {
+        display: inline-block;
+        border-radius: 25px;
+        background-color: #fd672f;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 500;
+        font-style: normal;
+        padding: 15px 50px;
+        text-transform: uppercase;
+      }
     }
   }
 }
@@ -214,6 +160,7 @@ body {
     max-width: 325px;
     margin-right: 46px;
     padding: 35px 25px 55px;
+    height: 375px;
 
     &:last-child {
       margin-right: 0;
@@ -227,14 +174,10 @@ body {
   background-color: #fff;
 
   .title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #192048;
+    @include title;
 
-    svg {
-      display: block;
-      margin-bottom: 14px;
-      font-size: 22px;
+    div {
+      margin-top: 20px;
     }
   }
 
@@ -248,111 +191,34 @@ body {
   }
 }
 
-.cflt-options {
-  display: none;
-  background: #192048;
-  padding: 5px;
-  border-radius: 4px;
-  position: relative;
-
-  &:after {
-    content: "▼";
-    top: 50%;
-    transform: translateY(-50%);
-    position: absolute;
-    pointer-events: none;
-    color: #fff;
-    right: 10px;
+.section {
+  .title {
+    @include title;
+    margin-bottom: 15px;
   }
 
-  select {
-    color: #fff;
-    width: 100%;
-    font-size: 18px;
-    font-weight: 500;
-  }
-}
-
-.buttons {
-  border: solid 2px #192048;
-  border-radius: 4px;
-  display: inline-block;
-  padding: 10px;
-
-  .button {
-    margin: 0;
-    border-radius: 4px;
-    border: 0;
-    background: none;
-    text-transform: uppercase;
-    padding: 5px 15px;
-    white-space: nowrap;
-
-    &:hover,
-    &.is-selected {
-      background: #192048;
-      color: #fff;
-    }
-  }
-}
-
-.section .title {
-  font-size: 21px;
-  font-weight: bold;
-  color: #192048;
-  margin-bottom: 16px;
-}
-
-.footer {
-  background: #fff;
-  font-size: 14px;
-
-  .nav-links {
-    ul {
-      display: inline-block;
-      margin-right: 60px;
-      vertical-align: top;
-      line-height: 2em;
-      margin-bottom: 40px;
-      min-width: 150px;
-    }
-
-    li {
-      &:first-child {
-        font-weight: 500;
-        margin-bottom: 25px;
-      }
-
-      a {
-        color: #2a2a2d;
-        font-weight: 300;
-      }
-    }
-  }
-
-  .social-links {
-    font-size: 0;
-
-    ul {
-      white-space: nowrap;
-    }
-
-    li {
-      display: inline-block;
-      margin-right: 15px;
-    }
-
-    li a {
-      color: #2a2a2d;
-      font-size: 22px;
-    }
+  h2.title {
+    font-size: 21px;
   }
 }
 
 @media screen and (max-width: 1079px) {
   .pg-main {
     .footer {
-      margin-top: 0;
+      margin-top: 40px;
+    }
+
+    .cards-container {
+      .card-cta {
+        min-width: 325px;
+        max-width: 325px;
+        flex-direction: column;
+        margin-top: 0;
+
+        div:first-child {
+          margin-bottom: 25px;
+        }
+      }
     }
 
     .cards {
@@ -378,13 +244,5 @@ body {
 @media screen and (max-width: 479px) {
   body {
     font-size: 10px;
-  }
-
-  .cflt-options {
-    display: block;
-  }
-
-  .cflt-tabs {
-    display: none;
   }
 }

@@ -1,0 +1,12 @@
+@mixin title {
+  font-size: 18px;
+  font-weight: bold;
+  color: $baseColor;
+}
+
+@mixin text {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.44;
+  color: $baseColor;
+}

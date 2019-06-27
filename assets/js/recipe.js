@@ -17,7 +17,7 @@ $(document).ready(function() {
     $(element).wrap("<div class='snippet-wrapper'></div>");
     $(element).attr("id", id);
     $(element).after(
-      `<button class='button is-small code-btn copy-btn' data-clipboard-target='#${id}'><span class="icon"><i class="far fa-copy"></i></span></button>`
+      `<span class="icon copy-btn" data-clipboard-target='#${id}'><i class="far fa-copy"></i></span>`
     );
 
     //Set up expand buttons.
@@ -27,7 +27,7 @@ $(document).ready(function() {
     if (actualHeight > maxHeight) {
       $(element).css("max-height", maxHeight);
       $(element).after(
-        "<button class='button is-small code-btn expand-btn'>Expand</button>"
+        "<span class='icon expand-btn'><i class='fas fa-expand-arrows-alt'></i></span>"
       );
     }
   });

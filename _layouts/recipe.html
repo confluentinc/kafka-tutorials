@@ -16,13 +16,20 @@
   <link rel="stylesheet" href="/assets/sass/main.css" />
 </head>
 <body class="pg-recipe">
-  {% include logo.html %}
+  <section class="section top">
+    <div class="container">
+      {% include logo.html %}
+    </div>
+  </section>
+
   <section class="hero">
     <div class="hero-body">
       <div class="container">
         <div class="headline">
           <h1>{{ site.data.recipes[page.static_data].title }}</h1>
-          <div class="subtitle">Problem:</div>
+        </div>
+        <div class="summary">
+          <h2>Problem:</h2>
           <p>{{site.data.recipes[page.static_data].problem }}</p>
         </div>
       </div>
@@ -31,6 +38,12 @@
 
   <section class="section">
     <div class="container">
+      {% unless page.help_wanted %}
+        <div class="example">
+          <div class="title">Example Scenario:</div>
+          <p class="text">{{ site.data.recipes[page.static_data].introduction }}</p>
+        </div>
+      {% endunless %}
       <div class="title">Solve it with:</div>
       <div class="cflt-options">
         <select>
@@ -72,14 +85,7 @@
       </div>
       <div class="columns">
         <div class="column is-full">
-          {% unless page.help_wanted %}
-          <div class="summary">
-            <p class="text">
-              {{ site.data.recipes[page.static_data].introduction }}
-            </p>
-            <ul id="toc" class="recipe-navigation"></ul>
-          </div>
-          {% endunless %}
+          <ul id="toc" class="recipe-navigation"></ul>
         </div>
       </div>
     </div>
