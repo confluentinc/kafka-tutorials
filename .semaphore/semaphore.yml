@@ -26,6 +26,10 @@ blocks:
           - checkout
           - sudo pip3 install -e harness_runner/
       jobs:
+        - name: KSQL transforming tests
+          commands:
+            - make -C _includes/recipes/transforming/ksql/code recipe
+
         - name: KStreams transforming tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
