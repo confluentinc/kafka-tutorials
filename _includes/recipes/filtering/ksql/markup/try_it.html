@@ -1,100 +1,70 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">1.</div>
-    <div class="text">Get Confluent Platform</div>
+    <div class="text">1. Initialize the project</div>
   </h4>
 
-  <p class="text">If you haven't already, get Confluent Platform.</p>
-  <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
+  <p>To get started, make a new directory anywhere you'd like for this project:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/init.sh %}</code></pre>
+
+  <p>Then make the following directories to set up its structure:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/make-dirs.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">2.</div>
-    <div class="text">Initialize the project</div>
+    <div class="text">2. Get Confluent Platform</div>
   </h4>
 
-  <p class="text">
-    To get started, make a new directory anywhere you'd like for this project:
-  </p>
-  <pre class="snippet"><code class="shell">mkdir filter-events && cd filter-events</code></pre>
+  <p>Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:</p>
+  <pre class="snippet"><code class="dockerfile">{% include_raw recipes/filtering/ksql/code/docker-compose.yml %}</code></pre>
+
+  <p>And launch it by running:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/docker-compose-up.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">3.</div>
-    <div class="text">Start the CLI and produce events to the input stream</div>
+    <div class="text">3. Start the CLI and produce events to the input stream</div>
   </h4>
 
-  <p class="text">To begin developing interactively, open up the KSQL CLI:</p>
-  <pre class="snippet"><code class="shell">docker exec -it ksql-cli</code></pre>
+  <p>To begin developing interactively, open up the KSQL CLI:<p/>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/start-cli.sh %}</code></pre>
 
-  <p class="text">
-    First, you'll need to create a Kafka topic and stream to represent the
-    publications. The following creates both in one shot:
-  </p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/create-inputs.sql %}</code></pre>
+  <p>First, you'll need to create a Kafka topic and stream to represent the publications. The following creates both in one shot:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/create-inputs.sql %}</code></pre>
 
-  <p class="text">Then produce the following events to the stream:</p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/populate-stream.sql %}</code></pre>
+  <p>Then produce the following events to the stream:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/populate-stream.sql %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">4.</div>
-    <div class="text">Create a continuous query</div>
+    <div class="text">4. Create a continuous query</div>
   </h4>
 
-  <p class="text">
-    Now that you have stream with some events in it, let's read them out. The
-    first thing to do is set the following properties to ensure that you're
-    reading from the beginning of the stream:
-  </p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/set-properties.sql %}</code></pre>
+  <p>Now that you have stream with some events in it, let's read them out. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/set-properties.sql %}</code></pre>
 
-  <p class="text">
-    Let's find all of the books written by George R. R. Martin. Issue the
-    following transient query. This will block and continue to return results
-    until it's limit is reached or you tell it to stop.
-  </p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/transient-query.sql %}</code></pre>
+  <p>Let's find all of the books written by George R. R. Martin. Issue the following transient query. This will block and continue to return results until its limit is reached or you tell it to stop.</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/transient-query.sql %}</code></pre>
 
   This should yield the following output:
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
 
-  <p class="text">
-    Since the output looks right, the next step is to make the query continuous.
-    Issue the following to create a new stream that is continously populated by
-    its query:
-  </p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/continuous-select.sql %}</code></pre>
+  <p>Since the output looks right, the next step is to make the query continuous. Issue the following to create a new stream that is continously populated by its query:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/continuous-select.sql %}</code></pre>
 
-  <p class="text">
-    To check that it's working, print out the contents of the output stream's
-    underlying topic:
-  </p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/print-output-topic.sql %}</code></pre>
+  <p>To check that it's working, print out the contents of the output stream's underlying topic:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
 
   This should yield the following output:
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/harness/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">5.</div>
-    <div class="text">Write your statements to a file</div>
+    <div class="text">5. Write your statements to a file</div>
   </h4>
-
-  <p class="text">
-    Now that you have a series of statements that's doing the right thing, the
-    last step is to put them into a file so that they can be used outside the
-    CLI session. Create a directory for your statements like so:
-  </p>
-  <pre class="snippet"><code class="sql">mkdir src</code></pre>
-
-  <p class="text">
-    And create a file at <code>src/statements.sql</code> with the following
-    content:
-  </p>
+  <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at <code>src/statements.sql</code> with the following content:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/src/statements.sql %}</code></pre>
 </div>

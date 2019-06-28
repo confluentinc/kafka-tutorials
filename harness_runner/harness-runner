@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+
+import harness_runner
+import sys
+harness_runner.execute(sys.argv[1], sys.argv[2])

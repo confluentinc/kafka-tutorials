@@ -52,7 +52,7 @@ services:
       - ./schema-registry/log4j.properties:/etc/schema-registry/quiet-logging.properties
 
   ksql-server:
-    image: 368821881613.dkr.ecr.us-west-2.amazonaws.com/confluentinc/cp-ksql-server:838d554
+    image: mjdrogalis/ksql-server-fork:0.1.0
     hostname: ksql-server
     container_name: ksql-server
     depends_on:
@@ -73,7 +73,7 @@ services:
       KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
 
   ksql-cli:
-    image: 368821881613.dkr.ecr.us-west-2.amazonaws.com/confluentinc/cp-ksql-cli:838d554
+    image: mjdrogalis/ksql-cli-fork:0.1.0
     container_name: ksql-cli
     depends_on:
       - broker

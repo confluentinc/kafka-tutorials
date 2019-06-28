@@ -11,6 +11,23 @@ Make sure you have the following installed:
 - ruby
 - [bundler](https://bundler.io/)
 - npm
+- pip3
+
+On the Mac you can do this with : 
+
+```
+brew install ruby node
+gem install bundler
+```
+
+This repository uses a Python script to facilitate testing the recipes. You can install it locally by running:
+
+```
+cd harness_runner
+pip3 install -e .
+```
+
+You'll now have an executable called harness-runner on your path.
 
 ### Installing
 

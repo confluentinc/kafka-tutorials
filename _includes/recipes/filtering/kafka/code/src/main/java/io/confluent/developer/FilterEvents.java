@@ -207,8 +207,6 @@ public class FilterEvents {
         
                 }
 
-                Thread.sleep(1000);
-
             }
 
         } catch (Throwable e) {

@@ -1,32 +1,30 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">1.</div>
-    <div class="text">Get Confluent Platform</div>
+    <div class="text">1. Get Confluent Platform</div>
   </h4>
-  <p class="text">If you haven't already, get Confluent Platform.</p>
+  <p>If you haven't already, get Confluent Platform.</p>
   <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">2.</div>
-    <div class="text">Initialize the project</div>
+    <div class="text">2. Initialize the project</div>
   </h4>
-  <p class="text">
+  <p>
     To get started, make a new directory anywhere you'd like for this project:
   </p>
-  <pre class="snippet"><code class="shell">mkdir filter-events && cd filter-events</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/init.sh %}</code></pre>
 
-  <p class="text">
-    Then create the following Gradle build file, named
-    <code>build.gradle</code> for the project:
-  </p>
+  <p>Create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
   <pre class="snippet"><code class="groovy">{% include_raw recipes/filtering/kafka/code/build.gradle %}</code></pre>
 
-  <p class="text">Next, create a directory for configuration data:</p>
-  <pre class="snippet"><code class="shell">mkdir configuration</code></pre>
+  <p>And be sure to run the following command to obtain the Gradle wrapper:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/gradle-wrapper.sh %}</code></pre>
 
-  <p class="text">
+  <p>Next, create a directory for configuration data:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/make-configuration-dir.sh %}</code></pre>
+
+  <p>
     Then create a development file at <code>configuration/dev.properties</code>:
   </p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/configuration/dev.properties %}</code></pre>
@@ -34,90 +32,57 @@
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">3.</div>
-    <div class="text">Create a schema for the events</div>
+    <div class="text">3. Create a schema for the events</div>
   </h4>
-  <p class="text">
-    Create a directory for the schemas that represent the events in the topic:
-  </p>
-  <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
-
-  <p class="text">
+  <p>Create a directory for the schemas that represent the events in the topic:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
+  <p>
     Then create the following Avro schema file at
     <code>src/main/avro/publication.avsc</code> for the publication events:
   </p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/filtering/kafka/code/src/main/avro/publication.avsc %}</code></pre>
-  <p class="text">
-    Because this Avro schema is used in the Java code, it needs to compile it.
-    Run the following:
-  </p>
-  <pre class="snippet"><code class="shell">gradle build</code></pre>
+  <p>Because this Avro schema is used in the Java code, it needs to compile it. Run the following:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/build-project.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">4.</div>
-    <div class="text">Set up the Kafka producer and consumer</div>
+    <div class="text">4. Set up the Kafka producer and consumer</div>
   </h4>
-  <p class="text">Create a directory for the Java files in this project:</p>
-  <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
-  <p class="text">
-    Then create the following file at
-    <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. The
-    <code>main</code> method spins up a consumer and producer, which funnel the
-    events of interest from one topic to the other. In this case, we're only
-    interested in books authored by George R. R. Martin.
-  </p>
+  <p>Create a directory for the Java files in this project:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
+  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. The <code>main</code> method spins up a consumer and producer, which funnel the events of interest from one topic to the other. In this case, we're only interested in books authored by George R. R. Martin.</p>
   <pre class="snippet"><code class="java">{% include_raw recipes/filtering/kafka/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">5.</div>
-    <div class="text">Compile and run the Kafka program</div>
+    <div class="text">5. Compile and run the Kafka program</div>
   </h4>
-  <p class="text">In your terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/build-uberjar.sh %}</code></pre>
-  <p class="text">
-    Now that an uberjar for the Kafka application has been built, you can launch
-    it locally. When you run the following, the prompt won't return, because the
-    application will run until you exit it:
-  </p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/run-dev-app.sh %}</code></pre>
+  <p>In your terminal, run:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
+  <p>Now that an uberjar for the Kafka application has been built, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">6.</div>
-    <div class="text">Produce events to the input topic</div>
+    <div class="text">6. Produce events to the input topic</div>
   </h4>
-  <p class="text">In a new terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/console-producer.sh %}</code></pre>
-
-  <p class="text">
-    When the console producer starts, it will log some messages and hang,
-    waiting for your input. Type in one line at a time and press enter to send
-    it. Each line represents an event. To send all of the events below, paste
-    the following into the prompt and press enter:
-  </p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/input-events.json %}</code></pre>
+  <p>In a new terminal, run:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/console-producer.sh %}</code></pre>
+  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an event. To send all of the events below, paste the following into the prompt and press enter:</p>
+  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/input-events.json %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="num">7.</div>
-    <div class="text">Consume filtered events from the output topic</div>
+    <div class="text">7. Consume filtered events from the output topic</div>
   </h4>
-  <p class="text">
-    Leaving your original terminal running, open another to consume the events
-    that have been filtered by your application:
+  <p>Leaving your original terminal running, open another to consume the events that have been filtered by your application:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/console-consumer.sh %}</code></pre>
+  <p>
+    After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying the example, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.
   </p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/console-consumer.sh %}</code></pre>
-  <p class="text">
-    After the consumer starts, you should see the following messages. The prompt
-    will hang, waiting for more events to arrive. To continue studying the
-    example, send more events through the input terminal prompt. Otherwise, you
-    can <code>Control-C</code> to exit the process.
-  </p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kafka/harness/recipe-steps/dev/outputs/actual-output-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/outputs/actual-output-events.json %}</code></pre>
 </div>

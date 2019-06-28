@@ -1,28 +1,17 @@
-GRADLE := gradle
 STEPS_DIR := recipe-steps
 DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
+TEMP_DIR := $(shell mktemp -d)
 
-uberjar:
-	./$(STEPS_DIR)/dev/build-uberjar.sh
-
-build_dev_recipe: uberjar
+dev_recipe:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
-	python3 build_dev_recipe.py
-
-build_test_recipe:
-
-build_prod_recipe:
-
-validate_dev_recipe: build_dev_recipe
+	harness-runner harness/dev-sequence.yml $(TEMP_DIR)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.json $(DEV_OUTPUTS_DIR)/actual-output-events.json
 
-validate_test_recipe: build_test_recipe
-	gradle test
+test_recipe:
+	harness-runner harness/test-sequence.yml $(TEMP_DIR)
 
-validate_prod_recipe: build_prod_recipe
-	./$(STEPS_DIR)/prod/run-build-script.sh
+prod_recipe:
+	harness-runner harness/prod-sequence.yml $(TEMP_DIR)
 
-build_recipe: build_dev_recipe build_test_recipe build_prod_recipe
-
-validate_recipe: validate_dev_recipe validate_test_recipe validate_prod_recipe
+recipe: dev_recipe test_recipe prod_recipe

@@ -1,0 +1,79 @@
+version: v1.0
+name: Confluent Developer pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - name: Build the website
+    task:
+      prologue:
+        commands:
+          - checkout
+          - npm install
+          - gem install bundler --no-ri --no-rdoc
+          - bundle install
+      jobs:
+        - name: Compile with Jekyll
+          commands:
+            - bundle exec jekyll build
+
+  - name: Run the tests
+    task:
+      prologue:
+        commands:
+          - checkout
+          - sudo pip3 install -e harness_runner/
+      jobs:
+        - name: KSQL transforming tests
+          commands:
+            - make -C _includes/recipes/transforming/ksql/code recipe
+
+        - name: KStreams transforming tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/transforming/kstreams/code recipe
+
+        - name: KSQL filtering tests
+          commands:
+            - make -C _includes/recipes/filtering/ksql/code recipe
+
+        - name: KStreams filtering tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/filtering/kstreams/code recipe
+
+        - name: Kafka filtering tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/filtering/kafka/code recipe
+
+        - name: KSQL splitting tests
+          commands:
+            - make -C _includes/recipes/splitting/ksql/code recipe
+
+        - name: KStreams splitting tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/splitting/kstreams/code recipe
+
+        - name: KStreams merging tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/merging/kstreams/code recipe
+
+        - name: KSQL join stream to table tests
+          commands:
+            - make -C _includes/recipes/joining/ksql/code recipe
+
+        - name: KStreams join stream to table tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/joining/kstreams/code recipe

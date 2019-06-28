@@ -12,6 +12,20 @@ $(document).ready(function() {
 
   var clipboard = new ClipboardJS(".copy-btn");
 
+  $('.recipe-try-it-step .subtitle .text').each(function() {
+    // Do this so people can write recipe markup easier
+    $(this).replaceWith(this.innerHTML.replace(/^(\d(\.)?)(.*)$/, '<div class="num">$1</div><div class="text">$3</div>'));
+  });
+
+  $(".num").each(function() {
+    var $this = $(this);
+    var text = $this.text();
+    console.warn(text);
+    console.warn(text.substring(0, text.length - 1));
+    console.warn('----');
+    $this.html(text.substring(0, text.length - 1));
+  });
+
   $("pre").each(function(index, element) {
     //Set up copy buttons.
     var id = "snippet-" + index;
@@ -50,12 +64,6 @@ $(document).ready(function() {
 
       this.classList.add('is-hidden');
       $('.expand-btn').removeClass('is-hidden');
-  });
-
-  $(".num").each(function() {
-    var $this = $(this);
-    var text = $this.text();
-    $this.html(text.substring(0, text.length - 1));
   });
 
   $(".cflt-options select").on("change", function() {
