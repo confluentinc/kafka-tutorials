@@ -1,5 +1,5 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">1. Initialize the project</h4>
+  <h4 class="subtitle"><div class="text">1. Initialize the project</div></h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/ksql/code/recipe-steps/dev/init.sh %}</code></pre>
@@ -9,7 +9,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">2. Get Confluent Platform</h4>
+  <h4 class="subtitle"><div class="text">2. Get Confluent Platform</div></h4>
 
   <p>Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:</p>
   <pre class="snippet"><code class="dockerfile">{% include_raw recipes/joining/ksql/code/docker-compose.yml %}</code></pre>
@@ -19,7 +19,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">3. Start the CLI and produce events to the input stream</h4>
+  <h4 class="subtitle"><div class="text">3. Start the CLI and produce events to the input stream</div></h4>
 
   <p>To begin developing interactively, open up the KSQL CLI:<p/>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/ksql/code/recipe-steps/dev/start-cli.sh %}</code></pre>
@@ -38,11 +38,11 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">4. Create a continuous query</h4>
+  <h4 class="subtitle"><div class="text">4. Create a continuous query</div></h4>
 
   <p>Now that you events in both the stream and the table, let's join them up to obtain a stream of rated movies. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/joining/ksql/code/recipe-steps/dev/set-properties.sql %}</code></pre>
-  
+
   <p>Let's enrich the ratings stream with more information about the movie that it refers to. The following query does a left join between the ratings stream and the movies table on the movie id. This will block and continue to return results until it's limit is reached or you tell it to stop.</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/joining/ksql/code/recipe-steps/dev/transient-join.sql %}</code></pre>
 
@@ -60,7 +60,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">5. Write your statements to a file</h4>
+  <h4 class="subtitle"><div class="text">5. Write your statements to a file</div></h4>
 
   <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at <code>src/statements.sql</code> with the following content:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/joining/ksql/code/src/statements.sql %}</code></pre>

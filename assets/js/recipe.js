@@ -20,9 +20,6 @@ $(document).ready(function() {
   $(".num").each(function() {
     var $this = $(this);
     var text = $this.text();
-    console.warn(text);
-    console.warn(text.substring(0, text.length - 1));
-    console.warn('----');
     $this.html(text.substring(0, text.length - 1));
   });
 

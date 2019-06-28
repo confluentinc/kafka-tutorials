@@ -1,12 +1,12 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">1. Get Confluent Platform</h4>
+  <h4 class="subtitle"><div class="text">1. Get Confluent Platform</div></h4>
 
   <p>If you haven't already, get Confluent Platform.</p>
   <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">2. Initialize the project</h4>
+  <h4 class="subtitle"><div class="text">2. Initialize the project</div></h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/init.sh %}</code></pre>
@@ -25,10 +25,10 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">3. Create a schema for the events</h4>
+  <h4 class="subtitle"><div class="text">3. Create a schema for the events</div></h4>
 
   <p>This recipe uses three streams: one called <code>movies</code> that holds movie reference data, one called <code>ratings</code> that holds a stream of inbound movie ratings, and one called <code>rated-movies</code> that holds the result of the join between ratings and movies. Let's create schemas for all three.</p>
-  
+
   <p>Create a directory for the schemas that represent the events in the stream:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
 
@@ -46,7 +46,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">4. Create the Kafka Streams topology</h4>
+  <h4 class="subtitle"><div class="text">4. Create the Kafka Streams topology</div></h4>
 
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
@@ -54,18 +54,18 @@
   <p>Then create the following file at <code>src/main/java/io/confluent/developer/JoinStreamToTable.java</code>. Let's take a close look at the <code>buildTopology()</code> method, which uses the Kafka Streams DSL.</p>
 
   <p>The first thing the method does is create an instance of <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/StreamsBuilder.html">StreamsBuilder</a></code>, which is the helper object that lets us build our topology. With our builder in hand, there are three things we need to do. First, we call the <code>stream()</code> method to create a <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KStream.html">KStream</a><String, Movie></code> object. The problem is that we can't make any assumptions about the key of this stream, so we have to repartition it explicitly. We use the <code>map()</code> method for that, creating a new <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/KeyValue.html">KeyValue</a></code> instance for each record, using the movie ID as the new key.</p>
-    
+
   <p>The movies start their life in a stream, but fundamentally, movies are entities that belong in a table. To turn them into a table, we first emit the rekeyed stream to a Kafka topic using the <code>to()</code> method. We can then use the <code>builder.table()</code> method to create a <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KTable.html">KTable</a><String,Movie></code>. We have successfully turned a topic full of movie entities into a scalable, key-addressable table of <code>Movie</code> objects. With that, we're ready to move on to ratings.</p>
-    
+
   <p>Creating the <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KStream.html">KStream</a><String,Rating></code> of ratings looks just like our first step with the movies: we create a stream from the topic, then repartition it with the <code>map()</code> method. Note that we must choose the same key—movie ID—for our join to work.</p>
-    
+
   <p>With the ratings stream and the movie table in hand, all that remains is to join them using the <code>join()</code> method. It's a wonderfully simply one-liner, but we have concealed a bit of complexity in the form of the <code>MovieRatingJoiner</code> class. More on that in a moment.</p>
-  
+
   <pre class="snippet"><code class="java">{% include_raw recipes/joining/kstreams/code/src/main/java/io/confluent/developer/JoinStreamToTable.java %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">5. Implement a ValueJoiner class</h4>
+  <h4 class="subtitle"><div class="text">5. Implement a ValueJoiner class</div></h4>
 
   <p>For the ValueJoiner class, create the following file at <code>src/main/java/io/confluent/developer/MovieRatingJoiner.java</code>.</p>
 
@@ -78,7 +78,7 @@
 
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">6. Compile and run the Kafka Streams program</h4>
+  <h4 class="subtitle"><div class="text">6. Compile and run the Kafka Streams program</div></h4>
 
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
@@ -88,12 +88,12 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">7. Load in some movie reference data</h4>
+  <h4 class="subtitle"><div class="text">7. Load in some movie reference data</div></h4>
 
   <p>In a new terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/console-producer-movies.sh %}</code></pre>
 
-  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Copy and paste one line at a time and press enter to send it. Note that these lines contain hard tabs between the key and the value, so retyping them without the tab will not work.</p> 
+  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Copy and paste one line at a time and press enter to send it. Note that these lines contain hard tabs between the key and the value, so retyping them without the tab will not work.</p>
 
   <p>Each line represents a movie we will be able to rate. To send all of the events below, paste the following into the prompt and press enter:</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/movies.json %}</code></pre>
@@ -101,7 +101,7 @@
 
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">8. Get ready to observe the rated movies in the output topic</h4>
+  <h4 class="subtitle"><div class="text">8. Get ready to observe the rated movies in the output topic</div></h4>
 
   <p>Before you start producing ratings, it's a good idea to set up the consumer on the output topic. This way, as soon as you produce ratings (and they're joined to movies), you'll see the results right away. Run this to get ready to consume the rated movies:</p>
 
@@ -113,7 +113,7 @@
 
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">9. Produce some ratings to the input topic</h4>
+  <h4 class="subtitle"><div class="text">9. Produce some ratings to the input topic</div></h4>
 
   <p>Run the following in a new terminal window. This process is the most fun if you can see this and the previous terminal (which is consuming the rated movies) at the same time. If your terminal program lets you do horizontal split panes, try it that way:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>
