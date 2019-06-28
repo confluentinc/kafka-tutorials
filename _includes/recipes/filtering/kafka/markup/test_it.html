@@ -9,7 +9,7 @@
   <h4 class="subtitle is-4">2. Write a test</h4>
 
   <p>Then, create a directory for the tests to live in:</p>
-  <pre class="snippet"><code class="shell">mkdir -p src/test/java/io/confluent/developer</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/test/make-test-dir.sh %}</code></pre>
 
   <p>Create the following test file at <code>src/test/java/io/confluent/developer/FilterEventsTest.java</code>:</p>
   <pre class="snippet"><code class="java">{% include_raw recipes/filtering/kafka/code/src/test/java/io/confluent/developer/FilterEventsTest.java %}</code></pre>
@@ -19,5 +19,5 @@
   <h4 class="subtitle is-4">3. Invoke the tests</h4>
 
   <p>Now run the test, which is as simple as:</p>
-  <pre class="snippet"><code class="shell">gradle test</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/test/invoke-tests.sh %}</code></pre>
 </div>
