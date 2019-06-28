@@ -1,6 +1,7 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.Publication;
+import io.confluent.developer.avro.Movie;
+import io.confluent.developer.avro.RawMovie;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
@@ -24,8 +25,17 @@ import java.util.concurrent.CountDownLatch;
 
 public class TransformEvents {
 
-    public Properties buildProducerProperties(Properties envProps) {
+    public Properties loadEnvProperties(String fileName) throws IOException {
 
+        Properties envProps = new Properties();
+        FileInputStream input = new FileInputStream(fileName);
+        envProps.load(input);
+        input.close();
+
+        return envProps;
+    }
+
+    public Properties buildProducerProperties(Properties envProps) {
         Properties props = new Properties();
 
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
@@ -34,17 +44,9 @@ public class TransformEvents {
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
-
-    }
-
-    public KafkaProducer<String, Publication> createProducer(Properties producerProps) {
-
-        return new KafkaProducer<String, Publication>(producerProps);
-
     }
 
     public Properties buildConsumerProperties(String groupId, Properties envProps) {
-
         Properties props = new Properties();
 
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -56,13 +58,22 @@ public class TransformEvents {
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
-
     }
 
-    public KafkaConsumer<String, Publication> createConsumer(Properties consumerProps) {
+    public KafkaConsumer<String, RawMovie> createRawMovieConsumer(Properties consumerProps) {
+        return new KafkaConsumer<String, RawMovie>(consumerProps);
+    }
 
-        return new KafkaConsumer<String, Publication>(consumerProps);
+    public KafkaConsumer<String, Movie> createMovieConsumer(Properties consumerProps) {
+        return new KafkaConsumer<String, Movie>(consumerProps);
+    }
 
+    public KafkaProducer<String, Movie> createMovieProducer(Properties producerProps) {
+        return new KafkaProducer<String, Movie>(producerProps);
+    }
+
+    public KafkaProducer<String, RawMovie> createRawMovieProducer(Properties producerProps) {
+        return new KafkaProducer<String, RawMovie>(producerProps);
     }
 
     public void createTopics(Properties envProps) {
@@ -83,76 +94,34 @@ public class TransformEvents {
 
         client.createTopics(topics);
         client.close();
-
-    }
-
-    public Properties loadEnvProperties(String fileName) throws IOException {
-
-        Properties envProps = new Properties();
-        FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
-        input.close();
-
-        return envProps;
-
-    }
-
-    public void produceRecords(String inputTopic, List<Publication> inputPublications,
-        KafkaProducer<String, Publication> producer) {
-
-        ProducerRecord<String, Publication> record = null;
-
-        for (Publication publication : inputPublications) {
-
-            record = new ProducerRecord<String, Publication>(inputTopic, publication);
-            producer.send(record);
-
-        }
-
     }
 
     public void applyTransformation(String inputTopic,
-        String outputTopic, KafkaConsumer<String, Publication> consumer,
-        KafkaProducer<String, Publication> producer) {
+                                    String outputTopic,
+                                    KafkaConsumer<String, RawMovie> consumer,
+                                    KafkaProducer<String, Movie> producer) {
 
         consumer.subscribe(Arrays.asList(inputTopic));
-        ConsumerRecords<String, Publication> records = consumer.poll(5000);
+        ConsumerRecords<String, RawMovie> records = consumer.poll(5000);
 
-        for (ConsumerRecord<String, Publication> record : records) {
+        for (ConsumerRecord<String, RawMovie> record : records) {
+            Movie movie = convertRawMovie(record.value());
 
-            // Transform all the fields to upper case...
-            Publication publication = record.value();
-            publication.setName(publication.getName().toUpperCase());
-            publication.setTitle(publication.getTitle().toUpperCase());
-
-            ProducerRecord<String, Publication> transformedRecord =
-                new ProducerRecord<String, Publication>(outputTopic,
-                publication);
+            ProducerRecord<String, Movie> transformedRecord =
+                new ProducerRecord<String, Movie>(outputTopic, movie);
 
             producer.send(transformedRecord);
-
         }
-
     }
 
-    public List<Publication> consumeRecords(String outputTopic,
-        KafkaConsumer<String, Publication> consumer) {
-
-        List<Publication> output = new ArrayList<Publication>();
-        consumer.subscribe(Arrays.asList(outputTopic));
-
-        ConsumerRecords<String, Publication> records = consumer.poll(5000);
-
-        for (ConsumerRecord<String, Publication> record : records) {
-            output.add(record.value());
-        }
-
-        return output;
-
+    public static Movie convertRawMovie(RawMovie rawMovie) {
+        String titleParts[] = rawMovie.getTitle().split("::");
+        String title = titleParts[0];
+        int releaseYear = Integer.parseInt(titleParts[1]);
+        return new Movie(rawMovie.getId(), title, releaseYear, rawMovie.getGenre());
     }
 
     public static void main(String[] args) throws Exception {
-
         if (args.length < 1) {
             throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");
         }
@@ -165,9 +134,9 @@ public class TransformEvents {
         te.createTopics(envProps);
 
         Properties producerProps = te.buildProducerProperties(envProps);
-        KafkaProducer<String, Publication> producer = te.createProducer(producerProps);
+        KafkaProducer<String, Movie> producer = te.createMovieProducer(producerProps);
         Properties consumerProps = te.buildConsumerProperties("inputGroup", envProps);
-        KafkaConsumer<String, Publication> consumer = te.createConsumer(consumerProps);
+        KafkaConsumer<String, RawMovie> consumer = te.createRawMovieConsumer(consumerProps);
 
         final CountDownLatch latch = new CountDownLatch(1);
 
@@ -186,21 +155,18 @@ public class TransformEvents {
 
             while (true) {
 
-                ConsumerRecords<String, Publication> records = consumer.poll(1000);
+                ConsumerRecords<String, RawMovie> records = consumer.poll(1000);
     
-                for (ConsumerRecord<String, Publication> record : records) {
+                for (ConsumerRecord<String, RawMovie> record : records) {
         
                     // Transform all the fields to upper case...
-                    Publication publication = record.value();
-                    publication.setName(publication.getName().toUpperCase());
-                    publication.setTitle(publication.getTitle().toUpperCase());
-        
-                    ProducerRecord<String, Publication> transformedRecord =
-                        new ProducerRecord<String, Publication>(outputTopic,
-                        publication);
+                    RawMovie rawMovie = record.value();
+                    Movie movie = convertRawMovie(rawMovie);
+
+                    ProducerRecord<String, Movie> transformedRecord =
+                        new ProducerRecord<String, Movie>(outputTopic, movie);
         
                     producer.send(transformedRecord);
-        
                 }
 
                 Thread.sleep(1000);
@@ -212,7 +178,6 @@ public class TransformEvents {
         }
 
         System.exit(0);
-
     }
 
 }
