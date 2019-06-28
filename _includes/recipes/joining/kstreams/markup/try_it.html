@@ -1,12 +1,12 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">1. Get Confluent Platform</div></h4>
+  <h4 class="subtitle"><div>1. Get Confluent Platform</div></h4>
 
   <p>If you haven't already, get Confluent Platform.</p>
   <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">2. Initialize the project</div></h4>
+  <h4 class="subtitle"><div>2. Initialize the project</div></h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/init.sh %}</code></pre>
@@ -25,7 +25,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">3. Create a schema for the events</div></h4>
+  <h4 class="subtitle"><div>3. Create a schema for the events</div></h4>
 
   <p>This recipe uses three streams: one called <code>movies</code> that holds movie reference data, one called <code>ratings</code> that holds a stream of inbound movie ratings, and one called <code>rated-movies</code> that holds the result of the join between ratings and movies. Let's create schemas for all three.</p>
 
@@ -46,7 +46,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">4. Create the Kafka Streams topology</div></h4>
+  <h4 class="subtitle"><div>4. Create the Kafka Streams topology</div></h4>
 
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
@@ -65,7 +65,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">5. Implement a ValueJoiner class</div></h4>
+  <h4 class="subtitle"><div>5. Implement a ValueJoiner class</div></h4>
 
   <p>For the ValueJoiner class, create the following file at <code>src/main/java/io/confluent/developer/MovieRatingJoiner.java</code>.</p>
 
@@ -78,7 +78,7 @@
 
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">6. Compile and run the Kafka Streams program</div></h4>
+  <h4 class="subtitle"><div>6. Compile and run the Kafka Streams program</div></h4>
 
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
@@ -88,7 +88,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">7. Load in some movie reference data</div></h4>
+  <h4 class="subtitle"><div>7. Load in some movie reference data</div></h4>
 
   <p>In a new terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/console-producer-movies.sh %}</code></pre>
@@ -101,7 +101,7 @@
 
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">8. Get ready to observe the rated movies in the output topic</div></h4>
+  <h4 class="subtitle"><div>8. Get ready to observe the rated movies in the output topic</div></h4>
 
   <p>Before you start producing ratings, it's a good idea to set up the consumer on the output topic. This way, as soon as you produce ratings (and they're joined to movies), you'll see the results right away. Run this to get ready to consume the rated movies:</p>
 
@@ -113,7 +113,7 @@
 
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">9. Produce some ratings to the input topic</div></h4>
+  <h4 class="subtitle"><div>9. Produce some ratings to the input topic</div></h4>
 
   <p>Run the following in a new terminal window. This process is the most fun if you can see this and the previous terminal (which is consuming the rated movies) at the same time. If your terminal program lets you do horizontal split panes, try it that way:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>

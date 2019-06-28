@@ -46,11 +46,11 @@
 
   h4.subtitle {
     margin: 0 0 5px -40px;
+    color: $baseColor;
+    font-weight: normal;
+    font-size: 21px;
 
     .text {
-      color: $baseColor;
-      font-weight: normal;
-      font-size: 21px;
       display: inline-block;
       vertical-align: middle;
     }

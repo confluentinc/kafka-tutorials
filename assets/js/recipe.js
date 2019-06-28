@@ -12,7 +12,7 @@ $(document).ready(function() {
 
   var clipboard = new ClipboardJS(".copy-btn");
 
-  $('.recipe-try-it-step .subtitle .text').each(function() {
+  $('.recipe-try-it-step .subtitle div').each(function() {
     // Do this so people can write recipe markup easier
     $(this).replaceWith(this.innerHTML.replace(/^(\d(\.)?)(.*)$/, '<div class="num">$1</div><div class="text">$3</div>'));
   });

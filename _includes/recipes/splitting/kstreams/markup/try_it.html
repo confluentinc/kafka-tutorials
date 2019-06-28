@@ -1,12 +1,12 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">1. Get Confluent Platform</div></h4>
+  <h4 class="subtitle"><div>1. Get Confluent Platform</div></h4>
 
   <p>If you haven't already, get Confluent Platform.</p>
   <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">2. Initialize the project</div></h4>
+  <h4 class="subtitle"><div>2. Initialize the project</div></h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/code/recipe-steps/dev/init.sh %}</code></pre>
@@ -22,7 +22,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">3. Create a schema for the events</div></h4>
+  <h4 class="subtitle"><div>3. Create a schema for the events</div></h4>
 
   <p>Create a directory for the schemas that represent the events in the stream:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
@@ -35,7 +35,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">4. Create the Kafka Streams topology</div></h4>
+  <h4 class="subtitle"><div>4. Create the Kafka Streams topology</div></h4>
 
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
@@ -45,7 +45,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">5. Compile and run the Kafka Streams program</div></h4>
+  <h4 class="subtitle"><div>5. Compile and run the Kafka Streams program</div></h4>
 
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
@@ -55,7 +55,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">6. Produce events to the input topic</div></h4>
+  <h4 class="subtitle"><div>6. Produce events to the input topic</div></h4>
 
   <p>In a new terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/code/recipe-steps/dev/console-producer.sh %}</code></pre>
@@ -65,7 +65,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle"><div class="text">7. Consume the event subsets from the output topics</div></h4>
+  <h4 class="subtitle"><div>7. Consume the event subsets from the output topics</div></h4>
 
   <p>Leave your original terminal running. To consume the output events from each of the topic, you'll need to open several new terminal windows. In each instance, the prompt will hang, waiting for more events to arrive. To continue studying the example, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
 

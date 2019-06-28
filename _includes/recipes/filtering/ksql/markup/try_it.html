@@ -1,6 +1,6 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="text">1. Initialize the project</div>
+    <div>1. Initialize the project</div>
   </h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
@@ -12,7 +12,7 @@
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="text">2. Get Confluent Platform</div>
+    <div>2. Get Confluent Platform</div>
   </h4>
 
   <p>Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:</p>
@@ -24,7 +24,7 @@
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="text">3. Start the CLI and produce events to the input stream</div>
+    <div>3. Start the CLI and produce events to the input stream</div>
   </h4>
 
   <p>To begin developing interactively, open up the KSQL CLI:<p/>
@@ -39,7 +39,7 @@
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="text">4. Create a continuous query</div>
+    <div>4. Create a continuous query</div>
   </h4>
 
   <p>Now that you have stream with some events in it, let's read them out. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:</p>
@@ -63,7 +63,7 @@
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle">
-    <div class="text">5. Write your statements to a file</div>
+    <div>5. Write your statements to a file</div>
   </h4>
   <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at <code>src/statements.sql</code> with the following content:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/src/statements.sql %}</code></pre>
