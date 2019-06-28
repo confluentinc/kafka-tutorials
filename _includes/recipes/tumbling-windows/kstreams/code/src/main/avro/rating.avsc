@@ -1,0 +1,11 @@
+{
+  "namespace": "io.confluent.developer.avro",
+  "type": "record",
+  "name": "Rating",
+  "fields": [
+    {"name": "rating_id", "type": "long"},
+    {"name": "screen_id", "type": "long"},
+    {"name": "movie_rating", "type": "double"},
+    {"name": "timestamp", "type": "long"}
+  ]
+}
