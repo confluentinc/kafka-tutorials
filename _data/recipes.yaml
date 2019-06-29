@@ -17,6 +17,16 @@ filtering:
     kstreams: enabled
     kafka: enabled
 
+transforming:
+  title: "Transforming a stream of events"
+  slug: "/recipes/transform-a-stream-of-events"
+  problem: "you have events in a Kafka topic, and you want to transform some of them out so that a new stream of events would be written into a new topic."
+  introduction: "Consider a topic with events that represent book publications. In this recipe, we'll write a program that creates a new topic which contains the same events but with some fields transformed to uppercase."
+  status:
+    ksql: enabled
+    kstreams: enabled
+    kafka: enabled
+
 splitting:
   title: "Split a stream of events into substreams"
   slug: "/recipes/split-a-stream-of-events-into-substreams"
