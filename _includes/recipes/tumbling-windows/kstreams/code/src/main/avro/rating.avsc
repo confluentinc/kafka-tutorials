@@ -3,9 +3,9 @@
   "type": "record",
   "name": "Rating",
   "fields": [
-    {"name": "rating_id", "type": "long"},
-    {"name": "screen_id", "type": "long"},
-    {"name": "movie_rating", "type": "double"},
+    {"name": "title", "type": "string"},
+    {"name": "release_year", "type": "int"},
+    {"name": "rating", "type": "double"},
     {"name": "timestamp", "type": "long"}
   ]
 }

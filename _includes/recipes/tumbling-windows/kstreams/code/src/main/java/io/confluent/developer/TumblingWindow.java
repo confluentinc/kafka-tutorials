@@ -7,12 +7,13 @@ import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.KTable;
-import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.processor.ProcessorContext;
+import org.apache.kafka.streams.processor.To;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
 
@@ -35,34 +36,19 @@ public class TumblingWindow {
         final String ratingTopic = envProps.getProperty("rating.topic.name");
         final String maxRatingTopic = envProps.getProperty("max.rating.topic.name");
 
-        KStream<String, Rating> ratingStream = builder.<String, Rating>stream(ratingTopic)
-                .map((key, movie) -> new KeyValue<>(movie.getScreenId().toString(), movie));
-
-        ratingStream.transformValues(() -> );
-
-        movieStream.to(rekeyedMovieTopic);
-
-        KTable<String, Movie> movies = builder.table(rekeyedMovieTopic);
-
         KStream<String, Rating> ratings = builder.<String, Rating>stream(ratingTopic)
-                .map((key, rating) -> new KeyValue<>(rating.getId().toString(), rating));
+                .map((key, movie) -> new KeyValue<>(movie.getTitle().toString(), movie));
 
-        KStream<String, RatedMovie> ratedMovie = ratings.join(movies, joiner);
+        KStream<String, Rating> timestampedRatings = ratings.transform(new TransformerSupplier() {
+            public Transformer<String, Rating, Rating> get() {
+                return new RatingTimestampTransformer();
+            }
+        });
 
-        ratedMovie.to(ratedMoviesTopic, Produced.with(Serdes.String(), ratedMovieAvroSerde(envProps)));
+        KGroupedStream<String, Rating> groupedRatings = timestampedRatings.groupByKey();
+        groupedRatings.windowedBy(TimeWindows.of(Duration.ofDays(1))).count();
 
         return builder.build();
-    }
-
-    private SpecificAvroSerde<RatedMovie> ratedMovieAvroSerde(Properties envProps) {
-        SpecificAvroSerde<RatedMovie> movieAvroSerde = new SpecificAvroSerde<>();
-
-        final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
-
-        movieAvroSerde.configure(serdeConfig, false);
-        return movieAvroSerde;
     }
 
     public void createTopics(Properties envProps) {
@@ -73,24 +59,14 @@ public class TumblingWindow {
         List<NewTopic> topics = new ArrayList<>();
 
         topics.add(new NewTopic(
-                envProps.getProperty("movie.topic.name"),
-                Integer.parseInt(envProps.getProperty("movie.topic.partitions")),
-                Short.parseShort(envProps.getProperty("movie.topic.replication.factor"))));
-
-        topics.add(new NewTopic(
-                envProps.getProperty("rekeyed.movie.topic.name"),
-                Integer.parseInt(envProps.getProperty("rekeyed.movie.topic.partitions")),
-                Short.parseShort(envProps.getProperty("rekeyed.movie.topic.replication.factor"))));
-
-        topics.add(new NewTopic(
                 envProps.getProperty("rating.topic.name"),
                 Integer.parseInt(envProps.getProperty("rating.topic.partitions")),
                 Short.parseShort(envProps.getProperty("rating.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("rated.movies.topic.name"),
-                Integer.parseInt(envProps.getProperty("rated.movies.topic.partitions")),
-                Short.parseShort(envProps.getProperty("rated.movies.topic.replication.factor"))));
+                envProps.getProperty("max.rating.topic.name"),
+                Integer.parseInt(envProps.getProperty("max.rating.topic.partitions")),
+                Short.parseShort(envProps.getProperty("max.rating.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();

@@ -1,9 +1,32 @@
-{"id": 294, "rating": 8.2}
-{"id": 294, "rating": 8.5}
-{"id": 354, "rating": 9.9}
-{"id": 354, "rating": 9.7}
-{"id": 782, "rating": 7.8}
-{"id": 782, "rating": 7.7}
-{"id": 128, "rating": 8.7}
-{"id": 128, "rating": 8.4}
-{"id": 780, "rating": 2.1}
+{"title": "Die Hard", "release_year": 1998, "rating": 8.2, "timestamp": 1561467600}
+{"title": "Die Hard", "release_year": 1998, "rating": 4.5, "timestamp": 1561741200}
+{"title": "Die Hard", "release_year": 1998, "rating": 5.1, "timestamp": 1560618003}
+{"title": "Die Hard", "release_year": 1998, "rating": 2.0, "timestamp": 1560603603}
+{"title": "Die Hard", "release_year": 1998, "rating": 8.3, "timestamp": 1561734000}
+{"title": "Die Hard", "release_year": 1998, "rating": 3.4, "timestamp": 1561726800}
+{"title": "Die Hard", "release_year": 1998, "rating": 4.2, "timestamp": 1561474800}
+{"title": "Die Hard", "release_year": 1998, "rating": 7.6, "timestamp": 1561482000}
+
+{"title": "Tree of Life", "release_year": 2011, "rating": 4.9, "timestamp": 1561726800}
+{"title": "Tree of Life", "release_year": 2011, "rating": 5.6, "timestamp": 1561474800}
+{"title": "Tree of Life", "release_year": 2011, "rating": 9.0, "timestamp": 1561482000}
+{"title": "Tree of Life", "release_year": 2011, "rating": 6.5, "timestamp": 1560621603}
+{"title": "Tree of Life", "release_year": 2011, "rating": 2.1, "timestamp": 1561734000}
+
+{"title": "A Walk in the Clouds", "release_year": 1995, "rating": 3.6, "timestamp": 1560625203}
+{"title": "A Walk in the Clouds", "release_year": 1995, "rating": 6.0, "timestamp": 1561471200}
+{"title": "A Walk in the Clouds", "release_year": 1995, "rating": 7.0, "timestamp": 1561730400}
+{"title": "A Walk in the Clouds", "release_year": 1995, "rating": 4.6, "timestamp": 1560618003}
+{"title": "A Walk in the Clouds", "release_year": 1995, "rating": 7.1, "timestamp": 1560625203}
+
+{"title": "The Big Lebowski", "release_year": 1998, "rating": 9.9, "timestamp": 1561734000}
+{"title": "The Big Lebowski", "release_year": 1998, "rating": 8.6, "timestamp": 1560621603}
+{"title": "The Big Lebowski", "release_year": 1998, "rating": 4.2, "timestamp": 1561741200}
+{"title": "The Big Lebowski", "release_year": 1998, "rating": 7.0, "timestamp": 1561482000}
+{"title": "The Big Lebowski", "release_year": 1998, "rating": 9.5, "timestamp": 1561726800}
+{"title": "The Big Lebowski", "release_year": 1998, "rating": 3.2, "timestamp": 1560603603}
+
+{"title": "Super Mario Bros.", "release_year": 1993, "rating": 3.5, "timestamp": 1561467600}
+{"title": "Super Mario Bros.", "release_year": 1993, "rating": 4.0, "timestamp": 1561741200}
+{"title": "Super Mario Bros.", "release_year": 1993, "rating": 5.1, "timestamp": 1560621603}
+{"title": "Super Mario Bros.", "release_year": 1993, "rating": 2.0, "timestamp": 1561734000}
