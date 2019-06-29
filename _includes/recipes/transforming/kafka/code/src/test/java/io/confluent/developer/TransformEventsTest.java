@@ -22,9 +22,9 @@ public class TransformEventsTest {
 
     public List<Movie> consumeMovies(String outputTopic,
                                         KafkaConsumer<String, Movie> consumer) {
+
         List<Movie> output = new ArrayList<Movie>();
         consumer.subscribe(Arrays.asList(outputTopic));
-
         ConsumerRecords<String, Movie> records = consumer.poll(5000);
 
         for (ConsumerRecord<String, Movie> record : records) {
@@ -32,6 +32,7 @@ public class TransformEventsTest {
         }
 
         return output;
+
     }
 
     public void produceRawMovies(String inputTopic, List<RawMovie> rawMovies,
@@ -43,10 +44,12 @@ public class TransformEventsTest {
             record = new ProducerRecord<String, RawMovie>(inputTopic, movie);
             producer.send(record);
         }
+
     }
 
     @Test
     public void testTransformation() throws IOException {
+
         KafkaProducer<String, Movie> movieProducer;
         KafkaProducer<String, RawMovie> rawMovieProducer;
         KafkaConsumer<String, RawMovie> rawMovieConsumer;
@@ -87,4 +90,14 @@ public class TransformEventsTest {
 
         Assert.assertEquals(expectedOutput, actualOutput);
     }
+
+    @After
+    public void tearDown() throws IOException {
+
+        TransformEvents te = new TransformEvents();
+        Properties envProps = te.loadEnvProperties(TEST_CONFIG_FILE);
+        te.deleteTopics(envProps);
+
+    }
+
 }

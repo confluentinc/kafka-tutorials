@@ -36,17 +36,21 @@ public class TransformEvents {
     }
 
     public Properties buildProducerProperties(Properties envProps) {
+
         Properties props = new Properties();
 
+        props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, SpecificAvroSerializer.class.getName());
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
+
     }
 
     public Properties buildConsumerProperties(String groupId, Properties envProps) {
+
         Properties props = new Properties();
 
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -58,6 +62,7 @@ public class TransformEvents {
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
+
     }
 
     public KafkaConsumer<String, RawMovie> createRawMovieConsumer(Properties consumerProps) {
@@ -80,20 +85,40 @@ public class TransformEvents {
 
         Map<String, Object> config = new HashMap<>();
         config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        AdminClient client = AdminClient.create(config);
 
-        List<NewTopic> topics = new ArrayList<>();
-        topics.add(new NewTopic(
-                envProps.getProperty("input.topic.name"),
-                Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-                Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
-        topics.add(new NewTopic(
-                envProps.getProperty("output.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+        try (AdminClient client = AdminClient.create(config)) {
 
-        client.createTopics(topics);
-        client.close();
+            List<NewTopic> topics = new ArrayList<>();
+            topics.add(new NewTopic(
+                    envProps.getProperty("input.topic.name"),
+                    Integer.parseInt(envProps.getProperty("input.topic.partitions")),
+                    Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
+            topics.add(new NewTopic(
+                    envProps.getProperty("output.topic.name"),
+                    Integer.parseInt(envProps.getProperty("output.topic.partitions")),
+                    Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+    
+            client.createTopics(topics);
+
+        }
+
+    }
+
+    public void deleteTopics(Properties envProps) {
+
+        Map<String, Object> config = new HashMap<>();
+        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
+
+        try (AdminClient client = AdminClient.create(config)) {
+
+            List<String> topics = new ArrayList<String>();
+            topics.add(envProps.getProperty("input.topic.name"));
+            topics.add(envProps.getProperty("output.topic.name"));
+    
+            client.deleteTopics(topics);
+
+        }
+
     }
 
     public void applyTransformation(String inputTopic,
@@ -105,23 +130,30 @@ public class TransformEvents {
         ConsumerRecords<String, RawMovie> records = consumer.poll(5000);
 
         for (ConsumerRecord<String, RawMovie> record : records) {
-            Movie movie = convertRawMovie(record.value());
 
+            Movie movie = convertRawMovie(record.value());
             ProducerRecord<String, Movie> transformedRecord =
                 new ProducerRecord<String, Movie>(outputTopic, movie);
 
             producer.send(transformedRecord);
+
         }
+
     }
 
     public static Movie convertRawMovie(RawMovie rawMovie) {
+
         String titleParts[] = rawMovie.getTitle().split("::");
         String title = titleParts[0];
         int releaseYear = Integer.parseInt(titleParts[1]);
-        return new Movie(rawMovie.getId(), title, releaseYear, rawMovie.getGenre());
+
+        return new Movie(rawMovie.getId(), title,
+            releaseYear, rawMovie.getGenre());
+
     }
 
     public static void main(String[] args) throws Exception {
+
         if (args.length < 1) {
             throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");
         }
@@ -134,50 +166,65 @@ public class TransformEvents {
         te.createTopics(envProps);
 
         Properties producerProps = te.buildProducerProperties(envProps);
+        KafkaProducer<String, RawMovie> rawProducer = te.createRawMovieProducer(producerProps);
         KafkaProducer<String, Movie> producer = te.createMovieProducer(producerProps);
+
         Properties consumerProps = te.buildConsumerProperties("inputGroup", envProps);
-        KafkaConsumer<String, RawMovie> consumer = te.createRawMovieConsumer(consumerProps);
-
-        final CountDownLatch latch = new CountDownLatch(1);
-
-        // Attach shutdown handler to catch Control-C.
-        Runtime.getRuntime().addShutdownHook(new Thread("kafka-shutdown-hook") {
-            @Override
-            public void run() {
-                consumer.close();
-                producer.close();
-            }
-        });
+        KafkaConsumer<String, RawMovie> rawConsumer = te.createRawMovieConsumer(consumerProps);
+        KafkaConsumer<String, Movie> consumer = te.createMovieConsumer(consumerProps);
 
         try {
 
-            consumer.subscribe(Arrays.asList(inputTopic));
+        // Produce some movies in raw format...
+        rawProducer.send(new ProducerRecord<String, RawMovie>(inputTopic,
+            RawMovie.newBuilder()
+            .setId(294)
+            .setTitle("Die Hard::1988")
+            .setGenre("action").build()));
 
-            while (true) {
+        rawProducer.send(new ProducerRecord<String, RawMovie>(inputTopic,
+            RawMovie.newBuilder()
+            .setId(354)
+            .setTitle("Tree of Life::2011")
+            .setGenre("drama").build()));
 
-                ConsumerRecords<String, RawMovie> records = consumer.poll(1000);
+        } finally {
+
+            rawProducer.close();
+
+        }
+
+        // Apply the transformation...
+        try {
+
+            rawConsumer.subscribe(Arrays.asList(inputTopic));
+            ConsumerRecords<String, RawMovie> records = rawConsumer.poll(5000);
     
-                for (ConsumerRecord<String, RawMovie> record : records) {
-        
-                    // Transform all the fields to upper case...
-                    RawMovie rawMovie = record.value();
-                    Movie movie = convertRawMovie(rawMovie);
+            for (ConsumerRecord<String, RawMovie> record : records) {
+    
+                RawMovie rawMovie = record.value();
+                Movie movie = convertRawMovie(rawMovie);
 
-                    ProducerRecord<String, Movie> transformedRecord =
-                        new ProducerRecord<String, Movie>(outputTopic, movie);
-        
-                    producer.send(transformedRecord);
-                }
-
-                Thread.sleep(1000);
+                ProducerRecord<String, Movie> transformedRecord =
+                    new ProducerRecord<String, Movie>(outputTopic, movie);
+    
+                producer.send(transformedRecord);
 
             }
 
         } catch (Throwable e) {
             System.exit(1);
+        } finally {
+
+            rawConsumer.close();
+            producer.close();
+
         }
 
+        // Clean up and exit
+        te.deleteTopics(envProps);
         System.exit(0);
+
     }
 
 }
