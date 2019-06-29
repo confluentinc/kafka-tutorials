@@ -14,7 +14,7 @@ select {
 
 body {
   background: #f9f9fa;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1;
 
   .section.top {
@@ -30,14 +30,13 @@ body {
   pre.snippet {
     background: #f9f9fa;
     border-radius: 4px;
-    // border: solid 1px #7ed321;
 
     & > code {
       background: #f9f9fa;
       font-family: Inconsolata;
       font-size: 16px;
       line-height: 1.69;
-      color: $baseColor;
+      color: $textColor;
     }
   }
 
@@ -197,7 +196,7 @@ body {
   }
 
   h2.title {
-    font-size: 21px;
+    font-size: 30px;
   }
 }
 

@@ -31,8 +31,7 @@ $(document).ready(function() {
     $element.wrap("<div class='snippet-wrapper'></div>");
     $element.attr("id", id);
     $element.after(
-      `<span class="icon copy-btn" data-clipboard-target='#${id}'><i class="far fa-copy"></i></span>`
-    );
+      `<span class="icon copy-btn" data-clipboard-target='#${id}'><i class="far fa-copy"></i></span>`);
 
     //Set up expand buttons.
     var actualHeight = $element.height();
