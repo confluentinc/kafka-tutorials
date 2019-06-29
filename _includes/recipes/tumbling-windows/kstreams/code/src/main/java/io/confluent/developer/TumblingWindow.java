@@ -34,21 +34,36 @@ public class TumblingWindow {
     public Topology buildTopology(Properties envProps) {
         final StreamsBuilder builder = new StreamsBuilder();
         final String ratingTopic = envProps.getProperty("rating.topic.name");
-        final String maxRatingTopic = envProps.getProperty("max.rating.topic.name");
+        final String ratingCountTopic = envProps.getProperty("rating.count.topic.name");
 
         KStream<String, Rating> ratings = builder.<String, Rating>stream(ratingTopic)
                 .map((key, movie) -> new KeyValue<>(movie.getTitle().toString(), movie));
 
-        KStream<String, Rating> timestampedRatings = ratings.transform(new TransformerSupplier() {
-            public Transformer<String, Rating, Rating> get() {
-                return new RatingTimestampTransformer();
-            }
-        });
-
-        KGroupedStream<String, Rating> groupedRatings = timestampedRatings.groupByKey();
-        groupedRatings.windowedBy(TimeWindows.of(Duration.ofDays(1))).count();
+        KStream<String, Rating> timestampedRatings = ratings.transform(
+            new TransformerSupplier() {
+                public Transformer<String, Rating, Rating> get() {
+                    return new RatingTimestampTransformer();
+                }
+            });
+        timestampedRatings.groupByKey()
+            .windowedBy(TimeWindows.of(Duration.ofDays(1))
+            .advanceBy(Duration.ofHours(1)))
+            .count()
+            .toStream()
+            .to(ratingCountTopic, Produced.with(new WindowedSerdes.TimeWindowedSerde<String>(), Serdes.Long()));
 
         return builder.build();
+    }
+
+    private SpecificAvroSerde<Rating> ratedMovieAvroSerde(Properties envProps) {
+        SpecificAvroSerde<Rating> movieAvroSerde = new SpecificAvroSerde<>();
+
+        final HashMap<String, String> serdeConfig = new HashMap<>();
+        serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
+                envProps.getProperty("schema.registry.url"));
+
+        movieAvroSerde.configure(serdeConfig, false);
+        return movieAvroSerde;
     }
 
     public void createTopics(Properties envProps) {
@@ -64,9 +79,9 @@ public class TumblingWindow {
                 Short.parseShort(envProps.getProperty("rating.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("max.rating.topic.name"),
-                Integer.parseInt(envProps.getProperty("max.rating.topic.partitions")),
-                Short.parseShort(envProps.getProperty("max.rating.topic.replication.factor"))));
+                envProps.getProperty("rating.count.topic.name"),
+                Integer.parseInt(envProps.getProperty("rating.count.topic.partitions")),
+                Short.parseShort(envProps.getProperty("rating.count.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();
