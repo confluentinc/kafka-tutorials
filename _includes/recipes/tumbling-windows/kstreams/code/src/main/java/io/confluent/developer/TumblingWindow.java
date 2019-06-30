@@ -50,8 +50,10 @@ public class TumblingWindow {
         timestampedRatings.groupByKey()
             .windowedBy(TimeWindows.of(Duration.ofDays(1)))
             .count()
-            .toStream().foreach((k,v)->System.out.printf("%s = %s\n", k, v));
-//            .to(ratingCountTopic, Produced.with(new WindowedSerdes.TimeWindowedSerde<String>(Serdes.String()), Serdes.Long()));
+            .toStream()
+            .map((Windowed<String> key, Long count) ->
+                    new KeyValue<String, String>(key.key().toString(), count.toString()))
+            .to(ratingCountTopic, Produced.with(Serdes.String(), Serdes.String()));
 
         return builder.build();
     }
