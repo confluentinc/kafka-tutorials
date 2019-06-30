@@ -28,7 +28,7 @@ public class TumblingWindow {
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-
+        props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName());
         return props;
     }
 
@@ -37,22 +37,13 @@ public class TumblingWindow {
         final String ratingTopic = envProps.getProperty("rating.topic.name");
         final String ratingCountTopic = envProps.getProperty("rating.count.topic.name");
 
-        KStream<String, Rating> ratings = builder.<String, Rating>stream(ratingTopic)
-                .map((key, movie) -> new KeyValue<>(movie.getTitle().toString(), movie));
-
-        KStream<String, Rating> timestampedRatings = ratings.transform(
-            new TransformerSupplier() {
-                public Transformer<String, Rating, Rating> get() {
-                    return new RatingTimestampTransformer();
-                }
-            });
-
-        timestampedRatings.groupByKey()
+        builder.<String, Rating>stream(ratingTopic)
+            .map((key, rating) -> new KeyValue<>(rating.getTitle().toString(), rating))
+            .groupByKey()
             .windowedBy(TimeWindows.of(Duration.ofDays(1)))
             .count()
             .toStream()
-            .map((Windowed<String> key, Long count) ->
-                    new KeyValue<String, String>(key.key().toString(), count.toString()))
+            .map((Windowed<String> key, Long count) -> new KeyValue(key.toString(), count.toString()))
             .to(ratingCountTopic, Produced.with(Serdes.String(), Serdes.String()));
 
         return builder.build();
