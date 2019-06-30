@@ -5,6 +5,7 @@ import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.*;
 import org.apache.kafka.streams.kstream.*;
@@ -45,12 +46,12 @@ public class TumblingWindow {
                     return new RatingTimestampTransformer();
                 }
             });
+
         timestampedRatings.groupByKey()
-            .windowedBy(TimeWindows.of(Duration.ofDays(1))
-            .advanceBy(Duration.ofHours(1)))
+            .windowedBy(TimeWindows.of(Duration.ofDays(1)))
             .count()
-            .toStream()
-            .to(ratingCountTopic, Produced.with(new WindowedSerdes.TimeWindowedSerde<String>(), Serdes.Long()));
+            .toStream().foreach((k,v)->System.out.printf("%s = %s\n", k, v));
+//            .to(ratingCountTopic, Produced.with(new WindowedSerdes.TimeWindowedSerde<String>(Serdes.String()), Serdes.Long()));
 
         return builder.build();
     }
