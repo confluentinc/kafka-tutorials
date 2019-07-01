@@ -31,6 +31,12 @@ blocks:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
             - make -C _includes/recipes/transforming/kstreams/code recipe
+            
+        - name: Kafka transforming tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/transforming/kafka/code recipe
 
         - name: KSQL filtering tests
           commands:
