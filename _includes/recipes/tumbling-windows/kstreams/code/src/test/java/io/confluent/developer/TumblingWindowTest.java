@@ -18,7 +18,6 @@ import java.io.IOException;
 import java.util.*;
 
 public class TumblingWindowTest {
-
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
 
@@ -32,18 +31,16 @@ public class TumblingWindowTest {
         return serializer;
     }
 
-
     private List<RatingCount> readOutputTopic(TopologyTestDriver testDriver,
                                               String topic,
                                               Deserializer<String> keyDeserializer,
                                               Deserializer<String> valueDeserializer) {
         List<RatingCount> results = new ArrayList<>();
 
-        while (true) {
+        while(true) {
             ProducerRecord<String, String> record = testDriver.readOutput(topic, keyDeserializer, valueDeserializer);
 
             if (record != null) {
-                Map<String, String> result = new HashMap<>();
                 results.add(new RatingCount(record.key().toString(), record.value()));
             } else {
                 break;
@@ -55,7 +52,7 @@ public class TumblingWindowTest {
 
     @Test
     public void testWindows() throws IOException {
-        TumblingWindow tw = new TumblingWindow ();
+        TumblingWindow tw = new TumblingWindow();
         Properties envProps = tw.loadEnvProperties(TEST_CONFIG_FILE);
         Properties streamProps = tw.buildStreamsProperties(envProps);
 
@@ -67,7 +64,6 @@ public class TumblingWindowTest {
 
         Serializer<String> stringSerializer = Serdes.String().serializer();
         SpecificAvroSerializer<Rating> ratingSerializer = makeRatingSerializer(envProps);
-
         Deserializer<String> stringDeserializer = Serdes.String().deserializer();
 
         ConsumerRecordFactory<String, Rating> ratingFactory = new ConsumerRecordFactory<>(stringSerializer, ratingSerializer);
@@ -86,21 +82,28 @@ public class TumblingWindowTest {
 
         List<RatingCount> ratingCounts = new ArrayList<>();
         ratingCounts.add(new RatingCount("[Die Hard@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[Die Hard@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[Tree of Life@1558800000/1562400000]", "2"));
         ratingCounts.add(new RatingCount("[Tree of Life@1558800000/1562400000]", "2"));
         ratingCounts.add(new RatingCount("[A Walk in the Clouds@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[A Walk in the Clouds@1558800000/1562400000]", "2"));
         ratingCounts.add(new RatingCount("[The Big Lebowski@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[The Big Lebowski@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[Super Mario Bros.@1558800000/1562400000]", "2"));
         ratingCounts.add(new RatingCount("[Super Mario Bros.@1558800000/1562400000]", "2"));
 
         for(Rating rating : ratings) {
             testDriver.pipeInput(ratingFactory.create(inputTopic, rating.getTitle(), rating));
         }
 
-        List<RatingCount> actualOutput = readOutputTopic(testDriver, outputTopic, stringDeserializer, stringDeserializer);
+        List<RatingCount> actualOutput = readOutputTopic(testDriver,
+                                                         outputTopic,
+                                                         stringDeserializer,
+                                                         stringDeserializer);
 
         assertEquals(ratingCounts.size(), actualOutput.size());
         assertEquals(ratingCounts, actualOutput);
     }
-
 }
 
 class RatingCount {
