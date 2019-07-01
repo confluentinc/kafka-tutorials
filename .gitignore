@@ -12,6 +12,3 @@ harness_runner/harness_runner.egg-info
 __pycache__
 .vscode
 code.iml
-.project
-.settings/
-.classpath
