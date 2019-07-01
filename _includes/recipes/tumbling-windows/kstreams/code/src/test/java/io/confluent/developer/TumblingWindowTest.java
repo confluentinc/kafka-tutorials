@@ -3,6 +3,7 @@ package io.confluent.developer;
 import io.confluent.developer.avro.Rating;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
@@ -31,90 +32,95 @@ public class TumblingWindowTest {
         return serializer;
     }
 
-//
-//    private List<RatedMovie> readOutputTopic(TopologyTestDriver testDriver,
-//                                             String topic,
-//                                             Deserializer<String> keyDeserializer,
-//                                             SpecificAvroDeserializer<RatedMovie> makeRatedMovieDeserializer) {
-//        List<RatedMovie> results = new ArrayList<>();
-//
-//        while (true) {
-//            ProducerRecord<String, RatedMovie> record = testDriver.readOutput(topic, keyDeserializer, makeRatedMovieDeserializer);
-//
-//            if (record != null) {
-//                results.add(record.value());
-//            } else {
-//                break;
-//            }
-//        }
-//
-//        return results;
-//    }
-//
-//    @Test
-//    public void testJoin() throws IOException {
-//        JoinStreamToTable jst = new JoinStreamToTable();
-//        Properties envProps = jst.loadEnvProperties(TEST_CONFIG_FILE);
-//        Properties streamProps = jst.buildStreamsProperties(envProps);
-//
-//        String tableTopic = envProps.getProperty("movie.topic.name");
-//        String streamTopic = envProps.getProperty("rating.topic.name");
-//        String outputTopic = envProps.getProperty("rated.movies.topic.name");
-//
-//        Topology topology = jst.buildTopology(envProps);
-//        TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
-//
-//        Serializer<String> keySerializer = Serdes.String().serializer();
-//        SpecificAvroSerializer<Movie> movieSerializer = makeMovieSerializer(envProps);
-//        SpecificAvroSerializer<Rating> ratingSerializer = makeRatingSerializer(envProps);
-//
-//        Deserializer<String> stringDeserializer = Serdes.String().deserializer();
-//        SpecificAvroDeserializer<RatedMovie> valueDeserializer = makeRatedMovieDeserializer(envProps);
-//
-//        ConsumerRecordFactory<String, Movie> movieFactory = new ConsumerRecordFactory<>(keySerializer, movieSerializer);
-//        ConsumerRecordFactory<String, Rating> ratingFactory = new ConsumerRecordFactory<>(keySerializer, ratingSerializer);
-//
-//
-//        List<Movie> movies = new ArrayList<>();
-//        movies.add(Movie.newBuilder().setId(294).setTitle("Die Hard").setReleaseYear(1988).build());
-//        movies.add(Movie.newBuilder().setId(354).setTitle("Tree of Life").setReleaseYear(2011).build());
-//        movies.add(Movie.newBuilder().setId(782).setTitle("A Walk in the Clouds").setReleaseYear(1998).build());
-//        movies.add(Movie.newBuilder().setId(128).setTitle("The Big Lebowski").setReleaseYear(1998).build());
-//        movies.add(Movie.newBuilder().setId(780).setTitle("Super Mario Bros.").setReleaseYear(1993).build());
-//
-//        List<Rating> ratings = new ArrayList<>();
-//        ratings.add(Rating.newBuilder().setId(294).setRating(8.2).build());
-//        ratings.add(Rating.newBuilder().setId(294).setRating(8.5).build());
-//        ratings.add(Rating.newBuilder().setId(354).setRating(9.9).build());
-//        ratings.add(Rating.newBuilder().setId(354).setRating(9.7).build());
-//        ratings.add(Rating.newBuilder().setId(782).setRating(7.8).build());
-//        ratings.add(Rating.newBuilder().setId(782).setRating(7.7).build());
-//        ratings.add(Rating.newBuilder().setId(128).setRating(8.7).build());
-//        ratings.add(Rating.newBuilder().setId(128).setRating(8.4).build());
-//        ratings.add(Rating.newBuilder().setId(780).setRating(2.1).build());
-//
-//        List<RatedMovie> ratedMovies = new ArrayList<>();
-//        ratedMovies.add(RatedMovie.newBuilder().setTitle("Die Hard").setId(294).setReleaseYear(1988).setRating(8.2).build());
-//        ratedMovies.add(RatedMovie.newBuilder().setTitle("Die Hard").setId(294).setReleaseYear(1988).setRating(8.5).build());
-//        ratedMovies.add(RatedMovie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setRating(9.9).build());
-//        ratedMovies.add(RatedMovie.newBuilder().setTitle("Tree of Life").setId(354).setReleaseYear(2011).setRating(9.7).build());
-//        ratedMovies.add(RatedMovie.newBuilder().setId(782).setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(7.8).build());
-//        ratedMovies.add(RatedMovie.newBuilder().setId(782).setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(7.7).build());
-//        ratedMovies.add(RatedMovie.newBuilder().setId(128).setTitle("The Big Lebowski").setReleaseYear(1998).setRating(8.7).build());
-//        ratedMovies.add(RatedMovie.newBuilder().setId(128).setTitle("The Big Lebowski").setReleaseYear(1998).setRating(8.4).build());
-//        ratedMovies.add(RatedMovie.newBuilder().setId(780).setTitle("Super Mario Bros.").setReleaseYear(1993).setRating(2.1).build());
-//
-//        for(Movie movie : movies) {
-//            testDriver.pipeInput(movieFactory.create(tableTopic, movie.getId().toString(), movie));
-//        }
-//
-//        for(Rating rating: ratings) {
-//            testDriver.pipeInput(ratingFactory.create(streamTopic, rating.getId().toString(), rating));
-//        }
-//
-//        List<RatedMovie> actualOutput = readOutputTopic(testDriver, outputTopic, stringDeserializer, valueDeserializer);
-//
-//        assertEquals(ratedMovies, actualOutput);
-//    }
 
+    private List<RatingCount> readOutputTopic(TopologyTestDriver testDriver,
+                                              String topic,
+                                              Deserializer<String> keyDeserializer,
+                                              Deserializer<String> valueDeserializer) {
+        List<RatingCount> results = new ArrayList<>();
+
+        while (true) {
+            ProducerRecord<String, String> record = testDriver.readOutput(topic, keyDeserializer, valueDeserializer);
+
+            if (record != null) {
+                Map<String, String> result = new HashMap<>();
+                results.add(new RatingCount(record.key().toString(), record.value()));
+            } else {
+                break;
+            }
+        }
+
+        return results;
+    }
+
+    @Test
+    public void testWindows() throws IOException {
+        TumblingWindow tw = new TumblingWindow ();
+        Properties envProps = tw.loadEnvProperties(TEST_CONFIG_FILE);
+        Properties streamProps = tw.buildStreamsProperties(envProps);
+
+        String inputTopic = envProps.getProperty("rating.topic.name");
+        String outputTopic = envProps.getProperty("rating.count.topic.name");
+
+        Topology topology = tw.buildTopology(envProps);
+        TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
+
+        Serializer<String> stringSerializer = Serdes.String().serializer();
+        SpecificAvroSerializer<Rating> ratingSerializer = makeRatingSerializer(envProps);
+
+        Deserializer<String> stringDeserializer = Serdes.String().deserializer();
+
+        ConsumerRecordFactory<String, Rating> ratingFactory = new ConsumerRecordFactory<>(stringSerializer, ratingSerializer);
+
+        List<Rating> ratings = new ArrayList<>();
+        ratings.add(Rating.newBuilder().setTitle("Die Hard").setReleaseYear(1988).setRating(8.2).setTimestamp(1561467600).build());
+        ratings.add(Rating.newBuilder().setTitle("Die Hard").setReleaseYear(1988).setRating(7.6).setTimestamp(1561482000).build());
+        ratings.add(Rating.newBuilder().setTitle("Tree of Life").setReleaseYear(2011).setRating(4.9).setTimestamp(1561726800).build());
+        ratings.add(Rating.newBuilder().setTitle("Tree of Life").setReleaseYear(2011).setRating(9.9).setTimestamp(1561734000).build());
+        ratings.add(Rating.newBuilder().setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(3.6).setTimestamp(1560625203).build());
+        ratings.add(Rating.newBuilder().setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(7.1).setTimestamp(1560625203).build());
+        ratings.add(Rating.newBuilder().setTitle("The Big Lebowski").setReleaseYear(1998).setRating(8.6).setTimestamp(1561734000).build());
+        ratings.add(Rating.newBuilder().setTitle("The Big Lebowski").setReleaseYear(1998).setRating(7.0).setTimestamp(1560603603).build());
+        ratings.add(Rating.newBuilder().setTitle("Super Mario Bros.").setReleaseYear(1993).setRating(3.5).setTimestamp(1561467600).build());
+        ratings.add(Rating.newBuilder().setTitle("Super Mario Bros.").setReleaseYear(1993).setRating(2.0).setTimestamp(1561734000).build());
+
+        List<RatingCount> ratingCounts = new ArrayList<>();
+        ratingCounts.add(new RatingCount("[Die Hard@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[Tree of Life@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[A Walk in the Clouds@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[The Big Lebowski@1558800000/1562400000]", "2"));
+        ratingCounts.add(new RatingCount("[Super Mario Bros.@1558800000/1562400000]", "2"));
+
+        for(Rating rating : ratings) {
+            testDriver.pipeInput(ratingFactory.create(inputTopic, rating.getTitle(), rating));
+        }
+
+        List<RatingCount> actualOutput = readOutputTopic(testDriver, outputTopic, stringDeserializer, stringDeserializer);
+
+        assertEquals(ratingCounts.size(), actualOutput.size());
+        assertEquals(ratingCounts, actualOutput);
+    }
+
+}
+
+class RatingCount {
+    private String key;
+    private String value;
+
+    public RatingCount(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public String getValue() {
+        return value;
+    }
+
+    public String toString() {
+        return key + "=" + value;
+    }
 }
