@@ -21,7 +21,7 @@
   }
 
   .recipe-try-it-step p {
-    @include text;
+    @include p;
   }
 
   .hero {
@@ -42,10 +42,14 @@
 
   .example {
     margin-bottom: 40px;
+
+    p {
+      @include p;
+    }
   }
 
   h4.subtitle {
-    margin: 0 0 5px -40px;
+    margin: 0 0 5px -30px;
     color: $baseColor;
     font-weight: normal;
     font-size: 21px;
@@ -71,7 +75,7 @@
   }
 
   .recipe-try-it-step {
-    margin: 0 0 60px 40px;
+    margin: 0 0 60px 30px;
   }
 
   .recipe-navigation {
@@ -80,6 +84,8 @@
 
     > li > a {
       @include title;
+      font-weight: 550;
+      line-height: 1.5;
     }
 
     ul {
@@ -90,7 +96,10 @@
         @include text;
         color: #003cc8;
         line-height: 1.69;
-        text-decoration: underline;
+
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

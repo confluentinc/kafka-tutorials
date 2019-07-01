@@ -10,3 +10,10 @@
   line-height: 1.44;
   color: $baseColor;
 }
+
+@mixin p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: $baseColor;
+  line-height: 1.5;
+}

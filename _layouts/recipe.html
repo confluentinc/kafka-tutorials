@@ -40,11 +40,11 @@
     <div class="container">
       {% unless page.help_wanted %}
         <div class="example">
-          <div class="title">Example Scenario:</div>
+          <h3 class="title">Example Scenario:</h3>
           <p class="text">{{ site.data.recipes[page.static_data].introduction }}</p>
         </div>
       {% endunless %}
-      <div class="title">Solve it with:</div>
+      <h3 class="title">Solve it with:</h3>
       <div class="cflt-options">
         <select>
           {% if site.data.recipes[page.static_data].status.ksql == 'enabled' %}
