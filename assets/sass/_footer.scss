@@ -1,0 +1,52 @@
+@import "_vars";
+
+.footer {
+  background: #fff;
+  font-size: 14px;
+  font-weight: 300;
+  color: $footerColor;
+
+  .nav-links {
+    ul {
+      &:first-child {
+      }
+
+      display: inline-block;
+      margin-right: 60px;
+      vertical-align: top;
+      line-height: 2.43;
+      margin-bottom: 40px;
+      min-width: 150px;
+    }
+
+    li {
+      &:first-child {
+        font-weight: 500;
+        margin-bottom: 20px;
+        font-size: 16px;
+      }
+
+      a {
+        color: $footerColor;
+      }
+    }
+  }
+
+  .social-links {
+    font-size: 0;
+
+    ul {
+      white-space: nowrap;
+    }
+
+    li {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    li a {
+      color: $footerColor;
+      font-size: 22px;
+    }
+  }
+}
