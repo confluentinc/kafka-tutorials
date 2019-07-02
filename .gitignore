@@ -8,7 +8,12 @@ build/
 .jekyll-metadata
 node_modules/
 out/
+.DS_Store
 harness_runner/harness_runner.egg-info
 __pycache__
 .vscode
 code.iml
+.project
+.settings/
+.classpath
+

@@ -1,19 +1,19 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">1. Create a production configuration file</h4>
+  <h4 class="subtitle"><div>1. Create a production configuration file</div></h4>
 
   <p>First, create a new configuration file at <code>configuration/prod.properties</code> with the following content. Be sure to fill in the addresses of your production hosts and change any other parameters that make sense for your setup.</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kstreams/code/configuration/prod.properties %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">2. Build a Docker image</h4>
+  <h4 class="subtitle"><div>2. Build a Docker image</div></h4>
 
   <p>In your terminal, execute the following to invoke the Jib plugin to build an image:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kstreams/code/recipe-steps/prod/build-image.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">3. Launch the container</h4>
+  <h4 class="subtitle"><div>3. Launch the container</div></h4>
 
   <p>Finally, launch the container using your preferred container orchestration service. If you want to run it locally, you can execute the following:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kstreams/code/recipe-steps/prod/launch-container.sh %}</code></pre>
