@@ -25,7 +25,7 @@ body {
 
 .snippet-wrapper {
   position: relative;
-  margin: 20px 0;
+  margin: 5px 0 20px 0;
 
   pre.snippet {
     background: #f9f9fa;
@@ -33,7 +33,7 @@ body {
 
     & > code {
       background: #f9f9fa;
-      font-size: 16px;
+      font-size: 14px;
       line-height: 1.69;
       color: $baseColor;
     }
