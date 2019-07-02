@@ -89,13 +89,6 @@ public class TransformEventsTest {
         outputConsumer = te.createMovieConsumer(outputConsumerProps);
         List<Movie> actualOutput = consumeMovies(outputTopic, outputConsumer);
 
-        // Sort the collection because the topic
-        // Has multiple partitions and therefore
-        // the consumer will retrieve them in
-        // different order...
-        Collections.sort(expectedOutput);
-        Collections.sort(actualOutput);
-
         Assert.assertEquals(expectedOutput, actualOutput);
         
     }
