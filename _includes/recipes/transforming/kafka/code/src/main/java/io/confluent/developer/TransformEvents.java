@@ -33,6 +33,7 @@ public class TransformEvents {
         input.close();
 
         return envProps;
+        
     }
 
     public Properties buildProducerProperties(Properties envProps) {
@@ -46,6 +47,7 @@ public class TransformEvents {
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
+
     }
 
     public Properties buildConsumerProperties(String groupId, Properties envProps) {
@@ -61,6 +63,7 @@ public class TransformEvents {
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
+
     }
 
     public KafkaConsumer<String, RawMovie> createRawMovieConsumer(Properties consumerProps) {
@@ -98,6 +101,7 @@ public class TransformEvents {
     
             client.createTopics(topics);
         }
+
     }
 
     public void deleteTopics(Properties envProps) {
@@ -113,6 +117,7 @@ public class TransformEvents {
     
             client.deleteTopics(topics);
         }
+
     }
 
     public void applyTransformation(String inputTopic,
@@ -131,9 +136,11 @@ public class TransformEvents {
 
             producer.send(transformedRecord);
         }
+
     }
 
     public static Movie convertRawMovie(RawMovie rawMovie) {
+
         String titleParts[] = rawMovie.getTitle().split("::");
         String title = titleParts[0];
         int releaseYear = Integer.parseInt(titleParts[1]);
@@ -144,6 +151,7 @@ public class TransformEvents {
     }
 
     public static void main(String[] args) throws Exception {
+
         if (args.length < 1) {
             throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");
         }
@@ -168,28 +176,26 @@ public class TransformEvents {
 
             rawConsumer.subscribe(Arrays.asList(inputTopic));
 
-            while (true) {
-
-                ConsumerRecords<String, RawMovie> records = rawConsumer.poll(5000);
-                for (ConsumerRecord<String, RawMovie> record : records) {
+            ConsumerRecords<String, RawMovie> records = rawConsumer.poll(5000);
+            for (ConsumerRecord<String, RawMovie> record : records) {
         
-                    RawMovie rawMovie = record.value();
-                    Movie movie = convertRawMovie(rawMovie);
+                RawMovie rawMovie = record.value();
+                Movie movie = convertRawMovie(rawMovie);
     
-                    ProducerRecord<String, Movie> transformedRecord =
-                        new ProducerRecord<String, Movie>(outputTopic, movie);
+                ProducerRecord<String, Movie> transformedRecord =
+                    new ProducerRecord<String, Movie>(outputTopic, movie);
         
-                    producer.send(transformedRecord);
+                producer.send(transformedRecord);
     
-                }
-
             }
 
         } catch (Throwable e) {
             System.exit(1);
         } finally {
+
             rawConsumer.close();
             producer.close();
+
         }
 
     }
