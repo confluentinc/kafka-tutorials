@@ -23,11 +23,12 @@ gem install bundler
 This repository uses a Python script to facilitate testing the recipes. You can install it locally by running:
 
 ```
+pip3 install pyyaml
 cd harness_runner
 pip3 install -e .
 ```
 
-You'll now have an executable called harness-runner on your path.
+You'll now have an executable called harness-runner on your path. (Note that if you use Python, you likely already have the `pyyaml` package installed.)
 
 ### Installing
 

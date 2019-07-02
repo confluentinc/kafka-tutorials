@@ -1,5 +1,7 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">1. Initialize the project</h4>
+  <h4 class="subtitle">
+    <div>1. Initialize the project</div>
+  </h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/init.sh %}</code></pre>
@@ -9,7 +11,9 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">2. Get Confluent Platform</h4>
+  <h4 class="subtitle">
+    <div>2. Get Confluent Platform</div>
+  </h4>
 
   <p>Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:</p>
   <pre class="snippet"><code class="dockerfile">{% include_raw recipes/filtering/ksql/code/docker-compose.yml %}</code></pre>
@@ -19,7 +23,9 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">3. Start the CLI and produce events to the input stream</h4>
+  <h4 class="subtitle">
+    <div>3. Start the CLI and produce events to the input stream</div>
+  </h4>
 
   <p>To begin developing interactively, open up the KSQL CLI:<p/>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/start-cli.sh %}</code></pre>
@@ -32,15 +38,17 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">4. Create a continuous query</h4>
+  <h4 class="subtitle">
+    <div>4. Create a continuous query</div>
+  </h4>
 
   <p>Now that you have stream with some events in it, let's read them out. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/set-properties.sql %}</code></pre>
-  
+
   <p>Let's find all of the books written by George R. R. Martin. Issue the following transient query. This will block and continue to return results until its limit is reached or you tell it to stop.</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/transient-query.sql %}</code></pre>
 
-  This should yield the following output:
+  <p>This should yield the following output:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
 
   <p>Since the output looks right, the next step is to make the query continuous. Issue the following to create a new stream that is continously populated by its query:</p>
@@ -49,13 +57,14 @@
   <p>To check that it's working, print out the contents of the output stream's underlying topic:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
 
-  This should yield the following output:
+  <p>This should yield the following output:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/ksql/code/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">5. Write your statements to a file</h4>
-
+  <h4 class="subtitle">
+    <div>5. Write your statements to a file</div>
+  </h4>
   <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at <code>src/statements.sql</code> with the following content:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/filtering/ksql/code/src/statements.sql %}</code></pre>
 </div>

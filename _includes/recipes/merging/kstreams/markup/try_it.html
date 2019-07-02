@@ -1,12 +1,12 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">1. Get Confluent Platform</h4>
+  <h4 class="subtitle"><div>1. Get Confluent Platform</div></h4>
 
   <p>If you haven't already, get Confluent Platform.</p>
   <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">2. Initialize the project</h4>
+  <h4 class="subtitle"><div>2. Initialize the project</div></h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/merging/kstreams/code/recipe-steps/dev/init.sh %}</code></pre>
@@ -25,7 +25,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">3. Create a schema for the events</h4>
+  <h4 class="subtitle"><div>3. Create a schema for the events</div></h4>
 
   <p>Create a directory for the schemas that represent the events in the stream:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/merging/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
@@ -38,7 +38,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">4. Create the Kafka Streams topology</h4>
+  <h4 class="subtitle"><div>4. Create the Kafka Streams topology</div></h4>
 
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/merging/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
@@ -48,7 +48,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">5. Compile and run the Kafka Streams program</h4>
+  <h4 class="subtitle"><div>5. Compile and run the Kafka Streams program</div></h4>
 
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/merging/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
@@ -58,7 +58,7 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">6. Produce events to the input topics</h4>
+  <h4 class="subtitle"><div>6. Produce events to the input topics</div></h4>
 
   <p>To produce the input events to their respective topics, you'll want two terminals running. To send the rock songs to their topic, open up a terminal and run the following:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/merging/kstreams/code/recipe-steps/dev/console-producer-rock.sh %}</code></pre>
@@ -74,8 +74,8 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">7. Consume events from the output topic</h4>
-  
+  <h4 class="subtitle"><div>7. Consume events from the output topic</div></h4>
+
   <p>Leaving your original terminals running, open another to consume the events that have been merged</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/merging/kstreams/code/recipe-steps/dev/console-consumer.sh %}</code></pre>
 

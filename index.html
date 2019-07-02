@@ -1,95 +1,77 @@
 ---
 ---
+
 <!DOCTYPE html>
 <html>
   <head>
     {% include vendors.html %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{{ site.title }}</title>
-    <link rel="stylesheet" href="/assets/sass/main.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/sass/main.css" />
   </head>
-  <body>
-    {% include nav.html %}
-
-    <section class="section">
+  <body class="pg-main">
+    <section class="section top">
       <div class="container">
-        <div class="columns">
-          <div class="column is-5">
-            <div class="has-text-centered">
-              <h1 class="title is-1">Confluent Developer</h1>
-              <img src="/assets/img/C_large_logo.png" height="50%" width="50%">
-              <h2 class="subtitle">Confluent Platform makes it easy to build real-time data pipelines and streaming applications. This website is a collection of guides to help you get started with confidence.</h2>
-            </div>
-          </div>
-          <div class="column is-7 is-offset-1">
-            <div class="has-text-left">
-              <div class="confluent-recipes-block">
-                <h1 class="title">I want to use Kafka to...</h1>
+        {% include logo.html %}
+      </div>
+    </section>
 
-                <div class="confluent-recipes">
-                  <div class="columns">
-                    <div class="column is-half">
-                      <div class="columns">
-                        <div class="column is-1">
-                          <span class="icon">
-                            <i class="fas fa-exchange-alt"></i>
-                          </span>
-                        </div>
-                        <div class="column is-11">
-                          <h6 class="subtitle is-6"><strong>Apply a function to data</strong></h6>
-                          <ul class="recipe-list">
-                            <li><a href="/recipes/transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
-                            <li><a href="/recipes/filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
-                            <li><a href="/recipes/split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
-                            <li><a href="/recipes/merge-many-streams-into-one-stream/kstreams.html">Merge many streams into one stream</a></li>
-                            <li><a href="#">Change event serialization formats</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="column is-half">
-                      <div class="columns">
-                        <div class="column is-1">
-                          <span class="icon">
-                            <i class="fas fa-grip-vertical"></i>
-                          </span>
-                        </div>
-                        <div class="column is-11">
-                          <h6 class="subtitle is-6"><strong>Join data</strong></h6>
-                          <ul class="recipe-list">
-                            <li><a href="/recipes/join-a-stream-to-a-table/ksql.html">Join a stream and a table together</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="columns">
-                    <div class="column is-half">
-                      <div class="columns">
-                        <div class="column is-1">
-                          <span class="icon">
-                            <i class="fas fa-clock"></i>
-                          </span>
-                        </div>
-                        <div class="column is-11">
-                          <h6 class="subtitle is-6"><strong>Collect data over time</strong></h6>
-                          <ul class="recipe-list">
-                            <li><a href="/recipes/create-tumbling-windows/ksql.html">Create tumbling windows</a></li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>                
-              </div>
-            </div>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="headline">
+            <h1>
+              Stream processing by example.
+            </h1>
           </div>
         </div>
       </div>
     </section>
+    <div class="cards-container">
+      <div class="cards">
+        <div class="card">
+          <div class="title">
+            <img src="/assets/img/icon-function.svg" />
+            <div>Apply a function to data.</div>
+          </div>
+          <ul>
+            <li><a href="/recipes/transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
+            <li><a href="/recipes/filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
+            <li><a href="/recipes/split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
+            <li><a href="/recipes/merge-many-streams-into-one-stream/kstreams.html">Merge many streams into one stream</a></li>
+            <li><a href="#">Change event serialization formats</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="title">
+            <img src="/assets/img/icon-time.svg" />
+            <div>Collect data over time.</div>
+          </div>
+          <ul>
+            <li><a href="#">Create tumbling windows</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="title">
+            <img src="/assets/img/icon-join.svg" />
+            <div>Join data.</div>
+          </div>
+          <ul>
+            <li><a href="/recipes/join-a-stream-to-a-table/ksql.html">Join a stream and a table together</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card card-cta">
+        <div>Join the Community. Contribute a recipe.</div>
+        <div><a href="#">Submit</a></div>
+      </div>
+    </div>
+
+    {% include footer.html %}
   </body>
 </html>
