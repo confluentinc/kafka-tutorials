@@ -1,0 +1,64 @@
+@import "_vars";
+
+.cflt-tabs {
+  .button {
+    &.is-selected {
+      background-color: $baseColor;
+      color: #fff;
+      font-weight: 500;
+    }
+
+    &:not(.is-selected):hover {
+      background: rgba(171, 200, 231, .1);
+    }
+
+    border-radius: 4px;
+    border: solid 1px $baseColor;
+    background-color: #fff;
+    color: $baseColor;
+    font-size: 18px;
+    font-weight: 300;
+    width: 192px;
+  }
+}
+
+.cflt-options {
+  display: none;
+  background: $baseColor;
+  padding: 5px;
+  border-radius: 4px;
+  position: relative;
+
+  &:after {
+    content: "▼";
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+    pointer-events: none;
+    color: #fff;
+    right: 10px;
+  }
+
+  select {
+    background: $baseColor;
+    border: 0;
+    color: #fff;
+    width: 100%;
+    font-size: 18px;
+    font-weight: 500;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .cflt-options {
+    display: block;
+  }
+
+  .cflt-tabs {
+    display: none;
+  }
+}

@@ -13,7 +13,7 @@ markdown: kramdown
 
 sass:
   load_paths:
-    - _sass
+    - assets/sass
     - node_modules
 
 exclude:
