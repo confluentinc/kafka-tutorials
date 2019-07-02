@@ -1,12 +1,16 @@
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">1. Get Confluent Platform</h4>
+  <h4 class="subtitle">
+    <div>1. Get Confluent Platform</div>
+  </h4>
 
   <p>If you haven't already, get Confluent Platform.</p>
   <pre class="snippet"><code class="shell">{% include shared-content/docker-install.txt %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">2. Initialize the project</h4>
+  <h4 class="subtitle">
+    <div>2. Initialize the project</div>
+  </h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/init.sh %}</code></pre>
@@ -20,17 +24,24 @@
   <p>Next, create a directory for configuration data:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/make-configuration-dir.sh %}</code></pre>
 
-  <p>Then create a development file at <code>configuration/dev.properties</code>:</p>
+  <p>
+    Then create a development file at <code>configuration/dev.properties</code>:
+  </p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/configuration/dev.properties %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">3. Create a schema for the events</h4>
+  <h4 class="subtitle">
+    <div>3. Create a schema for the events</div>
+  </h4>
 
   <p>Create a directory for the schemas that represent the events in the stream:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
 
-  <p>Then create the following Avro schema file at <code>src/main/avro/publication.avsc</code> for the publication events:</p>
+  <p>
+    Then create the following Avro schema file at
+    <code>src/main/avro/publication.avsc</code> for the publication events:
+  </p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/filtering/kstreams/code/src/main/avro/publication.avsc %}</code></pre>
 
   <p>Because this Avro schema is used in the Java code, it needs to compile it. Run the following:</p>
@@ -38,17 +49,29 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">4. Create the Kafka Streams topology</h4>
+  <h4 class="subtitle">
+    <div>4. Create the Kafka Streams topology</div>
+  </h4>
 
   <p>Create a directory for the Java files in this project:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
 
-  <p>Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. Notice the <code>buildTopology</code> method, which uses the Kafka Streams DSL. The <code>filter</code> method takes a boolean function of each record's key and value. The function you give it determines whether to pass each event through to the next stage of the topology. In this case, we're only interested in books authored by George R. R. Martin.</p>
+  <p>
+    Then create the following file at
+    <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. Notice
+    the <code>buildTopology</code> method, which uses the Kafka Streams DSL. The
+    <code>filter</code> method takes a boolean function of each record's key and
+    value. The function you give it determines whether to pass each event
+    through to the next stage of the topology. In this case, we're only
+    interested in books authored by George R. R. Martin.
+  </p>
   <pre class="snippet"><code class="java">{% include_raw recipes/filtering/kstreams/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">5. Compile and run the Kafka Streams program</h4>
+  <h4 class="subtitle">
+    <div>5. Compile and run the Kafka Streams program</div>
+  </h4>
 
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
@@ -58,7 +81,9 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
+  <h4 class="subtitle">
+    <div>6. Produce events to the input topic</div>
+  </h4>
 
   <p>In a new terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/console-producer.sh %}</code></pre>
@@ -68,7 +93,9 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">7. Consume filtered events from the output topic</h4>
+  <h4 class="subtitle">
+    <div>7. Consume filtered events from the output topic</div>
+  </h4>
 
   <p>Leaving your original terminal running, open another to consume the events that have been filtered by your application:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/console-consumer.sh %}</code></pre>

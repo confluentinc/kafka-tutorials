@@ -23,6 +23,54 @@
         "author": "C.S. Lewis",
         "title": "Perelandra"
       }
+    },
+    {
+      "topic": "publication_events",
+      "key": "George R. R. Martin",
+      "value": {
+        "author": "George R. R. Martin",
+        "title": "Fire & Blood"
+      }
+    },
+    {
+      "topic": "publication_events",
+      "key": "J. R. R. Tolkien",
+      "value": {
+        "author": "J. R. R. Tolkien",
+        "title": "The Hobbit"
+      }
+    },
+    {
+      "topic": "publication_events",
+      "key": "J. R. R. Tolkien",
+      "value": {
+        "author": "J. R. R. Tolkien",
+        "title": "The Lord of the Rings"
+      }
+    },
+    {
+      "topic": "publication_events",
+      "key": "George R. R. Martin",
+      "value": {
+        "author": "George R. R. Martin",
+        "title": "A Dream of Spring"
+      }
+    },
+    {
+      "topic": "publication_events",
+      "key": "J. R. R. Tolkien",
+      "value": {
+        "author": "J. R. R. Tolkien",
+        "title": "The Fellowship of the Ring"
+      }
+    },
+    {
+      "topic": "publication_events",
+      "key": "George R. R. Martin",
+      "value": {
+        "author": "George R. R. Martin",
+        "title": "The Ice Dragon"
+      }
     }
   ]
 }
