@@ -150,54 +150,41 @@ public class TransformEvents {
 
         TransformEvents te = new TransformEvents();
         Properties envProps = te.loadEnvProperties(args[0]);
+        te.createTopics(envProps);
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            te.deleteTopics(envProps);
+        }));
+        
         String inputTopic = envProps.getProperty("input.topic.name");
         String outputTopic = envProps.getProperty("output.topic.name");
 
-        te.createTopics(envProps);
-
         Properties producerProps = te.buildProducerProperties(envProps);
-        KafkaProducer<String, RawMovie> rawProducer = te.createRawMovieProducer(producerProps);
         KafkaProducer<String, Movie> producer = te.createMovieProducer(producerProps);
-
         Properties consumerProps = te.buildConsumerProperties("inputGroup", envProps);
         KafkaConsumer<String, RawMovie> rawConsumer = te.createRawMovieConsumer(consumerProps);
-        KafkaConsumer<String, Movie> consumer = te.createMovieConsumer(consumerProps);
 
         try {
 
-        // Produce some movies in raw format...
-        rawProducer.send(new ProducerRecord<String, RawMovie>(inputTopic,
-            RawMovie.newBuilder()
-            .setId(294)
-            .setTitle("Die Hard::1988")
-            .setGenre("action").build()));
-
-        rawProducer.send(new ProducerRecord<String, RawMovie>(inputTopic,
-            RawMovie.newBuilder()
-            .setId(354)
-            .setTitle("Tree of Life::2011")
-            .setGenre("drama").build()));
-
-        } finally {
-            rawProducer.close();
-        }
-
-        // Apply the transformation...
-        try {
             rawConsumer.subscribe(Arrays.asList(inputTopic));
-            ConsumerRecords<String, RawMovie> records = rawConsumer.poll(5000);
-    
-            for (ConsumerRecord<String, RawMovie> record : records) {
-    
-                RawMovie rawMovie = record.value();
-                Movie movie = convertRawMovie(rawMovie);
 
-                ProducerRecord<String, Movie> transformedRecord =
-                    new ProducerRecord<String, Movie>(outputTopic, movie);
+            while (true) {
+
+                ConsumerRecords<String, RawMovie> records = rawConsumer.poll(5000);
+                for (ConsumerRecord<String, RawMovie> record : records) {
+        
+                    RawMovie rawMovie = record.value();
+                    Movie movie = convertRawMovie(rawMovie);
     
-                producer.send(transformedRecord);
+                    ProducerRecord<String, Movie> transformedRecord =
+                        new ProducerRecord<String, Movie>(outputTopic, movie);
+        
+                    producer.send(transformedRecord);
+    
+                }
 
             }
+
         } catch (Throwable e) {
             System.exit(1);
         } finally {
@@ -205,9 +192,6 @@ public class TransformEvents {
             producer.close();
         }
 
-        // Clean up and exit
-        te.deleteTopics(envProps);
-        System.exit(0);
     }
 
 }
