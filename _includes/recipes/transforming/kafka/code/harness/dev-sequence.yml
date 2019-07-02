@@ -48,14 +48,14 @@ steps:
     action: execute
     file: recipe-steps/dev/build-uberjar.sh
 
+  - name: run the jar
+    action: execute_async
+    file: recipe-steps/dev/run-dev-app.sh
+
   - name: run the producer
     action: execute
     file: recipe-steps/dev/console-producer.sh
     stdin: recipe-steps/dev/input-events.json
-
-  - name: run the jar
-    action: execute_async
-    file: recipe-steps/dev/run-dev-app.sh
 
   - name: run the consumer
     action: execute_async

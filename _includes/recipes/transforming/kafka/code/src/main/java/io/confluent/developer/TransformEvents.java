@@ -174,28 +174,13 @@ public class TransformEvents {
 
         try {
 
-            rawConsumer.subscribe(Arrays.asList(inputTopic));
+            te.applyTransformation(inputTopic, outputTopic, rawConsumer, producer);
 
-            ConsumerRecords<String, RawMovie> records = rawConsumer.poll(5000);
-            for (ConsumerRecord<String, RawMovie> record : records) {
-        
-                RawMovie rawMovie = record.value();
-                Movie movie = convertRawMovie(rawMovie);
-    
-                ProducerRecord<String, Movie> transformedRecord =
-                    new ProducerRecord<String, Movie>(outputTopic, movie);
-        
-                producer.send(transformedRecord);
-    
-            }
-
-        } catch (Throwable e) {
-            System.exit(1);
         } finally {
 
             rawConsumer.close();
             producer.close();
-
+            
         }
 
     }
