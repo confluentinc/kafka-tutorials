@@ -46,7 +46,6 @@ public class TransformEvents {
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
-
     }
 
     public Properties buildConsumerProperties(String groupId, Properties envProps) {
@@ -62,7 +61,6 @@ public class TransformEvents {
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
-
     }
 
     public KafkaConsumer<String, RawMovie> createRawMovieConsumer(Properties consumerProps) {
@@ -99,9 +97,7 @@ public class TransformEvents {
                     Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
     
             client.createTopics(topics);
-
         }
-
     }
 
     public void deleteTopics(Properties envProps) {
@@ -116,9 +112,7 @@ public class TransformEvents {
             topics.add(envProps.getProperty("output.topic.name"));
     
             client.deleteTopics(topics);
-
         }
-
     }
 
     public void applyTransformation(String inputTopic,
@@ -136,13 +130,10 @@ public class TransformEvents {
                 new ProducerRecord<String, Movie>(outputTopic, movie);
 
             producer.send(transformedRecord);
-
         }
-
     }
 
     public static Movie convertRawMovie(RawMovie rawMovie) {
-
         String titleParts[] = rawMovie.getTitle().split("::");
         String title = titleParts[0];
         int releaseYear = Integer.parseInt(titleParts[1]);
@@ -153,7 +144,6 @@ public class TransformEvents {
     }
 
     public static void main(String[] args) throws Exception {
-
         if (args.length < 1) {
             throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");
         }
@@ -189,14 +179,11 @@ public class TransformEvents {
             .setGenre("drama").build()));
 
         } finally {
-
             rawProducer.close();
-
         }
 
         // Apply the transformation...
         try {
-
             rawConsumer.subscribe(Arrays.asList(inputTopic));
             ConsumerRecords<String, RawMovie> records = rawConsumer.poll(5000);
     
@@ -211,20 +198,16 @@ public class TransformEvents {
                 producer.send(transformedRecord);
 
             }
-
         } catch (Throwable e) {
             System.exit(1);
         } finally {
-
             rawConsumer.close();
             producer.close();
-
         }
 
         // Clean up and exit
         te.deleteTopics(envProps);
         System.exit(0);
-
     }
 
 }
