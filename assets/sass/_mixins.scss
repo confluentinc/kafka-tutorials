@@ -8,13 +8,13 @@
   font-size: 16px;
   font-weight: 300;
   line-height: 1.44;
-  color: $baseColor;
+  color: $textColor;
 }
 
 @mixin p {
   font-size: 1rem;
   font-weight: 400;
-  color: $baseColor;
+  color: $textColor;
   line-height: 1.5;
   padding-bottom: 15px;
 }
