@@ -18,13 +18,13 @@
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">3. Create schemas for the events</h4>
-  <p>Create a directory for the schemas that represent the events in the stream:</p>
+  <p>Create a directory for the schemas that represent the stream of events:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
-  <p>Then create the following Avro schema file at <code>src/main/avro/input-movie-event.avsc</code> for the publication events:</p>
+  <p>Then create the following Avro schema file at <code>src/main/avro/input-movie-event.avsc</code> that will define the structure of a movie and its basic fields. In this recipe, were are going to refer to this as raw movie. This the version of the movie before any transformation.</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kafka/code/src/main/avro/input-movie-event.avsc %}</code></pre>
-  <p>Then create the next one <code>src/main/avro/parsed-movies.avsc</code> for the publication events:</p>
+  <p>Then create another Avro schema file at <code>src/main/avro/parsed-movies.avsc</code> to define the structure of the movies after the transformation. This is what the recipe tries to accomplish, create a new version of the movie from the raw movie, but with some different field layout.</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kafka/code/src/main/avro/parsed-movies.avsc %}</code></pre>
-  <p>Because these Avro schemas are used in the Java code, it needs to compile it. Run the following:</p>
+  <p>Because these Avro schemas are going to be used by other Java classes, it needs to be compiled it so the wrappers are generated. Run the following:</p>
   <pre class="snippet"><code class="shell">gradlew build</code></pre>
 </div>
 
@@ -32,9 +32,9 @@
     <h4 class="subtitle is-4">4. Create the code that does the transformation</h4>
     <p>Create a directory for the code that will perform the transformtion:</p>
     <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
-    <p>Implement Java class that does the transformation <code>src/main/java/io/confluent/developer/TransformationEngine.java</code> with the following code:</p>
+    <p>Create a Java file at <code>src/main/java/io/confluent/developer/TransformationEngine.java</code> to implement the code of the transformation. This code leverages the <a href="https://kafka.apache.org/documentation/#api">Apache Kafka Client API</a> to implement <a href="https://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html">producers</a> and <a href="https://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html">consumers</a> that will be used to read the raw movies from the input topic, perform de transformation of the movie and write the transformed movies into the output topic.</p>
     <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/main/java/io/confluent/developer/TransformationEngine.java %}</code></pre>
-    <p>Implement the main Java class <code>src/main/java/io/confluent/developer/TransformEvents.java</code> with the following code:</p>
+    <p>Then create another Java file at <code>src/main/java/io/confluent/developer/TransformEvents.java</code> for the main program. The main program is responsible for creating the configuration properties that any producer and consumer created will use. It is also responsible for creating and destroying any topics necessary for the recipe to work, as well as to spawn a thread to execute the logic of the transformation.</p>
     <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/main/java/io/confluent/developer/TransformEvents.java %}</code></pre>
 </div>
 
@@ -42,22 +42,22 @@
   <h4 class="subtitle is-4">5. Compile and run the Apache Kafka application</h4>
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/build-uberjar.sh %}</code></pre>
-  <p>Now that you have an uberjar for the Kafka application, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it. There is always another message to process, so streaming applications don't exit until you force them.</p>
+  <p>Now that you have an uberjar for the Apache Kafka application, you can launch it locally. When you run the following, the prompt won't return, because the application will keep running until you exit it. In Streaming-based applications, records are always coming in and the application must be kept running continuously so future records can also be processed.</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
-  <p>In a new terminal, run:</p>
+  <p>Let's put this recipe to a test. In order to do this, you need to produce some raw movies to the input topic. In a new terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/console-producer.sh %}</code></pre>
-  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an event. To send all of the events below, paste the following into the prompt and press enter:</p>
+  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an raw movie. To send all of the raw movies below, paste the following into the prompt and press enter:</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/input-events.json %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">7. Consume transformed events from the output topic</h4>
-  <p>Leaving your original terminal running, open another to consume the events that have been transformed by your application:</p>
+  <p>Now that we produced raw movies to the input topic, the Apache Kafka application that is running in the background should have picked them up and processed them accordingly. This means that if everything really worked, you should see the transformed movies in the output topic. Open another console to consume the records that have been produced by your application:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/console-consumer.sh %}</code></pre>
-  <p>After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying the example, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
+  <p>After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying this recipe, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/outputs/actual-output-events.json %}</code></pre>
 </div>
