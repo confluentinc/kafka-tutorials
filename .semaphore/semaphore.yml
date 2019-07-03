@@ -62,6 +62,10 @@ blocks:
             - ./docker/wait-for.sh
             - make -C _includes/recipes/splitting/kstreams/code recipe
 
+        - name: KSQL merging tests
+          commands:
+            - make -C _includes/recipes/merging/ksql/code recipe
+
         - name: KStreams merging tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
