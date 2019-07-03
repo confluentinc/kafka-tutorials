@@ -55,7 +55,7 @@
   <pre class="snippet"><code class="sql">{% include_raw recipes/merging/ksql/code/recipe-steps/dev/describe-stream.sql %}</code></pre>
 
   <p>This should yield roughly the following output. Notice that our insert statements appear as writers to this stream:</p>
-  <pre class="snippet"><code class="sql">{% include_raw recipes/merging/ksql/code/recipe-steps/dev/outputs/describe-stream/output-0.log %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/merging/ksql/code/recipe-steps/dev/outputs/describe-stream/output-0.log %}</code></pre>
 
   <p>Let's quickly check the contents of the stream to see that records of all genres are present. Issue the following transient query. This will block and continue to return results until its limit is reached or you tell it to stop.</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/merging/ksql/code/recipe-steps/dev/transient-query.sql %}</code></pre>
