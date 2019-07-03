@@ -14,6 +14,7 @@ import org.apache.kafka.streams.processor.To;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
@@ -38,16 +39,25 @@ public class TumblingWindow {
         final String ratingCountTopic = envProps.getProperty("rating.count.topic.name");
 
         builder.<String, Rating>stream(ratingTopic)
-            .map((key, rating) -> new KeyValue<>(rating.getTitle().toString(), rating))
-            .groupByKey()
-            .windowedBy(TimeWindows.of(Duration.ofDays(1)))
-            .count()
-            .toStream()
-            .map((Windowed<String> key, Long count) -> new KeyValue(key.toString(), count.toString()))
-            .to(ratingCountTopic, Produced.with(Serdes.String(), Serdes.String()));
+                .map((key, rating) -> new KeyValue<>(rating.getTitle().toString(), rating))
+                .groupByKey()
+                .windowedBy(TimeWindows.of(Duration.ofMinutes(10)))
+                .count()
+                .toStream()
+                .map((Windowed<String> key, Long count) -> new KeyValue(windowedKeyToString(key), count.toString()))
+                .to(ratingCountTopic, Produced.with(Serdes.String(), Serdes.String()));
 
         return builder.build();
     }
+
+    private String windowedKeyToString(Windowed<String> key) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HH:mm:ss");
+        return String.format("[%s@%s/%s]",
+                             key.key(),
+                             sdf.format(key.window().startTime().getEpochSecond()),
+                             sdf.format(key.window().endTime().getEpochSecond()));
+    }
+
 
     private SpecificAvroSerde<Rating> ratedMovieAvroSerde(Properties envProps) {
         SpecificAvroSerde<Rating> movieAvroSerde = new SpecificAvroSerde<>();

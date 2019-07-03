@@ -69,16 +69,16 @@ public class TumblingWindowTest {
         ConsumerRecordFactory<String, Rating> ratingFactory = new ConsumerRecordFactory<>(stringSerializer, ratingSerializer);
 
         List<Rating> ratings = new ArrayList<>();
-        ratings.add(Rating.newBuilder().setTitle("Die Hard").setReleaseYear(1988).setRating(8.2).setTimestamp(1561467600).build());
-        ratings.add(Rating.newBuilder().setTitle("Die Hard").setReleaseYear(1988).setRating(7.6).setTimestamp(1561482000).build());
-        ratings.add(Rating.newBuilder().setTitle("Tree of Life").setReleaseYear(2011).setRating(4.9).setTimestamp(1561726800).build());
-        ratings.add(Rating.newBuilder().setTitle("Tree of Life").setReleaseYear(2011).setRating(9.9).setTimestamp(1561734000).build());
-        ratings.add(Rating.newBuilder().setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(3.6).setTimestamp(1560625203).build());
-        ratings.add(Rating.newBuilder().setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(7.1).setTimestamp(1560625203).build());
-        ratings.add(Rating.newBuilder().setTitle("The Big Lebowski").setReleaseYear(1998).setRating(8.6).setTimestamp(1561734000).build());
-        ratings.add(Rating.newBuilder().setTitle("The Big Lebowski").setReleaseYear(1998).setRating(7.0).setTimestamp(1560603603).build());
-        ratings.add(Rating.newBuilder().setTitle("Super Mario Bros.").setReleaseYear(1993).setRating(3.5).setTimestamp(1561467600).build());
-        ratings.add(Rating.newBuilder().setTitle("Super Mario Bros.").setReleaseYear(1993).setRating(2.0).setTimestamp(1561734000).build());
+        ratings.add(Rating.newBuilder().setTitle("Die Hard").setReleaseYear(1988).setRating(8.2).setTimestamp(1556539980).build());
+        ratings.add(Rating.newBuilder().setTitle("Die Hard").setReleaseYear(1988).setRating(7.6).setTimestamp(1556540100).build());
+        ratings.add(Rating.newBuilder().setTitle("Tree of Life").setReleaseYear(2011).setRating(4.9).setTimestamp(1556303400).build());
+        ratings.add(Rating.newBuilder().setTitle("Tree of Life").setReleaseYear(2011).setRating(9.9).setTimestamp(1556476560).build());
+        ratings.add(Rating.newBuilder().setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(3.6).setTimestamp(1556389920).build());
+        ratings.add(Rating.newBuilder().setTitle("A Walk in the Clouds").setReleaseYear(1998).setRating(7.1).setTimestamp(1556476560).build());
+        ratings.add(Rating.newBuilder().setTitle("The Big Lebowski").setReleaseYear(1998).setRating(8.6).setTimestamp(1556540100).build());
+        ratings.add(Rating.newBuilder().setTitle("The Big Lebowski").setReleaseYear(1998).setRating(7.0).setTimestamp(1556303400).build());
+        ratings.add(Rating.newBuilder().setTitle("Super Mario Bros.").setReleaseYear(1993).setRating(3.5).setTimestamp(1556303400).build());
+        ratings.add(Rating.newBuilder().setTitle("Super Mario Bros.").setReleaseYear(1993).setRating(2.0).setTimestamp(1556389920).build());
 
         List<RatingCount> ratingCounts = new ArrayList<>();
         ratingCounts.add(new RatingCount("[Die Hard@1558800000/1562400000]", "2"));
