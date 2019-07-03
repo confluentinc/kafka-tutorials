@@ -76,16 +76,21 @@ public class TumblingWindow {
         AdminClient client = AdminClient.create(config);
 
         List<NewTopic> topics = new ArrayList<>();
+        Map<String, String> topicConfigs = new HashMap<>();
+        topicConfigs.put("retention.ms", Long.toString(Long.MAX_VALUE));
 
-        topics.add(new NewTopic(
-                envProps.getProperty("rating.topic.name"),
-                Integer.parseInt(envProps.getProperty("rating.topic.partitions")),
-                Short.parseShort(envProps.getProperty("rating.topic.replication.factor"))));
+        NewTopic ratings = new NewTopic(envProps.getProperty("rating.topic.name"),
+                                        Integer.parseInt(envProps.getProperty("rating.topic.partitions")),
+                                        Short.parseShort(envProps.getProperty("rating.topic.replication.factor")));
+        ratings.configs(topicConfigs);
+        topics.add(ratings);
 
-        topics.add(new NewTopic(
-                envProps.getProperty("rating.count.topic.name"),
-                Integer.parseInt(envProps.getProperty("rating.count.topic.partitions")),
-                Short.parseShort(envProps.getProperty("rating.count.topic.replication.factor"))));
+        NewTopic counts = new NewTopic(envProps.getProperty("rating.count.topic.name"),
+                                       Integer.parseInt(envProps.getProperty("rating.count.topic.partitions")),
+                                       Short.parseShort(envProps.getProperty("rating.count.topic.replication.factor")));
+        counts.configs(topicConfigs);
+        topics.add(counts);
+
 
         client.createTopics(topics);
         client.close();
