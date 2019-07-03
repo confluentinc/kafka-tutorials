@@ -32,24 +32,26 @@
     <h4 class="subtitle is-4">4. Create the code that does the transformation</h4>
     <p>Create a directory for the code that will perform the transformtion:</p>
     <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
-    <p>Implement a Java class <code>src/main/java/io/confluent/developer/TransformEvents.java</code> with the following code:</p>
+    <p>Implement Java class that does the transformation <code>src/main/java/io/confluent/developer/TransformationEngine.java</code> with the following code:</p>
+    <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/main/java/io/confluent/developer/TransformationEngine.java %}</code></pre>
+    <p>Implement the main Java class <code>src/main/java/io/confluent/developer/TransformEvents.java</code> with the following code:</p>
     <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/main/java/io/confluent/developer/TransformEvents.java %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">5. Produce events to the input topic</h4>
+  <h4 class="subtitle is-4">5. Compile and run the Apache Kafka application</h4>
+  <p>In your terminal, run:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/build-uberjar.sh %}</code></pre>
+  <p>Now that you have an uberjar for the Kafka application, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it. There is always another message to process, so streaming applications don't exit until you force them.</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/run-dev-app.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
   <p>In a new terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/console-producer.sh %}</code></pre>
   <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an event. To send all of the events below, paste the following into the prompt and press enter:</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/input-events.json %}</code></pre>
-</div>
-
-<div class="recipe-try-it-step">
-    <h4 class="subtitle is-4">6. Compile and run the Apache Kafka application</h4>
-    <p>In your terminal, run:</p>
-    <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/build-uberjar.sh %}</code></pre>
-    <p>Now that an uberjar for the Kafka application has been built, you can launch it locally. Run the transformation application using the command below:</p>
-    <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">

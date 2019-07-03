@@ -120,36 +120,6 @@ public class TransformEvents {
 
     }
 
-    public void applyTransformation(String inputTopic,
-                                    String outputTopic,
-                                    KafkaConsumer<String, RawMovie> consumer,
-                                    KafkaProducer<String, Movie> producer) {
-
-        consumer.subscribe(Arrays.asList(inputTopic));
-        ConsumerRecords<String, RawMovie> records = consumer.poll(5000);
-
-        for (ConsumerRecord<String, RawMovie> record : records) {
-
-            Movie movie = convertRawMovie(record.value());
-            ProducerRecord<String, Movie> transformedRecord =
-                new ProducerRecord<String, Movie>(outputTopic, movie);
-
-            producer.send(transformedRecord);
-        }
-
-    }
-
-    public static Movie convertRawMovie(RawMovie rawMovie) {
-
-        String titleParts[] = rawMovie.getTitle().split("::");
-        String title = titleParts[0];
-        int releaseYear = Integer.parseInt(titleParts[1]);
-
-        return new Movie(rawMovie.getId(), title,
-            releaseYear, rawMovie.getGenre());
-
-    }
-
     public static void main(String[] args) throws Exception {
 
         if (args.length < 1) {
@@ -159,29 +129,26 @@ public class TransformEvents {
         TransformEvents te = new TransformEvents();
         Properties envProps = te.loadEnvProperties(args[0]);
         te.createTopics(envProps);
-
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            te.deleteTopics(envProps);
-        }));
         
         String inputTopic = envProps.getProperty("input.topic.name");
         String outputTopic = envProps.getProperty("output.topic.name");
 
-        Properties producerProps = te.buildProducerProperties(envProps);
-        KafkaProducer<String, Movie> producer = te.createMovieProducer(producerProps);
         Properties consumerProps = te.buildConsumerProperties("inputGroup", envProps);
         KafkaConsumer<String, RawMovie> rawConsumer = te.createRawMovieConsumer(consumerProps);
+        Properties producerProps = te.buildProducerProperties(envProps);
+        KafkaProducer<String, Movie> producer = te.createMovieProducer(producerProps);
 
-        try {
+        final TransformationEngine transEngine = new TransformationEngine(inputTopic,
+            outputTopic, rawConsumer, producer);
+        final Thread transEngineThread = new Thread(transEngine);
+        final CountDownLatch latch = new CountDownLatch(1);
 
-            te.applyTransformation(inputTopic, outputTopic, rawConsumer, producer);
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            transEngine.shutdown();
+            latch.countDown();
+        }));
 
-        } finally {
-
-            rawConsumer.close();
-            producer.close();
-            
-        }
+        transEngineThread.start();
 
     }
 

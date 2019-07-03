@@ -40,6 +40,10 @@ steps:
     action: execute
     file: recipe-steps/dev/make-src-dir.sh
 
+  - name: make the helper Java file
+    action: make_file
+    file: src/main/java/io/confluent/developer/TransformationEngine.java
+
   - name: make the main Java file
     action: make_file
     file: src/main/java/io/confluent/developer/TransformEvents.java
