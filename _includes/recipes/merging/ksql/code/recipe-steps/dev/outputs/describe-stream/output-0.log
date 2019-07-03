@@ -15,7 +15,7 @@ Kafka topic          : all_songs (partitions: 1, replication: 1)
  GENRE   | VARCHAR(STRING)           
 -------------------------------------
 
-Queries that write from this STREAM
+Queries that write into this STREAM
 -----------------------------------
 InsertQuery_0 : INSERT INTO all_songs SELECT artist, title, 'rock' AS genre FROM rock_songs;
 InsertQuery_1 : INSERT INTO all_songs SELECT artist, title, 'classical' AS genre FROM classical_songs;
