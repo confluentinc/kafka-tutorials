@@ -41,23 +41,23 @@
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">5. Compile and run the Apache Kafka application</h4>
   <p>In your terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/build-uberjar.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
   <p>Now that you have an uberjar for the Apache Kafka application, you can launch it locally. When you run the following, the prompt won't return, because the application will keep running until you exit it. In Streaming-based applications, records are always coming in and the application must be kept running continuously so future records can also be processed.</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/run-dev-app.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
   <p>Let's put this recipe to a test. In order to do this, you need to produce some raw movies to the input topic. In a new terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/console-producer.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/console-producer.sh %}</code></pre>
   <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an raw movie. To send all of the raw movies below, paste the following into the prompt and press enter:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/input-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/input-events.json %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">7. Consume transformed events from the output topic</h4>
   <p>Now that we produced raw movies to the input topic, the Apache Kafka application that is running in the background should have picked them up and processed them accordingly. This means that if everything really worked, you should see the transformed movies in the output topic. Open another console to consume the records that have been produced by your application:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/console-consumer.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/console-consumer.sh %}</code></pre>
   <p>After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying this recipe, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/harness/recipe-steps/dev/outputs/actual-output-events.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/outputs/actual-movies.json %}</code></pre>
 </div>

@@ -21,8 +21,8 @@ filtering:
 transforming:
   title: "Transforming a stream of events"
   slug: "/recipes/transform-a-stream-of-events"
-  problem: "you have events in a Kafka topic, and you want to transform some of them out so that a new stream of events would be written into a new topic."
-  introduction: "Consider a topic with events that represent movies. In this recipe, we'll write a program that creates a new topic which contains the same events but with one of the original fields now split into two different fields."
+  problem: "you have events in a Kafka topic, and you want to change each event in some way and put the results of these changes in a new topic."
+  introduction: "Consider a topic with events that represent movies. Each event has a single attribute that combines its title and its release year into a string. In this recipe, we'll write a program that creates a new topic with the title and release date turned into their own attributes."
   status:
     ksql: enabled
     kstreams: enabled
