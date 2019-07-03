@@ -10,6 +10,7 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.errors.WakeupException;
 
+import java.time.Duration;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.Arrays;
 
@@ -40,7 +41,7 @@ public class TransformationEngine implements Runnable {
 
             while (!closed.get()) {
 
-                ConsumerRecords<String, RawMovie> records = rawConsumer.poll(1000);
+                ConsumerRecords<String, RawMovie> records = rawConsumer.poll(Duration.ofSeconds(1));
                 for (ConsumerRecord<String, RawMovie> record : records) {
         
                     Movie movie = convertRawMovie(record.value());
