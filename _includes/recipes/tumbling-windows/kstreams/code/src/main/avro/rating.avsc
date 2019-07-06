@@ -6,6 +6,6 @@
     {"name": "title", "type": "string"},
     {"name": "release_year", "type": "int"},
     {"name": "rating", "type": "double"},
-    {"name": "timestamp", "type": "long"}
+    {"name": "timestamp", "type": "string"}
   ]
 }
