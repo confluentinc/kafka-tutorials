@@ -22,9 +22,9 @@
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
   <p>Then create the following Avro schema file at <code>src/main/avro/input-movie-event.avsc</code> that will define the structure of a movie and its basic fields. In this recipe, were are going to refer to this as raw movie. This the version of the movie before any transformation.</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kafka/code/src/main/avro/input-movie-event.avsc %}</code></pre>
-  <p>Then create another Avro schema file at <code>src/main/avro/parsed-movies.avsc</code> to define the structure of the movies after the transformation. This is what the recipe tries to accomplish, create a new version of the movie from the raw movie, but with some different field layout.</p>
+  <p>Then create another Avro schema file at <code>src/main/avro/parsed-movies.avsc</code> to define the structure of the movies after the transformation. The goal of this recipe is to take the raw movies and transform them into parsed movies by splitting the <code>title</code> field into separate <code>title</code> and <code>release_year</code> fields.</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kafka/code/src/main/avro/parsed-movies.avsc %}</code></pre>
-  <p>Because these Avro schemas are going to be used by other Java classes, it needs to be compiled it so the wrappers are generated. Run the following:</p>
+  <p>Because these Avro schemas are going to be used by other Java classes, we need to run the build to turn the avsc files into Java code. Run the following:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/build-project.sh %}</code></pre>
 </div>
 
@@ -32,9 +32,9 @@
     <h4 class="subtitle is-4">4. Create the code that does the transformation</h4>
     <p>Create a directory for the code that will perform the transformtion:</p>
     <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>
-    <p>Create a Java file at <code>src/main/java/io/confluent/developer/TransformationEngine.java</code> to implement the code of the transformation. This code leverages the <a href="https://kafka.apache.org/documentation/#api">Apache Kafka Client API</a> to implement <a href="https://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html">producers</a> and <a href="https://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html">consumers</a> that will be used to read the raw movies from the input topic, perform de transformation of the movie and write the transformed movies into the output topic.</p>
+    <p>Create a Java file at <code>src/main/java/io/confluent/developer/TransformationEngine.java</code> to implement the code of the transformation. This code leverages the <a href="https://kafka.apache.org/documentation/#api">Apache Kafka Client API</a> to implement <a href="https://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html">producers</a> and <a href="https://kafka.apache.org/23/javadoc/index.html?org/apache/kafka/clients/consumer/KafkaConsumer.html">consumers</a> that will be used to read the raw movies from the input topic, perform the transformation operation on them, and write the transformed movies into the output topic.</p>
     <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/main/java/io/confluent/developer/TransformationEngine.java %}</code></pre>
-    <p>Then create another Java file at <code>src/main/java/io/confluent/developer/TransformEvents.java</code> for the main program. The main program is responsible for creating the configuration properties that any producer and consumer created will use. It is also responsible for creating and destroying any topics necessary for the recipe to work, as well as to spawn a thread to execute the logic of the transformation.</p>
+    <p>Next, create another Java file at <code>src/main/java/io/confluent/developer/TransformEvents.java</code> for the main program. The main program is responsible for creating the configuration properties that any producer and consumer created will use. It is also responsible for creating and destroying any topics necessary for the recipe to work, as well as spawning a thread to execute the logic of the transformation.</p>
     <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/main/java/io/confluent/developer/TransformEvents.java %}</code></pre>
 </div>
 
