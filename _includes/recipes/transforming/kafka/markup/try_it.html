@@ -25,7 +25,7 @@
   <p>Then create another Avro schema file at <code>src/main/avro/parsed-movies.avsc</code> to define the structure of the movies after the transformation. This is what the recipe tries to accomplish, create a new version of the movie from the raw movie, but with some different field layout.</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kafka/code/src/main/avro/parsed-movies.avsc %}</code></pre>
   <p>Because these Avro schemas are going to be used by other Java classes, it needs to be compiled it so the wrappers are generated. Run the following:</p>
-  <pre class="snippet"><code class="shell">gradlew build</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/build-project.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
