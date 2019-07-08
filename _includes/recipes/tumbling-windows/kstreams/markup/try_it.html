@@ -112,7 +112,7 @@
   <pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/ratings.json %}</code></pre>
 
   <p>Looking back up in the consumer terminal, these are the results you should see there if you paste in all the ratings as directed above:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/windowed-counted-ratings.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/windowed-counted-ratings.txt %}</code></pre>
 
   <p>Note that each event is counted individually. Since output caching is disabled, we see Die Hard get counted once, then counted again, then counted again, until the Die Hard ratings stop arriving. At that point, we have the final count for that movie. The same happens with all the rest. If we were to interrogate the contents of the resulting <code>KTable</code> after all the input messages have arrived, we would see only the final counts in the table—not the history of the counting as we see in the output topic. This is a good illustration of what we sometimes refer to as the <em>stream-table duality</em>.</p>
 
