@@ -6,7 +6,7 @@ dev_recipe:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner harness/dev-sequence.yml $(TEMP_DIR)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/windowed-counted-ratings.json $(DEV_OUTPUTS_DIR)/windowed-ratings-actual.json
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/windowed-counted-ratings.txt $(DEV_OUTPUTS_DIR)/windowed-ratings-actual.txt
 
 test_recipe:
 	harness-runner harness/test-sequence.yml $(TEMP_DIR)
