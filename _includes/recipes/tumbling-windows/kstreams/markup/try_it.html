@@ -52,7 +52,7 @@
   
   First, we call the <code>stream()</code> method to create a <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KStream.html">KStream</a><String, Rating></code> object. The problem is that we can't make any assumptions about the key of this stream, so we have to repartition it explicitly. We use the <code>map()</code> method for that, creating a new <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/KeyValue.html">KeyValue</a></code> instance for each record, using the title as the new key.</p>
     
-  Next we group the events by that new key by calling the <code>groupByKey()</code> method. We want to count the events that occur with each given key, so we must first define a tumbling window by calling <code>windowedBy(TimeWindows.of(Duration.ofDays(1)))</code>. We then call <code>count()</code>, which directs the topology to count the grouped events that occur within each window. At this point in the toplogy, the result is a <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KTable.html"></a>KTable</a><<a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/Windowed.html">Windowed</a><String>,Long></code>. We use the <code>map()</code> method to turn in into two easy-to-read strings, then emit the result to the output topic with the <code>to()</code> method.
+  Next we group the events by that new key by calling the <code>groupByKey()</code> method. We want to count the events that occur with each given key, so we must first define a tumbling window by calling <code>windowedBy(TimeWindows.of(Duration.ofMinutes(10)))</code>. We then call <code>count()</code>, which directs the topology to count the grouped events that occur within each window. At this point in the toplogy, the result is a <code><a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KTable.html"></a>KTable</a><<a href="https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/Windowed.html">Windowed</a><String>,Long></code>. We use the <code>map()</code> method to turn in into two easy-to-read strings, then emit the result to the output topic with the <code>to()</code> method. You might not always make that last call to <code>map()</code>, but for our purposes here, it makes the output a lot easier to read.
 </div>
 
 <div class="recipe-try-it-step">
@@ -62,11 +62,23 @@
 
   <pre class="snippet"><code class="java">{% include_raw recipes/tumbling-windows/kstreams/code/src/main/java/io/confluent/developer/RatingTimestampExtractor.java %}</code></pre>
 
-  <p>The TimestampExtractor is installed back up in the <code>TumblingWindow</code> class by way of a configuration setting. Look for the line <code>props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName());</code> to see where it's done.</p>
 </div>
 
+
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">6. Compile and run the Kafka Streams program</h4>
+  <h4 class="subtitle is-4">6. Some special configuration</h4>
+  <p>There is always a little bit of boilerplate configuration in any Kafka Streams app, but three lines in this recipe are worth comment. You don't have to do anything on this step, so you can come back to it later if you'd like.</p>
+
+  <p>First, the <code>TimestampExtractor</code> we created in the previous step is installed into our stream processing topology through a configuration setting. This is the <code>props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName())</code> line.</p>
+
+  <p>Second, we want to optimize our Streams app for latency at the expense of throughput. (The real thing we want here is to see results in out output terminal pane as quickly as possible, which is a less-fancy way of saying the same thing.) To make this happen, we have to disable the Streams output cache as follows: <code>props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName())</code>  </p>
+
+  <p>Finally, we need to remeber that a Stream app caches its state locally on disk, in a directory pointed to by the `state.dir` configuration setting. If you run the application once, kill it, then run it again, it will likely find the state left on disk by the previous run. This is very much by design, but can be confusing when you're experimenting with a small recipe like this. To make sure state goes into a throwaway temporary directory, we set the state dir with <code>props.put(StreamsConfig.STATE_DIR_CONFIG, Files.createTempDirectory("tumbling-windows").toAbsolutePath().toString())</code>. Note that the call must be wrapped in an exception-handling block, and if we fail to create the temporary directory, we continue running with the default directory in place.</p>
+</div>
+
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">7. Compile and run the Kafka Streams program</h4>
 
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
@@ -76,21 +88,9 @@
 </div>
 
 <div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">7. Load in some reference data</h4>
-
-  <p>In a new terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>
-
-  <p>When the console producer starts, it will log some messages and hang, waiting for your input. Copy and paste one line at a time and press enter to send it. Note that these lines contain hard tabs between the key and the value, so retyping them without the tab will not work.</p> 
-
-  <p>Each line represents a movie we will be able to rate. To send all of the events below, paste the following into the prompt and press enter:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/ratings.json %}</code></pre>
-</div>
-
-<div class="recipe-try-it-step">
   <h4 class="subtitle is-4">8. Get ready to observe the counted ratings in the output topic</h4>
 
-  <p>Before you start producing ratings, it's a good idea to set up the consumer on the output topic. This way, as soon as you produce ratings (and they're joined to movies), you'll see the results right away. Run this to get ready to consume the rated movies:</p>
+  <p>Before you start producing input data, it's a good idea to set up the consumer on the output topic. This way, as soon as you produce movie ratings (and windowed and counted), you'll see the results right away. Run this to get ready to consume the windowed counts:</p>
 
   <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/console-consumer.sh %}</code></pre>
 
@@ -99,18 +99,35 @@
 </div>
 
 
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">7. Load in some reference data</h4>
+
+  <p>In a new terminal, run:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>
+
+  <p>When the console producer starts, it will log some text and hang, waiting for your input. You can copy and paste all of this data at once to see the results. (Because event times are baked into each message, it doesn't matter at what time the messages arriving in the input topic. In fact, you should be able to experiment with changing the order of the messages in this data, and still get the same output counts.)</p> 
+
+  <pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/ratings.json %}</code></pre>
+</div>
+
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">9. Produce some ratings to the input topic</h4>
 
-  <p>Run the following in a new terminal window. This process is the most fun if you can see this and the previous terminal (which is consuming the raw ratings) at the same time. If your terminal program lets you do horizontal split panes, try it that way:</p>
+  <p>When the console producer starts, it will log some text and hang, waiting for your input. You can copy and paste all of the test data at once to see the results. (Because event times are baked into each message, it doesn't matter at what time the messages arrive in the input topic. In fact, if you want extra credit, you should be able to experiment with changing the order of the messages in this data, and still get the same output counts.)</p>
+
+  <p>Start the console producer with this command in a terminal window of its own:</p>
+
   <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>
 
   <p>When the producer starts up, copy and paste these lines into the terminal:</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/ratings.json %}</code></pre>
 
-  <p>Speaking of that consumer terminal, these are the results you should see there if you paste in all the movies and ratings as shown in this recipe:</p>
+  <p>Looking back up in the consumer terminal, these are the results you should see there if you paste in all the ratings as directed above:</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/outputs/windowed-counted-ratings.json %}</code></pre>
 
-  <p>You have now computed an aggregation over a tumbling window! Well done.</p>
+  <p>Note that each event is counted individually. Since output caching is disabled, we see Die Hard get counted once, then counted again, then counted again, until the Die Hard ratings stop arriving. At that point, we have the final count for that movie. The same happens with all the rest. If we were to interrogate the contents of the resulting <code>KTable</code> after all the input messages have arrived, we would see only the final counts in the table—not the history of the counting as we see in the output topic. This is a good illustration of what we sometimes refer to as the <em>stream-table duality</em>.</p>
+
+  <p>That is a topic for further study later on, but for now, you deserve some congratulations! You have now computed an aggregation over a tumbling window. Well done.</p>
 
 </div>
