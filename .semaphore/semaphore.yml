@@ -81,3 +81,9 @@ blocks:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
             - make -C _includes/recipes/joining/kstreams/code recipe
+
+        - name: KStreams Tumbling Windows
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/tumbling-windows/kstreams/code recipe

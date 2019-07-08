@@ -56,7 +56,7 @@ steps:
   - name: run the consumer
     action: execute_async
     file: recipe-steps/dev/console-consumer.sh
-    stdout: recipe-steps/dev/outputs/rated-movies.json
+    stdout: recipe-steps/dev/outputs/windowed-ratings-actual.json
 
   - name: wait for the counts to process
     action: sleep
