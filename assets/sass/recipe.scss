@@ -1,0 +1,122 @@
+@import "_vars";
+@import "_tabs";
+
+.pg-recipe {
+  background: #fff;
+
+  .section {
+    padding-top: 35px;
+    padding-bottom: 35px;
+
+    .recipe-section-title {
+        font-size: 35px;
+    }
+  }
+
+  .summary {
+    @include text;
+    color: #fff;
+
+    h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    p {
+        font-weight: 400;
+    }
+  }
+
+  .recipe-try-it-step p {
+    @include p;
+  }
+
+  .hero {
+    min-height: 265px;
+    padding-top: 0;
+
+    .hero-body {
+      padding-top: 0;
+      padding-bottom: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  .headline {
+    margin-bottom: 30px;
+  }
+
+  .example {
+    margin-bottom: 40px;
+
+    p {
+      @include p;
+    }
+  }
+
+  h4.subtitle {
+    margin: 0 0 5px -32px;
+    color: $textColor;
+    font-weight: normal;
+    font-size: 21px;
+
+    .text {
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: $baseColor;
+      text-align: center;
+      font-size: 18px;
+      color: #fff;
+      font-weight: bold;
+      padding-top: 2px;
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+
+  .recipe-try-it-step {
+      margin: 0 0 60px 30px;
+
+      .subtitle {
+          padding-bottom: 15px;
+      }
+  }
+
+  .recipe-navigation {
+    margin-top: 60px;
+    display: inline-block;
+
+    > li > a {
+      @include title;
+      font-weight: 550;
+      line-height: 1.5;
+    }
+
+    ul {
+      margin-bottom: 20px;
+      margin-top: 10px;
+
+      a {
+        @include text;
+        color: #003cc8;
+        line-height: 1.69;
+        font-weight: 400;
+      }
+    }
+  }
+
+  @media screen and (max-width: 640px) {
+    h4.subtitle,
+    .recipe-try-it-step {
+      margin-left: 0;
+    }
+  }
+}
