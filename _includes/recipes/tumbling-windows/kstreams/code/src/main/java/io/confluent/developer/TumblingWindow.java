@@ -14,6 +14,7 @@ import org.apache.kafka.streams.processor.To;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.*;
@@ -30,6 +31,16 @@ public class TumblingWindow {
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
         props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName());
+        props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+        try {
+            props.put(StreamsConfig.STATE_DIR_CONFIG,
+                      Files.createTempDirectory("tumbling-windows").toAbsolutePath().toString());
+        }
+        catch(IOException e) {
+            // If we can't have our own temporary directory, we can leave it with the default. We create a custom
+            // one because running the app outside of Docker multiple times in quick succession will find the
+            // previous state still hanging around in /tmp somewhere, which is not the expected result.
+        }
         return props;
     }
 
@@ -44,14 +55,16 @@ public class TumblingWindow {
                 .windowedBy(TimeWindows.of(Duration.ofMinutes(10)))
                 .count()
                 .toStream()
-                .map((Windowed<String> key, Long count) -> new KeyValue(windowedKeyToString(key), count.toString()))
+                .map((Windowed<String> key, Long count) -> new KeyValue(key.key(), count.toString()))
                 .to(ratingCountTopic, Produced.with(Serdes.String(), Serdes.String()));
 
         return builder.build();
     }
 
     private String windowedKeyToString(Windowed<String> key) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HH:mm:ss");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd'T'HH:mm:ssZZZZ");
+        sdf.setTimeZone(TimeZone.getTimeZone("UTC"));
         return String.format("[%s@%s/%s]",
                              key.key(),
                              sdf.format(key.window().startTime().getEpochSecond()),
