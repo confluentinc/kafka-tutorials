@@ -1,10 +1,5 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.Publication;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
-
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -19,8 +14,21 @@ import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
+
+import io.confluent.developer.avro.Publication;
+import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroDeserializerConfig;
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
+
+import static java.time.Duration.ofMillis;
+import static java.util.Collections.singletonList;
 
 public class FilterEvents {
 
@@ -30,21 +38,17 @@ public class FilterEvents {
 
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, SpecificAvroSerializer.class.getName());
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class.getName());
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
-
     }
 
     public KafkaProducer<String, Publication> createProducer(Properties producerProps) {
-
-        return new KafkaProducer<String, Publication>(producerProps);
-
+        return new KafkaProducer<>(producerProps);
     }
 
     public Properties buildConsumerProperties(String groupId, Properties envProps) {
-
         Properties props = new Properties();
 
         props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -52,17 +56,15 @@ public class FilterEvents {
         props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
-        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, SpecificAvroDeserializer.class.getName());
+        props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class.getName());
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true);
 
         return props;
-
     }
 
     public KafkaConsumer<String, Publication> createConsumer(Properties consumerProps) {
-
-        return new KafkaConsumer<String, Publication>(consumerProps);
-
+        return new KafkaConsumer<>(consumerProps);
     }
 
     public void createTopics(Properties envProps) {
@@ -94,17 +96,16 @@ public class FilterEvents {
         input.close();
 
         return envProps;
-
     }
 
     public void produceRecords(String inputTopic, List<Publication> inputPublications,
         KafkaProducer<String, Publication> producer) {
 
-        ProducerRecord<String, Publication> record = null;
+        ProducerRecord<String, Publication> record;
 
         for (Publication publication : inputPublications) {
 
-            record = new ProducerRecord<String, Publication>(inputTopic, publication);
+            record = new ProducerRecord<>(inputTopic, publication);
             producer.send(record);
 
         }
@@ -115,8 +116,8 @@ public class FilterEvents {
         String outputTopic, KafkaConsumer<String, Publication> consumer,
         KafkaProducer<String, Publication> producer, String author) {
 
-        consumer.subscribe(Arrays.asList(inputTopic));
-        ConsumerRecords<String, Publication> records = consumer.poll(5000);
+        consumer.subscribe(singletonList(inputTopic));
+        ConsumerRecords<String, Publication> records = consumer.poll(ofMillis(5000));
 
         for (ConsumerRecord<String, Publication> record : records) {
 
@@ -126,13 +127,11 @@ public class FilterEvents {
             if (publication.getName().equals(author)) {
 
                 ProducerRecord<String, Publication> filteredRecord =
-                    new ProducerRecord<String, Publication>(outputTopic,
-                    publication);
+                    new ProducerRecord<>(outputTopic, publication);
 
                 producer.send(filteredRecord);
 
             }
-
         }
 
     }
@@ -140,10 +139,10 @@ public class FilterEvents {
     public List<Publication> consumeRecords(String outputTopic,
         KafkaConsumer<String, Publication> consumer) {
 
-        List<Publication> output = new ArrayList<Publication>();
-        consumer.subscribe(Arrays.asList(outputTopic));
+        List<Publication> output = new ArrayList<>();
+        consumer.subscribe(singletonList(outputTopic));
 
-        ConsumerRecords<String, Publication> records = consumer.poll(5000);
+        ConsumerRecords<String, Publication> records = consumer.poll(ofMillis(5000));
 
         for (ConsumerRecord<String, Publication> record : records) {
             output.add(record.value());
@@ -184,11 +183,11 @@ public class FilterEvents {
 
         try {
 
-            consumer.subscribe(Arrays.asList(inputTopic));
+            consumer.subscribe(singletonList(inputTopic));
 
             while (true) {
 
-                ConsumerRecords<String, Publication> records = consumer.poll(1000);
+                ConsumerRecords<String, Publication> records = consumer.poll(ofMillis(1000));
     
                 for (ConsumerRecord<String, Publication> record : records) {
         
@@ -198,8 +197,8 @@ public class FilterEvents {
                     if (publication.getName().equals("George R. R. Martin")) {
         
                         ProducerRecord<String, Publication> filteredRecord =
-                            new ProducerRecord<String, Publication>(outputTopic,
-                            publication);
+                            new ProducerRecord<>(outputTopic,
+                                                 publication);
         
                         producer.send(filteredRecord);
         

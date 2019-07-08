@@ -10,6 +10,7 @@ buildscript {
 
 plugins {
     id "java"
+    id "idea"
     id "com.google.cloud.tools.jib" version "1.1.1"
 }
 
@@ -30,10 +31,12 @@ apply plugin: "com.commercehub.gradle.plugin.avro"
 apply plugin: "com.github.johnrengelman.shadow"
 
 dependencies {
-    compile "org.apache.avro:avro:1.8.2"
+    implementation "org.apache.avro:avro:1.8.2"
     implementation "org.slf4j:slf4j-simple:1.7.26"
-    implementation "io.confluent:kafka-streams-avro-serde:5.2.0"
+    implementation "org.apache.kafka:kafka-clients:2.2.0-cp1"
+    implementation "io.confluent:kafka-avro-serializer:5.2.1"
     testCompile "junit:junit:4.12"
+    testCompile "org.testcontainers:kafka:1.11.3"
 }
 
 test {
