@@ -24,6 +24,10 @@ steps:
     action: make_file
     file: src/main/avro/rating.avsc
 
+  - name: install the Gradle wrapper
+    action: execute
+    file: recipe-steps/dev/gradle-wrapper.sh
+
   - name: build the project
     action: execute
     file: recipe-steps/dev/build-project.sh

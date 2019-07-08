@@ -56,11 +56,11 @@ jar {
   manifest {
     attributes(
       'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'io.confluent.developer.JoinStreamToTable'
+      'Main-Class': 'io.confluent.developer.TumblingWindow'
     )
   }
 }
 
 shadowJar {
-    archiveName = "kstreams-tumbling-window-standalone-${version}.${extension}"
+    archiveName = "kstreams-tumbling-windows-standalone-${version}.${extension}"
 }
