@@ -1,6 +1,6 @@
 steps:
   - name: make the prod props file
-    change_directory: join-stream
+    change_directory: tumbling-windows
     action: make_file
     file: configuration/prod.properties
 

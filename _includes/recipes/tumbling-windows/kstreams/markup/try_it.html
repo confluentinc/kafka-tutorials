@@ -99,18 +99,6 @@
 </div>
 
 
-
-<div class="recipe-try-it-step">
-  <h4 class="subtitle is-4">7. Load in some reference data</h4>
-
-  <p>In a new terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>
-
-  <p>When the console producer starts, it will log some text and hang, waiting for your input. You can copy and paste all of this data at once to see the results. (Because event times are baked into each message, it doesn't matter at what time the messages arriving in the input topic. In fact, you should be able to experiment with changing the order of the messages in this data, and still get the same output counts.)</p> 
-
-  <pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/ratings.json %}</code></pre>
-</div>
-
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">9. Produce some ratings to the input topic</h4>
 
