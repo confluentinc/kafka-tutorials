@@ -40,7 +40,7 @@
   <p>Let's break apart the <code>title</code> field and extract the year that the movie was published into its own column. Issue the following transient query. This will block and continue to return results until it's limit is reached or you tell it to stop.</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/transforming/ksql/code/recipe-steps/dev/transient-query.sql %}</code></pre>
 
-  This should yield the following output:
+  <p>This should yield the following output:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/ksql/code/recipe-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
 
   <p>Since the output looks right, the next step is to make the query continuous. Issue the following to create a new stream that is continously populated by its query:</p>
@@ -49,7 +49,7 @@
   <p>To check that it's working, print out the contents of the output stream's underlying topic:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/transforming/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
 
-  This should yield the following output:
+  <p>This should yield the following output:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/ksql/code/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
 </div>
 

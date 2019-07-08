@@ -7,6 +7,10 @@
   .section {
     padding-top: 35px;
     padding-bottom: 35px;
+
+    .recipe-section-title {
+      font-size: 35px;
+    }
   }
 
   .summary {
@@ -50,7 +54,7 @@
 
   h4.subtitle {
     margin: 0 0 5px -30px;
-    color: $baseColor;
+    color: $textColor;
     font-weight: normal;
     font-size: 21px;
 
@@ -96,6 +100,7 @@
         @include text;
         color: #003cc8;
         line-height: 1.69;
+        font-weight: 400;
 
         &:hover {
           text-decoration: underline;

@@ -1,0 +1,60 @@
+steps:
+  - name: initialize
+    action: execute
+    file: recipe-steps/dev/init.sh
+
+  - name: make the dir structure
+    change_directory: merge-streams
+    action: execute
+    file: recipe-steps/dev/make-dirs.sh
+
+  - name: make a Docker Compose file
+    action: make_file
+    file: docker-compose.yml
+
+  - name: bring up the containers
+    action: execute_async
+    file: recipe-steps/dev/docker-compose-up.sh
+
+  - name: wait for the containers to start
+    action: execute
+    file: recipe-steps/dev/wait-for-containers.sh
+
+  - name: run the CLI in Docker
+    action: docker_ksql_cli_session
+    container: ksql-cli
+    docker_bootup_file: recipe-steps/dev/start-cli.sh
+    stdin:
+      - name: create the streams
+        file: recipe-steps/dev/create-inputs.sql
+      
+      - name: populate the rock stream
+        file: recipe-steps/dev/populate-rock-stream.sql
+
+      - name: populate the classical stream
+        file: recipe-steps/dev/populate-classical-stream.sql
+
+      - name: set the dev props
+        file: recipe-steps/dev/set-properties.sql
+
+      - name: merge the streams
+        file: recipe-steps/dev/merge-streams.sql
+
+      - name: describe what just happened
+        file: recipe-steps/dev/describe-stream.sql
+
+      - name: query it transiently
+        file: recipe-steps/dev/transient-query.sql
+
+      - name: print the topic
+        file: recipe-steps/dev/print-output-topic.sql
+    stdout:
+      directory: recipe-steps/dev/outputs
+
+  - name: populate the src file
+    action: make_file
+    file: src/statements.sql
+
+  - name: clean up docker
+    action: execute
+    file: recipe-steps/dev/clean-up.sh
