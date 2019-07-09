@@ -50,7 +50,7 @@ public class FilterEventsTest {
   }
 
   @Test
-  public void testFilter() throws IOException, RestClientException {
+  public void shouldFilterGRRMartinsBooks() throws IOException, RestClientException {
     FilterEvents fe = new FilterEvents();
     Properties envProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
     Properties streamProps = fe.buildStreamsProperties(envProps);
