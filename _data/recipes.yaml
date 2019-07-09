@@ -31,7 +31,7 @@ merging:
   title: "Merge many streams into one stream"
   slug: "/recipes/merge-many-streams-into-one-stream"
   problem: "you have many Kafka topics with events in them, and you want to merge them all into a single topic."
-  introduction: "Suppose that you have a set of Kafka topics representing songs being played on a particular genre. You might have a topic for rock songs, another for classical songs, and so forth. In this recipe, we'll write a program that merges all of the song play events into a single topic."
+  introduction: "Suppose that you have a set of Kafka topics representing songs being played of a particular genre. You might have a topic for rock songs, another for classical songs, and so forth. In this recipe, we'll write a program that merges all of the song play events into a single topic."
   status:
     ksql: enabled
     kstreams: enabled

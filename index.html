@@ -15,11 +15,7 @@
     <link rel="stylesheet" href="/assets/sass/main.css" />
   </head>
   <body class="pg-main">
-    <section class="section top">
-      <div class="container">
-        {% include logo.html %}
-      </div>
-    </section>
+    {% include nav.html %}
 
     <section class="hero">
       <div class="hero-body">
@@ -43,7 +39,7 @@
             <li><a href="/recipes/transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
             <li><a href="/recipes/filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
             <li><a href="/recipes/split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
-            <li><a href="/recipes/merge-many-streams-into-one-stream/kstreams.html">Merge many streams into one stream</a></li>
+            <li><a href="/recipes/merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
             <li><a href="#">Change event serialization formats</a></li>
           </ul>
         </div>
@@ -66,12 +62,9 @@
           </ul>
         </div>
       </div>
-      <div class="card card-cta">
-        <div>Join the Community. Contribute a recipe.</div>
-        <div><a href="#">Submit</a></div>
-      </div>
     </div>
 
     {% include footer.html %}
+    <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
   </body>
 </html>

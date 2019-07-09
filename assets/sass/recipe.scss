@@ -7,6 +7,10 @@
   .section {
     padding-top: 35px;
     padding-bottom: 35px;
+
+    .recipe-section-title {
+      font-size: 35px;
+    }
   }
 
   .summary {
@@ -20,7 +24,7 @@
     }
 
     p {
-        font-weight: 400;
+      font-weight: 400;
     }
   }
 
@@ -54,7 +58,7 @@
 
   h4.subtitle {
     margin: 0 0 5px -32px;
-    color: $baseColor;
+    color: $textColor;
     font-weight: normal;
     font-size: 21px;
 
@@ -79,11 +83,11 @@
   }
 
   .recipe-try-it-step {
-      margin: 0 0 60px 30px;
+    margin: 0 0 60px 32px;
 
-      .subtitle {
-          padding-bottom: 15px;
-      }
+    .subtitle {
+      padding-bottom: 15px;
+    }
   }
 
   .recipe-navigation {
