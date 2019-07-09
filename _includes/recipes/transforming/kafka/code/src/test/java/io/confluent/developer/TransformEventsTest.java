@@ -12,13 +12,28 @@ import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.ClassRule;
+import org.junit.Rule;
+import org.testcontainers.containers.KafkaContainer;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+
+import static java.time.Duration.ofMillis;
 
 public class TransformEventsTest {
 
-    private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+    private final static String TEST_CONFIG_FILE = "configuration/test.properties";    
+
+    @ClassRule
+    public static KafkaContainer kafkaContainer = new KafkaContainer("5.2.1");
+
+    @Rule
+    public SchemaRegistryContainer schemaRegistryContainer =
+        new SchemaRegistryContainer("5.2.1").withKafka(kafkaContainer);
 
     private String inputTopic, outputTopic;
     private TransformationEngine transEngine;
@@ -32,18 +47,28 @@ public class TransformEventsTest {
 
         TransformEvents te = new TransformEvents();
         Properties envProps = te.loadEnvProperties(TEST_CONFIG_FILE);
-        inputTopic = envProps.getProperty("input.topic.name");
-        outputTopic = envProps.getProperty("output.topic.name");
+        String bootstrapServers = kafkaContainer.getBootstrapServers();
+        envProps.put("bootstrap.servers", bootstrapServers);
+        String schemaRegistryUrl = "http://" + schemaRegistryContainer.getTarget();
+        envProps.put("schema.registry.url", schemaRegistryUrl);
         te.createTopics(envProps);
 
+        inputTopic = envProps.getProperty("input.topic.name");
+        outputTopic = envProps.getProperty("output.topic.name");
         Properties producerProps = te.buildProducerProperties(envProps);
         Properties inputConsumerProps = te.buildConsumerProperties("inputGroup", envProps);
         Properties outputConsumerProps = te.buildConsumerProperties("outputGroup", envProps);
+
         rawMovieProducer = te.createRawMovieProducer(producerProps);
         movieProducer = te.createMovieProducer(producerProps);
         rawMovieConsumer = te.createRawMovieConsumer(inputConsumerProps);
         outputConsumer = te.createMovieConsumer(outputConsumerProps);
 
+    }
+
+    @After
+    public void tearDown() throws IOException {
+        transEngine.shutdown();
     }
 
     @Test
@@ -61,8 +86,6 @@ public class TransformEventsTest {
         expectedOutput.add(Movie.newBuilder().setTitle("A Walk in the Clouds").setId(782).setReleaseYear(1995).setGenre("romance").build());
         expectedOutput.add(Movie.newBuilder().setTitle("The Big Lebowski").setId(128).setReleaseYear(1998).setGenre("comedy").build());
 
-        // Start the transformation engine, which will perform the transformation
-        // processing in a background thread using Kafka's consumer API.
         transEngine = new TransformationEngine(inputTopic, outputTopic,
             rawMovieConsumer, movieProducer);
 
@@ -84,24 +107,16 @@ public class TransformEventsTest {
         
     }
 
-    @After
-    public void tearDown() throws IOException {
-        transEngine.shutdown();
-        TransformEvents te = new TransformEvents();
-        Properties envProps = te.loadEnvProperties(TEST_CONFIG_FILE);
-        te.deleteTopics(envProps);
-    }
-
     private List<Movie> consumeMovies(String outputTopic,
                                         KafkaConsumer<String, Movie> consumer) {
 
-        // Wait 2 seconds until all records are fully persisted,
-        // to avoid a race condition between producers and consumers...
-        try { Thread.sleep(2000); } catch (Exception ex) {}
+        // Wait five seconds until all the records gets persisted, to
+        // avoid a race condition between producers and consumers...
+        try { Thread.sleep(5000); } catch (Exception ex) {}
         
         List<Movie> output = new ArrayList<Movie>();
         consumer.subscribe(Arrays.asList(outputTopic));
-        ConsumerRecords<String, Movie> records = consumer.poll(5000);
+        ConsumerRecords<String, Movie> records = consumer.poll(ofMillis(1000));
 
         for (ConsumerRecord<String, Movie> record : records) {
             output.add(record.value());
