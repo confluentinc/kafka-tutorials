@@ -8,6 +8,8 @@
   <h4 class="subtitle is-4">2. Write a test</h4>
   <p>Then, create a directory for the tests to live in:</p>
   <pre class="snippet"><code class="shell">mkdir -p src/test/java/io/confluent/developer</code></pre>
+  <p>Implement a utility Java class <code>src/test/java/io/confluent/developer/SchemaRegistryContainer.java</code> for the Schema Registry container using the following code:</p>
+  <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/test/java/io/confluent/developer/SchemaRegistryContainer.java %}</code></pre><p></p>
   <p>Implement a testing Java class <code>src/test/java/io/confluent/developer/TransformEventsTest.java</code> using the following code:</p>
   <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/test/java/io/confluent/developer/TransformEventsTest.java %}</code></pre><p></p>
 </div>
