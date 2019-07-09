@@ -43,7 +43,7 @@ public class SerializationRecipeTest {
 
     // this should be unnecessary because we use MockSchemaRegistryClient
     // but still required in order to avoid `io.confluent.common.config.ConfigException: Missing required configuration "schema.registry.url" which has no default value.`
-    map.put("schema.registry.url", "http://SR_CLOUD_DUMMY_URL:8081");
+    map.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
 
     movieAvroSerde.configure(map, false);
     return movieAvroSerde;
