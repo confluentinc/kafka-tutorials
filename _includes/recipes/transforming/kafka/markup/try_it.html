@@ -10,6 +10,8 @@
   <pre class="snippet"><code class="shell">mkdir transforming-events && cd transforming-events</code></pre>
   <p>Then create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
   <pre class="snippet"><code class="groovy">{% include_raw recipes/transforming/kafka/code/build.gradle %}</code></pre>
+  <p>And be sure to run the following command to obtain the Gradle wrapper:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/gradle-wrapper.sh %}</code></pre>
   <p>Next, create a directory for configuration data:</p>
   <pre class="snippet"><code class="shell">mkdir configuration</code></pre>
   <p>Then create a development file at <code>configuration/dev.properties</code>:</p>
@@ -22,7 +24,7 @@
   <pre class="snippet"><code class="shell">mkdir -p src/main/avro</code></pre>
   <p>Then create the following Avro schema file at <code>src/main/avro/input-movie-event.avsc</code> that will define the structure of a movie and its basic fields. In this recipe, were are going to refer to this as raw movie. This the version of the movie before any transformation.</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kafka/code/src/main/avro/input-movie-event.avsc %}</code></pre>
-  <p>Then create another Avro schema file at <code>src/main/avro/parsed-movies.avsc</code> to define the structure of the movies after the transformation. The goal of this recipe is to take the raw movies and transform them into parsed movies by splitting the <code>title</code> field into separate <code>title</code> and <code>release_year</code> fields.</p>
+  <p>Create another Avro schema file at <code>src/main/avro/parsed-movies.avsc</code> to define the structure of the movies after the transformation. The goal of this recipe is to take the raw movies and transform them into parsed movies by splitting the <code>title</code> field into separate <code>title</code> and <code>release_year</code> fields.</p>
   <pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kafka/code/src/main/avro/parsed-movies.avsc %}</code></pre>
   <p>Because these Avro schemas are going to be used by other Java classes, we need to run the build to turn the avsc files into Java code. Run the following:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/build-project.sh %}</code></pre>
@@ -42,13 +44,13 @@
   <h4 class="subtitle is-4">5. Compile and run the Apache Kafka application</h4>
   <p>In your terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
-  <p>Now that you have an uberjar for the Apache Kafka application, you can launch it locally. When you run the following, the prompt won't return, because the application will keep running until you exit it. In Streaming-based applications, records are always coming in and the application must be kept running continuously so future records can also be processed.</p>
+  <p>Now that you have an uberjar for the Apache Kafka application, you can launch it locally. When you run the following, the prompt won't return because the application will keep running until you exit it. In Streaming-based applications, records are always coming in and the application must be kept running continuously so future records can also be processed.</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">6. Produce events to the input topic</h4>
-  <p>Let's put this recipe to a test. In order to do this, you need to produce some raw movies to the input topic. In a new terminal, run:</p>
+  <p>Let's put this recipe to the test. In order to do this, you need to produce some raw movies to the input topic. In a new terminal, run:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/console-producer.sh %}</code></pre>
   <p>When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an raw movie. To send all of the raw movies below, paste the following into the prompt and press enter:</p>
   <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/input-events.json %}</code></pre>
