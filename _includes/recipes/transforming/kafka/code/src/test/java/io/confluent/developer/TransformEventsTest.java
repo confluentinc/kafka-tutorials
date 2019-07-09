@@ -19,26 +19,35 @@ import java.util.*;
 public class TransformEventsTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+
+    private String inputTopic, outputTopic;
     private TransformationEngine transEngine;
+    private KafkaProducer<String, Movie> movieProducer;
+    private KafkaProducer<String, RawMovie> rawMovieProducer;
+    private KafkaConsumer<String, RawMovie> rawMovieConsumer;
+    private KafkaConsumer<String, Movie> outputConsumer;
 
-    @Test
-    public void checkIfYearFieldEndsUpSplitted() throws IOException {
-
-        KafkaProducer<String, Movie> movieProducer;
-        KafkaProducer<String, RawMovie> rawMovieProducer;
-        KafkaConsumer<String, RawMovie> rawMovieConsumer;
-        KafkaConsumer<String, Movie> outputConsumer;
+    @Before
+    public void initialize() throws IOException {
 
         TransformEvents te = new TransformEvents();
         Properties envProps = te.loadEnvProperties(TEST_CONFIG_FILE);
+        inputTopic = envProps.getProperty("input.topic.name");
+        outputTopic = envProps.getProperty("output.topic.name");
         te.createTopics(envProps);
 
         Properties producerProps = te.buildProducerProperties(envProps);
         Properties inputConsumerProps = te.buildConsumerProperties("inputGroup", envProps);
         Properties outputConsumerProps = te.buildConsumerProperties("outputGroup", envProps);
+        rawMovieProducer = te.createRawMovieProducer(producerProps);
+        movieProducer = te.createMovieProducer(producerProps);
+        rawMovieConsumer = te.createRawMovieConsumer(inputConsumerProps);
+        outputConsumer = te.createMovieConsumer(outputConsumerProps);
 
-        String inputTopic = envProps.getProperty("input.topic.name");
-        String outputTopic = envProps.getProperty("output.topic.name");
+    }
+
+    @Test
+    public void checkIfYearFieldEndsUpSplitted() throws IOException {
 
         List<RawMovie> input = new ArrayList<>();
         input.add(RawMovie.newBuilder().setId(294).setTitle("Die Hard::1988").setGenre("action").build());
@@ -52,10 +61,6 @@ public class TransformEventsTest {
         expectedOutput.add(Movie.newBuilder().setTitle("A Walk in the Clouds").setId(782).setReleaseYear(1995).setGenre("romance").build());
         expectedOutput.add(Movie.newBuilder().setTitle("The Big Lebowski").setId(128).setReleaseYear(1998).setGenre("comedy").build());
 
-        rawMovieProducer = te.createRawMovieProducer(producerProps);
-        movieProducer = te.createMovieProducer(producerProps);
-        rawMovieConsumer = te.createRawMovieConsumer(inputConsumerProps);
-
         // Start the transformation engine, which will perform the transformation
         // processing in a background thread using Kafka's consumer API.
         transEngine = new TransformationEngine(inputTopic, outputTopic,
@@ -65,16 +70,12 @@ public class TransformEventsTest {
         List<Movie> actualOutput = null;
 
         try {
-
             transEngineThread.start();
             // Produce the raw movies for the testing process...
             produceRawMovies(inputTopic, input, rawMovieProducer);
-
             // Read the transformed records from the output topic,
             // that has been put there by the transformation engine.
-            outputConsumer = te.createMovieConsumer(outputConsumerProps);
             actualOutput = consumeMovies(outputTopic, outputConsumer);
-
         } finally {
             transEngine.shutdown();
         }
@@ -85,12 +86,10 @@ public class TransformEventsTest {
 
     @After
     public void tearDown() throws IOException {
-
         transEngine.shutdown();
         TransformEvents te = new TransformEvents();
         Properties envProps = te.loadEnvProperties(TEST_CONFIG_FILE);
         te.deleteTopics(envProps);
-
     }
 
     private List<Movie> consumeMovies(String outputTopic,
