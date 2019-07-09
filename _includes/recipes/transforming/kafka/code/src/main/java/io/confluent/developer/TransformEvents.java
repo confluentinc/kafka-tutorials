@@ -28,10 +28,10 @@ public class TransformEvents {
     public Properties loadEnvProperties(String fileName) throws IOException {
 
         Properties envProps = new Properties();
-        FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
-        input.close();
-
+        try (FileInputStream input = new FileInputStream(fileName)) {
+            envProps.load(input);
+        }
+        
         return envProps;
         
     }
@@ -87,7 +87,7 @@ public class TransformEvents {
         Map<String, Object> config = new HashMap<>();
         config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
 
-        try (AdminClient client = AdminClient.create(config)) {
+        try (AdminClient adminClient = AdminClient.create(config)) {
 
             List<NewTopic> topics = new ArrayList<>();
             topics.add(new NewTopic(
@@ -99,7 +99,8 @@ public class TransformEvents {
                     Integer.parseInt(envProps.getProperty("output.topic.partitions")),
                     Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
     
-            client.createTopics(topics);
+            adminClient.createTopics(topics);
+
         }
 
     }
@@ -109,13 +110,14 @@ public class TransformEvents {
         Map<String, Object> config = new HashMap<>();
         config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
 
-        try (AdminClient client = AdminClient.create(config)) {
+        try (AdminClient adminClient = AdminClient.create(config)) {
 
             List<String> topics = new ArrayList<String>();
             topics.add(envProps.getProperty("input.topic.name"));
             topics.add(envProps.getProperty("output.topic.name"));
     
-            client.deleteTopics(topics);
+            adminClient.deleteTopics(topics);
+
         }
 
     }
@@ -128,6 +130,7 @@ public class TransformEvents {
 
         TransformEvents te = new TransformEvents();
         Properties envProps = te.loadEnvProperties(args[0]);
+        te.deleteTopics(envProps);
         te.createTopics(envProps);
         
         String inputTopic = envProps.getProperty("input.topic.name");
