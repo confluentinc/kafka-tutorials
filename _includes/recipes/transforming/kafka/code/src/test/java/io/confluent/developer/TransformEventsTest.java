@@ -18,44 +18,11 @@ import java.util.*;
 
 public class TransformEventsTest {
 
-    private TransformationEngine transEngine;
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
-
-    public List<Movie> consumeMovies(String outputTopic,
-                                        KafkaConsumer<String, Movie> consumer) {
-
-        // Wait 2 seconds until all records are fully persisted,
-        // to avoid a race condition between producers and consumers...
-        try { Thread.sleep(2000); } catch (Exception ex) {}
-        
-        List<Movie> output = new ArrayList<Movie>();
-        consumer.subscribe(Arrays.asList(outputTopic));
-        ConsumerRecords<String, Movie> records = consumer.poll(5000);
-
-        for (ConsumerRecord<String, Movie> record : records) {
-            output.add(record.value());
-        }
-
-        return output;
-
-    }
-
-    public void produceRawMovies(String inputTopic, List<RawMovie> rawMovies,
-                                 KafkaProducer<String, RawMovie> producer) {
-
-        ProducerRecord<String, RawMovie> record = null;
-
-        for (RawMovie movie : rawMovies) {
-
-            record = new ProducerRecord<String, RawMovie>(inputTopic, movie);
-            producer.send(record);
-
-        }
-
-    }
+    private TransformationEngine transEngine;
 
     @Test
-    public void testTransformation() throws IOException {
+    public void checkIfYearFieldEndsUpSplitted() throws IOException {
 
         KafkaProducer<String, Movie> movieProducer;
         KafkaProducer<String, RawMovie> rawMovieProducer;
@@ -123,6 +90,36 @@ public class TransformEventsTest {
         TransformEvents te = new TransformEvents();
         Properties envProps = te.loadEnvProperties(TEST_CONFIG_FILE);
         te.deleteTopics(envProps);
+
+    }
+
+    private List<Movie> consumeMovies(String outputTopic,
+                                        KafkaConsumer<String, Movie> consumer) {
+
+        // Wait 2 seconds until all records are fully persisted,
+        // to avoid a race condition between producers and consumers...
+        try { Thread.sleep(2000); } catch (Exception ex) {}
+        
+        List<Movie> output = new ArrayList<Movie>();
+        consumer.subscribe(Arrays.asList(outputTopic));
+        ConsumerRecords<String, Movie> records = consumer.poll(5000);
+
+        for (ConsumerRecord<String, Movie> record : records) {
+            output.add(record.value());
+        }
+
+        return output;
+
+    }
+
+    private void produceRawMovies(String inputTopic, List<RawMovie> rawMovies,
+                                 KafkaProducer<String, RawMovie> producer) {
+
+        ProducerRecord<String, RawMovie> record = null;
+        for (RawMovie movie : rawMovies) {
+            record = new ProducerRecord<String, RawMovie>(inputTopic, movie);
+            producer.send(record);
+        }
 
     }
 
