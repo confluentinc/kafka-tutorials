@@ -25,11 +25,13 @@ import java.util.concurrent.CountDownLatch;
 
 public class TransformEvents {
 
-    public Properties loadEnvProperties(String fileName) throws IOException {
+    public Properties loadEnvProperties(String fileName) {
 
         Properties envProps = new Properties();
         try (FileInputStream input = new FileInputStream(fileName)) {
             envProps.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         
         return envProps;

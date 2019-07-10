@@ -13,9 +13,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.ClassRule;
+import org.junit.BeforeClass;
 import org.junit.Rule;
+import org.junit.rules.ExternalResource;
 import org.testcontainers.containers.KafkaContainer;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.ArrayList;
@@ -26,14 +29,18 @@ import static java.time.Duration.ofMillis;
 
 public class TransformEventsTest {
 
-    private final static String TEST_CONFIG_FILE = "configuration/test.properties";    
+    private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+    private final static Properties ENVIRONMENT_PROPERTIES = loadEnvironmentProperties();
 
     @ClassRule
-    public static KafkaContainer kafkaContainer = new KafkaContainer("5.2.1");
+    public static KafkaContainer kafkaContainer = new KafkaContainer(
+        ENVIRONMENT_PROPERTIES.getProperty("confluent.version"));
 
     @Rule
     public SchemaRegistryContainer schemaRegistryContainer =
-        new SchemaRegistryContainer("5.2.1").withKafka(kafkaContainer);
+        new SchemaRegistryContainer(ENVIRONMENT_PROPERTIES
+            .getProperty("confluent.version"))
+            .withKafka(kafkaContainer);
 
     private String inputTopic, outputTopic;
     private TransformationEngine transEngine;
@@ -43,36 +50,33 @@ public class TransformEventsTest {
     private KafkaConsumer<String, Movie> outputConsumer;
 
     @Before
-    public void initialize() throws IOException {
+    public void initialize() {
 
-        TransformEvents te = new TransformEvents();
-        Properties envProps = te.loadEnvProperties(TEST_CONFIG_FILE);
-        String bootstrapServers = kafkaContainer.getBootstrapServers();
-        envProps.put("bootstrap.servers", bootstrapServers);
-        String schemaRegistryUrl = "http://" + schemaRegistryContainer.getTarget();
-        envProps.put("schema.registry.url", schemaRegistryUrl);
-        te.createTopics(envProps);
+        TransformEvents transformEvents = new TransformEvents();
+        ENVIRONMENT_PROPERTIES.put("bootstrap.servers", kafkaContainer.getBootstrapServers());
+        ENVIRONMENT_PROPERTIES.put("schema.registry.url", schemaRegistryContainer.getTarget());
+        transformEvents.createTopics(ENVIRONMENT_PROPERTIES);
 
-        inputTopic = envProps.getProperty("input.topic.name");
-        outputTopic = envProps.getProperty("output.topic.name");
-        Properties producerProps = te.buildProducerProperties(envProps);
-        Properties inputConsumerProps = te.buildConsumerProperties("inputGroup", envProps);
-        Properties outputConsumerProps = te.buildConsumerProperties("outputGroup", envProps);
+        inputTopic = ENVIRONMENT_PROPERTIES.getProperty("input.topic.name");
+        outputTopic = ENVIRONMENT_PROPERTIES.getProperty("output.topic.name");
+        Properties producerProps = transformEvents.buildProducerProperties(ENVIRONMENT_PROPERTIES);
+        Properties inputConsumerProps = transformEvents.buildConsumerProperties("inputGroup", ENVIRONMENT_PROPERTIES);
+        Properties outputConsumerProps = transformEvents.buildConsumerProperties("outputGroup", ENVIRONMENT_PROPERTIES);
 
-        rawMovieProducer = te.createRawMovieProducer(producerProps);
-        movieProducer = te.createMovieProducer(producerProps);
-        rawMovieConsumer = te.createRawMovieConsumer(inputConsumerProps);
-        outputConsumer = te.createMovieConsumer(outputConsumerProps);
+        rawMovieProducer = transformEvents.createRawMovieProducer(producerProps);
+        movieProducer = transformEvents.createMovieProducer(producerProps);
+        rawMovieConsumer = transformEvents.createRawMovieConsumer(inputConsumerProps);
+        outputConsumer = transformEvents.createMovieConsumer(outputConsumerProps);
 
     }
 
     @After
-    public void tearDown() throws IOException {
+    public void tearDown() {
         transEngine.shutdown();
     }
 
     @Test
-    public void checkIfYearFieldEndsUpSplitted() throws IOException {
+    public void checkIfYearFieldEndsUpSplitted() {
 
         List<RawMovie> input = new ArrayList<>();
         input.add(RawMovie.newBuilder().setId(294).setTitle("Die Hard::1988").setGenre("action").build());
@@ -134,6 +138,19 @@ public class TransformEventsTest {
             record = new ProducerRecord<String, RawMovie>(inputTopic, movie);
             producer.send(record);
         }
+
+    }
+
+    private static Properties loadEnvironmentProperties() {
+
+        Properties environmentProps = new Properties();
+        try (FileInputStream input = new FileInputStream(TEST_CONFIG_FILE)) {
+            environmentProps.load(input);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return environmentProps;
 
     }
 

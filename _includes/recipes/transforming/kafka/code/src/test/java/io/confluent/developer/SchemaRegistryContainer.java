@@ -4,15 +4,10 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.KafkaContainer;
 import org.testcontainers.containers.Network;
 
-/**
- * This container wraps Confluent Schema Registry To learn more about Schema
- * Registry
- * https://docs.confluent.io/current/schema-registry/schema_registry_tutorial.html
- */
 class SchemaRegistryContainer extends GenericContainer<SchemaRegistryContainer> {
 
-    SchemaRegistryContainer(String version) {
-        super("confluentinc/cp-schema-registry:" + version);
+    SchemaRegistryContainer(String confluentVersion) {
+        super("confluentinc/cp-schema-registry:" + confluentVersion);
         withExposedPorts(8081);
     }
 
@@ -29,7 +24,10 @@ class SchemaRegistryContainer extends GenericContainer<SchemaRegistryContainer> 
     }
 
     String getTarget() {
-        return getContainerIpAddress() + ":" + getMappedPort(8081);
+        StringBuilder sb = new StringBuilder();
+        sb.append("http://").append(getContainerIpAddress());
+        sb.append(":").append(getMappedPort(8081));
+        return sb.toString();
     }
-    
+
 }
