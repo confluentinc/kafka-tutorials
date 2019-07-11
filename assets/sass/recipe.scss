@@ -9,7 +9,7 @@
     padding-bottom: 35px;
 
     .recipe-section-title {
-        font-size: 35px;
+      font-size: 35px;
     }
   }
 
@@ -24,7 +24,7 @@
     }
 
     p {
-        font-weight: 400;
+      font-weight: 400;
     }
   }
 
@@ -83,11 +83,11 @@
   }
 
   .recipe-try-it-step {
-      margin: 0 0 60px 30px;
+    margin: 0 0 60px 32px;
 
-      .subtitle {
-          padding-bottom: 15px;
-      }
+    .subtitle {
+      padding-bottom: 15px;
+    }
   }
 
   .recipe-navigation {
@@ -117,6 +117,18 @@
     h4.subtitle,
     .recipe-try-it-step {
       margin-left: 0;
+    }
+  }
+
+  .recipe-missing {
+    padding: 0;
+
+    .snippet-wrapper {
+      margin: 0;
+
+      .snippet {
+        padding: 20px 0;
+      }
     }
   }
 }

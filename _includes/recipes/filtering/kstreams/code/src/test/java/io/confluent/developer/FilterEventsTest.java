@@ -1,8 +1,6 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.Publication;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
+import org.apache.avro.Schema;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
@@ -14,95 +12,100 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+
+import io.confluent.developer.avro.Publication;
+import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient;
+import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static java.util.Arrays.asList;
 
 public class FilterEventsTest {
 
-    private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+  private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
-    public SpecificAvroSerializer<Publication> makeSerializer(Properties envProps) {
-        SpecificAvroSerializer<Publication> serializer = new SpecificAvroSerializer<>();
+  private SpecificAvroSerde<Publication> makeSerializer(Properties envProps)
+      throws IOException, RestClientException {
 
-        Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
-        serializer.configure(config, false);
+    final MockSchemaRegistryClient client = new MockSchemaRegistryClient();
+    String inputTopic = envProps.getProperty("input.topic.name");
+    String outputTopic = envProps.getProperty("output.topic.name");
 
-        return serializer;
+    final Schema schema = Publication.SCHEMA$;
+    client.register(inputTopic + "-value", schema);
+    client.register(outputTopic + "-value", schema);
+
+    SpecificAvroSerde<Publication> serde = new SpecificAvroSerde<>(client);
+
+    Map<String, String> config = new HashMap<>();
+    config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+    serde.configure(config, false);
+
+    return serde;
+  }
+
+  @Test
+  public void shouldFilterGRRMartinsBooks() throws IOException, RestClientException {
+    FilterEvents fe = new FilterEvents();
+    Properties envProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
+    Properties streamProps = fe.buildStreamsProperties(envProps);
+
+    String inputTopic = envProps.getProperty("input.topic.name");
+    String outputTopic = envProps.getProperty("output.topic.name");
+
+    final SpecificAvroSerde<Publication> publicationSpecificAvroSerde = makeSerializer(envProps);
+
+    Topology topology = fe.buildTopology(envProps, publicationSpecificAvroSerde);
+    TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
+
+    Serializer<String> keySerializer = Serdes.String().serializer();
+    Deserializer<String> keyDeserializer = Serdes.String().deserializer();
+
+    ConsumerRecordFactory<String, Publication>
+        inputFactory =
+        new ConsumerRecordFactory<>(keySerializer, publicationSpecificAvroSerde.serializer());
+
+    // Fixture
+    Publication iceAndFire = new Publication("George R. R. Martin", "A Song of Ice and Fire");
+    Publication silverChair = new Publication("C.S. Lewis", "The Silver Chair");
+    Publication perelandra = new Publication("C.S. Lewis", "Perelandra");
+    Publication fireAndBlood = new Publication("George R. R. Martin", "Fire & Blood");
+    Publication theHobbit = new Publication("J. R. R. Tolkien", "The Hobbit");
+    Publication lotr = new Publication("J. R. R. Tolkien", "The Lord of the Rings");
+    Publication dreamOfSpring = new Publication("George R. R. Martin", "A Dream of Spring");
+    Publication fellowship = new Publication("J. R. R. Tolkien", "The Fellowship of the Ring");
+    Publication iceDragon = new Publication("George R. R. Martin", "The Ice Dragon");
+    // end Fixture
+
+    final List<Publication>
+        input = asList(iceAndFire, silverChair, perelandra, fireAndBlood, theHobbit, lotr, dreamOfSpring, fellowship,
+                       iceDragon);
+
+    final List<Publication> expectedOutput = asList(iceAndFire, fireAndBlood, dreamOfSpring, iceDragon);
+
+    for (Publication publication : input) {
+      testDriver.pipeInput(inputFactory.create(inputTopic, publication.getName(), publication));
     }
 
-    public SpecificAvroDeserializer<Publication> makeDeserializer(Properties envProps) {
-        SpecificAvroDeserializer<Publication> deserializer = new SpecificAvroDeserializer<>();
+    List<Publication> actualOutput = new ArrayList<>();
+    while (true) {
+      ProducerRecord<String, Publication>
+          record =
+          testDriver.readOutput(outputTopic, keyDeserializer, publicationSpecificAvroSerde.deserializer());
 
-        Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
-        deserializer.configure(config, false);
-
-        return deserializer;
+      if (record != null) {
+        actualOutput.add(record.value());
+      } else {
+        break;
+      }
     }
 
-    @Test
-    public void testFilter() throws IOException {
-        FilterEvents fe = new FilterEvents();
-        Properties envProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
-        Properties streamProps = fe.buildStreamsProperties(envProps);
-
-        String inputTopic = envProps.getProperty("input.topic.name");
-        String outputTopic = envProps.getProperty("output.topic.name");
-
-        Topology topology = fe.buildTopology(envProps);
-        TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
-
-        Serializer<String> keySerializer = Serdes.String().serializer();
-        SpecificAvroSerializer<Publication> valueSerializer = makeSerializer(envProps);
-
-        Deserializer<String> keyDeserializer = Serdes.String().deserializer();
-        SpecificAvroDeserializer<Publication> valueDeserializer = makeDeserializer(envProps);
-
-        ConsumerRecordFactory<String, Publication> inputFactory = new ConsumerRecordFactory<>(keySerializer, valueSerializer);
-
-        Publication iceAndFire = Publication.newBuilder().setName("George R. R. Martin").setTitle("A Song of Ice and Fire").build();
-        Publication silverChair = Publication.newBuilder().setName("C.S. Lewis").setTitle("The Silver Chair").build();
-        Publication perelandra = Publication.newBuilder().setName("C.S. Lewis").setTitle("Perelandra").build();
-        Publication fireAndBlood = Publication.newBuilder().setName("George R. R. Martin").setTitle("Fire & Blood").build();
-        Publication theHobbit = Publication.newBuilder().setName("J. R. R. Tolkien").setTitle("The Hobbit").build();
-        Publication lotr = Publication.newBuilder().setName("J. R. R. Tolkien").setTitle("The Lord of the Rings").build();
-        Publication dreamOfSpring = Publication.newBuilder().setName("George R. R. Martin").setTitle("A Dream of Spring").build();
-        Publication fellowship = Publication.newBuilder().setName("J. R. R. Tolkien").setTitle("The Fellowship of the Ring").build();
-        Publication iceDragon = Publication.newBuilder().setName("George R. R. Martin").setTitle("The Ice Dragon").build();
-
-        List<Publication> input = new ArrayList<>();
-        input.add(iceAndFire);
-        input.add(silverChair);
-        input.add(perelandra);
-        input.add(fireAndBlood);
-        input.add(theHobbit);
-        input.add(lotr);
-        input.add(dreamOfSpring);
-        input.add(fellowship);
-        input.add(iceDragon);
-
-        List<Publication> expectedOutput = new ArrayList<>();
-        expectedOutput.add(iceAndFire);
-        expectedOutput.add(fireAndBlood);
-        expectedOutput.add(dreamOfSpring);
-        expectedOutput.add(iceDragon);
-
-        for (Publication publication : input) {
-            testDriver.pipeInput(inputFactory.create(inputTopic, publication.getName(), publication));
-        }
-
-        List<Publication> actualOutput = new ArrayList<>();
-        while (true) {
-            ProducerRecord<String, Publication> record = testDriver.readOutput(outputTopic, keyDeserializer, valueDeserializer);
-
-            if (record != null) {
-                actualOutput.add(record.value());
-            } else {
-                break;
-            }
-        }
-
-        Assert.assertEquals(expectedOutput, actualOutput);
-    }
+    Assert.assertEquals(expectedOutput, actualOutput);
+  }
 
 }
