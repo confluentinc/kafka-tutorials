@@ -71,7 +71,7 @@ body {
   position: relative;
   margin: 5px 0 20px 0;
 
-  pre.snippet {
+  .snippet {
     background: #f9f9fa;
     border-radius: 4px;
 
@@ -170,7 +170,7 @@ body {
     max-width: 325px;
     margin-right: 46px;
     padding: 35px 25px 55px;
-    height: 375px;
+    height: 300px;
 
     &:last-child {
       margin-right: 0;

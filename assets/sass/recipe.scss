@@ -119,4 +119,16 @@
       margin-left: 0;
     }
   }
+
+  .recipe-missing {
+    padding: 0;
+
+    .snippet-wrapper {
+      margin: 0;
+
+      .snippet {
+        padding: 20px 0;
+      }
+    }
+  }
 }

@@ -1,0 +1,21 @@
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">1. Create a test configuration file</h4>
+  <p>First, create a test configuration <code>configuration/test.properties</code> with the following content:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/configuration/test.properties %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">2. Write a test</h4>
+  <p>Then, create a directory for the tests to live in:</p>
+  <pre class="snippet"><code class="shell">mkdir -p src/test/java/io/confluent/developer</code></pre>
+  <p>In this test, we'll use Test Containers to isolate Kafka from our development environment. Although a Test Container already exists for Kafka, we need one for Schema Registry, too. Implement a utility Java class <code>src/test/java/io/confluent/developer/SchemaRegistryContainer.java</code> for the Schema Registry container using the following code:</p>
+  <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/test/java/io/confluent/developer/SchemaRegistryContainer.java %}</code></pre><p></p>
+  <p>And finally, write the test file, <code>src/test/java/io/confluent/developer/TransformEventsTest.java</code>, using the following code:</p>
+  <pre class="snippet"><code class="java">{% include_raw recipes/transforming/kafka/code/src/test/java/io/confluent/developer/TransformEventsTest.java %}</code></pre><p></p>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle is-4">3. Invoke the tests</h4>
+  <p>Now run the test, which is as simple as:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/test/invoke-tests.sh %}</code></pre>
+</div>

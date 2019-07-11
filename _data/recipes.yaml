@@ -6,12 +6,23 @@ transforming:
   status:
     ksql: enabled
     kstreams: enabled
+    kafka: enabled
 
 filtering:
   title: "Filter a stream of events"
   slug: "/recipes/filter-a-stream-of-events"
   problem: "you have events in a Kafka topic, and you want to filter some of them out so that only those you're interested in appear in another topic."
   introduction: "Consider a topic with events that represent book publications. In this recipe, we'll write a program that creates a new topic which only contains the events for a particular author."
+  status:
+    ksql: enabled
+    kstreams: enabled
+    kafka: enabled
+
+transforming:
+  title: "Transforming a stream of events"
+  slug: "/recipes/transform-a-stream-of-events"
+  problem: "you have events in a Kafka topic, and you want to change each event in some way and put the results of these changes in a new topic."
+  introduction: "Consider a topic with events that represent movies. Each event has a single attribute that combines its title and its release year into a string. In this recipe, we'll write a program that creates a new topic with the title and release date turned into their own attributes."
   status:
     ksql: enabled
     kstreams: enabled
@@ -53,3 +64,4 @@ tumbling-windows:
   introduction: "Suppose you have a topic with events that represent ratings of movies. In this recipe, we'll write a program that maintains tumbling windows counting the total number of ratings that each movie has received."
   status:
     ksql: enabled
+    kstreams: enabled

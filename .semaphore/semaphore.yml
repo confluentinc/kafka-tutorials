@@ -1,5 +1,5 @@
 version: v1.0
-name: Confluent Developer pipeline
+name: Kafka Recipes pipeline
 agent:
   machine:
     type: e1-standard-2
@@ -35,6 +35,12 @@ blocks:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
             - make -C _includes/recipes/transforming/kstreams/code recipe
+            
+        - name: Kafka transforming tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/transforming/kafka/code recipe
 
         - name: KSQL filtering tests
           commands:
@@ -81,3 +87,9 @@ blocks:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
             - make -C _includes/recipes/joining/kstreams/code recipe
+
+        - name: KStreams Tumbling Windows
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/tumbling-windows/kstreams/code recipe

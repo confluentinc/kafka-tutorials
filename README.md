@@ -1,6 +1,6 @@
-# Confluent Developer
+# Kafka Recipes
 
-The developer microsite for Confluent.
+The Kafka Recipes microsite.
 
 ## Getting Started
 
