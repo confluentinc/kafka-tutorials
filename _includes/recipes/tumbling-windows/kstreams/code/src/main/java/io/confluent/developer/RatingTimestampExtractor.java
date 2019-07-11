@@ -6,7 +6,6 @@ import org.apache.kafka.streams.processor.TimestampExtractor;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class RatingTimestampExtractor implements TimestampExtractor {
     @Override
