@@ -1,9 +1,4 @@
-title: Confluent Developer
-email: your-email@example.com
-description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+title: Kafka Recipes
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://mdrogalis-64b49dab-1657-4914-a0d0-339eafd2328d.s3-website-us-west-2.amazonaws.com"
 twitter_username: confluentinc
