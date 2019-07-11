@@ -11,7 +11,7 @@ import java.util.Date;
 public class RatingTimestampExtractor implements TimestampExtractor {
     @Override
     public long extract(ConsumerRecord<Object, Object> record, long previousTimestamp) {
-        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:SSS");
+        final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
 
         String eventTime = ((Rating)record.value()).getTimestamp();
 
