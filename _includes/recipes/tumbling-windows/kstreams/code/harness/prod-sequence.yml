@@ -1,0 +1,9 @@
+steps:
+  - name: make the prod props file
+    change_directory: tumbling-windows
+    action: make_file
+    file: configuration/prod.properties
+
+  - name: build the image
+    action: execute
+    file: recipe-steps/prod/build-image.sh
