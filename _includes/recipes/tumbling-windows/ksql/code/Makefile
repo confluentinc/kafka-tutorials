@@ -8,14 +8,11 @@ dev_recipe:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner harness/dev-sequence.yml $(TEMP_DIR)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-transient.log $(DEV_OUTPUTS_DIR)/transient-query/output-0.log
-	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 3- $(STEPS_DIR)/dev/expected-print.log) <(cut -d ',' -f 3- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log)"
 
 test_recipe:
 	rm -r $(TEST_OUTPUTS_DIR) || true
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner harness/test-sequence.yml $(TEMP_DIR)
-	diff --strip-trailing-cr $(STEPS_DIR)/test/expected-results.log $(TEST_OUTPUTS_DIR)/test-results.log
 
 prod_recipe:
 
