@@ -5,16 +5,44 @@
 @import "_vars";
 @import "_mixins";
 @import "_footer";
+@import "_form";
 @import "recipe";
 
 body,
-select {
-  font-family: "Roboto", sans-serif;
+select,
+input,
+button {
+  font-family: "Roboto", "Arial", sans-serif;
 }
 
 .logo {
   height: 33px;
   width: auto;
+}
+
+.cta-button, {
+  display: inline-block;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 500;
+  font-style: normal;
+  padding: 15px 20px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  background-image: none;
+  border: none;
+  cursor: pointer;
+
+  &.primary {
+    background-color: #fd672f;
+    color: #fff;
+  }
+
+  &.secondary {
+    color: $baseColor;
+    background-color: #fff;
+    border: solid 2px $baseColor
+  }
 }
 
 body {
@@ -25,6 +53,7 @@ body {
   nav {
     padding-top: 15px;
     padding-bottom: 15px;
+    background: #fff;
 
     .container {
       display: flex;
@@ -48,18 +77,7 @@ body {
           }
         }
 
-        a {
-          display: inline-block;
-          border-radius: 25px;
-          background-color: #fd672f;
-          color: #fff;
-          font-size: 12px;
-          font-weight: 500;
-          font-style: normal;
-          padding: 15px 20px;
-          text-transform: uppercase;
-          white-space: nowrap;
-
+        .cta-button {
           span {
             display: none;
 
@@ -163,6 +181,28 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .card-cta {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    margin-top: 45px;
+    width: 1067px;
+    font-size: 28px;
+    font-weight: bold;
+    color: $baseColor;
+    align-items: center;
+    min-height: 193px;
+
+    > div {
+      flex: 1;
+
+       &:first-child {
+        flex: 5;
+        line-height: 1.2;
+      }
+    }
+  }
 }
 
 .cards {
