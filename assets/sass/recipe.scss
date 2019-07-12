@@ -68,6 +68,7 @@
     }
 
     .num {
+      min-width: 26px;
       width: 26px;
       height: 26px;
       border-radius: 50%;
@@ -87,6 +88,7 @@
 
     .subtitle {
       padding-bottom: 15px;
+      display: flex;
     }
   }
 
