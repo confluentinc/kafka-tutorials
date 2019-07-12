@@ -8,18 +8,24 @@
 
   .nav-links {
     ul {
-      &:first-child {
-      }
-
       display: inline-block;
-      margin-right: 60px;
+      margin-right: 40px;
       vertical-align: top;
       line-height: 2.43;
       margin-bottom: 40px;
       min-width: 150px;
+
+      &.small {
+        min-width: auto;
+        max-width: 130px;
+      }
+
+      &.large {
+        max-width: 170px;
+      }
     }
 
-    li {
+    > ul > li {
       &:first-child {
         font-weight: 500;
         margin-bottom: 20px;
@@ -28,6 +34,10 @@
 
       a {
         color: $footerColor;
+      }
+
+      ul {
+        padding-left: 10px;
       }
     }
   }
