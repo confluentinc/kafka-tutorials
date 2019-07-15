@@ -98,7 +98,7 @@ At this point, you should feel free to submit a PR! A member of Confluent will t
 
 ## Add a narrative and test for the recipe
 
-This section is generally for those who work at Confluent and will integrating new recipes into the site. We need to do a little more work than just authoring the code. We also need to write the markup to describe the recipe and narrative form, and also write the tests that we described to make sure it all works. This section describes how to do that.
+This section is generally for those who work at Confluent and will be integrating new recipes into the site. We need to do a little more work than just authoring the code. We also need to write the markup to describe the recipe and narrative form, and also write the tests that we described to make sure it all works. This section describes how to do that.
 
 #### 1. Create markup for the recipe
 
@@ -135,4 +135,4 @@ Lastly, modify the `.semaphore/semaphore.yml` file to invoke your Makefile. This
 
 ### Running the tests locally
 
-Some of the tests require Docker containers to be up. In the root directory, `cd` to the `docker` directory and run `docker-compose up` where needed.
+Some of the tests require Docker containers to be up. In the root directory, `cd` to the `docker` directory and run `docker-compose up -d` where needed.
