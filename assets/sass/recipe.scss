@@ -13,6 +13,17 @@
     }
   }
 
+  .btn-edit {
+    width: 50px;
+    position: absolute;
+    top: -59px;
+    right: 0;
+
+    img {
+      width: 50px;
+    }
+  }
+
   .summary {
     @include text;
     color: #fff;
