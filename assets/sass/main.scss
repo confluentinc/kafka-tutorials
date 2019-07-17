@@ -65,7 +65,9 @@ body {
       }
 
       > div:first-child {
-        width: 45%;
+        @media (max-width: 480px) {
+          width: 45%;
+        }
       }
 
       .join {
