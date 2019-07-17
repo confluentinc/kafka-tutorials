@@ -64,6 +64,10 @@ body {
         margin: 0 20px;
       }
 
+      > div:first-child {
+        width: 45%;
+      }
+
       .join {
         p {
           display: inline-block;
@@ -81,7 +85,7 @@ body {
           span {
             display: none;
 
-            @media (max-width: 640px) {
+            @media (min-width: 370px) and (max-width: 640px) {
               display: inline-block;
             }
           }
