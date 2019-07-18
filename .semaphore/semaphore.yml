@@ -95,3 +95,9 @@ blocks:
         - name: KSQL tumbling windows tests
           commands:
             - make -C _includes/recipes/tumbling-windows/ksql/code recipe
+
+        - name: KStreams Serialization tests
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/recipes/serialization/kstreams/code recipe
