@@ -1,0 +1,75 @@
+<div class="recipe-try-it-step">
+  <h4 class="subtitle">
+    <div>1. Initialize the project</div>
+  </h4>
+
+  <p>To get started, make a new directory anywhere you'd like for this project:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/init.sh %}</code></pre>
+
+  <p>Then make the following directories to set up its structure:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/make-dirs.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle">
+    <div>2. Get Confluent Platform</div>
+  </h4>
+
+  <p>Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:</p>
+  <pre class="snippet"><code class="dockerfile">{% include_raw recipes/tumbling-windows/ksql/code/docker-compose.yml %}</code></pre>
+
+  <p>And launch it by running:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/docker-compose-up.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle">
+    <div>3. Start the CLI and produce events to the input stream</div>
+  </h4>
+
+  <p>To begin developing interactively, open up the KSQL CLI:<p/>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/start-cli.sh %}</code></pre>
+
+  <p>The first thing we'll need to start modeling this scenario is a stream that represents ratings of movies. One important attribute of these events is their timestamp since we'll be modeling the number of ratings that each movie receives over time.</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/create-inputs.sql %}</code></pre>
+
+  <p>Produce events that represent ratings about each movie over time. Note how the timestamps are varying across different hours of the day.</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/populate-stream.sql %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle">
+    <div>4. Create a continuous query</div>
+  </h4>
+
+  <p>Now that you have stream with some events in it, let's start to leverage them. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/set-properties.sql %}</code></pre>
+
+  <p>Let's figure out how many ratings were given to each movie in 6 hour tumbling intervals. To do that, we issue the following transient query to aggregate the ratings grouped by the movie's name. This tells KSQL that you only want to sum up the ratings on a per movie basis. It also captures the window start and end times. These functions describe the boundaries that represent each 6 hour interval. The following will block and continue to return results until its limit is reached or you tell it to stop.</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/transient-window.sql %}</code></pre>
+
+  <p>This should yield the following output:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/outputs/transient-window/output-0.log %}</code></pre>
+
+  <p>That's a fine snapshot, but we want to make this rolling count of ratings continuous. The following creates a new table that is continously populated by its query:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/create-table.sql %}</code></pre>
+
+  <p>As a bonus, we can prove to ourselves that the window boundaries are in fact 6 hour intervals. Run the following transient query, which uses the <code>TIMESTAMPTOSTRING</code> function to convert the UNIX timestamps into something that we can read:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/transient-query.sql %}</code></pre>
+
+  <p>The output should look similar to:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
+
+  <p>Finally, let's see what's available on the underlying Kafka topic for the table. We can print that out easily.</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/print-topic.sql %}</code></pre>
+
+  <p> Notice that the key for each message contains some strange characters that aren't quite printable. KSQL has combined the grouping key (movie title) with its window boundaries using a format that's not quite printable in this format. It should look something like this:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/ksql/code/recipe-steps/dev/outputs/print-topic/output-0.log %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>5. Write your statements to a file</div></h4>
+
+  <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at <code>src/statements.sql</code> with the following content:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/tumbling-windows/ksql/code/src/statements.sql %}</code></pre>
+</div>
