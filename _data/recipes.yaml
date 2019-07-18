@@ -64,3 +64,11 @@ tumbling-windows:
   status:
     ksql: enabled
     kstreams: enabled
+
+serialization:
+  title: "Changing data serialization format"
+  slug: "/recipes/changing-serialization-format"
+  problem: "you have JSON encoded events in a Kafka topic, and you want to change serialization format of the objects to AVRO using schema file."
+  introduction: "Suppose you have a topic with events that represent movie data in JSON format. In this recipe, we'll write a program that will read data in JSON format in topic and outputs it to another topic in AVRO format."
+  status:
+    kstreams: enabled

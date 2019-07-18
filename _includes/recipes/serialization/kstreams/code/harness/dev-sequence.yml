@@ -1,0 +1,71 @@
+steps:
+  - name: initialize
+    action: execute
+    file: recipe-steps/dev/init.sh
+
+  - name: make the build file
+    change_directory: kstreams-serialization
+    action: make_file
+    file: build.gradle
+
+  - name: make the configuration directory
+    action: execute
+    file: recipe-steps/dev/make-configuration-dir.sh
+
+  - name: make the dev props file
+    action: make_file
+    file: configuration/dev.properties
+
+  - name: make a directory for Avro files
+    action: execute
+    file: recipe-steps/dev/make-avro-dir.sh
+
+  - name: make rating schema
+    action: make_file
+    file: src/main/avro/movie.avsc
+    
+  - name: make gradle properties
+    action: make_file
+    file: gradle.properties
+
+  - name: install the Gradle wrapper
+    action: execute
+    file: recipe-steps/dev/gradle-wrapper.sh
+
+  - name: build the project
+    action: execute
+    file: recipe-steps/dev/build-project.sh
+
+  - name: make the source directory
+    action: execute
+    file: recipe-steps/dev/make-src-dir.sh
+
+  - name: make the main Java file
+    action: make_file
+    file: src/main/java/io/confluent/developer/serialization/SerializationRecipe.java
+
+  - name: make the timestamp extractor
+    action: make_file
+    file: src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java
+
+  - name: make an uberjar
+    action: execute
+    file: recipe-steps/dev/build-uberjar.sh
+
+  - name: run the jar
+    action: execute_async
+    file: recipe-steps/dev/run-dev-app.sh
+
+  - name: run the ratings producer
+    action: execute
+    file: recipe-steps/dev/console-producer-movies.sh
+    stdin: recipe-steps/dev/movies.json
+
+  - name: run the consumer
+    action: execute_async
+    file: recipe-steps/dev/console-consumer.sh
+    stdout: recipe-steps/dev/outputs/avro-movies-actual.txt
+
+  - name: wait for the counts to process
+    action: sleep
+    ms: 5000

@@ -19,3 +19,4 @@ code.iml
 bin/
 s3_website.yml
 
+*-actual.txt
