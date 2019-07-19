@@ -1,113 +1,84 @@
 {
   "inputs": [
     {
-      "topic": "ratings",
-      "key": "Die Hard",
+      "topic": "clicks",
+      "key": "51.56.119.117",
       "value": {
-        "title": "Die Hard",
-        "release_year": 1998,
-        "rating": 8.2,
-        "timestamp": "2019-07-09 01:00:00"
+        "IP": "51.56.119.117",
+        "URL": "/etiam/justo/etiam/pretium/iaculis.xml",
+        "TIMESTAMP": "2019-07-18T10:00:00Z"
       }
     },
     {
-      "topic": "ratings",
-      "key": "Die Hard",
+      "topic": "clicks",
+      "key": "51.56.119.117",
       "value": {
-        "title": "Die Hard",
-        "release_year": 1998,
-        "rating": 4.5,
-        "timestamp": "2019-07-09 05:00:00"
+        "IP": "51.56.119.117",
+        "URL": "/nullam/orci/pede/venenatis.json",
+        "TIMESTAMP": "2019-07-18T10:01:00Z"
       }
     },
     {
-      "topic": "ratings",
-      "key": "Die Hard",
+      "topic": "clicks",
+      "key": "53.170.33.192",
       "value": {
-        "title": "Die Hard",
-        "release_year": 1998,
-        "rating": 5.1,
-        "timestamp": "2019-07-09 07:00:00"
+        "IP": "53.170.33.192",
+        "URL": "/mauris/morbi/non.jpg",
+        "TIMESTAMP": "2019-07-18T10:01:31Z"
       }
     },
     {
-      "topic": "ratings",
-      "key": "Tree of Life",
+      "topic": "clicks",
+      "key": "51.56.119.117",
       "value": {
-        "title": "Tree of Life",
-        "release_year": 2011,
-        "rating": 4.9,
-        "timestamp": "2019-07-09 09:00:00"
+        "IP": "51.56.119.117",
+        "URL": "/convallis/nunc/proin.jsp",
+        "TIMESTAMP": "2019-07-18T10:01:36Z"
       }
     },
     {
-      "topic": "ratings",
-      "key": "Tree of Life",
+      "topic": "clicks",
+      "key": "53.170.33.192",
       "value": {
-        "title": "Tree of Life",
-        "release_year": 2011,
-        "rating": 5.6,
-        "timestamp": "2019-07-09 08:00:00"
+        "IP": "53.170.33.192",
+        "URL": "/vestibulum/vestibulum/ante/ipsum/primis/in.json",
+        "TIMESTAMP": "2019-07-18T10:02:00Z"
       }
     },
     {
-      "topic": "ratings",
-      "key": "A Walk in the Clouds",
+      "topic": "clicks",
+      "key": "51.56.119.117",
       "value": {
-        "title": "A Walk in the Clouds",
-        "release_year": 1995,
-        "rating": 3.6,
-        "timestamp": "2019-07-09 12:00:00"
+        "IP": "51.56.119.117",
+        "URL": "/vehicula/consequat/morbi/a/ipsum/integer/a.jpg",
+        "TIMESTAMP": "2019-07-18T11:03:21Z"
       }
     },
     {
-      "topic": "ratings",
-      "key": "A Walk in the Clouds",
+      "topic": "clicks",
+      "key": "51.56.119.117",
       "value": {
-        "title": "A Walk in the Clouds",
-        "release_year": 1995,
-        "rating": 6.0,
-        "timestamp": "2019-07-09 15:00:00"
+        "IP": "51.56.119.117",
+        "URL": "/pede/venenatis.jsp",
+        "TIMESTAMP": "2019-07-18T11:03:50Z"
       }
     },
     {
-      "topic": "ratings",
-      "key": "A Walk in the Clouds",
+      "topic": "clicks",
+      "key": "53.170.33.192",
       "value": {
-        "title": "A Walk in the Clouds",
-        "release_year": 1995,
-        "rating": 4.6,
-        "timestamp": "2019-07-09 22:00:00"
+        "IP": "53.170.33.192",
+        "URL": "/nec/euismod/scelerisque/quam.xml",
+        "TIMESTAMP": "2019-07-18T11:40:00Z"
       }
     },
     {
-      "topic": "ratings",
-      "key": "The Big Lebowski",
+      "topic": "clicks",
+      "key": "53.170.33.192",
       "value": {
-        "title": "The Big Lebowski",
-        "release_year": 1998,
-        "rating": 9.9,
-        "timestamp": "2019-07-09 05:00:00"
-      }
-    },
-    {
-      "topic": "ratings",
-      "key": "The Big Lebowski",
-      "value": {
-        "title": "The Big Lebowski",
-        "release_year": 1998,
-        "rating": 4.2,
-        "timestamp": "2019-07-09 02:00:00"
-      }
-    },
-    {
-      "topic": "ratings",
-      "key": "Super Mario Bros.",
-      "value": {
-        "title": "Super Mario Bros.",
-        "release_year": 1993,
-        "rating": 3.5,
-        "timestamp": "2019-07-09 18:00:00"
+        "IP": "53.170.33.192",
+        "URL": "/ligula/nec/sem/duis.jsp",
+        "TIMESTAMP": "2019-07-18T11:40:09Z"
       }
     }
   ]

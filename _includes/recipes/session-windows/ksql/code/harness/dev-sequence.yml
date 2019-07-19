@@ -4,7 +4,7 @@ steps:
     file: recipe-steps/dev/init.sh
 
   - name: make the dir structure
-    change_directory: tumbling-windows
+    change_directory: session-windows
     action: execute
     file: recipe-steps/dev/make-dirs.sh
 
@@ -32,16 +32,22 @@ steps:
         file: recipe-steps/dev/populate-stream.sql
 
       - name: set the dev props
-        file: recipe-steps/dev/set-properties.sql
+        file: recipe-steps/dev/set-properties_offset.sql
+
+      - name: check rowtime
+        file: recipe-steps/dev/check-rowtime.sql
+
+      - name: set the dev props for caching
+        file: recipe-steps/dev/set-properties_cache.sql
 
       - name: run windowed query transiently
         file: recipe-steps/dev/transient-window.sql
 
+      - name: run windowed query transiently with no buffering
+        file: recipe-steps/dev/transient-window-no-buffer.sql
+
       - name: run it continuously
         file: recipe-steps/dev/create-table.sql
-
-      - name: check the table transiently
-        file: recipe-steps/dev/transient-query.sql
 
       - name: print the topic
         file: recipe-steps/dev/print-topic.sql

@@ -55,3 +55,11 @@ tumbling-windows:
   status:
     ksql: enabled
     kstreams: enabled
+
+session-windows:
+  title: "Create session windows"
+  slug: "/recipes/create-session-windows"
+  problem: "you have time-series events in a Kafka topic, and you want to group them into variable-size, non-overlapping time intervals based on a configurable inactivity period."
+  introduction: "Given a topic of click events on a website there are various ways that we can process it. As well as simply counting the number clicks in a regular time frame (hopping or tumbling windows) we can also perform sessionization on the data. Here the length of the time window is based on the concept of a session, which is defined based on a period of inactivity. A given user might visit a website multiple times a day, but in distinct visits. We can analyse how many clicks as well as the duration of each of these sessions."
+  status:
+    ksql: enabled

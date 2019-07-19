@@ -1,6 +1,6 @@
 steps:
   - name: bring up the containers
-    change_directory: tumbling-windows
+    change_directory: session-windows
     action: execute_async
     file: recipe-steps/dev/docker-compose-up.sh
 

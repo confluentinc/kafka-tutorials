@@ -1,1 +1,1 @@
-mkdir tumbling-windows && cd tumbling-windows
+mkdir session-windows && cd session-windows

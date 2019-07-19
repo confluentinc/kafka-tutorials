@@ -1,8 +1,9 @@
-SELECT title,
-       COUNT(*) AS rating_count,
-       WINDOWSTART() AS window_start,
-       WINDOWEND() AS window_end
-FROM ratings
-WINDOW TUMBLING (SIZE 6 HOURS)
-GROUP BY title
-LIMIT 11;
+SELECT IP, 
+       TIMESTAMPTOSTRING(windowstart(),'yyyy-MM-dd HH:mm:ss') AS SESSION_START_TS, 
+       TIMESTAMPTOSTRING(windowend(),'yyyy-MM-dd HH:mm:ss')   AS SESSION_END_TS, 
+       COUNT(*)                                               AS CLICK_COUNT, 
+       WINDOWEND() - WINDOWSTART()                            AS SESSION_LENGTH_MS 
+  FROM CLICKS 
+       WINDOW SESSION (5 MINUTES) 
+GROUP BY IP
+LIMIT 4;
