@@ -97,3 +97,7 @@ blocks:
         - name: KSQL tumbling windows tests
           commands:
             - make -C _includes/recipes/tumbling-windows/ksql/code recipe
+
+        - name: KSQL session windows tests
+          commands:
+            - make -C _includes/recipes/session-windows/ksql/code recipe
