@@ -2,18 +2,18 @@
   <h4 class="subtitle"><div>1. Create a test configuration file</div></h4>
 
   <p>First, create a test file at <code>configuration/test.properties</code>:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/configuration/test.properties %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/configuration/test.properties %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle"><div>2. Test the MovieRatingJoiner class</div></h4>
 
   <p>Create a directory for the tests to live in:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/test/make-test-dir.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/test/make-test-dir.sh %}</code></pre>
 
   <p>Create the following file at <code>src/test/java/io/confluent/developer/MovieRatingJoiner.java</code>. This tests the helper class that merges the value of the movie and the rating as each rating is joined to a movie. The class has a depenency on the <code>ValueJoiner</code> interface, but otherwise does not depend on anything external to our domain; it just needs <code>Movie</code>, <code>Rating</code>, and <code>RatedMovie</code> domain objects. As such, it's about as testable as code gets:</p>
 
-  <pre class="snippet"><code class="java">{% include_raw recipes/joining/kstreams/code/src/test/java/io/confluent/developer/MovieRatingJoinerTest.java %}</code></pre>
+  <pre class="snippet"><code class="java">{% include_raw recipes/joining/stream-table/kstreams/code/src/test/java/io/confluent/developer/MovieRatingJoinerTest.java %}</code></pre>
 </div>
 
 
@@ -23,12 +23,12 @@
   <p>Now create the following file at <code>src/test/java/io/confluent/developer/JoinStreamToTableTest.java</code>. Testing a Kafka streams application requies a bit of test harness code, but happily the <code>org.apache.kafka.streams.TopologyTestDriver</code> class makes this much more pleasant that it would otherwise be.</p>
   <p>There is only one method in <code>JoinStreamToTableTest</code> annotated with <code>@Test</code>, and that is <code>testJoin()</code>. This method actually runs our Streams topology using the <code>TopologyTestDriver</code> and some mocked data that is set up inside the test method.</p>
 
-  <pre class="snippet"><code class="java">{% include_raw recipes/joining/kstreams/code/src/test/java/io/confluent/developer/JoinStreamToTableTest.java %}</code></pre>
+  <pre class="snippet"><code class="java">{% include_raw recipes/joining/stream-table/kstreams/code/src/test/java/io/confluent/developer/JoinStreamToTableTest.java %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle"><div>4. Invoke the tests</div></h4>
 
   <p>Now run the test, which is as simple as:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/kstreams/code/recipe-steps/test/invoke-tests.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/test/invoke-tests.sh %}</code></pre>
 </div>
