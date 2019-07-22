@@ -1,13 +1,16 @@
 CREATE TABLE movies (id INT, title VARCHAR, release_year INT)
-    WITH (kafka_topic='movies', key='id', partitions=1, value_format='avro');
+             WITH (KAFKA_TOPIC='movies', 
+                   PARTITIONS=1, 
+                   VALUE_FORMAT='Avro');
 
-CREATE STREAM ratings (id INT, rating DOUBLE)
-    WITH (kafka_topic='ratings', partitions=1, value_format='avro');
+CREATE TABLE lead_actor (title VARCHAR, actor_name VARCHAR) 
+             WITH (KAFKA_TOPIC='lead_actors', 
+                   PARTITIONS=1, 
+                   VALUE_FORMAT='AVRO');
 
-CREATE STREAM rated_movies
-    WITH (kafka_topic='rated_movies',
-          partitions=1,
-          value_format='avro') AS
-    SELECT ratings.id AS id, title, release_year, rating
-    FROM ratings
-    LEFT JOIN movies ON ratings.id = movies.id;
+CREATE TABLE MOVIES_ENRICHED AS 
+  SELECT M.ID, M.TITLE, M.RELEASE_YEAR, L.ACTOR_NAME 
+    FROM MOVIES M 
+         INNER JOIN LEAD_ACTOR L 
+         ON M.ROWKEY=L.ROWKEY;
+         

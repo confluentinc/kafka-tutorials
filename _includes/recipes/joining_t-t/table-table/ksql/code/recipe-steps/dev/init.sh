@@ -1,1 +1,1 @@
-mkdir join-stream-and-table && cd join-stream-and-table
+mkdir join-table-and-table && cd join-table-and-table

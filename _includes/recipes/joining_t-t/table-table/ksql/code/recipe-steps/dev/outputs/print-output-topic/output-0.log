@@ -1,10 +1,4 @@
 Format:AVRO
-6/28/19 3:20:34 AM UTC, 294, {"RATINGS_ID": 294, "TITLE": "Die Hard", "RATING": 8.2}
-6/28/19 3:20:34 AM UTC, 294, {"RATINGS_ID": 294, "TITLE": "Die Hard", "RATING": 8.5}
-6/28/19 3:20:34 AM UTC, 354, {"RATINGS_ID": 354, "TITLE": "Tree of Life", "RATING": 9.9}
-6/28/19 3:20:34 AM UTC, 354, {"RATINGS_ID": 354, "TITLE": "Tree of Life", "RATING": 9.7}
-6/28/19 3:20:34 AM UTC, 782, {"RATINGS_ID": 782, "TITLE": "A Walk in the Clouds", "RATING": 7.8}
-6/28/19 3:20:34 AM UTC, 782, {"RATINGS_ID": 782, "TITLE": "A Walk in the Clouds", "RATING": 7.7}
-6/28/19 3:20:34 AM UTC, 128, {"RATINGS_ID": 128, "TITLE": "The Big Lebowski", "RATING": 8.7}
-6/28/19 3:20:34 AM UTC, 128, {"RATINGS_ID": 128, "TITLE": "The Big Lebowski", "RATING": 8.4}
-6/28/19 3:20:34 AM UTC, 780, {"RATINGS_ID": 780, "TITLE": "Super Mario Bros.", "RATING": 2.1}
+7/22/19 12:06:48 PM UTC, Die Hard, {"ID": 294, "M_TITLE": "Die Hard", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Bruce Willis"}
+7/22/19 12:06:48 PM UTC, The Big Lebowski, {"ID": 128, "M_TITLE": "The Big Lebowski", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Jeff Bridges"}
+7/22/19 12:06:48 PM UTC, The Godfather, {"ID": 128, "M_TITLE": "The Godfather", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Al Pacino"}

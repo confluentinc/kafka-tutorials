@@ -1,7 +1,5 @@
-CREATE STREAM rated_movies
-    WITH (kafka_topic='rated_movies',
-          partitions=1,
-          value_format='avro') AS
-    SELECT ratings.id, title, rating
-    FROM ratings
-    LEFT JOIN movies ON ratings.id = movies.id;
+CREATE TABLE MOVIES_ENRICHED AS 
+  SELECT M.ID, M.TITLE, M.RELEASE_YEAR, L.ACTOR_NAME 
+    FROM MOVIES M 
+         INNER JOIN LEAD_ACTOR L 
+         ON M.ROWKEY=L.ROWKEY;
