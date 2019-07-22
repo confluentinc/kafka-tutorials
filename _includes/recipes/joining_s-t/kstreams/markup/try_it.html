@@ -9,19 +9,19 @@
   <h4 class="subtitle"><div>2. Initialize the project</div></h4>
 
   <p>To get started, make a new directory anywhere you'd like for this project:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/init.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/init.sh %}</code></pre>
 
   <p>Create the following Gradle build file, named <code>build.gradle</code> for the project:</p>
-  <pre class="snippet"><code class="groovy">{% include_raw recipes/joining/stream-table/kstreams/code/build.gradle %}</code></pre>
+  <pre class="snippet"><code class="groovy">{% include_raw recipes/joining_s-t/kstreams/code/build.gradle %}</code></pre>
 
   <p>And be sure to run the following command to obtain the Gradle wrapper:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/gradle-wrapper.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/gradle-wrapper.sh %}</code></pre>
 
   <p>Next, create a directory for configuration data:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/make-configuration-dir.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/make-configuration-dir.sh %}</code></pre>
 
   <p>Then create a development file at <code>configuration/dev.properties</code>:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/configuration/dev.properties %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/configuration/dev.properties %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
@@ -30,26 +30,26 @@
   <p>This recipe uses three streams: one called <code>movies</code> that holds movie reference data, one called <code>ratings</code> that holds a stream of inbound movie ratings, and one called <code>rated-movies</code> that holds the result of the join between ratings and movies. Let's create schemas for all three.</p>
 
   <p>Create a directory for the schemas that represent the events in the stream:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
 
   <p>Then create the following Avro schema file at <code>src/main/avro/movie.avsc</code> for the movies lookup table:</p>
-  <pre class="snippet"><code class="avro">{% include_raw recipes/joining/stream-table/kstreams/code/src/main/avro/movie.avsc %}</code></pre>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/joining_s-t/kstreams/code/src/main/avro/movie.avsc %}</code></pre>
 
   <p>Next, create another Avro schema file at <code>src/main/avro/rating.avsc</code> for the stream of ratings:</p>
-  <pre class="snippet"><code class="avro">{% include_raw recipes/joining/stream-table/kstreams/code/src/main/avro/rating.avsc %}</code></pre>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/joining_s-t/kstreams/code/src/main/avro/rating.avsc %}</code></pre>
 
   <p>And finally, create another Avro schema file at <code>src/main/avro/rated-movie.avsc</code> for the result of the join:</p>
-  <pre class="snippet"><code class="avro">{% include_raw recipes/joining/stream-table/kstreams/code/src/main/avro/rated-movie.avsc %}</code></pre>
+  <pre class="snippet"><code class="avro">{% include_raw recipes/joining_s-t/kstreams/code/src/main/avro/rated-movie.avsc %}</code></pre>
 
   <p>Because we will use this Avro schema in our Java code, we'll need to compile it. The Gradle Avro plugin is a part of the build, so it will see your new Avro files, generate Java code for them, and compile those and all other Java sources. Run this command to get it all done:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/build-project.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/build-project.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle"><div>4. Create the Kafka Streams topology</div></h4>
 
   <p>Create a directory for the Java files in this project:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
 
   <p>Then create the following file at <code>src/main/java/io/confluent/developer/JoinStreamToTable.java</code>. Let's take a close look at the <code>buildTopology()</code> method, which uses the Kafka Streams DSL.</p>
 
@@ -61,7 +61,7 @@
 
   <p>With the ratings stream and the movie table in hand, all that remains is to join them using the <code>join()</code> method. It's a wonderfully simply one-liner, but we have concealed a bit of complexity in the form of the <code>MovieRatingJoiner</code> class. More on that in a moment.</p>
 
-  <pre class="snippet"><code class="java">{% include_raw recipes/joining/stream-table/kstreams/code/src/main/java/io/confluent/developer/JoinStreamToTable.java %}</code></pre>
+  <pre class="snippet"><code class="java">{% include_raw recipes/joining_s-t/kstreams/code/src/main/java/io/confluent/developer/JoinStreamToTable.java %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
@@ -73,7 +73,7 @@
 
   <p>You can do this in a Java Lambda in the call to the <code>join()</code> method where you're building the stream topology, but the joining logic may become complex, and breaking it off into its own trivially testable class is a good move.</p>
 
-  <pre class="snippet"><code class="java">{% include_raw recipes/joining/stream-table/kstreams/code/src/main/java/io/confluent/developer/MovieRatingJoiner.java %}</code></pre>
+  <pre class="snippet"><code class="java">{% include_raw recipes/joining_s-t/kstreams/code/src/main/java/io/confluent/developer/MovieRatingJoiner.java %}</code></pre>
 </div>
 
 
@@ -81,22 +81,22 @@
   <h4 class="subtitle"><div>6. Compile and run the Kafka Streams program</div></h4>
 
   <p>In your terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
 
   <p>Now that you have an uberjar for the Kafka Streams application, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it. There is always another message to process, so streaming applications don't exit until you force them.</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/run-dev-app.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/run-dev-app.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle"><div>7. Load in some movie reference data</div></h4>
 
   <p>In a new terminal, run:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/console-producer-movies.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/console-producer-movies.sh %}</code></pre>
 
   <p>When the console producer starts, it will log some messages and hang, waiting for your input. Copy and paste one line at a time and press enter to send it. Note that these lines contain hard tabs between the key and the value, so retyping them without the tab will not work.</p>
 
   <p>Each line represents a movie we will be able to rate. To send all of the events below, paste the following into the prompt and press enter:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/movies.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/movies.json %}</code></pre>
 </div>
 
 
@@ -105,7 +105,7 @@
 
   <p>Before you start producing ratings, it's a good idea to set up the consumer on the output topic. This way, as soon as you produce ratings (and they're joined to movies), you'll see the results right away. Run this to get ready to consume the rated movies:</p>
 
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/console-consumer.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/console-consumer.sh %}</code></pre>
 
   <p>You won't see any results until the next step.</p>
 
@@ -116,13 +116,13 @@
   <h4 class="subtitle"><div>9. Produce some ratings to the input topic</div></h4>
 
   <p>Run the following in a new terminal window. This process is the most fun if you can see this and the previous terminal (which is consuming the rated movies) at the same time. If your terminal program lets you do horizontal split panes, try it that way:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/console-producer-ratings.sh %}</code></pre>
 
   <p>When the producer starts up, copy and paste these lines into the terminal. Try doing them one at a time, observing the results in the consumer terminal:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/ratings.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/ratings.json %}</code></pre>
 
   <p>Speaking of that consumer terminal, these are the results you should see there if you paste in all the movies and ratings as shown in this recipe:</p>
-  <pre class="snippet"><code class="json">{% include_raw recipes/joining/stream-table/kstreams/code/recipe-steps/dev/outputs/rated-movies.json %}</code></pre>
+  <pre class="snippet"><code class="json">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/outputs/rated-movies.json %}</code></pre>
 
   <p>You have now joined a stream to a table! Well done.</p>
 
