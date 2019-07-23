@@ -4,7 +4,7 @@
       <div class="columns">
         <div class="column is-full">
           <h2 class="title recipe-section-title" id="try-it">Try it</h2>
-          {% for step in site.data.harnesses.filtering.ksql.dev.steps %}
+          {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
 
           <div class="recipe-try-it-step">
             <h4 class="subtitle">
@@ -43,7 +43,7 @@
       <div class="columns">
         <div class="column is-full">
           <h2 class="title recipe-section-title" id="test-it">Test it</h2>
-          {% for step in site.data.harnesses.filtering.ksql.test.steps %}
+          {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
 
           <div class="recipe-try-it-step">
             <h4 class="subtitle">
@@ -72,7 +72,7 @@
       <div class="columns">
         <div class="column is-full">
           <h2 class="title recipe-section-title" id="take-it-to-prod">Take it to production</h2>
-          {% for step in site.data.harnesses.filtering.ksql.prod.steps %}
+          {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
 
           <div class="recipe-try-it-step">
             <h4 class="subtitle">
