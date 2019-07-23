@@ -36,14 +36,14 @@
   <pre class="snippet"><code class="avro">{% include_raw recipes/tumbling-windows/kstreams/code/src/main/avro/rating.avsc %}</code></pre>
 
   <p>Because we will use this Avro schema in our Java code, we'll need to compile it. The Gradle Avro plugin is a part of the build, so it will see your new Avro files, generate Java code for them, and compile those and all other Java sources. Run this command to get it all done:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/build-project.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/build-project.sh %}</code></pre>
 </div>
 
 <div class="recipe-try-it-step">
   <h4 class="subtitle is-4">4. Create the Kafka Streams topology</h4>
 
   <p>Create a directory for the Java files in this project:</p>
-  <pre class="snippet"><code class="shell">{% include_raw recipes/joining_s-t/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/dev/make-src-dir.sh %}</code></pre>
 
   <p>Then create the following file at <code>src/main/java/io/confluent/developer/TumblingWindow.java</code>.</p>
     
