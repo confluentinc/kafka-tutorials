@@ -46,23 +46,19 @@ dev:
               render:
                 file: recipes/filtering/ksql/markup/new_markup/dev/populate-stream.adoc
 
-            - name: set the dev props
-              file: recipe-steps/dev/set-properties.sql
+            - file: recipe-steps/dev/set-properties.sql
               render:
                 file: recipes/filtering/ksql/markup/new_markup/dev/set-properties.adoc
 
-            - name: run the transient query
-              file: recipe-steps/dev/transient-query.sql
+            - file: recipe-steps/dev/transient-query.sql
               render:
                 file: recipes/filtering/ksql/markup/new_markup/dev/transient-query.adoc
 
-            - name: run it continuously
-              file: recipe-steps/dev/continuous-select.sql
+            - file: recipe-steps/dev/continuous-select.sql
               render:
                 file: recipes/filtering/ksql/markup/new_markup/dev/continuous-select.adoc
 
-            - name: print the topic
-              file: recipe-steps/dev/print-output-topic.sql
+            - file: recipe-steps/dev/print-output-topic.sql
               render:
                 file: recipes/filtering/ksql/markup/new_markup/dev/print-topic.adoc
           stdout:
@@ -84,8 +80,7 @@ test:
   steps:
     - title: Create the test data
       content:
-        - change_directory: filter-events
-          action: execute_async
+        - action: execute_async
           file: recipe-steps/dev/docker-compose-up.sh
           render:
             skip: true
