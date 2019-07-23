@@ -1,0 +1,10 @@
+To get started, make a new directory anywhere you'd like for this project:
+
+= hello
+== world
+
+*Foo*
+
+_Bar_
+
+`Hello`

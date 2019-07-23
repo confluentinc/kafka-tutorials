@@ -1,0 +1,25 @@
+<div>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-full">
+          <h2 class="title recipe-section-title" id="try-it">Try it</h2>
+          {% for step in site.data.harnesses.filtering.ksql.dev.steps %}
+
+          <div class="recipe-try-it-step">
+            <h4 class="subtitle">
+              <div>{{ forloop.index }}. {{ step.title }}</div>
+            </h4>
+
+            {% for section in step.content %}
+            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+            {{ prose | asciidocify }}
+            {% endfor %}
+
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

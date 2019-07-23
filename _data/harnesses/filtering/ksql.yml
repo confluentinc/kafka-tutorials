@@ -1,0 +1,14 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: recipe-steps/dev/init.sh
+          render:
+            file: recipes/filtering/ksql/markup/new_markup/init.adoc
+
+        - change_directory: filter-events
+          action: execute
+          file: recipe-steps/dev/make-dirs.sh
+          render:
+            file: recipes/filtering/ksql/markup/new_markup/make-dirs.adoc
