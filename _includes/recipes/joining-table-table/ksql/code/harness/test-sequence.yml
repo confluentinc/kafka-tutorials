@@ -1,6 +1,6 @@
 steps:
   - name: bring up the containers
-    change_directory: join-stream-and-table
+    change_directory: join-table-and-table
     action: execute_async
     file: recipe-steps/dev/docker-compose-up.sh
 
