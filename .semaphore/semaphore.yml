@@ -82,6 +82,10 @@ blocks:
           commands:
             - make -C _includes/recipes/joining-stream-table/ksql/code recipe
 
+        - name: KSQL join table to table tests
+          commands:
+            - make -C _includes/recipes/joining-table-table/ksql/code recipe
+
         - name: KStreams join stream to table tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d

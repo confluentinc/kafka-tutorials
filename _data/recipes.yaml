@@ -47,7 +47,7 @@ joining-stream-table:
     ksql: enabled
     kstreams: enabled
 
-joining_t-t:
+joining-table-table:
   title: "Join a table and a table together"
   slug: "/recipes/join-a-table-to-a-table"
   problem: "you have two Kafka topics representing current state for keys—in other words, reference data. You want to join between two of these tables on a common key."

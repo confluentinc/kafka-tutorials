@@ -4,7 +4,7 @@ steps:
     file: recipe-steps/dev/init.sh
 
   - name: make the dir structure
-    change_directory: join-stream-and-table
+    change_directory: join-table-and-table
     action: execute
     file: recipe-steps/dev/make-dirs.sh
 
@@ -28,14 +28,14 @@ steps:
       - name: create the table for the movies
         file: recipe-steps/dev/create-movies-table.sql
 
-      - name: create the stream of ratings
-        file: recipe-steps/dev/create-ratings-stream.sql
+      - name: create the table for the lead actors
+        file: recipe-steps/dev/create-movies-actor-table.sql
 
       - name: populate the movies
         file: recipe-steps/dev/populate-movies.sql
 
-      - name: populate the ratings
-        file: recipe-steps/dev/populate-ratings.sql
+      - name: populate the lead actors
+        file: recipe-steps/dev/populate-lead-actors.sql
 
       - name: set the dev props
         file: recipe-steps/dev/set-properties.sql

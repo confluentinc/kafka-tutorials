@@ -1,6 +1,0 @@
-{
-  "outputs": [
-    {"topic":"MOVIES_ENRICHED","key":"Die Hard","value":{"ID":{"int":294},"M_TITLE":{"string":"Die Hard"},"RELEASE_YEAR":{"int":1998},"ACTOR_NAME":{"string":"Bruce Willis"}}},
-    {"topic":"MOVIES_ENRICHED","key":"The Big Lebowski","value":{"ID":{"int":128},"M_TITLE":{"string":"The Big Lebowski"},"RELEASE_YEAR":{"int":1998},"ACTOR_NAME":{"string":"Jeff Bridges"}}},
-    {"topic":"MOVIES_ENRICHED","key":"The Godfather","value":{"ID":{"int":128},"M_TITLE":{"string":"The Godfather"},"RELEASE_YEAR":{"int":1998},"ACTOR_NAME":{"string":"Al Pacino"}}}  ]
-}
