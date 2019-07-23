@@ -1,31 +1,11 @@
-= hello
 :includedir: _includes
 :source-highlighter: coderay
 :page-liquid:
 
 To get started, make a new directory anywhere you'd like for this project:
 
-
-{{ file }}
-
-
-
-
-
-==== this is a h4
-
 [role="snippet"]
 [source,shell]
 ----
 include::{includedir}/recipes/filtering/ksql/code/recipe-steps/dev/init.sh[] 
 ----
-<1> cleate required dirs
-
-
-[role="snippet"]
-[source,sql]
-----
-include::{includedir}/recipes/filtering/ksql/code/src/statements.sql[]
-----
-<1> topic GRR Martin
-<2> name GRR Martin

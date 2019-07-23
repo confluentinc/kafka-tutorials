@@ -1,0 +1,11 @@
+:includedir: _includes
+:source-highlighter: coderay
+:page-liquid:
+
+Next, create the following `docker-compose.yml` file to obtain Confluent Platform:
+
+[role="snippet"]
+[source,shell]
+----
+include::{includedir}/recipes/filtering/ksql/code/docker-compose.yml[]
+----

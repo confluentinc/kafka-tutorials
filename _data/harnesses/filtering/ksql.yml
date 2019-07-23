@@ -12,3 +12,15 @@ dev:
           file: recipe-steps/dev/make-dirs.sh
           render:
             file: recipes/filtering/ksql/markup/new_markup/make-dirs.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: recipes/filtering/ksql/markup/new_markup/make-docker-compose.adoc
+
+        - action: execute_async
+          file: recipe-steps/dev/docker-compose-up.sh
+          render:
+            file: recipes/filtering/ksql/markup/new_markup/start-compose.adoc
