@@ -1,3 +1,6 @@
 Then make the following directories to set up its structure:
 
-<pre class="snippet"><code class="shell">ksafasf</code></pre>
+[source,snippet]
+----
+ksafasf
+----

@@ -5,8 +5,8 @@ CREATE STREAM all_publications (author VARCHAR, title VARCHAR)
           value_format = 'avro');
 
 CREATE STREAM george_martin
-    WITH (kafka_topic = 'george_martin_books',
+    WITH (kafka_topic = 'george_martin_books', --<1>
           partitions = 1) AS
     SELECT author, title
     FROM all_publications
-    WHERE author = 'George R. R. Martin';
+    WHERE author = 'George R. R. Martin';       --<2>

@@ -13,7 +13,7 @@
 
             {% for section in step.content %}
             {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
-            {{ prose | asciidocify }}
+            {{ prose | asciidocify file = section.file }}
             {% endfor %}
 
           </div>
