@@ -54,6 +54,7 @@ joining-table-table:
   introduction: "Suppose you have a set of data about movies and want to add further details such as who the lead actor was. In this recipe, we'll write a program that joins each movie to another set of data holding information about who the lead actor was for movies."
   status:
     ksql: enabled
+    kstreams: enabled
 
 tumbling-windows:
   title: "Create tumbling windows"
