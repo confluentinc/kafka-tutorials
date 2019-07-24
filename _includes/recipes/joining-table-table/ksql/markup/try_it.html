@@ -1,0 +1,68 @@
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>1. Initialize the project</div></h4>
+
+  <p>To get started, make a new directory anywhere you'd like for this project:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/init.sh %}</code></pre>
+
+  <p>Then make the following directories to set up its structure:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/make-dirs.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>2. Get Confluent Platform</div></h4>
+
+  <p>Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:</p>
+  <pre class="snippet"><code class="dockerfile">{% include_raw recipes/joining-table-table/ksql/code/docker-compose.yml %}</code></pre>
+
+  <p>And launch it by running:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/docker-compose-up.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>3. Start the CLI and produce events to the input stream</div></h4>
+
+  <p>To begin developing interactively, open up the KSQL CLI:<p/>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/start-cli.sh %}</code></pre>
+
+  <p>First, you'll need to create a Kafka topic and table to represent the movie reference data. The following creates both in one shot:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/create-movies-table.sql %}</code></pre>
+
+  <p>Likewise, you'll need a Kafka topic and a second table to represent the additional movie data about leading actor:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/create-movies-actor-table.sql %}</code></pre>
+
+  <p>Then insert the following movies:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/populate-movies.sql %}</code></pre>
+
+  <p>In a similar manner, populate the lead actor information:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/populate-lead-actors.sql %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>4. Create a continuous query</div></h4>
+
+  <p>Now that you events in both tables, let's join them up to obtain an enriched table of movie information. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/set-properties.sql %}</code></pre>
+
+  <p>Let's enrich the movie data with more information about who the lead actor in the movie is. The following query does a left join between the movie table and the lead actor table. This will block and continue to return results until it's limit is reached or you tell it to stop.</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/transient-join.sql %}</code></pre>
+
+  <p>This should yield the following output:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/outputs/transient-join/output-0.log %}</code></pre>
+
+  <p>Since the output looks right, the next step is to make the query continuous. Issue the following to create a new table that is continously populated by its query:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/continuous-join.sql %}</code></pre>
+
+  <p>To check that it's working, print out the contents of the output stream's underlying topic:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
+
+  <p>This should yield the following output:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>5. Write your statements to a file</div></h4>
+
+  <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at <code>src/statements.sql</code> with the following content:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/src/statements.sql %}</code></pre>
+</div>
+
