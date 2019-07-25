@@ -49,7 +49,7 @@
   <p>This should yield the following output:</p>
   <pre class="snippet"><code class="shell">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/outputs/transient-join/output-0.log %}</code></pre>
 
-  <p>Since the output looks right, the next step is to make the query continuous. Issue the following to create a new table that is continously populated by its query:</p>
+  <p>Since the output looks right, the next step is to make the query continuous. Issue the following to create a new table that is continuously populated by its query:</p>
   <pre class="snippet"><code class="sql">{% include_raw recipes/joining-table-table/ksql/code/recipe-steps/dev/continuous-join.sql %}</code></pre>
 
   <p>To check that it's working, print out the contents of the output stream's underlying topic:</p>
