@@ -1,0 +1,13 @@
+dev:
+  steps:
+    - title: Get Confluent Platform
+      content:
+
+    - title: Initialize the project
+      content:
+
+test:
+  steps:
+
+prod:
+  steps:

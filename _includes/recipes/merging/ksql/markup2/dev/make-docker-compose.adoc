@@ -1,0 +1,5 @@
+Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:
+
++++++
+<pre class="snippet"><code class="dockerfile">{% include_raw recipes/merging/ksql/code/docker-compose.yml %}</code></pre>
++++++

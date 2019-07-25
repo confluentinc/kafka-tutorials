@@ -1,0 +1,89 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: recipe-steps/dev/init.sh
+          render:
+            file: recipes/tumbling-windows/ksql/markup2/dev/init.adoc
+
+        - change_directory: tumbling-windows
+          action: execute
+          file: recipe-steps/dev/make-dirs.sh
+          render:
+            file: recipes/tumbling-windows/ksql/markup2/dev/make-dirs.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: recipes/tumbling-windows/ksql/markup2/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: recipe-steps/dev/docker-compose-up.sh
+          render:
+            file: recipes/tumbling-windows/ksql/markup2/dev/start-compose.adoc
+
+        - action: execute
+          file: recipe-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Write the program interactively using the CLI
+      content:
+        - action: docker_ksql_cli_session
+          container: ksql-cli
+          docker_bootup_file: recipe-steps/dev/start-cli.sh
+          render:
+            file: recipes/tumbling-windows/ksql/markup2/dev/start-cli.adoc
+          stdin:
+            - file: recipe-steps/dev/create-inputs.sql
+              render:
+                file: recipes/tumbling-windows/ksql/markup2/dev/create-inputs.adoc
+
+            - file: recipe-steps/dev/populate-stream.sql
+              render:
+                file: recipes/tumbling-windows/ksql/markup2/dev/populate-stream.adoc
+
+            - file: recipe-steps/dev/set-properties.sql
+              render:
+                file: recipes/tumbling-windows/ksql/markup2/dev/set-properties.adoc
+
+            - file: recipe-steps/dev/transient-window.sql
+              render:
+                file: recipes/tumbling-windows/ksql/markup2/dev/transient-window.adoc
+
+            - file: recipe-steps/dev/create-table.sql
+              render:
+                file: recipes/tumbling-windows/ksql/markup2/dev/create-table.adoc
+
+            - file: recipe-steps/dev/transient-query.sql
+              render:
+                file: recipes/tumbling-windows/ksql/markup2/dev/transient-query.adoc
+
+            - file: recipe-steps/dev/print-topic.sql
+              render:
+                file: recipes/tumbling-windows/ksql/markup2/dev/print-topic.adoc
+          stdout:
+            directory: recipe-steps/dev/outputs
+
+    - title: Write your statements to a file
+      content:
+        - action: make_file
+          file: src/statements.sql
+          render:
+            file: recipes/tumbling-windows/ksql/markup2/dev/make-src-file.adoc
+
+test:
+  steps:
+    - title: Create the test data
+      content:
+
+    - title: Invoke the tests
+      content:
+
+prod:
+  steps:
+    - title: Send the statements to the REST API
+      content:
