@@ -1,0 +1,69 @@
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>1. Initialize the project</div></h4>
+
+  <p>To get started, make a new directory anywhere you'd like for this project:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/init.sh %}</code></pre>
+
+  <p>Then make the following directories to set up its structure:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/make-dirs.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>2. Get Confluent Platform</div></h4>
+
+  <p>Next, create the following <code>docker-compose.yml</code> file to obtain Confluent Platform:</p>
+  <pre class="snippet"><code class="dockerfile">{% include_raw recipes/rekeying/ksql/code/docker-compose.yml %}</code></pre>
+
+  <p>And launch it by running:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/docker-compose-up.sh %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>3. Start the CLI and produce events to the input stream</div></h4>
+
+  <p>To begin developing interactively, open up the KSQL CLI:<p/>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/start-cli.sh %}</code></pre>
+
+  <p>First, you'll need to create a Kafka topic and stream to represent the movie ratings data. The following creates both in one shot:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/create-ratings-stream.sql %}</code></pre>
+
+  <p>Then insert the ratings data:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/populate-ratings.sql %}</code></pre>
+
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>4. Create a continuous query</div></h4>
+
+  <p>Now that you have a stream, let's examine the key of the messages in it. First we tell KSQL to query data from the beginning of the topic: </p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/set-properties.sql %}</code></pre>
+
+  <p>Now we can examine the existing key of the messages, using the <code>ROWKEY</code> system field which KSQL provides.</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/key-query.sql %}</code></pre>
+
+  <p>This should yield the following output:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/outputs/key-query/output-0.log %}</code></pre>
+  <p>Note that for each message, the key is <code>null</code>. Since by default Kafka will assign messages to a partition based on the message's key, this means that the messages in the <code>ratings</code> topic are assigned to partitions on a 'round-robin' basis. In practice this means that ratings data for the same movie could be spread across multiple partitions.</p>
+
+  <p>Using KSQL's <code>PARTITION BY</CODE> we can apply a key to the messages and write it to a new stream. Here we'll use the movie identifier, <code>ID</code>. Issue the following to create a new stream that is continuously populated by its query:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/continuous-rekey.sql %}</code></pre>
+
+  <p>To check that it's working, use <CODE>ROWKEY</CODE> as before to check that the key matches the <code>ID</code> field: 
+  <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/query-rekeyed-stream.sql %}</code></pre>
+  <p>This should yield the following output:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/outputs/query-rekeyed-stream/output-0.log %}</code></pre>
+
+  <p>We can also print out the contents of the output stream's underlying topic, noting that the second field shown is the key and matches the value of the <CODE>ID</CODE> field in the value:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
+
+  <p>This should yield the following output:</p>
+  <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
+</div>
+
+<div class="recipe-try-it-step">
+  <h4 class="subtitle"><div>5. Write your statements to a file</div></h4>
+
+  <p>Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at <code>src/statements.sql</code> with the following content:</p>
+  <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/src/statements.sql %}</code></pre>
+</div>
+
