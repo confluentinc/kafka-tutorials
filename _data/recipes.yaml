@@ -38,11 +38,20 @@ merging:
     kstreams: enabled
     kafka: enabled
 
-joining:
+joining-stream-table:
   title: "Join a stream and a table together"
   slug: "/recipes/join-a-stream-to-a-table"
   problem: "you have events in a Kafka topic and a table of reference data. You want to join each event in the stream to a piece of data in the table based on a common key."
   introduction: "Suppose you have a set of movies that have been released and a stream of ratings from movie-goers about how entertaining they are. In this recipe, we'll write a program that joins each rating with content about the movie."
+  status:
+    ksql: enabled
+    kstreams: enabled
+
+joining-table-table:
+  title: "Join a table and a table together"
+  slug: "/recipes/join-a-table-to-a-table"
+  problem: "you have two Kafka topics representing current state for keys — in other words, reference data. You want to join between two of these tables on a common key."
+  introduction: "Suppose you have a set of data about movies and want to add further details such as who the lead actor was. In this recipe, we'll write a program that joins each movie to another set of data holding information about who the lead actor was for movies."
   status:
     ksql: enabled
     kstreams: enabled
