@@ -1,0 +1,5 @@
+Similarly, create a file at <code>test/output.json</code> with the expected outputs. Notice that because KSQL joins its grouping key with the window boundaries, we need to use a bit of extra expression to describe what to expect. We leverage the <code>window</code> key to describe the start and end boundaries that the key represents.
+
++++++
+<pre class="snippet"><code class="json">{% include_raw recipes/tumbling-windows/ksql/code/test/output.json %}</code></pre>
++++++

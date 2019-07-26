@@ -83,11 +83,33 @@ test:
   steps:
     - title: Create the test data
       content:
+        - action: make_file
+          file: test/input.json
+          render:
+            file: recipes/joining-table-table/ksql/markup2/test/make-test-input.adoc
+
+        - action: make_file
+          file: test/output.json
+          render:
+            file: recipes/joining-table-table/ksql/markup2/test/make-test-output.adoc
 
     - title: Invoke the tests
       content:
+        - action: execute
+          file: recipe-steps/test/run-tests.sh
+          stdout: recipe-steps/test/outputs/test-results.log
+          render:
+            file: recipes/joining-table-table/ksql/markup2/test/run-tests.adoc
 
 prod:
   steps:
     - title: Send the statements to the REST API
       content:
+        - action: skip
+          render:
+            file: recipes/joining-table-table/ksql/markup2/prod/submit-to-api.adoc
+
+        - action: execute
+          file: recipe-steps/dev/clean-up.sh
+          render:
+            skip: true
