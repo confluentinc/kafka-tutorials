@@ -6,6 +6,21 @@ dev:
     - title: Initialize the project
       content:
 
+    - title: Create a schema for the events
+      content:
+
+    - title: Create the Kafka Streams topology
+      content:
+
+    - title: Compile and run the Kafka Streams program
+      content:
+
+    - title: Produce events to the input topic
+      content:
+
+    - title: Consume filtered events from the output topic
+      content:
+
 test:
   steps:
 

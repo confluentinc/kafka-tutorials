@@ -6,6 +6,27 @@ dev:
     - title: Initialize the project
       content:
 
+    - title: Get Confluent Platform
+      content:
+
+    - title: Initialize the project
+      content:
+
+    - title: Create a schema for the events
+      content:
+
+    - title: Create the Kafka Streams topology
+      content:
+
+    - title: Compile and run the Kafka Streams program
+      content:
+
+    - title: Produce events to the input topic
+      content:
+
+    - title: Consume the event subsets from the output topics
+      content:
+
 test:
   steps:
 

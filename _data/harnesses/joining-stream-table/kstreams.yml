@@ -6,6 +6,27 @@ dev:
     - title: Initialize the project
       content:
 
+    - title: Create a schema for the events
+      content:
+
+    - title: Create the Kafka Streams topology
+      content:
+
+    - title: Implement a ValueJoiner class
+      content:
+
+    - title: Compile and run the Kafka Streams program
+      content:
+
+    - title: Load in some movie reference data
+      content:
+
+    - title: Get ready to observe the rated movies in the output topic
+      content:
+
+    - title: Produce some ratings to the input topic
+      content:
+
 test:
   steps:
 

@@ -6,6 +6,27 @@ dev:
     - title: Initialize the project
       content:
 
+    - title: Create a schema for the events
+      content:
+
+    - title: Create the Kafka Streams topology
+      content:
+
+    - title: Implement a TimestampExtractor class
+      content:
+
+    - title: Some special configuration
+      content:
+
+    - title: Compile and run the Kafka Streams program
+      content:
+
+    - title: Get ready to observe the counted ratings in the output topic
+      content:
+
+    - title: Produce some ratings to the input topic
+      content:
+
 test:
   steps:
 
