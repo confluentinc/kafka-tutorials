@@ -77,6 +77,8 @@
           {% endif %}
         </div>
       </div>
+
+      {% if site.data.harnesses[page.static_data][page.stack].dev %}
       <div class="columns">
         <div class="column is-full">
           <ul id="toc" class="recipe-navigation">
@@ -101,6 +103,7 @@
           </ul>
         </div>
       </div>
+      {% endif %}
     </div>
   </section>
 
