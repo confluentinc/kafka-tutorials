@@ -8,6 +8,7 @@ recipe:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	rm -r $(TEST_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
+	mkdir $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/joining-table-table/ksql.yml $(TEMP_DIR)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-transient.log $(DEV_OUTPUTS_DIR)/transient-join/output-0.log
 	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 3- $(STEPS_DIR)/dev/expected-print.log) <(cut -d ',' -f 3- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log)"
