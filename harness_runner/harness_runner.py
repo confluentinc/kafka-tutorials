@@ -119,14 +119,14 @@ def run_steps(harness, temp_dir, sequence):
         "proc_state": {}
     }
 
-    try:
-        for s in sequence:
+    for s in sequence:
+        try:
             for step in harness[s]["steps"]:
                 for section in step["content"]:
                     context = run_command(context, section)
-    finally:
-        for name, proc in context["procs"].items():
-            kill_async_process(proc)
+        finally:
+            for name, proc in context["procs"].items():
+                kill_async_process(proc)
 
 def execute(file_name, temp_dir, sequence="dev, test, prod"):
     harness = load_file(file_name)
