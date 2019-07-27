@@ -1,5 +1,0 @@
-Create the following Gradle build file, named <code>build.gradle</code> for the project:
-
-+++++
-<pre class="snippet"><code class="groovy">{% include_raw recipes/filtering/kafka/code/build.gradle %}</code></pre>
-+++++
