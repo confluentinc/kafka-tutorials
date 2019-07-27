@@ -2,33 +2,178 @@ dev:
   steps:
     - title: Get Confluent Platform
       content:
+        - action: skip
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/get-cp.adoc
 
     - title: Initialize the project
       content:
+        - change_directory: join-stream
+          action: execute
+          file: recipe-steps/dev/init.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/init.adoc
+
+        - action: make_file
+          file: build.gradle
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-build-file.adoc
+
+        - action: execute
+          file: recipe-steps/dev/gradle-wrapper.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-gradle-wrapper.adoc
+
+        - action: execute
+          file: recipe-steps/dev/make-configuration-dir.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-config-dir.adoc
+
+        - action: make_file
+          file: configuration/dev.properties
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-dev-file.adoc
 
     - title: Create a schema for the events
       content:
+        - action: execute
+          file: recipe-steps/dev/make-avro-dir.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-avro-dir.adoc
+
+        - action: make_file
+          file: src/main/avro/movie.avsc
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-movie-schema.adoc
+
+        - action: make_file
+          file: src/main/avro/rating.avsc
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-rating-schema.adoc
+
+        - action: make_file
+          file: src/main/avro/rated-movie.avsc
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-rated-schema.adoc
+
+        - action: execute
+          file: recipe-steps/dev/build-project.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/build-project.adoc
 
     - title: Create the Kafka Streams topology
       content:
+        - action: execute
+          file: recipe-steps/dev/make-src-dir.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-src-dir.adoc
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/JoinStreamToTable.java
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-topology.adoc
 
     - title: Implement a ValueJoiner class
       content:
+        - action: make_file
+          file: src/main/java/io/confluent/developer/MovieRatingJoiner.java
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/make-joiner.adoc
 
     - title: Compile and run the Kafka Streams program
       content:
+        - action: execute
+          file: recipe-steps/dev/build-uberjar.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/build-uberjar.adoc
+
+        - action: execute_async
+          file: recipe-steps/dev/run-dev-app.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/run-dev-app.adoc
 
     - title: Load in some movie reference data
       content:
-
+        - action: execute
+          file: recipe-steps/dev/console-producer-movies.sh
+          stdin: recipe-steps/dev/movies.json
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/run-movies-producer.adoc
+        
     - title: Get ready to observe the rated movies in the output topic
       content:
+        - action: execute_async
+          file: recipe-steps/dev/console-consumer.sh
+          stdout: recipe-steps/dev/outputs/rated-movies.json
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/run-consumer.adoc
 
     - title: Produce some ratings to the input topic
       content:
+        - action: execute
+          file: recipe-steps/dev/console-producer-ratings.sh
+          stdin: recipe-steps/dev/ratings.json
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/dev/run-ratings-producer.adoc
+
+        - action: sleep
+          ms: 5000
+          render:
+            skip: true
 
 test:
   steps:
+    - title: Create a test configuration file
+      content:
+        - action: make_file
+          file: configuration/test.properties
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/test/make-test-file.adoc
+
+    - title: Test the MovieRatingJoiner class
+      content:
+        - action: execute
+          file: recipe-steps/test/make-test-dir.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/test/make-test-dir.adoc
+
+        - action: make_file
+          file: src/test/java/io/confluent/developer/MovieRatingJoiner.java
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/test/make-join-test.adoc
+
+    - title: Test the streams topology
+      content:
+        - action: make_file
+          file: src/test/java/io/confluent/developer/JoinStreamToTableTest.java
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/test/make-topology-test.adoc
+
+    - title: Invoke the tests
+      content:
+        - action: execute
+          file: recipe-steps/test/invoke-tests.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/test/invoke-tests.adoc
 
 prod:
   steps:
+    - title: Create a production configuration file
+      content:
+        - action: make_file
+          file: configuration/prod.properties
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/prod/make-prod-file.adoc
+
+    - title: Build a Docker image
+      content:
+        - action: execute
+          file: recipe-steps/prod/build-image.sh
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/prod/build-image.adoc
+
+    - title: Launch the container
+      content:
+        - action: skip
+          render:
+            file: recipes/joining-stream-table/kstreams/markup2/prod/launch-container.adoc

@@ -1,0 +1,5 @@
+Then create the following file at <code>src/main/java/io/confluent/developer/MergeStreams.java</code>. Notice the <code>buildTopology</code> method, which uses the Kafka Streams DSL. A <code>stream</code> is opened up for each input topic. The input streams are then combined using the <code>merge</code> function, which creates a new stream that represents all of the events of its inputs. Note that you can chain <code>merge</code> to combine as many streams as needed. The merged stream is then connected to the <code>to</code> method, which the name of a Kafka topic to send the events to.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw recipes/merging/kstreams/code/src/main/java/io/confluent/developer/MergeStreams.java %}</code></pre>
++++++

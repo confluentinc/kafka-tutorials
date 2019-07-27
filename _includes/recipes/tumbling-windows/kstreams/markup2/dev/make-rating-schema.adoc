@@ -1,0 +1,5 @@
+Next, create an Avro schema file at <code>src/main/avro/rating.avsc</code> for the stream of ratings:
+
++++++
+<pre class="snippet"><code class="avro">{% include_raw recipes/tumbling-windows/kstreams/code/src/main/avro/rating.avsc %}</code></pre>
++++++

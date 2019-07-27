@@ -1,0 +1,5 @@
+Create the following file at <code>src/test/java/io/confluent/developer/RatingTimestampExtractorTest.java</code>. This tests the helper class that extracts event-time timestamps from incoming messages. The class has a depenency on the <code>TimestampExtractor</code> interface, but otherwise does not depend on anything external to our domain; it just needs a <code>Rating</code> object, and returns a timestamp. As such, it's very testable code:
+
++++++
+<pre class="snippet"><code class="java">{% include_raw recipes/tumbling-windows/kstreams/code/src/test/java/io/confluent/developer/RatingTimestampExtractorTest.java %}</code></pre>
++++++

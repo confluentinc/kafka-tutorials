@@ -1,0 +1,5 @@
+Then create a development file at <code>configuration/dev.properties</code>:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kstreams/code/configuration/dev.properties %}</code></pre>
++++++

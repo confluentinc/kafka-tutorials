@@ -1,0 +1,5 @@
+First, create a new configuration file at <code>configuration/prod.properties</code> with the following content. Be sure to fill in the addresses of your production hosts and change any other parameters that make sense for your setup.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/splitting/kstreams/code/configuration/prod.properties %}</code></pre>
++++++

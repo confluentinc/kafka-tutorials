@@ -2,27 +2,151 @@ dev:
   steps:
     - title: Get Confluent Platform
       content:
+        - action: skip
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/get-cp.adoc
 
     - title: Initialize the project
       content:
+        - change_directory: transform-stream
+          action: execute
+          file: recipe-steps/dev/init.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/init.adoc
+
+        - action: make_file
+          file: build.gradle
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-build-file.adoc
+
+        - action: execute
+          file: recipe-steps/dev/gradle-wrapper.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-gradle-wrapper.adoc
+
+        - action: execute
+          file: recipe-steps/dev/make-configuration-dir.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-config-dir.adoc
+
+        - action: make_file
+          file: configuration/dev.properties
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-dev-file.adoc
 
     - title: Create a schema for the events
       content:
+        - action: execute
+          file: recipe-steps/dev/make-avro-dir.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-avro-dir.adoc
+
+        - action: make_file
+          file: src/main/avro/input_movie_event.avsc
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-input-schema.adoc
+
+        - action: make_file
+          file: src/main/avro/parsed_movies.avsc
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-output-schema.adoc
+
+        - action: execute
+          file: recipe-steps/dev/build-project.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/build-project.adoc
 
     - title: Create the Kafka Streams topology
       content:
+        - action: execute
+          file: recipe-steps/dev/make-src-dir.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-src-dir.adoc
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/TransformStream.java
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/make-topology.adoc
 
     - title: Compile and run the Kafka Streams program
       content:
+        - action: execute
+          file: recipe-steps/dev/build-uberjar.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/build-uberjar.adoc
+
+        - action: execute_async
+          file: recipe-steps/dev/run-dev-app.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/run-dev-app.adoc
 
     - title: Produce events to the input topic
       content:
+        - action: execute
+          file: recipe-steps/dev/console-producer.sh
+          stdin: recipe-steps/dev/input-events.json
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/run-producer.adoc
 
     - title: Observe the transformed movies in the output topic
       content:
+        - action: execute_async
+          file: recipe-steps/dev/console-consumer.sh
+          stdout: recipe-steps/dev/outputs/actual-movies.json
+          render:
+            file: recipes/transforming/kstreams/markup2/dev/run-consumer.adoc
+
+        - action: sleep
+          ms: 5000
+          render:
+            skip: true
 
 test:
   steps:
+    - title: Create a test configuration file
+      content:
+        - action: make_file
+          file: configuration/test.properties
+          render:
+            file: recipes/transforming/kstreams/markup2/test/make-test-file.adoc
+
+    - title: Write a test
+      content:
+        - action: execute
+          file: recipe-steps/test/make-test-dir.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/test/make-test-dir.adoc
+
+        - action: make_file
+          file: src/test/java/io/confluent/developer/TransformStreamTest.java
+          render:
+            file: recipes/transforming/kstreams/markup2/test/make-test.adoc
+
+    - title: Invoke the tests
+      content:
+        - action: execute
+          file: recipe-steps/test/invoke-tests.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/test/invoke-tests.adoc
 
 prod:
   steps:
+    - title: Create a production configuration file
+      content:
+        - action: make_file
+          file: configuration/prod.properties
+          render:
+            file: recipes/transforming/kstreams/markup2/prod/make-prod-file.adoc
+
+    - title: Build a Docker image
+      content:
+        - action: execute
+          file: recipe-steps/prod/build-image.sh
+          render:
+            file: recipes/transforming/kstreams/markup2/prod/build-image.adoc
+
+    - title: Launch the container
+      content:
+        - action: skip
+          render:
+            file: recipes/transforming/kstreams/markup2/prod/launch-container.adoc

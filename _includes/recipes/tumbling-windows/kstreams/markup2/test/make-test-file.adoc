@@ -1,0 +1,5 @@
+First, create a test file at <code>configuration/test.properties</code>:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/configuration/test.properties %}</code></pre>
++++++
