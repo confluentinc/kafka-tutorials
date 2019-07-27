@@ -1,0 +1,5 @@
+Create a directory for the schemas that represent the events in the topic:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kafka/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
++++++

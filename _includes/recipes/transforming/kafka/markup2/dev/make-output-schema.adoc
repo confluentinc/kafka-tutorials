@@ -1,0 +1,5 @@
+Create another Avro schema file at <code>src/main/avro/parsed-movies.avsc</code> to define the structure of the movies after the transformation. The goal of this recipe is to take the raw movies and transform them into parsed movies by splitting the <code>title</code> field into separate <code>title</code> and <code>release_year</code> fields.
+
++++++
+<pre class="snippet"><code class="avro">{% include_raw recipes/transforming/kafka/code/src/main/avro/parsed-movies.avsc %}</code></pre>
++++++

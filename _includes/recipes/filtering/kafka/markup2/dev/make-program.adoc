@@ -1,0 +1,5 @@
+Then create the following file at <code>src/main/java/io/confluent/developer/FilterEvents.java</code>. The <code>main</code> method spins up a consumer and producer, which funnel the events of interest from one topic to the other. In this case, we're only interested in books authored by George R. R. Martin.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw recipes/filtering/kafka/code/src/main/java/io/confluent/developer/FilterEvents.java %}</code></pre>
++++++
