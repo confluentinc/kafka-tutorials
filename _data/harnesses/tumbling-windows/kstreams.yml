@@ -8,13 +8,13 @@ dev:
 
     - title: Initialize the project
       content:
-        - change_directory: tumbling-windows
-          action: execute
+        - action: execute
           file: recipe-steps/dev/init.sh
           render:
             file: recipes/tumbling-windows/kstreams/markup/dev/init.adoc
 
-        - action: make_file
+        - change_directory: tumbling-windows
+          action: make_file
           file: build.gradle
           render:
             file: recipes/tumbling-windows/kstreams/markup/dev/make-build-file.adoc

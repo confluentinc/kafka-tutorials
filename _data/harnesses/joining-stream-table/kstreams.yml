@@ -8,13 +8,13 @@ dev:
 
     - title: Initialize the project
       content:
-        - change_directory: join-stream
-          action: execute
+        - action: execute
           file: recipe-steps/dev/init.sh
           render:
             file: recipes/joining-stream-table/kstreams/markup/dev/init.adoc
 
-        - action: make_file
+        - change_directory: join-stream
+          action: make_file
           file: build.gradle
           render:
             file: recipes/joining-stream-table/kstreams/markup/dev/make-build-file.adoc
