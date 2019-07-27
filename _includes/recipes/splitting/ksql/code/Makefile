@@ -9,7 +9,7 @@ recipe:
 	rm -r $(TEST_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	mkdir -p $(TEST_OUTPUTS_DIR)
-	harness-runner2 ../../../../../_data/harnesses/splitting/ksql.yml $(TEMP_DIR)
+	harness-runner ../../../../../_data/harnesses/splitting/ksql.yml $(TEMP_DIR)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-outputs/query-drama.log $(DEV_OUTPUTS_DIR)/query-drama/output-0.log
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-outputs/negative-query.log $(DEV_OUTPUTS_DIR)/query-not-drama-fantasy/output-0.log
 	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 3- $(STEPS_DIR)/dev/expected-outputs/printed-topic.log) <(cut -d ',' -f 3- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log)"

@@ -25,7 +25,6 @@ blocks:
         commands:
           - checkout
           - sudo pip3 install -e harness_runner/
-          - sudo pip3 install -e harness_runner2/
       jobs:
         - name: KSQL transforming tests
           commands:
