@@ -8,8 +8,9 @@
           {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
 
           <div class="recipe-try-it-step">
-            <h4 class="subtitle">
-              <div>{{ forloop.index }}. {{ step.title }}</div>
+            <h4 class="subtitle" id="{{ step.title | slugify }}">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="text">{{ step.title }}</div>
             </h4>
 
             {% for section in step.content %}
@@ -47,8 +48,9 @@
           {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
 
           <div class="recipe-try-it-step">
-            <h4 class="subtitle">
-              <div>{{ forloop.index }}. {{ step.title }}</div>
+            <h4 class="subtitle" id="{{ step.title | slugify }}">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="text">{{ step.title }}</div>
             </h4>
 
             {% for section in step.content %}
@@ -76,8 +78,9 @@
           {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
 
           <div class="recipe-try-it-step">
-            <h4 class="subtitle">
-              <div>{{ forloop.index }}. {{ step.title }}</div>
+            <h4 class="subtitle" id="{{ step.title | slugify }}">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="text">{{ step.title }}</div>
             </h4>
 
             {% for section in step.content %}

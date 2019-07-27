@@ -79,7 +79,26 @@
       </div>
       <div class="columns">
         <div class="column is-full">
-          <ul id="toc" class="recipe-navigation"></ul>
+          <ul id="toc" class="recipe-navigation">
+            <li><a href="#try-it">Try it</a></li>
+            <ul>
+              {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
+              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <li><a href="#test-it">Test it</a></li>
+            <ul>
+              {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
+              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <li><a href="#take-it-to-prod">Take it to production</a></li>
+            <ul>
+              {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
+              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </ul>
         </div>
       </div>
     </div>
@@ -96,7 +115,6 @@
   {% include footer.html %}
 
   <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/js/jquery.toc.fork.js"></script>
   <script src="/assets/js/recipe.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
