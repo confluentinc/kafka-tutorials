@@ -138,7 +138,7 @@ test:
             file: recipes/joining-stream-table/kstreams/markup/test/make-test-dir.adoc
 
         - action: make_file
-          file: src/test/java/io/confluent/developer/MovieRatingJoiner.java
+          file: src/test/java/io/confluent/developer/MovieRatingJoinerTest.java
           render:
             file: recipes/joining-stream-table/kstreams/markup/test/make-join-test.adoc
 
