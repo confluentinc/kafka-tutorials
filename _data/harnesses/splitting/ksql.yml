@@ -79,8 +79,6 @@ test:
   steps:
     - title: Create the test data
       content:
-    - title: Create the test data
-      content:
         - action: make_file
           file: test/input.json
           render:
