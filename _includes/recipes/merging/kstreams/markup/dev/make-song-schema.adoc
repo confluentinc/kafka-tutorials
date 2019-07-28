@@ -1,4 +1,4 @@
-Then create the following Avro schema file at <code>src/main/avro/song_event.avsc</code> for the events representing a song being played:
+Then create the following Avro schema file at `src/main/avro/song_event.avsc` for the events representing a song being played:
 
 +++++
 <pre class="snippet"><code class="avro">{% include_raw recipes/merging/kstreams/code/src/main/avro/song_event.avsc %}</code></pre>

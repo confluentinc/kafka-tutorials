@@ -1,4 +1,4 @@
-Then create a development file at <code>configuration/dev.properties</code>:
+Then create a development file at `configuration/dev.properties`:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/configuration/dev.properties %}</code></pre>

@@ -1,4 +1,4 @@
-Then produce the following events to the stream:</p>
+Then produce the following events to the stream:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw recipes/transforming/ksql/code/recipe-steps/dev/populate-stream.sql %}</code></pre>

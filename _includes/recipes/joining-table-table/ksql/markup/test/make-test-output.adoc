@@ -1,4 +1,4 @@
-Similarly, create a file at <code>test/output.json</code> with the expected outputs:
+Similarly, create a file at `test/output.json` with the expected outputs:
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw recipes/joining-table-table/ksql/code/test/output.json %}</code></pre>

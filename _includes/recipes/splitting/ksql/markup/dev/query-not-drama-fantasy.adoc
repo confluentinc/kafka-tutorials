@@ -1,4 +1,4 @@
-You can also use negative matches, that is, messages that <em>don't</em> match the condition. Run this query to get a list of all films that aren't drama or fantasy.
+You can also use negative matches, that is, messages that _don't_ match the condition. Run this query to get a list of all films that aren't drama or fantasy.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/query-not-drama-fantasy.sql %}</code></pre>

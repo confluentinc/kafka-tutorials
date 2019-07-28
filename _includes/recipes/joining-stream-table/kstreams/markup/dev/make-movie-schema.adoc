@@ -1,4 +1,4 @@
-Then create the following Avro schema file at <code>src/main/avro/movie.avsc</code> for the movies lookup table:
+Then create the following Avro schema file at `src/main/avro/movie.avsc` for the movies lookup table:
 
 +++++
 <pre class="snippet"><code class="avro">{% include_raw recipes/joining-stream-table/kstreams/code/src/main/avro/movie.avsc %}</code></pre>

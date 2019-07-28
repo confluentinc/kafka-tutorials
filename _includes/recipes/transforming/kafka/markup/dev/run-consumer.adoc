@@ -4,7 +4,7 @@ Now that we produced raw movies to the input topic, the Apache Kafka application
 <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/console-consumer.sh %}</code></pre>
 +++++
 
-After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying this recipe, send more events through the input terminal prompt. Otherwise, you can <code>Control-C</code> to exit the process.
+After the consumer starts, you should see the following messages. The prompt will hang, waiting for more events to arrive. To continue studying this recipe, send more events through the input terminal prompt. Otherwise, you can `Control-C` to exit the process.
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw recipes/transforming/kafka/code/recipe-steps/dev/outputs/actual-movies.json %}</code></pre>

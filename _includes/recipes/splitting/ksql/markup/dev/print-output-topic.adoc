@@ -10,4 +10,4 @@ This should yield the following output:
 <pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
 +++++
 
-Try dropping the <code>LIMIT</code> from the print command so that it runs indefinitely. To see how any new message on the source stream is automatically routed to the correct target stream, open a new CLI session and insert a record like we did above.
+Try dropping the `LIMIT` from the print command so that it runs indefinitely. To see how any new message on the source stream is automatically routed to the correct target stream, open a new CLI session and insert a record like we did above.

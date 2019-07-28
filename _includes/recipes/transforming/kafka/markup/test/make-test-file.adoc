@@ -1,4 +1,4 @@
-First, create a test configuration <code>configuration/test.properties</code> with the following content:
+First, create a test configuration `configuration/test.properties` with the following content:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw recipes/transforming/kafka/code/configuration/test.properties %}</code></pre>
