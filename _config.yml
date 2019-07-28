@@ -23,6 +23,9 @@ exclude:
   - deploy-to-s3.sh
   - harness_runner
 
-ak_javadoc_version: 22
+ak_javadoc_version: 23
 cp_version: v5.2.1
 google_tag_manager_id: GTM-NBVX4Z
+
+plugins:
+  - jekyll-asciidoc

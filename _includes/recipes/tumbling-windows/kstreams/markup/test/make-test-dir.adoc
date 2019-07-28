@@ -1,0 +1,5 @@
+Create a directory for the tests to live in:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/tumbling-windows/kstreams/code/recipe-steps/test/make-test-dir.sh %}</code></pre>
++++++

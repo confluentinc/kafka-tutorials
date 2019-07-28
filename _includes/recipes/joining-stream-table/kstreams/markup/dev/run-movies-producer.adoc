@@ -1,0 +1,13 @@
+In a new terminal, run:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/joining-stream-table/kstreams/code/recipe-steps/dev/console-producer-movies.sh %}</code></pre>
++++++
+
+When the console producer starts, it will log some messages and hang, waiting for your input. Copy and paste one line at a time and press enter to send it. Note that these lines contain hard tabs between the key and the value, so retyping them without the tab will not work.
+
+Each line represents a movie we will be able to rate. To send all of the events below, paste the following into the prompt and press enter:
+
++++++
+<pre class="snippet"><code class="json">{% include_raw recipes/joining-stream-table/kstreams/code/recipe-steps/dev/movies.json %}</code></pre>
++++++

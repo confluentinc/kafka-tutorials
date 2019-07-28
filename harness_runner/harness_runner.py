@@ -45,6 +45,9 @@ def shell_command_seq(step, f):
     else:
         return ["bash", f]
 
+def skip(context, step):
+    return context
+
 def execute(context, step):
     f = in_base_dir(context, step["file"])
     if "stdin" in step:
@@ -87,6 +90,7 @@ def sleep(context, step):
     return context
 
 commands = {
+    "skip": skip,
     "execute": execute,
     "execute_async": execute_async,
     "make_file": make_file,
@@ -101,7 +105,10 @@ def run_command(context, step):
 
     return new_context
 
-def run_steps(steps, temp_dir):
+def split_sequence(seq):
+    return [x.strip() for x in seq.split(",")]
+
+def run_steps(harness, temp_dir, sequence):
     base_dir = os.getcwd()
     os.chdir(temp_dir)
 
@@ -113,12 +120,15 @@ def run_steps(steps, temp_dir):
     }
 
     try:
-        for step in steps:
-            context = run_command(context, step)
+        for s in sequence:
+            for step in harness[s]["steps"]:
+                for section in step["content"]:
+                    context = run_command(context, section)
     finally:
         for name, proc in context["procs"].items():
             kill_async_process(proc)
 
-def execute(file_name, temp_dir):
-    contents = load_file(file_name)
-    run_steps(contents["steps"], temp_dir)
+def execute(file_name, temp_dir, sequence="dev, test, prod"):
+    harness = load_file(file_name)
+    seq = split_sequence(sequence)
+    run_steps(harness, temp_dir, seq)

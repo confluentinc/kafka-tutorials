@@ -77,11 +77,33 @@
           {% endif %}
         </div>
       </div>
+
+      {% if site.data.harnesses[page.static_data][page.stack].dev %}
       <div class="columns">
         <div class="column is-full">
-          <ul id="toc" class="recipe-navigation"></ul>
+          <ul id="toc" class="recipe-navigation">
+            <li><a href="#try-it">Try it</a></li>
+            <ul>
+              {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
+              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <li><a href="#test-it">Test it</a></li>
+            <ul>
+              {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
+              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+              {% endfor %}
+            </ul>
+            <li><a href="#take-it-to-prod">Take it to production</a></li>
+            <ul>
+              {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
+              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+              {% endfor %}
+            </ul>
+          </ul>
         </div>
       </div>
+      {% endif %}
     </div>
   </section>
 
@@ -89,17 +111,16 @@
     {% if page.help_wanted %}
     {% include contribute-recipe.html %}
     {% else %}
-    {% include recipe-content.html try_it=page.try_it test_it=page.test_it take_it_to_prod=page.take_it_to_prod %}
+    {% include recipe-content.html %}
     {% endif %}
   </div>
 
   {% include footer.html %}
 
   <script src="/assets/js/jquery.min.js"></script>
-  <script src="/assets/js/jquery.toc.fork.js"></script>
-  <script src="/assets/js/recipe.js"></script>
   <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  <script src="/assets/js/recipe.js"></script>
 </body>
 </html>
