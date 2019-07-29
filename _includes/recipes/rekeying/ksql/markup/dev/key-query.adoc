@@ -1,0 +1,13 @@
+Now we can examine the existing key of the messages, using the `ROWKEY` system field which KSQL provides.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/key-query.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/expected-key-query.log %}</code></pre>
++++++
+
+Note that for each message, the key is `null`. Since by default Kafka will assign messages to a partition based on the message's key, this means that the messages in the `ratings` topic are assigned to partitions on a 'round-robin' basis. In practice this means that ratings data for the same movie could be spread across multiple partitions.
