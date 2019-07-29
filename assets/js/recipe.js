@@ -1,27 +1,10 @@
 $(document).ready(function() {
   var CODE_BLOCK_HEIGHT = 320;
 
-  // Build the TOC
-  $("#toc").toc({
-    content: "div.recipe-markup",
-    headings: "h1,h2,h3,h4"
-  });
-
   // Code highlight
   hljs.initHighlightingOnLoad();
 
   var clipboard = new ClipboardJS(".copy-btn");
-
-  $('.recipe-try-it-step .subtitle div').each(function() {
-    // Do this so people can write recipe markup easier
-    $(this).replaceWith(this.innerHTML.replace(/^(\d(\.)?)(.*)$/, '<div class="num">$1</div><div class="text">$3</div>'));
-  });
-
-  $(".num").each(function() {
-    var $this = $(this);
-    var text = $this.text();
-    $this.html(text.substring(0, text.length - 1));
-  });
 
   $("pre").each(function(index, element) {
     //Set up copy buttons.

@@ -2,4 +2,8 @@
 
 import harness_runner
 import sys
-harness_runner.execute(sys.argv[1], sys.argv[2])
+
+if len(sys.argv) <= 3:
+  harness_runner.execute(sys.argv[1], sys.argv[2])
+else:
+  harness_runner.execute(sys.argv[1], sys.argv[2], sys.argv[3])
