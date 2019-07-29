@@ -4,7 +4,37 @@
       <div class="columns">
         <div class="column is-full">
           <h2 class="title recipe-section-title" id="try-it">Try it</h2>
-          {% include {{ include.try_it }} %}
+
+          {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
+
+          <div class="recipe-try-it-step">
+            <h4 class="subtitle" id="{{ step.title | slugify }}">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="text">{{ step.title }}</div>
+            </h4>
+
+            {% for section in step.content %}
+
+            {% if section.action == "docker_ksql_cli_session" %}
+
+            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+            {{ prose | asciidocify }}
+
+            {% for subsection in section.stdin %}
+            {% capture prose %}{% include {{ subsection.render.file }} %}{% endcapture %}
+            {{ prose | asciidocify }}
+            {% endfor %}
+
+            {% elsif section.render.skip != true %}
+
+            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+            {{ prose | asciidocify }}
+
+            {% endif %}
+
+            {% endfor %}
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -15,7 +45,26 @@
       <div class="columns">
         <div class="column is-full">
           <h2 class="title recipe-section-title" id="test-it">Test it</h2>
-          {% include {{ include.test_it }} %}
+          {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
+
+          <div class="recipe-try-it-step">
+            <h4 class="subtitle" id="{{ step.title | slugify }}">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="text">{{ step.title }}</div>
+            </h4>
+
+            {% for section in step.content %}
+
+            {% if section.render.skip != true %}
+
+            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+            {{ prose | asciidocify }}
+
+            {% endif %}
+
+            {% endfor %}
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -26,7 +75,26 @@
       <div class="columns">
         <div class="column is-full">
           <h2 class="title recipe-section-title" id="take-it-to-prod">Take it to production</h2>
-          {% include {{ include.take_it_to_prod }} %}
+          {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
+
+          <div class="recipe-try-it-step">
+            <h4 class="subtitle" id="{{ step.title | slugify }}">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="text">{{ step.title }}</div>
+            </h4>
+
+            {% for section in step.content %}
+
+            {% if section.render.skip != true %}
+
+            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+            {{ prose | asciidocify }}
+
+            {% endif %}
+
+            {% endfor %}
+          </div>
+          {% endfor %}
         </div>
       </div>
     </div>
