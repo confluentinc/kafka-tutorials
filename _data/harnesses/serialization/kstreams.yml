@@ -70,6 +70,39 @@ dev:
           file: src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java
           render:
             file: recipes/serialization/kstreams/markup/dev/make-serde.adoc
+            
+    - title: Compile and run the Kafka Streams program
+      content:
+        - action: execute
+          file: recipe-steps/dev/build-uberjar.sh
+          render:
+            file: recipes/serialization/kstreams/markup/dev/build-uberjar.adoc
+
+        - action: execute_async
+          file: recipe-steps/dev/run-dev-app.sh
+          render:
+            file: recipes/serialization/kstreams/markup/dev/run-dev-app.adoc
+
+    - title: Get ready to observe the counted ratings in the output topic
+      content:
+        - action: execute_async
+          file: recipe-steps/dev/console-consumer.sh
+          stdout: recipe-steps/dev/outputs/windowed-ratings-actual.txt
+          render:
+            file: recipes/serialization/kstreams/markup/dev/run-consumer.adoc
+
+    - title: Produce some ratings to the input topic
+      content:
+        - action: execute
+          file: recipe-steps/dev/console-producer-ratings.sh
+          stdin: recipe-steps/dev/ratings.json
+          render:
+            file: recipes/serialization/kstreams/markup/dev/run-producer.adoc
+    
+    - action: sleep
+      ms: 5000
+      render:
+        skip: true
 
 # =========== TEST Harness ===========
 test:
