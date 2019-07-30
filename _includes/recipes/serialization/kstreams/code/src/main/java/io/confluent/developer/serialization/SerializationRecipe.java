@@ -57,12 +57,11 @@ public class SerializationRecipe {
         envProps.getProperty("input.json.movies.topic.name"),
         parseInt(envProps.getProperty("input.json.movies.topic.partitions")),
         parseShort(envProps.getProperty("input.json.movies.topic.replication.factor"))));
-    
+
     topics.add(new NewTopic(
         envProps.getProperty("output.avro.movies.topic.name"),
         parseInt(envProps.getProperty("output.avro.movies.topic.partitions")),
         parseShort(envProps.getProperty("output.avro.movies.topic.replication.factor"))));
-
 
     client.createTopics(topics);
     client.close();
