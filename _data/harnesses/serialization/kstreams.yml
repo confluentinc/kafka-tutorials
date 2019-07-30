@@ -35,6 +35,23 @@ dev:
           render:
             file: recipes/serialization/kstreams/markup/dev/make-dev-file.adoc
 
+    - title: Create a schema for the events
+      content:
+        - action: execute
+          file: recipe-steps/dev/make-avro-dir.sh
+          render:
+            file: recipes/serialization/kstreams/markup/dev/make-avro-dir.adoc
+
+        - action: make_file
+          file: src/main/avro/movie.avsc
+          render:
+            file: recipes/serialization/kstreams/markup/dev/make-movie-schema.adoc
+
+        - action: execute
+          file: recipe-steps/dev/build-project.sh
+          render:
+            file: recipes/serialization/kstreams/markup/dev/build-project.adoc
+
 # =========== TEST Harness ===========
 test:
   steps:
@@ -51,7 +68,7 @@ test:
           file: recipe-steps/test/make-test-dir.sh
           render:
             file: recipes/serialization/kstreams/markup/test/make-test-dir.adoc
-            
+
     - title: Test the streams topology
       content:
         - action: make_file

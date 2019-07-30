@@ -1,0 +1,9 @@
+This recipe uses a single input stream called `movies`. 
+It contains movie information (movie_id, title, year) for a few different movies.
+We'll need to create a schema for these events.
+  
+Create a directory to hold the schema file:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/serialization/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
++++++
