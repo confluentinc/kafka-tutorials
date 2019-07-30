@@ -104,11 +104,11 @@ dev:
           stdin: recipe-steps/dev/movies.json
           render:
             file: recipes/serialization/kstreams/markup/dev/run-producer.adoc
-    
-    - action: sleep
-      ms: 5000
-      render:
-        skip: true
+        
+        - action: sleep
+          ms: 5000
+          render:
+            skip: true
 
 # =========== TEST Harness ===========
 test:
