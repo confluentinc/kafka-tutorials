@@ -101,7 +101,7 @@ dev:
       content:
         - action: execute
           file: recipe-steps/dev/console-producer-ratings.sh
-          stdin: recipe-steps/dev/ratings.json
+          stdin: recipe-steps/dev/movies.json
           render:
             file: recipes/serialization/kstreams/markup/dev/run-producer.adoc
     
