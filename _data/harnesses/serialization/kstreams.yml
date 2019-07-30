@@ -64,6 +64,13 @@ dev:
           render:
             file: recipes/serialization/kstreams/markup/dev/make-topology.adoc
 
+    - title: Implement a MovieJsonSerde class
+      content:
+        - action: make_file
+          file: src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java
+          render:
+            file: recipes/serialization/kstreams/markup/dev/make-serde.adoc
+
 # =========== TEST Harness ===========
 test:
   steps:
