@@ -93,7 +93,7 @@ dev:
       content:
         - action: execute_async
           file: recipe-steps/dev/console-consumer.sh
-          stdout: recipe-steps/dev/outputs/windowed-movies-actual.txt
+          stdout: recipe-steps/dev/outputs/avro-movies-actual.txt
           render:
             file: recipes/serialization/kstreams/markup/dev/run-consumer.adoc
 
