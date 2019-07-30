@@ -1,3 +1,4 @@
+# =========== DEV Harness ===========
 dev:
   steps:
     - title: Get Confluent Platform
@@ -19,23 +20,38 @@ dev:
           render:
             file: recipes/serialization/kstreams/markup/dev/make-build-file.adoc
 
+        - action: execute
+          file: recipe-steps/dev/gradle-wrapper.sh
+          render:
+            file: recipes/serialization/kstreams/markup/dev/make-gradle-wrapper.adoc
+
+        - action: execute
+          file: recipe-steps/dev/make-configuration-dir.sh
+          render:
+            file: recipes/serialization/kstreams/markup/dev/make-config-dir.adoc
+
+        - action: make_file
+          file: configuration/dev.properties
+          render:
+            file: recipes/serialization/kstreams/markup/dev/make-dev-file.adoc
+
+# =========== TEST Harness ===========
 test:
   steps:
-#    - title: Create a test configuration file
-#      content:
-#        change_directory: kstreams-serialization
-#        action: make_file
-#        file: configuration/test.properties
-#        render:
-#          file: recipes/tumbling-windows/kstreams/markup/test/make-test-file.adoc
+    - title: Create a test configuration file
+      content:
+        - action: make_file
+          file: configuration/test.properties
+          render:
+            file: recipes/serialization/kstreams/markup/test/make-test-file.adoc
 
-#    - title: Test SerializationRecipeTest class
-#      content:
-#        - action: execute
-#          file: recipe-steps/test/make-test-dir.sh 
-#          render:
-#            - file: recipes/serialization/kstreams/markup/test/make-test-dir.adoc
-
+    - title: Test the class
+      content:
+        - action: execute
+          file: recipe-steps/test/make-test-dir.sh
+          render:
+            file: recipes/serialization/kstreams/markup/test/make-test-dir.adoc
+            
     - title: Test the streams topology
       content:
         - action: make_file
@@ -49,7 +65,8 @@ test:
           file: recipe-steps/test/invoke-tests.sh
           render:
             file: recipes/serialization/kstreams/markup/test/invoke-tests.adoc
-  
+
+# =========== PROD Harness ===========            
 prod:
   steps:
     - title: Create a production configuration file
