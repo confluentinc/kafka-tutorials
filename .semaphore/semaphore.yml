@@ -86,6 +86,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
 
+        - name: KSQL join stream to stream tests
+          commands:
+            - make -C _includes/recipes/joining-stream-stream/ksql/code recipe
+
         - name: KStreams tumbling windows tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
