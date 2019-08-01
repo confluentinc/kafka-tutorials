@@ -1,4 +1,4 @@
-Let's cross both streams to come up with a new stream that contains more insightful information such as which orders have been shipped, which warehouse shipped them, and how long did it take to ship each order. The following query does a inner join between the orders stream and the shipments stream. This will block and continue to return results until it's limit is reached or you tell it to stop.
+Let's cross both streams to come up with a new stream that contains more insightful information such as which orders have been shipped, which warehouse shipped them, and how long did it take to ship each order. The following query does a inner join between the orders stream and the shipments stream, and specifies a window duration of seven days to represent the SLA of one week to ship orders. This will block and continue to return results until it's limit is reached or you tell it to stop.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw recipes/joining-stream-stream/ksql/code/recipe-steps/dev/transient-join.sql %}</code></pre>
