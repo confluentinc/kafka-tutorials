@@ -1,0 +1,8 @@
+Now create a derived stream, specifying the target serialisation (Avro) and the target topic.
+This is optional - without it will just take the name of the stream
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw recipes/serialization/ksql/code/recipe-steps/dev/create-avro-movies.sql %}</code></pre>
++++++
+
+Because KSQL is a continuous query, any new records arriving on the source JSON (`json-movies`) topic will be automatically converted to Avro on the derived topic (`avro-movies`).

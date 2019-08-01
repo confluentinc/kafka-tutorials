@@ -95,3 +95,7 @@ blocks:
         - name: KSQL tumbling windows tests
           commands:
             - make -C _includes/recipes/tumbling-windows/ksql/code recipe
+              
+        - name: KSQL serialization tests
+          commands:
+            - make -C _includes/recipes/serialization/ksql/code recipe
