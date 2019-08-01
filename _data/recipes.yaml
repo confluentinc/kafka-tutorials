@@ -60,7 +60,7 @@ rekeying:
   title: "Rekey a stream"
   slug: "/recipes/rekey-a-stream"
   problem: "you have a Kafka topic and you want to change the key of the messages. It may be there is no key and you want to set one, or there is a key but you want to change it to a field from the value schema."
-  introduction: "Support you have a stream of ratings for movies from movie-goers. The producing application hasn't set a message key, meaning that the partition each message is in is not necessarily going to be the same for each movie. So that subsequent processing can scale and consume the ratings data in parallel and each movie's ratings data go to just one consumer each time we want to rekey the data based on the movie name."
+  introduction: "Suppose you have an unkeyed stream of movie ratings from movie-goers. Because the stream is not keyed, ratings for the same movie aren't guaranteed to be placed into the same partition. In this recipe, we'll write a program that creates a new topic keyed by the movie's name. When the key is consistent, it becomes possible to process these ratings at scale and in parallel."
   status:
     ksql: enabled
     kstreams: enabled
