@@ -4,7 +4,6 @@ buildscript {
   }
   dependencies {
     classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.15.1"
-    classpath "com.github.jengelman.gradle.plugins:shadow:${shadowPluginVersion}"
   }
 }
 
@@ -12,8 +11,8 @@ plugins {
   id "java"
   id "com.google.cloud.tools.jib" version "1.1.1"
 
+  id "com.github.johnrengelman.shadow" version "5.1.0"
   id 'application'
-  id 'groovy' // Apply the groovy plugin to also add support for Groovy (needed for Spock)
 }
 
 sourceCompatibility = "1.8"
@@ -34,16 +33,11 @@ apply plugin: "com.github.johnrengelman.shadow"
 dependencies {
   compile "org.apache.avro:avro:1.8.2"
   implementation "org.slf4j:slf4j-simple:1.7.26"
-  implementation "org.apache.kafka:kafka-streams:$kafkaVersion"
-  implementation "io.confluent:kafka-streams-avro-serde:$confluentVersion"
+  implementation "org.apache.kafka:kafka-streams:2.2.0"
+  implementation "io.confluent:kafka-streams-avro-serde:5.2.0"
   implementation 'com.google.code.gson:gson:2.8.5'
 
   testCompile "org.apache.kafka:kafka-streams-test-utils:2.2.0"
-
-  // Use the latest Groovy version for Spock testing
-  testImplementation 'org.codehaus.groovy:groovy-all:2.5.6'
-  // Use the awesome Spock testing and specification framework even with Java
-  testImplementation 'org.spockframework:spock-core:1.2-groovy-2.5'
   testImplementation 'junit:junit:4.12'
 }
 

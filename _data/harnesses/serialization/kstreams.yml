@@ -19,12 +19,6 @@ dev:
           file: build.gradle
           render:
             file: recipes/serialization/kstreams/markup/dev/make-build-file.adoc
-
-        - name: make gradle properties
-          action: make_file
-          file: gradle.properties
-          render:
-            skip: true
             
         - action: execute
           file: recipe-steps/dev/gradle-wrapper.sh
