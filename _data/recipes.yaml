@@ -56,6 +56,14 @@ joining-table-table:
     ksql: enabled
     kstreams: enabled
 
+joining-stream-stream:
+  title: "Join a stream and a stream together"
+  slug: "/recipes/join-a-stream-to-a-stream"
+  problem: "you have two Kafka topics with a never-ending sequence of events coming in. You want to join the stream of events from both topics to come up with a new stream with additional insight."
+  introduction: "Suppose you have two topics containing data about orders and shipments. In this recipe, we'll write a program that joins these two streams to figure out things like which orders have been shipped, how long did it take for them to ship, as well as from which warehouse."
+  status:
+    ksql: enabled
+
 tumbling-windows:
   title: "Create tumbling windows"
   slug: "/recipes/create-tumbling-windows"

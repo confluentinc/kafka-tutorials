@@ -1,0 +1,10 @@
+To check that it's working, print out the contents of the output stream using the following query:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw recipes/joining-stream-stream/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This should yield the following output:
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/joining-stream-stream/ksql/code/recipe-steps/dev/expected-print.log %}</code></pre>
++++++
