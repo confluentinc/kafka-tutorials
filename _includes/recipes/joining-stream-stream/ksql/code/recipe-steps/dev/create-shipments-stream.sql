@@ -5,4 +5,3 @@ CREATE STREAM SHIPMENTS (SHIPMENT_ID VARCHAR, SHIP_TS VARCHAR, ORDER_ID INT, WAR
                     TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ssX',
                     PARTITIONS=4,
                     REPLICAS=1);
-                    
