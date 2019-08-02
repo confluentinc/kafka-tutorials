@@ -1,1 +1,1 @@
-mkdir kstreams-serialization && cd kstreams-serialization || return
+mkdir kstreams-serialization && cd kstreams-serialization
