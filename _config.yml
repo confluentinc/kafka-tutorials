@@ -26,6 +26,8 @@ exclude:
   - Makefile
   - deploy-to-s3.sh
   - harness_runner
+  - LICENSE
+  - CONTRIBUTING.md
 
 ak_javadoc_version: 23
 cp_version: v5.2.1

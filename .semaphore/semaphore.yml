@@ -101,3 +101,7 @@ blocks:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
             - make -C _includes/recipes/serialization/kstreams/code recipe
+
+        - name: KSQL rekey stream tests
+          commands:
+            - make -C _includes/recipes/rekeying/ksql/code recipe

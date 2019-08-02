@@ -1,0 +1,13 @@
+We can view the existing key of the messages using the `ROWKEY` column which KSQL provides:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/key-query.sql %}</code></pre>
++++++
+
+This should yield roughly following output. The order will be different depending on how the records were actually inserted:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/expected-key-query.log %}</code></pre>
++++++
+
+Note that the key is `null` for every message. This means that ratings data for the same movie could be spread across multiple partitions. This is generally not good for scalability when you care about having the same "kind" of data in a single partition.
