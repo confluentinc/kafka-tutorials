@@ -1,0 +1,11 @@
+We can also print out the contents of the output stream's underlying topic, noting that the second field shown is the key and matches the value of the `ID` field in the value:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This should yield the roughly following output. `PRINT` pulls from all partitions of a topic.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/expected-print.log %}</code></pre>
++++++
