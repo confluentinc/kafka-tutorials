@@ -4,7 +4,7 @@ We can also print out the contents of the output stream's underlying topic, noti
 <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
 +++++
 
-This should yield the following output:
+This should yield the roughly following output. `PRINT` pulls from all partitions of a topic.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/expected-print.log %}</code></pre>

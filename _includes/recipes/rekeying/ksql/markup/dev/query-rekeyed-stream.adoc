@@ -4,7 +4,7 @@ To check that it's working, use `ROWKEY` as before to check that the key matches
 <pre class="snippet"><code class="sql">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/query-rekeyed-stream.sql %}</code></pre>
 +++++
 
-This should yield the following output:
+This should yield roughly the following output. The order might vary from what you see here, but the data has been repartitioned such that all movies with the same ID are now in exactly one partition.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw recipes/rekeying/ksql/code/recipe-steps/dev/expected-query-rekeyed-stream.log %}</code></pre>
