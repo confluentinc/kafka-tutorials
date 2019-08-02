@@ -64,3 +64,12 @@ tumbling-windows:
   status:
     ksql: enabled
     kstreams: enabled
+
+aggregating-count:
+  title: "Calculate the number of events over a period of time"
+  slug: "/recipes/create-stateful-aggregation-count"
+  problem: "you have data in a Kafka topic and want to count the number of events broken down by one or more fields."
+  introduction: "Suppose you have a topic with events that represent ratings of movies. In this recipe, we'll write a program that calculates the total number of tickets sold per movie"
+  status:
+    ksql: enabled
+    kstreams: enabled

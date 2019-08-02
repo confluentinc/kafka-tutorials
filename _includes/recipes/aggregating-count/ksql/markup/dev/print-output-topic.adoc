@@ -1,0 +1,10 @@
+To check that it's working, print out the contents of the output table's underlying topic:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw recipes/aggregating-count/ksql/code/recipe-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This should yield the following output:
++++++
+<pre class="snippet"><code class="shell">{% include_raw recipes/aggregating-count/ksql/code/recipe-steps/dev/expected-print-output-topic.log %}</code></pre>
++++++
