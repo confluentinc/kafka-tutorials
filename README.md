@@ -61,7 +61,7 @@ This will install Jekyll itself and any other gems that we use.
 #### 4. Run the development server
 
 ```
-bundle exec jekyll serve
+bundle exec jekyll serve --livereload
 ```
 
 This will launch a web server so that you can work on the site locally. Check it out on `http://localhost:4000`.
@@ -72,7 +72,7 @@ A recipe is a short procedure, targeted at developers, for getting a certain thi
 
 In many cases, you can get that thing done using one of several _stacks_. For example, you might be able to perform data filtering by writing a KSQL query, by writing a Kafka Streams application, or by directly using the Kafka Consumer API. These comprise the three stacks this site supports: `ksql`, `kstreams`, and `kafka`.
 
-Kafka Recipes is a bit unique in that rach recipe is self-testing. That is, we have built a harness system that's able to instrument the code that belongs to each recipe to make sure that it actually works. This is really useful as we expect to have a lot of recipes.
+Kafka Recipes is a bit unique in that rach recipe is self-testing. That is, we have built a light-weight harness system that's able to instrument the code that belongs to each recipe to make sure that it actually works. This is really useful as we expect to have a lot of recipes.
 
 With in each stack, these recipes contain a few pieces. These are described below.
 
@@ -98,38 +98,34 @@ At this point, you should feel free to submit a PR! A member of Confluent will t
 
 ## Add a narrative and test for the recipe
 
-This section is generally for those who work at Confluent and will be integrating new recipes into the site. We need to do a little more work than just authoring the code. We also need to write the markup to describe the recipe and narrative form, and also write the tests that we described to make sure it all works. This section describes how to do that.
+This section is generally for those who work at Confluent and will be integrating new recipes into the site. We need to do a little more work than just authoring the code. We also need to write the markup to describe the recipe in narrative form, and also write the tests that we described to make sure it all works. This section describes how to do that.
 
-#### 1. Create markup for the recipe
+#### 1. Create a harness for the recipe
 
-Under the `markup/` directory, create 3 files: `try_it.html`, `test_it.html`, and `take_it_to_prod.html`. Write the recipe prose content here, following the conventions of existing recipes.
+The harness is the main data structure that allows us to both test and render a recipe from one form. Make a new directory under `_data/harnesses/` for your recipe slug name and stack, like `_data/harnessess/<your recipe short name>/ksql.yml`. Follow the existing harnesses to get a feel for what this looks like. The main thing to notice is that each step has a `render` attribute that points to a file. Create the markup for this in the next section.
 
-#### 2. Tie it all together
+#### 2. Create markup for the recipe
 
-Make a file under the `/recipes/<your recipe short name>/<stack>.yml` directory (not `/_includes/recipes`), specifying all the variables of interest. To support a stack, add the trio of variables to the respective markup. For example, to display the recipe with KSQL:
+Under the `markup/` directory that was created earlier, create 3 subdirectories: `dev`, `test`, and `prod`. Write the recipe prose content here, following the conventions of existing recipes. These files should be authored in Asciidoc.
+
+#### 3. Tie it all together
+
+Make a file under the `/recipes/<your recipe short name>/<stack>.yml` directory (not `/_includes/recipes`), specifying all the variables of interest. For example, to display the recipe with KSQL:
 
 ```yml
----                                                                                                                                           
+---
 layout: recipe
 permalink: /recipes/filter-a-stream-of-events/ksql
 stack: ksql
 static_data: filtering
-
-try_it: recipes/filtering/ksql/markup/try_it.html
-test_it: recipes/filtering/ksql/markup/test_it.html
-take_it_to_prod: recipes/filtering/ksql/markup/take_it_to_prod.html
 ---
 ```
 
 You can do the same for Kafka Streams and Kafka, by using the `kstreams` and `kafka` stacks, respectively.
 
-#### 5. Write a test
+#### 4. Add your recipe into build system
 
-Since this is a self-testing site, add a test to make sure your recipe's content works. Make a directory called `harness` in the `code` directory, and follow the conventions of the existing recipes. Also create a `Makefile` with a target called `recipe` to build the content and run the tests.
-
-#### 6. Tie into build system
-
-Lastly, modify the `.semaphore/semaphore.yml` file to invoke your Makefile. This will make sure your recipe gets checked by the CI system.
+Lastly, create a Makefile in the `code` directory to invoke the harness runner and check any outputs that it produces. Then modify the `.semaphore/semaphore.yml` file to invoke that Makefile. This will make sure your recipe gets checked by the CI system.
 
 ## Misc
 
