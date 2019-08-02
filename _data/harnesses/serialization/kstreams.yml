@@ -35,7 +35,7 @@ dev:
           render:
             file: recipes/serialization/kstreams/markup/dev/make-dev-file.adoc
 
-    - title: Create a schema for the events
+    - title: Create an Avro schema for the output events
       content:
         - action: execute
           file: recipe-steps/dev/make-avro-dir.sh
@@ -83,7 +83,7 @@ dev:
           render:
             file: recipes/serialization/kstreams/markup/dev/run-dev-app.adoc
 
-    - title: Get ready to observe the movies in the output topic
+    - title: Get ready to observe the Avro-formatted movies in the output topic
       content:
         - action: execute_async
           file: recipe-steps/dev/console-consumer.sh
@@ -91,7 +91,7 @@ dev:
           render:
             file: recipes/serialization/kstreams/markup/dev/run-consumer.adoc
 
-    - title: Produce some movies to the input topic
+    - title: Produce some JSON-formatted movies to the input topic
       content:
         - action: execute
           file: recipe-steps/dev/console-producer-movies.sh
