@@ -1,5 +1,5 @@
 Before you start producing input data, it's a good idea to set up the consumer on the output topic. 
-This way, as soon as you produce movie in different format (AVRO), you'll see the results right away.
+This way, as soon as you produce movie in different format (Avro), you'll see the results right away.
 Run this to get ready to consume the windowed counts:
 
 +++++
