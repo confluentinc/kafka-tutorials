@@ -19,4 +19,5 @@ code.iml
 bin/
 s3_website.yml
 !*.sql
+!*.log
 
