@@ -18,4 +18,5 @@ code.iml
 .project
 bin/
 s3_website.yml
+!*.sql
 
