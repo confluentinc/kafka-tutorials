@@ -4,4 +4,4 @@ In your terminal, run:
 <pre class="snippet"><code class="shell">{% include_raw recipes/serialization/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
 +++++
 
-This will produce _uberjar_ - jar that will contain application code and all its dependencies.
+This will produce an _uberjar_, which is a jar that contains your application code and all its dependencies.

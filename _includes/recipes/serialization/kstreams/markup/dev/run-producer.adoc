@@ -7,17 +7,16 @@ Start the console producer with this command in a terminal window of its own:
 <pre class="snippet"><code class="shell">{% include_raw recipes/serialization/kstreams/code/recipe-steps/dev/console-producer-movies.sh %}</code></pre>
 +++++
 
-When the producer starts up, copy and paste these lines into the terminal:
+When the producer starts up, copy and paste these JSON lines into the terminal:
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw recipes/serialization/kstreams/code/recipe-steps/dev/movies.json %}</code></pre>
 +++++
 
-Looking back up in the consumer terminal, these are the results you should see there if you paste in all the movies as directed above:
+Looking back in the consumer terminal, these are the results you should see if you paste in all the movies above:
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw recipes/serialization/kstreams/code/recipe-steps/dev/avro-movies.txt %}</code></pre>
 +++++
 
-That is a topic for further study later on, but for now, you deserve some congratulations!  
-Well done.
+Congrats! You've converted formats across two topics.
