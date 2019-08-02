@@ -61,7 +61,7 @@ This will install Jekyll itself and any other gems that we use.
 #### 4. Run the development server
 
 ```
-bundle exec jekyll serve
+bundle exec jekyll serve --livereload
 ```
 
 This will launch a web server so that you can work on the site locally. Check it out on `http://localhost:4000`.
