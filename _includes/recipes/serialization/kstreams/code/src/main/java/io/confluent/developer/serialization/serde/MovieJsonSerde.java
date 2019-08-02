@@ -6,7 +6,7 @@ import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 import io.confluent.developer.avro.Movie;
@@ -19,12 +19,11 @@ public class MovieJsonSerde extends Serdes.WrapperSerde<Movie> {
 
       @Override
       public void configure(Map<String, ?> map, boolean b) {
-
       }
 
       @Override
       public byte[] serialize(String topic, Movie data) {
-        return gson.toJson(data).getBytes(Charset.forName("UTF-8"));
+        return gson.toJson(data).getBytes(StandardCharsets.UTF_8);
       }
 
       @Override

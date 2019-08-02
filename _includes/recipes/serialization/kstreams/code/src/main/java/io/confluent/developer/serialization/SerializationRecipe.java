@@ -3,7 +3,6 @@ package io.confluent.developer.serialization;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
@@ -80,21 +79,15 @@ public class SerializationRecipe {
   protected Topology buildTopology(Properties envProps, final SpecificAvroSerde<Movie> movieSpecificAvroSerde) {
     final String inputJsonTopicName = envProps.getProperty("input.json.movies.topic.name");
     final String outAvroTopicName = envProps.getProperty("output.avro.movies.topic.name");
-    //final String outJsonTopicName = envProps.getProperty("output.avro.movies.topic.name");
 
     final StreamsBuilder builder = new StreamsBuilder();
-    
+
     // topic contains values in json format
-    final KStream<Long, Movie> jsonMoviesStream =
+    final KStream<Long, Movie> jsonMovieStream =
         builder.stream(inputJsonTopicName, Consumed.with(Long(), new MovieJsonSerde()));
 
-    final KStream<Long, Movie> avroMoviesStream =
-        jsonMoviesStream
-            // extracting movie_id and use it as topic key
-            .map((key, movie) -> new KeyValue<>(movie.getMovieId(), movie));
-
     // write movie data in avro format
-    avroMoviesStream.to(outAvroTopicName, Produced.with(Long(), movieSpecificAvroSerde));
+    jsonMovieStream.to(outAvroTopicName, Produced.with(Long(), movieSpecificAvroSerde));
 
     return builder.build();
   }
@@ -104,7 +97,6 @@ public class SerializationRecipe {
     FileInputStream input = new FileInputStream(fileName);
     envProps.load(input);
     input.close();
-
     return envProps;
   }
 
@@ -145,4 +137,3 @@ public class SerializationRecipe {
     new SerializationRecipe().runRecipe(args[0]);
   }
 }
-
