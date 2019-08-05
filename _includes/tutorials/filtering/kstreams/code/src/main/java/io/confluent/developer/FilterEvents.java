@@ -94,10 +94,10 @@ public class FilterEvents {
           "This program takes one argument: the path to an environment configuration file.");
     }
 
-    new FilterEvents().runtutorial(args[0]);
+    new FilterEvents().runRecipe(args[0]);
   }
 
-  private void runtutorial(final String configPath) throws IOException {
+  private void runRecipe(final String configPath) throws IOException {
     Properties envProps = this.loadEnvProperties(configPath);
     Properties streamProps = this.buildStreamsProperties(envProps);
 
