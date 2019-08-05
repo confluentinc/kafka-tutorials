@@ -96,7 +96,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
-        - name: KSQL aggregation min/max tests
+        - name: KSQL aggregation MIN/MAX tests
           commands:
             - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
 
