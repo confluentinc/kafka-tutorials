@@ -1,5 +1,0 @@
-And launch it by running:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw recipes/splitting/ksql/code/recipe-steps/dev/docker-compose-up.sh %}</code></pre>
-+++++

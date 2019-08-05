@@ -1,5 +1,0 @@
-In your terminal, run:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw recipes/filtering/kstreams/code/recipe-steps/dev/build-uberjar.sh %}</code></pre>
-+++++

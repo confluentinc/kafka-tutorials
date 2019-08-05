@@ -1,6 +1,0 @@
-First, you'll need to create a Kafka topic and stream to represent the total ticket sales per movie in a year. 
-The statement below creates both in one shot. 
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw recipes/aggregating-minmax/ksql/code/recipe-steps/dev/create-movie-ticket-sales.sql %}</code></pre>
-+++++
