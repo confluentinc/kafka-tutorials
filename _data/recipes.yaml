@@ -64,6 +64,15 @@ joining-stream-stream:
   status:
     ksql: enabled
 
+rekeying:
+  title: "Rekey a stream"
+  slug: "/recipes/rekey-a-stream"
+  problem: "you have a Kafka topic and you want to change the key of the messages. It may be there is no key and you want to set one, or there is a key but you want to change it to a field from the record value."
+  introduction: "Suppose you have an unkeyed stream of movie ratings from movie-goers. Because the stream is not keyed, ratings for the same movie aren't guaranteed to be placed into the same partition. In this recipe, we'll write a program that creates a new topic keyed by the movie's name. When the key is consistent, it becomes possible to process these ratings at scale and in parallel."
+  status:
+    ksql: enabled
+    kstreams: enabled
+
 tumbling-windows:
   title: "Create tumbling windows"
   slug: "/recipes/create-tumbling-windows"
