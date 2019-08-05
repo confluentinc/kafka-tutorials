@@ -6,7 +6,7 @@
 @import "_mixins";
 @import "_footer";
 @import "_form";
-@import "recipe";
+@import "tutorial";
 
 body,
 select,
@@ -309,4 +309,8 @@ body {
   body {
     font-size: 10px;
   }
+}
+
+.apache-info {
+    margin-bottom: 50px;
 }

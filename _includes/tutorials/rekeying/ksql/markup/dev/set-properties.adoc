@@ -1,0 +1,5 @@
+Now that you have a stream, let's examine what key Kafka used for the messages by default. First we tell KSQL to query data from the beginning of the topic:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/rekeying/ksql/code/tutorial-steps/dev/set-properties.sql %}</code></pre>
++++++

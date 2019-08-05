@@ -4,102 +4,102 @@ dev:
       content:
         - action: skip
           render:
-            file: recipes/transforming/kafka/markup/dev/get-cp.adoc
+            file: tutorials/transforming/kafka/markup/dev/get-cp.adoc
 
     - title: Initialize the project
       content:
         - action: execute
-          file: recipe-steps/dev/init.sh
+          file: tutorial-steps/dev/init.sh
           render:
-            file: recipes/transforming/kafka/markup/dev/init.adoc
+            file: tutorials/transforming/kafka/markup/dev/init.adoc
 
         - change_directory: transform-events
           action: make_file
           file: build.gradle
           render:
-            file: recipes/transforming/kafka/markup/dev/make-build-file.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-build-file.adoc
 
         - action: execute
-          file: recipe-steps/dev/gradle-wrapper.sh
+          file: tutorial-steps/dev/gradle-wrapper.sh
           render:
-            file: recipes/transforming/kafka/markup/dev/make-gradle-wrapper.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-gradle-wrapper.adoc
 
         - action: execute
-          file: recipe-steps/dev/make-configuration-dir.sh
+          file: tutorial-steps/dev/make-configuration-dir.sh
           render:
-            file: recipes/transforming/kafka/markup/dev/make-config-dir.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-config-dir.adoc
 
         - action: make_file
           file: configuration/dev.properties
           render:
-            file: recipes/transforming/kafka/markup/dev/make-dev-file.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-dev-file.adoc
 
     - title: Create schemas for the events
       content:
         - action: execute
-          file: recipe-steps/dev/make-avro-dir.sh
+          file: tutorial-steps/dev/make-avro-dir.sh
           render:
-            file: recipes/transforming/kafka/markup/dev/make-avro-dir.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-avro-dir.adoc
 
         - action: make_file
           file: src/main/avro/input-movie-event.avsc
           render:
-            file: recipes/transforming/kafka/markup/dev/make-input-schema.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-input-schema.adoc
 
         - action: make_file
           file: src/main/avro/parsed-movies.avsc
           render:
-            file: recipes/transforming/kafka/markup/dev/make-output-schema.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-output-schema.adoc
 
         - action: execute
-          file: recipe-steps/dev/build-project.sh
+          file: tutorial-steps/dev/build-project.sh
           render:
-            file: recipes/transforming/kafka/markup/dev/build-project.adoc
+            file: tutorials/transforming/kafka/markup/dev/build-project.adoc
 
     - title: Create the code that does the transformation
       content:
         - action: execute
-          file: recipe-steps/dev/make-src-dir.sh
+          file: tutorial-steps/dev/make-src-dir.sh
           render:
-            file: recipes/transforming/kafka/markup/dev/make-src-dir.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-src-dir.adoc
 
         - action: make_file
           file: src/main/java/io/confluent/developer/TransformationEngine.java
           render:
-            file: recipes/transforming/kafka/markup/dev/make-engine.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-engine.adoc
 
         - action: make_file
           file: src/main/java/io/confluent/developer/TransformEvents.java
           render:
-            file: recipes/transforming/kafka/markup/dev/make-transform.adoc
+            file: tutorials/transforming/kafka/markup/dev/make-transform.adoc
 
     - title: Compile and run the Apache Kafka application
       content:
         - action: execute
-          file: recipe-steps/dev/build-uberjar.sh
+          file: tutorial-steps/dev/build-uberjar.sh
           render:
-            file: recipes/transforming/kafka/markup/dev/build-uberjar.adoc
+            file: tutorials/transforming/kafka/markup/dev/build-uberjar.adoc
 
         - action: execute_async
-          file: recipe-steps/dev/run-dev-app.sh
+          file: tutorial-steps/dev/run-dev-app.sh
           render:
-            file: recipes/transforming/kafka/markup/dev/run-dev-app.adoc
+            file: tutorials/transforming/kafka/markup/dev/run-dev-app.adoc
 
     - title: Produce events to the input topic
       content:
         - action: execute
-          file: recipe-steps/dev/console-producer.sh
-          stdin: recipe-steps/dev/input-events.json
+          file: tutorial-steps/dev/console-producer.sh
+          stdin: tutorial-steps/dev/input-events.json
           render:
-            file: recipes/transforming/kafka/markup/dev/run-producer.adoc
+            file: tutorials/transforming/kafka/markup/dev/run-producer.adoc
 
     - title: Consume transformed events from the output topic
       content:
         - action: execute_async
-          file: recipe-steps/dev/console-consumer.sh
-          stdout: recipe-steps/dev/outputs/actual-movies.json
+          file: tutorial-steps/dev/console-consumer.sh
+          stdout: tutorial-steps/dev/outputs/actual-movies.json
           render:
-            file: recipes/transforming/kafka/markup/dev/run-consumer.adoc
+            file: tutorials/transforming/kafka/markup/dev/run-consumer.adoc
 
         - action: sleep
           ms: 5000
@@ -113,31 +113,31 @@ test:
         - action: make_file
           file: configuration/test.properties
           render:
-            file: recipes/transforming/kafka/markup/test/make-test-file.adoc
+            file: tutorials/transforming/kafka/markup/test/make-test-file.adoc
 
     - title: Write a test
       content:
         - action: execute
-          file: recipe-steps/test/make-test-dir.sh
+          file: tutorial-steps/test/make-test-dir.sh
           render:
-            file: recipes/transforming/kafka/markup/test/make-test-dir.adoc
+            file: tutorials/transforming/kafka/markup/test/make-test-dir.adoc
 
         - action: make_file
           file: src/test/java/io/confluent/developer/SchemaRegistryContainer.java
           render:
-            file: recipes/transforming/kafka/markup/test/make-sr-container.adoc
+            file: tutorials/transforming/kafka/markup/test/make-sr-container.adoc
 
         - action: make_file
           file: src/test/java/io/confluent/developer/TransformEventsTest.java
           render:
-            file: recipes/transforming/kafka/markup/test/make-transform-test.adoc
+            file: tutorials/transforming/kafka/markup/test/make-transform-test.adoc
 
     - title: Invoke the tests
       content:
         - action: execute
-          file: recipe-steps/test/invoke-tests.sh
+          file: tutorial-steps/test/invoke-tests.sh
           render:
-            file: recipes/transforming/kafka/markup/test/invoke-tests.adoc
+            file: tutorials/transforming/kafka/markup/test/invoke-tests.adoc
 
 prod:
   steps:
@@ -146,17 +146,17 @@ prod:
         - action: make_file
           file: configuration/prod.properties
           render:
-            file: recipes/transforming/kafka/markup/prod/make-prod-file.adoc
+            file: tutorials/transforming/kafka/markup/prod/make-prod-file.adoc
 
     - title: Build a Docker image
       content:
         - action: execute
-          file: recipe-steps/prod/build-image.sh
+          file: tutorial-steps/prod/build-image.sh
           render:
-            file: recipes/transforming/kafka/markup/prod/build-image.adoc
+            file: tutorials/transforming/kafka/markup/prod/build-image.adoc
 
     - title: Launch the container
       content:
         - action: skip
           render:
-            file: recipes/transforming/kafka/markup/prod/launch-container.adoc
+            file: tutorials/transforming/kafka/markup/prod/launch-container.adoc
