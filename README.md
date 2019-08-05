@@ -22,14 +22,6 @@ brew install ruby node
 gem install bundler
 ```
 
-This repository uses a Python package to facilitate testing the recipes. To keep things simple, we bundled it into this repository. You can get everything you need by running the following:
-
-```
-pip3 install pyyaml
-cd harness_runner
-pip3 install -e .
-```
-
 You'll now have an executable called harness-runner on your path. (Note that if you use Python, you likely already have the `pyyaml` package installed.)
 
 ### Installing
@@ -65,6 +57,16 @@ bundle exec jekyll serve --livereload
 ```
 
 This will launch a web server so that you can work on the site locally. Check it out on `http://localhost:4000`.
+
+#### 5. Install the Pip package
+
+This repository uses a Python package to facilitate testing the recipes. To keep things simple, we bundled it into this repository. You can get everything you need by running the following:
+
+```
+pip3 install pyyaml
+cd harness_runner
+pip3 install -e .
+```
 
 ## Add code for a new recipe
 
