@@ -1,5 +1,0 @@
-And do the same classical music:
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw recipes/merging/ksql/code/recipe-steps/dev/populate-classical-stream.sql %}</code></pre>
-+++++

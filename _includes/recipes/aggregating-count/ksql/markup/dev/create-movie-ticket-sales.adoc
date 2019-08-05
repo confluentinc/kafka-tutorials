@@ -1,7 +1,0 @@
-First, you'll need to create a Kafka topic and stream to represent the ticket sales. 
-The statement below creates both in one shot. 
-An important characteristic of the data is the timestamp because this can be used for time-based windowing. KSQL can use either the Kafka message timestamp, or a field from the message value as the timestamp. In this example we'll use the latter—the _event time_ as stored in the `timestamp` field of the message value.
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw recipes/aggregating-count/ksql/code/recipe-steps/dev/create-movie-ticket-sales.sql %}</code></pre>
-+++++
