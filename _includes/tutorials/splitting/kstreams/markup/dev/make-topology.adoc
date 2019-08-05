@@ -1,0 +1,5 @@
+Then create the following file at `src/main/java/io/confluent/developer/SplitStream.java`. Notice the `buildTopology` method, which uses the Kafka Streams DSL. The `branch` method takes varargs of predicate functions over each record's key and value. `branch` returns an array of `KStream`, with the order of the array matching the the ordering of the predicates. If no predicates are matched, the event gets dropped from further processing. Notice the last predicate, which simply returns `true`. This acts as an "else" statement to catch all events that don't match the other predicates.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/splitting/kstreams/code/src/main/java/io/confluent/developer/SplitStream.java %}</code></pre>
++++++
