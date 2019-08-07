@@ -73,3 +73,12 @@ tumbling-windows:
   status:
     ksql: enabled
     kstreams: enabled
+
+aggregating-sum:
+   title: "Calculate a summarised figure of event values over a period of time"
+   slug: "/create-stateful-aggregation-sum"
+   problem: "you have data in a Kafka topic and want to calculate the total value in one or more fields."
+   introduction: "Suppose you have a topic with events that represent ratings of movies. In this tutorial, we'll write a program that calculates the total value of tickets sold per movie"
+   status:
+     ksql: enabled
+     kstreams: enabled
