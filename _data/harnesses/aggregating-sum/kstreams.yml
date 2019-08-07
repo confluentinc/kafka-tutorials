@@ -1,0 +1,8 @@
+dev:
+   steps:
+     - title: Initialize the project
+       content:
+         - action: execute
+           file: tutorial-steps/dev/init.sh
+           render:
+             file: tutorials/aggregating-sum/kstreams/markup/dev/init.adoc
