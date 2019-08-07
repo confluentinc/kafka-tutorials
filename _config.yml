@@ -1,6 +1,6 @@
 title: Kafka Tutorials
 baseurl: ""
-url: "http://confluent.io"
+url: "http://kafka-tutorials.confluent.io"
 
 github_url: https://github.com/confluentinc/kafka-tutorials
 contribute_url: https://github.com/confluentinc/kafka-tutorials/blob/master/CONTRIBUTING.md
