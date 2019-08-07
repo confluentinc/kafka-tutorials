@@ -96,6 +96,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
+        - name: KStreams aggregation SUM tests
+           commands:
+             - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
+
         - name: KSQL rekey stream tests
           commands:
             - make -C _includes/tutorials/rekeying/ksql/code tutorial
