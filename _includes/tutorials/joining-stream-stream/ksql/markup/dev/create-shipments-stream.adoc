@@ -1,0 +1,5 @@
+Likewise, you'll need a Kafka stream and its underlying topic to represent the shipments:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-stream/ksql/code/recipe-steps/dev/create-shipments-stream.sql %}</code></pre>
++++++

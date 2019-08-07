@@ -1,5 +1,0 @@
-First, you'll need to create a Kafka stream and its underlying topic to represent the orders:
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw recipes/joining-stream-stream/ksql/code/recipe-steps/dev/create-orders-stream.sql %}</code></pre>
-+++++
