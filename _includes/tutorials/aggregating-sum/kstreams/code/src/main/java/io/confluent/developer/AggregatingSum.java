@@ -63,7 +63,7 @@ public class AggregatingSum {
         // Apply SUM aggregation
         .reduce(Integer::sum)
         // Write to Stream
-        .toStream();
+        .toStream().to(envProps.getProperty("output.topic.name"), Produced.with(Serdes.String(), Serdes.Integer()));
 
     return builder.build();
   }

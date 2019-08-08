@@ -50,7 +50,7 @@ public class AggregatingSumTest {
   }
 
   @Test
-  public void shouldFilterGRRMartinsBooks() throws IOException, RestClientException {
+  public void shouldSumTicketSales() throws IOException, RestClientException {
     AggregatingSum fe = new AggregatingSum();
     Properties envProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
     Properties streamProps = fe.buildStreamsProperties(envProps);
