@@ -84,7 +84,7 @@ public class AggregatingSumTest {
                 );
 
     for (TicketSale ticketSale : input) {
-      testDriver.pipeInput(inputFactory.create(inputTopic, ticketSale.getTitle(), ticketSale));
+      testDriver.pipeInput(inputFactory.create(inputTopic, "", ticketSale));
     }
 
     List<TicketSale> actualOutput = new ArrayList<>();
