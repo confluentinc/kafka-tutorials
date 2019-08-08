@@ -83,7 +83,7 @@ dev:
           render:
             file: tutorials/aggregating-sum/kstreams/markup/dev/run-producer.adoc
 
-    - title: Consume filtered events from the output topic
+    - title: Consume aggregated sum from the output topic
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
