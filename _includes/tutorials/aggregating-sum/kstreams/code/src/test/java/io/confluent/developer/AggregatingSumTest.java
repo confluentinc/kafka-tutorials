@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,15 +84,17 @@ public class AggregatingSumTest {
                   new TicketSale("The Godfather", "2019-07-18T11:40:09Z", 18)
                 );
 
+    List<Integer> expectedOutput = new ArrayList<Integer>(Arrays.asList(12, 24, 12, 48, 30, 12, 24, 66, 84));
+
     for (TicketSale ticketSale : input) {
       testDriver.pipeInput(inputFactory.create(inputTopic, "", ticketSale));
     }
 
-    List<TicketSale> actualOutput = new ArrayList<>();
+    List<Integer> actualOutput = new ArrayList<>();
     while (true) {
-      ProducerRecord<String, TicketSale>
+      ProducerRecord<String, Integer>
           record =
-          testDriver.readOutput(outputTopic, keyDeserializer, ticketSaleSpecificAvroSerde.deserializer());
+          testDriver.readOutput(outputTopic, keyDeserializer, Serdes.Integer().deserializer());
 
       if (record != null) {
         actualOutput.add(record.value());
@@ -100,7 +103,9 @@ public class AggregatingSumTest {
       }
     }
 
-    //Assert.assertEquals(expectedOutput, actualOutput);
+    System.out.println(actualOutput);
+    Assert.assertEquals(expectedOutput, actualOutput);
+
   }
 
 }

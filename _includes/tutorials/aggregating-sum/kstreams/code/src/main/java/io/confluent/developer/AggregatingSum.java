@@ -62,8 +62,8 @@ public class AggregatingSum {
         .groupByKey(Grouped.with(Serdes.String(), Serdes.Integer()))
         // Apply SUM aggregation
         .reduce(Integer::sum)
-        // Write to Stream
-        .toStream().to(envProps.getProperty("output.topic.name"), Produced.with(Serdes.String(), Serdes.Integer()));
+        // Write to stream specified by outputTopic
+        .toStream().to(outputTopic, Produced.with(Serdes.String(), Serdes.Integer()));
 
     return builder.build();
   }
