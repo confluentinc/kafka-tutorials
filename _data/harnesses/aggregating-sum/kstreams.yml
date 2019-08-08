@@ -59,7 +59,7 @@ dev:
             file: tutorials/aggregating-sum/kstreams/markup/dev/make-src-dir.adoc
 
         - action: make_file
-          file: src/main/java/io/confluent/developer/FilterEvents.java
+          file: src/main/java/io/confluent/developer/AggregatingSum.java
           render:
             file: tutorials/aggregating-sum/kstreams/markup/dev/make-topology.adoc
 
@@ -114,7 +114,7 @@ test:
             file: tutorials/aggregating-sum/kstreams/markup/test/make-test-dir.adoc
 
         - action: make_file
-          file: src/test/java/io/confluent/developer/FilterEventsTest.java
+          file: src/test/java/io/confluent/developer/AggregatingSumTest.java
           render:
             file: tutorials/aggregating-sum/kstreams/markup/test/make-test.adoc
 
