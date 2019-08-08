@@ -12,9 +12,6 @@ import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.kstream.Grouped;
 import org.apache.kafka.streams.KeyValue;
 
-import org.apache.kafka.streams.kstream.Printed;
-import org.apache.kafka.streams.kstream.KStream;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -58,7 +55,7 @@ public class AggregatingSum {
     final String inputTopic = envProps.getProperty("input.topic.name");
     final String outputTopic = envProps.getProperty("output.topic.name");
 
-    final KStream<String, Integer> foobar = builder.stream(inputTopic, Consumed.with(Serdes.String(), ticketSaleSerde))
+    builder.stream(inputTopic, Consumed.with(Serdes.String(), ticketSaleSerde))
         // Set key to title and value to ticket value
         .map((k, v) -> new KeyValue<>((String) v.getTitle(), (Integer) v.getTicketTotalValue()))
         // Group by title
@@ -66,10 +63,7 @@ public class AggregatingSum {
         // Apply SUM aggregation
         .reduce(Integer::sum)
         // Write to Stream
-        .toStream();
-        //.toStream().to(envProps.getProperty("output.topic.name"), Produced.with(Serdes.String(), Serdes.Integer()));
-
-    foobar.print(Printed.toSysOut());
+        .toStream().to(envProps.getProperty("output.topic.name"), Produced.with(Serdes.String(), Serdes.Integer()));
 
     return builder.build();
   }
