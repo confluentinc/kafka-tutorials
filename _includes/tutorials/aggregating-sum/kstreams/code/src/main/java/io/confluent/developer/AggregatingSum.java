@@ -54,7 +54,7 @@ public class AggregatingSum {
     final String outputTopic = envProps.getProperty("output.topic.name");
 
     builder.stream(inputTopic, Consumed.with(Serdes.String(), ticketSaleSerde))
-        .filter((name, ticketSale) -> "George R. R. Martin".equals(ticketSale.getTitle()))
+        .filter((name, ticketSale) -> "Die Hard".equals(ticketSale.getTitle()))
         .to(outputTopic, Produced.with(Serdes.String(), ticketSaleSerde));
 
     return builder.build();
