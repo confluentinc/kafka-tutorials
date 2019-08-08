@@ -51,16 +51,16 @@ public class AggregatingSumTest {
 
   @Test
   public void shouldSumTicketSales() throws IOException, RestClientException {
-    AggregatingSum fe = new AggregatingSum();
-    Properties envProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
-    Properties streamProps = fe.buildStreamsProperties(envProps);
+    AggregatingSum aggSum = new AggregatingSum();
+    Properties envProps = aggSum.loadEnvProperties(TEST_CONFIG_FILE);
+    Properties streamProps = aggSum.buildStreamsProperties(envProps);
 
     String inputTopic = envProps.getProperty("input.topic.name");
     String outputTopic = envProps.getProperty("output.topic.name");
 
     final SpecificAvroSerde<TicketSale> ticketSaleSpecificAvroSerde = makeSerializer(envProps);
 
-    Topology topology = fe.buildTopology(envProps, ticketSaleSpecificAvroSerde);
+    Topology topology = aggSum.buildTopology(envProps, ticketSaleSpecificAvroSerde);
     TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
 
     Serializer<String> keySerializer = Serdes.String().serializer();
