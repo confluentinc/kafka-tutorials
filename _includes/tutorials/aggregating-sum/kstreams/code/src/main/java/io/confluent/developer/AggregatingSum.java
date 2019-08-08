@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
-import io.confluent.developer.avro.Publication;
+import io.confluent.developer.avro.TicketSale;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
@@ -38,8 +38,8 @@ public class AggregatingSum {
     return props;
   }
 
-  private SpecificAvroSerde<Publication> publicationSerde(final Properties envProps) {
-    final SpecificAvroSerde<Publication> serde = new SpecificAvroSerde<>();
+  private SpecificAvroSerde<TicketSale> ticketSaleSerde(final Properties envProps) {
+    final SpecificAvroSerde<TicketSale> serde = new SpecificAvroSerde<>();
     Map<String, String> config = new HashMap<>();
     config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
     serde.configure(config, false);
@@ -47,15 +47,15 @@ public class AggregatingSum {
   }
 
   public Topology buildTopology(Properties envProps,
-                                final SpecificAvroSerde<Publication> publicationSerde) {
+                                final SpecificAvroSerde<TicketSale> ticketSaleSerde) {
     final StreamsBuilder builder = new StreamsBuilder();
 
     final String inputTopic = envProps.getProperty("input.topic.name");
     final String outputTopic = envProps.getProperty("output.topic.name");
 
-    builder.stream(inputTopic, Consumed.with(Serdes.String(), publicationSerde))
-        .filter((name, publication) -> "George R. R. Martin".equals(publication.getName()))
-        .to(outputTopic, Produced.with(Serdes.String(), publicationSerde));
+    builder.stream(inputTopic, Consumed.with(Serdes.String(), ticketSaleSerde))
+        .filter((name, ticketSale) -> "George R. R. Martin".equals(ticketSale.getTitle()))
+        .to(outputTopic, Produced.with(Serdes.String(), ticketSaleSerde));
 
     return builder.build();
   }
@@ -101,7 +101,7 @@ public class AggregatingSum {
     Properties envProps = this.loadEnvProperties(configPath);
     Properties streamProps = this.buildStreamsProperties(envProps);
 
-    Topology topology = this.buildTopology(envProps, this.publicationSerde(envProps));
+    Topology topology = this.buildTopology(envProps, this.ticketSaleSerde(envProps));
     this.createTopics(envProps);
 
     final KafkaStreams streams = new KafkaStreams(topology, streamProps);

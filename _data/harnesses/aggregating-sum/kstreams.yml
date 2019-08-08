@@ -42,9 +42,9 @@ dev:
             file: tutorials/aggregating-sum/kstreams/markup/dev/make-avro-dir.adoc
 
         - action: make_file
-          file: src/main/avro/publication.avsc
+          file: src/main/avro/ticketsale.avsc
           render:
-            file: tutorials/aggregating-sum/kstreams/markup/dev/make-publication-schema.adoc
+            file: tutorials/aggregating-sum/kstreams/markup/dev/make-ticketsale-schema.adoc
 
         - action: execute
           file: tutorial-steps/dev/build-project.sh
