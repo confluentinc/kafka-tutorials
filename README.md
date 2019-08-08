@@ -1,6 +1,6 @@
 # Kafka Tutorials
 
-The source code for the Kafka Tutorials microsite.
+The source code for the [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/).
 
 ## Setup
 
