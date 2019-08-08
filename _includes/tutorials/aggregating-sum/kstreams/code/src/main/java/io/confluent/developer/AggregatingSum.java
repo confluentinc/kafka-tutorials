@@ -9,6 +9,8 @@ import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.Grouped;
+import org.apache.kafka.streams.KeyValue;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -54,8 +56,14 @@ public class AggregatingSum {
     final String outputTopic = envProps.getProperty("output.topic.name");
 
     builder.stream(inputTopic, Consumed.with(Serdes.String(), ticketSaleSerde))
-        .filter((name, ticketSale) -> "Die Hard".equals(ticketSale.getTitle()))
-        .to(outputTopic, Produced.with(Serdes.String(), ticketSaleSerde));
+        // Add key (title) and value (ticketSale)
+        .map((k, v) -> new KeyValue<>((String) v.get("title"), (Integer) v.get("ticket_total_value")))
+        // Group by title
+        .groupByKey(Grouped.with(Serdes.String(), Serdes.Integer()))
+        // Apply SUM aggregation
+        .reduce(Integer::sum)
+        // Write to Stream
+        .toStream();
 
     return builder.build();
   }
