@@ -1,4 +1,4 @@
-Then produce the following events to the stream:
+With the stream in place, we can now produce the following events to it:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/populate-movie-ticket-sales.sql %}</code></pre>

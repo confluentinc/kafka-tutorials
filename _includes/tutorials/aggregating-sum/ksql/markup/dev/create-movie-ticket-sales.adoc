@@ -1,6 +1,6 @@
 First, you'll need to create a Kafka topic and stream to represent the ticket sales. 
-The statement below creates both in one shot. 
-An important characteristic of the data is the timestamp because this can be used for time-based windowing. KSQL can use either the Kafka message timestamp, or a field from the message value as the timestamp. In this example we'll use the latter—the _event time_ as stored in the `timestamp` field of the message value.
+The statement below creates both at the same time. This stream contains the name of the movie and the price of the ticket to watch it. We model the price as an integer to make the example simple.
+Another important characteristic of the data is the timestamp column, `sale_ts`, which can be used for time-based windowing. KSQL can use either the Kafka message timestamp or a field from the message value as the timestamp. In this example, we'll use the latter, which is also known as _event time_.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/create-movie-ticket-sales.sql %}</code></pre>
