@@ -1,0 +1,5 @@
+Then create the following Avro schema file at `src/main/avro/product.avsc` that will define the structure of a product and its basic fields.
+
++++++
+<pre class="snippet"><code class="avro">{% include_raw tutorials/FilteringHeadersEngine/kafka/code/src/main/avro/product.avsc %}</code></pre>
++++++
