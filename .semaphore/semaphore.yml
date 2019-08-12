@@ -96,7 +96,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
-        - name: KSQL aggregation SUM tests
+        - name: KSQL aggregation sum tests
           commands:
             - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
 
