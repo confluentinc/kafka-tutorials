@@ -1,1 +1,1 @@
-./gradlew test --stacktrace
+./gradlew test

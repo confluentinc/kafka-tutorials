@@ -89,6 +89,7 @@ dev:
       content:
         - action: execute
           file: tutorial-steps/dev/console-producer.sh
+          stdin: tutorial-steps/dev/input-events.json
           render:
             file: tutorials/filtering-headers/kafka/markup/dev/run-producer.adoc
 

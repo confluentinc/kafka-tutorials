@@ -18,6 +18,15 @@ filtering:
     kstreams: enabled
     kafka: enabled
 
+filtering-headers:
+  title: "Filter a stream of events using headers"
+  slug: "/filter-a-stream-of-events-headers"
+  problem: "you have events in a Kafka topic, and you want to filter some of them out using headers as criteria so that only those you're interested in appear in another topic."
+  introduction: "Consider a topic with events that represent products. In this tutorial, we'll write a program that creates a new topic which only contains the products that has promotions. We're going to use the headers from the events to decide which product has a promotion."
+  status:
+    kstreams: enabled
+    kafka: enabled
+
 splitting:
   title: "Split a stream of events into substreams"
   slug: "/split-a-stream-of-events-into-substreams"

@@ -16,10 +16,16 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.common.header.internals.RecordHeader;
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
+
+import com.fasterxml.jackson.core.JsonEncoding;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class ConsoleProducer {
 
@@ -75,24 +81,24 @@ public class ConsoleProducer {
 
     public static void main(String[] args) throws Exception {
 
-        if (args.length < 1) {
-            throw new IllegalArgumentException("This program takes two arguments: the path to an environment configuration file.");
-        }
-
         ConsoleProducer consoleProducer = new ConsoleProducer();
         Properties envProps = consoleProducer.loadEnvProperties(args[0]);
         String inputTopic = envProps.getProperty("input.topic.name");
         Properties producerProps = consoleProducer.buildProducerProperties(envProps);
         KafkaProducer<String, Product> producer = consoleProducer.createProducer(producerProps);
 
+        List<Product> products = new ArrayList<>();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Scanner scanner = new Scanner(System.in);
+
         try {
-            List<Product> input = new ArrayList<>();
-            input.add(new Product(1l, "ASUS ZenBook 13 Ultra-Slim Durable Laptop", 999.99, 768.99));
-            input.add(new Product(2l, "VicTsing MM057 2.4G Wireless Mouse", 9.99, 5.99));
-            input.add(new Product(3l, "Infinnet DisplayPort 1.2 Cable", 11.95, 9.99));
-            input.add(new Product(4l, "TCL 55S425 55 inch 4K Smart LED", 329.99, 0.00));
-            input.add(new Product(5l, "Blue Yeticaster Professional Broadcast Bundle", 168.38, 0.00));
-            consoleProducer.produceProducts(inputTopic, input, producer);
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                products.add(objectMapper.readValue(line, Product.class));
+            }
+            consoleProducer.produceProducts(inputTopic, products, producer);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         } finally {
             producer.close();
         }
