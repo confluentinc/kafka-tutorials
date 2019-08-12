@@ -68,6 +68,11 @@ dev:
           render:
             file: tutorials/filtering-headers/kafka/markup/dev/make-filtering.adoc
 
+        - action: make_file
+          file: src/main/java/io/confluent/developer/ConsoleProducer.java
+          render:
+            file: tutorials/filtering-headers/kafka/markup/dev/make-console-producer.adoc
+
     - title: Compile and run the Apache Kafka application
       content:
         - action: execute
@@ -83,8 +88,7 @@ dev:
     - title: Produce events to the input topic
       content:
         - action: execute
-          file: tutorial-steps/dev/kafkacat.sh
-          stdin: tutorial-steps/dev/input-events.json
+          file: tutorial-steps/dev/console-producer.sh
           render:
             file: tutorials/filtering-headers/kafka/markup/dev/run-producer.adoc
 

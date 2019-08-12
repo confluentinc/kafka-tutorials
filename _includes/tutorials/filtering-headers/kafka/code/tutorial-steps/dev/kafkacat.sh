@@ -1,1 +1,0 @@
-docker exec -i kafkacat -b broker:9092 -t products -s avro -r http://schema-registry-url:8080 -P -H "promotion=true" -l
