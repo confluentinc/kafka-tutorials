@@ -58,11 +58,12 @@ public class FilteringHeadersTest {
         inputTopic = ENVIRONMENT_PROPERTIES.getProperty("input.topic.name");
         outputTopic = ENVIRONMENT_PROPERTIES.getProperty("output.topic.name");
         Properties producerProps = filteringHeaders.buildProducerProperties(ENVIRONMENT_PROPERTIES);
-        Properties consumerProps = filteringHeaders.buildConsumerProperties("outputGroup", ENVIRONMENT_PROPERTIES);
+        Properties consumerProps = filteringHeaders.buildConsumerProperties("FilteredProducts", ENVIRONMENT_PROPERTIES);
+        Properties consumerEngineProps = filteringHeaders.buildConsumerProperties("FilterProductsEngine", ENVIRONMENT_PROPERTIES);
 
-        producer = filteringHeaders.createProducer(producerProps);
         consumer = filteringHeaders.createConsumer(consumerProps);
-        consumerEngine = filteringHeaders.createConsumer(consumerProps);
+        consumerEngine = filteringHeaders.createConsumer(consumerEngineProps);
+        producer = filteringHeaders.createProducer(producerProps);
 
     }
 
