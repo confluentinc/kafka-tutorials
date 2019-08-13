@@ -1,4 +1,4 @@
-STEPS_DIR := recipe-steps
+STEPS_DIR := tutorial-steps
 DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
 TEST_OUTPUTS_DIR := $(STEPS_DIR)/test/outputs
 PROD_OUTPUTS_DIR := $(STEPS_DIR)/prod/outputs

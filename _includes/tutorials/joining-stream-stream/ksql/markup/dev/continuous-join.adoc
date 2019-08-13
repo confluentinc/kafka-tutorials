@@ -3,5 +3,5 @@ This output shows only the orders that have been shipped, as a result of the joi
 Since the output looks right, the next step is to make the query continuous. Issue the following to create a new stream from the query above. This new stream will have its content updated continuously as new orders and shipments events arrive.
 
 +++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-stream/ksql/code/recipe-steps/dev/continuous-join.sql %}</code></pre>
+<pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-stream/ksql/code/tutorial-steps/dev/continuous-join.sql %}</code></pre>
 +++++
