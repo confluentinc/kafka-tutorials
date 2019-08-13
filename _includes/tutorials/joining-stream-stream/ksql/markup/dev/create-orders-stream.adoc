@@ -3,3 +3,5 @@ First, you'll need to create a Kafka stream and its underlying topic to represen
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-stream/ksql/code/tutorial-steps/dev/create-orders-stream.sql %}</code></pre>
 +++++
+
+Note that we are using the field `order_ts` to control time. This is going to be particularly important later on when we start doing some query operations that require fine control of time, as well as when exactly the event happened.

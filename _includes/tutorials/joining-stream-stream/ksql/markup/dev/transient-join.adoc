@@ -9,3 +9,5 @@ This should yield the following output:
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/ksql/code/tutorial-steps/dev/expected-transient.log %}</code></pre>
 +++++
+
+The output shown above has some extra information beyond what meets the eye. Since both `orders` and `shipments` streams are using a field to represent the exact time when these events happened, the window created will be based in that instead of considering the timestamp of when the records arrived in Apache Kafka. We call this event time, which is the time determined by data on the event, instead of the ingestion time which is when the record is stored in a partition on the broker.
