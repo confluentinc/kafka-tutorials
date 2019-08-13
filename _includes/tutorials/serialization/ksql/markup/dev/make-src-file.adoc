@@ -2,5 +2,5 @@ Now that you have a series of statements that's doing the right thing, the last 
 Create a file at `src/statements.sql` with the following content:
 
 +++++
-<pre class="snippet"><code class="sql">{% include_raw recipes/serialization/ksql/code/src/statements.sql %}</code></pre>
+<pre class="snippet"><code class="sql">{% include_raw tutorials/serialization/ksql/code/src/statements.sql %}</code></pre>
 +++++

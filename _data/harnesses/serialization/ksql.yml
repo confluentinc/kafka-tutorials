@@ -18,12 +18,12 @@ dev:
         - action: make_file
           file: docker-compose.yml
           render:
-            file: tutorial-steps/serialization/ksql/markup/dev/make-docker-compose.adoc
+            file: tutorials/serialization/ksql/markup/dev/make-docker-compose.adoc
 
         - action: execute_async
           file: tutorial-steps/dev/docker-compose-up.sh
           render:
-            file: tutorial/serialization/ksql/markup/dev/start-compose.adoc
+            file: tutorials/serialization/ksql/markup/dev/start-compose.adoc
 
         - action: execute
           file: tutorial-steps/dev/wait-for-containers.sh

@@ -1,5 +1,5 @@
 Now that you have a stream of events, let's calculate the total ticket sales per movie. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:
 
 +++++
-<pre class="snippet"><code class="sql">{% include_raw recipes/serialization/ksql/code/recipe-steps/dev/set-properties_offset.sql %}</code></pre>
+<pre class="snippet"><code class="sql">{% include_raw tutorials/serialization/ksql/code/tutorial-steps/dev/set-properties_offset.sql %}</code></pre>
 +++++

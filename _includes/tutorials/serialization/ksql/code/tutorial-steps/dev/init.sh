@@ -1,1 +1,1 @@
-mkdir ksql-serialization && cd ksql-serialization || return 
+mkdir ksql-serialization && cd ksql-serialization

@@ -1,3 +1,3 @@
-INSERT INTO MOVIES_JSON (MOVIE_ID, TITLE, RELEASE_YEAR) VALUES (1, 'Lethal Weapon', 1992);
-INSERT INTO MOVIES_JSON (MOVIE_ID, TITLE, RELEASE_YEAR) VALUES (2, 'Die Hard', 1988);
-INSERT INTO MOVIES_JSON (MOVIE_ID, TITLE, RELEASE_YEAR) VALUES (3, 'Predator', 1997);
+INSERT INTO movies_json (movie_id, title, release_year) VALUES (1, 'Lethal Weapon', 1992);
+INSERT INTO movies_json (movie_id, title, release_year) VALUES (2, 'Die Hard', 1988);
+INSERT INTO movies_json (movie_id, title, release_year) VALUES (3, 'Predator', 1997);
