@@ -1,4 +1,5 @@
 SELECT
-    ORDER_ID, ORDER_TS, TOTAL_AMOUNT, CUSTOMER_NAME,
-    SHIPMENT_ID, SHIPMENT_TS, WAREHOUSE, SHIP_TIME
-FROM ORDERS_SHIPMENTS LIMIT 3;
+    order_id, order_ts, total_amount, customer_name,
+    shipment_id, shipment_ts, warehouse, ship_time
+FROM ORDERS_SHIPMENTS
+LIMIT 3;

@@ -1,6 +1,6 @@
-CREATE STREAM ORDERS (ORDER_ID INT, ORDER_TS VARCHAR, TOTAL_AMOUNT DOUBLE, CUSTOMER_NAME VARCHAR)
+CREATE STREAM orders (order_id INT, order_ts VARCHAR, total_amount DOUBLE, customer_name VARCHAR)
     WITH (KAFKA_TOPIC='_orders',
           VALUE_FORMAT='JSON',
-          TIMESTAMP='ORDER_TS',
+          TIMESTAMP='order_ts',
           TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ssX',
           PARTITIONS=4);
