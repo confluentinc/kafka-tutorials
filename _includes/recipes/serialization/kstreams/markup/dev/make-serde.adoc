@@ -1,7 +1,0 @@
-Confluent Platform ships with Avro-based serializers. 
-But for other formats, like JSON, we need to implement our own custom serializer/deserializer pair, also known as a serde.
-The code is fairly straightforward. Create the following at `src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java`:
-
-+++++
-<pre class="snippet"><code class="java">{% include_raw recipes/serialization/kstreams/code/src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java %}</code></pre>
-+++++

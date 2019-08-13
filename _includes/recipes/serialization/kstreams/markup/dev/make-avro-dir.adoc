@@ -1,7 +1,0 @@
-Since we'll be converting events into Avro, we'll need to specify a schema for them.
-In this case, our events represent movies with a few attributes, such as the release year.
-Go ahead and create a directory for your schemas: 
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw recipes/serialization/kstreams/code/recipe-steps/dev/make-avro-dir.sh %}</code></pre>
-+++++

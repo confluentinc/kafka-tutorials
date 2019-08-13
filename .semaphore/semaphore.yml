@@ -1,5 +1,5 @@
 version: v1.0
-name: Kafka Recipes pipeline
+name: Kafka Tutorials pipeline
 agent:
   machine:
     type: e1-standard-2
@@ -28,80 +28,80 @@ blocks:
       jobs:
         - name: KSQL transforming tests
           commands:
-            - make -C _includes/recipes/transforming/ksql/code recipe
+            - make -C _includes/tutorials/transforming/ksql/code tutorial
 
         - name: KStreams transforming tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
-            - make -C _includes/recipes/transforming/kstreams/code recipe
+            - make -C _includes/tutorials/transforming/kstreams/code tutorial
             
         - name: Kafka transforming tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
-            - make -C _includes/recipes/transforming/kafka/code recipe
+            - make -C _includes/tutorials/transforming/kafka/code tutorial
 
         - name: KSQL filtering tests
           commands:
-            - make -C _includes/recipes/filtering/ksql/code recipe
+            - make -C _includes/tutorials/filtering/ksql/code tutorial
 
         - name: KStreams filtering tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
-            - make -C _includes/recipes/filtering/kstreams/code recipe
+            - make -C _includes/tutorials/filtering/kstreams/code tutorial
 
         - name: KSQL splitting tests
           commands:
-            - make -C _includes/recipes/splitting/ksql/code recipe
+            - make -C _includes/tutorials/splitting/ksql/code tutorial
 
         - name: KStreams splitting tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
-            - make -C _includes/recipes/splitting/kstreams/code recipe
+            - make -C _includes/tutorials/splitting/kstreams/code tutorial
 
         - name: KSQL merging tests
           commands:
-            - make -C _includes/recipes/merging/ksql/code recipe
+            - make -C _includes/tutorials/merging/ksql/code tutorial
 
         - name: KStreams merging tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
-            - make -C _includes/recipes/merging/kstreams/code recipe
+            - make -C _includes/tutorials/merging/kstreams/code tutorial
 
         - name: KSQL join stream to table tests
           commands:
-            - make -C _includes/recipes/joining-stream-table/ksql/code recipe
+            - make -C _includes/tutorials/joining-stream-table/ksql/code tutorial
 
         - name: KStreams join stream to table tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
-            - make -C _includes/recipes/joining-stream-table/kstreams/code recipe
+            - make -C _includes/tutorials/joining-stream-table/kstreams/code tutorial
 
         - name: KSQL join table to table tests
           commands:
-            - make -C _includes/recipes/joining-table-table/ksql/code recipe
+            - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
 
         - name: KStreams tumbling windows tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
-            - make -C _includes/recipes/tumbling-windows/kstreams/code recipe
+            - make -C _includes/tutorials/tumbling-windows/kstreams/code tutorial
 
         - name: KSQL tumbling windows tests
           commands:
-            - make -C _includes/recipes/tumbling-windows/ksql/code recipe
+            - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
         - name: KStreams Serialization tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
             - ./docker/wait-for.sh
-            - make -C _includes/recipes/serialization/kstreams/code recipe
+            - make -C _includes/tutorials/serialization/kstreams/code tutorial
 
         - name: KSQL rekey stream tests
           commands:
-            - make -C _includes/recipes/rekeying/ksql/code recipe
+            - make -C _includes/tutorials/rekeying/ksql/code tutorial
