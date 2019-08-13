@@ -12,7 +12,7 @@ CREATE STREAM shipments (shipment_id VARCHAR, ship_ts VARCHAR, order_id INT, war
           TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ssX',
           PARTITIONS=4);
 
-CREATE STREAM ORDERS_SHIPMENTS AS
+CREATE STREAM SHIPPED_ORDERS AS
     SELECT O.ORDER_ID AS ORDER_ID,
            TIMESTAMPTOSTRING(O.ROWTIME, 'yyyy-MM-dd HH:mm:ss') AS ORDER_TS,
            O.TOTAL_AMOUNT,

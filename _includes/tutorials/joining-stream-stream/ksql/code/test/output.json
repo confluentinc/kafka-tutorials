@@ -1,7 +1,7 @@
 {
   "outputs": [
     {
-      "topic": "ORDERS_SHIPMENTS",
+      "topic": "SHIPPED_ORDERS",
       "timestamp": 1554056019000,
       "key": 1,
       "value": {
@@ -16,7 +16,7 @@
       }
     },
     {
-      "topic": "ORDERS_SHIPMENTS",
+      "topic": "SHIPPED_ORDERS",
       "timestamp": 1553997853000,
       "key": 2,
       "value": {
@@ -31,7 +31,7 @@
       }
     },
     {
-      "topic": "ORDERS_SHIPMENTS",
+      "topic": "SHIPPED_ORDERS",
       "timestamp": 1554065229000,
       "key": 3,
       "value": {
