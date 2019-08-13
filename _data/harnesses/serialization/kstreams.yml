@@ -114,7 +114,7 @@ test:
           render:
             file: tutorials/serialization/kstreams/markup/test/make-test-file.adoc
 
-    - title: Test the class and test the topology
+    - title: Test the streams topology
       content:
         - action: execute
           file: tutorial-steps/test/make-test-dir.sh
