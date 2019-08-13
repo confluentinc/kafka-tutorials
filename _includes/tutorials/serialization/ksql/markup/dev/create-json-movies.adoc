@@ -1,7 +1,4 @@
-First, you'll need to create a Kafka topic and stream to represent the movie data. 
-The statement below creates both in one shot. 
-
-NOTE: In order KSQL to create a new topic for the stream you need to provide the required `PARTITIONS` configuration in the `WITH` clause (and optionally `REPLICAS`)
+The first thing we'll need is to create a Kafka topic and stream to represent the movie data. We declare the `VALUE_FORMAT` of the stream to be `json` to denote the format of the events.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/serialization/ksql/code/tutorial-steps/dev/create-json-movies.sql %}</code></pre>
