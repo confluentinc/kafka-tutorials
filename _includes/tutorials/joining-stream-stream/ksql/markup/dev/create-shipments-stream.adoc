@@ -3,3 +3,5 @@ Secondly, you'll need a Kafka stream and its underlying topic to represent the s
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-stream/ksql/code/tutorial-steps/dev/create-shipments-stream.sql %}</code></pre>
 +++++
+
+Note that we have specified the number of partitions for both streams to four. This was not random. The idea here is to enable the join between these two streams, and one of the criteria for this to happen is having both streams sharing the same partition count. This will ensure the delivery of the result in the same stream task during processing. To learn more about the criteria to enable joins, click https://docs.confluent.io/current/ksql/docs/developer-guide/partition-data.html[here].

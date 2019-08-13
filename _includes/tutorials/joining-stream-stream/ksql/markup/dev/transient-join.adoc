@@ -1,4 +1,8 @@
-Let's cross both streams to come up with a new stream that contains more insightful information such as which orders have been shipped, which warehouse shipped them, and how long did it take to ship each order. The following query does a inner join between the orders stream and the shipments stream, and specifies a window duration of seven days to represent the SLA of one week to ship orders. This will block and continue to return results until it's limit is reached or you tell it to stop.
+Let's cross both streams to come up with a new stream that contains more insightful information such as which orders have been shipped, which warehouse shipped them, and how long did it take to ship each order. The following query does an inner join between the orders stream and the shipments stream since we want to make sure that only orders that have been shipped actually show up in the output. Using inner joins for scenarios like this.
+
+Also, we specified a window duration of seven days to represent the amount of time we want to analyze. For the example perspective, this might represent some conceptual idea of SLA where orders must be shipped within that timeframe. But for the sake of how these queries are going to execute, this window actually defines how large the buffer will be in runtime, and which records will fit into this buffer. In this case, only events that have an event time that fits within that period will end up in the buffer.
+
+This will block and continue to return results until it's limit is reached or you tell it to stop.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-stream/ksql/code/tutorial-steps/dev/transient-join.sql %}</code></pre>
@@ -10,4 +14,4 @@ This should yield the following output:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/ksql/code/tutorial-steps/dev/expected-transient.log %}</code></pre>
 +++++
 
-The output shown above has some extra information beyond what meets the eye. Since both `orders` and `shipments` streams are using a field to represent the exact time when these events happened, the window created will be based in that instead of considering the timestamp of when the records arrived in Apache Kafka. We call this event time, which is the time determined by data on the event, instead of the ingestion time which is when the record is stored in a partition on the broker.
+The output shown above has some extra information beyond what meets the eye. Since both `orders` and `shipments` streams are using a field to represent the exact time when these events happened, the window created will be based in that instead of considering the timestamp of when the records arrived in Apache Kafka. We call this event time, which is the time determined by data on the event, instead of the ingestion time which is when the record is stored in a partition on the broker. To learn more about time management and windows in KSQL, click https://docs.confluent.io/current/ksql/docs/concepts/time-and-windows-in-ksql-queries.html[here].

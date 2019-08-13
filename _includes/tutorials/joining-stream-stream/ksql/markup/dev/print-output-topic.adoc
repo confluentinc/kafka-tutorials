@@ -8,3 +8,5 @@ This should yield the following output:
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/ksql/code/tutorial-steps/dev/expected-print.log %}</code></pre>
 +++++
+
+As you can see, the output sits in a plain Kafka topic and therefore, any application that is able to consume data from it will be able to have access to this data.
