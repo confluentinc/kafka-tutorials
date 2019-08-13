@@ -1,13 +1,13 @@
 CREATE STREAM orders (order_id INT, order_ts VARCHAR, total_amount DOUBLE, customer_name VARCHAR)
     WITH (KAFKA_TOPIC='_orders',
-          VALUE_FORMAT='JSON',
+          VALUE_FORMAT='AVRO',
           TIMESTAMP='order_ts',
           TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ssX',
           PARTITIONS=4);
 
 CREATE STREAM shipments (shipment_id VARCHAR, ship_ts VARCHAR, order_id INT, warehouse VARCHAR)
     WITH (KAFKA_TOPIC='_shipments',
-          VALUE_FORMAT='JSON',
+          VALUE_FORMAT='AVRO',
           TIMESTAMP='ship_ts',
           TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ssX',
           PARTITIONS=4);
