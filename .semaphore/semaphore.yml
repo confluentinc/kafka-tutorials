@@ -96,6 +96,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
+        - name: KSQL serialization tests
+          commands:
+            - make -C _includes/tutorials/serialization/ksql/code tutorial
+
         - name: KStreams Serialization tests
           commands:
             - docker-compose -f docker/docker-compose.yml up -d
