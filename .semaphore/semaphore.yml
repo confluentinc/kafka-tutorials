@@ -98,7 +98,7 @@ blocks:
 
         - name: KSQL serialization tests
           commands:
-            - make -C _includes/recipes/serialization/ksql/code tutorial
+            - make -C _includes/tutorials/serialization/ksql/code tutorial
 
         - name: KStreams Serialization tests
           commands:
