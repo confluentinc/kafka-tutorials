@@ -1,5 +1,0 @@
-Create a directory for the tests to live in:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw recipes/joining-stream-table/kstreams/code/recipe-steps/test/make-test-dir.sh %}</code></pre>
-+++++
