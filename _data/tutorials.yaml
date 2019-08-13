@@ -73,3 +73,12 @@ tumbling-windows:
   status:
     ksql: enabled
     kstreams: enabled
+
+serialization:
+  title: "Convert a stream's serialization format"
+  slug: "/changing-serialization-format"
+  problem: "you have a Kafka topic with the data serialized in a particular format, and you want to change the format to something else."
+  introduction: "Consider a topic with events that represent movie releases. The events in the topic are formatted with JSON. In this tutorial, we'll write a program that creates a new topic with the same events, but formatted with Avro."
+  status:
+    ksql: enabled
+    kstreams: enabled
