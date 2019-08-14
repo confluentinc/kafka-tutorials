@@ -56,5 +56,5 @@ jar {
 }
 
 shadowJar {
-    archiveName = "kstreams-aggregatingsum-standalone-${version}.${extension}"
+    archiveName = "kstreams-aggregating-sum-standalone-${version}.${extension}"
 }
