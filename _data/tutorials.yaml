@@ -56,6 +56,15 @@ joining-table-table:
     ksql: enabled
     kstreams: enabled
 
+joining-stream-stream:
+  title: "Join a stream and a stream together"
+  slug: "/join-a-stream-to-a-stream"
+  problem: "you have two Kafka topics whose events share a common identifying attribute and correlate during some period of time. You want to join the topics together and create a new one based on that attribute, where the new events are enriched from the original topics."
+  introduction: "Suppose you have two streams containing events for orders and shipments. In this tutorial, we'll write a program that joins these two streams to create a new, enriched one. The new stream will tell us which orders have been successfully shipped, how long it took for them to ship, and which warehouse they shipped from."
+  status:
+    ksql: enabled
+    kstreams: enabled
+
 rekeying:
   title: "Rekey a stream"
   slug: "/rekey-a-stream"
