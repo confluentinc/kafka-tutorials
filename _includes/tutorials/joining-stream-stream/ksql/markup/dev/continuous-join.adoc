@@ -1,5 +1,3 @@
-This output shows only the orders that have been shipped, as a result of the join with the shipments streams. Moreover, along with the information from the order, we now have useful information from the shipment such as the warehouse where the order was shipped from. Finally, there is this new column called 'SHIP_TIME' that reveals how long did it take to ship the order. This column contains the shipment duration in minutes.
-
 Since the output looks right, the next step is to make the query continuous. Issue the following to create a new stream from the query above. This new stream will have its content updated continuously as new orders and shipments events arrive.
 
 +++++

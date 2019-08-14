@@ -59,7 +59,7 @@ joining-table-table:
 joining-stream-stream:
   title: "Join a stream and a stream together"
   slug: "/join-a-stream-to-a-stream"
-  problem: "you have two related Kafka topics whose events share a common identifying attribute. You want to join the topics together and create a new one based on that attribute, where the new events are enriched from the original topics. The key difference between this type of join or joining with a table is that we want to perform a join in sources that are constantly being updated with a never-ending stream of events. Since tables are a point-in-time snapshot of data, there is no need to specify windows. However, when joining streams there is a need to think about how both sources will come together within a window."
+  problem: "you have two Kafka topics whose events share a common identifying attribute and correlate during some period of time. You want to join the topics together and create a new one based on that attribute, where the new events are enriched from the original topics."
   introduction: "Suppose you have two streams containing events for orders and shipments. In this tutorial, we'll write a program that joins these two streams to create a new, enriched one. The new stream will tell us which orders have been successfully shipped, how long it took for them to ship, and which warehouse they shipped from."
   status:
     ksql: enabled
