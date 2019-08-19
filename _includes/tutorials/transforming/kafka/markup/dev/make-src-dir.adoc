@@ -1,4 +1,4 @@
-Create a directory for the code that will perform the transformtion:
+Create a directory for the code that will perform the transformation:
 
 +++++
 <pre class="snippet"><code class="shell">mkdir -p src/main/java/io/confluent/developer</code></pre>

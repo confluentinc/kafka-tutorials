@@ -1,0 +1,7 @@
+Although Confluent Platform ships with Avro serializers, it doesn't provide every format that we might need out of the box.
+In this case, we need to implement our own JSON serializer/deserializer pair, also known as a serde. This will let us read the JSON-formatted messages off the incoming topic.
+Create the following at `src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java`:
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/serialization/kstreams/code/src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java %}</code></pre>
++++++
