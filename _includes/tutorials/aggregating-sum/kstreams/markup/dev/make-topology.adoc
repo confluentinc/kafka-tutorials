@@ -1,4 +1,16 @@
-Then create the following file at `src/main/java/io/confluent/developer/AggregatingSum.java`. Notice the `buildTopology` method, which uses the Kafka Streams DSL. The `sum` method takes a boolean function of each record's key and value. The function you give it determines whether to pass each event through to the next stage of the topology. In this case, we're only interested in books authored by George R. R. Martin.
+Then create the following file at `src/main/java/io/confluent/developer/AggregatingSum.java`. Let's take a close look at the `buildTopology()` method, which uses the Kafka Streams DSL.
+
+The first thing the method does is create an instance of `https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/StreamsBuilder.html[StreamsBuilder]`, which is the helper object that lets us build our topology. With our builder in hand, we can apply the following methods:
+
+1. Call the `stream()` method to create a `https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KStream.html[KStream]<String, TicketSale>` object.
+
+2. Since we can't make any assumptions about the key of this stream, we have to repartition it explicitly. We use the `map()` method for that, creating a new `https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/KeyValue.html[KeyValue]` instance for each record, using the movie title as the new key.
+
+3. Group the events by that new key by calling the `GroupByKey()` method. This returns a `https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KGroupedStream.html[KGroupedStream]` object.
+
+4. Use the `reduce()` method to apply the sum aggregation.
+
+5. Use the `toStream()` method to produce the sum results to the specified output topic.
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/aggregating-sum/kstreams/code/src/main/java/io/confluent/developer/AggregatingSum.java %}</code></pre>
