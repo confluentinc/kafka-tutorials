@@ -9,9 +9,12 @@ public class RegexReplace {
 
   @Udf(description = "regexReplace string using a regex")
   public String regexReplace(
-    @UdfParameter(value = "input") final String input,
-    @UdfParameter(value = "regex") final String regex,
-    @UdfParameter(value = "replacement") final String replacement) {
-    return input.replaceAll(regex, replacement);
+    @UdfParameter(value = "input", description = "If null, then function returns null.") final String input,
+    @UdfParameter(value = "regex", description = "If null, then function returns null.") final String regex,
+    @UdfParameter(value = "replacement", description = "If null, then function returns null.") final String replacement) {
+      if (input == null || regex == null || replacement == null) {
+        return null;
+      }  
+      return input.replaceAll(regex, replacement);
   }
 }
