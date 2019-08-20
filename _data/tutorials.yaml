@@ -88,6 +88,9 @@ aggregating-count:
   slug: "/create-stateful-aggregation-count"
   problem: "you have data in a Kafka topic and want to count the number of events based on some criteria."
   introduction: "Suppose you have a topic with events that represent ticket sales for movies. In this tutorial, we'll write a program that calculates the total number of tickets sold per movie."
+  status:
+    ksql: enabled
+    kstreams: enabled
 
 aggregating-sum:
    title: "Sum a stream of events"
