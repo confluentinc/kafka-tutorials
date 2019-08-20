@@ -1,0 +1,4 @@
+Format:AVRO
+8/1/19 3:28:06 PM UTC, null, {"MOVIE_ID": 1, "TITLE": "Lethal Weapon", "RELEASE_YEAR": 1992}
+8/1/19 3:28:06 PM UTC, null, {"MOVIE_ID": 2, "TITLE": "Die Hard", "RELEASE_YEAR": 1988}
+8/1/19 3:28:06 PM UTC, null, {"MOVIE_ID": 3, "TITLE": "Predator", "RELEASE_YEAR": 1997}

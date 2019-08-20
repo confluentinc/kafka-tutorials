@@ -1,0 +1,1 @@
+PRINT 'avro-movies' FROM BEGINNING LIMIT 3;
