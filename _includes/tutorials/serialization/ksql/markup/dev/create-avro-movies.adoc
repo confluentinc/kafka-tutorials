@@ -1,0 +1,9 @@
+To convert the events to Avro, we're going to create a derived stream.
+All that is needed is to specify the `VALUE_FORMAT` as `avro`, and the conversion will happen automatically.
+You can also optionally specify the topic name as we've done here. Omitting this parameter will cause the underlying topic to be named the same as the stream name.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/serialization/ksql/code/tutorial-steps/dev/create-avro-movies.sql %}</code></pre>
++++++
+
+Because this is a continuous query, any new records arriving on the source in JSON (`json-movies`) will be automatically converted to Avro on the derived topic (`avro-movies`).
