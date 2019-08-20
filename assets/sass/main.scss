@@ -131,6 +131,10 @@ body {
   }
 }
 
+.icon-aggregate {
+    height: 38px;
+}
+
 .pg-main {
   .hero {
     .hero-body {
@@ -188,20 +192,25 @@ body {
   flex-direction: column;
   align-items: center;
 
-  .card-cta {
+  .card.card-cta {
     display: flex;
     flex-direction: column;
     padding: 50px;
-    margin-top: 45px;
-    width: 1067px;
     font-size: 28px;
     font-weight: bold;
     color: $baseColor;
     align-items: center;
+    text-align: center;
     min-height: 193px;
+
+    @media (min-width: 480px) {
+      min-width: 697px;
+      max-width: 697px;
+    }
 
     > div {
       flex: 1;
+      max-width: 500px;
 
        &:first-child {
         flex: 5;
@@ -227,6 +236,10 @@ body {
       margin-right: 0;
     }
   }
+}
+
+.secondary-card-row {
+  margin-top: 25px;
 }
 
 .card {
@@ -273,8 +286,6 @@ body {
 
     .cards-container {
       .card-cta {
-        min-width: 325px;
-        max-width: 325px;
         flex-direction: column;
         margin-top: 0;
 
