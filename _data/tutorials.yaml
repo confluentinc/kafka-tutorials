@@ -84,10 +84,13 @@ tumbling-windows:
     kstreams: enabled
 
 aggregating-sum:
-  title: "Sum a stream of events"
-  slug: "/create-stateful-aggregation-sum"
-  problem: "you have data in a Kafka topic and want to calculate the sum of one or more fields."
-  introduction: "Suppose you have a topic with events that represent ticket sales for movies. Each event contains the movie that the ticket was purchased for as well as its price. In this tutorial, we'll write a program that calculates the sum of all ticket sales per movie."
+   title: "Sum a stream of events"
+   slug: "/create-stateful-aggregation-sum"
+   problem: "you have data in a Kafka topic and want to calculate the sum of one or more fields."
+   introduction: "Suppose you have a topic with events that represent ticket sales for movies. Each event contains the movie that the ticket was purchased for as well as its price. In this tutorial, we'll write a program that calculates the sum of all ticket sales per movie."
+   status:
+     ksql: enabled
+     kstreams: enabled
 
 serialization:
   title: "Convert a stream's serialization format"
