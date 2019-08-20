@@ -1,0 +1,5 @@
+Create a directory for the KSQL extensions and copy the new jar file into this location.  We will refer to this location in the `docker-compose.yml` file used to launch the Confluent Platform.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/rekeying-function/ksql/code/tutorial-steps/dev/copy-udf-jar.sh %}</code></pre>
++++++

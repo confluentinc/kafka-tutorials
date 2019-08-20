@@ -74,6 +74,14 @@ rekeying:
     ksql: enabled
     kstreams: enabled
 
+rekeying-function:
+  title: "Rekey a stream with a function"
+  slug: "/rekey-with-function"
+  problem: "you have a Kafka topic and you want to change the key of the messages. The new key is a variation of data you currently have in the messages.  A small fragment of code will convert the data you have to the new key."
+  introduction: "We currently have customers in a topic, but would like customers of the same phone number area code to be placed into the same partition."
+  status:
+    ksql: enabled
+
 tumbling-windows:
   title: "Create tumbling windows"
   slug: "/create-tumbling-windows"

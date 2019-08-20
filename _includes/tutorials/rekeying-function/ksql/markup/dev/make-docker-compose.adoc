@@ -1,0 +1,7 @@
+Next, create the following `docker-compose.yml` file to obtain Confluent Platform:
+
++++++
+<pre class="snippet"><code class="dockerfile">{% include_raw tutorials/rekeying-function/ksql/code/docker-compose.yml %}</code></pre>
++++++
+
+Note `docker-compose.yml` has configured the `ksql-server` container with `KSQL_KSQL_EXTENSION_DIR: "/etc/ksql/ext/"`, and maps the local `extensions` folder to `/etc/ksql/ext` in the container.
