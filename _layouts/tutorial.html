@@ -5,18 +5,13 @@
 <html>
 <head>
   {% include vendors.html %}
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="{{ site.data.tutorials[page.static_data].meta-description }} using {{ site.data.stacks[page.stack].pretty }} with full code examples. Find and contribute more Kafka tutorials with Confluent, the real-time event streaming experts.">
 
-  {% if page.stack == 'ksql' %}
-  <title>KSQL Tutorial: {{ site.data.tutorials[page.static_data].title }} using KSQL</title>
-  {% elsif page.stack == 'kstreams' %}
-  <title>Kafka Streams Tutorial: {{ site.data.tutorials[page.static_data].title }} using Kafka Streams</title>
-  {% else %}
-  <title>Kafka Tutorial: {{ site.data.tutorials[page.static_data].title }} using Kafka</title>
-  {% endif %}
+  <title>{{ site.data.stacks[page.stack].pretty }} Tutorial: {{ site.data.tutorials[page.static_data].title }} using {{ site.data.stacks[page.stack].pretty }}</title>
 
-  <title>{{ site.title }}: {{ site.data.tutorials[page.static_data].title }}</title>
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/github.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/assets/sass/main.css" />
