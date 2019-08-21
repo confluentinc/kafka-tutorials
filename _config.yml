@@ -1,4 +1,5 @@
-title: Kafka Tutorials
+title: "Kafka Tutorials: Learn Kafka with End-to-End Code Examples"
+description: "Find, learn, and contribute Apache Kafka tutorials with full code examples for real use cases. Learn Kafka from Confluent, the real-time event streaming experts."
 baseurl: ""
 url: "http://kafka-tutorials.confluent.io"
 
