@@ -43,11 +43,11 @@
       <a href="{{ site.github_url }}" class="btn-edit"><img src="/assets/img/icon-edit.svg" alt="Edit this page" /></a>
       {% unless page.help_wanted %}
         <div class="example">
-          <h3 class="title">Example Scenario:</h3>
+          <h3 class="title">Example use case:</h3>
           <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
         </div>
       {% endunless %}
-      <h3 class="title">Solve it with:</h3>
+      <h3 class="title">Code example:</h3>
       <div class="cflt-options">
         <select>
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
