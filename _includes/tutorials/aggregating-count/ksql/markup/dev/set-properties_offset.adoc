@@ -1,4 +1,5 @@
-Now that you have a stream of events, let's calculate the number of ticket sales per movie. The first thing to do is set the following properties to ensure that you're reading from the beginning of the stream:
+Before we get too far, let’s set the `auto.offset.reset` configuration parameter to `earliest`. This means all new KSQL queries will automatically compute their results from the beginning of a stream, rather than the end. This isn’t always what you’ll want to do in production, but it makes query results much easier to see in examples like this.
+
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-count/ksql/code/tutorial-steps/dev/set-properties_offset.sql %}</code></pre>

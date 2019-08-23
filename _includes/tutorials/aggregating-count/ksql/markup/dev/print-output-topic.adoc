@@ -1,4 +1,4 @@
-To check that it's working, print out the contents of the output table's underlying topic:
+Now let’s directly inspect that output topic using the `print` KSQL CLI command. We could also `SELECT * FROM MOVIE_TICKETS_SOLD`, but here we opt for a more direct approach.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-count/ksql/code/tutorial-steps/dev/print-output-topic.sql %}</code></pre>

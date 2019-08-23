@@ -1,4 +1,4 @@
-Launch your statements into production by sending them to the REST API with the following command:
+Launch your statements into production by sending them to the KSQL server REST endpoint with the following command:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-count/ksql/code/tutorial-steps/prod/send-to-api.sh %}</code></pre>
