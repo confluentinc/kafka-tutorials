@@ -58,9 +58,9 @@ dev:
               render:
                 file: tutorials/aggregating-minmax/ksql/markup/dev/transient-query.adoc
 
-            - file: tutorial-steps/dev/continuous-query.sql
+            - file: tutorial-steps/dev/persistent-query.sql
               render:
-                file: tutorials/aggregating-minmax/ksql/markup/dev/continuous-query.adoc
+                file: tutorials/aggregating-minmax/ksql/markup/dev/persistent-query.adoc
 
             - file: tutorial-steps/dev/print-output-topic.sql
               render:
@@ -99,7 +99,7 @@ test:
 
 prod:
   steps:
-    - title: Send the statements to the REST API
+    - title: Send the statements to the REST endpoint
       content:
         - action: skip
           render:
