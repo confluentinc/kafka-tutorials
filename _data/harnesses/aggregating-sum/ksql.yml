@@ -58,9 +58,9 @@ dev:
               render:
                 file: tutorials/aggregating-sum/ksql/markup/dev/transient-query.adoc
 
-            - file: tutorial-steps/dev/continuous-query.sql
+            - file: tutorial-steps/dev/persistent-query.sql
               render:
-                file: tutorials/aggregating-sum/ksql/markup/dev/continuous-query.adoc
+                file: tutorials/aggregating-sum/ksql/markup/dev/persistent-query.adoc
 
             - file: tutorial-steps/dev/print-output-topic.sql
               render:
