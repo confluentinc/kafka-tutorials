@@ -1,5 +1,5 @@
-Then make the following directories to set up its structure:
+Then make the following directories:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/filtering/ksql/code/tutorial-steps/dev/make-dirs.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/rekeying-function/ksql/code/tutorial-steps/dev/make-dirs.sh %}</code></pre>
 +++++

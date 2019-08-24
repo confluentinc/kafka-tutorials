@@ -12,3 +12,4 @@ tutorial:
 	harness-runner ../../../../../_data/harnesses/rekeying-function/ksql.yml $(TEMP_DIR)
 	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/dev/expected-key-query.log) <(sort $(DEV_OUTPUTS_DIR)/key-query/output-0.log)"
 	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/dev/expected-query-rekeyed-stream.log) <(sort $(DEV_OUTPUTS_DIR)/query-rekeyed-stream/output-0.log)"
+	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-describe-function.log $(DEV_OUTPUTS_DIR)/describe-function/output-0.log"

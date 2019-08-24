@@ -26,6 +26,13 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
+task copyJar(type: Copy) {
+    from jar
+    into "extensions/"
+}  
+
+build.dependsOn copyJar
+
 test {
     testLogging {
         outputs.upToDateWhen { false }

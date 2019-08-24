@@ -43,11 +43,6 @@ dev:
           render:
             file: tutorials/rekeying-function/ksql/markup/dev/build-jar.adoc
 
-        - action: execute
-          file: tutorial-steps/dev/copy-udf-jar.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/copy-udf-jar.adoc
-
     - title: Get Confluent Platform
       content:
         - action: make_file
@@ -76,6 +71,9 @@ dev:
             - file: tutorial-steps/dev/show-functions.sql
               render:
                 file: tutorials/rekeying-function/ksql/markup/dev/show-functions.adoc
+            - file: tutorial-steps/dev/describe-function.sql
+              render:
+                file: tutorials/rekeying-function/ksql/markup/dev/describe-function.adoc
             - file: tutorial-steps/dev/create-customers-stream.sql
               render:
                 file: tutorials/rekeying-function/ksql/markup/dev/create-customers-stream.adoc
