@@ -62,3 +62,10 @@ dev:
           file: src/main/java/io/confluent/developer/connect/jdbc/specificavro/StreamsIngest.java
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-topology.adoc
+
+    - title: Create the source database
+      content:
+        - action: execute
+          file: tutorial-steps/dev/create-source-database.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/create-source-database.adoc
