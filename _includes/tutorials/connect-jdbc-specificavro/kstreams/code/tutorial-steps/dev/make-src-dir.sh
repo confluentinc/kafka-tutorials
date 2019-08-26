@@ -1,1 +1,1 @@
-mkdir -p src/main/java/io/confluent/developer/serialization/serde
+mkdir -p src/main/java/io/confluent/developer/connect/jdbc/specificavro

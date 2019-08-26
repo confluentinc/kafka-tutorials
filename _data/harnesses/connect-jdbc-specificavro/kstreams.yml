@@ -50,3 +50,15 @@ dev:
           file: tutorial-steps/dev/build-project.sh
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/build-project.adoc
+
+    - title: Create the Kafka Streams topology
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-src-dir.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-src-dir.adoc
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/connect/jdbc/specificavro/StreamsIngest.java
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-topology.adoc

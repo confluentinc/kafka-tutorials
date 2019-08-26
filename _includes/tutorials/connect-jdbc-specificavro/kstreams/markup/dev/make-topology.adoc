@@ -1,0 +1,7 @@
+Then create the following file at `src/main/java/io/confluent/developer/connect/jdbc/specificavro/StreamsIngest.java`. Let's take a close look at the `buildTopology()` method, which uses the Kafka Streams DSL.
+
+The first thing the method does is ....
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/connect-jdbc-specificavro/kstreams/code/src/main/java/io/confluent/developer/connect/jdbc/specificavro/StreamsIngest.java %}</code></pre>
++++++
