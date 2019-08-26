@@ -40,3 +40,13 @@ dev:
           file: tutorial-steps/dev/make-avro-dir.sh
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-avro-dir.adoc
+
+        - action: make_file
+          file: src/main/avro/city.avsc
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-city-schema.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/build-project.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/build-project.adoc
