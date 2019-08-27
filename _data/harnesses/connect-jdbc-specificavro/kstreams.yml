@@ -91,3 +91,29 @@ dev:
           file: src/main/java/io/confluent/developer/connect/jdbc/specificavro/StreamsIngest.java
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-topology.adoc
+
+    - title: Compile and run the Kafka Streams program
+      content:
+        - action: execute
+          file: tutorial-steps/dev/build-uberjar.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/build-uberjar.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/run-dev-app.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/run-dev-app.adoc
+
+    - title: Consume events from the output topic
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/console-consumer.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-events.json
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/run-consumer.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
