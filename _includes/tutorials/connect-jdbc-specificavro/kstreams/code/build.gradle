@@ -52,7 +52,7 @@ jar {
   manifest {
     attributes(
         "Class-Path": configurations.compile.collect { it.getName() }.join(" "),
-        "Main-Class": "io.confluent.developer.SerializationTutorial"
+        "Main-Class": "io.confluent.developer.connect.jdbc.specificavro.StreamsIngest"
     )
   }
 }
@@ -63,4 +63,4 @@ shadowJar {
 }
 
 // Define the main class for the application
-mainClassName = 'io.confluent.developer.serialization.SerializationTutorial'
+mainClassName = 'io.confluent.developer.connect.jdbc.specificavro.StreamsIngest'

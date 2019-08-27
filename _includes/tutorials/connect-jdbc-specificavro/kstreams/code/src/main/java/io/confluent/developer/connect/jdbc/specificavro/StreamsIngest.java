@@ -1,4 +1,4 @@
-package io.confluent.developer;
+package io.confluent.developer.connect.jdbc.specificavro;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
