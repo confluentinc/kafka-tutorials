@@ -2,6 +2,7 @@ package io.confluent.developer.connect.jdbc.specificavro;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.kstream.KStream;
@@ -30,7 +31,9 @@ public class StreamsIngest {
   public Properties buildStreamsProperties(Properties envProps) {
     Properties props = new Properties();
 
-    props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
+    //props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
+    props.put(StreamsConfig.APPLICATION_ID_CONFIG, "foo2");
+    props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
     props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
     props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
     props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
@@ -56,7 +59,8 @@ public class StreamsIngest {
     final String outputTopic = envProps.getProperty("output.topic.name");
 
     KStream<String, City> citiesNoKey = builder.stream(inputTopic, Consumed.with(Serdes.String(), citySerde));
-    final KStream<Long, City> cities = citiesNoKey.map((k, v) -> new KeyValue<>(v.getCityId(), v));
+    final KStream<Long, City> citiesKeyed = citiesNoKey.map((k, v) -> new KeyValue<>(v.getCityId(), v));
+    citiesKeyed.to(outputTopic, Produced.with(Serdes.Long(), citySerde));
 
     return builder.build();
   }
