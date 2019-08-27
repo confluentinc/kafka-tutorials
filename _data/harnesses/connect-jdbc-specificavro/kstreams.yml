@@ -51,6 +51,35 @@ dev:
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/build-project.adoc
 
+    - title: Create the source database
+      content:
+        - action: make_file
+          file: cities.sql
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-sql-commandfile.adoc
+
+        - action: make_file
+          file: Dockerfile
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-dockerfile.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/create-source-database.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/create-source-database.adoc
+
+    - title: Run the connector
+      content:
+        - action: make_file
+          file: jdbc_source.config
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-connector-config.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/run-connector.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/run-connector.adoc
+
     - title: Create the Kafka Streams topology
       content:
         - action: execute
@@ -62,10 +91,3 @@ dev:
           file: src/main/java/io/confluent/developer/connect/jdbc/specificavro/StreamsIngest.java
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-topology.adoc
-
-    - title: Create the source database
-      content:
-        - action: execute
-          file: tutorial-steps/dev/create-source-database.sh
-          render:
-            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/create-source-database.adoc

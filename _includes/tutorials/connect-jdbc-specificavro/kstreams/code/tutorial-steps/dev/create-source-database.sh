@@ -1,1 +1,1 @@
-docker run -it sqlite3
+docker build -t sqlite Dockerfile && docker run -it sqlite

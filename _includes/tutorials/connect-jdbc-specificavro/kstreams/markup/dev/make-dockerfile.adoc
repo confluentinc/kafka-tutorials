@@ -1,0 +1,5 @@
+Then create a `Dockerfile` to build the sqlite container:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/connect-jdbc-specificavro/kstreams/code/Dockerfile %}</code></pre>
++++++
