@@ -1,1 +1,1 @@
-docker build -t sqlite . && docker run -d -i sqlite --name sqlite
+docker build -t sqlitekt . && docker run -d -i --name sqlitekt sqlitekt
