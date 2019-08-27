@@ -48,7 +48,6 @@ public class StreamsIngest {
     return serde;
   }
 
-
   public Topology buildTopology(Properties envProps,
                                 final SpecificAvroSerde<City> citySerde) {
     final StreamsBuilder builder = new StreamsBuilder();
