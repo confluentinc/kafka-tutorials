@@ -113,3 +113,7 @@ blocks:
         - name: KSQL rekey stream tests
           commands:
             - make -C _includes/tutorials/rekeying/ksql/code tutorial
+
+        - name: KSQL rekey stream with function
+          commands:
+            - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
