@@ -1,4 +1,4 @@
-Then create a file with sql commands to prepopulate the database table with city information:
+Create a file `cities.sql` with commands to prepopulate the database table with city information:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/connect-jdbc-specificavro/kstreams/code/cities.sql %}</code></pre>

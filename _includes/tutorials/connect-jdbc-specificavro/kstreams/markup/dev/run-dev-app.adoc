@@ -2,4 +2,4 @@ Now that you have an uberjar for the Kafka Streams application, you can launch i
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/connect-jdbc-specificavro/kstreams/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
-+++++%                              
++++++
