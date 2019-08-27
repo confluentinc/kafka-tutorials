@@ -75,6 +75,11 @@ dev:
 
     - title: Run the connector
       content:
+        - action: execute
+          file: tutorial-steps/dev/copy-sqlite-db.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/copy-sqlite-db.adoc
+
         - action: make_file
           file: jdbc_source.config
           render:
