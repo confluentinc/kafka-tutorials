@@ -68,6 +68,11 @@ dev:
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/create-source-database.adoc
 
+        - action: execute
+          file: tutorial-steps/dev/view-source-table.sh
+          render:
+            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/view-source-table.adoc
+
     - title: Run the connector
       content:
         - action: make_file
