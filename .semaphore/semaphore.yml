@@ -113,8 +113,8 @@ blocks:
             - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
 
         - name: KStreams aggregation sum tests
-           commands:
-             - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
+          commands:
+            - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
 
         - name: KSQL serialization tests
           commands:
