@@ -114,7 +114,7 @@ dev:
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/run-dev-app.adoc
 
-    - title: Consume events from the output topic
+    - title: Consume events from the input topic and output topic
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
