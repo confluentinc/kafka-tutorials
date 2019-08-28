@@ -58,7 +58,7 @@ dev:
               render:
                 file: tutorials/aggregating-count/ksql/markup/dev/transient-query.adoc
 
-            - file: tutorial-steps/dev/continuous-query.sql
+            - file: tutorial-steps/dev/persistent-query.sql
               render:
                 file: tutorials/aggregating-count/ksql/markup/dev/persistent-query.adoc
 

@@ -1,4 +1,4 @@
 Format:AVRO
-7/18/19 10:01:36 AM UTC, Die Hard, {"TITLE": "Die Hard", "TICKETS_SOLD": 3}
-7/18/19 11:03:50 AM UTC, The Big Lebowski, {"TITLE": "The Big Lebowski", "TICKETS_SOLD": 2}
-7/18/19 11:40:09 AM UTC, The Godfather, {"TITLE": "The Godfather", "TICKETS_SOLD": 4}
+8/28/19 3:50:08 AM UTC, Die Hard, {"TITLE": "Die Hard", "TICKETS_SOLD": 3}
+8/28/19 3:50:08 AM UTC, The Big Lebowski, {"TITLE": "The Big Lebowski", "TICKETS_SOLD": 2}
+8/28/19 3:50:09 AM UTC, The Godfather, {"TITLE": "The Godfather", "TICKETS_SOLD": 4}
