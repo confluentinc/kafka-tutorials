@@ -1,1 +1,1 @@
-mkdir kstreams-serialization && cd kstreams-serialization
+mkdir connect-jdbc-specificavro && cd connect-jdbc-specificavro
