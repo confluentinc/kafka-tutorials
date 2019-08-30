@@ -64,7 +64,7 @@ public class StreamsIngestTest {
     TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
 
     Serializer<String> keySerializer = Serdes.String().serializer();
-    Deserializer<String> keyDeserializer = Serdes.String().deserializer();
+    Deserializer<Long> keyDeserializer = Serdes.Long().deserializer();
 
     ConsumerRecordFactory<String, City>
         inputFactory =
@@ -90,12 +90,12 @@ public class StreamsIngestTest {
 
     List<Long> actualOutput = new ArrayList<>();
     while (true) {
-      ProducerRecord<String, City>
+      ProducerRecord<Long, City>
           record =
           testDriver.readOutput(outputTopic, keyDeserializer, citySpecificAvroSerde.deserializer());
 
       if (record != null) {
-        actualOutput.add(Long.parseLong(record.key()));
+        actualOutput.add(record.key());
       } else {
         break;
       }
