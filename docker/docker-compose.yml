@@ -50,32 +50,32 @@ services:
     volumes:
       - ./schema-registry/log4j.properties:/etc/schema-registry/quiet-logging.properties
 
-  # ksql-server:
-  #   image: confluentinc/cp-ksql-server:5.3.0
-  #   hostname: ksql-server
-  #   container_name: ksql-server
-  #   depends_on:
-  #     - broker
-  #     - schema-registry
-  #   ports:
-  #     - "8088:8088"
-  #   environment:
-  #     KSQL_CONFIG_DIR: "/etc/ksql"
-  #     KSQL_LOG4J_OPTS: "-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties"
-  #     KSQL_BOOTSTRAP_SERVERS: "broker:9092"
-  #     KSQL_HOST_NAME: ksql-server
-  #     KSQL_APPLICATION_ID: "cp-all-in-one"
-  #     KSQL_LISTENERS: "http://0.0.0.0:8088"
-  #     KSQL_CACHE_MAX_BYTES_BUFFERING: 0
-  #     KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
-  #     KSQL_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
-  #     KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+  ksql-server:
+    image: confluentinc/cp-ksql-server:5.3.0
+    hostname: ksql-server
+    container_name: ksql-server
+    depends_on:
+      - broker
+      - schema-registry
+    ports:
+      - "8088:8088"
+    environment:
+      KSQL_CONFIG_DIR: "/etc/ksql"
+      KSQL_LOG4J_OPTS: "-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties"
+      KSQL_BOOTSTRAP_SERVERS: "broker:9092"
+      KSQL_HOST_NAME: ksql-server
+      KSQL_APPLICATION_ID: "cp-all-in-one"
+      KSQL_LISTENERS: "http://0.0.0.0:8088"
+      KSQL_CACHE_MAX_BYTES_BUFFERING: 0
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      KSQL_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
+      KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
 
-  # ksql-cli:
-  #   image: confluentinc/cp-ksql-cli:5.3.0
-  #   container_name: ksql-cli
-  #   depends_on:
-  #     - broker
-  #     - ksql-server
-  #   entrypoint: /bin/sh
-  #   tty: true
+  ksql-cli:
+    image: confluentinc/cp-ksql-cli:5.3.0
+    container_name: ksql-cli
+    depends_on:
+      - broker
+      - ksql-server
+    entrypoint: /bin/sh
+    tty: true
