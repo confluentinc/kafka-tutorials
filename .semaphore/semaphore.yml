@@ -114,6 +114,8 @@ blocks:
 
         - name: KStreams aggregation sum tests
           commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
             - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
 
         - name: KSQL serialization tests
