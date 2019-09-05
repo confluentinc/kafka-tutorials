@@ -24,7 +24,7 @@ dev:
           file: tutorial-steps/dev/wait-for-containers.sh
           render:
             skip: true
-            
+
     - title: Configure the project
       content:
         - action: make_file
@@ -46,7 +46,7 @@ dev:
           file: configuration/dev.properties
           render:
             file: tutorials/merging/kstreams/markup/dev/make-dev-file.adoc
-        
+
     - title: Create a schema for the events
       content:
         - action: execute
@@ -151,7 +151,7 @@ prod:
           file: configuration/prod.properties
           render:
             file: tutorials/merging/kstreams/markup/prod/make-prod-file.adoc
-        
+
     - title: Build a Docker image
       content:
         - action: execute

@@ -5,7 +5,7 @@ dev:
         - action: execute
           file: tutorial-steps/dev/init.sh
           render:
-            file: tutorials/filtering/kstreams/markup/dev/init.adoc        
+            file: tutorials/filtering/kstreams/markup/dev/init.adoc
 
     - title: Get Confluent Platform
       content:
@@ -24,7 +24,7 @@ dev:
           file: tutorial-steps/dev/wait-for-containers.sh
           render:
             skip: true
-            
+
 
     - title: Configure the project
       content:
@@ -47,7 +47,7 @@ dev:
           file: configuration/dev.properties
           render:
             file: tutorials/filtering/kstreams/markup/dev/make-dev-file.adoc
-      
+
 
     - title: Create a schema for the events
       content:
@@ -76,7 +76,7 @@ dev:
         - action: make_file
           file: src/main/java/io/confluent/developer/FilterEvents.java
           render:
-            file: tutorials/filtering/kstreams/markup/dev/make-topology.adoc 
+            file: tutorials/filtering/kstreams/markup/dev/make-topology.adoc
 
     - title: Compile and run the Kafka Streams program
       content:
