@@ -21,6 +21,11 @@ dev:
           render:
             file: tutorials/serialization/kstreams/markup/dev/start-compose.adoc            
 
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+            
     - title: Configure the project
       content:
         - action: make_file
