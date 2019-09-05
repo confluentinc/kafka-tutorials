@@ -1,11 +1,5 @@
 dev:
   steps:
-    - title: Get Confluent Platform
-      content:
-        - action: skip
-          render:
-            file: tutorials/transforming/kafka/markup/dev/get-cp.adoc
-
     - title: Initialize the project
       content:
         - action: execute
@@ -13,8 +7,22 @@ dev:
           render:
             file: tutorials/transforming/kafka/markup/dev/init.adoc
 
+    - title: Get Confluent Platform
+      content:
         - change_directory: transform-events
           action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/transforming/kstreams/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/transforming/kstreams/markup/dev/start-compose.adoc
+
+    - title: Configure the project
+      content:
+        - action: make_file
           file: build.gradle
           render:
             file: tutorials/transforming/kafka/markup/dev/make-build-file.adoc
@@ -33,7 +41,7 @@ dev:
           file: configuration/dev.properties
           render:
             file: tutorials/transforming/kafka/markup/dev/make-dev-file.adoc
-
+          
     - title: Create schemas for the events
       content:
         - action: execute
