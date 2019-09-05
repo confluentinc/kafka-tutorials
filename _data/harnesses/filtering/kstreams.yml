@@ -161,3 +161,8 @@ prod:
         - action: skip
           render:
             file: tutorials/filtering/kstreams/markup/prod/launch-container.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true

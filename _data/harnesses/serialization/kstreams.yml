@@ -115,7 +115,7 @@ dev:
         - action: sleep
           ms: 5000
           render:
-            skip: true
+            skip: true  
 
 # =========== TEST Harness ===========
 test:
@@ -168,3 +168,8 @@ prod:
         - action: skip
           render:
             file: tutorials/serialization/kstreams/markup/prod/launch-container.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true

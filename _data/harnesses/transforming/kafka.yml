@@ -173,3 +173,8 @@ prod:
         - action: skip
           render:
             file: tutorials/transforming/kafka/markup/prod/launch-container.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
