@@ -1,12 +1,6 @@
 # =========== DEV Harness ===========
 dev:
   steps:
-    - title: Get Confluent Platform
-      content:
-        - action: skip
-          render:
-            file: tutorials/serialization/kstreams/markup/dev/get-cp.adoc
-
     - title: Initialize the project
       content:
         - action: execute
@@ -14,8 +8,22 @@ dev:
           render:
             file: tutorials/serialization/kstreams/markup/dev/init.adoc
 
+    - title: Get Confluent Platform
+      content:
         - change_directory: kstreams-serialization
           action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/serialization/kstreams/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/serialization/kstreams/markup/dev/start-compose.adoc            
+
+    - title: Configure the project
+      content:
+        - action: make_file
           file: build.gradle
           render:
             file: tutorials/serialization/kstreams/markup/dev/make-build-file.adoc
@@ -34,7 +42,7 @@ dev:
           file: configuration/dev.properties
           render:
             file: tutorials/serialization/kstreams/markup/dev/make-dev-file.adoc
-
+        
     - title: Create an Avro schema for the output events
       content:
         - action: execute
