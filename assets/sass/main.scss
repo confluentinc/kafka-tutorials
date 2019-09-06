@@ -156,6 +156,12 @@ body {
         max-width: 650px;
       }
     }
+
+    .subtitle {
+        max-width: 800px;
+        margin-top: 50px;
+        color: #fff;
+    }
   }
 
   .footer {
@@ -223,7 +229,7 @@ body {
 .cards {
   display: flex;
   justify-content: center;
-  margin-top: -125px;
+  margin-top: -200px;
 
   .card {
     flex: 1;
