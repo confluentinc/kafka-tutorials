@@ -1,0 +1,5 @@
+For the purposes of this example only, we are also going to configure KSQL to buffer the aggregates as it builds them. This makes the query feel like it responds more slowly, but means that you get just one row per movie from which it is simpler to understand the concept:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/set-properties_buffer.sql %}</code></pre>
++++++

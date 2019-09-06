@@ -1,0 +1,11 @@
+Let's calculate the total sales per movie using a `SUM` aggregation on the `TICKET_TOTAL_VALUE` field. This will block and continue to return results until it's limit is reached or you tell it to stop. 
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/expected-transient.log %}</code></pre>
++++++
+

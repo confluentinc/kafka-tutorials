@@ -86,6 +86,22 @@ blocks:
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
+        - name: KSQL aggregation count tests
+          commands:
+            - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
+
+        - name: KSQL aggregation MIN/MAX tests
+          commands:
+            - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
+
+        - name: KSQL aggregation sum tests
+          commands:
+            - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
+
+        - name: KStreams aggregation sum tests
+          commands:
+            - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
+
         - name: KSQL serialization tests
           commands:
             - make -C _includes/tutorials/serialization/ksql/code tutorial
