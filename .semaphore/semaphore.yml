@@ -31,15 +31,11 @@ blocks:
             - make -C _includes/tutorials/transforming/ksql/code tutorial
 
         - name: KStreams transforming tests
-          commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
+          commands:                      
             - make -C _includes/tutorials/transforming/kstreams/code tutorial
             
         - name: Kafka transforming tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/transforming/kafka/code tutorial
 
         - name: KSQL filtering tests
@@ -48,8 +44,6 @@ blocks:
 
         - name: KStreams filtering tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/filtering/kstreams/code tutorial
 
         - name: KSQL splitting tests
@@ -58,8 +52,6 @@ blocks:
 
         - name: KStreams splitting tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/splitting/kstreams/code tutorial
 
         - name: KSQL merging tests
@@ -68,8 +60,6 @@ blocks:
 
         - name: KStreams merging tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/merging/kstreams/code tutorial
 
         - name: KSQL join stream to stream tests
@@ -82,8 +72,6 @@ blocks:
 
         - name: KStreams join stream to table tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/joining-stream-table/kstreams/code tutorial
 
         - name: KSQL join table to table tests
@@ -92,8 +80,6 @@ blocks:
 
         - name: KStreams tumbling windows tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/tumbling-windows/kstreams/code tutorial
 
         - name: KSQL tumbling windows tests
@@ -106,8 +92,6 @@ blocks:
 
         - name: KStreams Serialization tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/serialization/kstreams/code tutorial
 
         - name: KSQL rekey stream tests

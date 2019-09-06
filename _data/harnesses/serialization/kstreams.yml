@@ -1,12 +1,6 @@
 # =========== DEV Harness ===========
 dev:
   steps:
-    - title: Get Confluent Platform
-      content:
-        - action: skip
-          render:
-            file: tutorials/serialization/kstreams/markup/dev/get-cp.adoc
-
     - title: Initialize the project
       content:
         - action: execute
@@ -14,12 +8,31 @@ dev:
           render:
             file: tutorials/serialization/kstreams/markup/dev/init.adoc
 
+    - title: Get Confluent Platform
+      content:
         - change_directory: kstreams-serialization
           action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/serialization/kstreams/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/serialization/kstreams/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Configure the project
+      content:
+        - action: make_file
           file: build.gradle
           render:
             file: tutorials/serialization/kstreams/markup/dev/make-build-file.adoc
-            
+
         - action: execute
           file: tutorial-steps/dev/gradle-wrapper.sh
           render:
@@ -70,7 +83,7 @@ dev:
           file: src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java
           render:
             file: tutorials/serialization/kstreams/markup/dev/make-serde.adoc
-            
+
     - title: Compile and run the Kafka Streams program
       content:
         - action: execute
@@ -98,7 +111,7 @@ dev:
           stdin: tutorial-steps/dev/movies.json
           render:
             file: tutorials/serialization/kstreams/markup/dev/run-producer.adoc
-        
+
         - action: sleep
           ms: 5000
           render:
@@ -120,12 +133,12 @@ test:
           file: tutorial-steps/test/make-test-dir.sh
           render:
             file: tutorials/serialization/kstreams/markup/test/make-test-dir.adoc
-       
+
         - action: make_file
           file: src/test/java/io/confluent/developer/serialization/SerializationTutorialTest.java
           render:
             file: tutorials/serialization/kstreams/markup/test/make-topology-test.adoc
-            
+
     - title: Invoke the tests
       content:
         - action: execute
@@ -133,7 +146,7 @@ test:
           render:
             file: tutorials/serialization/kstreams/markup/test/invoke-tests.adoc
 
-# =========== PROD Harness ===========            
+# =========== PROD Harness ===========
 prod:
   steps:
     - title: Create a production configuration file
@@ -155,3 +168,8 @@ prod:
         - action: skip
           render:
             file: tutorials/serialization/kstreams/markup/prod/launch-container.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
