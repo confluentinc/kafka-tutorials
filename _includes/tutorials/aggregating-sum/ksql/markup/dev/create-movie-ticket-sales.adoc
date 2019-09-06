@@ -1,0 +1,7 @@
+First, you'll need to create a Kafka topic and stream to represent the ticket sales. The statement below creates both at the same time. This stream contains the name of the movie and the price of the ticket to watch it. We model the price as an integer to make the example simple.
+
+Another important characteristic of the data is the timestamp column, `sale_ts`. Every message in Kafka is timestamped, and unless you specify otherwise, KSQL will use that existing timestamp for any time-related processing. In this example, we're telling it to use a field in the message for the timestamp. This is called the _event time_ rather than the _ingestion time_.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/create-movie-ticket-sales.sql %}</code></pre>
++++++
