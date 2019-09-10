@@ -7,6 +7,8 @@ agent:
 
 blocks:
   - task:
+      secrets:
+        - name: aws_credentials
       jobs:
         - name: Compile and deploy site
           commands:
@@ -16,4 +18,4 @@ blocks:
             - gem install bundler --no-ri --no-rdoc
             - bundle install            
             - JEKYLL_ENV=production bundle exec jekyll build
-            - aws s3 cp --recursive ./_site s3://kafka-tutorials.confluent.io/            
+            - aws s3 cp --dryrun --recursive ./_site s3://kafka-tutorials.confluent.io/
