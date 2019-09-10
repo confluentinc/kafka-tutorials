@@ -17,7 +17,8 @@ blocks:
       jobs:
         - name: Compile with Jekyll
           commands:
-            - bundle exec jekyll build
+            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
+            - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: Run the tests
     task:
@@ -31,9 +32,9 @@ blocks:
             - make -C _includes/tutorials/transforming/ksql/code tutorial
 
         - name: KStreams transforming tests
-          commands:                      
+          commands:
             - make -C _includes/tutorials/transforming/kstreams/code tutorial
-            
+
         - name: Kafka transforming tests
           commands:
             - make -C _includes/tutorials/transforming/kafka/code tutorial
@@ -117,3 +118,20 @@ blocks:
         - name: KSQL rekey stream with function
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+
+  - name: Deploy the site to staging
+    skip:
+      when: branch != 'master' AND branch !~ '.*staging.*'
+    task:
+      secrets:
+        - name: aws_credentials
+      prologue:
+        commands:
+          - checkout
+      jobs:
+        - name: Copy to S3
+          commands:
+            - cache restore site-$SEMAPHORE_GIT_SHA
+            - aws s3 cp --recursive ./_site "s3://kafka-tutorials-staging/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA/"
+            - echo "Deployed to http://kafka-tutorials-staging.s3-website-us-west-2.amazonaws.com/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA/"
+            - cache delete site-$SEMAPHORE_GIT_SHA
