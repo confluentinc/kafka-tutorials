@@ -1,3 +1,5 @@
+version: v1.0
+name: Kafka Tutorials live site deployment
 agent:
   machine:
     type: e1-standard-2
