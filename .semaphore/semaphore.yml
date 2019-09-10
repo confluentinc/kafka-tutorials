@@ -5,15 +5,25 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 
+promotions:
+  - name: Deploy to live site
+    pipeline_file: live-site-deploy.yml
+    auto_promote_on:
+      - result: passed
+        branch:
+          - release
+
 blocks:
   - name: Build the website
     task:
       prologue:
         commands:
           - checkout
+          - cache restore
           - npm install
           - gem install bundler --no-ri --no-rdoc
           - bundle install
+          - cache store
       jobs:
         - name: Compile with Jekyll
           commands:
