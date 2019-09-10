@@ -16,5 +16,4 @@ blocks:
             - gem install bundler --no-ri --no-rdoc
             - bundle install            
             - JEKYLL_ENV=production bundle exec jekyll build
-#            - aws s3 cp --recursive ./_site s3://kafka-tutorials.confluent.io/
-            - cat _site/index.html
+            - aws s3 cp --recursive ./_site s3://kafka-tutorials.confluent.io/            
