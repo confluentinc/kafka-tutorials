@@ -18,6 +18,7 @@ blocks:
         - name: Compile with Jekyll
           commands:
             - bundle exec jekyll build
+            - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: Run the tests
     task:
@@ -128,5 +129,7 @@ blocks:
       jobs:
         - name: Copy to S3
           commands:
+            - cache restore site-$SEMAPHORE_GIT_SHA
             - aws s3 cp --recursive ./_site "s3://kafka-tutorials-staging/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA/"
             - echo "Deployed to http://kafka-tutorials-staging.s3-website-us-west-2.amazonaws.com/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA/"
+            - cache delete site-$SEMAPHORE_GIT_SHA
