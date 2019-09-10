@@ -121,6 +121,8 @@ blocks:
 
   - name: Deploy the site to staging
     task:
+      skip:
+        when: branch != 'master' AND branch !~ '.*staging.*'
       secrets:
         - name: aws_credentials
       prologue:
