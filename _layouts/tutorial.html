@@ -14,7 +14,7 @@
 
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/github.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/assets/sass/main.css" />
+  <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
 </head>
 <body class="pg-tutorial">
   {% include nav.html %}
@@ -35,7 +35,7 @@
 
   <section class="section">
     <div class="container">
-      <a href="{{ site.github_url }}" class="btn-edit"><img src="/assets/img/icon-edit.svg" alt="Edit this page" /></a>
+      <a href="{{ site.github_url }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
       {% unless page.help_wanted %}
         <div class="example">
           <h3 class="title">Example use case:</h3>
@@ -46,17 +46,17 @@
       <div class="cflt-options">
         <select>
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug }}/ksql.html" {% if page.stack == 'ksql' %} selected {% endif %}>
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html" {% if page.stack == 'ksql' %} selected {% endif %}>
             KSQL
           </option>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kstreams == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug }}/kstreams.html" {% if page.stack == 'kstreams' %} selected {% endif %}>
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kstreams.html" {% if page.stack == 'kstreams' %} selected {% endif %}>
             Kafka Streams
           </option>
-          {% endif %}
+          {% endif %}.0
           {% if site.data.tutorials[page.static_data].status.kafka == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug }}/kafka.html" {% if page.stack == 'kafka' %} selected {% endif %}>
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kafka.html" {% if page.stack == 'kafka' %} selected {% endif %}>
             Vanilla Kafka
           </option>
           {% endif %}
@@ -65,17 +65,17 @@
       <div class="cflt-tabs">
         <div class="buttons">
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
-          <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug }}/ksql.html">
+          <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html">
             KSQL
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kstreams == 'enabled' %}
-          <a class="button {% if page.stack == 'kstreams' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug }}/kstreams.html">
+          <a class="button {% if page.stack == 'kstreams' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kstreams.html">
             Kafka Streams
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kafka == 'enabled' %}
-          <a class="button {% if page.stack == 'kafka' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug }}/kafka.html">
+          <a class="button {% if page.stack == 'kafka' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kafka.html">
             Vanilla Kafka
           </a>
           {% endif %}
@@ -121,10 +121,10 @@
 
   {% include footer.html %}
 
-  <script src="/assets/js/jquery.min.js"></script>
+  <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
   <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
-  <script src="/assets/js/tutorial.js"></script>
+  <script src="{{ "/assets/js/tutorial.js" | relative_url }}"></script>
 </body>
 </html>
