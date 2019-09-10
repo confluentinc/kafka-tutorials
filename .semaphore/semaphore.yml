@@ -120,9 +120,9 @@ blocks:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
 
   - name: Deploy the site to staging
+    skip:
+      when: branch != 'master' AND branch !~ '.*staging.*'
     task:
-      skip:
-        when: "branch != 'master' AND branch !~ '.*staging.*'"
       secrets:
         - name: aws_credentials
       prologue:
