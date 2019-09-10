@@ -1,1 +1,3 @@
-{% include vendors/gtag.html %}
+{% if jekyll.environment == "production" %}
+    {% include vendors/gtag.html %}
+{% endif %}
