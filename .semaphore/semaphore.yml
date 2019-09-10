@@ -11,7 +11,7 @@ promotions:
     auto_promote_on:
       - result: passed
         branch:
-          - release
+          - ^release$
 
 blocks:
   - name: Build the website
