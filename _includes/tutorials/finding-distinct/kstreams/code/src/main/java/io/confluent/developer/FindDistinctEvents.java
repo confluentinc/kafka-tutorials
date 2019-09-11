@@ -1,5 +1,6 @@
 package io.confluent.developer;
 
+import io.confluent.developer.avro.Click;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
@@ -19,7 +20,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
-import io.confluent.developer.avro.Publication;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
@@ -38,8 +38,8 @@ public class FindDistinctEvents {
     return props;
   }
 
-  private SpecificAvroSerde<Publication> publicationSerde(final Properties envProps) {
-    final SpecificAvroSerde<Publication> serde = new SpecificAvroSerde<>();
+  private SpecificAvroSerde<Click> buildClicksSerde(final Properties envProps) {
+    final SpecificAvroSerde<Click> serde = new SpecificAvroSerde<>();
     Map<String, String> config = new HashMap<>();
     config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
     serde.configure(config, false);
@@ -47,15 +47,16 @@ public class FindDistinctEvents {
   }
 
   public Topology buildTopology(Properties envProps,
-                                final SpecificAvroSerde<Publication> publicationSerde) {
+                                final SpecificAvroSerde<Click> clicksSerde) {
     final StreamsBuilder builder = new StreamsBuilder();
 
     final String inputTopic = envProps.getProperty("input.topic.name");
     final String outputTopic = envProps.getProperty("output.topic.name");
 
-    builder.stream(inputTopic, Consumed.with(Serdes.String(), publicationSerde))
-        .filter((name, publication) -> "George R. R. Martin".equals(publication.getName()))
-        .to(outputTopic, Produced.with(Serdes.String(), publicationSerde));
+    builder
+      .stream(inputTopic, Consumed.with(Serdes.String(), clicksSerde))
+      .groupBy((key, click) -> String.format("%s::%s", click.getIp(), click.getUrl()));
+      //.to(outputTopic, Produced.with(Serdes.String(), clicksSerde));
 
     return builder.build();
   }
@@ -101,7 +102,7 @@ public class FindDistinctEvents {
     Properties envProps = this.loadEnvProperties(configPath);
     Properties streamProps = this.buildStreamsProperties(envProps);
 
-    Topology topology = this.buildTopology(envProps, this.publicationSerde(envProps));
+    Topology topology = this.buildTopology(envProps, this.buildClicksSerde(envProps));
     this.createTopics(envProps);
 
     final KafkaStreams streams = new KafkaStreams(topology, streamProps);

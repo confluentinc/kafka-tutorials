@@ -1,24 +1,12 @@
 package io.confluent.developer;
 
+import io.confluent.developer.avro.Click;
 import org.apache.avro.Schema;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.serialization.Serializer;
-import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.TopologyTestDriver;
-import org.apache.kafka.streams.test.ConsumerRecordFactory;
-import org.junit.Assert;
-import org.junit.Test;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import io.confluent.developer.avro.Publication;
 import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient;
 import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
@@ -29,18 +17,18 @@ public class FindDistinctEventsTest {
 
   private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
-  private SpecificAvroSerde<Publication> makeSerializer(Properties envProps)
+  private SpecificAvroSerde<Click> makeSerializer(Properties envProps)
       throws IOException, RestClientException {
 
     final MockSchemaRegistryClient client = new MockSchemaRegistryClient();
     String inputTopic = envProps.getProperty("input.topic.name");
     String outputTopic = envProps.getProperty("output.topic.name");
 
-    final Schema schema = Publication.SCHEMA$;
+    final Schema schema = Click.SCHEMA$;
     client.register(inputTopic + "-value", schema);
     client.register(outputTopic + "-value", schema);
 
-    SpecificAvroSerde<Publication> serde = new SpecificAvroSerde<>(client);
+    SpecificAvroSerde<Click> serde = new SpecificAvroSerde<>(client);
 
     Map<String, String> config = new HashMap<>();
     config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
