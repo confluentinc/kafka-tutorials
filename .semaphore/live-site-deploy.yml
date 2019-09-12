@@ -1,0 +1,21 @@
+version: v1.0
+name: Kafka Tutorials live site deployment
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - task:
+      secrets:
+        - name: aws_credentials
+      jobs:
+        - name: Compile and deploy site
+          commands:
+            - checkout
+            - cache restore
+            - npm install
+            - gem install bundler --no-ri --no-rdoc
+            - bundle install            
+            - JEKYLL_ENV=production bundle exec jekyll build
+            - aws s3 cp --recursive ./_site s3://kafka-tutorials.confluent.io/
