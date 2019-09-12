@@ -17,6 +17,7 @@ $(function() {
 
     $('#mkto-form a').on('click', function() {
         $(this).css('z-index', 0).siblings('form').addClass('active').find('input').focus();
+        $('#signup-notice').removeClass('is-hidden');
 
         return false;
     });

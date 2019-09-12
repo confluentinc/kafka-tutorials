@@ -20,7 +20,9 @@ button {
   width: auto;
 }
 
-.cta-button, {
+.card-cta {
+
+.cta-button {
   display: inline-block;
   border-radius: 30px;
   font-size: 12px;
@@ -43,6 +45,7 @@ button {
     background-color: #fff;
     border: solid 2px $baseColor
   }
+}
 }
 
 body {
@@ -201,7 +204,6 @@ body {
   .card.card-cta {
     display: flex;
     flex-direction: column;
-    padding: 50px;
     font-size: 28px;
     font-weight: bold;
     color: $baseColor;
@@ -214,14 +216,29 @@ body {
       max-width: 697px;
     }
 
-    > div {
-      flex: 1;
-      max-width: 500px;
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      min-width: 500px;
 
-       &:first-child {
-        flex: 5;
-        line-height: 1.2;
+      > div {
+        flex: 1;
+
+        &:first-child {
+          flex: 5;
+          line-height: 1.2;
+          max-width: 380px;
+        }
       }
+    }
+
+    .notice {
+      color: $footerColor;
+      font-size: 11px;
+      font-weight: 100;
+      text-align: left;
     }
   }
 }
@@ -297,6 +314,14 @@ body {
 
         div:first-child {
           margin-bottom: 25px;
+        }
+
+        .content {
+          min-width: auto;
+        }
+
+        .notice {
+          margin-top: 1.5rem;
         }
       }
     }
