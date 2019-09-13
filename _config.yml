@@ -1,5 +1,6 @@
-title: Kafka Tutorials
-baseurl: ""
+title: "Kafka Tutorials: Learn Kafka with End-to-End Code Examples"
+description: "Find, learn, and contribute Apache Kafka tutorials with full code examples for real use cases. Learn Kafka from Confluent, the real-time event streaming experts."
+
 url: "http://kafka-tutorials.confluent.io"
 
 github_url: https://github.com/confluentinc/kafka-tutorials
@@ -29,7 +30,7 @@ exclude:
   - CONTRIBUTING.md
 
 ak_javadoc_version: 23
-cp_version: v5.2.1
+cp_version: v5.3.0
 google_tag_manager_id: GTM-NBVX4Z
 
 plugins:

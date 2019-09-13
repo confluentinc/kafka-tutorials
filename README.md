@@ -1,6 +1,6 @@
 # Kafka Tutorials
 
-The source code for the [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/).
+The source code for the [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/). Read about it [in our blog post](https://www.confluent.io/blog/announcing-apache-kafka-tutorials).
 
 ## Setup
 
@@ -129,8 +129,12 @@ You can do the same for Kafka Streams and Kafka, by using the `kstreams` and `ka
 
 Lastly, create a Makefile in the `code` directory to invoke the harness runner and check any outputs that it produces. Then modify the `.semaphore/semaphore.yml` file to invoke that Makefile. This will make sure your tutorial gets checked by the CI system.
 
-## Misc
+## Updating kafka-tutorials.confluent.io
 
-### Running the tests locally
+The `release` branch tracks the content and code comprising the live site. Confluent manages the release process.
 
-Some of the tests require Docker containers to be up. In the root directory, `cd` to the `docker` directory and run `docker-compose up -d` where needed.
+#### Prepare a release PR
+
+A pull request into the `release` branch denotes a request to update the live site. The PR description should summarize the content changes and link to the staging site with the updates. In general, releases are timed, so target dates should also be noted.
+
+Release artifacts are automatically promoted to the live site by CI, as part of successful `release` branch builds.

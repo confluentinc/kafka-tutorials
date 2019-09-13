@@ -5,19 +5,37 @@ agent:
     type: e1-standard-2
     os_image: ubuntu1804
 
+promotions:
+  - name: Deploy to live site
+    pipeline_file: live-site-deploy.yml
+    auto_promote_on:
+      - result: passed
+        branch:
+          - ^release$
+
+  - name: Deploy to staging site
+    pipeline_file: staging-site-deploy.yml
+    auto_promote_on:
+      - result: passed
+        branch:
+          - ^master$
+
 blocks:
   - name: Build the website
     task:
       prologue:
         commands:
           - checkout
+          - cache restore
           - npm install
           - gem install bundler --no-ri --no-rdoc
           - bundle install
+          - cache store
       jobs:
         - name: Compile with Jekyll
           commands:
-            - bundle exec jekyll build
+            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
+            - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: Run the tests
     task:
@@ -32,14 +50,10 @@ blocks:
 
         - name: KStreams transforming tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/transforming/kstreams/code tutorial
-            
+
         - name: Kafka transforming tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/transforming/kafka/code tutorial
 
         - name: KSQL filtering tests
@@ -48,8 +62,6 @@ blocks:
 
         - name: KStreams filtering tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/filtering/kstreams/code tutorial
 
         - name: KSQL splitting tests
@@ -58,8 +70,6 @@ blocks:
 
         - name: KStreams splitting tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/splitting/kstreams/code tutorial
 
         - name: KSQL merging tests
@@ -68,9 +78,11 @@ blocks:
 
         - name: KStreams merging tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/merging/kstreams/code tutorial
+
+        - name: KSQL join stream to stream tests
+          commands:
+            - make -C _includes/tutorials/joining-stream-stream/ksql/code tutorial
 
         - name: KSQL join stream to table tests
           commands:
@@ -78,8 +90,6 @@ blocks:
 
         - name: KStreams join stream to table tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/joining-stream-table/kstreams/code tutorial
 
         - name: KSQL join table to table tests
@@ -88,14 +98,40 @@ blocks:
 
         - name: KStreams tumbling windows tests
           commands:
-            - docker-compose -f docker/docker-compose.yml up -d
-            - ./docker/wait-for.sh
             - make -C _includes/tutorials/tumbling-windows/kstreams/code tutorial
 
         - name: KSQL tumbling windows tests
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
+        - name: KSQL aggregation count tests
+          commands:
+            - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
+
+        - name: KSQL aggregation MIN/MAX tests
+          commands:
+            - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
+
+        - name: KSQL aggregation sum tests
+          commands:
+            - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
+
+        - name: KStreams aggregation sum tests
+          commands:
+            - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
+
+        - name: KSQL serialization tests
+          commands:
+            - make -C _includes/tutorials/serialization/ksql/code tutorial
+
+        - name: KStreams Serialization tests
+          commands:
+            - make -C _includes/tutorials/serialization/kstreams/code tutorial
+
         - name: KSQL rekey stream tests
           commands:
             - make -C _includes/tutorials/rekeying/ksql/code tutorial
+
+        - name: KSQL rekey stream with function
+          commands:
+            - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
