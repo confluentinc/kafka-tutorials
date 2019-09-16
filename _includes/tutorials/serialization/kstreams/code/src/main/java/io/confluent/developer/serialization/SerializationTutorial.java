@@ -1,14 +1,14 @@
 package io.confluent.developer.serialization;
 
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.streams.KafkaStreams;
-import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.StreamsConfig;
-import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.kstream.Consumed;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.Produced;
+import static java.lang.Integer.parseInt;
+import static java.lang.Short.parseShort;
+import static org.apache.kafka.common.serialization.Serdes.Long;
+import static org.apache.kafka.common.serialization.Serdes.String;
+
+import io.confluent.developer.avro.Movie;
+import io.confluent.developer.serialization.serde.MovieJsonSerde;
+import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -19,15 +19,15 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
-import io.confluent.developer.avro.Movie;
-import io.confluent.developer.serialization.serde.MovieJsonSerde;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-
-import static java.lang.Integer.parseInt;
-import static java.lang.Short.parseShort;
-import static org.apache.kafka.common.serialization.Serdes.Long;
-import static org.apache.kafka.common.serialization.Serdes.String;
+import org.apache.kafka.clients.admin.AdminClient;
+import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.kstream.Consumed;
+import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.Produced;
 
 public class SerializationTutorial {
 
@@ -38,7 +38,8 @@ public class SerializationTutorial {
     props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
     props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, String().getClass());
     props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, String().getClass());
-    props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
+              envProps.getProperty("schema.registry.url"));
 
     return props;
   }
@@ -76,7 +77,9 @@ public class SerializationTutorial {
     return movieAvroSerde;
   }
 
-  protected Topology buildTopology(Properties envProps, final SpecificAvroSerde<Movie> movieSpecificAvroSerde) {
+  protected Topology buildTopology(
+      Properties envProps,
+      final SpecificAvroSerde<Movie> movieSpecificAvroSerde) {
     final String inputJsonTopicName = envProps.getProperty("input.json.movies.topic.name");
     final String outAvroTopicName = envProps.getProperty("output.avro.movies.topic.name");
 
@@ -128,6 +131,9 @@ public class SerializationTutorial {
     System.exit(0);
   }
 
+  /**
+   * Launch the tutorial.
+   */
   public static void main(String[] args) throws IOException {
     if (args.length < 1) {
       throw new IllegalArgumentException(

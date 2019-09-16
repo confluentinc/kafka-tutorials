@@ -3,6 +3,18 @@ package io.confluent.developer.serialization;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
+import io.confluent.developer.avro.Movie;
+import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient;
+import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Properties;
+
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.LongDeserializer;
@@ -15,25 +27,16 @@ import org.apache.kafka.streams.test.ConsumerRecordFactory;
 import org.apache.kafka.streams.test.OutputVerifier;
 import org.junit.Test;
 
-import java.io.IOException;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Properties;
-
-import io.confluent.developer.avro.Movie;
-import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient;
-import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-
 public class SerializationTutorialTest {
 
-  private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+  private static final String TEST_CONFIG_FILE = "configuration/test.properties";
 
-  private SpecificAvroSerde<Movie> makeAvroSerDe(Properties envProps) throws IOException, RestClientException {
+  private SpecificAvroSerde<Movie> makeAvroSerDe(
+      Properties envProps) throws IOException,
+      RestClientException {
 
-    // MockSchemaRegistryClient doesn't require connection to Schema Registry which is perfect for unit test
+    // MockSchemaRegistryClient doesn't require connection to Schema Registry which is perfect for
+    // unit test
     final MockSchemaRegistryClient client = new MockSchemaRegistryClient();
     String outputTopic = envProps.getProperty("output.avro.movies.topic.name");
     client.register(outputTopic + "-value", Movie.SCHEMA$);
@@ -42,7 +45,8 @@ public class SerializationTutorialTest {
     final HashMap<String, String> map = new HashMap<>();
 
     // this should be unnecessary because we use MockSchemaRegistryClient
-    // but still required in order to avoid `io.confluent.common.config.ConfigException: Missing required configuration "schema.registry.url" which has no default value.`
+    // but still required in order to avoid `io.confluent.common.config.ConfigException: 
+    // Missing required configuration "schema.registry.url" which has no default value.`
     map.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
 
     movieAvroSerde.configure(map, false);
@@ -85,14 +89,18 @@ public class SerializationTutorialTest {
 
     for (int i = 0; i < 3; i++) {
       final ProducerRecord<Long, Movie>
-          actual =
-          testDriver.readOutput(outputTopic, keyDeserializer, movieSpecificAvroSerde.deserializer());
-      OutputVerifier.compareKeyValue(actual, new ProducerRecord<>(outputTopic, (long) i + 1, expectedMovies.get(i)));
+          actual = testDriver.readOutput(
+            outputTopic,
+            keyDeserializer,
+            movieSpecificAvroSerde.deserializer());
+      OutputVerifier.compareKeyValue(
+          actual,
+          new ProducerRecord<>(outputTopic, (long) i + 1, expectedMovies.get(i)));
     }
   }
 
   /**
-   * Prepares expected movies in avro format
+   * Prepares expected movies in avro format.
    *
    * @return a list of three (3) movie
    */
@@ -105,7 +113,7 @@ public class SerializationTutorialTest {
   }
 
   /**
-   * Prepares test data in JSON format
+   * Prepares test data in JSON format.
    *
    * @return a list of three (3) movies
    */

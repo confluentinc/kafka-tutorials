@@ -2,17 +2,20 @@ package io.confluent.developer.serialization.serde;
 
 import com.google.gson.Gson;
 
-import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.serialization.Serializer;
+import io.confluent.developer.avro.Movie;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-import io.confluent.developer.avro.Movie;
+import org.apache.kafka.common.serialization.Deserializer;
+import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.serialization.Serializer;
 
 public class MovieJsonSerde extends Serdes.WrapperSerde<Movie> {
 
+  /**
+   * Wraps the Gson serialization of a Movie class.
+   */
   public MovieJsonSerde() {
     super(new Serializer<Movie>() {
       private Gson gson = new Gson();
