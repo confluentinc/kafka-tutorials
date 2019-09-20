@@ -2,22 +2,47 @@ package io.confluent.developer;
 
 import io.confluent.developer.avro.Click;
 import org.apache.avro.Schema;
+
+import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient;
 import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.Deserializer;
+import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.TopologyTestDriver;
+import org.apache.kafka.streams.test.ConsumerRecordFactory;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 import static java.util.Arrays.asList;
 
 public class FindDistinctEventsTest {
 
   private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+  private final static Path STATE_DIR =
+          Paths.get(System.getProperty("user.dir"), "build");
 
-  private SpecificAvroSerde<Click> makeSerializer(Properties envProps)
+  private Properties envProps;
+  private Properties streamProps;
+
+  public FindDistinctEventsTest() throws IOException {
+    envProps = FindDistinctEvents.loadEnvProperties(TEST_CONFIG_FILE);
+    streamProps = FindDistinctEvents.buildStreamsProperties(envProps);
+    streamProps.put(StreamsConfig.STATE_DIR_CONFIG, STATE_DIR.toString());
+  }
+
+  private static SpecificAvroSerde<Click> makeSerializer(Properties envProps)
       throws IOException, RestClientException {
 
     final MockSchemaRegistryClient client = new MockSchemaRegistryClient();
@@ -36,65 +61,80 @@ public class FindDistinctEventsTest {
 
     return serde;
   }
+  void deleteDirectory(Path path) throws IOException {
+    Files.walk(path)
+            .sorted(Comparator.reverseOrder())
+            .map(Path::toFile)
+            .forEach(File::delete);
+  }
+  @Before
+  public void before() {
+    try {
+      deleteDirectory(Paths.get(
+              STATE_DIR.toString(),
+              envProps.getProperty("application.id")));
+    } catch (IOException e) {
+    }
+  }
 
- //@Test
- // public void shouldFilterDistinctEvents() throws IOException, RestClientException {
- //   FindDistinctEvents fe = new FindDistinctEvents();
- //   Properties envProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
- //   Properties streamProps = fe.buildStreamsProperties(envProps);
+  @Test
+  public void shouldFilterDistinctEvents() throws IOException, RestClientException {
 
- //   String inputTopic = envProps.getProperty("input.topic.name");
- //   String outputTopic = envProps.getProperty("output.topic.name");
+    final FindDistinctEvents distinctifier  = new FindDistinctEvents();
 
- //   final SpecificAvroSerde<Publication> publicationSpecificAvroSerde = makeSerializer(envProps);
+    String inputTopic = envProps.getProperty("input.topic.name");
+    String outputTopic = envProps.getProperty("output.topic.name");
 
- //   Topology topology = fe.buildTopology(envProps, publicationSpecificAvroSerde);
- //   TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
+    final SpecificAvroSerde<Click> clickSerde = makeSerializer(envProps);
 
- //   Serializer<String> keySerializer = Serdes.String().serializer();
- //   Deserializer<String> keyDeserializer = Serdes.String().deserializer();
+    Topology topology = distinctifier.buildTopology(envProps, clickSerde);
+    TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
 
- //   ConsumerRecordFactory<String, Publication>
- //       inputFactory =
- //       new ConsumerRecordFactory<>(keySerializer, publicationSpecificAvroSerde.serializer());
+    Serializer<String> keySerializer = Serdes.String().serializer();
 
- //   // Fixture
- //   Publication iceAndFire = new Publication("George R. R. Martin", "A Song of Ice and Fire");
- //   Publication silverChair = new Publication("C.S. Lewis", "The Silver Chair");
- //   Publication perelandra = new Publication("C.S. Lewis", "Perelandra");
- //   Publication fireAndBlood = new Publication("George R. R. Martin", "Fire & Blood");
- //   Publication theHobbit = new Publication("J. R. R. Tolkien", "The Hobbit");
- //   Publication lotr = new Publication("J. R. R. Tolkien", "The Lord of the Rings");
- //   Publication dreamOfSpring = new Publication("George R. R. Martin", "A Dream of Spring");
- //   Publication fellowship = new Publication("J. R. R. Tolkien", "The Fellowship of the Ring");
- //   Publication iceDragon = new Publication("George R. R. Martin", "The Ice Dragon");
- //   Publication iceAndFire2 = new Publication("George R. R. Martin", "A Song of Ice and Fire");
- //   // end Fixture
+    ConsumerRecordFactory<String, Click> inputFactory = new ConsumerRecordFactory<>(
+            keySerializer, clickSerde.serializer());
 
- //   final List<Publication>
- //       input = asList(iceAndFire, silverChair, perelandra, fireAndBlood, theHobbit, lotr, dreamOfSpring, fellowship,
- //                      iceDragon, iceAndFire2);
+    final List<Click> clicks = asList(
+            new Click("10.0.0.1",
+                    "https://docs.confluent.io/current/tutorials/examples/kubernetes/gke-base/docs/index.html",
+            "2019-09-16T14:53:43+00:00"),
+            new Click("10.0.0.2",
+                    "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
+            "2019-09-16T14:53:43+00:01"),
+            new Click("10.0.0.3",
+            "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
+            "2019-09-16T14:53:43+00:03"),
+            new Click("10.0.0.1",
+            "https://docs.confluent.io/current/tutorials/examples/kubernetes/gke-base/docs/index.html",
+            "2019-09-16T14:53:43+00:00"),
+            new Click("10.0.0.2",
+            "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
+            "2019-09-16T14:53:43+00:01"),
+            new Click("10.0.0.3",
+            "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
+            "2019-09-16T14:53:43+00:03"));
 
- //   final List<Publication> expectedOutput = asList(iceAndFire, fireAndBlood, dreamOfSpring, iceDragon);
+    final List<Click> expectedOutput = asList(clicks.get(0),clicks.get(1),clicks.get(2));
 
- //   for (Publication publication : input) {
- //     testDriver.pipeInput(inputFactory.create(inputTopic, publication.getName(), publication));
- //   }
+    for (Click clk : clicks) {
+      testDriver.pipeInput(inputFactory.create(inputTopic, clk.getIp(), clk));
+    }
 
- //   List<Publication> actualOutput = new ArrayList<>();
- //   while (true) {
- //     ProducerRecord<String, Publication>
- //         record =
- //         testDriver.readOutput(outputTopic, keyDeserializer, publicationSpecificAvroSerde.deserializer());
+    Deserializer<String> keyDeserializer = Serdes.String().deserializer();
+    List<Click> actualOutput = new ArrayList<>();
+    while (true) {
+      ProducerRecord<String, Click>
+          record =
+          testDriver.readOutput(outputTopic, keyDeserializer, clickSerde.deserializer());
 
- //     if (record != null) {
- //       actualOutput.add(record.value());
- //     } else {
- //       break;
- //     }
- //   }
+      if (record != null) {
+        actualOutput.add(record.value());
+      } else {
+        break;
+      }
+    }
 
- //   Assert.assertEquals(expectedOutput, actualOutput);
- // }
-
+    Assert.assertEquals(expectedOutput, actualOutput);
+  }
 }
