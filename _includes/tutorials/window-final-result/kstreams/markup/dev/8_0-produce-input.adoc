@@ -1,0 +1,20 @@
+Now we want to send sensor events in the more convenient way to focus on our aggregation result.
+
+In a new terminal, define a produce alias and tail the content of temporary file.
+
++++++
+<pre class="snippet"><code class="bash">{%
+    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-producer.sh
+%}</code></pre>
++++++
+
+*Note* : if you're using the Confluent platform binaries, just omit the docker part by aliasing directly
+`kafka-avro-console-producer`.
+
+Then, redirect the following command in the temporary file.
+
++++++
+<pre class="snippet"><code class="bash">echo '{"id":"101","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
+# {"id":"101","datetime":"2019-09-17T01:22:15.+0200","pressure":30}
+</code></pre>
++++++

@@ -1,0 +1,9 @@
+Install the Confluent distribution of Apache Kafka by downloading both
+the https://www.confluent.io/download/[Confluent Platform]
+and the https://docs.confluent.io/current/cli/installing.html[Confluent CLI].
+
+You can also start all the services needed via docker.
+
++++++
+<pre class="snippet"><code class="bash">{% include shared-content/docker-install.txt %}</code></pre>
++++++

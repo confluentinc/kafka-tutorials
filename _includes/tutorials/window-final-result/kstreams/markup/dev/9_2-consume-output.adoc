@@ -1,0 +1,20 @@
+At the end, you should be able to see the output count for the key 101 and the key 102.
++++++
+<pre class="snippet"><code class="bash">2019-09-21 05:46:03 [...] Count = 5 for Key = 101, at window [05:45:00-05:45:10] Sat 21 Sep 2019 (Europe/Paris)
+2019-09-21 05:46:03 [...] Count = 1 for Key = 102, at window [05:45:00-05:45:10] Sam. 21 Sep 2019 (Europe/Paris)
+2019-09-21 05:46:03 [...] Count = 1 for Key = 102, at window [05:45:10-05:45:20] Sam. 21 Sep 2019 (Europe/Paris)
+2019-09-21 05:46:03 [...] Count = 2 for Key = 301, at window [05:45:20-05:45:30] Sam. 21 Sep 2019 (Europe/Paris)
+</code></pre>
++++++
+
+Here the logging time match the time of the latest result: `05:46:03`. This latest result for the sensor 000 advance the
+stream time and a final result gets produced for all window having a *terminated grace period*. Hours are printed in
+the default system time zone. So it was between `05:45:20` and `05:45:30` for me when the sensor 301 experienced 2
+pressure alerts. To start investigate on what happened, I would need the time zone of that sensor.
+
+**tldr;**
+
++++++
+<script id="asciicast-8xN6oJAHdxe7A4QtcfE7liSpS" src="https://asciinema.org/a/8xN6oJAHdxe7A4QtcfE7liSpS.js" async>
+</script>
++++++

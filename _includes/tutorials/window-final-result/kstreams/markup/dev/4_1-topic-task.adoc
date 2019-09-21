@@ -1,0 +1,7 @@
+Add the following class in the `io.confluent.developer.helper` package
+
++++++
+<pre class="snippet"><code class="java">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/main/java/io/confluent/developer/helper/TopicCreation.java
+%}</code></pre>
++++++

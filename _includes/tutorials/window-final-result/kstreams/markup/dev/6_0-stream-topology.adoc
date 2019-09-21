@@ -1,0 +1,27 @@
+In the main function we create a `https://docs.confluent.io/current/streams/developer-guide/dsl-api.html#windowing[TimeWindows]`
+with a given size and the same step size. This result in a non-overlapping windows called
+https://docs.confluent.io/current/ksql/docs/concepts/time-and-windows-in-ksql-queries.html#tumbling-window[Tumbling Window].
+Also we add a extra period were even if messages come late, if their datetime key correspond to a window they may join
+the window. Finally we pass this window, to a function that takes also `StreamsBuilder` and return a `Topology`.
+Add the next class in the `io.confluent.developer` package.
+
++++++
+<pre class="snippet"><code class="groovy">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/main/java/io/confluent/developer/WindowFinalResult.java
+%}</code></pre>
++++++
+
+Here are several notes about the `WindowFinalResult#buildTopology` function:
+
+- To consume events, we create a `SpecificAvroSerde` based on the generated source code in part 3.
+- The serde used to produce aggregated result is a windowed serde. It will store the key but also the window start time.
+- Our custom timestamp extractor is added thank to the `Consumed#withTimestampExtractor` method.
+
+Then we stream, selectKey and groupByKey and finally apply the *Suppress* operator.
+
+The suppress operator will delete every intermediates changes once the grace period is over. By doing so it will also
+emit the final result
+
+*Note*: even after suppress operator applied, you will need the next event to advance the
+https://docs.confluent.io/current/streams/concepts.html#time[stream time]
+and get your result.

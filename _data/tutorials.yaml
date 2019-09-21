@@ -140,3 +140,11 @@ serialization:
   status:
     ksql: enabled
     kstreams: enabled
+
+window-final-result:
+  title: "Emit a final result from a time window"
+  slug: "/window-final-result"
+  problem: "you have a Kafka topic and you want to count the number of messages per key over a time window and get a final result that takes in account late data arrivals."
+  introduction: "Consider a topic with events that represent sensor warnings (pressure on robotic arms). One warning per time slot is fine, but you don't want to have too much warnings at the same time. In this tutorial, we'll write a program that counts the messages of a same sensor and sends a result at the end of the window."
+  status:
+    kstreams: enabled

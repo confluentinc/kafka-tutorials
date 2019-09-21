@@ -1,0 +1,11 @@
+Alternatively, you may also build a jar archive and run it with a java command. If you do, don't forget to
+create the topics first.
+
++++++
+<pre class="snippet"><code class="bash">./gradlew shadowJar
+java -cp build/libs/kstreams-window-final-result*.jar io.confluent.developer.helper.TopicCreation
+java -cp build/libs/kstreams-window-final-result*.jar io.confluent.developer.helper.SchemaPublication
+java -jar build/libs/kstreams-window-final-result*.jar #-Dconfig.file=/any/conf/file/to-overwrite-the-default-one.conf
+</code></pre>
++++++
+
