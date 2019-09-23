@@ -4,7 +4,7 @@ In a new terminal, run:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/kstreams/code/tutorial-steps/dev/console-producer.sh %}</code></pre>
 +++++
 
-When the console producer starts, it may log some messages and hang, waiting for your input. Below are sample Click events you can paste into the terminal one at a time. Press enter to send each record after pasting. Experiment with various ordering of the records sent.  By default the distinct event window interval is 10 minutes. 
+When the console producer starts it may log some informational messages and then it will pause, waiting to read input from the terminal. Below are sample Click events you can paste into the terminal one at a time. Press enter to send each record after pasting. In the next steps we will run a consumer to observe the distinct filtered click events.  You can experiment with various ordering of the records you send here in order to observe what makes a click event distinct.  By default the distinct event window store looks for distinct clicks over a 2 minute duration.
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/finding-distinct/kstreams/code/tutorial-steps/dev/input-events.json %}</code></pre>

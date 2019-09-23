@@ -142,9 +142,9 @@ serialization:
     kstreams: enabled
 
 finding-distinct:
-  title: "Finding distinct events"
+  title: "How to find distinct values in a stream of events"
   slug: "/finding-distinct-events"
-  problem: "you have events in a Kafka topic, and you want to filter out duplicate events producing a new stream of only unique events"
+  problem: "you have events in a Kafka topic, and you want to filter out duplicate events based on a field in the event, producing a new stream of only unique events"
   introduction: "Consider a topic with events that represent clicks on a website.  Each event contains an IP address, a URL, and a timestamp.  In this tutorial, we'll write a program that filters click events by the IP address within a window of time." 
   status:
     ksql: disabled

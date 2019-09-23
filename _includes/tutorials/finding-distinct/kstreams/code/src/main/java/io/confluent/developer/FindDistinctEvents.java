@@ -148,7 +148,7 @@ public class FindDistinctEvents {
     // The actual value depends on your use case.  To reduce memory and disk usage, you could
     // decrease the size to purge old windows more frequently at the cost of potentially missing out
     // on de-duplicating late-arriving records.
-    final Duration windowSize = Duration.ofMinutes(10);
+    final Duration windowSize = Duration.ofMinutes(2);
 
     // retention period must be at least window size -- for this use case, we don't need a longer retention period
     // and thus just use the window size as retention time

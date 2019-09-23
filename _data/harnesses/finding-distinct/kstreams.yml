@@ -88,7 +88,7 @@ dev:
           render:
             file: tutorials/finding-distinct/kstreams/markup/dev/run-dev-app.adoc
 
-    - title: Produce events to the input topic
+    - title: Produce sample click events to the input topic
       content:
         - action: execute
           file: tutorial-steps/dev/console-producer.sh
@@ -96,7 +96,7 @@ dev:
           render:
             file: tutorials/finding-distinct/kstreams/markup/dev/run-producer.adoc
 
-    - title: Consume filtered events from the output topic
+    - title: Consume distinct events from the output topic
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
@@ -159,3 +159,4 @@ prod:
         - action: skip
           render:
             file: tutorials/finding-distinct/kstreams/markup/prod/launch-container.adoc
+

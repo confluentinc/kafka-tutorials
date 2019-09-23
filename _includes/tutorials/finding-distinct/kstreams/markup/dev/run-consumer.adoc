@@ -1,12 +1,10 @@
-Leave your original terminal running. To consume the events produced by your Streams application you'll need another terminal open.
-
-First, to consume the events of drama films, run the following:
+Leave your previous terminal running and open a new one that will run a consumer to view the distinct click events:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/kstreams/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>
 +++++
 
-This should yield the following messages:
+Depending on the cadence and values you produce in the steps above, you should see messages similar to the following:
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/finding-distinct/kstreams/code/tutorial-steps/dev/outputs/actual-clicks.json %}</code></pre>

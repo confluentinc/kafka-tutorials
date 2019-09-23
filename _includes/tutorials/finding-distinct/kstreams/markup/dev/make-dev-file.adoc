@@ -1,4 +1,4 @@
-Then create a development file at `configuration/dev.properties`:
+Then create a configuration file for development at `configuration/dev.properties`:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/kstreams/code/configuration/dev.properties %}</code></pre>
