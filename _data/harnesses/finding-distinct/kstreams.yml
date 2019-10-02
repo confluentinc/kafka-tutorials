@@ -9,8 +9,7 @@ dev:
 
     - title: Get Confluent Platform
       content:
-        - change_directory: merge-streams
-          action: make_file
+        - action: make_file
           file: docker-compose.yml
           render:
             file: tutorials/finding-distinct/kstreams/markup/dev/make-docker-compose.adoc
@@ -24,10 +23,10 @@ dev:
           file: tutorial-steps/dev/wait-for-containers.sh
           render:
             skip: true
+
     - title: Configure the project
       content:
-        - change_directory: filter-events
-          action: make_file
+        - action: make_file
           file: build.gradle
           render:
             file: tutorials/finding-distinct/kstreams/markup/dev/make-build-file.adoc
@@ -62,7 +61,7 @@ dev:
         - action: execute
           file: tutorial-steps/dev/build-project.sh
           render:
-            file: tutorials/filtering/kstreams/markup/dev/build-project.adoc
+            file: tutorials/finding-distinct/kstreams/markup/dev/build-project.adoc
 
     - title: Create the Kafka Streams topology
       content:
@@ -70,7 +69,7 @@ dev:
           file: tutorial-steps/dev/make-src-dir.sh
           render:
             file: tutorials/finding-distinct/kstreams/markup/dev/make-src-dir.adoc
-
+            
         - action: make_file
           file: src/main/java/io/confluent/developer/FindDistinctEvents.java
           render:
@@ -159,4 +158,9 @@ prod:
         - action: skip
           render:
             file: tutorials/finding-distinct/kstreams/markup/prod/launch-container.adoc
+
+        - action: execute
+            file: tutorial-steps/dev/clean-up.sh
+            render:
+              skip: true
 
