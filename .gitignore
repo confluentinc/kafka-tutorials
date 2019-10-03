@@ -19,4 +19,3 @@ code.iml
 bin/
 s3_website.yml
 harness_runner/harness_runner.pyc
-**/outputs/
