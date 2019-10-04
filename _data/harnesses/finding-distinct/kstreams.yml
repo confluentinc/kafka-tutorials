@@ -109,3 +109,58 @@ dev:
           render:
             skip: true
 
+test:
+  steps:
+    - title: Create a test configuration file
+      content:
+        - action: make_file
+          file: configuration/test.properties
+          render:
+            file: tutorials/finding-distinct/kstreams/markup/test/make-test-file.adoc
+
+    - title: Write a test
+      content:
+        - action: execute
+          file: tutorial-steps/test/make-test-dir.sh
+          render:
+            file: tutorials/finding-distinct/kstreams/markup/test/make-test-dir.adoc
+
+        - action: make_file
+          file: src/test/java/io/confluent/developer/FindDistinctEventsTest.java
+          render:
+            file: tutorials/finding-distinct/kstreams/markup/test/make-test.adoc
+
+    - title: Invoke the tests
+      content:
+        - action: execute
+          file: tutorial-steps/test/invoke-tests.sh
+          render:
+            file: tutorials/finding-distinct/kstreams/markup/test/invoke-tests.adoc
+
+prod:
+  steps:
+    - title: Create a production configuration file
+      content:
+        - action: make_file
+          file: configuration/prod.properties
+          render:
+            file: tutorials/finding-distinct/kstreams/markup/prod/make-prod-file.adoc
+
+    - title: Build a Docker image
+      content:
+        - action: execute
+          file: tutorial-steps/prod/build-image.sh
+          render:
+            file: tutorials/finding-distinct/kstreams/markup/prod/build-image.adoc
+
+    - title: Launch the container
+      content:
+        - action: skip
+          render:
+            file: tutorials/finding-distinct/kstreams/markup/prod/launch-container.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
+
