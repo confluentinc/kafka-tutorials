@@ -35,4 +35,3 @@ google_tag_manager_id: GTM-NBVX4Z
 
 plugins:
   - jekyll-asciidoc
-  - jekyll-sitemap
