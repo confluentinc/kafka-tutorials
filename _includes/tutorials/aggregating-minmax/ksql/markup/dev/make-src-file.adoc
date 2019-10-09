@@ -1,0 +1,5 @@
+Now that we have a good KSQL pipeline set up, let's take our CLI experimentation and save it to a file that we can use outside of this session. Create a file at `src/statements.sql` with the following content:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/ksql/code/src/statements.sql %}</code></pre>
++++++

@@ -1,0 +1,5 @@
+The best way to interact with KSQL when you're learning how things work is with the KSQL CLI. Fire it up as follows:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/ksql/code/tutorial-steps/dev/start-cli.sh %}</code></pre>
++++++

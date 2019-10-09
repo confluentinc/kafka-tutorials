@@ -1,0 +1,5 @@
+Let's add a small amount of data to our stream, so we can see our query work. You can copy and paste all these lines into the CLI at once, or if you prefer, open up a second KSQL CLI and copy them one at a time after you have all the subsequent steps complete, so you can see the results produced in real time.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/ksql/code/tutorial-steps/dev/populate-movie-ticket-sales.sql %}</code></pre>
++++++

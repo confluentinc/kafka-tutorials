@@ -1,5 +1,0 @@
-git clone https://github.com/confluentinc/cp-docker-images
-cd cp-docker-images
-git checkout {{ site.cp_version }}
-cd examples/cp-all-in-one/
-docker-compose up -d
