@@ -132,6 +132,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/rekeying/ksql/code tutorial
 
-        - name: KSQL rekey stream with function
+        - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+
+        - name: KStreams finding distinct events tests
+          commands:
+            - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
