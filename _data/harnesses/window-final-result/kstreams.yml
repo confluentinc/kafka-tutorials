@@ -2,19 +2,20 @@ dev:
   steps:
     - title: Get Confluent Platform
       content:
-        - action: skip
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/1-get-cp.adoc
-
-    - title: Initialize the project
-      content:
         - action: execute
           file: tutorial-steps/dev/workdir.sh
           render:
-            file: tutorials/window-final-result/kstreams/markup/dev/2_0-workdir.adoc
+            file: tutorials/window-final-result/kstreams/markup/dev/1_0-make-directories.adoc
 
         - change_directory: window-final-result
           action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/window-final-result/kstreams/markup/dev/1_1-make-docker-compose.adoc
+
+    - title: Initialize the project
+      content:
+        - action: make_file
           file: build.gradle
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/2_1-build-file.adoc

@@ -6,7 +6,7 @@ Add the config file `src/main/resource/application.conf` to setup your applicati
 %}</code></pre>
 +++++
 
-Adapt the blocks `local.date.lang` and `local.date.pattern`
+You may want to adapt the blocks `local.date.lang` and `local.date.pattern`
 
 This file contains defaults configs. In production they will be overridden by the following environment variables
 
