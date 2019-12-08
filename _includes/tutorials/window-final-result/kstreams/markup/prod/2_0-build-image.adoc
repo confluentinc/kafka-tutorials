@@ -1,0 +1,7 @@
+In your terminal, execute the following command to invoke the Jib plugin to build a docker image:
+
++++++
+<pre class="snippet"><code class="bash">{%
+    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/prod/build-image.sh
+%}</code></pre>
++++++

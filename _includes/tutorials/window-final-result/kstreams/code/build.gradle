@@ -62,3 +62,7 @@ task consumeResult(type: JavaExec) {
 run.dependsOn {
     [createTopics, publishSchemas]
 }
+
+jib {
+    container.mainClass = mainClassName
+}

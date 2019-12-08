@@ -167,3 +167,28 @@ test:
           file: tutorial-steps/test/invoke-tests.sh
           render:
             file: tutorials/window-final-result/kstreams/markup/test/3_0-invoke-tests.adoc
+prod:
+  steps:
+    - title: Create a production configuration file
+      content:
+        - action: make_file
+          file: configuration/prod.properties
+          render:
+            file: tutorials/window-final-result/kstreams/markup/prod/1_0-make-prod-conf.adoc
+
+    - title: Build a Docker image
+      content:
+        - action: execute
+          file: tutorial-steps/prod/build-image.sh
+          render:
+            file: tutorials/window-final-result/kstreams/markup/prod/2_0-build-image.adoc
+
+    - title: Launch the container
+      content:
+        - action: skip
+          render:
+            file: tutorials/window-final-result/kstreams/markup/prod/3_0-launch-container.adoc
+        - action: execute
+          file: tutorial-steps/prod/clean-up.sh
+          render:
+            skip: true

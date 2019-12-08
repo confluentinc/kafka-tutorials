@@ -8,41 +8,4 @@ Add the config file `src/main/resource/application.conf` to setup your applicati
 
 You may want to adapt the blocks `local.date.lang` and `local.date.pattern`
 
-This file contains defaults configs. In production they will be overridden by the following environment variables
-
-|===
-|Variable |Description
-
-|`APP_ID`
-| id of app used as Kafka streams application Id
-
-|`BOOTSTRAP_SERVERS`
-| host:port of your Kafka broker
-
-|`SCHEMA_REGISTRY_URL`
-| host:port of your schema registry
-
-|`INPUT_TOPIC`
-| name of the input topic
-
-|`INPUT_TOPIC_PARTITIONS`
-| number of partition of the input topic
-
-|`INPUT_TOPIC_REPLICATION`
-| replication factor of the input topic
-
-|`OUTPUT_TOPIC`
-| name of the output topic
-
-|`OUTPUT_TOPIC_PARTITIONS`
-| number of partition of the output topic
-
-|`OUTPUT_TOPIC_REPLICATION`
-| replication factor of the output topic
-
-|`WINDOW_SIZE`
-| size of the aggregation window
-
-|`GRACE_PERIOD`
-| how long would you like to wait for late data point ??
-|===
+This file contains defaults configs. In production they will be overridden by environment variables.

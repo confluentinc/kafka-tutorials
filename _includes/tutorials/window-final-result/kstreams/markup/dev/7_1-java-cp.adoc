@@ -5,7 +5,9 @@ create the topics first.
 <pre class="snippet"><code class="bash">./gradlew shadowJar
 java -cp build/libs/kstreams-window-final-result*.jar io.confluent.developer.helper.TopicCreation
 java -cp build/libs/kstreams-window-final-result*.jar io.confluent.developer.helper.SchemaPublication
-java -jar build/libs/kstreams-window-final-result*.jar #-Dconfig.file=/any/conf/file/to-overwrite-the-default-one.conf
+java -jar build/libs/kstreams-window-final-result*.jar #-Dconfig.file=./any-other-conf-file.properties
+# OR
+# APP_ID=LOCAL_DEV_APP_ID java -jar build/libs/kstreams-window-final-result*.jar
 </code></pre>
 +++++
 
