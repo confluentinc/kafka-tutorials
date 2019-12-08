@@ -1,0 +1,7 @@
+First, create a test file configuration named `test.properties` at `src/test/resources`:
+
++++++
+<pre class="snippet"><code class="properties">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/test/resources/test.properties
+%}</code></pre>
++++++

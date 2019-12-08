@@ -28,15 +28,27 @@ public class WindowFinalResult {
 
     private static Logger logger = LoggerFactory.getLogger(WindowFinalResult.class);
 
-    public static Topology buildTopology(Config config, TimeWindows windows, StreamsBuilder builder) {
+    public static Properties buildProperties(Config config) {
+        Properties properties = new Properties();
+
+        properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, config.getString("bootstrap.servers"));
+        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, config.getString("application.id"));
+        properties.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, StringSerde.class);
+        properties.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, StringSerde.class);
+        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
+        properties.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+
+        return properties;
+    }
+
+    public static Topology buildTopology(Config config,
+                                         TimeWindows windows,
+                                         SpecificAvroSerde<PressureAlert> pressureSerde) {
+
+        StreamsBuilder builder = new StreamsBuilder();
+
         String inputTopic = config.getString("input.topic.name");
         String outputTopic = config.getString("output.topic.name");
-
-        Map<String, Object> serdeConfig =
-                singletonMap(SCHEMA_REGISTRY_URL_CONFIG, config.getString("schema.registry.url"));
-
-        SpecificAvroSerde<PressureAlert> pressureSerde = new SpecificAvroSerde<>();
-        pressureSerde.configure(serdeConfig, false);
 
         Produced<Windowed<String>, Long> producedCount = Produced
                 .with(timeWindowedSerdeFrom(String.class), Serdes.Long());
@@ -72,16 +84,14 @@ public class WindowFinalResult {
 
         final Config config = ConfigFactory.load();
 
-        Properties properties = new Properties();
+        final Properties properties = buildProperties(config);
 
-        properties.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, config.getString("bootstrap.servers"));
-        properties.put(StreamsConfig.APPLICATION_ID_CONFIG, config.getString("application.id"));
-        properties.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, StringSerde.class);
-        properties.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, StringSerde.class);
-        properties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
-        properties.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+        Map<String, Object> serdeConfig =
+                singletonMap(SCHEMA_REGISTRY_URL_CONFIG, config.getString("schema.registry.url"));
 
-        StreamsBuilder builder = new StreamsBuilder();
+        SpecificAvroSerde<PressureAlert> pressureSerde = new SpecificAvroSerde<>();
+
+        pressureSerde.configure(serdeConfig, false);
 
         TimeWindows windows = TimeWindows
 
@@ -91,7 +101,7 @@ public class WindowFinalResult {
 
                 .grace(config.getDuration("window.grace.period"));
 
-        Topology topology = buildTopology(config, windows, builder);
+        Topology topology = buildTopology(config, windows, pressureSerde);
 
         logger.debug(topology.describe().toString());
 

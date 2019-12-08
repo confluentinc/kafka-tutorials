@@ -136,3 +136,34 @@ dev:
           file: tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-consumer.sh
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/9_2-consume-output.adoc
+
+test:
+  steps:
+    - title: Create a test configuration file
+      content:
+        - action: make_file
+          file: code/src/test/resources/test.properties
+          render:
+            file: tutorials/window-final-result/kstreams/markup/test/1_0-make-test-conf.adoc
+
+    - title: Write a test
+      content:
+        - action: execute
+          file: tutorial-steps/test/make-test-dir.sh
+          render:
+            file: tutorials/window-final-result/kstreams/markup/test/2_0-make-test-dir.adoc
+        - action: make_file
+          file: code/src/test/java/io/confluent/developer/WindowFinalResultTest.java
+          render:
+            file: tutorials/window-final-result/kstreams/markup/test/2_1-make-test-class.adoc
+        - action: make_file
+          file: code/src/test/java/io/confluent/developer/PressureDatetimeExtractor.java
+          render:
+            file: tutorials/window-final-result/kstreams/markup/test/2_2-make-test-class-ts.adoc
+
+    - title: Invoke the tests
+      content:
+        - action: execute
+          file: tutorial-steps/test/invoke-tests.sh
+          render:
+            file: tutorials/window-final-result/kstreams/markup/test/3_0-invoke-tests.adoc

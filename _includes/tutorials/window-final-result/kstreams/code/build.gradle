@@ -32,8 +32,8 @@ dependencies {
     implementation group: 'io.confluent', name: 'kafka-streams-avro-serde', version: '5.3.1'
 
     testCompile "junit:junit:4.12"
-    testCompile 'org.junit.jupiter:junit-jupiter-api:5.4.2'
     testCompile "org.apache.kafka:kafka-streams-test-utils:2.3.1"
+    testCompile "com.github.grantwest.eventually:hamcrest-eventually-matchers:0.0.3"
 
     // helpers
     compile group: 'com.jason-goodwin', name: 'better-monads', version: '0.4.1'
