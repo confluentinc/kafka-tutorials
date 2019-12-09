@@ -3,7 +3,7 @@ from a different time zone.
 
 1. *Event time*, time of the sensor that is different rather it comes from Paris (UTC+02:00) or Tokyo (UTC+19:00)
 
-2. *Processing time*, the time of the Kafka Stream instances. Here the zone depends of your deployment (e : your fancy
+2. *Processing time*, the time of the Kafka Stream instances. Here the zone depends of your deployment (e.g., your fancy
 managed kubernetes cluster deployed in us-west-b :p)
 
 3. *Ingestion time*, less relevant, this is the time when the Kafka message has been published
@@ -12,7 +12,7 @@ Since our operations will be time based, you need to ensure the right time is co
 producer is not aware of message timestamp and places the time of the alert in the message value. We need to extract
 it from there. This can be performed by implementing a
 `https://kafka.apache.org/23/javadoc/org/apache/kafka/streams/processor/TimestampExtractor.html[TimestampExtractor]`.
-Add the next class in the `io.confluent.developer` package.
+Add the next class at `src/main/java/io/confluent/developer/PressureDatetimeExtractor.java` package.
 
 +++++
 <pre class="snippet"><code class="groovy">{%

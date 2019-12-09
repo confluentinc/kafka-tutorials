@@ -5,3 +5,11 @@ Next, create the following `docker-compose.yml` file to obtain Confluent Platfor
     include_raw tutorials/window-final-result/kstreams/code/docker-compose.yml
 %}</code></pre>
 +++++
+
+And launch it by running:
+
++++++
+<pre class="snippet"><code class="shell">{%
+    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/dev/docker-compose-up.sh
+%}</code></pre>
++++++

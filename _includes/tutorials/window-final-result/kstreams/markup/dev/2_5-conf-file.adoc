@@ -1,4 +1,4 @@
-Add the config file `src/main/resource/application.conf` to setup your application:
+Add the config file `src/main/resources/application.conf` to setup your application:
 
 +++++
 <pre class="snippet"><code class="hocon">{%

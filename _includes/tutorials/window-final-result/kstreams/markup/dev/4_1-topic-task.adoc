@@ -1,4 +1,4 @@
-Add the following class in the `io.confluent.developer.helper` package
+Add the following class at `src/main/java/io/confluent/developer/helper/TopicCreation.java` package
 
 +++++
 <pre class="snippet"><code class="java">{%
