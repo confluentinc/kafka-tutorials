@@ -103,7 +103,7 @@ dev:
           file: tutorial-steps/dev/console-concounter.sh
           stdout: tutorial-steps/dev/outputs/actual-output-events.json
           render:
-            file: tutorials/aggregating-count/kstreams/markup/dev/run-concounter.adoc
+            file: tutorials/aggregating-count/kstreams/markup/dev/run-consumer.adoc
 
         - name: wait for the concounter to read the messages
           action: sleep
