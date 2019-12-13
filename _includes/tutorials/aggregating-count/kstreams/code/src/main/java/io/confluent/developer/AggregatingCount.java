@@ -60,10 +60,10 @@ public class AggregatingCount {
         .map((k, v) -> new KeyValue<>((String) v.getTitle(), (Integer) v.getTicketTotalValue()))
         // Group by title
         .groupByKey(Grouped.with(Serdes.String(), Serdes.Integer()))
-        // Apply COUNT aggregation
-        .reduce(Integer::count)
+        // Apply COUNT method
+        .count()
         // Write to stream specified by outputTopic
-        .toStream().to(outputTopic, Produced.with(Serdes.String(), Serdes.Integer()));
+        .toStream().to(outputTopic, Produced.with(Serdes.String(), Serdes.Long()));
 
     return builder.build();
   }

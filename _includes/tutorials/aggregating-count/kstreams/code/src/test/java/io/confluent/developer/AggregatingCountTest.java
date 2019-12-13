@@ -84,17 +84,17 @@ public class AggregatingCountTest {
                   new TicketSale("The Godfather", "2019-07-18T11:40:09Z", 18)
                 );
 
-    List<Integer> expectedOutput = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9));
+    List<Long> expectedOutput = new ArrayList<Long>(Arrays.asList(1L, 2L, 1L, 3L, 2L, 1L, 2L, 3L, 4L));
 
     for (TicketSale ticketSale : input) {
       testDriver.pipeInput(inputFactory.create(inputTopic, "", ticketSale));
     }
 
-    List<Integer> actualOutput = new ArrayList<>();
+    List<Long> actualOutput = new ArrayList<>();
     while (true) {
-      ProducerRecord<String, Integer>
+      ProducerRecord<String, Long>
           record =
-          testDriver.readOutput(outputTopic, keyDeserializer, Serdes.Integer().deserializer());
+          testDriver.readOutput(outputTopic, keyDeserializer, Serdes.Long().deserializer());
 
       if (record != null) {
         actualOutput.add(record.value());
