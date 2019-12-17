@@ -172,7 +172,7 @@ udf:
   title: "How to build a User Defined Function (UDF) to transform events"
   slug: "/udf"
   problem: "you have events in a Kafka topic, and you want to transform the values using a stateless scalar function not already provided by KSQL"
-  introduction: "Consider a topic of stock price events that you want to calculate the Volume Weighted Average Price (VWAP) for each event publishing the result to a new topic.  There is no built in function for VWAP, so we'll write a custom function that performs the calculation which can be used within KSQL"
+  introduction: "Consider a topic of stock price events that you want to calculate the Volume Weighted Average Price (VWAP) for each event publishing the result to a new topic.  There is no built in function for VWAP, so we'll write a custom function that performs the calculation which can be used within KSQL."
   status:
     ksql: enabled
     kstreams: disabled

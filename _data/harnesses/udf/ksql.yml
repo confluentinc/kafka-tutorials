@@ -1,0 +1,30 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/udf/ksql/markup/dev/init.adoc
+
+        - action: make_file
+          file: build.gradle
+          render:
+            file: tutorials/udf/ksql/markup/dev/make-build-file.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/gradle-wrapper.sh
+          render:
+            file: tutorials/udf/ksql/markup/dev/make-gradle-wrapper.adoc
+
+    - title: Create the User Defined Function
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-src-dir.sh
+          render:
+            file: tutorials/udf/ksql/markup/dev/make-src-dir.adoc
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/VwapUdf.java
+          render:
+            file: tutorials/udf/ksql/markup/dev/make-udf.adoc 

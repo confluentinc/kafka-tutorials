@@ -1,0 +1,7 @@
+Then create the following file at `src/main/java/io/confluent/developer/VwapUdf.java`.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/udf/ksql/code/src/main/java/io/confluent/developer/VwapUdf.java %}</code></pre>
++++++
+
+Here we have created a new Class which defines two functions, both of which are annotated w/ `Udf` indicating that they are KSQL UDF function definitions.   Both functions take in double or integer scalar values and produce a single result of type double representing the calculated Volume Weighted Average Price of the inputs.
