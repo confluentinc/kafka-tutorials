@@ -28,3 +28,27 @@ dev:
           file: src/main/java/io/confluent/developer/VwapUdf.java
           render:
             file: tutorials/udf/ksql/markup/dev/make-udf.adoc 
+
+    - title: Build the JAR
+      content:
+        - action: execute
+          file: tutorial-steps/dev/build-uberjar.sh
+          render:
+            file: tutorials/udf/ksql/markup/dev/build-uberjar.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/udf/ksql/markup/dev/make-docker-compose.adoc
+ 
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/udf/ksql/markup/dev/start-compose.adoc
+ 
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true

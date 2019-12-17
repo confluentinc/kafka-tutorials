@@ -66,6 +66,9 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
       KSQL_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
+      KSQL_KSQL_EXTENSION_DIR: "/opt/ksql/ext"
+    volumes:
+      - ./build/libs:/opt/ksql/ext
 
   ksql-cli:
     image: confluentinc/cp-ksql-cli:5.3.1
