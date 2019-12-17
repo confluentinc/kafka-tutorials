@@ -3,3 +3,5 @@ Next, create the following `docker-compose.yml` file to obtain Confluent Platfor
 +++++
 <pre class="snippet"><code class="dockerfile">{% include_raw tutorials/udf/ksql/code/docker-compose.yml %}</code></pre>
 +++++
+
+Take note of the assignment of the environment variable `KSQL_KSQL_EXTENSION_DIR` and the volume mapping of the build output of our Java project to the matching folder.

@@ -52,3 +52,44 @@ dev:
           file: tutorial-steps/dev/wait-for-containers.sh
           render:
             skip: true
+
+    - title: Write the program interactively using the CLI
+      content:
+        - action: docker_ksql_cli_session
+          container: ksql-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          render:
+            file: tutorials/udf/ksql/markup/dev/start-cli.adoc
+          stdin:
+            - file: tutorial-steps/dev/create-inputs.sql
+              render:
+                file: tutorials/udf/ksql/markup/dev/create-inputs.adoc
+
+            - file: tutorial-steps/dev/populate-stream.sql
+              render:
+                file: tutorials/udf/ksql/markup/dev/populate-stream.adoc
+
+            - file: tutorial-steps/dev/set-properties.sql
+              render:
+                file: tutorials/udf/ksql/markup/dev/set-properties.adoc
+
+            - file: tutorial-steps/dev/transient-query.sql
+              render:
+                file: tutorials/udf/ksql/markup/dev/transient-query.adoc
+
+            - file: tutorial-steps/dev/continuous-select.sql
+              render:
+                file: tutorials/udf/ksql/markup/dev/continuous-select.adoc
+
+            - file: tutorial-steps/dev/print-output-topic.sql
+              render:
+                file: tutorials/udf/ksql/markup/dev/print-output-topic.adoc
+          stdout:
+            directory: tutorial-steps/dev/outputs
+
+    - title: Write your statements to a file
+      content:
+        - action: make_file
+          file: src/statements.sql
+          render:
+            file: tutorials/udf/ksql/markup/dev/make-src-file.adoc
