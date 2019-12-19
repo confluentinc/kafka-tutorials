@@ -8,7 +8,7 @@ The first thing the method does is create an instance of `https://kafka.apache.o
 
 3. Group the events by that new key by calling the `groupByKey()` method. This returns a `https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KGroupedStream.html[KGroupedStream]` object.
 
-4. Use the `reduce()` method to apply the count aggregation.
+4. Use the `count()` method to apply the count aggregation.
 
 5. Use the `toStream()` method to produce the count results to the specified output topic.
 
