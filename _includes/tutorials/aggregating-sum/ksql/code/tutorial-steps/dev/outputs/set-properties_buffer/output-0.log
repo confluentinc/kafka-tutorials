@@ -1,0 +1,1 @@
+Successfully changed local property 'ksql.streams.cache.max.bytes.buffering' to '10000000'. Use the UNSET command to revert your change.

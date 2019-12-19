@@ -7,12 +7,13 @@
     {% include vendors.html %}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ site.description }}">
     <title>{{ site.title }}</title>
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="/assets/sass/main.css" />
+    <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
   </head>
   <body class="pg-main">
     {% include nav.html %}
@@ -24,6 +25,8 @@
             <h1>
               Say Hello World to event streaming.
             </h1>
+
+            <h2 class="subtitle">Apache Kafka is a powerful, scalable, fault-tolerant publish-subscribe messaging system. This site features full code examples using Kafka, Kafka Streams, and KSQL to demonstrate real use cases.</h2>
           </div>
         </div>
       </div>
@@ -32,59 +35,81 @@
       <div class="cards">
         <div class="card">
           <div class="title">
-            <img src="/assets/img/icon-function.svg" />
+            <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
             <div>Apply a function to data.</div>
           </div>
           <ul>
-            <li><a href="/transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
-            <li><a href="/filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
-            <li><a href="/rekey-a-stream/ksql.html">Rekey a stream</a></li>
-            <li><a href="/changing-serialization-format/ksql.html">Convert a stream's serialization format</a></li>
-            <li><a href="/split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
-            <li><a href="/merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
+            <li><a href="transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
+            <li><a href="filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
+            <li><a href="rekey-a-stream/ksql.html">Rekey a stream with a value</a></li>
+            <li><a href="rekey-with-function/ksql.html">Rekey a stream with a function</a></li>
+            <li><a href="changing-serialization-format/ksql.html">Convert a stream's serialization format</a></li>
+            <li><a href="split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
+            <li><a href="merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
+            <li><a href="finding-distinct-events/kstreams.html">Finding distinct events</a></li>
           </ul>
         </div>
         <div class="card">
           <div class="title">
-            <img src="/assets/img/icon-time.svg" />
-            <div>Collect data over time.</div>
+            <img class="icon-aggregate" src="{{ "/assets/img/icon-aggregate.svg" | relative_url }}" />
+            <div>Aggregate data.</div>
           </div>
-          <ul>
-            <li><a href="/create-tumbling-windows/ksql.html">Create tumbling windows</a></li>
-            <li><a href="/connect-jdbc-specificavro/kstreams.html">JDBC source connector to SpecificAvro</a></li>
+          <ul>            
+            <li><a href="create-stateful-aggregation-count/ksql.html">Count a stream of events</a></li>
+            <li><a href="create-stateful-aggregation-sum/ksql.html">Sum a stream of events</a></li>
+            <li><a href="create-stateful-aggregation-minmax/ksql.html">Find the min/max in a stream of events</a></li>
           </ul>
         </div>
         <div class="card">
           <div class="title">
-            <img src="/assets/img/icon-join.svg" />
+            <img src="{{ "/assets/img/icon-join.svg" | relative_url }}" />
             <div>Join data.</div>
           </div>
           <ul>
-            <li><a href="/join-a-stream-to-a-table/ksql.html">Join a stream and a table together</a></li>
-            <li><a href="/join-a-stream-to-a-stream/ksql.html">Join a stream and a stream together</a></li>
-            <li><a href="/join-a-table-to-a-table/ksql.html">Join a table and a table together</a></li>
+            <li><a href="join-a-stream-to-a-table/ksql.html">Join a stream and a table together</a></li>
+            <li><a href="join-a-stream-to-a-stream/ksql.html">Join a stream and a stream together</a></li>
+            <li><a href="join-a-table-to-a-table/ksql.html">Join a table and a table together</a></li>
           </ul>
         </div>
       </div>
-      <div class="card card-cta">
-        <div>Sign-up today to be the first to get notified on new tutorials</div>
-        <form id="mktoForm_3977" style="display:none"></form>
-        <div id="mkto-form">
-          <div class="form">
-            <div class="is-hidden">Thank you!</div>
-            <a class="cta-button secondary">Sign-Up</a>
-            <form>
-              <input type="email" placeholder="Enter Email" name="Email" />
-              <button class="cta-button secondary" type="submit">Submit</button>
-            </form>
+
+      <div class="cards secondary-card-row">
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-time.svg" | relative_url }}" />
+            <div>Collect data over time.</div>
+          </div>
+          <ul>
+            <li><a href="create-tumbling-windows/ksql.html">Create tumbling windows</a></li>
+          </ul>
+        </div>
+        <div class="card card-cta">
+          <div class="content">
+            <div>Be the first to get notified about new tutorials</div>
+            <form id="mktoForm_3977" style="display:none"></form>
+            <div id="mkto-form">
+              <div class="form">
+                <div class="is-hidden">Thank you!</div>
+                <a class="cta-button secondary">Sign Up</a>
+                <form>
+                  <input type="email" placeholder="Enter Email" name="Email" />
+                  <button class="cta-button secondary" type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div id="signup-notice" class="is-hidden notice">
+            <p>
+              By subscribing you understand we will process your personal information in accordance with our <a href="https://www.confluent.io/privacy">Privacy Statement</a>.
+            </p>
           </div>
         </div>
       </div>
     </div>
 
     {% include footer.html %}
-    <script src="/assets/js/jquery.min.js"></script>
-    <script src="/assets/js/main.js"></script>
+    <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
     <script src="//go.confluent.io/js/forms2/js/forms2.min.js"></script>
     <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
   </body>

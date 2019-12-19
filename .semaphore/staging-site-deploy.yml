@@ -1,0 +1,18 @@
+version: v1.0
+name: Kafka Tutorials staging site deployment
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+
+blocks:
+  - task:
+      secrets:
+        - name: aws_credentials
+      jobs:
+        - name: Compile and deploy site
+          commands:
+            - checkout
+            - cache restore site-$SEMAPHORE_GIT_SHA
+            - aws s3 cp --recursive ./_site "s3://kafka-tutorials-staging/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA/"
+            - echo "Deployed to http://kafka-tutorials-staging.s3-website-us-west-2.amazonaws.com/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA/"

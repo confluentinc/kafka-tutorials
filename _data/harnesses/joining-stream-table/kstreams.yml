@@ -1,11 +1,5 @@
 dev:
   steps:
-    - title: Get Confluent Platform
-      content:
-        - action: skip
-          render:
-            file: tutorials/joining-stream-table/kstreams/markup/dev/get-cp.adoc
-
     - title: Initialize the project
       content:
         - action: execute
@@ -13,8 +7,27 @@ dev:
           render:
             file: tutorials/joining-stream-table/kstreams/markup/dev/init.adoc
 
+    - title: Get Confluent Platform
+      content:
         - change_directory: join-stream
           action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/joining-stream-table/kstreams/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/joining-stream-table/kstreams/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+            
+    - title: Configure the project
+      content:
+        - action: make_file
           file: build.gradle
           render:
             file: tutorials/joining-stream-table/kstreams/markup/dev/make-build-file.adoc
@@ -33,6 +46,7 @@ dev:
           file: configuration/dev.properties
           render:
             file: tutorials/joining-stream-table/kstreams/markup/dev/make-dev-file.adoc
+            
 
     - title: Create a schema for the events
       content:
@@ -177,3 +191,8 @@ prod:
         - action: skip
           render:
             file: tutorials/joining-stream-table/kstreams/markup/prod/launch-container.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
