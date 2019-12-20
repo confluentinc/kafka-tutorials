@@ -1,14 +1,8 @@
 #!/bin/bash
 
-function readiness_probe {
-    nc -z -w 2 0.0.0.0 29092
-}
-
-echo "Waiting for the broker to become available ..."
-
-readiness_probe
-
-while [[ $? != 0 ]]; do
-    sleep 5
-    readiness_probe
+# Wait for Schema Registry to become available
+while [ $(curl -s -o /dev/null -w %{http_code} http://localhost:8081/) -eq 000 ]
+do
+  echo -e $(date) "Schema Registry HTTP state: " $(curl -s -o /dev/null -w %{http_code} http://localhost:8081/) " (waiting for 200)"
+  sleep 5
 done
