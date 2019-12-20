@@ -198,7 +198,9 @@ prod:
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/prod/launch-container.adoc
 
-    - action: execute
-      file: tutorial-steps/dev/clean-up.sh
-      render:
-        skip: true            
+    - title: Clean up
+      content:
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true            
