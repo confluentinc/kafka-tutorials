@@ -25,15 +25,9 @@ dev:
           render:
             skip: true
             
-    - title: Initialize the project
+    - title: Configure the project
       content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/init.adoc
-
-        - change_directory: connect-jdbc-specificavro
-          action: make_file
+        - action: make_file
           file: build.gradle
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/dev/make-build-file.adoc
