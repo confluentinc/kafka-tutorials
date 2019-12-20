@@ -1,4 +1,4 @@
-This consumer will only format and logs the messages it gets. It also has its own tasks
+This consumer will only format and log the messages it gets. It also has its own tasks
 
 +++++
 <pre class="snippet"><code class="bash">{%

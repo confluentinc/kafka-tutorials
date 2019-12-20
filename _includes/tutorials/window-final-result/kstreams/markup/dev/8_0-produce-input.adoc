@@ -1,4 +1,4 @@
-Now we want to send sensor events in the more convenient way to focus on our aggregation result.
+Now we want to send sensor events in a more convenient way to focus on our aggregation result.
 
 In a new terminal, define a produce function and tail the content of temporary file.
 

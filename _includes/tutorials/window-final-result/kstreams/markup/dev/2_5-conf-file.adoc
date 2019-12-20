@@ -8,4 +8,4 @@ Add the config file `src/main/resources/application.conf` to setup your applicat
 
 You may want to adapt the blocks `local.date.lang` and `local.date.pattern`
 
-This file contains defaults configs. In production they will be overridden by environment variables.
+This file contains default configs. In production they will be overridden by environment variables.

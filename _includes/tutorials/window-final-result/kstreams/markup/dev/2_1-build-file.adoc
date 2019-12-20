@@ -6,5 +6,5 @@ Create the following Gradle build file, named `build.gradle` for the project:
 %}</code></pre>
 +++++
 
-*Note*: In addition to our main class, this tutorial brings two Java executions responsible for create the topics and
+*Note*: In addition to our main class, this tutorial brings two Java executions responsible for creating the topics and
 schemas. In a real life application, these may be outside your project.

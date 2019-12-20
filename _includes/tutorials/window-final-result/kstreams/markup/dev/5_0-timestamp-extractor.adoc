@@ -1,5 +1,4 @@
-Time can be a tricky concept. Besides having different times, you need to keep in mind that each of them may arrived
-from a different time zone.
+There are multiple timing perspectives to consider, and each event may arrive from a different time zone.
 
 1. *Event time*, time of the sensor that is different rather it comes from Paris (UTC+02:00) or Tokyo (UTC+19:00)
 
