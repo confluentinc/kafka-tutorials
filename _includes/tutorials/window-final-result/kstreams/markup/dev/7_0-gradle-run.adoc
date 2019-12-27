@@ -1,0 +1,9 @@
+In a new terminal, use the `run` gradle task to start the main class `LastWindowEvent`.
+
++++++
+<pre class="snippet"><code class="bash">{%
+    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-project.sh
+%}</code></pre>
++++++
+
+*Note*: this will apply the topic creation step and schema publication step before running the app.
