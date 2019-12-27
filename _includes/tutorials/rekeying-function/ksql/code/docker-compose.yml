@@ -48,7 +48,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
   ksql-server:
-    image: confluentinc/cp-ksql-server:5.3.0
+    image: confluentinc/ksqldb-server:0.6.0
     hostname: ksql-server
     container_name: ksql-server
     depends_on:
@@ -71,7 +71,7 @@ services:
       KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
 
   ksql-cli:
-    image: confluentinc/cp-ksql-cli:5.3.0
+    image: confluentinc/ksqldb-cli:0.6.0
     container_name: ksql-cli
     depends_on:
       - broker
