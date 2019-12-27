@@ -1,4 +1,3 @@
-produce '{"id":"XXX","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
 produce '{"id":"101","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
 produce '{"id":"101","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
 produce '{"id":"101","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
@@ -13,4 +12,5 @@ produce '{"id":"102","datetime":"'$(date -v-60S +%FT%T.%z)'","pressure":30}' # o
 export TZ=Asia/Tokyo
 produce '{"id":"301","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
 produce '{"id":"301","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
+sleep 10
 produce '{"id":"XXX","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
