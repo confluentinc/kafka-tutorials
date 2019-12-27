@@ -81,7 +81,7 @@ def copy_spool_files_to_host(context, step, proc_state):
 
     return temp_dir
 
-def split_io_blocks(coll, line):        
+def split_io_blocks(coll, line):
     if line.startswith("ksql>"):
         coll.append([line])
     else:
@@ -94,9 +94,9 @@ def strip_input(coll):
         result.append(list(dropwhile(lambda x: not x.endswith(";\n"), xs))[1:])
     return result
 
-def shred_spool_text(text):    
+def shred_spool_text(text):
     results = []
-    trimmed = text[3:-2]    
+    trimmed = text[3:-2]
     blocks = reduce(split_io_blocks, trimmed, [])
     return strip_input(blocks)
 
