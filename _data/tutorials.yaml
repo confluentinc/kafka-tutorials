@@ -145,9 +145,16 @@ finding-distinct:
   title: "How to find distinct values in a stream of events"
   slug: "/finding-distinct-events"
   problem: "you have events in a Kafka topic, and you want to filter out duplicate events based on a field in the event, producing a new stream of only unique events"
-  introduction: "Consider a topic with events that represent clicks on a website.  Each event contains an IP address, a URL, and a timestamp.  In this tutorial, we'll write a program that filters click events by the IP address within a window of time." 
+  introduction: "Consider a topic with events that represent clicks on a website.  Each event contains an IP address, a URL, and a timestamp.  In this tutorial, we'll write a program that filters click events by the IP address within a window of time."
   status:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
 
+window-final-result:
+  title: "Emit a final result from a time window"
+  slug: "/window-final-result"
+  problem: "you have a Kafka topic, and you want to count the number of messages per key over a time window, getting a final result that takes late arrivals into account."
+  introduction: "Consider a topic with events that represent sensor warnings (pressure on robotic arms). One warning per time slot is fine, but you don't want to have too much warnings at the same time. In this tutorial, we'll write a program that counts the messages of a same sensor and sends a result at the end of the window."
+  status:
+    kstreams: enabled
