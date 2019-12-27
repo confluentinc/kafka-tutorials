@@ -13,6 +13,17 @@ dev:
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/1_1-make-docker-compose.adoc
 
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/window-final-result/kstreams/markup/dev/1_2-start-docker-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+
     - title: Initialize the project
       content:
         - action: make_file
@@ -65,7 +76,7 @@ dev:
     - title: Add the helper gradle tasks
       content:
         - action: execute
-          file: tutorial-steps/dev/4_0-helper-package.sh
+          file: tutorial-steps/dev/make-helper-package.sh
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/4_0-helper-package.adoc
 
@@ -75,7 +86,7 @@ dev:
             file: tutorials/window-final-result/kstreams/markup/dev/4_1-topic-task.adoc
 
         - action: make_file
-          file: src/main/java/io/confluent/developer/helper/SchemaPublicaition.java
+          file: src/main/java/io/confluent/developer/helper/SchemaPublication.java
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/4_2-schema-task.adoc
 
@@ -100,7 +111,7 @@ dev:
     - title: Compile and run the Kafka Streams program
       content:
         - action: execute_async
-          file: tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-project.sh
+          file: tutorial-steps/dev/run-project.sh
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/7_0-gradle-run.adoc
 
@@ -110,13 +121,12 @@ dev:
 
     - title: Produce events to the input topic
       content:
-        - action: execute
-          file: tutorial-steps/dev/run-producer.sh
+        - action: skip
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/8_0-produce-input.adoc
 
         - action: execute
-          file: tutorial-steps/dev/run-producer2.sh
+          file: tutorial-steps/dev/run-producer-execute.sh
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/8_1-produce-input.adoc
 
@@ -127,10 +137,21 @@ dev:
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/9_0-consume-output.adoc
 
-        - action: execute_async
-          file: tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-consumer.sh
+        - action: skip
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/9_1-consume-output.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/run-consumer-execute.sh
+          stdout: tutorial-steps/dev/outputs/actual-count.txt
+          render:
+            skip: true
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 3000
+          render:
+            skip: true
 
         - action: skip
           file: tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-consumer.sh
@@ -141,10 +162,15 @@ test:
   steps:
     - title: Create a test configuration file
       content:
-        - action: make_file
-          file: code/src/test/resources/test.properties
+        - action: execute
+          file: tutorial-steps/test/make-test-config-dir.sh
           render:
-            file: tutorials/window-final-result/kstreams/markup/test/1_0-make-test-conf.adoc
+            file: tutorials/window-final-result/kstreams/markup/test/1_0-make-test-config-dir.adoc
+
+        - action: make_file
+          file: src/test/resources/test.properties
+          render:
+            file: tutorials/window-final-result/kstreams/markup/test/1_1-make-test-conf.adoc
 
     - title: Write a test
       content:
@@ -152,12 +178,14 @@ test:
           file: tutorial-steps/test/make-test-dir.sh
           render:
             file: tutorials/window-final-result/kstreams/markup/test/2_0-make-test-dir.adoc
+
         - action: make_file
-          file: code/src/test/java/io/confluent/developer/WindowFinalResultTest.java
+          file: src/test/java/io/confluent/developer/WindowFinalResultTest.java
           render:
             file: tutorials/window-final-result/kstreams/markup/test/2_1-make-test-class.adoc
+
         - action: make_file
-          file: code/src/test/java/io/confluent/developer/PressureDatetimeExtractor.java
+          file: src/test/java/io/confluent/developer/PressureDatetimeExtractorTest.java
           render:
             file: tutorials/window-final-result/kstreams/markup/test/2_2-make-test-class-ts.adoc
 
@@ -171,10 +199,15 @@ prod:
   steps:
     - title: Create a production configuration file
       content:
+        - action: execute
+          file: tutorial-steps/prod/make-configuration-dir.sh
+          render:
+            file: tutorials/window-final-result/kstreams/markup/prod/1_0-make-prod-conf-dir.adoc
+
         - action: make_file
           file: configuration/prod.properties
           render:
-            file: tutorials/window-final-result/kstreams/markup/prod/1_0-make-prod-conf.adoc
+            file: tutorials/window-final-result/kstreams/markup/prod/1_1-make-prod-conf.adoc
 
     - title: Build a Docker image
       content:

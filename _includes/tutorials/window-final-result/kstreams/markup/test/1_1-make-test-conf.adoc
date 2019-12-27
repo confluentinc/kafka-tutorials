@@ -1,4 +1,4 @@
-First, create a test file configuration named `test.properties` at `src/test/resources`:
+Then, create a test file configuration named `test.properties` at `src/test/resources`:
 
 +++++
 <pre class="snippet"><code class="properties">{%

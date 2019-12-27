@@ -2,7 +2,7 @@ Send multiple events
 +++++
 
 <pre class="snippet"><code class="bash">{%
-    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-producer2.sh
+    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-producer.sh
 %}</code></pre>
 +++++
 
@@ -16,17 +16,18 @@ You may also consume the input topic to see what are the sensors dates:
 For example:
 
 +++++
-<pre class="snippet"><code class="bash"># {"id":"101","datetime":"2019-09-19T01:14:26.+0200","pressure":30}
+<pre class="snippet"><code class="bash"># {"id":"XXX","datetime":"2019-09-21T05:00:00.+0200","pressure":30}
+# ...
 # {"id":"101","datetime":"2019-09-21T05:45:02.+0200","pressure":30}
 # {"id":"101","datetime":"2019-09-21T05:45:02.+0200","pressure":30}
 # {"id":"101","datetime":"2019-09-21T05:45:02.+0200","pressure":30}
 # {"id":"102","datetime":"2019-09-21T05:45:02.+0200","pressure":30}
 # {"id":"101","datetime":"2019-09-21T05:45:02.+0200","pressure":30}
-# {"id":"101","datetime":"2019-09-21T05:45:00.+0200","pressure":30} # late
-# {"id":"101","datetime":"2019-09-21T05:44:59.+0200","pressure":30} # out of time
-# {"id":"102","datetime":"2019-09-21T05:45:12.+0200","pressure":30} # new window
-# {"id":"102","datetime":"2019-09-21T05:44:52.+0200","pressure":30} # out of time
-# {"id":"301","datetime":"2019-09-21T12:45:27.+0900","pressure":30} # different time zone
-# {"id":"301","datetime":"2019-09-21T12:45:27.+0900","pressure":30} # different time zone
-# {"id":"000","datetime":"2019-09-21T05:46:03.+0200","pressure":30}</code></pre>
+# {"id":"101","datetime":"2019-09-21T05:45:07.+0200","pressure":30} # late
+# {"id":"101","datetime":"2019-09-21T05:44:13.+0200","pressure":30} # out of time
+# {"id":"102","datetime":"2019-09-21T05:45:13.+0200","pressure":30} # new window
+# {"id":"102","datetime":"2019-09-21T05:43:23.+0200","pressure":30} # out of time
+# {"id":"301","datetime":"2019-09-21T12:45:23.+0900","pressure":30} # different time zone
+# {"id":"301","datetime":"2019-09-21T12:45:24.+0900","pressure":30} # different time zone
+# {"id":"XXX","datetime":"2019-09-21T06:00:00.+0200","pressure":30}</code></pre>
 +++++

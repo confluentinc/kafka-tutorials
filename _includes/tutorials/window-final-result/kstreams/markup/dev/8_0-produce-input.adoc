@@ -4,7 +4,7 @@ In a new terminal, define a produce function and tail the content of temporary f
 
 +++++
 <pre class="snippet"><code class="bash">{%
-    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-producer.sh
+    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-producer-alias.sh
 %}</code></pre>
 +++++
 
