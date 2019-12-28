@@ -1,0 +1,7 @@
+Add the logging configuration in the file: `src/main/resources/logback.xml`:
+
++++++
+<pre class="snippet"><code class="xml">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/main/resources/logback.xml
+%}</code></pre>
++++++
