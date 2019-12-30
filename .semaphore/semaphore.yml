@@ -38,6 +38,8 @@ blocks:
             - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: Run the tests
+    execution_time_limit:
+      minutes: 15
     task:
       prologue:
         commands:
