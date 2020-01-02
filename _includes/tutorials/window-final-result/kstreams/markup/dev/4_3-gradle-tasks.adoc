@@ -1,0 +1,14 @@
+Now the topics can be created separately with the following command.
+
++++++
+<pre class="snippet"><code class="bash">./gradlew createTopics</code></pre>
++++++
+
+Same thing for the schemas.
+
++++++
+<pre class="snippet"><code class="bash">./gradlew publishSchemas</code></pre>
++++++
+
+Check the `build.gradle` again. You will find the tasks declared as `JavaExec` with a main class corresponding to the
+two last files
