@@ -1,0 +1,5 @@
+Next, create another Java file at `src/main/java/io/confluent/developer/ConsoleProducer.java` for the producer. This producer is responsible for creating the events that will be used for filtering. The main difference between this producer and the one that comes with Apache Kafka is the fact that this producer create events with headers, which in turn are going to be used as filtering criteria.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/filtering-headers/kafka/code/src/main/java/io/confluent/developer/ConsoleProducer.java %}</code></pre>
++++++

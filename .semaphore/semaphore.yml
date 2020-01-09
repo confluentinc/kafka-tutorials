@@ -66,6 +66,12 @@ blocks:
           commands:
             - make -C _includes/tutorials/filtering/kstreams/code tutorial
 
+        - name: Kafka Filtering using Headers
+          commands:
+            - docker-compose -f docker/docker-compose.yml up -d
+            - ./docker/wait-for.sh
+            - make -C _includes/tutorials/filtering-headers/kafka/code tutorial
+
         - name: KSQL splitting tests
           commands:
             - make -C _includes/tutorials/splitting/ksql/code tutorial
