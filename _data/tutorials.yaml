@@ -150,6 +150,15 @@ serialization:
     ksql: enabled
     kstreams: enabled
 
+connect-jdbc-specificavro:
+  title: "Ingesting data via a JDBC source connector into Kafka Streams using SpecificAvro"
+  slug: "/connect-jdbc-specificavro"
+  problem: "you have data in a table in a database, are pulling that data via a JDBC source connector (which by default does not add a key to the Kafka message), and you want to create a Kafka Stream with an added key, using SpecificAvro."
+  introduction: "Consider a database with a table with names of cities. The JDBC source connector can read that data into Kafka but, by default, the topic will not have keys. In Kafka Streams, ingest that data using SpecificAvro and add a key to the stream."
+  status:
+    ksql: disabled
+    kstreams: enabled
+
 finding-distinct:
   title: "How to find distinct values in a stream of events"
   slug: "/finding-distinct-events"
@@ -167,3 +176,4 @@ window-final-result:
   introduction: "Consider a topic with events that represent sensor warnings (pressure on robotic arms). One warning per time slot is fine, but you don't want to have too much warnings at the same time. In this tutorial, we'll write a program that counts the messages of a same sensor and sends a result at the end of the window."
   status:
     kstreams: enabled
+
