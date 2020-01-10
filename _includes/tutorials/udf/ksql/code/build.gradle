@@ -2,15 +2,10 @@ buildscript {
     repositories {
         jcenter()
     }
-    dependencies {
-        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.15.1"
-        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.2"
-    }
 }
 
 plugins {
     id "java"
-    id "com.google.cloud.tools.jib" version "1.8.0"
 }
 
 sourceCompatibility = "1.8"
@@ -26,18 +21,17 @@ repositories {
     }
 }
 
-apply plugin: "com.commercehub.gradle.plugin.avro"
-apply plugin: "com.github.johnrengelman.shadow"
-
 dependencies {
-    compile "org.apache.avro:avro:1.9.1"
-    implementation "org.slf4j:slf4j-simple:1.7.26"
-    implementation "org.apache.kafka:kafka-streams:2.4.0"
-    implementation "io.confluent:kafka-streams-avro-serde:5.3.1"
-    implementation "io.confluent.ksql:ksql-udf:5.3.1"
-    testCompile "org.apache.kafka:kafka-streams-test-utils:2.4.0"
-    testCompile "junit:junit:4.12"
+    compile 'io.confluent.ksql:ksql-udf:5.3.0'
+    testCompile 'junit:junit:4.12'
 }
+
+task copyJar(type: Copy) {
+    from jar
+    into "extensions/"
+}  
+
+build.dependsOn copyJar
 
 test {
     testLogging {
@@ -45,16 +39,4 @@ test {
         showStandardStreams = true
         exceptionFormat = "full"
     }
-}
-
-jar {
-  manifest {
-    attributes(
-      "Class-Path": configurations.compile.collect { it.getName() }.join(" "),
-    )
-  }
-}
-
-shadowJar {
-    archiveName = "udf-tutorial-${version}.${extension}"
 }

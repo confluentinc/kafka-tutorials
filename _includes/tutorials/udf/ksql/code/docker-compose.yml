@@ -1,4 +1,3 @@
----
 version: '2'
 
 services:
@@ -54,10 +53,13 @@ services:
     depends_on:
       - broker
       - schema-registry
+    volumes:
+      - ./extensions:/etc/ksql/ext
     ports:
       - "8088:8088"
     environment:
       KSQL_CONFIG_DIR: "/etc/ksql"
+      KSQL_KSQL_EXTENSION_DIR: "/etc/ksql/ext/"
       KSQL_LOG4J_OPTS: "-Dlog4j.configuration=file:/etc/ksql/log4j-rolling.properties"
       KSQL_BOOTSTRAP_SERVERS: "broker:9092"
       KSQL_HOST_NAME: ksql-server
@@ -66,9 +68,6 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
       KSQL_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
-      KSQL_KSQL_EXTENSION_DIR: "/opt/ksql/ext"
-    volumes:
-      - ./build/libs:/opt/ksql/ext
 
   ksql-cli:
     image: confluentinc/cp-ksql-cli:5.3.1

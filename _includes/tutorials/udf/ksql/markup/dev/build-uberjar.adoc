@@ -1,7 +1,0 @@
-In your terminal, run:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/udf/ksql/code/tutorial-steps/dev/build-uberjar.sh %}</code></pre>
-+++++
-
-You will now have a jar named `udf-tutorial-0.0.1.jar` located within the `build/libs` folder.

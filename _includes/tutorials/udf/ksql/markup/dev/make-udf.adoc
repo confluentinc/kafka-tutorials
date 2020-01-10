@@ -1,4 +1,4 @@
-Then create the following file at `src/main/java/io/confluent/developer/VwapUdf.java`.
+Then create the following file at `src/main/java/io/confluent/developer/VwapUdf.java`.  This file contains the Java logic of your custom function.  Read through the code to familiarize yourself.
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/udf/ksql/code/src/main/java/io/confluent/developer/VwapUdf.java %}</code></pre>
