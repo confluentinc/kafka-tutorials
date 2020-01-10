@@ -7,7 +7,7 @@ dev:
           render:
             file: tutorials/udf/ksql/markup/dev/init.adoc
 
-        - change_directory: rekey-with-function
+        - change_directory: udf 
           action: execute
           file: tutorial-steps/dev/make-dirs.sh
           render:
@@ -111,7 +111,7 @@ test:
             file: tutorials/udf/ksql/markup/test/make-test-dir.adoc
 
         - action: make_file
-          file: src/test/java/io/confluent/developer/RegexReplaceTest.java
+          file: src/test/java/io/confluent/developer/VwapUdfTest.java
           render:
             file: tutorials/udf/ksql/markup/test/make-test.adoc
 

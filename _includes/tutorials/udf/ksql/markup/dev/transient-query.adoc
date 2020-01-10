@@ -7,5 +7,5 @@ Let's invoke the `vwap` function for every observed raw quote.  Pay attention to
 This should yield the following output:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/udf/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/udf/ksql/code/tutorial-steps/dev/expected-print-stream.log %}</code></pre>
 +++++
