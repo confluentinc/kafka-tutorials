@@ -150,3 +150,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/window-final-result/kstreams/code tutorial
 
+        - name: KSQL UDF tests
+          commands:
+            - make -C _includes/tutorials/udf/ksql/code tutorial
