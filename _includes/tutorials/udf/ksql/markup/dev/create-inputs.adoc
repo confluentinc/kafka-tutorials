@@ -1,4 +1,4 @@
-First, you'll need to create a Kafka topic and stream to represent the stock quote stream. The following creates both in one shot:
+You'll need to create a Kafka topic and stream to represent the stock quote stream. The following creates both in one shot:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/udf/ksql/code/tutorial-steps/dev/create-inputs.sql %}</code></pre>
