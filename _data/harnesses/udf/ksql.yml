@@ -23,7 +23,7 @@ dev:
           render:
             file: tutorials/udf/ksql/markup/dev/make-gradle-wrapper.adoc
 
-    - title: Implement the KSQL User-defined Function
+    - title: Implement the KSQL User-Defined Function
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
