@@ -6,7 +6,7 @@ Along with implementing a hopping window, we will base our logic on the average 
 <pre class="snippet"><code class="sql">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/transient-window.sql %}</code></pre>
 +++++
 
-This should query should produce the following output:
+This query should produce the following output:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/outputs/transient-window/output-0.log %}</code></pre>
