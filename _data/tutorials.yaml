@@ -100,6 +100,7 @@ tumbling-windows:
   introduction: "Suppose you have a topic with events that represent ratings of movies. In this tutorial, we'll write a program that maintains tumbling windows counting the total number of ratings that each movie has received."
   status:
     ksql: enabled
+    kstreams: enabled
 
 hopping-windows:
   title: "How to create hopping windows"
