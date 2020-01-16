@@ -1,0 +1,11 @@
+Note that we called the query that detects the temperature drop as `TRIGGERED_ALERTS` and we modeled as a table, since we are performing some aggregations in the query. But just like the temperature readings, alerts can happen continuously as well in a form of a stream of events -- therefore we transform the table back to a stream so we can have multiple alerts throughout time. Finally, also note that we rekeyed the stream to use the `ID` field as key.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
++++++
+
+The output should look similar to:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
++++++

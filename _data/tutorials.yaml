@@ -100,7 +100,15 @@ tumbling-windows:
   introduction: "Suppose you have a topic with events that represent ratings of movies. In this tutorial, we'll write a program that maintains tumbling windows counting the total number of ratings that each movie has received."
   status:
     ksql: enabled
-    kstreams: enabled
+
+hopping-windows:
+  title: "How to create hopping windows"
+  meta-description: "Learn to create hopping windows"
+  slug: "/create-hopping-windows"
+  problem: "you have time-series events in a Kafka topic, and you want to group them into fixed-size, possibly-overlapping, contiguous time intervals to identify an specific scenario."
+  introduction: "You want to build an alerting system that automatically detects if the temperature of a room consistently drops. In this tutorial, we'll write a program that monitors a stream of temperature readings and detect when the temperature consistently drops below 45F for a period of 10 seconds."
+  status:
+    ksql: enabled
 
 aggregating-count:
   title: "How to count a stream of events"

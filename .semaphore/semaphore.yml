@@ -153,3 +153,7 @@ blocks:
         - name: KSQL UDF tests
           commands:
             - make -C _includes/tutorials/udf/ksql/code tutorial
+
+        - name: KSQL hopping windows tests
+          commands:
+            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial

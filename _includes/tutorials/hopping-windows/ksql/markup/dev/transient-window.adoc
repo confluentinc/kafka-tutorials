@@ -1,0 +1,13 @@
+Now here comes the fun part. We need to create a query capable of detecting when the temperature drops below 45F for a period of 10 seconds. However, since our sensor emits readings every 5 seconds, we need to come up with a way to detect this even if the drop goes beyond the interval of 10 seconds. Hence why we are using hopping windows for this scenario. Since hopping windows are possibly-overlapping, we may have situations in which the temperature dropped across multiple 10 second windows.
+
+Along with the implementation of a hopping window, we will based off our logic in the average temperature within the detected period, and we will show this period through two different fields called `START_PERIOD` and `END_PERIOD`. This may come in handy if your alert system needs to have the information of when the temperature drop happened, besides of course doing the alerting.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/transient-window.sql %}</code></pre>
++++++
+
+This should query should produce the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/outputs/transient-window/output-0.log %}</code></pre>
++++++
