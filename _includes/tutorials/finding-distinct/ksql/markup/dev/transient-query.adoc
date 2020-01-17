@@ -1,0 +1,11 @@
+Note that we called the query that find only distinct events as `DETECTED_CLICKS` and we modeled as a table, since we are performing some aggregations in the query. Then we perform a rekeying to ensure that the `IP_ADDRESS` is used as key of the record, by transforming the table back to a stream and using the `PARTITION BY` clause. To verify if everything is working as expected, run the following query:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/ksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
++++++
+
+The output should look similar to:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
++++++
