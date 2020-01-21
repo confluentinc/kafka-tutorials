@@ -1,5 +1,5 @@
 Note that now each field is being shown in a flat structure.
-This means that our query is working propertly.
+This means that our query is working properly.
 Now let's create a continuous query to implement this scenario.
 
 +++++
