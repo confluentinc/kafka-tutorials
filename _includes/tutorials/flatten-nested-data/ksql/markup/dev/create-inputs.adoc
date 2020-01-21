@@ -1,4 +1,4 @@
-Create the following stream that contains the representation of the order.
+Create the following stream with the representation of the orders.
 We will the `STRUCT` keyword to define the fields that contains nested data.
 
 +++++
