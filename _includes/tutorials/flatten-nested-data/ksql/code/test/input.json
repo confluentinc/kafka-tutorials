@@ -21,10 +21,10 @@
         },
         "product": {
           "sku": "P12345",
-          "name": "Logitech Spotlight",
+          "name": "Highly Durable Glue",
           "vendor": {
-            "vendorName": "Logitech",
-            "country": "CH"
+            "vendorName": "Acme Corp",
+            "country": "US"
           }
         }
       }
@@ -50,10 +50,10 @@
         },
         "product": {
           "sku": "P12345",
-          "name": "Logitech Spotlight",
+          "name": "Highly Durable Glue",
           "vendor": {
-            "vendorName": "Logitech",
-            "country": "CH"
+            "vendorName": "Acme Corp",
+            "country": "US"
           }
         }
       }
@@ -79,10 +79,10 @@
         },
         "product": {
           "sku": "P12345",
-          "name": "Logitech Spotlight",
+          "name": "Highly Durable Glue",
           "vendor": {
-            "vendorName": "Logitech",
-            "country": "CH"
+            "vendorName": "Acme Corp",
+            "country": "US"
           }
         }
       }
@@ -108,10 +108,10 @@
         },
         "product": {
           "sku": "P12345",
-          "name": "Logitech Spotlight",
+          "name": "Highly Durable Glue",
           "vendor": {
-            "vendorName": "Logitech",
-            "country": "CH"
+            "vendorName": "Acme Corp",
+            "country": "US"
           }
         }
       }

@@ -16,9 +16,9 @@
         "CUST_ADDR_CITY": "Raleigh",
         "CUST_ADDR_STATE": "NC",
         "PROD_SKU": "P12345",
-        "PROD_NAME": "Logitech Spotlight",
-        "PROD_VENDOR_NAME": "Logitech",
-        "PROD_VENDOR_COUNTRY": "CH"
+        "PROD_NAME": "Highly Durable Glue",
+        "PROD_VENDOR_NAME": "Acme Corp",
+        "PROD_VENDOR_COUNTRY": "US"
       },
       "timestamp": 1579309925000
     },
@@ -38,9 +38,9 @@
         "CUST_ADDR_CITY": "Littletown",
         "CUST_ADDR_STATE": "CO",
         "PROD_SKU": "P12345",
-        "PROD_NAME": "Logitech Spotlight",
-        "PROD_VENDOR_NAME": "Logitech",
-        "PROD_VENDOR_COUNTRY": "CH"
+        "PROD_NAME": "Highly Durable Glue",
+        "PROD_VENDOR_NAME": "Acme Corp",
+        "PROD_VENDOR_COUNTRY": "US"
       },
       "timestamp": 1579311312000
     },
@@ -60,9 +60,9 @@
         "CUST_ADDR_CITY": "Leeds",
         "CUST_ADDR_STATE": "YS",
         "PROD_SKU": "P12345",
-        "PROD_NAME": "Logitech Spotlight",
-        "PROD_VENDOR_NAME": "Logitech",
-        "PROD_VENDOR_COUNTRY": "CH"
+        "PROD_NAME": "Highly Durable Glue",
+        "PROD_VENDOR_NAME": "Acme Corp",
+        "PROD_VENDOR_COUNTRY": "US"
       },
       "timestamp": 1579312735000
     },
@@ -82,9 +82,9 @@
         "CUST_ADDR_CITY": "New Jersey",
         "CUST_ADDR_STATE": "NJ",
         "PROD_SKU": "P12345",
-        "PROD_NAME": "Logitech Spotlight",
-        "PROD_VENDOR_NAME": "Logitech",
-        "PROD_VENDOR_COUNTRY": "CH"
+        "PROD_NAME": "Highly Durable Glue",
+        "PROD_VENDOR_NAME": "Acme Corp",
+        "PROD_VENDOR_COUNTRY": "US"
       },
       "timestamp": 1579314703000
     }

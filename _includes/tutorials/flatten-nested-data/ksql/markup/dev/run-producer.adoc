@@ -7,7 +7,7 @@ Let's use the console producer to create some records.
 
 When the console producer starts, it will log some messages and hang, waiting for your input.
 Type in one line at a time and press enter to send it.
-Each line represents an order of one Logitech Spotlight bought by each member of Confluent's developer advocacy team.
+Each line represents an order of one 'Highly Durable Glue' bought by each member of Confluent's developer advocacy team.
 Note that each order contains the fields `customer` and `product` that in turn contains nested data.
 To send all orders below, paste the following into the prompt and press enter:
 
