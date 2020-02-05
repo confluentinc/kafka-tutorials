@@ -161,3 +161,7 @@ blocks:
         - name: KSQL finding distinct events tests
           commands:
             - make -C _includes/tutorials/finding-distinct/ksql/code tutorial
+
+        - name: KSQL flatten nested data
+          commands:
+            - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
