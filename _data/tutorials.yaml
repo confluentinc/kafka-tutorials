@@ -162,10 +162,10 @@ connect-jdbc-specificavro:
 finding-distinct:
   title: "How to find distinct values in a stream of events"
   slug: "/finding-distinct-events"
-  problem: "you have events in a Kafka topic, and you want to filter out duplicate events based on a field in the event, producing a new stream of only unique events"
+  problem: "you have events in a Kafka topic, and you want to filter out duplicate events based on a field in the event, producing a new stream of unique events per time window"
   introduction: "Consider a topic with events that represent clicks on a website.  Each event contains an IP address, a URL, and a timestamp.  In this tutorial, we'll write a program that filters click events by the IP address within a window of time."
   status:
-    ksql: disabled
+    ksql: enabled
     kstreams: enabled
     kafka: disabled
 
@@ -195,3 +195,14 @@ deserialization-errors:
   introduction: "During the development of event streaming applications, it is very common to have situations where some streams or tables are not receiving some events that has been sent to it. Often this happens because there was an deserialization error due to the event not being in the right format, but that is not so trivial to figure out. In this tutorial, we'll write a program that monitors a stream of sensors. Any deserialization error that happens in this stream will be made available in another stream that can be queried to check errors."
   status:
     ksql: enabled
+    
+flatten-nested-data:
+  title: "How to flatten deeply nested events"
+  meta-description: "How to flatten deeply nested events"
+  slug: "/flatten-nested-data"
+  problem: "you have events with nested data in a Kafka topic, and you want to transform each event into a flattened dataset that is simpler to handle."
+  introduction: "Consider a topic containing product orders. Each order contains data about the customer and the product, specified as nested data. In this tutorial, we'll write a program that transforms each order into a new version of it that contains all the data as flat fields."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
