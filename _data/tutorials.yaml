@@ -186,3 +186,14 @@ udf:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
+
+flatten-nested-data:
+  title: "How to flatten deeply nested events"
+  meta-description: "How to flatten deeply nested events"
+  slug: "/flatten-nested-data"
+  problem: "you have events with nested data in a Kafka topic, and you want to transform each event into a flattened dataset that is simpler to handle."
+  introduction: "Consider a topic containing product orders. Each order contains data about the customer and the product, specified as nested data. In this tutorial, we'll write a program that transforms each order into a new version of it that contains all the data as flat fields."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
