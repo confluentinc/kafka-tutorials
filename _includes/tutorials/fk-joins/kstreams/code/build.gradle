@@ -56,5 +56,5 @@ jar {
 }
 
 shadowJar {
-    archiveName = "kstreams-table-fkjoins-standalone-${version}.${extension}"
+    archiveName = "ktable-fkjoins-standalone-${version}.${extension}"
 }
