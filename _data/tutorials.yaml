@@ -71,7 +71,14 @@ joining-stream-stream:
   status:
     ksql: enabled
     kstreams: enabled
-
+foriegn-key-table-joins:
+  title: "How to join a table and a table with a foriegn key"
+  meta-description: "Learn how to use the KTable foriegn key join functionality"
+  slug: "/ktable-ktable-foreign-key-join"
+  problem: "you need to join two tables, but the primary keys are different so you need to extract a foriegn key from the other table"
+  introduction: "Suppose you articles and you need to attach comments about those articles, but the keys for the article entires are different from the comment entries.  You need to extract the key for the article from the comment body.  In this tutorial you'll use the KTable foriegn key join functionality that allows for joining tables with different primary keys"
+  status:
+    kstreams: enabled
 rekeying:
   title: "How to rekey a stream with a value"
   meta-description: "Learn to rekey a stream with a value"
