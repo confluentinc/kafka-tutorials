@@ -24,26 +24,6 @@ public class FkJoinTableToTableTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
-    private static <T extends SpecificRecord> SpecificAvroSerializer<T> getAvroSerializer(Properties envProps) {
-        final SpecificAvroSerializer<T> serializer = new SpecificAvroSerializer<>();
-
-        final Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
-        serializer.configure(config, false);
-
-        return serializer;
-    }
-
-    private static <T extends SpecificRecord> SpecificAvroDeserializer<T> getAvroDeserializer(Properties envProps) {
-        final SpecificAvroDeserializer<T> deserializer = new SpecificAvroDeserializer<>();
-
-        final Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
-        deserializer.configure(config, false);
-
-        return deserializer;
-    }
-
     @Test
     public void testJoin() throws IOException {
         final FkJoinTableToTable fkJoin = new FkJoinTableToTable();
@@ -104,5 +84,27 @@ public class FkJoinTableToTableTest {
 
             assertEquals(expectedMusicInterestJoinResults, actualJoinResults);
         }
+    }
+
+
+
+    private static <T extends SpecificRecord> SpecificAvroSerializer<T> getAvroSerializer(Properties envProps) {
+        final SpecificAvroSerializer<T> serializer = new SpecificAvroSerializer<>();
+
+        final Map<String, String> config = new HashMap<>();
+        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        serializer.configure(config, false);
+
+        return serializer;
+    }
+
+    private static <T extends SpecificRecord> SpecificAvroDeserializer<T> getAvroDeserializer(Properties envProps) {
+        final SpecificAvroDeserializer<T> deserializer = new SpecificAvroDeserializer<>();
+
+        final Map<String, String> config = new HashMap<>();
+        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        deserializer.configure(config, false);
+
+        return deserializer;
     }
 }
