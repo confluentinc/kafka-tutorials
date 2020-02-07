@@ -8,6 +8,12 @@ But if the key is a monatomically increasing number, how can we join against the
 
 Creating the `https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/kstream/KTable.html[KTable]<Long,TrackPurchase>` of track purchases looks just like our first step with the albums: we create a table from the topic. Note that we must choose the same key—album ID—for our join to work.  You accomplish this by providing a Java 8 method handle `TrackPurchase::getAlbumId` to extact the correct id for sucessful completion of the join.
 
+At this point we should discuss the importance of the order in which we use the `KTable` parameters in the `join()`.  The `trackPurchases` table is the *_calling_* or *_left-side-table_* and is the table where the primary-key is embedded in its value.  So the *_left-side-table_*  always provides the `ForiegnKeyExtractor` function.
+
+The `albums` table is the *_right-side-table_* and always has the `primary-key` for the join. So, if you tried `albums.join(trackPurchases..)` the join would never work as the `albums` table has no knowlege of the `trackPurchases` table details.
+
+If you have a situation where you have two tables where the primary-keys don't match, but *_each_* table has reference to each other's primary key, the the order of the tables in the join method won't matter.  But that scenario seems unlikely in practice.
+
 With the track purchases table and the album table in hand, all that remains is to join them using the `join()` method. It's a wonderfully simply one-liner, but we have concealed a bit of complexity in the form of the `MusicInterestJoiner` class. More on that in a moment.
 
 +++++

@@ -3,10 +3,7 @@ package io.confluent.developer;
 import io.confluent.developer.avro.Album;
 import io.confluent.developer.avro.MusicInterest;
 import io.confluent.developer.avro.TrackPurchase;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
-import org.apache.avro.specific.SpecificRecord;
-import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.streams.TestInputTopic;
@@ -16,7 +13,9 @@ import org.apache.kafka.streams.TopologyTestDriver;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 import static org.junit.Assert.assertEquals;
 
@@ -37,13 +36,13 @@ public class FkJoinTableToTableTest {
         final Topology topology = fkJoin.buildTopology(envProps);
         try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
 
-            final Serializer<Long> keySerializer = FkJoinTableToTable.getKeySerde(envProps).serializer();
-            final Serializer<Album> albumSerializer = getAvroSerializer(envProps);
-            final SpecificAvroSerializer<TrackPurchase> trackPurchaseSerializer = getAvroSerializer(envProps);
+            final Serializer<Long> keySerializer = FkJoinTableToTable.<Long>getPrimitiveAvroSerde(envProps, true).serializer();
+            final Serializer<Album> albumSerializer = FkJoinTableToTable.<Album>getSpecificAvroSerde(envProps).serializer();
+            final Serializer<TrackPurchase> trackPurchaseSerializer = FkJoinTableToTable.<TrackPurchase>getSpecificAvroSerde(envProps).serializer();
 
-            final SpecificAvroDeserializer<MusicInterest> musicInterestDeserializer = getAvroDeserializer(envProps);
+            final Deserializer<MusicInterest> musicInterestDeserializer = FkJoinTableToTable.<MusicInterest>getSpecificAvroSerde(envProps).deserializer();
 
-            final TestInputTopic<Long, Album>  albumTestInputTopic = testDriver.createInputTopic(albumInputTopic,keySerializer, albumSerializer);
+            final TestInputTopic<Long, Album>  albumTestInputTopic = testDriver.createInputTopic(albumInputTopic, keySerializer, albumSerializer);
             final TestInputTopic<Long, TrackPurchase> trackPurchaseInputTopic = testDriver.createInputTopic(userPurchaseTopic, keySerializer, trackPurchaseSerializer);
             final TestOutputTopic<String, MusicInterest> outputTopic = testDriver.createOutputTopic(joinedResultOutputTopic, new StringDeserializer(), musicInterestDeserializer);
 
@@ -84,27 +83,5 @@ public class FkJoinTableToTableTest {
 
             assertEquals(expectedMusicInterestJoinResults, actualJoinResults);
         }
-    }
-
-
-
-    private static <T extends SpecificRecord> SpecificAvroSerializer<T> getAvroSerializer(Properties envProps) {
-        final SpecificAvroSerializer<T> serializer = new SpecificAvroSerializer<>();
-
-        final Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
-        serializer.configure(config, false);
-
-        return serializer;
-    }
-
-    private static <T extends SpecificRecord> SpecificAvroDeserializer<T> getAvroDeserializer(Properties envProps) {
-        final SpecificAvroDeserializer<T> deserializer = new SpecificAvroDeserializer<>();
-
-        final Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
-        deserializer.configure(config, false);
-
-        return deserializer;
     }
 }

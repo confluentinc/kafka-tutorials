@@ -46,10 +46,10 @@ public class FkJoinTableToTable {
         final String userTrackPurchaseTopic = envProps.getProperty("tracks.purchase.topic.name");
         final String musicInterestTopic = envProps.getProperty("music.interest.topic.name");
 
-        final Serde<Long> longSerde = getKeySerde(envProps);
-        final Serde<MusicInterest> musicInterestSerde = getAvroSerde(envProps);
-        final Serde<Album> albumSerde = getAvroSerde(envProps);
-        final Serde<TrackPurchase> trackPurchaseSerde = getAvroSerde(envProps);
+        final Serde<Long> longSerde = getPrimitiveAvroSerde(envProps, true);
+        final Serde<MusicInterest> musicInterestSerde = getSpecificAvroSerde(envProps);
+        final Serde<Album> albumSerde = getSpecificAvroSerde(envProps);
+        final Serde<TrackPurchase> trackPurchaseSerde = getSpecificAvroSerde(envProps);
 
         final KTable<Long, Album> albums = builder.table(albumTopic, Consumed.with(longSerde, albumSerde));
 
@@ -66,18 +66,18 @@ public class FkJoinTableToTable {
     }
 
     @SuppressWarnings("unchecked")
-    static Serde<Long> getKeySerde(final Properties envProps) {
+    static <T> Serde<T> getPrimitiveAvroSerde(final Properties envProps, boolean isKey) {
         final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
         final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
         final Map<String, String> config = new HashMap<>();
         config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 envProps.getProperty("schema.registry.url"));
-        deserializer.configure(config, true);
-        serializer.configure(config, true);
-        return (Serde<Long>)((Serde)Serdes.serdeFrom(serializer, deserializer));
+        deserializer.configure(config, isKey);
+        serializer.configure(config, isKey);
+        return (Serde<T>)Serdes.serdeFrom(serializer, deserializer);
     }
 
-    private static <T extends SpecificRecord> SpecificAvroSerde<T> getAvroSerde(final Properties envProps) {
+    static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties envProps) {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
 
         final HashMap<String, String> serdeConfig = new HashMap<>();
