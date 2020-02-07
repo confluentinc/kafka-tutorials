@@ -144,7 +144,7 @@ dev:
             
         - name: wait for the consumers to read the messages
           action: sleep
-          ms: 5000
+          ms: 10000
           render:
             skip: true
 
@@ -197,10 +197,3 @@ prod:
         - action: skip
           render:
             file: tutorials/connect-jdbc-specificavro/kstreams/markup/prod/launch-container.adoc
-
-    - title: Clean up
-      content:
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true            
