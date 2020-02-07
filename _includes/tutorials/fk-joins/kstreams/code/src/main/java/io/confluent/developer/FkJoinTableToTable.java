@@ -5,6 +5,8 @@ import io.confluent.developer.avro.Album;
 import io.confluent.developer.avro.MusicInterest;
 import io.confluent.developer.avro.TrackPurchase;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -33,8 +35,6 @@ public class FkJoinTableToTable {
 
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.Long().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
@@ -43,10 +43,10 @@ public class FkJoinTableToTable {
     public Topology buildTopology(Properties envProps) {
         final StreamsBuilder builder = new StreamsBuilder();
         final String albumTopic = envProps.getProperty("album.topic.name");
-        final String userTrackPurchaseTopic = envProps.getProperty("user.tracks.purchase.topic.name");
+        final String userTrackPurchaseTopic = envProps.getProperty("tracks.purchase.topic.name");
         final String musicInterestTopic = envProps.getProperty("music.interest.topic.name");
 
-        final Serde<Long> longSerde = Serdes.Long();
+        final Serde<Long> longSerde = getKeySerde(envProps);
         final Serde<MusicInterest> musicInterestSerde = getAvroSerde(envProps);
         final Serde<Album> albumSerde = getAvroSerde(envProps);
         final Serde<TrackPurchase> trackPurchaseSerde = getAvroSerde(envProps);
@@ -63,6 +63,18 @@ public class FkJoinTableToTable {
         musicInterestTable.toStream().to(musicInterestTopic, Produced.with(longSerde, musicInterestSerde));
 
         return builder.build();
+    }
+
+    @SuppressWarnings("unchecked")
+    static Serde<Long> getKeySerde(final Properties envProps) {
+        final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
+        final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
+        final Map<String, String> config = new HashMap<>();
+        config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
+                envProps.getProperty("schema.registry.url"));
+        deserializer.configure(config, true);
+        serializer.configure(config, true);
+        return (Serde<Long>)((Serde)Serdes.serdeFrom(serializer, deserializer));
     }
 
     private static <T extends SpecificRecord> SpecificAvroSerde<T> getAvroSerde(final Properties envProps) {
@@ -89,14 +101,14 @@ public class FkJoinTableToTable {
                 Short.parseShort(envProps.getProperty("album.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("user.tracks.purchase.topic.name"),
-                Integer.parseInt(envProps.getProperty("user.tracks.purchase.topic.partitions")),
-                Short.parseShort(envProps.getProperty("user.tracks.purchase.topic.factor"))));
+                envProps.getProperty("tracks.purchase.topic.name"),
+                Integer.parseInt(envProps.getProperty("tracks.purchase.topic.partitions")),
+                Short.parseShort(envProps.getProperty("tracks.purchase.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("music.intereset.topic.name"),
-                Integer.parseInt(envProps.getProperty("music.intereset.topic.partitions")),
-                Short.parseShort(envProps.getProperty("music.intereset.topic.replication.factor"))));
+                envProps.getProperty("music.interest.topic.name"),
+                Integer.parseInt(envProps.getProperty("music.interest.topic.partitions")),
+                Short.parseShort(envProps.getProperty("music.interest.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();

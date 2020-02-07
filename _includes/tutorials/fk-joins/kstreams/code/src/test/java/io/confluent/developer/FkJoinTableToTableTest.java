@@ -31,13 +31,13 @@ public class FkJoinTableToTableTest {
         final Properties streamProps = fkJoin.buildStreamsProperties(envProps);
 
         final String albumInputTopic = envProps.getProperty("album.topic.name");
-        final String userPurchaseTopic = envProps.getProperty("user.tracks.purchase.topic.name");
+        final String userPurchaseTopic = envProps.getProperty("tracks.purchase.topic.name");
         final String joinedResultOutputTopic = envProps.getProperty("music.interest.topic.name");
 
         final Topology topology = fkJoin.buildTopology(envProps);
         try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
 
-            final Serializer<Long> keySerializer = Serdes.Long().serializer();
+            final Serializer<Long> keySerializer = FkJoinTableToTable.getKeySerde(envProps).serializer();
             final Serializer<Album> albumSerializer = getAvroSerializer(envProps);
             final SpecificAvroSerializer<TrackPurchase> trackPurchaseSerializer = getAvroSerializer(envProps);
 

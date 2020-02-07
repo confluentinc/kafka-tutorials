@@ -1,1 +1,1 @@
-mkdir table-fk-join && cd table-fk-join
+mkdir fk-joins && cd fk-joins
