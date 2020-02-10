@@ -131,7 +131,7 @@ dev:
             file: tutorials/fk-joins/kstreams/markup/dev/run-track-purchases-producer.adoc
 
         - action: sleep
-          ms: 5000
+          ms: 40000
           render:
             skip: true
 
