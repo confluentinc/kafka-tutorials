@@ -1,5 +1,5 @@
 And launch it by running:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/filtering/kstreams/code/tutorial-steps/dev/docker-compose-up.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/fk-joins/kstreams/code/tutorial-steps/dev/docker-compose-up.sh %}</code></pre>
 +++++

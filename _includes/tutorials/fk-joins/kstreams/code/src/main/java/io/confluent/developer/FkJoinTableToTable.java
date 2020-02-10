@@ -145,7 +145,7 @@ public class FkJoinTableToTable {
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close(Duration.ofSeconds(5));
+                streams.close();
                 latch.countDown();
             }
         });
