@@ -1,6 +1,7 @@
 package io.confluent.developer;
 
 
+import io.confluent.common.utils.TestUtils;
 import io.confluent.developer.avro.Album;
 import io.confluent.developer.avro.MusicInterest;
 import io.confluent.developer.avro.TrackPurchase;
@@ -35,6 +36,7 @@ public class FkJoinTableToTable {
 
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
+        props.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
         props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
