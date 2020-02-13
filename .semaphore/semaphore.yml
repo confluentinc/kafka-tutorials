@@ -169,4 +169,3 @@ blocks:
         - name: KSQL deserialization errors tests
           commands:
             - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
-            
