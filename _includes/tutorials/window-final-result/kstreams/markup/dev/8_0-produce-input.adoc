@@ -1,0 +1,17 @@
+Now we want to send sensor events in a more convenient way to focus on our aggregation result.
+
+In a new terminal, define a produce function and tail the content of temporary file.
+
++++++
+<pre class="snippet"><code class="bash">{%
+    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-producer-alias.sh
+%}</code></pre>
++++++
+
+Then, we call the function by passing the correct JSON payload.
+
++++++
+<pre class="snippet"><code class="bash">produce '{"id":"101","datetime":"'$(date +%FT%T.%z)'","pressure":30}'
+# {"id":"101","datetime":"2019-09-17T01:22:15.+0200","pressure":30}
+</code></pre>
++++++

@@ -102,6 +102,15 @@ tumbling-windows:
     ksql: enabled
     kstreams: enabled
 
+hopping-windows:
+  title: "How to create hopping windows"
+  meta-description: "Learn to create hopping windows"
+  slug: "/create-hopping-windows"
+  problem: "you have time-series events in a Kafka topic, and you want to group them into fixed-size, possibly-overlapping, contiguous time intervals to identify an specific scenario."
+  introduction: "You want to build an alerting system that automatically detects if the temperature of a room consistently drops. In this tutorial, we'll write a program that monitors a stream of temperature readings and detects when the temperature consistently drops below 45 °F for a period of 10 minutes."
+  status:
+    ksql: enabled
+
 aggregating-count:
   title: "How to count a stream of events"
   meta-description: "Learn to count a stream of events"
@@ -140,3 +149,51 @@ serialization:
   status:
     ksql: enabled
     kstreams: enabled
+
+connect-jdbc-specificavro:
+  title: "Ingesting data via a JDBC source connector into Kafka Streams"
+  slug: "/connect-jdbc-specificavro"
+  problem: "you have data in a table in a database, are pulling that data via a JDBC source connector (which by default does not add a key to the Kafka message), and you want to create a Kafka Stream with an added key, using SpecificAvro."
+  introduction: "Consider a database with a table with names of cities. The JDBC source connector can read that data into Kafka but, by default, the topic will not have keys. In Kafka Streams, ingest that data using SpecificAvro and add a key to the stream."
+  status:
+    ksql: disabled
+    kstreams: enabled
+
+finding-distinct:
+  title: "How to find distinct values in a stream of events"
+  slug: "/finding-distinct-events"
+  problem: "you have events in a Kafka topic, and you want to filter out duplicate events based on a field in the event, producing a new stream of unique events per time window"
+  introduction: "Consider a topic with events that represent clicks on a website.  Each event contains an IP address, a URL, and a timestamp.  In this tutorial, we'll write a program that filters click events by the IP address within a window of time."
+  status:
+    ksql: enabled
+    kstreams: enabled
+    kafka: disabled
+
+window-final-result:
+  title: "Emit a final result from a time window"
+  slug: "/window-final-result"
+  problem: "you have a Kafka topic, and you want to count the number of messages per key over a time window, getting a final result that takes late arrivals into account."
+  introduction: "Consider a topic with events that represent sensor warnings (pressure on robotic arms). One warning per time slot is fine, but you don't want to have too much warnings at the same time. In this tutorial, we'll write a program that counts the messages of a same sensor and sends a result at the end of the window."
+  status:
+    kstreams: enabled
+
+udf:
+  title: "How to build a User-Defined Function (UDF) to transform events"
+  slug: "/udf"
+  problem: "you have events in a Kafka topic, and you want to transform the values using a stateless scalar function not already provided by KSQL"
+  introduction: "Consider a topic of stock price events that you want to calculate the <a href=\"https://en.wikipedia.org/wiki/Volume-weighted_average_price\">volume-weighted average price</a> (VWAP) for each event, publishing the result to a new topic.  There is no built-in function for VWAP, so we'll write a custom <a href=\"https://docs.confluent.io/current/ksql/docs/developer-guide/udf.html\">KSQL UDF</a> that performs the calculation."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+
+flatten-nested-data:
+  title: "How to flatten deeply nested events"
+  meta-description: "How to flatten deeply nested events"
+  slug: "/flatten-nested-data"
+  problem: "you have events with nested data in a Kafka topic, and you want to transform each event into a flattened dataset that is simpler to handle."
+  introduction: "Consider a topic containing product orders. Each order contains data about the customer and the product, specified as nested data. In this tutorial, we'll write a program that transforms each order into a new version of it that contains all the data as flat fields."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled

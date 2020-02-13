@@ -23,10 +23,10 @@
         <div class="container">
           <div class="headline">
             <h1>
-              Say Hello World to event streaming.
+              Say Hello World to Event Streaming.
             </h1>
 
-            <h2 class="subtitle">Apache Kafka is a powerful, scalable, fault-tolerant publish-subscribe messaging system. This site features full code examples using Kafka, Kafka Streams, and KSQL to demonstrate real use cases.</h2>
+            <h2 class="subtitle">Apache Kafka is a powerful, scalable, fault-tolerant distributed streaming platform. This site features full code examples using Kafka, Kafka Streams, and KSQL to demonstrate real use cases.</h2>
           </div>
         </div>
       </div>
@@ -40,12 +40,15 @@
           </div>
           <ul>
             <li><a href="transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
+            <li><a href="flatten-nested-data/ksql.html">Flatten deeply nested events</a></li>
             <li><a href="filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
             <li><a href="rekey-a-stream/ksql.html">Rekey a stream with a value</a></li>
             <li><a href="rekey-with-function/ksql.html">Rekey a stream with a function</a></li>
             <li><a href="changing-serialization-format/ksql.html">Convert a stream's serialization format</a></li>
             <li><a href="split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
             <li><a href="merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
+            <li><a href="finding-distinct-events/ksql.html">Finding distinct events</a></li>
+            <li><a href="udf/ksql.html">Apply a custom, User-Defined Function</a></li>
           </ul>
         </div>
         <div class="card">
@@ -80,11 +83,24 @@
           </div>
           <ul>
             <li><a href="create-tumbling-windows/ksql.html">Create tumbling windows</a></li>
+            <li><a href="create-hopping-windows/ksql.html">Create hopping windows</a></li>
+            <li><a href="window-final-result/kstreams.html">Emit a final result from a time window</a></li>
           </ul>
         </div>
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-connect.svg" | relative_url }}" />
+            <div>Connect data sources & sinks.</div>
+          </div>
+          <ul>
+            <li><a href="connect-jdbc-avro/kstreams.html">Create a stream from a JDBC source</a></li>
+          </ul>
+        </div>
+
         <div class="card card-cta">
           <div class="content">
-            <div>Be the first to get notified about new tutorials</div>
+            <div>Be the first to be notified about new tutorials</div>
             <form id="mktoForm_3977" style="display:none"></form>
             <div id="mkto-form">
               <div class="form">
