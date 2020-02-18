@@ -1,8 +1,16 @@
 package io.confluent.developer;
 
+import static org.junit.Assert.assertEquals;
+
 import io.confluent.developer.avro.Album;
 import io.confluent.developer.avro.MusicInterest;
 import io.confluent.developer.avro.TrackPurchase;
+import io.confluent.kafka.schemaregistry.testutil.MockSchemaRegistry;
+import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.common.serialization.StringDeserializer;
@@ -10,23 +18,27 @@ import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
+import org.junit.After;
 import org.junit.Test;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
-
-import static org.junit.Assert.assertEquals;
 
 public class FkJoinTableToTableTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+    private static final String SCHEMA_REGISTRY_SCOPE = FkJoinTableToTableTest.class.getName();
+    private static final String MOCK_SCHEMA_REGISTRY_URL = "mock://" + SCHEMA_REGISTRY_SCOPE;
+
+    @After
+    public void closeStreams() {
+        MockSchemaRegistry.dropScope(SCHEMA_REGISTRY_SCOPE);
+    }
 
     @Test
     public void testJoin() throws IOException {
         final FkJoinTableToTable fkJoin = new FkJoinTableToTable();
         final Properties envProps = fkJoin.loadEnvProperties(TEST_CONFIG_FILE);
+        // Need to override schema registry configs for unit test
+        envProps.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, MOCK_SCHEMA_REGISTRY_URL);
+
         final Properties streamProps = fkJoin.buildStreamsProperties(envProps);
 
         final String albumInputTopic = envProps.getProperty("album.topic.name");
