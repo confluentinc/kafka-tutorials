@@ -18,4 +18,4 @@ Speaking of that consumer terminal, these are the results you should see there i
 <pre class="snippet"><code class="json">{% include_raw tutorials/fk-joins/kstreams/code/tutorial-steps/dev/outputs/music-interest.json %}</code></pre>
 +++++
 
-You have now joined a table to a table with a foriegn key! Well done.
+You have now joined a table to a table with a foreign key! Well done.
