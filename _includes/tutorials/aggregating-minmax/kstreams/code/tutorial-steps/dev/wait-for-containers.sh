@@ -1,14 +1,14 @@
 #!/bin/bash
 
 function readiness_probe {
-    nc -z -w 2 0.0.0.0 29092
+  /usr/bin/nc -z -w 2 0.0.0.0 8081
 }
 
-echo "Waiting for the broker to become available ..."
+echo "Waiting for the SR to become available ..."
 
-readiness_probe
-
-while [[ $? != 0 ]]; do
-    sleep 5
-    readiness_probe
+until readiness_probe
+do
+  sleep 5
 done
+
+echo "SR port available"
