@@ -4,7 +4,7 @@ Create the following test file at `src/test/java/io/confluent/developer/Aggregat
 <pre class="snippet"><code class="java">{% include_raw tutorials/aggregating-minmax/kstreams/code/src/test/java/io/confluent/developer/AggregatingMinMaxTest.java %}</code></pre>
 +++++
 
-This test file uses the `https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/TestInputTopic.html[TestInputTopic]` and `https://kafka.apache.org/{{ site.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/TestOutputTopic.html[TestOutputTopic]` testing features introduced in Kafka 2.4.   These features simplify testing including the ability to test inputs and outputs 'record-by-record', for example:
+This test file uses the `https://kafka.apache.org/{{ page.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/TestInputTopic.html[TestInputTopic]` and `https://kafka.apache.org/{{ page.ak_javadoc_version }}/javadoc/org/apache/kafka/streams/TestOutputTopic.html[TestOutputTopic]` testing features introduced in Kafka 2.4.   These features simplify testing including the ability to test inputs and outputs 'record-by-record', for example:
 +++++
 <pre class="snippet"><code class="java">movieTicketSalesTestInputTopic.pipeInput(
   new MovieTicketSales("Avengers: Endgame", 2019, 856980506));
