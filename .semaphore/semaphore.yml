@@ -165,3 +165,7 @@ blocks:
         - name: KSQL flatten nested data
           commands:
             - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
+            
+        - name: KStreams aggregation MIN/MAX tests
+          commands:
+            - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
