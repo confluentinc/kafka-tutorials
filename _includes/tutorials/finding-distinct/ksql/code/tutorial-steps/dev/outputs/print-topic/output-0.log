@@ -1,0 +1,4 @@
+Format:JSON
+{"ROWTIME":1579272643000,"ROWKEY":"10.0.0.1","IP_ADDRESS":"10.0.0.1","URL":"https://docs.confluent.io/current/tutorials/examples/kubernetes/gke-base/docs/index.html","TIMESTAMP":"2020-01-17T14:50:43+00:00"}
+{"ROWTIME":1579272764000,"ROWKEY":"10.0.0.2","IP_ADDRESS":"10.0.0.2","URL":"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen","TIMESTAMP":"2020-01-17T14:53:44+00:01"}
+{"ROWTIME":1579272825000,"ROWKEY":"10.0.0.3","IP_ADDRESS":"10.0.0.3","URL":"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen","TIMESTAMP":"2020-01-17T14:56:45+00:03"}

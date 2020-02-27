@@ -1,0 +1,7 @@
+Then create the following Avro schema file at `src/main/avro/pressure-alert.avsc` for the publication events:
+
++++++
+<pre class="snippet"><code class="avro">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/main/avro/pressure-alert.avsc
+%}</code></pre>
++++++

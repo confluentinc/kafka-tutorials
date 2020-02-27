@@ -1,0 +1,30 @@
+There are multiple timing perspectives to consider, and each event may arrive from a different time zone.
+
+1. *Event time*, time of the sensor that is different rather it comes from Paris (UTC+02:00) or Tokyo (UTC+19:00)
+
+2. *Processing time*, the time of the Kafka Stream instances. Here the zone depends of your deployment (e.g., your fancy
+managed kubernetes cluster deployed in us-west-b :p)
+
+3. *Ingestion time*, less relevant, this is the time when the Kafka message has been published
+
+Since our operations will be time based, you need to ensure the right time is considered. In this example, our data
+producer is not aware of message timestamp and places the time of the alert in the message value. We need to extract
+it from there. This can be performed by implementing a
+`https://kafka.apache.org/23/javadoc/org/apache/kafka/streams/processor/TimestampExtractor.html[TimestampExtractor]`.
+Add the next class at `src/main/java/io/confluent/developer/PressureDatetimeExtractor.java` package.
+
++++++
+<pre class="snippet"><code class="groovy">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/main/java/io/confluent/developer/PressureDatetimeExtractor.java
+%}</code></pre>
++++++
+
+Ok, lets translate this `extract` method from Java to English. First of all, we try to realise the following operation
+that may raise an exception:
+
+1. we cast the value Object as `PressureAlert` and call its `.getDatetime` method
+2. then we parse the string datetime base on the defined pattern
+3. then we convert it as `Instant`, in case the kafka message suffer from jet lag
+4. and get the epoch in milliseconds
+
+If one this steps fail we will log the error and set the timestamp to a negative number, so it will silently ignored.
