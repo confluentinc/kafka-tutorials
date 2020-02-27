@@ -28,6 +28,8 @@ exclude:
   - harness_runner
   - LICENSE
   - CONTRIBUTING.md
+  - templates/
+  - gen_project.sh
 
 ak_javadoc_version: 23
 cp_version: v5.3.0

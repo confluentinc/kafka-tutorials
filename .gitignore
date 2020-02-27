@@ -3,6 +3,7 @@ target/
 build/
 .gradle/
 .idea/
+.idea/*
 .sass-cache/
 .jekyll-cache/
 .jekyll-metadata
@@ -12,7 +13,9 @@ out/
 harness_runner/harness_runner.egg-info
 __pycache__
 .vscode
-code.iml
+*.iml
+*.iws
+*.ipr
 .classpath
 .settings/
 .project

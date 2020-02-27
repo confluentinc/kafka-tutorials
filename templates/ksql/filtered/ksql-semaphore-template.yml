@@ -1,0 +1,4 @@
+        
+        - name: KSQL <SEMAPHORE-TEST-NAME> tests
+          commands:
+            - make -C _includes/tutorials/<TUTORIAL-SHORT-NAME>/ksql/code tutorial
