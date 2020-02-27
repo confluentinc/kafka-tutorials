@@ -52,7 +52,7 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
-ksqldb-server:
+  ksqldb-server:
     image: confluentinc/ksqldb-server:0.7.0
     hostname: ksqldb-server
     container_name: ksqldb-server
