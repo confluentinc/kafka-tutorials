@@ -21,8 +21,14 @@ def make_spool_command(file_name):
 def make_unspool_command():
     return "spool off;"
 
+def make_column_width_command(column_width):
+    if column_width > -1:
+        return "SET CLI COLUMN-WIDTH %s" % column_width
+    return ""
+
 def build_input_sections (context, step):
     result = []
+    column_width = step.get("column_width", -1)
 
     for block in step["stdin"]:
         spool_file_name = str(uuid.uuid4()) + ".log"
@@ -36,6 +42,7 @@ def build_input_sections (context, step):
                 "spool_path": spool_path,
                 "spool_command": make_spool_command(spool_path),
                 "unspool_command": make_unspool_command(),
+                "column_width_command": make_column_width_command(column_width),
                 "commands": commands
             }
             result.append(section)
@@ -45,6 +52,7 @@ def build_input_sections (context, step):
 def consolidate_input_files(input_sections):
     lines = []
     for section in input_sections:
+        lines.append(section["column_width_command"])
         lines.append(section["spool_command"])
 
         for command in section["commands"]:
@@ -96,7 +104,8 @@ def strip_input(coll):
 
 def shred_spool_text(text):
     results = []
-    trimmed = text[3:-2]
+    trim_start = next(i for i, x in enumerate(text) if x.startswith("ksql>"))
+    trimmed = text[trim_start:-2]
     blocks = reduce(split_io_blocks, trimmed, [])
     return strip_input(blocks)
 
