@@ -150,10 +150,10 @@ serialization:
     ksql: enabled
     kstreams: enabled
 
-connect-jdbc-specificavro:
-  title: "Ingesting data via a JDBC source connector into Kafka Streams"
-  slug: "/connect-jdbc-specificavro"
-  problem: "you have data in a table in a database, are pulling that data via a JDBC source connector (which by default does not add a key to the Kafka message), and you want to create a Kafka Stream with an added key, using SpecificAvro."
+connect-jdbc-kstreams-rekey-specificavro:
+  title: "Ingesting data via a JDBC source connector into Kafka Streams as SpecificAvro, adding a key in Kafka Streams"
+  slug: "/connect-jdbc-kstreams-rekey-specificavro"
+  problem: "you have data in a table in a database, are pulling that data via a JDBC source connector (which by default does not add a key to the Kafka message), and you want to create a Kafka Stream using SpecificAvro, letting Kafka Streams to add the key."
   introduction: "Consider a database with a table with names of cities. The JDBC source connector can read that data into Kafka but, by default, the topic will not have keys. In Kafka Streams, ingest that data using SpecificAvro and add a key to the stream."
   status:
     ksql: disabled
