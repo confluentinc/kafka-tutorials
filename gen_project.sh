@@ -52,6 +52,12 @@ confirm_replacement_vars;
 # Generates the directories for a KStreams tutorial
 function gen_kstreams_skeleton() {
      local KSTREAMS_TUTORIAL_BASE_DIR="${KT_HOME}/_includes/tutorials/${TUTORIAL_SHORT_NAME}/kstreams"
+
+     if [ -d "${KSTREAMS_TUTORIAL_BASE_DIR}" ]; then
+           echo "A tutorial named ${TUTORIAL_SHORT_NAME}/kstreams exists, quitting"
+           exit 1
+     fi
+
      local KSTREAMS_TUTORIAL_CODE_DIR="${KSTREAMS_TUTORIAL_BASE_DIR}/code"
 
      echo "Generate KSTREAMS tutorial directory structure now"
@@ -84,6 +90,11 @@ function gen_kstreams_skeleton() {
 function gen_ksql_skeleton() {
    local KSQL_TUTORIAL_BASE_DIR="${KT_HOME}/_includes/tutorials/${TUTORIAL_SHORT_NAME}/ksql"
    local KSQL_TUTORIAL_CODE_DIR="${KSQL_TUTORIAL_BASE_DIR}/code"
+
+   if [ -d "${KSQL_TUTORIAL_BASE_DIR}" ]; then
+           echo "A tutorial named ${TUTORIAL_SHORT_NAME}/ksql exists, quitting"
+           exit 1
+   fi
 
    echo "Generate KSQL tutorial directory structure now"
 
