@@ -58,7 +58,7 @@ jar {
 }
 
 shadowJar {
-  baseName = "connect-jdbc-specificavro"
+  baseName = "connect-jdbc-kstreams-rekey-specificavro"
   classifier = "standalone"
 }
 
