@@ -7,5 +7,5 @@ You can also use negative matches, that is, messages that _don't_ match the cond
 This should yield the following output:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/splitting/ksql/code/tutorial-steps/dev/outputs/query-not-drama-fantasy/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/splitting/ksql/code/tutorial-steps/dev/expected-outputs/negative-query.log %}</code></pre>
 +++++
