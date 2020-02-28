@@ -1,5 +1,6 @@
-Format:AVRO
-6/19/19 11:13:52 PM UTC, null, {"NAME": "Bill Murray", "TITLE": "Ghostbusters"}
-6/19/19 11:13:53 PM UTC, null, {"NAME": "Judy Garland", "TITLE": "The Wizard of Oz"}
-6/19/19 11:13:53 PM UTC, null, {"NAME": "Keanu Reeves", "TITLE": "The Matrix"}
-6/19/19 11:13:54 PM UTC, null, {"NAME": "Laura Dern", "TITLE": "Jurassic Park"}
+Key format: UNDEFINED
+Value format: AVRO
+rowtime: 2/28/20 5:36:09 PM UTC, key: <null>, value: {"NAME": "Bill Murray", "TITLE": "Ghostbusters"}
+rowtime: 2/28/20 5:36:09 PM UTC, key: <null>, value: {"NAME": "Judy Garland", "TITLE": "The Wizard of Oz"}
+rowtime: 2/28/20 5:36:09 PM UTC, key: <null>, value: {"NAME": "Keanu Reeves", "TITLE": "The Matrix"}
+rowtime: 2/28/20 5:36:09 PM UTC, key: <null>, value: {"NAME": "Laura Dern", "TITLE": "Jurassic Park"}
