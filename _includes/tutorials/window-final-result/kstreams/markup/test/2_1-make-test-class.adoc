@@ -1,0 +1,16 @@
+Create the following test file at `src/test/java/io/confluent/developer/WindowFinalResultTest.java`:
+
++++++
+<pre class="snippet"><code class="java">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/test/java/io/confluent/developer/WindowFinalResultTest.java
+%}</code></pre>
++++++
+
+This class tests the following things:
+
+1. The topology groups element over the `datetime` property
+2. The topology outputs a message for each window
+3. The topology outputs the correct count
+4. Duration between the window start and end corresponds to the window passed in argument
+5. The topology also uses the `id` property of the sensors to group events
+6. The topology only outputs one element per window

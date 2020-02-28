@@ -1,0 +1,5 @@
+Note that only three records containing unique IP addresses are returned. This means that our query is working properly. Now let's create some continuous queries to implement this scenario.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/ksql/code/tutorial-steps/dev/create-outputs.sql %}</code></pre>
++++++
