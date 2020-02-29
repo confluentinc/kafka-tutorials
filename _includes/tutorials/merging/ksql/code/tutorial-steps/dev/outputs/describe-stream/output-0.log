@@ -1,24 +1,26 @@
 Name                 : ALL_SONGS
 Type                 : STREAM
 Key field            : 
-Key format           : STRING
 Timestamp field      : Not set - using <ROWTIME>
+Key format           : KAFKA
 Value format         : AVRO
 Kafka topic          : all_songs (partitions: 1, replication: 1)
+Statement            : CREATE STREAM all_songs (artist VARCHAR, title VARCHAR, genre VARCHAR)
+    WITH (kafka_topic='all_songs', partitions=1, value_format='avro');
 
  Field   | Type                      
--------------------------------------
+
  ROWTIME | BIGINT           (system) 
  ROWKEY  | VARCHAR(STRING)  (system) 
  ARTIST  | VARCHAR(STRING)           
  TITLE   | VARCHAR(STRING)           
  GENRE   | VARCHAR(STRING)           
--------------------------------------
 
-Queries that write into this STREAM
+
+Queries that write from this STREAM
 -----------------------------------
-InsertQuery_0 : INSERT INTO all_songs SELECT artist, title, 'rock' AS genre FROM rock_songs;
-InsertQuery_1 : INSERT INTO all_songs SELECT artist, title, 'classical' AS genre FROM classical_songs;
+InsertQuery_0 (REBALANCING) : INSERT INTO all_songs SELECT artist, title, 'rock' AS genre FROM rock_songs;
+InsertQuery_7 (REBALANCING) : INSERT INTO all_songs SELECT artist, title, 'classical' AS genre FROM classical_songs;
 
 For query topology and execution plan please run: EXPLAIN <QueryId>
 
