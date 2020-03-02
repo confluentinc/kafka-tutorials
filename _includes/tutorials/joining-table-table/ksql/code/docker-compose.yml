@@ -50,7 +50,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.6.0
+    image: confluentinc/ksqldb-server:0.7.1
     hostname: ksqldb-server
     container_name: ksqldb-server
     depends_on:
@@ -68,13 +68,15 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.6.0
+    image: confluentinc/ksqldb-cli:0.7.1
     container_name: ksqldb-cli
     depends_on:
       - broker
       - ksqldb-server
     entrypoint: /bin/sh
     tty: true
+    environment:
+      KSQL_CONFIG_DIR: "/etc/ksql"
     volumes:
       - ./src:/opt/app/src
       - ./test:/opt/app/test
