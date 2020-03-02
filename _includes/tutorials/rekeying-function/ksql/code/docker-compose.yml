@@ -78,6 +78,8 @@ services:
       - ksqldb-server
     entrypoint: /bin/sh
     tty: true
+    environment:
+      KSQL_CONFIG_DIR: "/etc/ksql"
     volumes:
       - ./src:/opt/app/src
       - ./test:/opt/app/test

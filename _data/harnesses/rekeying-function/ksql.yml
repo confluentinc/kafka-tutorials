@@ -65,7 +65,7 @@ dev:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 12
+          column_width: 20
           render:
             file: tutorials/rekeying-function/ksql/markup/dev/start-cli.adoc
           stdin:
@@ -87,6 +87,9 @@ dev:
             - file: tutorial-steps/dev/key-query.sql
               render:
                 file: tutorials/rekeying-function/ksql/markup/dev/key-query.adoc
+            - file: tutorial-steps/dev/continuous-regex.sql
+              render:
+                file: tutorials/rekeying-function/ksql/markup/dev/continuous-regex.adoc
             - file: tutorial-steps/dev/continuous-rekey.sql
               render:
                 file: tutorials/rekeying-function/ksql/markup/dev/continuous-rekey.adoc

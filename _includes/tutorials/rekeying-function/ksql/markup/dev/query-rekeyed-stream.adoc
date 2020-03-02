@@ -1,4 +1,4 @@
-To check that it's working, use `ROWKEY` as before to check that the key matches the `ID` field: 
+Now, we can verify it's working:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/rekeying-function/ksql/code/tutorial-steps/dev/query-rekeyed-stream.sql %}</code></pre>
