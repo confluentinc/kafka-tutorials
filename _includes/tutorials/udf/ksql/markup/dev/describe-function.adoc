@@ -1,4 +1,4 @@
-You can see some addition detail about the function with `DESCRIBE FUNCTION`.
+You can see some additional detail about the function with `DESCRIBE FUNCTION`.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/udf/ksql/code/tutorial-steps/dev/describe-function.sql %}</code></pre>
