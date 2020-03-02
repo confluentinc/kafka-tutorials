@@ -1,6 +1,6 @@
 Name        : REGEXREPLACE
 Overview    : Replace string using a regex
-Type        : scalar
+Type        : SCALAR
 Jar         : /etc/ksql/ext/rekey-with-function-0.0.1.jar
 Variations  : 
 
