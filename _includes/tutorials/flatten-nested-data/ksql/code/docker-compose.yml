@@ -67,9 +67,9 @@ services:
       KSQL_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
       KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
 
-  ksql-cli:
-    image: confluentinc/ksql-cli:0.7.1
-    container_name: ksql-cli
+  ksqldb-cli:
+    image: colinhicks/ksqldb-cli:5.5.x-cliwidth
+    container_name: ksqldb-cli
     depends_on:
       - broker
       - ksql-server
