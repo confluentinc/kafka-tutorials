@@ -144,7 +144,7 @@ blocks:
             
         - name: KStreams connect jdbc specific avro tests
           commands:
-            - make -C _includes/tutorials/connect-jdbc-specificavro/kstreams/code tutorial
+            - make -C _includes/tutorials/connect-jdbc-kstreams-rekey-specificavro/kstreams/code tutorial
 
         - name: KStreams emit a final result from a time window
           commands:
