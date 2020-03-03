@@ -2,7 +2,7 @@
   "outputs": [
     {
       "topic": "avro-movies",
-      "key": null,
+      "key": 1,
       "value": {
         "TITLE": "Lethal Weapon",
         "MOVIE_ID": 1,
@@ -11,7 +11,7 @@
     },
     {
       "topic": "avro-movies",
-      "key": null,
+      "key": 2,
       "value": {
         "TITLE": "Die Hard",
         "MOVIE_ID": 2,
@@ -20,7 +20,7 @@
     },
     {
       "topic": "avro-movies",
-      "key": null,
+      "key": 3,
       "value": {
         "TITLE": "Predator",
         "MOVIE_ID": 3,
