@@ -56,8 +56,9 @@ dev:
     - title: Write the program interactively using the CLI
       content:
         - action: docker_ksql_cli_session
-          container: ksql-cli
+          container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 20
           render:
             file: tutorials/flatten-nested-data/ksql/markup/dev/create-program.adoc
           stdin:
