@@ -12,7 +12,7 @@ body,
 select,
 input,
 button {
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: "MarkOT";
 }
 
 .logo {
@@ -176,6 +176,14 @@ body {
   background: #b4e1e4;
   padding-top: 100px;
   color: $baseColor;
+  border-radius: 8px;
+  margin: 0 25px;
+
+  @media screen and (max-width: 768px) {
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .hero-body {
     padding-top: 20px;
