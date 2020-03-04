@@ -7,5 +7,5 @@ Finally, let's see what's available on the underlying Kafka topic for the table.
 The output should look similar to:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/outputs/print-topic/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/expected-print-topic.log %}</code></pre>
 +++++
