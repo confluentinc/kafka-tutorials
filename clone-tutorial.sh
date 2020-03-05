@@ -23,12 +23,17 @@ echo "Using propeties file ${PROPS_FILE}"
 . $PROPS_FILE
 
 
-
+TUTORIALS_DIR=$KT_HOME/_includes/tutorials
+TEST_HARNESS_DIR=$KT_HOME/_data/harnesses
 ORIG_TUTORIAL_BASE_DIR_NAME=$(echo ${ORIG_TUTORIAL} | cut -d '/' -f 1)
 SINGLE_TYPE_CLONE=$(echo ${ORIG_TUTORIAL} | cut -d '/' -s  -f 2)
-echo "${ORIG_TUTORIAL} ${ORIG_TUTORIAL_BASE_DIR_NAME} ${SINGLE_TYPE_CLONE}"
 
 if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
+
+	if [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/${SINGLE_TYPE_CLONE}" ]; then
+		 echo "A tutorial for ${KT_HOME}/${NEW_TUTORIAL}/${SINGLE_TYPE_CLONE} exists, quitting"
+		 exit 1
+    fi
 
 	if [  "${SINGLE_TYPE_CLONE}" == "ksql" ]; then
 		echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE}"
@@ -40,9 +45,10 @@ if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 	fi
 fi
 
-
-TUTORIALS_DIR=$KT_HOME/_includes/tutorials
-TEST_HARNESS_DIR=$KT_HOME/_data/harnesses
+if [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/ksql" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kstreams" ]; then
+	echo "An existing tutorial for both ksql and kstreams exists for ${KT_HOME}/${NEW_TUTORIAL}, so quitting now"
+	exit 1
+fi
 
 ORIG_CLONE_FILES_DIR=$ORIG_TUTORIAL_BASE_DIR_NAME
 NEW_TUTORIAL_DIR=$NEW_TUTORIAL
@@ -55,9 +61,9 @@ if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 	mkdir -p $TUTORIALS_DIR/$NEW_TUTORIAL_DIR
 fi
 
-mkdir $KT_HOME/tutorials/$NEW_TUTORIAL
+mkdir $TUTORIALS_DIR/$NEW_TUTORIAL
 
-cp -R $TUTORIALS_DIR/$ORIG_CLONE_FILES_DIR $TUTORIALS_DIR/$NEW_TUTORIAL_DIR
+cp -R $TUTORIALS_DIR/$ORIG_CLONE_FILES_DIR/ $TUTORIALS_DIR/$NEW_TUTORIAL_DIR
 
 if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 	if [ ! -d $TEST_HARNESS_DIR/$NEW_TUTORIAL ]; then
@@ -79,16 +85,18 @@ TEMP_WORK_DIR="TEMP-WORK-${NEW_TUTORIAL}"
 KSQL_ENABLED="disabled"
 KSTREAMS_ENABLED="disabled"
 
-NEW_TUTORIAL_ENTRY="$(cat $KT_HOME/_data/tutorials.yaml | grep ${NEW_TUTORIAL} | wc -l)"
+NEW_TUTORIAL_ENTRY=$(cat $KT_HOME/_data/tutorials.yaml | grep ${NEW_TUTORIAL} | wc -l)
+mkdir $TEMP_WORK_DIR
 
-if [ "${NEW_TUTORIAL_ENTRY}" == "0"]; then
+if [ "${NEW_TUTORIAL_ENTRY}" -eq 0 ]; then
+	echo "No entry for ${NEW_TUTORIAL} in ${KT_HOME}/_data/tutorials.yaml"
 
-	mkdir $TEMP_WORK_DIR
+	
 	cp $KT_HOME/templates/tutorial-description-template.yml $TEMP_WORK_DIR
 	sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 	sed -i '.orig' "s/<PERMALINK>/${PERMALINK}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 
-	for type in $(ls $KT_HOME/$NEW_TUTORIAL); do
+	for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
 		if [ $type == "ksql" ]; then
 		   KSQL_ENABLED="enabled"
 	       sed -i '.orig' "s/<KSQL-ENABLED>/${KSQL_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
@@ -98,39 +106,60 @@ if [ "${NEW_TUTORIAL_ENTRY}" == "0"]; then
            KSTREAMS_ENABLED="endabled"
 	       sed -i '.orig' "s/<KSTREAMS-ENABLED>/${KSTREAMS_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 	    fi 
-	done	
+	done
+
+	sed -i '.orig' "s/<KSQL-ENABLED>/${KSQL_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml	
+	sed -i '.orig' "s/<KSTREAMS-ENABLED>/${KSTREAMS_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
+
+    cat $TEMP_WORK_DIR/tutorial-description-template.yml >> $KT_HOME/_data/tutorials.yaml
 
 fi
 
+if [ ! -d "${KT_HOME}/tutorials/${NEW_TUTORIAL}" ]; then
+	echo "Creating directory for front matter ${KT_HOME}/tutorials/${NEW_TUTORIAL}"
+	mkdir "${KT_HOME}/tutorials/${NEW_TUTORIAL}"
+fi
 
-for type in $(ls $KT_HOME/$NEW_TUTORIAL); do
-		if [ $type == "ksql" ]; then	
-		   cp $KT_HOME/templates/ksql/filtered/ksql-* $TEMP_WORK_DIR
+for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
+		if [ $type == "ksql" ]; then
+		  if [ ! -f $KT_HOME/tutorials/$NEW_TUTORIAL/ksql.html ]; then 
 
-	       sed -i '.orig' "s/<PERMALINK>/${PERMALINK}/g" $TEMP_WORK_DIR/ksql-front-matter-template.html
-	       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/ksql-front-matter-template.hmtl
+			   cp $KT_HOME/templates/ksql/filtered/ksql-* $TEMP_WORK_DIR
 
-	       sed -i '.orig' "s/<SEMAPHORE-TEST-NAME>/${SEMAPHORE_TEST_NAME}/g" $TEMP_WORK_DIR/ksql-semaphore-template.yml
-	       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/ksql-semaphore-template.yml
+		       sed -i '.orig' "s/<PERMALINK>/${PERMALINK}/g" $TEMP_WORK_DIR/ksql-front-matter-template.html
+		       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/ksql-front-matter-template.html
 
-	       cp $TEMP_WORK_DIR/ksql-front-matter-template.yml $KT_HOME/tutorials/$NEW_TUTORIAL/ksql.html
-	       cat $TEMP_WORK_DIR/$TEMP_WORK_DIR/ksql-semaphore-template.yml >> $KT_HOME/.semaphore/semaphore.yml
+		       sed -i '.orig' "s/<SEMAPHORE-TEST-NAME>/${SEMAPHORE_TEST_NAME}/g" $TEMP_WORK_DIR/ksql-semaphore-template.yml
+		       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/ksql-semaphore-template.yml
+
+		       cp $TEMP_WORK_DIR/ksql-front-matter-template.html $KT_HOME/tutorials/$NEW_TUTORIAL/ksql.html
+		       cat $TEMP_WORK_DIR/ksql-semaphore-template.yml >> $KT_HOME/.semaphore/semaphore.yml
+		   else
+		   	  echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/ksql"
+		   fi
 	       
 	    fi
 
 	    if [ $type == "kstreams" ]; then
-           cp $KT_HOME/templates/kstreams/filtered/kstreams-* $TEMP_WORK_DIR
+	    	if [ ! -f $KT_HOME/tutorials/$NEW_TUTORIAL/kstreams.html ]; then 
 
-	       sed -i '.orig' "s/<PERMALINK>/${PERMALINK}/g" $TEMP_WORK_DIR/kstreams-front-matter-template.html
-	       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/kstreams-front-matter-template.hmtl
+	           cp $KT_HOME/templates/kstreams/filtered/kstreams-* $TEMP_WORK_DIR
 
-	       sed -i '.orig' "s/<SEMAPHORE-TEST-NAME>/${SEMAPHORE_TEST_NAME}/g" $TEMP_WORK_DIR/kstreams-semaphore-template.yml
-	       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/kstreams-semaphore-template.yml
+		       sed -i '.orig' "s/<PERMALINK>/${PERMALINK}/g" $TEMP_WORK_DIR/kstreams-front-matter-template.html
+		       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/kstreams-front-matter-template.html
 
-	       cp $TEMP_WORK_DIR/kstreams-front-matter-template.yml $KT_HOME/tutorials/$NEW_TUTORIAL/kstreams.html
-	       cat $TEMP_WORK_DIR/$TEMP_WORK_DIR/kstreams-semaphore-template.yml >> $KT_HOME/.semaphore/semaphore.yml
+		       sed -i '.orig' "s/<SEMAPHORE-TEST-NAME>/${SEMAPHORE_TEST_NAME}/g" $TEMP_WORK_DIR/kstreams-semaphore-template.yml
+		       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/kstreams-semaphore-template.yml
+
+		       cp $TEMP_WORK_DIR/kstreams-front-matter-template.html $KT_HOME/tutorials/$NEW_TUTORIAL/kstreams.html
+		       cat $TEMP_WORK_DIR/kstreams-semaphore-template.yml >> $KT_HOME/.semaphore/semaphore.yml
+		    else
+		      echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/ksql"
+		    fi	
 	    fi 
-done	
+done
+
+rm -rf $TEMP_WORK_DIR	
 
 
 
