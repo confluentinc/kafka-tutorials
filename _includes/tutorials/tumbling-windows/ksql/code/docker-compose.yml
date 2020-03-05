@@ -74,6 +74,8 @@ services:
       - broker
       - ksqldb-server
     entrypoint: /bin/sh
+    environment:
+      KSQL_CONFIG_DIR: "/etc/ksql"
     tty: true
     volumes:
       - ./src:/opt/app/src

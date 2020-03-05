@@ -7,5 +7,5 @@ Finally, let's see what's available on the underlying Kafka topic for the table.
 Notice that the key for each message contains some strange characters that aren't quite printable. ksqlDB has combined the grouping key (movie title) with its window boundaries using a format that's not quite printable in this format. It should look something like this:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/tumbling-windows/ksql/code/tutorial-steps/dev/outputs/print-topic/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/tumbling-windows/ksql/code/tutorial-steps/dev/expected-print-topic.log %}</code></pre>
 +++++
