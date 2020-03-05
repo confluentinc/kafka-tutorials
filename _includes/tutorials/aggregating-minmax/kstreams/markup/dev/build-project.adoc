@@ -1,0 +1,5 @@
+Because the Avro schemas are used in the Java code, we needs to compile them. Run the following:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/kstreams/code/tutorial-steps/dev/build-project.sh %}</code></pre>
++++++
