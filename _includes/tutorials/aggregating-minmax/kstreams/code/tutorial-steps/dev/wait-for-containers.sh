@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function readiness_probe {
-  /usr/bin/nc -z -w 2 0.0.0.0 8081
+  nc -z -w 2 0.0.0.0 8081
 }
 
 echo "Waiting for the SR to become available ..."
