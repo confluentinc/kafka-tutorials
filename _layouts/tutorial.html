@@ -22,6 +22,9 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
+        {% if page.community_contribution %}
+        <span class="community-contribution">Community contribution ✨</span>
+        {% endif %}
         <div class="headline">
           <h1>{{ site.data.tutorials[page.static_data].title }}</h1>
         </div>
