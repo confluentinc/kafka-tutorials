@@ -94,6 +94,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/joining-stream-table/kstreams/code tutorial
 
+        - name: KStreams table to table foreign key join tests
+          commands:
+            - make -C _includes/tutorials/fk-joins/kstreams/code tutorial
+
         - name: KSQL join table to table tests
           commands:
             - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
@@ -165,3 +169,7 @@ blocks:
         - name: KSQL flatten nested data
           commands:
             - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
+            
+        - name: KStreams aggregation MIN/MAX tests
+          commands:
+            - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial

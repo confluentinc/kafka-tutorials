@@ -1,13 +1,14 @@
-Format:AVRO
-12/17/19 8:13:05 PM UTC, ZTEST, {"TICKER": "ZTEST", "VWAP": 20.0}
-12/17/19 8:13:41 PM UTC, ZVV, {"TICKER": "ZVV", "VWAP": 30.0}
-12/17/19 8:13:41 PM UTC, ZVZZT, {"TICKER": "ZVZZT", "VWAP": 40.0}
-12/17/19 8:13:41 PM UTC, ZXZZT, {"TICKER": "ZXZZT", "VWAP": 50.0}
-12/17/19 8:13:41 PM UTC, ZTEST, {"TICKER": "ZTEST", "VWAP": 16.0}
-12/17/19 8:13:41 PM UTC, ZVV, {"TICKER": "ZVV", "VWAP": 33.0}
-12/17/19 8:13:41 PM UTC, ZVZZT, {"TICKER": "ZVZZT", "VWAP": 36.0}
-12/17/19 8:13:41 PM UTC, ZXZZT, {"TICKER": "ZXZZT", "VWAP": 53.0}
-12/17/19 8:13:41 PM UTC, ZTEST, {"TICKER": "ZTEST", "VWAP": 17.0}
-12/17/19 8:13:41 PM UTC, ZVV, {"TICKER": "ZVV", "VWAP": 30.0}
-12/17/19 8:13:41 PM UTC, ZVZZT, {"TICKER": "ZVZZT", "VWAP": 40.0}
-12/17/19 8:13:42 PM UTC, ZXZZT, {"TICKER": "ZXZZT", "VWAP": 50.0}
+Key format: KAFKA (STRING)
+Value format: AVRO
+rowtime: 3/2/20 7:56:23 PM UTC, key: ZTEST, value: {"TICKER": "ZTEST", "VWAP": 20.0}
+rowtime: 3/2/20 7:56:24 PM UTC, key: ZVV, value: {"TICKER": "ZVV", "VWAP": 30.0}
+rowtime: 3/2/20 7:56:24 PM UTC, key: ZVZZT, value: {"TICKER": "ZVZZT", "VWAP": 40.0}
+rowtime: 3/2/20 7:56:24 PM UTC, key: ZXZZT, value: {"TICKER": "ZXZZT", "VWAP": 50.0}
+rowtime: 3/2/20 7:56:24 PM UTC, key: ZTEST, value: {"TICKER": "ZTEST", "VWAP": 16.0}
+rowtime: 3/2/20 7:56:25 PM UTC, key: ZVV, value: {"TICKER": "ZVV", "VWAP": 33.0}
+rowtime: 3/2/20 7:56:25 PM UTC, key: ZVZZT, value: {"TICKER": "ZVZZT", "VWAP": 36.0}
+rowtime: 3/2/20 7:56:25 PM UTC, key: ZXZZT, value: {"TICKER": "ZXZZT", "VWAP": 53.0}
+rowtime: 3/2/20 7:56:25 PM UTC, key: ZTEST, value: {"TICKER": "ZTEST", "VWAP": 17.0}
+rowtime: 3/2/20 7:56:25 PM UTC, key: ZVV, value: {"TICKER": "ZVV", "VWAP": 30.0}
+rowtime: 3/2/20 7:56:25 PM UTC, key: ZVZZT, value: {"TICKER": "ZVZZT", "VWAP": 40.0}
+rowtime: 3/2/20 7:56:25 PM UTC, key: ZXZZT, value: {"TICKER": "ZXZZT", "VWAP": 50.0}

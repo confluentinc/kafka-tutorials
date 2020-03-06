@@ -9,5 +9,5 @@ Along with implementing a hopping window, we will base our logic on the average 
 This query should produce the following output:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/outputs/transient-window/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/expected-transient-window.log %}</code></pre>
 +++++

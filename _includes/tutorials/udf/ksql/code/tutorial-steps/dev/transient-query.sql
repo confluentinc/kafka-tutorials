@@ -1,1 +1,1 @@
-SELECT ticker, vwap(bid, bidqty, ask, askqty) AS vwap FROM raw_quotes LIMIT 12;
+SELECT ticker, vwap(bid, bidqty, ask, askqty) AS vwap FROM raw_quotes EMIT CHANGES LIMIT 12;

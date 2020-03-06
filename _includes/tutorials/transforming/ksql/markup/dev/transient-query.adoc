@@ -7,5 +7,5 @@ Let's break apart the `title` field and extract the year that the movie was publ
 This should yield the following output:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/transforming/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/transforming/ksql/code/tutorial-steps/dev/expected-transient.log %}</code></pre>
 +++++

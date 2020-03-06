@@ -1,0 +1,5 @@
+Then create the following Avro schema file at `src/main/avro/movie-ticket-sales.avsc` for the ticket sale events:
+
++++++
+<pre class="snippet"><code class="avro">{% include_raw tutorials/aggregating-minmax/kstreams/code/src/main/avro/movie-ticket-sales.avsc %}</code></pre>
++++++

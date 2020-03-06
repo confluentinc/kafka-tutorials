@@ -112,9 +112,12 @@ Under the `markup/` directory that was created earlier, create 3 subdirectories:
 
 #### 3. Tie it all together
 
-Make a file under the `/tutorials/<your tutorial short name>/<stack>.yml` directory (not `/_includes/tutorials`), specifying all the variables of interest. For example, to display the tutorial with KSQL:
+Make a file named `/tutorials/<your tutorial short name>/<stack>.html`, specifying all the variables of interest. Note: the directory structure for these files is distinct from `/_includes/tutorials`.
+
+For example, to display the tutorial with the ksqlDB stack:
 
 ```yml
+# /tutorials/filter-a-stream-of-events/ksql.html
 ---
 layout: tutorial
 permalink: /tutorials/filter-a-stream-of-events/ksql
