@@ -1,0 +1,63 @@
+/* latin-ext */
+@font-face {
+  font-family: "MarkOT";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Mark OT"), local("Mark-OT"), url("https://cdn.confluent.io/fonts/MarkOT/MarkOT.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MarkOT";
+  font-style: italic;
+  font-weight: normal;
+  src: local("Mark OT"), local("Mark-OT"),
+    url("https://cdn.confluent.io/fonts/MarkOT/MarkOT-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MarkOT";
+  font-style: normal;
+  font-weight: 500;
+  src: local("Mark OT"), local("Mark-OT"),
+    url("https://cdn.confluent.io/fonts/MarkOT/MarkOT-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MarkOT";
+  font-style: italic;
+  font-weight: 500;
+  src: local("Mark OT"), local("Mark-OT"),
+    url("https://cdn.confluent.io/fonts/MarkOT/MarkOT-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MarkOT";
+  font-style: normal;
+  font-weight: bold;
+  src: local("Mark OT Bold"), local("Mark-OT-Bold"),
+    url("https://cdn.confluent.io/fonts/MarkOT/MarkOT-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MarkOT";
+  font-style: italic;
+  font-weight: bold;
+  src: local("Mark OT Bold"), local("Mark-OT-Bold"),
+    url("https://cdn.confluent.io/fonts/MarkOT/MarkOT-BoldItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MarkOT";
+  font-style: normal;
+  font-weight: 300;
+  src: local("Mark OT Narrow Light"), local("Mark-OT-Narrow-Light"),
+    url("https://cdn.confluent.io/fonts/MarkOT/MarkOT-NarrowLight.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "MarkOT";
+  font-style: italic;
+  font-weight: 300;
+  src: local("Mark OT Narrow Light"), local("Mark-OT-Narrow-Light"),
+    url("https://cdn.confluent.io/fonts/MarkOT/MarkOT-NarrowLightItalic.woff2") format("woff2");
+}

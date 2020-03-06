@@ -26,7 +26,7 @@
 
   .summary {
     @include text;
-    color: #fff;
+    color: $baseColor;
 
     h2 {
       font-size: 18px;
