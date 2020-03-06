@@ -41,9 +41,9 @@ if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
     fi
 
 	if [  "${SINGLE_TYPE_CLONE}" == "ksql" ]; then
-		echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE}"
+		echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE} of ${ORIG_TUTORIAL}"
 	elif [ "${SINGLE_TYPE_CLONE}" == "kstreams" ]; then
-	    echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE}"
+	    echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE} of ${ORIG_TUTORIAL}"
 	else
 		echo "Unrecognized type [${SINGLE_TYPE_CLONE}], quitting"
 		exit 1
@@ -60,22 +60,31 @@ if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 	ORIG_CLONE_FILES_DIR=$ORIG_CLONE_FILES_DIR/$SINGLE_TYPE_CLONE/
 	NEW_TUTORIAL_DIR=$NEW_TUTORIAL/$SINGLE_TYPE_CLONE
 	YAML_FILES_TO_COPY="${SINGLE_TYPE_CLONE}.yml"
+	echo "Creating directory structure ${TUTORIALS_DIR}/${NEW_TUTORIAL_DIR}"
 	mkdir -p $TUTORIALS_DIR/$NEW_TUTORIAL_DIR
 fi
 
-mkdir $TUTORIALS_DIR/$NEW_TUTORIAL
+if [ ! -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}" ]; then
+	echo "Creating directory ${TUTORIALS_DIR}/${NEW_TUTORIAL}"
+    mkdir $TUTORIALS_DIR/$NEW_TUTORIAL
+fi
 
+echo "Copying tutorial files from ${TUTORIALS_DIR}/${ORIG_CLONE_FILES_DIR} to ${TUTORIALS_DIR}/${NEW_TUTORIAL_DIR}"
 cp -R $TUTORIALS_DIR/$ORIG_CLONE_FILES_DIR/ $TUTORIALS_DIR/$NEW_TUTORIAL_DIR
 
 if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 	if [ ! -d $TEST_HARNESS_DIR/$NEW_TUTORIAL ]; then
+		 echo "Creating directory ${TEST_HARNESS_DIR}/${NEW_TUTORIAL}"
      	 mkdir $TEST_HARNESS_DIR/$NEW_TUTORIAL
     fi
+     echo "Copying ${YAML_FILES_TO_COPY} to $TEST_HARNESS_DIR/$NEW_TUTORIAL"
      cp $TEST_HARNESS_DIR/$ORIG_TUTORIAL_BASE_DIR_NAME/$YAML_FILES_TO_COPY $TEST_HARNESS_DIR/$NEW_TUTORIAL
  else
+ 	 echo "Copying all test harness yml files to $TEST_HARNESS_DIR/$NEW_TUTORIAL"
      cp -R $TEST_HARNESS_DIR/$ORIG_TUTORIAL_BASE_DIR_NAME $TEST_HARNESS_DIR/$NEW_TUTORIAL
  fi
 
+echo "Doing replacement of ${ORIG_TUTORIAL_BASE_DIR_NAME} -> ${NEW_TUTORIAL}"
 grep -Rl $ORIG_TUTORIAL_BASE_DIR_NAME  $TUTORIALS_DIR/$NEW_TUTORIAL/ | xargs sed -i '.orig' "s/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g"
 grep -Rl $ORIG_TUTORIAL_BASE_DIR_NAME  $TEST_HARNESS_DIR/$NEW_TUTORIAL/ | xargs sed -i '.orig' "s/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g"
 
@@ -91,7 +100,7 @@ NEW_TUTORIAL_ENTRY=$(cat $KT_HOME/_data/tutorials.yaml | grep ${NEW_TUTORIAL} | 
 mkdir $TEMP_WORK_DIR
 
 if [ "${NEW_TUTORIAL_ENTRY}" -eq 0 ]; then
-	echo "No entry for ${NEW_TUTORIAL} in ${KT_HOME}/_data/tutorials.yaml"
+	echo "No entry for ${NEW_TUTORIAL} in ${KT_HOME}/_data/tutorials.yaml, so adding one, but you'll still need to update some fields"
 
 	
 	cp $KT_HOME/templates/tutorial-description-template.yml $TEMP_WORK_DIR
@@ -113,6 +122,7 @@ if [ "${NEW_TUTORIAL_ENTRY}" -eq 0 ]; then
 	sed -i '.orig' "s/<KSQL-ENABLED>/${KSQL_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml	
 	sed -i '.orig' "s/<KSTREAMS-ENABLED>/${KSTREAMS_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 
+    echo "Adding new entry into ${KT_HOME}/_data/tutorials.yaml now"
     cat $TEMP_WORK_DIR/tutorial-description-template.yml >> $KT_HOME/_data/tutorials.yaml
 
 fi
@@ -133,8 +143,10 @@ for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
 
 		       sed -i '.orig' "s/<SEMAPHORE-TEST-NAME>/${SEMAPHORE_TEST_NAME}/g" $TEMP_WORK_DIR/ksql-semaphore-template.yml
 		       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/ksql-semaphore-template.yml
-
+               
+               echo "Adding new front-matter file for ksql.html"
 		       cp $TEMP_WORK_DIR/ksql-front-matter-template.html $KT_HOME/tutorials/$NEW_TUTORIAL/ksql.html
+		       echo "Adding entry for test-running for ${NEW_TUTORIAL} ksql in ${KT_HOME}/.semaphore/semaphore.yaml"
 		       cat $TEMP_WORK_DIR/ksql-semaphore-template.yml >> $KT_HOME/.semaphore/semaphore.yml
 		   else
 		   	  echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/ksql"
@@ -152,15 +164,17 @@ for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
 
 		       sed -i '.orig' "s/<SEMAPHORE-TEST-NAME>/${SEMAPHORE_TEST_NAME}/g" $TEMP_WORK_DIR/kstreams-semaphore-template.yml
 		       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/kstreams-semaphore-template.yml
-
+               
+               echo "Adding new front-matter file for kstreams.html" 
 		       cp $TEMP_WORK_DIR/kstreams-front-matter-template.html $KT_HOME/tutorials/$NEW_TUTORIAL/kstreams.html
+		       echo "Adding entry for test-running for ${NEW_TUTORIAL} kstreams in ${KT_HOME}/.semaphore/semaphore.yaml"
 		       cat $TEMP_WORK_DIR/kstreams-semaphore-template.yml >> $KT_HOME/.semaphore/semaphore.yml
 		    else
 		      echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/ksql"
 		    fi	
 	    fi 
 done
-
+echo "Cloning complete!"
 rm -rf $TEMP_WORK_DIR	
 
 
