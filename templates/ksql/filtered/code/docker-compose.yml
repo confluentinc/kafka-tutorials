@@ -47,10 +47,10 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
-  ksql-server:
-    image: confluentinc/cp-ksql-server:<CP-VERSION>
-    hostname: ksql-server
-    container_name: ksql-server
+  ksqldb-server:
+    image: confluentinc/ksqldb-server:<KSQLDB-VERSION>
+    hostname: ksqldb-server
+    container_name: ksqldb-server
     depends_on:
       - broker
       - schema-registry
@@ -64,16 +64,16 @@ services:
       KSQL_LISTENERS: "http://0.0.0.0:8088"
       KSQL_CACHE_MAX_BYTES_BUFFERING: 0
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
-      KSQL_PRODUCER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringProducerInterceptor"
-      KSQL_CONSUMER_INTERCEPTOR_CLASSES: "io.confluent.monitoring.clients.interceptor.MonitoringConsumerInterceptor"
 
-  ksql-cli:
-    image: confluentinc/cp-ksql-cli:<CP-VERSION>
-    container_name: ksql-cli
+  ksqldb-cli:
+    image: confluentinc/ksqldb-cli:<KSQLDB-VERSION>
+    container_name: ksqldb-cli
     depends_on:
       - broker
-      - ksql-server
+      - ksqldb-server
     entrypoint: /bin/sh
+    environment:
+      KSQL_CONFIG_DIR: "/etc/ksql"
     tty: true
     volumes:
       - ./src:/opt/app/src
