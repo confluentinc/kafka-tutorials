@@ -28,6 +28,11 @@ TEST_HARNESS_DIR=$KT_HOME/_data/harnesses
 ORIG_TUTORIAL_BASE_DIR_NAME=$(echo ${ORIG_TUTORIAL} | cut -d '/' -f 1)
 SINGLE_TYPE_CLONE=$(echo ${ORIG_TUTORIAL} | cut -d '/' -s  -f 2)
 
+if [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/ksql" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kstreams" ]; then
+	echo "An existing tutorial for both ksql and kstreams exists for ${KT_HOME}/${NEW_TUTORIAL}, so quitting now"
+	exit 1
+fi
+
 if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 
 	if [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/${SINGLE_TYPE_CLONE}" ]; then
@@ -43,11 +48,8 @@ if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 		echo "Unrecognized type [${SINGLE_TYPE_CLONE}], quitting"
 		exit 1
 	fi
-fi
-
-if [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/ksql" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kstreams" ]; then
-	echo "An existing tutorial for both ksql and kstreams exists for ${KT_HOME}/${NEW_TUTORIAL}, so quitting now"
-	exit 1
+else 
+	echo "Cloning ${ORIG_TUTORIAL} if both ksql and kstreams exist then both of those are cloned"
 fi
 
 ORIG_CLONE_FILES_DIR=$ORIG_TUTORIAL_BASE_DIR_NAME
