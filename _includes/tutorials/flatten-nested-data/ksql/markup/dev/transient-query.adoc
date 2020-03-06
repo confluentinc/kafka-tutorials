@@ -7,5 +7,5 @@ We can query the new result stream called `FLATTENED_ORDERS` with a much simpler
 The output should look similar to:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/flatten-nested-data/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/flatten-nested-data/ksql/code/tutorial-steps/dev/expected-transient-query.log %}</code></pre>
 +++++

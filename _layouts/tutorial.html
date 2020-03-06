@@ -47,7 +47,7 @@
         <select>
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html" {% if page.stack == 'ksql' %} selected {% endif %}>
-            KSQL
+            ksqlDB
           </option>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kstreams == 'enabled' %}
@@ -66,7 +66,7 @@
         <div class="buttons">
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html">
-            KSQL
+            ksqlDB
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kstreams == 'enabled' %}

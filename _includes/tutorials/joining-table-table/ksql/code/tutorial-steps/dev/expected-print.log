@@ -1,4 +1,5 @@
-Format:AVRO
-7/23/19 11:16:32 AM UTC, Die Hard, {"ID": 294, "M_TITLE": "Die Hard", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Bruce Willis"}
-7/23/19 11:16:32 AM UTC, The Big Lebowski, {"ID": 128, "M_TITLE": "The Big Lebowski", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Jeff Bridges"}
-7/23/19 11:16:32 AM UTC, The Godfather, {"ID": 42, "M_TITLE": "The Godfather", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Al Pacino"}
+Key format: MIXED
+Value format: AVRO
+rowtime: 3/1/20 4:40:21 AM UTC, key: Die Hard, value: {"M_ROWKEY": "Die Hard", "M_TITLE": "Die Hard", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Bruce Willis"}
+rowtime: 3/1/20 4:40:21 AM UTC, key: The Big Lebowski, value: {"M_ROWKEY": "The Big Lebowski", "M_TITLE": "The Big Lebowski", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Jeff Bridges"}
+rowtime: 3/1/20 4:40:21 AM UTC, key: The Godfather, value: {"M_ROWKEY": "The Godfather", "M_TITLE": "The Godfather", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Al Pacino"}

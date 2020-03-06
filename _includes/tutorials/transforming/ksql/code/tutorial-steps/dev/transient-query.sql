@@ -1,1 +1,1 @@
-SELECT id, split(title, '::')[0] as title, split(title, '::')[1] AS year, genre FROM raw_movies LIMIT 4;
+SELECT id, split(title, '::')[1] as title, split(title, '::')[2] AS year, genre FROM raw_movies EMIT CHANGES LIMIT 4;
