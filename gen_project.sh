@@ -187,6 +187,18 @@ function populate_tutorial_scaffold() {
    echo "Moving the test harness ${TUTORIAL_CARD}-test-harness-template.yml file to $KT_HOME/_data/harnesses/$TUTORIAL_SHORT_NAME/${TUTORIAL_CARD}.yml"
    mv $WORK_DIR/$TUTORIAL_CARD/filtered/$TUTORIAL_CARD-test-harness-template.yml $KT_HOME/_data/harnesses/$TUTORIAL_SHORT_NAME/$TUTORIAL_CARD.yml
 
+   if [ "${TUTORIAL_CARD}" == "${KSTREAMS}" ]; then
+        echo "Moving Test file to ${BASE_TUTORIAL_DIR}/code/src/test/java/io/confluent/developer"
+        mv $WORK_DIR/$TUTORIAL_CARD/filtered/code/ExampleTest.java  $BASE_TUTORIAL_DIR/code/src/test/java/io/confluent/developer/${MAIN_CLASS}Test.java
+        echo "Moving Java file to ${BASE_TUTORIAL_DIR}/code/src/main/java/io/confluent/devloper"
+        mv $WORK_DIR/$TUTORIAL_CARD/filtered/code/Example.java      $BASE_TUTORIAL_DIR/code/src/main/java/io/confluent/devloper/${MAIN_CLASS}.java
+        echo "Moving AVRO file to ${BASE_TUTORIAL_DIR}/code/src/main/avro"
+        mv $WORK_DIR/$TUTORIAL_CARD/static/code/example.avsc        $BASE_TUTORIAL_DIR/code/src/main/avro
+        echo "Moving properties files to ${BASE_TUTORIAL_DIR}/code/configuration"
+        mv $WORK_DIR/$TUTORIAL_CARD/filtered/code/*.properties      $BASE_TUTORIAL_DIR/code/configuration
+    fi
+
+
    mv_contents $WORK_DIR/$TUTORIAL_CARD/filtered/code        $BASE_TUTORIAL_DIR/code
    mv_contents $WORK_DIR/$TUTORIAL_CARD/static/code          $BASE_TUTORIAL_DIR/code
 
