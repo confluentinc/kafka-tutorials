@@ -38,7 +38,7 @@ dependencies {
     implementation "io.confluent:kafka-streams-avro-serde:<CP-VERSION>"
     testCompile "org.apache.kafka:kafka-streams-test-utils:<AK-VERSION>"
     testCompile "junit:junit:4.12"
-    estImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
 }
 
 test {

@@ -3,7 +3,7 @@
   "type": "record",
   "name": "Example",
   "fields": [
-    {"name": "field_one", "type": "long"},
-    {"name": "field_two", "type": "string"}
+    {"name": "id", "type": "long"},
+    {"name": "name", "type": "string"}
   ]
 }

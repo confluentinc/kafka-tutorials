@@ -2,9 +2,7 @@ package io.confluent.developer;
 
 
 import io.confluent.common.utils.TestUtils;
-import io.confluent.developer.avro.Album;
-import io.confluent.developer.avro.MusicInterest;
-import io.confluent.developer.avro.TrackPurchase;
+import io.confluent.developer.avro.Example;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
@@ -19,8 +17,9 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.Consumed;
-import org.apache.kafka.streams.kstream.KTable;
+import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.ValueMapper;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -44,25 +43,16 @@ public class <MAIN-CLASS> {
 
     public Topology buildTopology(Properties envProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String albumTopic = envProps.getProperty("album.topic.name");
-        final String userTrackPurchaseTopic = envProps.getProperty("tracks.purchase.topic.name");
-        final String musicInterestTopic = envProps.getProperty("music.interest.topic.name");
+        final String exampleInputTopic = envProps.getProperty("exampleInput.topic.name");
+        final String exampleOutputTopic = envProps.getProperty("exampleOutput.topic.name");
 
         final Serde<Long> longSerde = getPrimitiveAvroSerde(envProps, true);
-        final Serde<MusicInterest> musicInterestSerde = getSpecificAvroSerde(envProps);
-        final Serde<Album> albumSerde = getSpecificAvroSerde(envProps);
-        final Serde<TrackPurchase> trackPurchaseSerde = getSpecificAvroSerde(envProps);
+        final Serde<Example> exampleSerde = getSpecificAvroSerde(envProps);
+        final ValueMapper<Example, Example> valueMapper = v -> {v.setName("Hello " + v.getName()); return v;};
 
-        final KTable<Long, Album> albums = builder.table(albumTopic, Consumed.with(longSerde, albumSerde));
+        final KStream<Long, Example> exampleStream = builder.stream(exampleInputTopic, Consumed.with(longSerde, exampleSerde));
 
-        final KTable<Long, TrackPurchase> trackPurchases = builder.table(userTrackPurchaseTopic, Consumed.with(longSerde, trackPurchaseSerde));
-        final MusicInterestJoiner trackJoiner = new MusicInterestJoiner();
-    
-        final KTable<Long, MusicInterest> musicInterestTable = trackPurchases.join(albums,
-                                                                             TrackPurchase::getAlbumId,
-                                                                             trackJoiner);
-
-        musicInterestTable.toStream().to(musicInterestTopic, Produced.with(longSerde, musicInterestSerde));
+        exampleStream.mapValues(valueMapper).to(exampleOutputTopic, Produced.with(longSerde, exampleSerde));
 
         return builder.build();
     }
@@ -93,27 +83,22 @@ public class <MAIN-CLASS> {
     public void createTopics(final Properties envProps) {
         final Map<String, Object> config = new HashMap<>();
         config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        final AdminClient client = AdminClient.create(config);
+        try (final AdminClient client = AdminClient.create(config)) {
 
         final List<NewTopic> topics = new ArrayList<>();
 
-        topics.add(new NewTopic(
-                envProps.getProperty("album.topic.name"),
-                Integer.parseInt(envProps.getProperty("album.topic.partitions")),
-                Short.parseShort(envProps.getProperty("album.topic.replication.factor"))));
+            topics.add(new NewTopic(
+                    envProps.getProperty("exampleInput.topic.name"),
+                    Integer.parseInt(envProps.getProperty("exampleInput.topic.partitions")),
+                    Short.parseShort(envProps.getProperty("exampleInput.topic.replication.factor"))));
 
-        topics.add(new NewTopic(
-                envProps.getProperty("tracks.purchase.topic.name"),
-                Integer.parseInt(envProps.getProperty("tracks.purchase.topic.partitions")),
-                Short.parseShort(envProps.getProperty("tracks.purchase.topic.replication.factor"))));
+            topics.add(new NewTopic(
+                    envProps.getProperty("exampleOutput.topic.name"),
+                    Integer.parseInt(envProps.getProperty("exampleOutput.topic.partitions")),
+                    Short.parseShort(envProps.getProperty("exampleOutput.topic.replication.factor"))));
 
-        topics.add(new NewTopic(
-                envProps.getProperty("music.interest.topic.name"),
-                Integer.parseInt(envProps.getProperty("music.interest.topic.partitions")),
-                Short.parseShort(envProps.getProperty("music.interest.topic.replication.factor"))));
-
-        client.createTopics(topics);
-        client.close();
+            client.createTopics(topics);
+        }
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
@@ -131,12 +116,12 @@ public class <MAIN-CLASS> {
             throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");
         }
 
-        final FkJoinTableToTable tableFkJoin = new FkJoinTableToTable();
-        final Properties envProps = tableFkJoin.loadEnvProperties(args[0]);
-        final Properties streamProps = tableFkJoin.buildStreamsProperties(envProps);
-        final Topology topology = tableFkJoin.buildTopology(envProps);
+        final <MAIN-CLASS> instance = new <MAIN-CLASS>();
+        final Properties envProps = instance.loadEnvProperties(args[0]);
+        final Properties streamProps = instance.buildStreamsProperties(envProps);
+        final Topology topology = instance.buildTopology(envProps);
 
-        tableFkJoin.createTopics(envProps);
+        instance.createTopics(envProps);
 
         final KafkaStreams streams = new KafkaStreams(topology, streamProps);
         final CountDownLatch latch = new CountDownLatch(1);

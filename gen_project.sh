@@ -72,8 +72,8 @@ function gen_kstreams_skeleton() {
      echo "Generate src and avro dir $TUTORIAL_CODE_DIR/src/main/avro"
      mkdir -p $KSTREAMS_TUTORIAL_CODE_DIR/src/main/avro
      
-     echo "Generate java package dirs $TUTORIAL_CODE_DIR/src/main/java/io/confluent/devloper"
-     mkdir -p $KSTREAMS_TUTORIAL_CODE_DIR/src/main/java/io/confluent/devloper
+     echo "Generate java package dirs $TUTORIAL_CODE_DIR/src/main/java/io/confluent/developer"
+     mkdir -p $KSTREAMS_TUTORIAL_CODE_DIR/src/main/java/io/confluent/developer
 
      echo "Generate test dirs $TUTORIAL_CODE_DIR/src/test/java/io/confluent/developer"
      mkdir -p $KSTREAMS_TUTORIAL_CODE_DIR/src/test/java/io/confluent/developer
@@ -190,8 +190,8 @@ function populate_tutorial_scaffold() {
    if [ "${TUTORIAL_CARD}" == "${KSTREAMS}" ]; then
         echo "Moving Test file to ${BASE_TUTORIAL_DIR}/code/src/test/java/io/confluent/developer"
         mv $WORK_DIR/$TUTORIAL_CARD/filtered/code/ExampleTest.java  $BASE_TUTORIAL_DIR/code/src/test/java/io/confluent/developer/${MAIN_CLASS}Test.java
-        echo "Moving Java file to ${BASE_TUTORIAL_DIR}/code/src/main/java/io/confluent/devloper"
-        mv $WORK_DIR/$TUTORIAL_CARD/filtered/code/Example.java      $BASE_TUTORIAL_DIR/code/src/main/java/io/confluent/devloper/${MAIN_CLASS}.java
+        echo "Moving Java file to ${BASE_TUTORIAL_DIR}/code/src/main/java/io/confluent/developer"
+        mv $WORK_DIR/$TUTORIAL_CARD/filtered/code/Example.java      $BASE_TUTORIAL_DIR/code/src/main/java/io/confluent/developer/${MAIN_CLASS}.java
         echo "Moving AVRO file to ${BASE_TUTORIAL_DIR}/code/src/main/avro"
         mv $WORK_DIR/$TUTORIAL_CARD/static/code/example.avsc        $BASE_TUTORIAL_DIR/code/src/main/avro
         echo "Moving properties files to ${BASE_TUTORIAL_DIR}/code/configuration"
@@ -232,7 +232,7 @@ function mv_contents() {
   FROM_DIR=$1
   TO_DIR=$2
 
-  if [ ! -z "$(ls -A ${FROM_DIR})" ]; then
+  if [ ! -z "$(ls -A ${FROM_DIR} | grep -v '.gitkeep')"  ]; then
     echo "moving content from ${FROM_DIR} to ${TO_DIR}"
     mv $FROM_DIR/* $TO_DIR
   else
