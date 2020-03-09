@@ -1,5 +1,5 @@
 ksql:
-  pretty: KSQL
+  pretty: ksqlDB
 
 kstreams:
   pretty: Kafka Streams

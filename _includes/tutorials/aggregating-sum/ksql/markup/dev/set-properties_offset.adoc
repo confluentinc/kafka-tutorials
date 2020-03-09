@@ -1,4 +1,4 @@
-Before we continue, let's make sure that each KSQL query we execute will begin its processing from the beginning of the stream:
+Before we continue, let's make sure that each ksqlDB query we execute will begin its processing from the beginning of the stream:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/set-properties_offset.sql %}</code></pre>

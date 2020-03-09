@@ -7,5 +7,5 @@ Note that we called the query that detects the temperature drop as `TRIGGERED_AL
 The output should look similar to:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/ksql/code/tutorial-steps/dev/expected-transient-query.log %}</code></pre>
 +++++

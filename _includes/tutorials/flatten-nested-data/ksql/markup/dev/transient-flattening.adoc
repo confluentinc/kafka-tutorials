@@ -8,5 +8,5 @@ Since we modeled each field containing a nested data using a struct, we can writ
 This query should produce the following output:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/flatten-nested-data/ksql/code/tutorial-steps/dev/outputs/transient-flattening/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/flatten-nested-data/ksql/code/tutorial-steps/dev/expected-transient-flattening.log %}</code></pre>
 +++++
