@@ -5,10 +5,14 @@
 
 ////
 
-Now create the following file at `src/test/java/io/confluent/developer/TEST-NAME.java`. Testing a Kafka streams application requires a bit of test harness code, but happily the `org.apache.kafka.streams.TopologyTestDriver` class makes this much more pleasant that it would otherwise be.
+Now create the following file at `src/test/java/io/confluent/developer/<MAIN-CLASS>Test.java`. Testing a Kafka streams application requires a bit of test harness code, but happily the `org.apache.kafka.streams.TopologyTestDriver` class makes this much more pleasant that it would otherwise be.
 
-There is only one method in `TEST-NAME` annotated with `@Test`, and that is `testJoin()`. This method actually runs our Streams topology using the `TopologyTestDriver` and some mocked data that is set up inside the test method.
+////
+             You'll want to update the name of the test method from "exampleTest" to something more meaningful for your tutorial
+////
+
+There is only one method in `<MAIN-CLASS>Test` annotated with `@Test`, and that is `exampleTest()`. This method actually runs our Streams topology using the `TopologyTestDriver` and some mocked data that is set up inside the test method.
 
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/<TUTORIAL-SHORT-NAME>/kstreams/code/src/test/java/io/confluent/developer/TEST-NAME.java %}</code></pre>
+<pre class="snippet"><code class="java">{% include_raw tutorials/<TUTORIAL-SHORT-NAME>/kstreams/code/src/test/java/io/confluent/developer/<MAIN-CLASS>Test.java %}</code></pre>
 +++++

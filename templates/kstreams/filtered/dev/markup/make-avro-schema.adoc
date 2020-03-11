@@ -9,9 +9,9 @@
   If you are'nt using Avro, delete this file from the folder.
 ////
 
-Then create the following Avro schema file at `src/main/avro/movie.avsc` for the movies lookup table:
+Then create the following Avro schema file at `src/main/avro/example.avsc` for the movies lookup table:
 
 +++++
-<pre class="snippet"><code class="avro">{% include_raw tutorials/<TUTORIAL-SHORT-NAME>/kstreams/code/src/main/avro/movie.avsc %}</code></pre>
+<pre class="snippet"><code class="avro">{% include_raw tutorials/<TUTORIAL-SHORT-NAME>/kstreams/code/src/main/avro/example.avsc %}</code></pre>
 +++++
 

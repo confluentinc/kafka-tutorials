@@ -19,5 +19,5 @@ When the console producer starts, it will log some messages and hang, waiting fo
 Each line represents input data for the Kafka Streams application.  To send all of the events below, paste the following into the prompt and press enter:
 
 +++++
-<pre class="snippet"><code class="json">{% include_raw tutorials/<TUTORIAL-SHORT-NAME>/kstreams/code/tutorial-steps/dev/INPUT_DATA.json %}</code></pre>
+<pre class="snippet"><code class="json">{% include_raw tutorials/<TUTORIAL-SHORT-NAME>/kstreams/code/tutorial-steps/dev/example-input.json %}</code></pre>
 +++++

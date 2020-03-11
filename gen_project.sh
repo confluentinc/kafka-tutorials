@@ -81,8 +81,8 @@ function gen_kstreams_skeleton() {
      echo "Generate tutorial steps dirs"
      gen_state_dirs $KSTREAMS_TUTORIAL_CODE_DIR tutorial-steps
 
-     echo "Generate the output directory $TUTORIAL_CODE_DIR/tutorial-steps/outputs"
-     mkdir $KSTREAMS_TUTORIAL_CODE_DIR/tutorial-steps/outputs
+     echo "Generate the output directory $TUTORIAL_CODE_DIR/tutorial-steps/dev/outputs"
+     mkdir $KSTREAMS_TUTORIAL_CODE_DIR/tutorial-steps/dev/outputs
 
      echo "Generate markup dirs"
      gen_state_dirs $KSTREAMS_TUTORIAL_BASE_DIR markup

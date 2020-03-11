@@ -23,14 +23,14 @@ public class <MAIN-CLASS>Test {
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
     @Test
-    public void testJoin() throws IOException {
+    public void exampleTest() throws IOException {
         final <MAIN-CLASS> instance = new <MAIN-CLASS>();
         final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
 
         final Properties streamProps = instance.buildStreamsProperties(envProps);
 
-        final String exampleInputTopic = envProps.getProperty("exampleInput.topic.name");
-        final String exampleOutputTopic = envProps.getProperty("exampleOutput.topic.name");
+        final String exampleInputTopic = envProps.getProperty("input.topic.name");
+        final String exampleOutputTopic = envProps.getProperty("output.topic.name");
       
         final Topology topology = instance.buildTopology(envProps);
         try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {

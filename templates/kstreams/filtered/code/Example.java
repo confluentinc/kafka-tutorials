@@ -43,8 +43,8 @@ public class <MAIN-CLASS> {
 
     public Topology buildTopology(Properties envProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String exampleInputTopic = envProps.getProperty("exampleInput.topic.name");
-        final String exampleOutputTopic = envProps.getProperty("exampleOutput.topic.name");
+        final String exampleInputTopic = envProps.getProperty("input.topic.name");
+        final String exampleOutputTopic = envProps.getProperty("output.topic.name");
 
         final Serde<Long> longSerde = getPrimitiveAvroSerde(envProps, true);
         final Serde<Example> exampleSerde = getSpecificAvroSerde(envProps);
@@ -88,14 +88,14 @@ public class <MAIN-CLASS> {
         final List<NewTopic> topics = new ArrayList<>();
 
             topics.add(new NewTopic(
-                    envProps.getProperty("exampleInput.topic.name"),
-                    Integer.parseInt(envProps.getProperty("exampleInput.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("exampleInput.topic.replication.factor"))));
+                    envProps.getProperty("input.topic.name"),
+                    Integer.parseInt(envProps.getProperty("input.topic.partitions")),
+                    Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                    envProps.getProperty("exampleOutput.topic.name"),
-                    Integer.parseInt(envProps.getProperty("exampleOutput.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("exampleOutput.topic.replication.factor"))));
+                    envProps.getProperty("output.topic.name"),
+                    Integer.parseInt(envProps.getProperty("output.topic.partitions")),
+                    Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
 
             client.createTopics(topics);
         }

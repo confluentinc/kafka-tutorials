@@ -53,7 +53,7 @@ jar {
   manifest {
     attributes(
       "Class-Path": configurations.compile.collect { it.getName() }.join(" "),
-      "Main-Class": "io.confluent.developer.<MAIN-CLASS>.java"
+      "Main-Class": "io.confluent.developer.<MAIN-CLASS>"
     )
   }
 }
