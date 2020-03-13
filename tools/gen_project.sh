@@ -5,9 +5,11 @@ if [ "$#" -lt 1 ]; then
    exit 1
 fi
 
-KT_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+TOOLS_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+KT_HOME=$(dirname "${TOOLS_HOME}")
 
 echo "Using ${KT_HOME} as the base directory for your tutorial"
+
 
 PROPS_FILE=$1
 
@@ -261,6 +263,19 @@ function gen_html_data_dir() {
    mkdir $KT_HOME/tutorials/$TUTORIAL_SHORT_NAME
 }
 
+function create_and_report_checklist() {
+  cp $KT_HOME/templates/todo_template.txt $KT_HOME/_includes/tutorials/$TUTORIAL_SHORT_NAME/${TUTORIAL_SHORT_NAME}_checklist.txt
+  sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${TUTORIAL_SHORT_NAME}/g" $KT_HOME/_includes/tutorials/$TUTORIAL_SHORT_NAME/${TUTORIAL_SHORT_NAME}_checklist.txt
+  
+  for CARD in $CARDS; do
+    HYPERLINK="   <li><a href=\"${PERMALINK}/${CARD}.html\">MEANINGFUL LINK TEXT HERE</a></li>\n"
+    echo "Addling link ${HYPERLINK} to ${KT_HOME}/_includes/tutorials/${TUTORIAL_SHORT_NAME}/${TUTORIAL_SHORT_NAME}_checklist.txt"
+    echo "${HYPERLINK}" >> $KT_HOME/_includes/tutorials/$TUTORIAL_SHORT_NAME/${TUTORIAL_SHORT_NAME}_checklist.txt
+  done
+
+  rm $KT_HOME/_includes/tutorials/$TUTORIAL_SHORT_NAME/${TUTORIAL_SHORT_NAME}_checklist.txt.orig
+}
+
 
 KSTREAMS="kstreams"
 KSQL="ksql"
@@ -291,4 +306,9 @@ done
 update_data_tutorials_yaml_file;
 
 echo "All done cleaning up work directory"
+
+create_and_report_checklist;
+
 rm -rf $WORK_DIR
+
+cat $KT_HOME/_includes/tutorials/$TUTORIAL_SHORT_NAME/${TUTORIAL_SHORT_NAME}_checklist.txt

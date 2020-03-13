@@ -23,3 +23,4 @@ __pycache__
 bin/
 s3_website.yml
 harness_runner/harness_runner.pyc
+*_checklist.txt

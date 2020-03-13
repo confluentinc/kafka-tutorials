@@ -7,7 +7,8 @@ if [ "$#" -lt 1 ]; then
    exit 1
 fi
 
-KT_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+TOOLS_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+KT_HOME=$(dirname "${TOOLS_HOME}")
 
 echo "Using ${KT_HOME} as the base directory for your tutorial"
 
@@ -174,7 +175,26 @@ for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
 		    fi	
 	    fi 
 done
+
+function create_and_report_checklist() {
+  cp $KT_HOME/templates/todo_template.txt $KT_HOME/_includes/tutorials/$NEW_TUTORIAL/${NEW_TUTORIAL}_checklist.txt
+  sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $KT_HOME/_includes/tutorials/$NEW_TUTORIAL/${NEW_TUTORIAL}_checklist.txt
+  
+  for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL | grep -v '.txt'); do
+    HYPERLINK="   <li><a href=\"${PERMALINK}/${type}.html\">MEANINGFUL LINK TEXT HERE</a></li>\n"
+    echo "Addling link ${HYPERLINK} to ${KT_HOME}/_includes/tutorials/${NEW_TUTORIAL}/${TUTORIAL_SHORT_NAME}_checklist.txt"
+    echo "${HYPERLINK}" >> $KT_HOME/_includes/tutorials/$NEW_TUTORIAL/${NEW_TUTORIAL}_checklist.txt
+  done
+
+  rm $KT_HOME/_includes/tutorials/$NEW_TUTORIAL/${NEW_TUTORIAL}_checklist.txt.orig
+}
+
 echo "Cloning complete!"
+
+create_and_report_checklist;
+
+cat $KT_HOME/_includes/tutorials/$NEW_TUTORIAL/${NEW_TUTORIAL}_checklist.txt
+
 rm -rf $TEMP_WORK_DIR	
 
 
