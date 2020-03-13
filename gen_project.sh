@@ -100,13 +100,13 @@ function gen_ksql_skeleton() {
    echo "Generate KSQL tutorial directory structure now"
 
    echo "Generating tutorials dir $KSQL_TUTORIAL_CODE_DIR"
-   mkdir $KSQL_TUTORIAL_CODE_DIR
+   mkdir -p $KSQL_TUTORIAL_CODE_DIR
 
    echo "Generate src dir $KSQL_TUTORIAL_CODE_DIR/src"
-   mkdir $KSQL_TUTORIAL_CODE_DIR/src
+   mkdir -p $KSQL_TUTORIAL_CODE_DIR/src
 
    echo "Generate test dir $KSQL_TUTORIAL_CODE_DIR/test"
-   mkdir $KSQL_TUTORIAL_CODE_DIR/test
+   mkdir -p $KSQL_TUTORIAL_CODE_DIR/test
 
    echo "Generate tutorial steps dirs"
    gen_state_dirs $KSQL_TUTORIAL_CODE_DIR tutorial-steps
@@ -119,15 +119,6 @@ function gen_ksql_skeleton() {
    
    local KSQL_DEV_OUTPUT_DIR="${KSQL_TUTORIAL_CODE_DIR}/tutorial-steps/dev/outputs"
    echo "Creating some common KSQL tutorials output dirs"
-
-   echo "Creating $KSQL_DEV_OUTPUT_DIR/transient-query"
-   mkdir $KSQL_DEV_OUTPUT_DIR/transient-query
-
-   echo "Creating $KSQL_DEV_OUTPUT_DIR/set-properties"
-   mkdir $KSQL_DEV_OUTPUT_DIR/set-properties
-
-   echo "Creating $KSQL_DEV_OUTPUT_DIR/print-output-topic"
-   mkdir $KSQL_DEV_OUTPUT_DIR/print-output-topic
 
    echo "Generate markup dirs"
    gen_state_dirs $KSQL_TUTORIAL_BASE_DIR markup
@@ -196,6 +187,15 @@ function populate_tutorial_scaffold() {
         mv $WORK_DIR/$TUTORIAL_CARD/static/code/example.avsc        $BASE_TUTORIAL_DIR/code/src/main/avro
         echo "Moving properties files to ${BASE_TUTORIAL_DIR}/code/configuration"
         mv $WORK_DIR/$TUTORIAL_CARD/filtered/code/*.properties      $BASE_TUTORIAL_DIR/code/configuration
+    fi
+
+
+    if [ "${TUTORIAL_CARD}" == "${KSQL}" ]; then
+        echo "Moving input and output json files to ${BASE_TUTORIAL_DIR}/code/test"
+        mv $WORK_DIR/$TUTORIAL_CARD/static/test/code/*.json  $BASE_TUTORIAL_DIR/code/test
+
+        echo "Moving statements.sql file to ${BASE_TUTORIAL_DIR}/code/src"
+        mv $WORK_DIR/$TUTORIAL_CARD/static/code/statements.sql  $BASE_TUTORIAL_DIR/code/src
     fi
 
 
