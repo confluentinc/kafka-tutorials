@@ -1,35 +1,27 @@
 {
   "outputs": [
     {
-      "topic": "george_martin_books",
-      "key": "George R. R. Martin",
+      "topic": "sport_events",
+      "key": "sport",
       "value": {
-        "AUTHOR": "George R. R. Martin",
-        "TITLE": "A Song of Ice and Fire"
+        "EVENT_TYPE": "sport",
+        "NAME": "car race"
       }
     },
     {
-      "topic": "george_martin_books",
-      "key": "George R. R. Martin",
+      "topic": "sport_events",
+      "key": "sport",
       "value": {
-        "AUTHOR": "George R. R. Martin",
-        "TITLE": "Fire & Blood"
+        "EVENT_TYPE": "sport",
+        "NAME": "basketball game"
       }
     },
     {
-      "topic": "george_martin_books",
-      "key": "George R. R. Martin",
+      "topic": "sport_events",
+      "key": "sport",
       "value": {
-        "AUTHOR": "George R. R. Martin",
-        "TITLE": "A Dream of Spring"
-      }
-    },
-    {
-      "topic": "george_martin_books",
-      "key": "George R. R. Martin",
-      "value": {
-        "AUTHOR": "George R. R. Martin",
-        "TITLE": "The Ice Dragon"
+        "EVENT_TYPE": "sport",
+        "NAME": "soccer match"
       }
     }
   ]

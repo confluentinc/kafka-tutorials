@@ -1,1 +1,1 @@
-SELECT author, title FROM all_publications WHERE author = 'George R. R. Martin' EMIT CHANGES LIMIT 4;
+SELECT event_type, name FROM events WHERE event_type = 'sport' EMIT CHANGES LIMIT 2;

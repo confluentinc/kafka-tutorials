@@ -1,1 +1,1 @@
-PRINT 'george_martin_books' FROM BEGINNING LIMIT 4;
+PRINT 'sport_events' FROM BEGINNING LIMIT 2;

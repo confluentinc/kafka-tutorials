@@ -1,5 +1,14 @@
-Let's find all of the books written by George R. R. Martin. Issue the following transient query. This will block and continue to return results until its limit is reached or you tell it to stop.
+Let's find all types of events that are sports. *_You'll want to update the previous sentence to fit your specific tutorial, then remove this sentence!_*
+
+Issue the following transient query. This will block and continue to return results until its limit is reached or you tell it to stop.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/<TUTORIAL-SHORT-NAME>/ksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
 +++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/<TUTORIAL-SHORT-NAME>/ksql/code/tutorial-steps/dev/expected-transient.log %}</code></pre>
++++++
+

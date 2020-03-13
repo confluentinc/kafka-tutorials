@@ -7,7 +7,7 @@ dev:
           render:
             file: tutorials/<TUTORIAL-SHORT-NAME>/ksql/markup/dev/init.adoc
 
-        - change_directory: filter-events
+        - change_directory: <TUTORIAL-SHORT-NAME>
           action: execute
           file: tutorial-steps/dev/make-dirs.sh
           render:
@@ -61,7 +61,7 @@ dev:
 
             - file: tutorial-steps/dev/print-output-topic.sql
               render:
-                file: tutorials/<TUTORIAL-SHORT-NAME>/ksql/markup/dev/print-topic.adoc
+                file: tutorials/<TUTORIAL-SHORT-NAME>/ksql/markup/dev/print-output-topic.adoc
           stdout:
             directory: tutorial-steps/dev/outputs
 

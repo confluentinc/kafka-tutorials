@@ -1,4 +1,4 @@
-CREATE STREAM george_martin WITH (kafka_topic = 'george_martin_books', partitions = 1) AS
-    SELECT author, title
-    FROM all_publications
-    WHERE author = 'George R. R. Martin';
+CREATE STREAM sport_events WITH (kafka_topic = 'sport_events', partitions = 1) AS
+    SELECT event_type, name
+    FROM events
+    WHERE event_type = 'sport';

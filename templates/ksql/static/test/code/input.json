@@ -1,75 +1,43 @@
 {
   "inputs": [
     {
-      "topic": "publication_events",
-      "key": "C.S. Lewis",
+      "topic": "events",
+      "key": "sport",
       "value": {
-        "author": "C.S. Lewis",
-        "title": "The Silver Chair"
+        "event_type": "sport",
+        "name": "car race"
       }
     },
     {
-      "topic": "publication_events",
-      "key": "George R. R. Martin",
+      "topic": "events",
+      "key": "arts",
       "value": {
-        "author": "George R. R. Martin",
-        "title": "A Song of Ice and Fire"
+        "event_type": "arts",
+        "name": "concert"
       }
     },
     {
-      "topic": "publication_events",
-      "key": "C.S. Lewis",
+      "topic": "events",
+      "key": "sport",
       "value": {
-        "author": "C.S. Lewis",
-        "title": "Perelandra"
+        "event_type": "sport",
+        "name": "basketball game"
       }
     },
     {
-      "topic": "publication_events",
-      "key": "George R. R. Martin",
+      "topic": "events",
+      "key": "arts",
       "value": {
-        "author": "George R. R. Martin",
-        "title": "Fire & Blood"
+        "event_type": "arts",
+        "name": "movie"
       }
     },
     {
-      "topic": "publication_events",
-      "key": "J. R. R. Tolkien",
+      "topic": "events",
+      "key": "sport",
       "value": {
-        "author": "J. R. R. Tolkien",
-        "title": "The Hobbit"
-      }
-    },
-    {
-      "topic": "publication_events",
-      "key": "J. R. R. Tolkien",
-      "value": {
-        "author": "J. R. R. Tolkien",
-        "title": "The Lord of the Rings"
-      }
-    },
-    {
-      "topic": "publication_events",
-      "key": "George R. R. Martin",
-      "value": {
-        "author": "George R. R. Martin",
-        "title": "A Dream of Spring"
-      }
-    },
-    {
-      "topic": "publication_events",
-      "key": "J. R. R. Tolkien",
-      "value": {
-        "author": "J. R. R. Tolkien",
-        "title": "The Fellowship of the Ring"
-      }
-    },
-    {
-      "topic": "publication_events",
-      "key": "George R. R. Martin",
-      "value": {
-        "author": "George R. R. Martin",
-        "title": "The Ice Dragon"
+        "event_type": "sport",
+        "name": "soccer match"
       }
     }
   ]

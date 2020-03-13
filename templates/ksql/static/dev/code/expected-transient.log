@@ -1,9 +1,7 @@
 +------------------------+------------------------+
-|AUTHOR                  |TITLE                   |
+|EVENT_TYPE              |NAME                    |
 +------------------------+------------------------+
-|George R. R. Martin     |A Song of Ice and Fire  |
-|George R. R. Martin     |Fire & Blood            |
-|George R. R. Martin     |A Dream of Spring       |
-|George R. R. Martin     |The Ice Dragon          |
+|sport                   |car race                |
+|sport                   |basketball game         |
 Limit Reached
 Query terminated
