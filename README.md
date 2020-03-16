@@ -91,7 +91,7 @@ Let's describe each script.
 
 As the name implies, the `gen_project.sh` script generates the minimal structure for a viable Kafka Tutorials tutorial.  The code and text contained in the tutorial are place holders, and you'll update those with your code and writing to complete the tutorial.
 
-The script expects you to supply a properties file for setting the name and other parts of the tutorial.  Heres' an example properties file you can use.
+The script expects you to supply a properties file for setting the name and other parts of the tutorial.  Here's an example properties file you can use.
 ```
 #!/bin/sh
 
@@ -169,7 +169,7 @@ To clone a tutorial:
 
 1. Create a branch
 2. Make sure you are in the `Kafka Tutorials` base directory
-3. Execute `> tools/clone_tutoral.sh ~/clone-tutorial-props.sh`
+3. Execute `> tools/clone_tutorial.sh ~/clone-tutorial-props.sh`
 
 You'll see a similar output scroll across the screen, including the checklist for items you'll need to do for a completed tutorial.
 
