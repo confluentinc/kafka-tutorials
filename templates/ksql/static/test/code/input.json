@@ -1,0 +1,44 @@
+{
+  "inputs": [
+    {
+      "topic": "events",
+      "key": "sport",
+      "value": {
+        "event_type": "sport",
+        "name": "car race"
+      }
+    },
+    {
+      "topic": "events",
+      "key": "arts",
+      "value": {
+        "event_type": "arts",
+        "name": "concert"
+      }
+    },
+    {
+      "topic": "events",
+      "key": "sport",
+      "value": {
+        "event_type": "sport",
+        "name": "basketball game"
+      }
+    },
+    {
+      "topic": "events",
+      "key": "arts",
+      "value": {
+        "event_type": "arts",
+        "name": "movie"
+      }
+    },
+    {
+      "topic": "events",
+      "key": "sport",
+      "value": {
+        "event_type": "sport",
+        "name": "soccer match"
+      }
+    }
+  ]
+}

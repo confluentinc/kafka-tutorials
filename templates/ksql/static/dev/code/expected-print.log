@@ -1,0 +1,4 @@
+Key format: KAFKA (STRING)
+Value format: AVRO
+rowtime: 3/13/20 7:17:00 PM UTC, key: sport, value: {"EVENT_TYPE": "sport", "NAME": "car race"}
+rowtime: 3/13/20 7:17:01 PM UTC, key: sport, value: {"EVENT_TYPE": "sport", "NAME": "basketball game"}
