@@ -29,7 +29,7 @@ exclude:
   - LICENSE
   - CONTRIBUTING.md
   - templates/
-  - gen_project.sh
+  - tools/
 
 ak_javadoc_version: 23
 cp_version: v5.3.0
