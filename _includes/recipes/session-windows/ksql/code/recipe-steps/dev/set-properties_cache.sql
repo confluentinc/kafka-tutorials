@@ -1,1 +1,1 @@
-SET 'ksql.streams.cache.max.bytes.buffering'='20000';
+SET 'ksql.streams.cache.max.bytes.buffering'='2000000';
