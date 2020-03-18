@@ -1,3 +1,10 @@
-while [ $(curl -s -o /dev/null -w %{http_code} http://localhost:8088/info) -ne 200 ] ; do sleep 5 ; done;
-# Back off for KSQL server to get out of the initialization phase.
-sleep 5
+#!/usr/bin/env bash
+
+while : ; do
+    ksqldb_status=$(curl -s -o /dev/null -w %{http_code} http://localhost:8088/info) 
+    echo -e $(date) " ksqlDB server listener HTTP state: " $ksqldb_status 
+    if [ $ksqldb_status -eq 200 ] ; then  
+        break
+    fi
+    sleep 5 
+done
