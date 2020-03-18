@@ -22,7 +22,7 @@ steps:
 
   - name: run the CLI in Docker
     action: docker_ksql_cli_session
-    container: ksql-cli
+    container: ksqldb
     docker_bootup_file: tutorial-steps/dev/start-cli.sh
     stdin:
       - name: create input streams
