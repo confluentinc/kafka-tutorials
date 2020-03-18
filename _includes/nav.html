@@ -1,17 +1,17 @@
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.google_tag_manager_id }}"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.google_tag_manager_id }}" height="0"
+    width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 <nav>
   <div class="container">
     <div>
-      <a href="/">
-        <img class="logo" src="/assets/img/logo.svg" alt="Confluent" />
+      <a href="{{ "/" | relative_url }}">
+        <img class="logo" src="{{ "/assets/img/logo.svg" | relative_url }}" alt="Confluent" />
       </a>
     </div>
     <div class="join">
-      <p>Join the Community. Contribute a recipe.</p>
-      <a class="cta-button primary" href="#">Contribute <span>a recipe</span></a>
+      <p>Join the Community. Contribute a tutorial.</p>
+      <a class="cta-button primary" href="{{ site.contribute_url }}">Contribute <span>a tutorial</span></a>
     </div>
   </div>
 </nav>

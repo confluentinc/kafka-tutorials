@@ -1,0 +1,12 @@
+Name        : REGEXREPLACE
+Overview    : Replace string using a regex
+Type        : SCALAR
+Jar         : /etc/ksql/ext/rekey-with-function-0.0.1.jar
+Variations  : 
+
+	Variation   : REGEXREPLACE(input VARCHAR, regex VARCHAR, replacement VARCHAR)
+	Returns     : VARCHAR
+	Description : regexReplace string using a regex
+	input       : If null, then function returns null.
+	regex       : If null, then function returns null.
+	replacement : If null, then function returns null.

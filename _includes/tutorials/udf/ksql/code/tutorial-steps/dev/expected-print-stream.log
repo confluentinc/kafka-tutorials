@@ -1,0 +1,17 @@
++--------------------+--------------------+
+|TICKER              |VWAP                |
++--------------------+--------------------+
+|ZTEST               |20.0                |
+|ZVV                 |30.0                |
+|ZVZZT               |40.0                |
+|ZXZZT               |50.0                |
+|ZTEST               |16.0                |
+|ZVV                 |33.0                |
+|ZVZZT               |36.0                |
+|ZXZZT               |53.0                |
+|ZTEST               |17.0                |
+|ZVV                 |30.0                |
+|ZVZZT               |40.0                |
+|ZXZZT               |50.0                |
+Limit Reached
+Query terminated

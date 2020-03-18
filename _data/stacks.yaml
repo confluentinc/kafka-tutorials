@@ -1,0 +1,8 @@
+ksql:
+  pretty: ksqlDB
+
+kstreams:
+  pretty: Kafka Streams
+
+kafka:
+  pretty: Kafka

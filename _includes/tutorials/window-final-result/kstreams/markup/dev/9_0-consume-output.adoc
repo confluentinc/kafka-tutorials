@@ -1,0 +1,10 @@
+Trying to consume the windows start serialised is a bit difficult, so the tutorial comes with a consumer that you can
+use as a black box to explore the output of the streaming application. In the helper package add the class
+`ResultConsumer`:
+
++++++
+<pre class="snippet"><code class="java">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/main/java/io/confluent/developer/helper/ResultConsumer.java
+%}</code></pre>
++++++
+

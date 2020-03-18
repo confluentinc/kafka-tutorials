@@ -6,13 +6,13 @@
 @import "_mixins";
 @import "_footer";
 @import "_form";
-@import "recipe";
+@import "tutorial";
 
 body,
 select,
 input,
 button {
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: "MarkOT";
 }
 
 .logo {
@@ -20,13 +20,15 @@ button {
   width: auto;
 }
 
-.cta-button, {
+.card-cta {
+
+.cta-button {
   display: inline-block;
-  border-radius: 30px;
+  border-radius: 8px;
   font-size: 12px;
   font-weight: 500;
   font-style: normal;
-  padding: 15px 20px;
+  padding: 15px 10px;
   text-transform: uppercase;
   white-space: nowrap;
   background-image: none;
@@ -43,6 +45,7 @@ button {
     background-color: #fff;
     border: solid 2px $baseColor
   }
+}
 }
 
 body {
@@ -131,6 +134,10 @@ body {
   }
 }
 
+.icon-aggregate {
+    height: 38px;
+}
+
 .pg-main {
   .hero {
     .hero-body {
@@ -152,6 +159,12 @@ body {
         max-width: 650px;
       }
     }
+
+    .subtitle {
+        max-width: 800px;
+        margin-top: 50px;
+        color: $baseColor;
+    }
   }
 
   .footer {
@@ -160,13 +173,17 @@ body {
 }
 
 .hero {
-  background-color: #f9f9fa;
-  background-image: url("/assets/img/hero.png");
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #b4e1e4;
   padding-top: 100px;
-  color: #fff;
+  color: $baseColor;
+  border-radius: 8px;
+  margin: 0 25px;
+
+  @media screen and (max-width: 768px) {
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .hero-body {
     padding-top: 20px;
@@ -188,25 +205,38 @@ body {
   flex-direction: column;
   align-items: center;
 
-  .card-cta {
+  .card.card-cta {
     display: flex;
     flex-direction: column;
-    padding: 50px;
-    margin-top: 45px;
-    width: 1067px;
     font-size: 28px;
     font-weight: bold;
     color: $baseColor;
     align-items: center;
+    text-align: center;
     min-height: 193px;
 
-    > div {
-      flex: 1;
+    .content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
 
-       &:first-child {
-        flex: 5;
-        line-height: 1.2;
+      > div {
+        flex: 1;
+
+        &:first-child {
+          flex: 5;
+          line-height: 1.2;
+          max-width: 300px;
+        }
       }
+    }
+
+    .notice {
+      color: $footerColor;
+      font-size: 11px;
+      font-weight: 100;
+      text-align: left;
     }
   }
 }
@@ -214,7 +244,7 @@ body {
 .cards {
   display: flex;
   justify-content: center;
-  margin-top: -125px;
+  margin-top: -200px;
 
   .card {
     flex: 1;
@@ -222,12 +252,15 @@ body {
     max-width: 325px;
     margin-right: 46px;
     padding: 35px 25px 55px;
-    height: 300px;
 
     &:last-child {
       margin-right: 0;
     }
   }
+}
+
+.secondary-card-row {
+  margin-top: 25px;
 }
 
 .card {
@@ -274,13 +307,19 @@ body {
 
     .cards-container {
       .card-cta {
-        min-width: 325px;
-        max-width: 325px;
         flex-direction: column;
         margin-top: 0;
 
         div:first-child {
           margin-bottom: 25px;
+        }
+
+        .content {
+          min-width: auto;
+        }
+
+        .notice {
+          margin-top: 1.5rem;
         }
       }
     }
@@ -309,4 +348,8 @@ body {
   body {
     font-size: 10px;
   }
+}
+
+.apache-info {
+    margin-bottom: 50px;
 }

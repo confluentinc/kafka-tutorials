@@ -1,0 +1,6 @@
+Key format: KAFKA (STRING)
+Value format: AVRO
+rowtime: 2/27/20 10:11:23 PM UTC, key: George R. R. Martin, value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Song of Ice and Fire"}
+rowtime: 2/27/20 10:11:23 PM UTC, key: George R. R. Martin, value: {"AUTHOR": "George R. R. Martin", "TITLE": "Fire & Blood"}
+rowtime: 2/27/20 10:11:23 PM UTC, key: George R. R. Martin, value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Dream of Spring"}
+rowtime: 2/27/20 10:11:23 PM UTC, key: George R. R. Martin, value: {"AUTHOR": "George R. R. Martin", "TITLE": "The Ice Dragon"}

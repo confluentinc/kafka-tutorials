@@ -1,0 +1,5 @@
+To continue optimizing the configuration for our tutorial, let's tell ksqlDB to buffer the aggregates as it builds them. This makes the query feel like it responds more slowly, but means that you get just one row of output per movie, which is more intuitive.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/ksql/code/tutorial-steps/dev/set-properties_buffer.sql %}</code></pre>
++++++

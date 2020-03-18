@@ -1,0 +1,5 @@
+Then create the following Avro schema file at `src/main/avro/yearly-movie-figures.avsc` for the movie box office figures events:
+
++++++
+<pre class="snippet"><code class="avro">{% include_raw tutorials/aggregating-minmax/kstreams/code/src/main/avro/yearly-movie-figures.avsc %}</code></pre>
++++++

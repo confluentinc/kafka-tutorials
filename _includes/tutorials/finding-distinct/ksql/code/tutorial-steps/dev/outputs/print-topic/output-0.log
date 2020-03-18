@@ -1,0 +1,5 @@
+Key format: KAFKA (BIGINT or DOUBLE)
+Value format: JSON
+rowtime: 1/17/20 2:50:43 PM UTC, key: 3544383691208797745, value: {"IP_ADDRESS":"10.0.0.1","URL":"https://docs.confluent.io/current/tutorials/examples/kubernetes/gke-base/docs/index.html","TIMESTAMP":"2020-01-17T14:50:43+00:00"}
+rowtime: 1/17/20 2:52:44 PM UTC, key: 3544383691208797746, value: {"IP_ADDRESS":"10.0.0.2","URL":"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen","TIMESTAMP":"2020-01-17T14:53:44+00:01"}
+rowtime: 1/17/20 2:53:45 PM UTC, key: 3544383691208797747, value: {"IP_ADDRESS":"10.0.0.3","URL":"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen","TIMESTAMP":"2020-01-17T14:56:45+00:03"}

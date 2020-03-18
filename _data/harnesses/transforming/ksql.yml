@@ -3,73 +3,74 @@ dev:
     - title: Initialize the project
       content:
         - action: execute
-          file: recipe-steps/dev/init.sh
+          file: tutorial-steps/dev/init.sh
           render:
-            file: recipes/transforming/ksql/markup/dev/init.adoc
+            file: tutorials/transforming/ksql/markup/dev/init.adoc
 
         - change_directory: transform-stream
           action: execute
-          file: recipe-steps/dev/make-dirs.sh
+          file: tutorial-steps/dev/make-dirs.sh
           render:
-            file: recipes/transforming/ksql/markup/dev/make-dirs.adoc
+            file: tutorials/transforming/ksql/markup/dev/make-dirs.adoc
 
     - title: Get Confluent Platform
       content:
         - action: make_file
           file: docker-compose.yml
           render:
-            file: recipes/transforming/ksql/markup/dev/make-docker-compose.adoc
+            file: tutorials/transforming/ksql/markup/dev/make-docker-compose.adoc
 
         - action: execute_async
-          file: recipe-steps/dev/docker-compose-up.sh
+          file: tutorial-steps/dev/docker-compose-up.sh
           render:
-            file: recipes/transforming/ksql/markup/dev/start-compose.adoc
+            file: tutorials/transforming/ksql/markup/dev/start-compose.adoc
 
         - action: execute
-          file: recipe-steps/dev/wait-for-containers.sh
+          file: tutorial-steps/dev/wait-for-containers.sh
           render:
             skip: true
 
     - title: Write the program interactively using the CLI
       content:
         - action: docker_ksql_cli_session
-          container: ksql-cli
-          docker_bootup_file: recipe-steps/dev/start-cli.sh
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 21
           render:
-            file: recipes/transforming/ksql/markup/dev/start-cli.adoc
+            file: tutorials/transforming/ksql/markup/dev/start-cli.adoc
           stdin:
-            - file: recipe-steps/dev/create-inputs.sql
+            - file: tutorial-steps/dev/create-inputs.sql
               render:
-                file: recipes/transforming/ksql/markup/dev/create-inputs.adoc
+                file: tutorials/transforming/ksql/markup/dev/create-inputs.adoc
 
-            - file: recipe-steps/dev/populate-stream.sql
+            - file: tutorial-steps/dev/populate-stream.sql
               render:
-                file: recipes/transforming/ksql/markup/dev/populate-stream.adoc
+                file: tutorials/transforming/ksql/markup/dev/populate-stream.adoc
 
-            - file: recipe-steps/dev/set-properties.sql
+            - file: tutorial-steps/dev/set-properties.sql
               render:
-                file: recipes/transforming/ksql/markup/dev/set-properties.adoc
+                file: tutorials/transforming/ksql/markup/dev/set-properties.adoc
 
-            - file: recipe-steps/dev/transient-query.sql
+            - file: tutorial-steps/dev/transient-query.sql
               render:
-                file: recipes/transforming/ksql/markup/dev/transient-query.adoc
+                file: tutorials/transforming/ksql/markup/dev/transient-query.adoc
 
-            - file: recipe-steps/dev/continuous-select.sql
+            - file: tutorial-steps/dev/continuous-select.sql
               render:
-                file: recipes/transforming/ksql/markup/dev/continuous-select.adoc
+                file: tutorials/transforming/ksql/markup/dev/continuous-select.adoc
 
-            - file: recipe-steps/dev/print-output-topic.sql
+            - file: tutorial-steps/dev/print-output-topic.sql
               render:
-                file: recipes/transforming/ksql/markup/dev/print-output-topic.adoc
+                file: tutorials/transforming/ksql/markup/dev/print-output-topic.adoc
           stdout:
-            directory: recipe-steps/dev/outputs
+            directory: tutorial-steps/dev/outputs
 
     - title: Write your statements to a file
       content:
         - action: make_file
           file: src/statements.sql
           render:
-            file: recipes/transforming/ksql/markup/dev/make-src-file.adoc
+            file: tutorials/transforming/ksql/markup/dev/make-src-file.adoc
 
 test:
   steps:
@@ -78,20 +79,20 @@ test:
         - action: make_file
           file: test/input.json
           render:
-            file: recipes/transforming/ksql/markup/test/make-test-input.adoc
+            file: tutorials/transforming/ksql/markup/test/make-test-input.adoc
 
         - action: make_file
           file: test/output.json
           render:
-            file: recipes/transforming/ksql/markup/test/make-test-output.adoc
+            file: tutorials/transforming/ksql/markup/test/make-test-output.adoc
 
     - title: Invoke the tests
       content:
         - action: execute
-          file: recipe-steps/test/run-tests.sh
-          stdout: recipe-steps/test/outputs/test-results.log
+          file: tutorial-steps/test/run-tests.sh
+          stdout: tutorial-steps/test/outputs/test-results.log
           render:
-            file: recipes/transforming/ksql/markup/test/run-tests.adoc
+            file: tutorials/transforming/ksql/markup/test/run-tests.adoc
 
 prod:
   steps:
@@ -99,9 +100,9 @@ prod:
       content:
         - action: skip
           render:
-            file: recipes/transforming/ksql/markup/prod/submit-to-api.adoc
+            file: tutorials/transforming/ksql/markup/prod/submit-to-api.adoc
 
         - action: execute
-          file: recipe-steps/dev/clean-up.sh
+          file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true

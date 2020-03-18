@@ -1,0 +1,6 @@
+null	{"city_id":{"long":1},"name":{"string":"Raleigh"},"state":{"string":"NC"}}
+null	{"city_id":{"long":2},"name":{"string":"Mountain View"},"state":{"string":"CA"}}
+null	{"city_id":{"long":3},"name":{"string":"Knoxville"},"state":{"string":"TN"}}
+null	{"city_id":{"long":4},"name":{"string":"Houston"},"state":{"string":"TX"}}
+null	{"city_id":{"long":5},"name":{"string":"Olympia"},"state":{"string":"WA"}}
+null	{"city_id":{"long":6},"name":{"string":"Bismarck"},"state":{"string":"ND"}}

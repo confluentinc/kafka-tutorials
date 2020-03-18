@@ -1,0 +1,11 @@
+Add the config file `src/main/resources/application.conf` to setup your application:
+
++++++
+<pre class="snippet"><code class="hocon">{%
+    include_raw tutorials/window-final-result/kstreams/code/src/main/resources/application.conf
+%}</code></pre>
++++++
+
+You may want to adapt the blocks `local.date.lang` and `local.date.pattern`
+
+This file contains default configs. In production they will be overridden by environment variables.

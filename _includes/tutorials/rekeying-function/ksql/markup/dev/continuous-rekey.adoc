@@ -1,0 +1,5 @@
+Now, using ksqlDB's appropriately-named `PARTITION BY` clause, we can apply `area_code` as the key for each message and write the result to a new stream:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/rekeying-function/ksql/code/tutorial-steps/dev/continuous-rekey.sql %}</code></pre>
++++++

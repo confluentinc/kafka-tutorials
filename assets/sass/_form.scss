@@ -1,6 +1,6 @@
 #mkto-form {
   margin-top: 20px;
-  width: 70%;
+  width: 100%;
 
   .form {
     display: flex;
@@ -9,7 +9,7 @@
     position: relative;
 
     form {
-      border-radius: 30px;
+      border-radius: 8px;
       border: solid 2px #192048;
       padding: 2px;
       width: 100%;
@@ -28,7 +28,7 @@
       }
 
       input {
-        width: calc(100% - 190px);
+        width: calc(100% - 70px);
         position: relative;
         left: 20px;
         font-size: 16px;
@@ -50,7 +50,7 @@
 
   .cta-button {
     font-size: 16px;
-    padding: 10px 40px;
+    padding: 9px 20px;
     max-width: 200px;
     z-index: 1;
   }

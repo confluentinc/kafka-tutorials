@@ -1,101 +1,114 @@
 dev:
   steps:
-    - title: Get Confluent Platform
-      content:
-        - action: skip
-          render:
-            file: recipes/merging/kstreams/markup/dev/get-cp.adoc
-
     - title: Initialize the project
       content:
         - action: execute
-          file: recipe-steps/dev/init.sh
+          file: tutorial-steps/dev/init.sh
           render:
-            file: recipes/merging/kstreams/markup/dev/init.adoc
+            file: tutorials/merging/kstreams/markup/dev/init.adoc
 
+    - title: Get Confluent Platform
+      content:
         - change_directory: merge-streams
           action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/merging/kstreams/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/merging/kstreams/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Configure the project
+      content:
+        - action: make_file
           file: build.gradle
           render:
-            file: recipes/merging/kstreams/markup/dev/make-build-file.adoc
+            file: tutorials/merging/kstreams/markup/dev/make-build-file.adoc
 
         - action: execute
-          file: recipe-steps/dev/gradle-wrapper.sh
+          file: tutorial-steps/dev/gradle-wrapper.sh
           render:
-            file: recipes/merging/kstreams/markup/dev/make-gradle-wrapper.adoc
+            file: tutorials/merging/kstreams/markup/dev/make-gradle-wrapper.adoc
 
         - action: execute
-          file: recipe-steps/dev/make-configuration-dir.sh
+          file: tutorial-steps/dev/make-configuration-dir.sh
           render:
-            file: recipes/merging/kstreams/markup/dev/make-config-dir.adoc
+            file: tutorials/merging/kstreams/markup/dev/make-config-dir.adoc
 
         - action: make_file
           file: configuration/dev.properties
           render:
-            file: recipes/merging/kstreams/markup/dev/make-dev-file.adoc
+            file: tutorials/merging/kstreams/markup/dev/make-dev-file.adoc
 
     - title: Create a schema for the events
       content:
         - action: execute
-          file: recipe-steps/dev/make-avro-dir.sh
+          file: tutorial-steps/dev/make-avro-dir.sh
           render:
-            file: recipes/merging/kstreams/markup/dev/make-avro-dir.adoc
+            file: tutorials/merging/kstreams/markup/dev/make-avro-dir.adoc
 
         - action: make_file
           file: src/main/avro/song_event.avsc
           render:
-            file: recipes/merging/kstreams/markup/dev/make-song-schema.adoc
+            file: tutorials/merging/kstreams/markup/dev/make-song-schema.adoc
 
         - action: execute
-          file: recipe-steps/dev/build-project.sh
+          file: tutorial-steps/dev/build-project.sh
           render:
-            file: recipes/merging/kstreams/markup/dev/build-project.adoc
+            file: tutorials/merging/kstreams/markup/dev/build-project.adoc
 
     - title: Create the Kafka Streams topology
       content:
         - action: execute
-          file: recipe-steps/dev/make-src-dir.sh
+          file: tutorial-steps/dev/make-src-dir.sh
           render:
-            file: recipes/merging/kstreams/markup/dev/make-src-dir.adoc
+            file: tutorials/merging/kstreams/markup/dev/make-src-dir.adoc
 
         - action: make_file
           file: src/main/java/io/confluent/developer/MergeStreams.java
           render:
-            file: recipes/merging/kstreams/markup/dev/make-topology.adoc
+            file: tutorials/merging/kstreams/markup/dev/make-topology.adoc
 
     - title: Compile and run the Kafka Streams program
       content:
         - action: execute
-          file: recipe-steps/dev/build-uberjar.sh
+          file: tutorial-steps/dev/build-uberjar.sh
           render:
-            file: recipes/merging/kstreams/markup/dev/build-uberjar.adoc
+            file: tutorials/merging/kstreams/markup/dev/build-uberjar.adoc
 
         - action: execute_async
-          file: recipe-steps/dev/run-dev-app.sh
+          file: tutorial-steps/dev/run-dev-app.sh
           render:
-            file: recipes/merging/kstreams/markup/dev/run-dev-app.adoc
+            file: tutorials/merging/kstreams/markup/dev/run-dev-app.adoc
 
     - title: Produce events to the input topics
       content:
         - action: execute
-          file: recipe-steps/dev/console-producer-rock.sh
-          stdin: recipe-steps/dev/rock-input-events.json
+          file: tutorial-steps/dev/console-producer-rock.sh
+          stdin: tutorial-steps/dev/rock-input-events.json
           render:
-            file: recipes/merging/kstreams/markup/dev/run-rock-producer.adoc
+            file: tutorials/merging/kstreams/markup/dev/run-rock-producer.adoc
 
         - action: execute
-          file: recipe-steps/dev/console-producer-classical.sh
-          stdin: recipe-steps/dev/classical-input-events.json
+          file: tutorial-steps/dev/console-producer-classical.sh
+          stdin: tutorial-steps/dev/classical-input-events.json
           render:
-            file: recipes/merging/kstreams/markup/dev/run-classical-producer.adoc
+            file: tutorials/merging/kstreams/markup/dev/run-classical-producer.adoc
 
     - title: Consume events from the output topic
       content:
         - action: execute_async
-          file: recipe-steps/dev/console-consumer.sh
-          stdout: recipe-steps/dev/outputs/actual-output-events.json
+          file: tutorial-steps/dev/console-consumer.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-events.json
           render:
-            file: recipes/merging/kstreams/markup/dev/run-consumer.adoc
+            file: tutorials/merging/kstreams/markup/dev/run-consumer.adoc
 
         - action: sleep
           ms: 5000
@@ -109,26 +122,26 @@ test:
         - action: make_file
           file: configuration/test.properties
           render:
-            file: recipes/merging/kstreams/markup/test/make-test-file.adoc
+            file: tutorials/merging/kstreams/markup/test/make-test-file.adoc
 
     - title: Write a test
       content:
         - action: execute
-          file: recipe-steps/test/make-test-dir.sh
+          file: tutorial-steps/test/make-test-dir.sh
           render:
-            file: recipes/merging/kstreams/markup/test/make-test-dir.adoc
+            file: tutorials/merging/kstreams/markup/test/make-test-dir.adoc
 
         - action: make_file
           file: src/test/java/io/confluent/developer/MergeStreamsTest.java
           render:
-            file: recipes/merging/kstreams/markup/test/make-test.adoc
+            file: tutorials/merging/kstreams/markup/test/make-test.adoc
 
     - title: Invoke the tests
       content:
         - action: execute
-          file: recipe-steps/test/invoke-tests.sh
+          file: tutorial-steps/test/invoke-tests.sh
           render:
-            file: recipes/merging/kstreams/markup/test/invoke-tests.adoc
+            file: tutorials/merging/kstreams/markup/test/invoke-tests.adoc
 
 prod:
   steps:
@@ -137,17 +150,22 @@ prod:
         - action: make_file
           file: configuration/prod.properties
           render:
-            file: recipes/merging/kstreams/markup/prod/make-prod-file.adoc
-        
+            file: tutorials/merging/kstreams/markup/prod/make-prod-file.adoc
+
     - title: Build a Docker image
       content:
         - action: execute
-          file: recipe-steps/prod/build-image.sh
+          file: tutorial-steps/prod/build-image.sh
           render:
-            file: recipes/merging/kstreams/markup/prod/build-image.adoc
+            file: tutorials/merging/kstreams/markup/prod/build-image.adoc
 
     - title: Launch the container
       content:
         - action: skip
           render:
-            file: recipes/merging/kstreams/markup/prod/launch-container.adoc
+            file: tutorials/merging/kstreams/markup/prod/launch-container.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
