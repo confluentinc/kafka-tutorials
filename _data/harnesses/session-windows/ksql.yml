@@ -35,6 +35,7 @@ dev:
         - action: docker_ksql_cli_session
           container: ksqldb
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 20
           render:
             file: tutorials/session-windows/ksql/markup/dev/start-cli.adoc
           stdin:
