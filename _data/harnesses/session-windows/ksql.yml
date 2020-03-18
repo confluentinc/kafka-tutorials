@@ -112,7 +112,6 @@ prod:
         - action: skip
           render:
             file: tutorials/session-windows/ksql/markup/prod/submit-to-api.adoc
-
         - action: execute
           file: tutorial-steps/dev/clean-up.sh
           render:
