@@ -3,5 +3,5 @@ Now let's see how many clicks were made in each user session (based on IP addres
 For the purposes of this example only, we are also going to configure KSQL to buffer the aggregates as it builds them. This makes the query feel like it responds more slowly, but means that you get just one row per window from which is simpler to understand the concept: 
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw recipes/session-windows/ksql/code/recipe-steps/dev/set-properties_cache.sql %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/session-windows/ksql/code/tutorial-steps/dev/set-properties_cache.sql %}</code></pre>
 +++++

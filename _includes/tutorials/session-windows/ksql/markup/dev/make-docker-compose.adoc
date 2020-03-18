@@ -1,5 +1,5 @@
 Next, create the following `docker-compose.yml` file to obtain Confluent Platform:
 
 +++++
-<pre class="snippet"><code class="dockerfile">{% include_raw recipes/session-windows/ksql/code/docker-compose.yml %}</code></pre>
+<pre class="snippet"><code class="dockerfile">{% include_raw tutorials/session-windows/ksql/code/docker-compose.yml %}</code></pre>
 +++++

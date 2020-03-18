@@ -2,11 +2,11 @@ steps:
   - name: bring up the containers
     change_directory: session-windows
     action: execute_async
-    file: recipe-steps/dev/docker-compose-up.sh
+    file: tutorial-steps/dev/docker-compose-up.sh
 
   - name: wait for the containers to start
     action: execute
-    file: recipe-steps/dev/wait-for-containers.sh
+    file: tutorial-steps/dev/wait-for-containers.sh
 
   - name: make the input file
     action: make_file
@@ -18,5 +18,5 @@ steps:
 
   - name: invoke the tests
     action: execute
-    file: recipe-steps/test/run-tests.sh
-    stdout: recipe-steps/test/outputs/test-results.log
+    file: tutorial-steps/test/run-tests.sh
+    stdout: tutorial-steps/test/outputs/test-results.log

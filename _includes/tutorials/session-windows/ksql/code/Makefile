@@ -1,10 +1,10 @@
-STEPS_DIR := recipe-steps
+STEPS_DIR := tutorial-steps
 DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
 TEST_OUTPUTS_DIR := $(STEPS_DIR)/test/outputs
 PROD_OUTPUTS_DIR := $(STEPS_DIR)/prod/outputs
 TEMP_DIR := $(shell mktemp -d)
 
-recipe:
+tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	rm -r $(TEST_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
