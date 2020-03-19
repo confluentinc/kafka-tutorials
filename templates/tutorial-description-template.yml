@@ -1,0 +1,11 @@
+
+<TUTORIAL-SHORT-NAME>:
+  title: "I NEED TO BE UPDATED"
+  meta-description: "I NEED TO BE UPDATED"
+  slug: "/<PERMALINK>"
+  problem: "I NEED TO BE UPDATED"
+  introduction: "I NEED TO BE UPDATED"
+  status:
+    ksql: <KSQL-ENABLED>
+    kstreams: <KSTREAMS-ENABLED>
+    kafka: disabled
