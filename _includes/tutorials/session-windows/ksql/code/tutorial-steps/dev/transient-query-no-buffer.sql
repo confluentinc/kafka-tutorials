@@ -1,4 +1,3 @@
-SET CLI COLUMN-WIDTH 20;
 SET 'ksql.streams.cache.max.bytes.buffering'='0';
 SELECT IP, 
        TIMESTAMPTOSTRING(WINDOWSTART,'yyyy-MM-dd HH:mm:ss') AS SESSION_START_TS, 
