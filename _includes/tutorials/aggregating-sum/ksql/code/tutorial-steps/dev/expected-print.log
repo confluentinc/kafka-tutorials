@@ -3,3 +3,4 @@ Value format: AVRO
 rowtime: 7/18/19 10:01:36 AM UTC, key: Die Hard, value: {"TITLE": "Die Hard", "TOTAL_VALUE": 48}
 rowtime: 7/18/19 11:03:50 AM UTC, key: The Big Lebowski, value: {"TITLE": "The Big Lebowski", "TOTAL_VALUE": 24}
 rowtime: 7/18/19 11:40:09 AM UTC, key: The Godfather, value: {"TITLE": "The Godfather", "TOTAL_VALUE": 84}
+Topic printing ceased
