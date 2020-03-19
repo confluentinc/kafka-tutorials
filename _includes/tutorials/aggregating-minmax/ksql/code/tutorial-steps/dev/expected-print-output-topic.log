@@ -2,3 +2,4 @@ Key format: KAFKA_INT
 Value format: AVRO
 rowtime: 2/29/20 10:34:27 PM UTC, key: 2019, value: {"RELEASE_YEAR": 2019, "MIN__TOTAL_SALES": 385082142, "MAX__TOTAL_SALES": 856980506}
 rowtime: 2/29/20 10:34:27 PM UTC, key: 2018, value: {"RELEASE_YEAR": 2018, "MIN__TOTAL_SALES": 324512774, "MAX__TOTAL_SALES": 700059566}
+Topic printing ceased
