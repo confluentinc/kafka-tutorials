@@ -1,4 +1,4 @@
-Key format: KAFKA (INTEGER)
+Key format: KAFKA_INT
 Value format: AVRO
 rowtime: 3/2/20 3:01:14 PM UTC, key: 294, value: {"RATINGS_ROWKEY": 294, "TITLE": "Die Hard", "RATING": 8.2}
 rowtime: 3/2/20 3:01:14 PM UTC, key: 294, value: {"RATINGS_ROWKEY": 294, "TITLE": "Die Hard", "RATING": 8.5}
