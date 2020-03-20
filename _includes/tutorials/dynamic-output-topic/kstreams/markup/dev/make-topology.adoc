@@ -1,0 +1,41 @@
+////
+In this file you describe the Kafka streams topology, and should cover the main points of the tutorial.
+The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
+////
+
+
+The focus of this tutorial is using attributes in the output records to determine or choose the correct output topic to send to.  For sending fully processed records typically you would use the `KStream.to()` method which takes the name of the output topic where to processed records are sent. But you set this topic name when building the topology, which is fine in many cases, but what if you want to route your processed events to different output topics at runtime?
+
+For dynamic output topic choice, Kafka Streams has an overloaded version of the `KStream.to()` method that takes a `TopicNameExtractor` interface instead of a singular topic name.  The `TopicNameExtractor` interface contains only one method `extract`, which means you can use a lambda in most cases instead of a concrete class.
+
+The `TopicNameExtractor.extract()` method accepts three parameters the key, value and `RecordContext` of the current record and returns a `String`, the output topic to use. You can use the parameters as you need to determine which output topic to use.
+
+Now take a detailed look the `TopicNameExtractor` you'll use in this tutoral (found on line 67 in `DynamicOutputTopic.java`)
+
+++++
+<pre class="snippet"><code class="java">
+final TopicNameExtractor&lt;Long, CompletedOrder&gt; orderTopicNameExtractor = (key, completedOrder, recordContext) -> {
+      final String compositeId = completedOrder.getId();
+      final String skuPart = compositeId.substring(compositeId.indexOf('-') + 1, 5);
+      final String outTopic;
+      if (skuPart.equals("QUA")) {
+           outTopic = specialOrderOutput;
+      } else {
+           outTopic = orderOutputTopic;
+      }
+      return outTopic;
+};
+</code></pre>
+++++
+
+In the code above, the `TopicNameExtractor` takes the `CompletedOrder.id` field and based on the extracted substring, returns the name of the appropriate topic to use.  You should also note that the topics need to be created ahead of time as with any of the topics used by Kafka Streams.
+
+While this preseented example of a `TopicNameExtractor` implementation, it's enough to demonstrate the point of dynamically choosing the output topic.  You can modify the example to fit your purposes.
+
+
+
+Now go ahead and create the following file at `src/main/java/io/confluent/developer/DynamicOutputTopic.java`.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/dynamic-output-topic/kstreams/code/src/main/java/io/confluent/developer/DynamicOutputTopic.java %}</code></pre>
++++++

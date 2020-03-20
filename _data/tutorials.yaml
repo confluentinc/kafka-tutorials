@@ -235,3 +235,14 @@ aggregating-average:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+
+dynamic-output-topic:
+  title: "How to dynamically choose the output topic"
+  meta-description: "How to dynamically choose the output topic"
+  slug: "/streams-dynamic-output-topic"
+  problem: "you need to determine which topic to send records to dynamically"
+  introduction: "Consider a situation where depending on data in your records, you need to choose different topics dynamically.  In this tutorial, you'll learn how to dynamically choose the output topic in Kafka Streams"
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
