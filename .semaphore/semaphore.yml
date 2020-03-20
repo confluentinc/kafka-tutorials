@@ -110,6 +110,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
+        - name: KSQL session windows tests
+          commands:
+            - make -C _includes/tutorials/session-windows/ksql/code tutorial
+
         - name: KSQL aggregation count tests
           commands:
             - make -C _includes/tutorials/aggregating-count/ksql/code tutorial

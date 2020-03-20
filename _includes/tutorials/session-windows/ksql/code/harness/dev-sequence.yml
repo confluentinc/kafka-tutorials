@@ -1,0 +1,63 @@
+steps:
+  - name: initialize
+    action: execute
+    file: tutorial-steps/dev/init.sh
+
+  - name: make the dir structure
+    change_directory: session-windows
+    action: execute
+    file: tutorial-steps/dev/make-dirs.sh
+
+  - name: make a Docker Compose file
+    action: make_file
+    file: docker-compose.yml
+
+  - name: bring up the containers
+    action: execute_async
+    file: tutorial-steps/dev/docker-compose-up.sh
+
+  - name: wait for the containers to start
+    action: execute
+    file: tutorial-steps/dev/wait-for-containers.sh
+
+  - name: run the CLI in Docker
+    action: docker_ksql_cli_session
+    container: ksqldb
+    docker_bootup_file: tutorial-steps/dev/start-cli.sh
+    stdin:
+      - name: create input streams
+        file: tutorial-steps/dev/create-inputs.sql
+
+      - name: populate the streams
+        file: tutorial-steps/dev/populate-stream.sql
+
+      - name: set the dev props
+        file: tutorial-steps/dev/set-properties_offset.sql
+
+      - name: check rowtime
+        file: tutorial-steps/dev/check-rowtime.sql
+
+      - name: set the dev props for caching
+        file: tutorial-steps/dev/set-properties_cache.sql
+
+      - name: run windowed query transiently
+        file: tutorial-steps/dev/transient-window.sql
+
+      - name: run windowed query transiently with no buffering
+        file: tutorial-steps/dev/transient-window-no-buffer.sql
+
+      - name: run it continuously
+        file: tutorial-steps/dev/create-table.sql
+
+      - name: print the topic
+        file: tutorial-steps/dev/print-topic.sql
+    stdout:
+      directory: tutorial-steps/dev/outputs
+
+  - name: populate the src file
+    action: make_file
+    file: src/statements.sql
+
+  - name: clean up docker
+    action: execute
+    file: tutorial-steps/dev/clean-up.sh
