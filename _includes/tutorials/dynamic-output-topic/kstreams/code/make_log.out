@@ -1,0 +1,4 @@
+rm -r tutorial-steps/dev/outputs || true
+mkdir tutorial-steps/dev/outputs
+harness-runner ../../../../../_data/harnesses/dynamic-output-topic/kstreams.yml /var/folders/cj/v_4x4qpj0m5dm2mwl_17pfqw0000gp/T/tmp.ON9PfeTO
+72611 already exited.

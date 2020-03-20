@@ -54,7 +54,12 @@ dev:
             file: tutorials/dynamic-output-topic/kstreams/markup/dev/make-avro-dir.adoc
 
         - action: make_file
-          file: src/main/avro/example.avsc
+          file: src/main/avro/order.avsc
+          render:
+            file: tutorials/dynamic-output-topic/kstreams/markup/dev/make-avro-schema.adoc
+
+        - action: make_file
+          file: src/main/avro/completed-order.avsc
           render:
             file: tutorials/dynamic-output-topic/kstreams/markup/dev/make-avro-schema.adoc
 
@@ -91,7 +96,7 @@ dev:
       content:
         - action: execute
           file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/example-input.json
+          stdin: tutorial-steps/dev/input.json
           render:
             file: tutorials/dynamic-output-topic/kstreams/markup/dev/run-producer.adoc
 
