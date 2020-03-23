@@ -177,3 +177,7 @@ blocks:
         - name: KStreams aggregation MIN/MAX tests
           commands:
             - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
+
+        - name: KStreams KStreams Running Average tests tests
+          commands:
+            - make -C _includes/tutorials/aggregating-average/kstreams/code tutorial
