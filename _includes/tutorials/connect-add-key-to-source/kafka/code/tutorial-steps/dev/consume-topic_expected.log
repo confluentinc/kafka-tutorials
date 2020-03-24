@@ -16,4 +16,3 @@ Payload (19 bytes):     {"city_id": 5, "name": {"string": "Olympia"}, "state": {
 Key     (6 bytes):      6
 Payload (20 bytes):     {"city_id": 6, "name": {"string": "Bismarck"}, "state": {"string": "ND"}}
 --
-% Reached end of topic postgres_cities [0] at offset 6

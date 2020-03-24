@@ -1,4 +1,4 @@
- city_id |     name      | state
+ city_id |     name      | state 
 ---------+---------------+-------
        1 | Raleigh       | NC
        2 | Mountain View | CA
@@ -7,3 +7,4 @@
        5 | Olympia       | WA
        6 | Bismarck      | ND
 (6 rows)
+
