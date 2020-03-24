@@ -1,5 +1,5 @@
 Then create a development file at `configuration/dev.properties`:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/spring-kafka-error-handling/kafka/code/configuration/dev.properties %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/spring-kafka-error-handling/kafka/code/configuration/application-dev.properties %}</code></pre>
 +++++

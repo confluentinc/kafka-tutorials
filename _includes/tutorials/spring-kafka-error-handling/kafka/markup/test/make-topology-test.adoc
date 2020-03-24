@@ -14,5 +14,5 @@ Now create the following file at `src/test/java/io/confluent/developer/SpringBoo
 There is only one method in `SpringBootAppTest` annotated with `@Test`, and that is `exampleTest()`. This method actually runs our Streams topology using the `TopologyTestDriver` and some mocked data that is set up inside the test method.
 
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/spring-kafka-error-handling/kafka/code/src/test/java/io/confluent/developer/SpringBootAppTest.java %}</code></pre>
+<pre class="snippet"><code class="java">{% include_raw tutorials/spring-kafka-error-handling/kafka/code/src/test/java/io/confluent/developer/SpringbootApplicationTests.java %}</code></pre>
 +++++

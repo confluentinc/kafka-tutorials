@@ -8,5 +8,5 @@ Then create the following file at `src/main/java/io/confluent/developer/SpringBo
 // Full topology description goes here
 
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/spring-kafka-error-handling/kafka/code/src/main/java/io/confluent/developer/SpringBootApp.java %}</code></pre>
+<pre class="snippet"><code class="java">{% include_raw tutorials/spring-kafka-error-handling/kafka/code/src/main/java/io/confluent/developer/SpringbootApplication.java %}</code></pre>
 +++++
