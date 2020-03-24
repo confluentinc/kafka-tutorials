@@ -1,0 +1,11 @@
+Check that the connector is running:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/connect-add-key-to-source/kafka/code/tutorial-steps/dev/check-connector.sh %}</code></pre>
++++++
+
+You should see that the state if `RUNNING` for both `connector` and `tasks` elements
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/connect-add-key-to-source/kafka/code/tutorial-steps/dev/check-connector_expected.log %}</code></pre>
++++++
