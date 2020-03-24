@@ -104,7 +104,7 @@ dev:
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-events.json
+          stdout: tutorial-steps/dev/outputs/actual-outputs.json
           render:
             file: tutorials/aggregating-average/kstreams/markup/dev/run-consumer.adoc
 

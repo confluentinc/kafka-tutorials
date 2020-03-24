@@ -1,1 +1,1 @@
-gradle wrapper --warning-mode all
+gradle wrapper

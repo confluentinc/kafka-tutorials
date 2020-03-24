@@ -53,8 +53,8 @@ public class RunningAverage {
   protected Properties buildStreamsProperties(Properties envProps) {
     Properties config = new Properties();
     config.putAll(envProps);
-
-    config.put(APPLICATION_ID_CONFIG, envProps.get("application.id"));
+    
+    config.put(APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
     config.put(BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
     config.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Long().getClass());
     config.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Double().getClass());

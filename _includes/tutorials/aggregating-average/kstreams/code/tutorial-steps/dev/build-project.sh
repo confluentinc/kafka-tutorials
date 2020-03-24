@@ -1,1 +1,1 @@
-./gradlew build --warning-mode all
+./gradlew build

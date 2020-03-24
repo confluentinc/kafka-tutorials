@@ -60,5 +60,5 @@ jar {
 }
 
 shadowJar {
-  archiveFileName = "aggregating-average-standalone-${archiveVersion}.${archiveExtension}"
+  archiveFileName = "aggregating-average-standalone-$version.$extension"
 }
