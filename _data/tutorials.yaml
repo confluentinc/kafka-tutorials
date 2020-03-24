@@ -168,10 +168,10 @@ serialization:
     kstreams: enabled
 
 connect-add-key-to-source:
-  title: "Ingesting data via a JDBC source connector into Kafka Streams as SpecificAvro, adding a key in Kafka Streams"
+  title: "Add key to data ingested through Kafka Connect"
   slug: "/connect-add-key-to-source"
-  problem: "you have data in a table in a database, are pulling that data via a JDBC source connector (which by default does not add a key to the Kafka message), and you want to create a Kafka Stream using SpecificAvro, letting Kafka Streams add the key."
-  introduction: "Consider a database with a table with names of cities. The JDBC source connector can read that data into Kafka but, by default, the topic will not have keys. In Kafka Streams, ingest that data using SpecificAvro and add a key to the stream."
+  problem: "You have data in a source system (such as a database) that you want to stream into Kafka using Kafka Connect. You want to add a key to the data as part of the ingest."
+  introduction: "Kafka Connect is the integration API for Apache Kafka. It enables you to stream data from source systems (such databases, message queues, SaaS platforms, and flat files) into Kafka, and from Kafka to target systems. When you stream data into Kafka you often need to set the key correctly for partitioning and application logic reasons. There are different ways to set the key correctly and these tutorials will show you how. It will also cover how to declare the schema and use Kafka Streams to process the data using SpecificAvro."
   status:
     ksql: disabled
     kstreams: enabled
