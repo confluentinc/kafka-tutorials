@@ -225,3 +225,13 @@ aggregating-average:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+
+spring-kafka-error-handling:
+  title: "Handling deserialization exception in Spring Boot"
+  meta-description: "Learn how to implement error handling strategies in Apache Kafka® application using Spring Boot"
+  slug: "/spring-kafka-errors"
+  problem: "When there is a deserialization exception you need to capture the exception, log a record key to log the details, and send this record to «Dead Letter Topic» (DLT)"
+  introduction: "You're a developing event-driven microservice using Spring Boot and Apache Kafka®. Your application required to be resilient to the deserialization exceptions. And you need to implement logic to handle those errors."
+  status:
+    kafka: enabled
+
