@@ -122,7 +122,9 @@ def run_steps(harness, temp_dir, sequence):
     try:
         for s in filter(lambda x: x in harness, sequence):
             for step in harness[s]["steps"]:
+                print('\n\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-\n-> Running step %s' % step["title"])
                 for section in step["content"]:
+                    print('\t-> Running section %s' % section["action"])
                     context = run_command(context, section)
     finally:
         for name, proc in context["procs"].items():
