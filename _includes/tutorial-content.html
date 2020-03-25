@@ -17,18 +17,20 @@
 
             {% if section.action == "docker_ksql_cli_session" %}
 
-            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
-            {{ prose | asciidocify }}
+              {% if section.render.skip != true %}
+                {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+                {{ prose | asciidocify }}
+              {% endif %}
 
-            {% for subsection in section.stdin %}
-            {% capture prose %}{% include {{ subsection.render.file }} %}{% endcapture %}
-            {{ prose | asciidocify }}
-            {% endfor %}
+              {% for subsection in section.stdin %}
+                {% capture prose %}{% include {{ subsection.render.file }} %}{% endcapture %}
+                {{ prose | asciidocify }}
+              {% endfor %}
 
             {% elsif section.render.skip != true %}
 
-            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
-            {{ prose | asciidocify }}
+              {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+              {{ prose | asciidocify }}
 
             {% endif %}
 
