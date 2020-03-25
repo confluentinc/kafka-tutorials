@@ -95,18 +95,22 @@
               <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
               {% endfor %}
             </ul>
-            <li><a href="#test-it">Test it</a></li>
-            <ul>
-              {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
-              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <li><a href="#take-it-to-prod">Take it to production</a></li>
-            <ul>
-              {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
-              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
-              {% endfor %}
-            </ul>
+            {% if site.data.harnesses[page.static_data][page.stack].test %}
+              <li><a href="#test-it">Test it</a></li>
+              <ul>
+                {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
+                <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% if site.data.harnesses[page.static_data][page.stack].prod %}
+              <li><a href="#take-it-to-prod">Take it to production</a></li>
+              <ul>
+                {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
+                <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </ul>
         </div>
       </div>
