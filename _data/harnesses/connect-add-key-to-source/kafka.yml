@@ -81,24 +81,3 @@ dev:
         file: tutorial-steps/dev/clean-up.sh
         render:
           file: tutorials/connect-add-key-to-source/kafka/markup/dev/clean-up.adoc
-
-test:
-  steps:
-    - title: noop
-      content:
-        - name: noop
-          action: sleep
-          ms: 1
-          render:
-            skip: true
-
-prod:
-  steps:
-    - title: noop
-      content:
-        - name: noop
-          action: sleep
-          ms: 1
-          render:
-            skip: true
-
