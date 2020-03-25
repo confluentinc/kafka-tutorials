@@ -120,7 +120,7 @@ def run_steps(harness, temp_dir, sequence):
     }
 
     try:
-        for s in sequence:
+        for s in filter(lambda x: x in harness, sequence):
             for step in harness[s]["steps"]:
                 for section in step["content"]:
                     context = run_command(context, section)

@@ -40,6 +40,7 @@
     </div>
   </section>
 
+  {% if site.data.harnesses[page.static_data][page.stack].test %}
   <section class="section">
     <div class="container">
       <div class="columns">
@@ -69,7 +70,9 @@
       </div>
     </div>
   </section>
+  {% endif %}
 
+  {% if site.data.harnesses[page.static_data][page.stack].prod %}
   <section class="section">
     <div class="container">
       <div class="columns">
@@ -99,4 +102,5 @@
       </div>
     </div>
   </section>
+  {% endif %}
 </div>
