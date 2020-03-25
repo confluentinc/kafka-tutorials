@@ -158,6 +158,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/connect-add-key-to-source/kafka/code tutorial
 
+        - name: ksqlDB  Connect SMT key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
+
         - name: KStreams emit a final result from a time window
           commands:
             - make -C _includes/tutorials/window-final-result/kstreams/code tutorial
