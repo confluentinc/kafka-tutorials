@@ -53,7 +53,7 @@ test {
 jar {
   manifest {
     attributes(
-        "Class-Path": configurations.compileClasspath.collect { it.getName() }.join(" "),
+        "Class-Path": configurations.runtime.collect { it.getName() }.join(" "),
         "Main-Class": "io.confluent.developer.RunningAverage"
     )
   }
@@ -61,4 +61,9 @@ jar {
 
 shadowJar {
   archiveFileName = "aggregating-average-standalone-$version.$extension"
+}
+
+tasks.withType(AbstractArchiveTask) {
+  preserveFileTimestamps = false
+  reproducibleFileOrder = true
 }

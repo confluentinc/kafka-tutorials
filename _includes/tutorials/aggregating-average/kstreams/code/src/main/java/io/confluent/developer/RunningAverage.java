@@ -31,7 +31,6 @@ import io.confluent.demo.Rating;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
-import static io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig.BASIC_AUTH_CREDENTIALS_SOURCE;
 import static io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 import static java.lang.Integer.parseInt;
 import static java.lang.Short.parseShort;
@@ -41,11 +40,9 @@ import static org.apache.kafka.common.serialization.Serdes.Double;
 import static org.apache.kafka.common.serialization.Serdes.Long;
 import static org.apache.kafka.streams.StreamsConfig.APPLICATION_ID_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.BOOTSTRAP_SERVERS_CONFIG;
-import static org.apache.kafka.streams.StreamsConfig.COMMIT_INTERVAL_MS_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.REPLICATION_FACTOR_CONFIG;
-import static org.apache.kafka.streams.StreamsConfig.topicPrefix;
 
 public class RunningAverage {
 
@@ -53,7 +50,7 @@ public class RunningAverage {
   protected Properties buildStreamsProperties(Properties envProps) {
     Properties config = new Properties();
     config.putAll(envProps);
-    
+
     config.put(APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
     config.put(BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
     config.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Long().getClass());
@@ -61,13 +58,9 @@ public class RunningAverage {
     config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
     config.put(REPLICATION_FACTOR_CONFIG, envProps.getProperty("default.topic.replication.factor"));
-
     config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, envProps.getProperty("offset.reset.policy"));
 
     config.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
-    // Set commit interval to 1 second.
-    config.put(COMMIT_INTERVAL_MS_CONFIG, 1000);
-    config.put(topicPrefix("segment.ms"), 15000000);
 
     return config;
   }
@@ -137,8 +130,7 @@ public class RunningAverage {
 
     // Grouping Ratings
     KGroupedStream<Long, Double> ratingsById = ratings
-        .map((key, rating) -> new KeyValue<>(rating.getMovieId(), rating))
-        .mapValues(Rating::getRating)
+        .map((key, rating) -> new KeyValue<>(rating.getMovieId(), rating.getRating()))
         .groupByKey();
 
     final KTable<Long, CountAndSum> ratingCountAndSum =
@@ -155,27 +147,24 @@ public class RunningAverage {
                                     Materialized.as("average-ratings"));
 
     // persist the result in topic
-    ratingAverage.toStream()
-        .to(avgRatingsTopicName);
+    ratingAverage.toStream().to(avgRatingsTopicName);
     return ratingAverage;
   }
 
   //region buildTopology
-  private Topology buildTopology(StreamsBuilder builder,
+  private Topology buildTopology(StreamsBuilder bldr,
                                  Properties envProps) {
 
     final String ratingTopicName = envProps.getProperty("input.ratings.topic.name");
     final String avgRatingsTopicName = envProps.getProperty("output.rating-averages.topic.name");
 
-    KStream<Long, Rating> ratingStream = builder.stream(ratingTopicName,
-                                                        Consumed.with(Serdes.Long(), getRatingSerde(envProps)));
+    KStream<Long, Rating> ratingStream = bldr.stream(ratingTopicName,
+                                                     Consumed.with(Serdes.Long(), getRatingSerde(envProps)));
 
-    final KTable<Long, Double> ratingAverageTable = RunningAverage.getRatingAverageTable(ratingStream,
-                                                                                         avgRatingsTopicName,
-                                                                                         getCountAndSumSerde(envProps));
+    getRatingAverageTable(ratingStream, avgRatingsTopicName, getCountAndSumSerde(envProps));
 
     // finish the topology
-    return builder.build();
+    return bldr.build();
   }
   //endregion
 
@@ -192,16 +181,10 @@ public class RunningAverage {
   }
 
   protected static Map<String, String> getSerdeConfig(Properties config) {
-    final String srUserInfoPropertyName = "schema.registry.basic.auth.user.info";
     final HashMap<String, String> map = new HashMap<>();
 
     final String srUrlConfig = config.getProperty(SCHEMA_REGISTRY_URL_CONFIG);
-    final String srAuthCredsConfig = config.getProperty(BASIC_AUTH_CREDENTIALS_SOURCE);
-    final String srUserInfoConfig = config.getProperty(srUserInfoPropertyName);
-
     map.put(SCHEMA_REGISTRY_URL_CONFIG, ofNullable(srUrlConfig).orElse(""));
-    map.put(BASIC_AUTH_CREDENTIALS_SOURCE, ofNullable(srAuthCredsConfig).orElse(""));
-    map.put(srUserInfoPropertyName, ofNullable(srUserInfoConfig).orElse(""));
     return map;
   }
 
@@ -224,6 +207,4 @@ public class RunningAverage {
   public static void main(String[] args) {
     new RunningAverage().run();
   }
-
-
 }
