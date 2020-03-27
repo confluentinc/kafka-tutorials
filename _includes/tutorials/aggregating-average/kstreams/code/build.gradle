@@ -10,6 +10,7 @@ buildscript {
 
 plugins {
   id "java"
+  id "application"
   id "com.google.cloud.tools.jib" version "1.1.1"
   id "idea"
   id "eclipse"
@@ -18,6 +19,7 @@ plugins {
 sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 version = "0.0.1"
+mainClassName = "io.confluent.developer.RunningAverage"
 
 repositories {
   jcenter()
@@ -54,7 +56,7 @@ jar {
   manifest {
     attributes(
         "Class-Path": configurations.runtime.collect { it.getName() }.join(" "),
-        "Main-Class": "io.confluent.developer.RunningAverage"
+        "Main-Class": mainClassName
     )
   }
 }
@@ -63,7 +65,11 @@ shadowJar {
   archiveFileName = "aggregating-average-standalone-$version.$extension"
 }
 
-tasks.withType(AbstractArchiveTask) {
-  preserveFileTimestamps = false
-  reproducibleFileOrder = true
+jib {
+  container {
+    mainClass = mainClassName
+    jvmFlags =["-Dconfig.file=/prod.properties"]
+  }
+
+  extraDirectory = file("${rootDir.getPath()}/configuration")
 }

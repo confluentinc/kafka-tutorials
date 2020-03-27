@@ -43,6 +43,7 @@ import static org.apache.kafka.streams.StreamsConfig.BOOTSTRAP_SERVERS_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.REPLICATION_FACTOR_CONFIG;
+import static org.apache.kafka.streams.kstream.Grouped.with;
 
 public class RunningAverage {
 
@@ -131,7 +132,7 @@ public class RunningAverage {
     // Grouping Ratings
     KGroupedStream<Long, Double> ratingsById = ratings
         .map((key, rating) -> new KeyValue<>(rating.getMovieId(), rating.getRating()))
-        .groupByKey();
+        .groupByKey(with(Long(), Double()));
 
     final KTable<Long, CountAndSum> ratingCountAndSum =
         ratingsById.aggregate(() -> new CountAndSum(0L, 0.0),
