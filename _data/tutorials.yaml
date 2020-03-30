@@ -214,3 +214,14 @@ flatten-nested-data:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
+
+aggregating-average:
+  title: "Compute an average aggregation"
+  meta-description: "Compute an average aggregation"
+  slug: "/aggregating-average"
+  problem: "Kafka Streams natively supports \"incremental\" aggregation functions, in which the aggregation result is updated based on the values captured by each window. Incremental functions include count, sum, min, and max. An average aggregation cannot be computed incrementally. However, as this tutorial shows, it can be implemented by composing incremental functions, namely count and sum."
+  introduction: "Consider a topic with events that represent ratings of movies. In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
