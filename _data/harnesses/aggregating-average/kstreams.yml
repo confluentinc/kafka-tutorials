@@ -92,14 +92,6 @@ dev:
           render:
             file: tutorials/aggregating-average/kstreams/markup/dev/run-dev-app.adoc
 
-    - title: Produce sample data to the input topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/input-ratings.json
-          render:
-            file: tutorials/aggregating-average/kstreams/markup/dev/run-producer.adoc
-
     - title: Consume data from the output topic
       content:
         - action: execute_async
@@ -113,6 +105,14 @@ dev:
           ms: 5000
           render:
             skip: true
+
+    - title: Produce sample data to the input topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/console-producer.sh
+          stdin: tutorial-steps/dev/input-ratings.json
+          render:
+            file: tutorials/aggregating-average/kstreams/markup/dev/run-producer.adoc
 
 test:
   steps:
