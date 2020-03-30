@@ -3,7 +3,7 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-Then create the following file at `src/main/java/io/confluent/developer/<MAIN-CLASS-NAME>.java`. Let's take a close look at the `buildTopology()` method, which uses the Kafka Streams DSL.
+Then create the following file at `src/main/java/io/confluent/developer/RunningAverage.java`. Let's take a close look at the `buildTopology()` method, which uses the Kafka Streams DSL.
 
 // Full topology description goes here
 
