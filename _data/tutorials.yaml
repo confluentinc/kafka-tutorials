@@ -216,7 +216,7 @@ flatten-nested-data:
     kafka: disabled
 
 aggregating-average:
-  title: "How to compute average?"
+  title: "Compute an average aggregation"
   meta-description: "How to compute average?"
   slug: "/aggregating-average"
   problem: "Kafka Streams DSL aggregation natively support so-called incremental\" or \"cumulative\" aggregation functions like count, sum, min, max. However, average function can be composed of distributive functions, namely count and sum. In this tutorial we will write a program."
