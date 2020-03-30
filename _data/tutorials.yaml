@@ -220,7 +220,7 @@ aggregating-average:
   meta-description: "How to compute average?"
   slug: "/aggregating-average"
   problem: "Kafka Streams DSL aggregation natively support so-called incremental\" or \"cumulative\" aggregation functions like count, sum, min, max. However, average function can be composed of distributive functions, namely count and sum. In this tutorial we will write a program."
-  introduction: "Consider a topic with events that represent ratings of movies. In this tutorial, we'll write a program that calculates and maintains running average of ratings a movie received."
+  introduction: "Consider a topic with events that represent ratings of movies. In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie."
   status:
     ksql: disabled
     kstreams: enabled
