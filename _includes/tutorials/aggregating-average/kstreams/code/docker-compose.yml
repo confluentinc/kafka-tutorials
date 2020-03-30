@@ -3,7 +3,7 @@ version: '3.5'
 
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.4.0
+    image: confluentinc/cp-zookeeper:5.4.1
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -15,7 +15,7 @@ services:
       - cp
 
   broker:
-    image: confluentinc/cp-enterprise-kafka:5.4.0
+    image: confluentinc/cp-enterprise-kafka:5.4.1
     hostname: broker
     container_name: broker
     depends_on:
@@ -40,7 +40,7 @@ services:
       - cp
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:5.4.0
+    image: confluentinc/cp-schema-registry:5.4.1
     hostname: schema-registry
     container_name: schema-registry
     depends_on:
