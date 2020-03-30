@@ -18,6 +18,7 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.KTable;
 import org.apache.kafka.streams.kstream.Materialized;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -111,12 +112,13 @@ public class RunningAverage {
     Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
       @Override
       public void run() {
-        streams.close();
+        streams.close(Duration.ofSeconds(5));
         latch.countDown();
       }
     });
 
     try {
+      streams.cleanUp();
       streams.start();
       latch.await();
     } catch (Throwable e) {
