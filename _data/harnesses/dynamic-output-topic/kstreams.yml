@@ -56,12 +56,12 @@ dev:
         - action: make_file
           file: src/main/avro/order.avsc
           render:
-            file: tutorials/dynamic-output-topic/kstreams/markup/dev/make-avro-schema.adoc
+            file: tutorials/dynamic-output-topic/kstreams/markup/dev/make-avro-schema-order.adoc
 
         - action: make_file
           file: src/main/avro/completed-order.avsc
           render:
-            file: tutorials/dynamic-output-topic/kstreams/markup/dev/make-avro-schema.adoc
+            file: tutorials/dynamic-output-topic/kstreams/markup/dev/make-avro-schema-completed-order.adoc
 
         - action: execute
           file: tutorial-steps/dev/build-project.sh
