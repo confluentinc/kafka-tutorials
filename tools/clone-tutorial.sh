@@ -25,7 +25,7 @@ PROPS_DIR=$(cd $(dirname "${PROPS_FILE}") && pwd -P)
 if [ "${PROPS_DIR}" == "${KT_HOME}" ]; then
   echo "Directory of properties file ${PROPS_DIR}"
   echo "Properties file exists in Kafka Tutorials directory"
-  echo "Please move your props file out of the Kafak Tutorials directory and re-run"
+  echo "Please move your props file out of the Kafka Tutorials directory and re-run"
   exit 1
 fi
 
