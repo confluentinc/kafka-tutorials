@@ -4,7 +4,7 @@ Then close the current console consumer or open a second terminal window and sta
 <pre class="snippet"><code class="shell">{% include_raw tutorials/dynamic-output-topic/kstreams/code/tutorial-steps/dev/console-consumer-special.sh %}</code></pre>
 +++++
 
-Then the special order console consumer should yeild this output:
+The special order console consumer should yield this output:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/dynamic-output-topic/kstreams/code/tutorial-steps/dev/expected-special-output.json %}</code></pre>

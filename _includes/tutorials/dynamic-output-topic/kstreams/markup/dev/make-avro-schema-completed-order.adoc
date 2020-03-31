@@ -1,4 +1,4 @@
-Then create this Avro schmea file at `src/main/avro/completed-order.avsc` to create `CompletedOrder` objects:
+Then create this Avro schema file at `src/main/avro/completed-order.avsc` to create `CompletedOrder` objects:
 
 +++++
 <pre class="snippet"><code class="avro">{% include_raw tutorials/dynamic-output-topic/kstreams/code/src/main/avro/completed-order.avsc %}</code></pre>

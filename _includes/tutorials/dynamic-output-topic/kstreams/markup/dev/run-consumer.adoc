@@ -4,7 +4,7 @@
 
 ////
 
-Now that you have produced some orders, you should set up a consumer to view the results. But in this case, you need to start two consumers as the Kafka Streams
+Now that you have produced some orders, you should set up a consumer to view the results. In this case, you need to start two consumers as the Kafka Streams
 application dynamically chooses which output topic to use depending on information contained in the `Order` object.
 
 In a new terminal window start the following console consumer to view regular sized `Order` objects.
