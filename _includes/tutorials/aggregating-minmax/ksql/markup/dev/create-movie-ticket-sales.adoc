@@ -1,7 +1,7 @@
-Our tutorial computes the highest grossing and lowest grossing films per year in our data set. To keep things simple, we're going to create a source Kafka topic and KSQL stream with annual sales data in it. In a real-world data pipeline, this would probably be the output of another KSQL query that takes a stream of individual sales events and aggregates them into annual totals, but we'll save ourselves that trouble and just create the annual sales data directly.
+Our tutorial computes the highest grossing and lowest grossing films per year in our data set. To keep things simple, we're going to create a source Kafka topic and ksqlDB stream with annual sales data in it. In a real-world data pipeline, this would probably be the output of another ksqlDB query that takes a stream of individual sales events and aggregates them into annual totals, but we'll save ourselves that trouble and just create the annual sales data directly.
 
-This line of KSQL DDL creates a stream and its underlying Kafka topic to represent the annual sales totals. 
-Note that we are defining the schema for the stream, which includes three fields: `title`, `release_year`, and `total_sales`. We are also specifying that the underlying Kafka topic—which KSQL will auto-create—be called `movie-ticket-sales` and have just one partition, and that its messages will be in Avro format.
+This line of ksqlDB DDL creates a stream and its underlying Kafka topic to represent the annual sales totals. 
+Note that we are defining the schema for the stream, which includes three fields: `title`, `release_year`, and `total_sales`. We are also specifying that the underlying Kafka topic—which ksqlDB will auto-create—be called `movie-ticket-sales` and have just one partition, and that its messages will be in Avro format.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/ksql/code/tutorial-steps/dev/create-movie-ticket-sales.sql %}</code></pre>

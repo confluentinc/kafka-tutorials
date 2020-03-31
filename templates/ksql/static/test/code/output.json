@@ -1,0 +1,28 @@
+{
+  "outputs": [
+    {
+      "topic": "sport_events",
+      "key": "sport",
+      "value": {
+        "EVENT_TYPE": "sport",
+        "NAME": "car race"
+      }
+    },
+    {
+      "topic": "sport_events",
+      "key": "sport",
+      "value": {
+        "EVENT_TYPE": "sport",
+        "NAME": "basketball game"
+      }
+    },
+    {
+      "topic": "sport_events",
+      "key": "sport",
+      "value": {
+        "EVENT_TYPE": "sport",
+        "NAME": "soccer match"
+      }
+    }
+  ]
+}

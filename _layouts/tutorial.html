@@ -13,7 +13,7 @@
   <title>{{ site.data.stacks[page.stack].pretty }} Tutorial: {{ site.data.tutorials[page.static_data].title }} using {{ site.data.stacks[page.stack].pretty }}</title>
 
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/github.min.css" />
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ "/assets/sass/fonts.css" | relative_url }}" />
   <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
 </head>
 <body class="pg-tutorial">
@@ -22,6 +22,9 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
+        {% if page.community_contribution %}
+        <span class="community-contribution">Community contribution ✨</span>
+        {% endif %}
         <div class="headline">
           <h1>{{ site.data.tutorials[page.static_data].title }}</h1>
         </div>
@@ -47,7 +50,7 @@
         <select>
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html" {% if page.stack == 'ksql' %} selected {% endif %}>
-            KSQL
+            ksqlDB
           </option>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kstreams == 'enabled' %}
@@ -66,7 +69,7 @@
         <div class="buttons">
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html">
-            KSQL
+            ksqlDB
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kstreams == 'enabled' %}
@@ -92,18 +95,22 @@
               <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
               {% endfor %}
             </ul>
-            <li><a href="#test-it">Test it</a></li>
-            <ul>
-              {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
-              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <li><a href="#take-it-to-prod">Take it to production</a></li>
-            <ul>
-              {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
-              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
-              {% endfor %}
-            </ul>
+            {% if site.data.harnesses[page.static_data][page.stack].test %}
+              <li><a href="#test-it">Test it</a></li>
+              <ul>
+                {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
+                <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% if site.data.harnesses[page.static_data][page.stack].prod %}
+              <li><a href="#take-it-to-prod">Take it to production</a></li>
+              <ul>
+                {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
+                <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </ul>
         </div>
       </div>

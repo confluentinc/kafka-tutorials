@@ -1,0 +1,13 @@
+Key format: KAFKA (STRING)
+Value format: AVRO
+rowtime: 7/9/19 1:00:00 AM UTC, key: Die Hardk��, value: {"TITLE": "Die Hard", "RATING_COUNT": 1, "WINDOW_START": 1562630400000, "WINDOW_END": 1562652000000}
+rowtime: 7/9/19 5:00:00 AM UTC, key: Die Hardk��, value: {"TITLE": "Die Hard", "RATING_COUNT": 2, "WINDOW_START": 1562630400000, "WINDOW_END": 1562652000000}
+rowtime: 7/9/19 7:00:00 AM UTC, key: Die Hardk�Q?, value: {"TITLE": "Die Hard", "RATING_COUNT": 1, "WINDOW_START": 1562652000000, "WINDOW_END": 1562673600000}
+rowtime: 7/9/19 9:00:00 AM UTC, key: Tree of Lifek�Q?, value: {"TITLE": "Tree of Life", "RATING_COUNT": 1, "WINDOW_START": 1562652000000, "WINDOW_END": 1562673600000}
+rowtime: 7/9/19 9:00:00 AM UTC, key: Tree of Lifek�Q?, value: {"TITLE": "Tree of Life", "RATING_COUNT": 2, "WINDOW_START": 1562652000000, "WINDOW_END": 1562673600000}
+rowtime: 7/9/19 12:00:00 PM UTC, key: A Walk in the Cloudsk֚�, value: {"TITLE": "A Walk in the Clouds", "RATING_COUNT": 1, "WINDOW_START": 1562673600000, "WINDOW_END": 1562695200000}
+rowtime: 7/9/19 3:00:00 PM UTC, key: A Walk in the Cloudsk֚�, value: {"TITLE": "A Walk in the Clouds", "RATING_COUNT": 2, "WINDOW_START": 1562673600000, "WINDOW_END": 1562695200000}
+rowtime: 7/9/19 10:00:00 PM UTC, key: A Walk in the Cloudsk��m, value: {"TITLE": "A Walk in the Clouds", "RATING_COUNT": 1, "WINDOW_START": 1562695200000, "WINDOW_END": 1562716800000}
+rowtime: 7/9/19 5:00:00 AM UTC, key: The Big Lebowskik��, value: {"TITLE": "The Big Lebowski", "RATING_COUNT": 1, "WINDOW_START": 1562630400000, "WINDOW_END": 1562652000000}
+rowtime: 7/9/19 5:00:00 AM UTC, key: The Big Lebowskik��, value: {"TITLE": "The Big Lebowski", "RATING_COUNT": 2, "WINDOW_START": 1562630400000, "WINDOW_END": 1562652000000}
+rowtime: 7/9/19 6:00:00 PM UTC, key: Super Mario Bros.k��m, value: {"TITLE": "Super Mario Bros.", "RATING_COUNT": 1, "WINDOW_START": 1562695200000, "WINDOW_END": 1562716800000}

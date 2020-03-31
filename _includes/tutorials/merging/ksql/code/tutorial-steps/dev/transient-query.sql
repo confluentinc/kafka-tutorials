@@ -1,1 +1,1 @@
-SELECT artist, title, genre FROM all_songs LIMIT 9;
+SELECT artist, title, genre FROM all_songs EMIT CHANGES LIMIT 9;

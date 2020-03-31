@@ -1,6 +1,6 @@
 Name        : VWAP
 Overview    : Volume weighted average price
-Type        : scalar
+Type        : SCALAR
 Jar         : /etc/ksql/ext/udf-0.0.1.jar
 Variations  : 
 

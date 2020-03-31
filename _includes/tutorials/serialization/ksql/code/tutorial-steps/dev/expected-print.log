@@ -1,4 +1,5 @@
-Format:AVRO
-8/1/19 3:28:06 PM UTC, null, {"MOVIE_ID": 1, "TITLE": "Lethal Weapon", "RELEASE_YEAR": 1992}
-8/1/19 3:28:06 PM UTC, null, {"MOVIE_ID": 2, "TITLE": "Die Hard", "RELEASE_YEAR": 1988}
-8/1/19 3:28:06 PM UTC, null, {"MOVIE_ID": 3, "TITLE": "Predator", "RELEASE_YEAR": 1997}
+Key format: KAFKA (BIGINT or DOUBLE)
+Value format: AVRO
+rowtime: 2/28/20 3:38:40 PM UTC, key: 1, value: {"MOVIE_ID": 1, "TITLE": "Lethal Weapon", "RELEASE_YEAR": 1992}
+rowtime: 2/28/20 3:38:40 PM UTC, key: 1, value: {"MOVIE_ID": 2, "TITLE": "Die Hard", "RELEASE_YEAR": 1988}
+rowtime: 2/28/20 3:38:40 PM UTC, key: 1, value: {"MOVIE_ID": 3, "TITLE": "Predator", "RELEASE_YEAR": 1997}

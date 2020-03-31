@@ -17,18 +17,20 @@
 
             {% if section.action == "docker_ksql_cli_session" %}
 
-            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
-            {{ prose | asciidocify }}
+              {% if section.render.skip != true %}
+                {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+                {{ prose | asciidocify }}
+              {% endif %}
 
-            {% for subsection in section.stdin %}
-            {% capture prose %}{% include {{ subsection.render.file }} %}{% endcapture %}
-            {{ prose | asciidocify }}
-            {% endfor %}
+              {% for subsection in section.stdin %}
+                {% capture prose %}{% include {{ subsection.render.file }} %}{% endcapture %}
+                {{ prose | asciidocify }}
+              {% endfor %}
 
             {% elsif section.render.skip != true %}
 
-            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
-            {{ prose | asciidocify }}
+              {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+              {{ prose | asciidocify }}
 
             {% endif %}
 
@@ -40,6 +42,7 @@
     </div>
   </section>
 
+  {% if site.data.harnesses[page.static_data][page.stack].test %}
   <section class="section">
     <div class="container">
       <div class="columns">
@@ -69,7 +72,9 @@
       </div>
     </div>
   </section>
+  {% endif %}
 
+  {% if site.data.harnesses[page.static_data][page.stack].prod %}
   <section class="section">
     <div class="container">
       <div class="columns">
@@ -99,4 +104,5 @@
       </div>
     </div>
   </section>
+  {% endif %}
 </div>

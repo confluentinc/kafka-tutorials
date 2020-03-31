@@ -1,0 +1,11 @@
+In a new terminal, run:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/kstreams/code/tutorial-steps/dev/console-producer.sh %}</code></pre>
++++++
+
+When the console producer starts, it may log some messages, and then pause waiting for your input.  The input records below each represent an event.  You can paste or type in one line at a time then press enter to send it.  To send all of the events, paste all of the rows into the prompt and press enter:
+
++++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/aggregating-minmax/kstreams/code/tutorial-steps/dev/input-events.json %}</code></pre>
++++++

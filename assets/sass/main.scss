@@ -12,7 +12,7 @@ body,
 select,
 input,
 button {
-  font-family: "Roboto", "Arial", sans-serif;
+  font-family: "MarkOT";
 }
 
 .logo {
@@ -24,7 +24,7 @@ button {
 
 .cta-button {
   display: inline-block;
-  border-radius: 30px;
+  border-radius: 8px;
   font-size: 12px;
   font-weight: 500;
   font-style: normal;
@@ -163,7 +163,7 @@ body {
     .subtitle {
         max-width: 800px;
         margin-top: 50px;
-        color: #fff;
+        color: $baseColor;
     }
   }
 
@@ -173,13 +173,17 @@ body {
 }
 
 .hero {
-  background-color: #f9f9fa;
-  background-image: url("../img/hero.png");
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #b4e1e4;
   padding-top: 100px;
-  color: #fff;
+  color: $baseColor;
+  border-radius: 8px;
+  margin: 0 25px;
+
+  @media screen and (max-width: 768px) {
+    border-radius: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
 
   .hero-body {
     padding-top: 20px;
