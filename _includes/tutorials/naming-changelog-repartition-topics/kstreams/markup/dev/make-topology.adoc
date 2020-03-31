@@ -13,24 +13,25 @@ First look at a snippet of the Kafka Streams application in this tutorial:
 
   KStream&lt;Long, Long&gt; exampleCountStream = exampleStream.groupByKey().count().toStream();
 
-  ......
-
+  KStream&lt;Long, String&gt; joinedStream = exampleStream.join(exampleCountStream, (v1, v2) -> v1.getName() + v2.toString(),
+                                                              JoinWindows.of(Duration.ofMillis(100)),
+                                                              StreamJoined.with(longSerde, exampleSerde, longSerde));
 </code></pre>
 +++++
 
 
-In the `exampleStream` there is a `selectKey()` operation, changing the key of the incoming stream.  As a result when creating the `exampleCountStream`, the `groupByKey()` operation forces a repartition.  Additionally, `count()` is an aggregation so Kafka Streams creates state store for the count and a changelog topic for fault tolerance of the state store.  When using the DSL, Kafka Streams generates the names for each processor, state store, and any required internal topics.  In this case of the `exampleCountStream` in addition to naming the processors the follwing will have generated names:
+In the `exampleStream` there is a `selectKey()` operation, changing the key of the incoming stream.
+
+As a result when creating the `exampleCountStream`, the `groupByKey()` operation forces a repartition.
+
+Additionally, `count()` is an aggregation so Kafka Streams creates state store for the count and a changelog topic for fault tolerance of the state store.
+
+When using the DSL, Kafka Streams generates the names for each processor, state store, and any required internal topics.  In this case of the `exampleCountStream` in addition to naming the processors the follwing will have generated names:
 
 * state store - `KSTREAM-AGGREGATE-STATE-STORE-0000000002`
 * changelog topic - `KSTREAM-AGGREGATE-STATE-STORE-0000000002-changelog`
 * repartition topic - `KSTREAM-AGGREGATE-STATE-STORE-0000000002-repartition`
 
-You'll notice the number suffix `0000000002`.  Kafka Streams uses a number incrementor to name each component.  So far this is very straighforward information.  But when you consider that changelog and repartition topics are stateful, there are some implications to consider when updating the topology.  Let's add a `filter()` processor
+You'll notice the number suffix `0000000002`.  Kafka Streams uses a number incrementor to name each component.
 
-
-
-With the discussion behind us, go ahead and create the following file at `src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java`.
-
-+++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java %}</code></pre>
-+++++
+Please note these are just a subset of the name in the topology, the rest are not shown for readability.

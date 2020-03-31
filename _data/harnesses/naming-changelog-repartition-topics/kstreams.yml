@@ -63,7 +63,7 @@ dev:
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/build-project.adoc
 
-    - title: Create the Kafka Streams topology
+    - title: Create an initial Kafka Streams topology
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
@@ -73,7 +73,21 @@ dev:
         - action: make_file
           file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
           render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/make-topology.adoc 
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/make-topology.adoc
+
+    - title: Add an operation to the topology
+      content:    
+        - action: skip
+          file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-filter-to-topology.adoc   
+
+    - title: Add names to the stateful parts of the topology
+      content:    
+        - action: make_file
+          file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-names-to-topology.adoc
 
     - title: Compile and run the Kafka Streams program
       content:

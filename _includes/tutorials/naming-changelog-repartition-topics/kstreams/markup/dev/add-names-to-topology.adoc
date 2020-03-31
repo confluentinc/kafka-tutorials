@@ -1,0 +1,23 @@
+Now to "freeze" the names of the stateful portions of the topology you'll update the code to
+
+
++++++
+<pre class="snippet"><code class="java">
+    KStream&lt;Long, Long&gt; exampleCountStream = exampleStream.groupByKey(Grouped.as("count"))
+                                                                    .count(Materialized.as("count-store"))
+                                                                    .toStream();
+
+    KStream&lt;Long, String&gt; joinedStream  = exampleStream.join(exampleCountStream, (v1, v2) -> v1.getName() + v2.toString(),
+                                                              JoinWindows.of(Duration.ofMillis(100)),
+                                                              StreamJoined.with(Serdes.Long(), exampleSerde, Serdes.Long())
+                                                                          .withName("join").withStoreName("join-store"));
+</code></pre>
++++++
+
+
+
+At this point, go ahead and create the following file at `src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java`.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java %}</code></pre>
++++++

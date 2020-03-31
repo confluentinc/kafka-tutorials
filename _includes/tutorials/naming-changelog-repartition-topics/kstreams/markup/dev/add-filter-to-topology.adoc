@@ -1,0 +1,16 @@
+Now let's add a `filter()` processor:
+
+
++++++
+<pre class="snippet"><code class="java">
+  KStream&lt;Long, Example&gt; exampleStream = builder.stream(inputTopic, Consumed.with(longSerde, exampleSerde))
+                                                  .selectKey((k, v) -> Long.parseLong(v.getName().substring(0, 1)))
+                                                  .filter((k, v) -> k != 1L);
+</code></pre>
++++++
+
+Now when you build the topology the names from above have changed to
+
+* state store - `KSTREAM-AGGREGATE-STATE-STORE-0000000003`
+* changelog topic - `KSTREAM-AGGREGATE-STATE-STORE-0000000003-changelog`
+* repartition topic - `KSTREAM-AGGREGATE-STATE-STORE-0000000003-repartition`

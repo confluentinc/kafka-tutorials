@@ -49,13 +49,12 @@ public class NamingChangelogAndRepartitionTopicsTest {
         envProps.put("add.filter", "true");
         topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
         final String topologyWithFilter = topology.describe().toString();
+        System.out.println(topologyWithFilter);
 
         assertThat(topologyWithFilter.indexOf(initialStateStoreName), is(-1));
         assertThat(topologyWithFilter.indexOf(initialAggregationRepartition), is(-1));
         assertThat(topologyWithFilter.indexOf(stateStoreNameWithFilterAdded), greaterThan(0));
         assertThat(topologyWithFilter.indexOf(aggregationRepartitionWithFilterAdded), greaterThan(0));
-
-        System.out.println(firstTopologyNoFilter);
     }
 
     @Test
