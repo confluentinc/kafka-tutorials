@@ -1,0 +1,15 @@
+Launch the ksqlDB CLI: 
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/connect-add-key-to-source/ksql/code/tutorial-steps/dev/start-cli.sh %}</code></pre>
++++++
+
+
+From the ksqlDB prompt you can create the JDBC source connector. There are a couple of points to note: 
+
+1. The `transforms` stanza which is responsible for setting the key to the value of the `city_id` field
+2. Since the key is an integer we override the default serialization and instead use the `IntegerConverter` for the key field
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/connect-add-key-to-source/ksql/code/tutorial-steps/dev/create-connector.sql %}</code></pre>
++++++

@@ -1,0 +1,83 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/connect-add-key-to-source/kafka/markup/dev/init.adoc
+            
+    - title: Prepare the source data
+      content:
+        - change_directory: connect-add-key-to-source
+          action: make_file
+          file: cities.sql
+          render:
+            file: tutorials/connect-add-key-to-source/kafka/markup/dev/make-sql-commandfile.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/connect-add-key-to-source/kafka/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/connect-add-key-to-source/kafka/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+            
+    - title: Check the source data
+      content:
+        - action: execute
+          file: tutorial-steps/dev/query-postgres.sh
+          stdout: tutorial-steps/dev/outputs/query-postgres.log
+          render:
+            file: tutorials/connect-add-key-to-source/kafka/markup/dev/query-postgres.adoc
+
+    - title: Create the connector
+      content:
+        - action: execute
+          file: tutorial-steps/dev/create-connector.sh
+          stdout: tutorial-steps/dev/outputs/create-connector.log
+          render:
+            file: tutorials/connect-add-key-to-source/kafka/markup/dev/create-connector.adoc
+
+        - name: give Kafka Connect chance to create the connector
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+        - action: execute
+          file: tutorial-steps/dev/check-connector.sh
+          stdout: tutorial-steps/dev/outputs/check-connector.log
+          render:
+            file: tutorials/connect-add-key-to-source/kafka/markup/dev/check-connector.adoc
+
+        - name: give Kafka Connect further chance to get the data to the topic
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+            
+    - title: Consume events from the output topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/consume-topic.sh
+          stdout: tutorial-steps/dev/outputs/consume-topic.log
+          render:
+            file: tutorials/connect-add-key-to-source/kafka/markup/dev/consume-topic.adoc
+
+
+    - title: Clean up
+      content:
+      - action: execute
+        file: tutorial-steps/dev/clean-up.sh
+        render:
+          file: tutorials/connect-add-key-to-source/kafka/markup/dev/clean-up.adoc
