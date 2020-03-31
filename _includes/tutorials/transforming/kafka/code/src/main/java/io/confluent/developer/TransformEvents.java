@@ -69,19 +69,19 @@ public class TransformEvents {
     }
 
     public KafkaConsumer<String, RawMovie> createRawMovieConsumer(Properties consumerProps) {
-        return new KafkaConsumer<String, RawMovie>(consumerProps);
+        return new KafkaConsumer<>(consumerProps);
     }
 
     public KafkaConsumer<String, Movie> createMovieConsumer(Properties consumerProps) {
-        return new KafkaConsumer<String, Movie>(consumerProps);
+        return new KafkaConsumer<>(consumerProps);
     }
 
     public KafkaProducer<String, Movie> createMovieProducer(Properties producerProps) {
-        return new KafkaProducer<String, Movie>(producerProps);
+        return new KafkaProducer<>(producerProps);
     }
 
     public KafkaProducer<String, RawMovie> createRawMovieProducer(Properties producerProps) {
-        return new KafkaProducer<String, RawMovie>(producerProps);
+        return new KafkaProducer<>(producerProps);
     }
 
     public void createTopics(Properties envProps) {

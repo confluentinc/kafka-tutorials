@@ -11,8 +11,11 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.errors.WakeupException;
 
 import java.time.Duration;
+import java.util.Collections;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.Arrays;
+
+import static java.util.Collections.singletonList;
 
 public class TransformationEngine implements Runnable {
 
@@ -37,7 +40,7 @@ public class TransformationEngine implements Runnable {
 
         try {
 
-            rawConsumer.subscribe(Arrays.asList(inputTopic));
+            rawConsumer.subscribe(singletonList(inputTopic));
 
             while (!closed.get()) {
 
@@ -76,7 +79,7 @@ public class TransformationEngine implements Runnable {
 
     private Movie convertRawMovie(RawMovie rawMovie) {
 
-        String titleParts[] = rawMovie.getTitle().split("::");
+        String[] titleParts = rawMovie.getTitle().split("::");
         String title = titleParts[0];
         int releaseYear = Integer.parseInt(titleParts[1]);
 
