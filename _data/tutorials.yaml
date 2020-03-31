@@ -206,3 +206,14 @@ flatten-nested-data:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
+
+generate-test-data-streams:
+  title: "Generate streams of test data"
+  meta-description: "Generate streams of test data"
+  slug: "/generate-streams-of-test-data"
+  problem: "you are working in the Kafka ecosystem and as part of learning and developing applications and pipelines need a stream of test data"
+  introduction: "Using this connector it's possible to generate realistic test data that can also be made referentially consistent across topics."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: enabled
