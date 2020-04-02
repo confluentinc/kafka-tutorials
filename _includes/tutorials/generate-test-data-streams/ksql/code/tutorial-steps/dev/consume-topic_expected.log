@@ -1,9 +1,8 @@
-Key format: KAFKA_INT or KAFKA_STRING
-Value format: AVRO or KAFKA_STRING
-rowtime: 3/25/20 11:53:36 AM UTC, key: 1, value: {"city_id": 1, "name": "Raleigh", "state": "NC"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 2, value: {"city_id": 2, "name": "Mountain View", "state": "CA"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 3, value: {"city_id": 3, "name": "Knoxville", "state": "TN"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 4, value: {"city_id": 4, "name": "Houston", "state": "TX"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 5, value: {"city_id": 5, "name": "Olympia", "state": "WA"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 6, value: {"city_id": 6, "name": "Bismarck", "state": "ND"}
-Topic printing ceased
+Key format: SESSION(AVRO) or HOPPING(AVRO) or TUMBLING(AVRO) or AVRO or SESSION(PROTOBUF) or HOPPING(PROTOBUF) or TUMBLING(PROTOBUF) or PROTOBUF or SESSION(JSON) or HOPPING(JSON) or TUMBLING(JSON) or JSON or SESSION(JSON_SR) or HOPPING(JSON_SR) or TUMBLING(JSON_SR) or JSON_SR or SESSION(KAFKA_INT) or HOPPING(KAFKA_INT) or TUMBLING(KAFKA_INT) or KAFKA_INT or SESSION(KAFKA_BIGINT) or HOPPING(KAFKA_BIGINT) or TUMBLING(KAFKA_BIGINT) or KAFKA_BIGINT or SESSION(KAFKA_DOUBLE) or HOPPING(KAFKA_DOUBLE) or TUMBLING(KAFKA_DOUBLE) or KAFKA_DOUBLE or SESSION(KAFKA_STRING) or HOPPING(KAFKA_STRING) or TUMBLING(KAFKA_STRING) or KAFKA_STRING
+Value format: AVRO
+rowtime: 4/1/20 11:13:49 AM UTC, key: <null>, value: {"user_agent": "Opera/9.80 (X11; Linux i686; Ubuntu/14.10) Presto/2.12.388 Version/12.16", "source_ip": "113.2.99.167", "path": "itaque_commodi/magnam.webm", "host": "www.gilberto-wiegand.co"}
+rowtime: 4/1/20 11:13:50 AM UTC, key: <null>, value: {"user_agent": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.4) Gecko/20030624 Netscape/7.1 (ax)", "source_ip": "215.173.4.241", "path": "ex_dolore/aut.jpeg", "host": "www.vincent-mosciski.net"}
+rowtime: 4/1/20 11:13:51 AM UTC, key: <null>, value: {"user_agent": "Mozilla/5.0 (Windows NT 5.1; rv:36.0) Gecko/20100101 Firefox/36.0", "source_ip": "93.98.148.108", "path": "voluptatibus_asperiores/corrupti.mp4", "host": "www.quinn-anderson.org"}
+rowtime: 4/1/20 11:13:52 AM UTC, key: <null>, value: {"user_agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36", "source_ip": "48.82.248.80", "path": "vel_modi/explicabo.flac", "host": "www.jeremiah-corkery.net"}
+rowtime: 4/1/20 11:13:53 AM UTC, key: <null>, value: {"user_agent": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)", "source_ip": "98.159.91.36", "path": "fugiat_beatae/aut.css", "host": "www.juliana-white.biz"}
+…

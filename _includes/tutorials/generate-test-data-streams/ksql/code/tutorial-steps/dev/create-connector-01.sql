@@ -1,18 +1,12 @@
-CREATE SOURCE CONNECTOR DATAGENERATOR_01 WITH (
-    'connector.class'                = 'io.mdrogalis.voluble.VolubleSourceConnector',
-    'key.converter'                  = 'org.apache.kafka.connect.storage.StringConverter',
-
-    'genkp.customers.with'                 = '#{Internet.uuid}',
-    'genv.customers.name.with'             = '#{HitchhikersGuideToTheGalaxy.character}',
-    'genv.customers.email.with'            = '#{Internet.emailAddress}',
-    'genv.customers.location->city.with'   = '#{HitchhikersGuideToTheGalaxy.location}',
-    'genv.customers.location->planet.with' = '#{HitchhikersGuideToTheGalaxy.planet}',
-    'topic.customers.records.exactly'      = 10,
-
-    'genkp.transactions.with'                = '#{Internet.uuid}',
-    'genv.transactions.customer_id.matching' = 'customers.key',
-    'genv.transactions.cost.with'            = '#{Commerce.price}',
-    'genv.transactions.card_type.with'       = '#{Business.creditCardType}',
-    'genv.transactions.item.with'            = '#{Beer.name}',
-    'topic.transactions.throttle.ms'         = 500 
+CREATE SOURCE CONNECTOR CLICKS WITH (
+    'connector.class'             = 'io.mdrogalis.voluble.VolubleSourceConnector',
+    'key.converter'               = 'org.apache.kafka.connect.storage.StringConverter',
+    
+    'genkp.clicks.with'           = '#{Number.randomDigit}',
+    'attrkp.clicks.null.rate'     = 1,
+    'genv.clicks.source_ip.with'  = '#{Internet.ipV4Address}',
+    'genv.clicks.host.with'       = '#{Internet.url}',
+    'genv.clicks.path.with'       = '#{File.fileName}',
+    'genv.clicks.user_agent.with' = '#{Internet.userAgentAny}',
+    'topic.clicks.throttle.ms'    = 1000 
 );

@@ -1,0 +1,11 @@
++--------------------+------------------+------------+----------+-----------------------------------+
+|EVENT_TS            |MAC               |BYTES_SENT  |NAME      |LOCATION                           |
++--------------------+------------------+------------+----------+-----------------------------------+
+|2020-04-01 17:58:10 |5a:90:bf:18:99:8f |210         |Morghul   |{CITY=Betseyborough, COUNTRY=Niger}|
+|2020-04-01 17:58:10 |1b:19:60:04:76:d1 |3758        |Viserion  |{CITY=Tyrellbury, COUNTRY=Aruba}   |
+|2020-04-01 17:58:11 |4a:3b:7a:b4:06:0a |918         |Tyraxes   |{CITY=Alyssastad, COUNTRY=Jersey}  |
+|2020-04-01 17:58:12 |4a:3b:7a:b4:06:0a |2847        |Tyraxes   |{CITY=Alyssastad, COUNTRY=Jersey}  |
+|2020-04-01 17:58:13 |30:9f:c5:40:3d:2b |2858        |Archonei  |{CITY=Lake Randy, COUNTRY=Aruba}   |
+|2020-04-01 17:58:13 |30:9f:c5:40:3d:2b |1621        |Archonei  |{CITY=Lake Randy, COUNTRY=Aruba}   |
+|2020-04-01 17:58:14 |4a:3b:7a:b4:06:0a |1982        |Tyraxes   |{CITY=Alyssastad, COUNTRY=Jersey}  |
+…

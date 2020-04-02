@@ -9,6 +9,7 @@ tutorial:
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/query-postgres_expected.log $(DEV_OUTPUTS_DIR)/query-postgres.log
 	# tr is used to replace - with spaces from the ksql CLI output, because the file being compared to is what is rendered in the tutorial
 	bash -c "diff --ignore-all-space --strip-trailing-cr <(cat $(STEPS_DIR)/dev/check-plugin_expected.log|tr '-' ' ') $(DEV_OUTPUTS_DIR)/check-plugin.out"
+	bash -c "diff --ignore-all-space --strip-trailing-cr <(cat $(STEPS_DIR)/dev/wait-for-containers_expected.log|tr '-' ' ') $(DEV_OUTPUTS_DIR)/wait-for-containers.out"
 	bash -c "diff --ignore-all-space --strip-trailing-cr <(cat $(STEPS_DIR)/dev/create-connector_expected.log|tr '-' ' ') $(DEV_OUTPUTS_DIR)/create-connector/output-0.log"
 	bash -c "diff --ignore-all-space --strip-trailing-cr <(cat $(STEPS_DIR)/dev/check-connector_expected.log|tr '-' ' ') $(DEV_OUTPUTS_DIR)/check-connector/output-0.log"
 	bash -c "diff --ignore-all-space --strip-trailing-cr <(cat $(STEPS_DIR)/dev/describe-connector_expected.log|tr '-' ' ') $(DEV_OUTPUTS_DIR)/describe-connector/output-0.log"

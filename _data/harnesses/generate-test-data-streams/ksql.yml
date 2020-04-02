@@ -26,7 +26,9 @@ dev:
         - action: execute
           file: tutorial-steps/dev/wait-for-containers.sh
           render:
-            skip: true
+            file: tutorials/generate-test-data-streams/ksql/markup/dev/wait-for-containers.adoc
+          stdout:
+            - file: tutorial-steps/dev/outputs/wait-for-containers.out
 
         - action: execute
           file: tutorial-steps/dev/check-plugin.sh
@@ -35,7 +37,7 @@ dev:
           stdout:
             - file: tutorial-steps/dev/outputs/check-plugin.out
             
-    - title: Create the connector
+    - title: Create a standalone stream of test data
       content:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
@@ -44,100 +46,138 @@ dev:
             directory: tutorial-steps/dev/outputs
           column_width: 20
           render:
-            file: tutorials/generate-test-data-streams/ksql/markup/dev/create-connector-01.adoc
+            skip: true
           stdin:
             - file: tutorial-steps/dev/create-connector-01.sql
               render:
                 file: tutorials/generate-test-data-streams/ksql/markup/dev/create-connector-01.adoc
 
-#         - action: sleep
-#           ms: 5000
-#           render:
-#             skip: true
+        - action: sleep
+          ms: 5000
+          render:
+            skip: true
 
-#         - action: docker_ksql_cli_session
-#           container: ksqldb-cli
-#           docker_bootup_file: tutorial-steps/dev/start-cli.sh
-#           stdout:
-#             directory: tutorial-steps/dev/outputs
-#           column_width: 20
-#           render:
-#             skip: true
-#           stdin:
-#             - file: tutorial-steps/dev/check-connector.sql
-#               render:
-#                 file: tutorials/generate-test-data-streams/ksql/markup/dev/check-connector.adoc
-#             - file: tutorial-steps/dev/describe-connector.sql
-#               render:
-#                 file: tutorials/generate-test-data-streams/ksql/markup/dev/describe-connector.adoc
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 20
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/check-connector-01.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/check-connector-01.adoc
+            - file: tutorial-steps/dev/describe-connector-01.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/describe-connector-01.adoc
             
-#     - title: Consume events from the output topic
-#       content:
-#         - action: docker_ksql_cli_session
-#           container: ksqldb-cli
-#           docker_bootup_file: tutorial-steps/dev/start-cli.sh
-#           stdout:
-#             directory: tutorial-steps/dev/outputs
-#           column_width: 20
-#           render:
-#             skip: true
-#           stdin:
-#             - file: tutorial-steps/dev/consume-topic.sql
-#               render:
-#                 file: tutorials/generate-test-data-streams/ksql/markup/dev/consume-topic.adoc
+    - title: Consume events from the test topic
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 20
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/consume-topic.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/consume-topic.adoc
 
-#     - title: Declare the topic as a ksqlDB table
-#       content:
-#         - action: docker_ksql_cli_session
-#           container: ksqldb-cli
-#           docker_bootup_file: tutorial-steps/dev/start-cli.sh
-#           stdout:
-#             directory: tutorial-steps/dev/outputs
-#           column_width: 20
-#           render:
-#             skip: true
-#           stdin:
-#             - file: tutorial-steps/dev/create-table.sql
-#               render:
-#                 file: tutorials/generate-test-data-streams/ksql/markup/dev/create-table.adoc
-#             - file: tutorial-steps/dev/query-table.sql
-#               render:
-#                 file: tutorials/generate-test-data-streams/ksql/markup/dev/query-table.adoc
+    - title: Declare the topic as a ksqlDB stream
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 20
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/create-stream-01.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/create-stream-01.adoc
+            - file: tutorial-steps/dev/query-stream-01.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/query-stream-01.adoc
 
-#     - title: Clean up
-#       content:
-#       - action: execute
-#         file: tutorial-steps/dev/clean-up.sh
-#         render:
-#           file: tutorials/generate-test-data-streams/ksql/markup/dev/clean-up.adoc
+    - title: Create two related streams of test data
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 20
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/create-connector-02.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/create-connector-02.adoc
+
+        - action: sleep
+          ms: 5000
+          render:
+            skip: true
+            
+    - title: Join the test data streams in ksqlDB
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 20
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/check-connector-02.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/check-connector-02.adoc
+            - file: tutorial-steps/dev/join-streams.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/join-streams.adoc
+
+    - title: Clean up
+      content:
+      - action: execute
+        file: tutorial-steps/dev/clean-up.sh
+        render:
+          file: tutorials/generate-test-data-streams/ksql/markup/dev/clean-up.adoc
 
 
-# prod:
-#   steps:
-#     - title: Write your statements to a file
-#       content:
-#         - action: make_file
-#           file: src/statements.sql
-#           render:
-#             file: tutorials/generate-test-data-streams/ksql/markup/dev/make-src-file.adoc
+prod:
+  steps:
+    - title: Write your statements to a file
+      content:
+        - action: make_file
+          file: src/statements.sql
+          render:
+            file: tutorials/generate-test-data-streams/ksql/markup/dev/make-src-file.adoc
 
-#     - title: Send the statements to the REST endpoint
-#       content:
-#         - action: execute_async
-#           file: tutorial-steps/dev/docker-compose-up.sh
-#           render:
-#             skip: true
+    - title: Send the statements to the REST endpoint
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            skip: true
 
-#         - action: execute
-#           file: tutorial-steps/dev/wait-for-containers.sh
-#           render:
-#             skip: true
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
 
-#         - action: skip
-#           render:
-#             file: tutorials/generate-test-data-streams/ksql/markup/prod/submit-to-api.adoc
+        - action: skip
+          render:
+            file: tutorials/generate-test-data-streams/ksql/markup/prod/submit-to-api.adoc
 
-#         - action: execute
-#           file: tutorial-steps/dev/clean-up.sh
-#           render:
-#             skip: true
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true

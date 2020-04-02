@@ -60,6 +60,7 @@ services:
       KSQL_KSQL_SERVICE_ID: confluent_rmoff_01
       KSQL_KSQL_HIDDEN_TOPICS: '^_.*'
       # Setting KSQL_KSQL_CONNECT_WORKER_CONFIG enables embedded Kafka Connect
+      # KSQL_KSQL_CONNECT_URL: http://kafka-connect:8083
       KSQL_KSQL_CONNECT_WORKER_CONFIG: "/connect/connect.properties"
       # Kafka Connect config below
       KSQL_CONNECT_BOOTSTRAP_SERVERS: "broker:9092"
@@ -105,27 +106,14 @@ services:
     volumes:
       - ./src:/opt/app/src
 
-  kafkacat:
-    image: edenhill/kafkacat:1.5.0
-    container_name: kafkacat
-    links:
-      - broker
-    entrypoint: 
-      - /bin/sh 
-      - -c 
-      - |
-        apk add jq; 
-        while [ 1 -eq 1 ];do sleep 60;done
-
-  postgres:
-    # *-----------------------------*
-    # To connect to the DB: 
-    #   docker exec -it postgres bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
-    # *-----------------------------*
-    image: postgres:11
-    container_name: postgres
-    environment:
-     - POSTGRES_USER=postgres
-     - POSTGRES_PASSWORD=postgres
-    volumes:
-     - ./cities.sql:/docker-entrypoint-initdb.d/cities.sql
+  # kafkacat:
+  #   image: edenhill/kafkacat:1.5.0
+  #   container_name: kafkacat
+  #   links:
+  #     - broker
+  #   entrypoint: 
+  #     - /bin/sh 
+  #     - -c 
+  #     - |
+  #       apk add jq; 
+  #       while [ 1 -eq 1 ];do sleep 60;done

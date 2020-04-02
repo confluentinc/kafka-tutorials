@@ -1,0 +1,21 @@
+With the connector running let's see an example of how we can use this test data. 
+
+First, declare some ksqlDB streams and tables over the data and see how we can join them. 
+
+First, we declare a **stream** over the events (`traffic`), and a **table** over the entity reference data (`devices`)
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/join-streams-declare.sql %}</code></pre>
++++++
+
+Now we can join the traffic to find out which device it was associated with 
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/join-streams-do.sql %}</code></pre>
++++++
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/join-streams-do_expected.log %}</code></pre>
++++++
+
+Press Ctrl-C to return to the ksqlDB prompt. 

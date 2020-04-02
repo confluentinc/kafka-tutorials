@@ -1,3 +1,0 @@
-SET 'auto.offset.reset' = 'earliest';
-
-SELECT ROWKEY AS CITY_ID, NAME, STATE FROM CITIES EMIT CHANGES LIMIT 6;
