@@ -45,6 +45,8 @@ blocks:
         commands:
           - checkout
           - sudo pip3 install -e harness_runner/
+          - >
+              find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
       jobs:
         - name: KSQL transforming tests
           commands:
@@ -150,9 +152,17 @@ blocks:
           commands:
             - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
             
-        - name: KStreams connect jdbc specific avro tests
+        - name: KStreams Connect key tests
           commands:
             - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
+
+        - name: Kafka Connect SMT key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/kafka/code tutorial
+
+        - name: ksqlDB  Connect SMT key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
 
         - name: KStreams emit a final result from a time window
           commands:

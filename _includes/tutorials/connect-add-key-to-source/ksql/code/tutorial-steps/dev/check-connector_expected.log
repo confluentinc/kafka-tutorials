@@ -1,0 +1,4 @@
+ Connector Name          | Type   | Class                                         | Status
+----------------------------------------------------------------------------------------------------------------
+ JDBC_SOURCE_POSTGRES_01 | SOURCE | io.confluent.connect.jdbc.JdbcSourceConnector | RUNNING (1/1 tasks RUNNING)
+----------------------------------------------------------------------------------------------------------------
