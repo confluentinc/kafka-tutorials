@@ -1,4 +1,4 @@
-You can also inspect further details about the connector including to which topics it is writing:
+You can also inspect further details about the connector:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/describe-connector-01.sql %}</code></pre>
