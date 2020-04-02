@@ -7,14 +7,6 @@ dev:
           render:
             file: tutorials/generate-test-data-streams/kafka/markup/dev/init.adoc
             
-    - title: Prepare the source data
-      content:
-        - change_directory: generate-test-data-streams
-          action: make_file
-          file: cities.sql
-          render:
-            file: tutorials/generate-test-data-streams/kafka/markup/dev/make-sql-commandfile.adoc
-
     - title: Get Confluent Platform
       content:
         - action: make_file
@@ -30,50 +22,67 @@ dev:
         - action: execute
           file: tutorial-steps/dev/wait-for-containers.sh
           render:
-            skip: true
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/wait-for-containers.adoc
+          stdout: tutorial-steps/dev/outputs/wait-for-containers.out
+
+        - action: execute
+          file: tutorial-steps/dev/check-plugin.sh
+          render:
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/check-plugin.adoc
+          stdout: tutorial-steps/dev/outputs/check-plugin.out
             
-    - title: Check the source data
+    - title: Create a standalone stream of test data
       content:
         - action: execute
-          file: tutorial-steps/dev/query-postgres.sh
-          stdout: tutorial-steps/dev/outputs/query-postgres.log
+          file: tutorial-steps/dev/create-connector-01.sh
+          stdout: tutorial-steps/dev/outputs/create-connector-01.out
           render:
-            file: tutorials/generate-test-data-streams/kafka/markup/dev/query-postgres.adoc
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/create-connector-01.adoc
 
-    - title: Create the connector
-      content:
-        - action: execute
-          file: tutorial-steps/dev/create-connector.sh
-          stdout: tutorial-steps/dev/outputs/create-connector.log
-          render:
-            file: tutorials/generate-test-data-streams/kafka/markup/dev/create-connector.adoc
-
-        - name: give Kafka Connect chance to create the connector
-          action: sleep
+        - action: sleep
           ms: 5000
           render:
             skip: true
 
         - action: execute
-          file: tutorial-steps/dev/check-connector.sh
-          stdout: tutorial-steps/dev/outputs/check-connector.log
+          file: tutorial-steps/dev/check-connector-01.sh
+          stdout: tutorial-steps/dev/outputs/check-connector-01.out
           render:
-            file: tutorials/generate-test-data-streams/kafka/markup/dev/check-connector.adoc
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/check-connector-01.adoc
 
-        - name: give Kafka Connect further chance to get the data to the topic
-          action: sleep
+    - title: Consume events from the test topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/consume-topic-01.sh
+          stdout: tutorial-steps/dev/outputs/consume-topic-01.out
+          render:
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/consume-topic-01.adoc
+
+    - title: Create two related streams of test data
+      content:
+        - action: execute
+          file: tutorial-steps/dev/create-connector-02.sh
+          render:
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/create-connector-02.adoc
+
+        - action: sleep
           ms: 5000
           render:
             skip: true
-            
-    - title: Consume events from the output topic
+
+        - action: execute
+          file: tutorial-steps/dev/check-connector-02.sh
+          stdout: tutorial-steps/dev/outputs/check-connector-02.out
+          render:
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/check-connector-02.adoc
+
+    - title: Consume events from the test topics
       content:
         - action: execute
-          file: tutorial-steps/dev/consume-topic.sh
-          stdout: tutorial-steps/dev/outputs/consume-topic.log
+          file: tutorial-steps/dev/consume-topic-02.sh
+          stdout: tutorial-steps/dev/outputs/consume-topic-02.out
           render:
-            file: tutorials/generate-test-data-streams/kafka/markup/dev/consume-topic.adoc
-
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/consume-topic-02.adoc
 
     - title: Clean up
       content:
