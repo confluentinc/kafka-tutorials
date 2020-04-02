@@ -1,5 +1,3 @@
-ksql> DESCRIBE CONNECTOR CLICKS;
-
 Name                 : CLICKS
 Class                : io.mdrogalis.voluble.VolubleSourceConnector
 Type                 : source

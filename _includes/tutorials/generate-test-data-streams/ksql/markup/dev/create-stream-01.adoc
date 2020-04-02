@@ -5,13 +5,3 @@ Note that because we're using Avro the schema is picked up automagically from th
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/create-stream-01.sql %}</code></pre>
 +++++
-
-Use the `DESCRIBE` command to inspect the schema of the stream that's been created: 
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/describe-stream-01.sql %}</code></pre>
-+++++
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/describe-stream-01_expected.log %}</code></pre>
-+++++

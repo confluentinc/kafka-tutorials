@@ -10,6 +10,7 @@ dev:
           file: tutorial-steps/dev/make-dirs.sh
           render:
             file: tutorials/generate-test-data-streams/ksql/markup/dev/make-dirs.adoc
+          stdout: tutorial-steps/dev/outputs/make-dirs.out
             
     - title: Get Confluent Platform
       content:
@@ -27,15 +28,13 @@ dev:
           file: tutorial-steps/dev/wait-for-containers.sh
           render:
             file: tutorials/generate-test-data-streams/ksql/markup/dev/wait-for-containers.adoc
-          stdout:
-            - file: tutorial-steps/dev/outputs/wait-for-containers.out
+          stdout: tutorial-steps/dev/outputs/wait-for-containers.out
 
         - action: execute
           file: tutorial-steps/dev/check-plugin.sh
           render:
             file: tutorials/generate-test-data-streams/ksql/markup/dev/check-plugin.adoc
-          stdout:
-            - file: tutorial-steps/dev/outputs/check-plugin.out
+          stdout: tutorial-steps/dev/outputs/check-plugin.out
             
     - title: Create a standalone stream of test data
       content:
@@ -95,13 +94,16 @@ dev:
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
           stdout:
             directory: tutorial-steps/dev/outputs
-          column_width: 20
+          column_width: 255
           render:
             skip: true
           stdin:
             - file: tutorial-steps/dev/create-stream-01.sql
               render:
                 file: tutorials/generate-test-data-streams/ksql/markup/dev/create-stream-01.adoc
+            - file: tutorial-steps/dev/describe-stream-01.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/describe-stream-01.adoc
             - file: tutorial-steps/dev/query-stream-01.sql
               render:
                 file: tutorials/generate-test-data-streams/ksql/markup/dev/query-stream-01.adoc
@@ -133,16 +135,19 @@ dev:
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
           stdout:
             directory: tutorial-steps/dev/outputs
-          column_width: 20
+          column_width: 255
           render:
             skip: true
           stdin:
             - file: tutorial-steps/dev/check-connector-02.sql
               render:
                 file: tutorials/generate-test-data-streams/ksql/markup/dev/check-connector-02.adoc
-            - file: tutorial-steps/dev/join-streams.sql
+            - file: tutorial-steps/dev/join-streams-declare.sql
               render:
-                file: tutorials/generate-test-data-streams/ksql/markup/dev/join-streams.adoc
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/join-streams-declare.adoc
+            - file: tutorial-steps/dev/join-streams-do.sql
+              render:
+                file: tutorials/generate-test-data-streams/ksql/markup/dev/join-streams-do.adoc
 
     - title: Clean up
       content:
@@ -173,9 +178,19 @@ prod:
           render:
             skip: true
 
-        - action: skip
+        - action: execute
+          file: tutorial-steps/prod/send-to-api.sh
+          stdout: tutorial-steps/prod/outputs/send-to-api.out
           render:
             file: tutorials/generate-test-data-streams/ksql/markup/prod/submit-to-api.adoc
+
+    - title: Validate the deployment
+      content:
+        - action: execute
+          file: tutorial-steps/prod/check-deploy.sh
+          stdout: tutorial-steps/prod/outputs/check-deploy.out
+          render:
+            file: tutorials/generate-test-data-streams/ksql/markup/prod/check-deploy.adoc
 
         - action: execute
           file: tutorial-steps/dev/clean-up.sh
