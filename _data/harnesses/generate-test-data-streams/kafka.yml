@@ -62,6 +62,7 @@ dev:
       content:
         - action: execute
           file: tutorial-steps/dev/create-connector-02.sh
+          stdout: tutorial-steps/dev/outputs/create-connector-02.out
           render:
             file: tutorials/generate-test-data-streams/kafka/markup/dev/create-connector-02.adoc
 
@@ -79,10 +80,15 @@ dev:
     - title: Consume events from the test topics
       content:
         - action: execute
-          file: tutorial-steps/dev/consume-topic-02.sh
-          stdout: tutorial-steps/dev/outputs/consume-topic-02.out
+          file: tutorial-steps/dev/consume-topic-02a.sh
+          stdout: tutorial-steps/dev/outputs/consume-topic-02a.out
           render:
-            file: tutorials/generate-test-data-streams/kafka/markup/dev/consume-topic-02.adoc
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/consume-topic-02a.adoc
+        - action: execute
+          file: tutorial-steps/dev/consume-topic-02b.sh
+          stdout: tutorial-steps/dev/outputs/consume-topic-02b.out
+          render:
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/consume-topic-02b.adoc
 
     - title: Clean up
       content:
