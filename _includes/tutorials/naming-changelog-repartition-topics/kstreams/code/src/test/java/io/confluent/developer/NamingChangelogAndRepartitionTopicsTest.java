@@ -13,7 +13,7 @@ import org.junit.Test;
 
 public class NamingChangelogAndRepartitionTopicsTest {
 
-    private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+    private static final String TEST_CONFIG_FILE = "configuration/test.properties";
     private NamingChangelogAndRepartitionTopics namingChangelogAndRepartitionTopics;
     private Properties envProps;
 
@@ -27,7 +27,7 @@ public class NamingChangelogAndRepartitionTopicsTest {
     public void shouldUpdateNamesOfStoresAndRepartitionTopics() {
 
         envProps.put("add.filter", "false");
-        Topology topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
+        Topology topology = namingChangelogAndRepartitionTopics.buildTopology(envProps, null);
 
         final String firstTopologyNoFilter = topology.describe().toString();
 
@@ -47,9 +47,8 @@ public class NamingChangelogAndRepartitionTopicsTest {
         assertThat(firstTopologyNoFilter.indexOf(aggregationRepartitionWithFilterAdded), is(-1));
 
         envProps.put("add.filter", "true");
-        topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
+        topology = namingChangelogAndRepartitionTopics.buildTopology(envProps, null);
         final String topologyWithFilter = topology.describe().toString();
-        System.out.println(topologyWithFilter);
 
         assertThat(topologyWithFilter.indexOf(initialStateStoreName), is(-1));
         assertThat(topologyWithFilter.indexOf(initialAggregationRepartition), is(-1));
@@ -61,10 +60,10 @@ public class NamingChangelogAndRepartitionTopicsTest {
     public void shouldNotUpdateNamesOfStoresAndRepartitionTopics() {
         envProps.put("add.names", "true");
 
-        Topology topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
+        Topology topology = namingChangelogAndRepartitionTopics.buildTopology(envProps, null);
         final String firstTopologyNoFilter = topology.describe().toString();
 
-        final String initialStateStoreName = "count-store";
+        final String initialStateStoreName = "the-counting-store";
         final String initialAggregationRepartition = "count-repartition";
 
         assertThat(firstTopologyNoFilter.indexOf(initialStateStoreName), greaterThan(0));
@@ -72,7 +71,7 @@ public class NamingChangelogAndRepartitionTopicsTest {
 
 
         envProps.put("add.filter", "true");
-        topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
+        topology = namingChangelogAndRepartitionTopics.buildTopology(envProps, null);
         final String topologyWithFilter = topology.describe().toString();
 
         assertThat(topologyWithFilter.indexOf(initialStateStoreName), greaterThan(0));

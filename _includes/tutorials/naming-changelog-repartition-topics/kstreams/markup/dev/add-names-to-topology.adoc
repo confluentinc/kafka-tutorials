@@ -1,23 +1,24 @@
-Now to "freeze" the names of the stateful portions of the topology you'll update the code to
+Now let's update the topology by adding a `filter()` operation:
 
 
 +++++
 <pre class="snippet"><code class="java">
-    KStream&lt;Long, Long&gt; exampleCountStream = exampleStream.groupByKey(Grouped.as("count"))
-                                                                    .count(Materialized.as("count-store"))
-                                                                    .toStream();
-
-    KStream&lt;Long, String&gt; joinedStream  = exampleStream.join(exampleCountStream, (v1, v2) -> v1.getName() + v2.toString(),
-                                                              JoinWindows.of(Duration.ofMillis(100)),
-                                                              StreamJoined.with(Serdes.Long(), exampleSerde, Serdes.Long())
-                                                                          .withName("join").withStoreName("join-store"));
+  KStream&lt;Long, Example&gt; inputStream = builder.stream(inputTopic, Consumed.with(longSerde, exampleSerde))
+                                                  .selectKey((k, v) -> Long.parseLong(v.getName().substring(0, 1)))
+                                                  .filter((k, v) -> k != 1L);
 </code></pre>
 +++++
 
+But this time, adding a new processor won't change the name of the stateful parts of your application, as you've explicity named them.
 
-
-At this point, go ahead and create the following file at `src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java`.
+Just like you've done throughout the tutorial, the changes are made by using feature flags. Update the `configuration/dev.properties` file to enable the addition of a the additional processor.
 
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/configuration/names-with-filter.properties %}</code></pre>
++++++
+
+Now restart the streams application:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
 +++++

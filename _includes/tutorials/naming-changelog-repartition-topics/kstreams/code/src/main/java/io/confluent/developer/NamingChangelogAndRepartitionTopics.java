@@ -2,11 +2,6 @@ package io.confluent.developer;
 
 
 import io.confluent.common.utils.TestUtils;
-import io.confluent.developer.avro.Example;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
@@ -16,12 +11,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
-import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
@@ -42,75 +37,57 @@ public class NamingChangelogAndRepartitionTopics {
     props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
     props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
     props.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
-    props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
 
     return props;
   }
 
-  public Topology buildTopology(Properties envProps) {
+  public Topology buildTopology(Properties envProps,
+                                CountDownLatch countDownLatch) {
     final StreamsBuilder builder = new StreamsBuilder();
     final String inputTopic = envProps.getProperty("input.topic.name");
     final String outputTopic = envProps.getProperty("output.topic.name");
-    final Serde<Long> longSerde = getPrimitiveAvroSerde(envProps, true);
-    final Serde<Example> exampleSerde = getSpecificAvroSerde(envProps);
+    final String joinTopic = envProps.getProperty("join.topic.name");
+
+    final Serde<Long> longSerde = Serdes.Long();
+    final Serde<String> stringSerde = Serdes.String();
 
     final boolean addFilter = Boolean.parseBoolean(envProps.getProperty("add.filter"));
     final boolean addNames = Boolean.parseBoolean(envProps.getProperty("add.names"));
 
-    KStream<Long, Example> exampleStream = builder.stream(inputTopic, Consumed.with(longSerde, exampleSerde))
-                                                  .selectKey((k, v) -> Long.parseLong(v.getName().substring(0, 1)));
+    KStream<Long, String> inputStream = builder.stream(inputTopic, Consumed.with(longSerde, stringSerde))
+                                                  .selectKey((k, v) -> Long.parseLong(v.substring(0, 1)));
     if (addFilter) {
-      exampleStream = exampleStream.filter((k, v) -> k != 1L);
+      inputStream = inputStream.filter((k, v) -> k != 100L);
     }
 
     final KStream<Long, String> joinedStream;
+    final KStream<Long, Long> countStream;
 
     if (!addNames) {
-        final KStream<Long, Long> exampleCountStream = exampleStream.groupByKey()
-                                                                    .count()
-                                                                    .toStream();
+         countStream = inputStream.groupByKey(Grouped.with(longSerde, stringSerde))
+                                    .count()
+                                    .toStream();
 
-        joinedStream = exampleStream.join(exampleCountStream, (v1, v2) -> v1.getName() + v2.toString(),
+        joinedStream = inputStream.join(countStream, (v1, v2) -> v1 + v2.toString(),
                                                               JoinWindows.of(Duration.ofMillis(100)),
-                                                              StreamJoined.with(longSerde, exampleSerde, longSerde));
+                                                              StreamJoined.with(longSerde, stringSerde, longSerde));
     } else {
-        final KStream<Long, Long> exampleCountStream = exampleStream.groupByKey(Grouped.as("count"))
-                                                                    .count(Materialized.as("count-store"))
-                                                                    .toStream();
+        countStream = inputStream.groupByKey(Grouped.with("count", longSerde, stringSerde))
+                                   .count(Materialized.as("the-counting-store"))
+                                   .toStream();
 
-        joinedStream = exampleStream.join(exampleCountStream, (v1, v2) -> v1.getName() + v2.toString(),
+        joinedStream = inputStream.join(countStream, (v1, v2) -> v1 + v2.toString(),
                                                               JoinWindows.of(Duration.ofMillis(100)),
-                                                              StreamJoined.with(Serdes.Long(), exampleSerde, Serdes.Long())
-                                                                          .withName("join").withStoreName("join-store"));
+                                                              StreamJoined.with(longSerde, stringSerde, longSerde)
+                                                                          .withName("join").withStoreName("the-join-store"));
     }
 
-    joinedStream.to(outputTopic, Produced.with(Serdes.Long(), Serdes.String()));
+    joinedStream.to(joinTopic, Produced.with(longSerde, stringSerde));
+    countStream.map((k,v) -> KeyValue.pair(k.toString(), v.toString())).peek((k, v) -> countDownLatch.countDown()).to(outputTopic, Produced.with(stringSerde, stringSerde));
+
 
     return builder.build();
-  }
-
-  @SuppressWarnings("unchecked")
-  static <T> Serde<T> getPrimitiveAvroSerde(final Properties envProps, boolean isKey) {
-    final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
-    final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
-    final Map<String, String> config = new HashMap<>();
-    config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-        envProps.getProperty("schema.registry.url"));
-    deserializer.configure(config, isKey);
-    serializer.configure(config, isKey);
-    return (Serde<T>) Serdes.serdeFrom(serializer, deserializer);
-  }
-
-  static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(
-      final Properties envProps) {
-    final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
-
-    final HashMap<String, String> serdeConfig = new HashMap<>();
-    serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-        envProps.getProperty("schema.registry.url"));
-
-    specificAvroSerde.configure(serdeConfig, false);
-    return specificAvroSerde;
   }
 
   public void createTopics(final Properties envProps) {
@@ -129,6 +106,11 @@ public class NamingChangelogAndRepartitionTopics {
           envProps.getProperty("output.topic.name"),
           Integer.parseInt(envProps.getProperty("output.topic.partitions")),
           Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+
+      topics.add(new NewTopic(
+          envProps.getProperty("join.topic.name"),
+          Integer.parseInt(envProps.getProperty("join.topic.partitions")),
+          Short.parseShort(envProps.getProperty("join.topic.replication.factor"))));
 
       client.createTopics(topics);
     }
@@ -152,28 +134,27 @@ public class NamingChangelogAndRepartitionTopics {
 
     final NamingChangelogAndRepartitionTopics instance = new NamingChangelogAndRepartitionTopics();
     final Properties envProps = instance.loadEnvProperties(args[0]);
-    // make sure we use named topology for running the application
-    envProps.put("name.topology", "true");
+    //used to shutdown after 3 records processed
+    final CountDownLatch latch = new CountDownLatch(3);
     final Properties streamProps = instance.buildStreamsProperties(envProps);
-    final Topology topology = instance.buildTopology(envProps);
+    final Topology topology = instance.buildTopology(envProps, latch);
 
     instance.createTopics(envProps);
 
     final KafkaStreams streams = new KafkaStreams(topology, streamProps);
-    final CountDownLatch latch = new CountDownLatch(1);
 
     // Attach shutdown handler to catch Control-C.
     Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
       @Override
       public void run() {
         streams.close(Duration.ofSeconds(5));
-        latch.countDown();
       }
     });
 
     try {
       streams.start();
       latch.await();
+      streams.close(Duration.ofSeconds(1));
     } catch (Throwable e) {
       System.exit(1);
     }

@@ -7,16 +7,17 @@
    console producer to run depending on how you structure your tutorial
 
 ////
-Open a new terminal and start the console-producer
+
+One last time from your consusmer/producer terminal,  start a console-producer
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/console-producer.sh %}</code></pre>
 +++++
 
-Then copy-paste the following records to send.  The data is formatted this way becuase the Kafka Streams application will create a key from the first character.
+Then copy-paste the following records to send. Again you're sending updates with the same keys.
 
 +++++
-<pre class="snippet"><code class="json">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/input.txt %}</code></pre>
+<pre class="snippet"><code class="json">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/named-input.txt %}</code></pre>
 +++++
 
 After you've sent the records, you can shut down the console-producer with a `CTRL+C`.

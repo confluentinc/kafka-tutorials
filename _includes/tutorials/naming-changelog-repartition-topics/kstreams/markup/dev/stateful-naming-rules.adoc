@@ -1,0 +1,17 @@
+Here's a quick reference guide to stateful naming rules
+
+
+- Aggregation repartition topics
+   . Use the `Grouped.as()` method
+   . Use `Grouped` to provide repartition `Serdes` as well if required
+   . Kafka Streams appends the text `-repartition` to the provided name
+   . If no name is provided, the state store name is used with `-repartition` appended
+
+- Joins
+
+- State Stores
+   . Use `Materialized.as()` method
+   . Use `Materialized` for state store `Serdes` if needed
+   . If no name provided, Kafka Streams generates the name
+
+-

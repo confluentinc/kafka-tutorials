@@ -46,23 +46,6 @@ dev:
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/make-dev-file.adoc
             
-    - title: Create a schema for the model obect
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-avro-dir.sh
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/make-avro-dir.adoc
-
-        - action: make_file
-          file: src/main/avro/example.avsc
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/make-avro-schema.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/build-project.sh
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/build-project.adoc
-
     - title: Create an initial Kafka Streams topology
       content:
         - action: execute
@@ -74,20 +57,6 @@ dev:
           file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/make-topology.adoc
-
-    - title: Add an operation to the topology
-      content:    
-        - action: skip
-          file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-filter-to-topology.adoc   
-
-    - title: Add names to the stateful parts of the topology
-      content:    
-        - action: make_file
-          file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-names-to-topology.adoc
 
     - title: Compile and run the Kafka Streams program
       content:
@@ -105,7 +74,7 @@ dev:
       content:
         - action: execute
           file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/example-input.json
+          stdin: tutorial-steps/dev/input.txt
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-producer.adoc
 
@@ -113,7 +82,7 @@ dev:
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.json
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-consumer.adoc
 
@@ -123,58 +92,112 @@ dev:
           render:
             skip: true
 
-test:
-  steps:
-    - title: Create a test configuration file
-      content:
-        - action: make_file
-          file: configuration/test.properties
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/test/make-test-file.adoc
-
-    - title: Write a test
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-dir.sh
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/test/make-test-dir.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/NamingChangelogAndRepartitionTopicsTest.java
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/test/make-topology-test.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/invoke-tests.sh
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/test/invoke-tests.adoc
-
-prod:
-  steps:
-    - title: Create a production configuration file
-      content:
-        - action: make_file
-          file: configuration/prod.properties
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/prod/make-prod-file.adoc
-
-    - title: Build a Docker image
-      content:
-        - action: execute
-          file: tutorial-steps/prod/build-image.sh
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/prod/build-image.adoc
-
-    - title: Launch the container
-      content:
+    - title: Add an operation to the topology
+      content:    
         - action: skip
+          file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
           render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/prod/launch-container.adoc
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-filter-to-topology.adoc  
 
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
+        - action: execute_async
+          file: tutorial-steps/dev/run-dev-app-no-name-filter.sh
           render:
             skip: true
+
+    - title: Produce some records to the updated topology
+      content:
+        - action: execute
+          file: tutorial-steps/dev/console-producer.sh
+          stdin: tutorial-steps/dev/input.txt
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-producer-no-names-with-filter.adoc
+
+    - title: Consume the updated records
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/console-consumer.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-no-name-filter.txt
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-consumer-no-names-filter.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+    - title: Add names to the stateful operators of the topology
+      content:    
+        - action: make_file
+          file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-names-to-topology.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/run-dev-app-no-name-filter.sh
+          render:
+            skip: true
+
+    - title: Produce records to the named topology
+      content:
+        - action: execute
+          file: tutorial-steps/dev/console-producer.sh
+          stdin: tutorial-steps/dev/input.txt
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-producer-names-no-filter.adoc
+
+    - title: Consume records from the named topology
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/console-consumer.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-names-no-filter.txt
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-consumer-names-no-filter.adoc
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+    - title: Update named topology
+      content:    
+        - action: make_file
+          file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-names-to-topology.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/run-dev-app-names-with-filter.sh
+          render:
+            skip: true
+
+    - title: Produce records updated named topology
+      content:
+        - action: execute
+          file: tutorial-steps/dev/console-producer.sh
+          stdin: tutorial-steps/dev/named-input.txt
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-producer-names-with-filter.adoc
+
+    - title: Consume latest updates
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/console-consumer.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-names-with-filter.txt
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-consumer-names-with-filter.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+    - title: Conclusion
+      content:
+        - action:
+            skip: true
+         
+          render:
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/conclusion.adoc
 
