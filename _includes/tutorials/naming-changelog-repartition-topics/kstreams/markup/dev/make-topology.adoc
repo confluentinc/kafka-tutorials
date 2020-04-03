@@ -3,7 +3,7 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-The point of this tutorial is to discuss the importance of naming state stores (hence changelog topics) and repartition topics.  In addition to having a more readable topology description, you can make your Kafka Streams application more robust to topology changes.
+The point of this tutorial is to discuss the importance of naming state stores (hence `changelog` topics) and repartition topics.  In addition to having a more readable topology description, you can make your Kafka Streams application more robust to topology changes.
 
 First look at the code of the Kafka Streams application:
 +++++
@@ -45,5 +45,4 @@ Now go ahead and create the following file at `src/main/java/io/confluent/develo
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java %}</code></pre>
 +++++
-
 
