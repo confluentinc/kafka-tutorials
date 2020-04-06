@@ -127,7 +127,7 @@ dev:
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-no-name-filter.txt
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-consumer-no-names-filter.adoc
 
@@ -172,7 +172,7 @@ dev:
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-names-no-filter.txt
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-consumer-names-no-filter.adoc
         - name: wait for the consumer to read the messages
@@ -216,13 +216,18 @@ dev:
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-names-with-filter.txt
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-consumer-names-with-filter.adoc
 
         - name: wait for the consumer to read the messages
           action: sleep
-          ms: 5000
+          ms: 10000
+          render:
+            skip: true
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
 
