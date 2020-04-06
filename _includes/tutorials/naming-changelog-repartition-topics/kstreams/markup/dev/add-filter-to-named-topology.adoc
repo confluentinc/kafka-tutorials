@@ -1,0 +1,19 @@
+Now let's add a new operator (`filter()`) to the named topology:
+
+
++++++
+<pre class="snippet"><code class="java">
+  KStream&lt;Long, Example&gt; inputStream = builder.stream(inputTopic, Consumed.with(longSerde, exampleSerde))
+                                                  .selectKey((k, v) -> Long.parseLong(v.getName().substring(0, 1)))
+                                                  .filter((k, v) -> k != 1L);
+</code></pre>
++++++
+
+But this time, adding a new processor won't change the name of the stateful parts of your application, as you've explicity named them in the previous step.
+
+Now go back to the window running the streams application and do a `CTRL+C` then restart the streams application with this command:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/render-run-dev-app-names-with-filter.sh %}</code></pre>
++++++
+

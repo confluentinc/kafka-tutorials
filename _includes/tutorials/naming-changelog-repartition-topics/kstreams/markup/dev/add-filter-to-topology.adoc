@@ -11,11 +11,7 @@ With that in mind, let's add a `filter()` processor to the `inputStream`:
 </code></pre>
 +++++
 
-To make things a little easier for you, the code for the tutorial is configured to use feature flags. Make the following changes to the `dev.properties` file:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/configuration/no-names-with-filter.properties %}</code></pre>
-+++++
+To make things a little easier for you, the code for the tutorial is configured to use feature flags. You'll use the feature flags by passing different parameters in the command to start the Kafka Streams application.
 
 Since you've added the `filter()` before the aggregation, the name of the state store, changelog topic, and repartition topic will change.
 
@@ -26,9 +22,9 @@ In the new names, the number suffix will go from `0000000002` to `0000000003` li
 * changelog topic - `<application.id>-KSTREAM-AGGREGATE-STATE-STORE-0000000003-changelog`
 * repartition topic - `<application.id>-KSTREAM-AGGREGATE-STATE-STORE-0000000003-repartition`
 
-Now restart the streams application with the following command:
+Now go back to the window running the streams application and do a `CTRL+C` then restart the app with the following command:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/render-run-dev-app-no-name-filter.sh %}</code></pre>
 +++++
 

@@ -27,7 +27,7 @@ public class NamingChangelogAndRepartitionTopicsTest {
     public void shouldUpdateNamesOfStoresAndRepartitionTopics() {
 
         envProps.put("add.filter", "false");
-        Topology topology = namingChangelogAndRepartitionTopics.buildTopology(envProps, null);
+        Topology topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
 
         final String firstTopologyNoFilter = topology.describe().toString();
 
@@ -47,7 +47,7 @@ public class NamingChangelogAndRepartitionTopicsTest {
         assertThat(firstTopologyNoFilter.indexOf(aggregationRepartitionWithFilterAdded), is(-1));
 
         envProps.put("add.filter", "true");
-        topology = namingChangelogAndRepartitionTopics.buildTopology(envProps, null);
+        topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
         final String topologyWithFilter = topology.describe().toString();
 
         assertThat(topologyWithFilter.indexOf(initialStateStoreName), is(-1));
@@ -60,7 +60,7 @@ public class NamingChangelogAndRepartitionTopicsTest {
     public void shouldNotUpdateNamesOfStoresAndRepartitionTopics() {
         envProps.put("add.names", "true");
 
-        Topology topology = namingChangelogAndRepartitionTopics.buildTopology(envProps, null);
+        Topology topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
         final String firstTopologyNoFilter = topology.describe().toString();
 
         final String initialStateStoreName = "the-counting-store";
@@ -71,7 +71,7 @@ public class NamingChangelogAndRepartitionTopicsTest {
 
 
         envProps.put("add.filter", "true");
-        topology = namingChangelogAndRepartitionTopics.buildTopology(envProps, null);
+        topology = namingChangelogAndRepartitionTopics.buildTopology(envProps);
         final String topologyWithFilter = topology.describe().toString();
 
         assertThat(topologyWithFilter.indexOf(initialStateStoreName), greaterThan(0));

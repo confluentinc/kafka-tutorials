@@ -97,8 +97,19 @@ dev:
         - action: skip
           file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
           render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-filter-to-topology.adoc  
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-filter-to-topology.adoc 
 
+        - action: execute
+          file: tutorial-steps/dev/stop-streams-app.sh
+          render:
+            skip: true
+
+        - name: wait for streams to stop
+          action: sleep
+          ms: 5000
+          render:
+            skip: true    
+     
         - action: execute_async
           file: tutorial-steps/dev/run-dev-app-no-name-filter.sh
           render:
@@ -133,8 +144,19 @@ dev:
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-names-to-topology.adoc
 
+        - action: execute
+          file: tutorial-steps/dev/stop-streams-app.sh
+          render:
+            skip: true
+
+        - name: wait for streams to stop
+          action: sleep
+          ms: 5000
+          render:
+            skip: true    
+
         - action: execute_async
-          file: tutorial-steps/dev/run-dev-app-no-name-filter.sh
+          file: tutorial-steps/dev/run-dev-app-names-no-filter.sh
           render:
             skip: true
 
@@ -142,7 +164,7 @@ dev:
       content:
         - action: execute
           file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/input.txt
+          stdin: tutorial-steps/dev/named-input.txt
           render:
             file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/run-producer-names-no-filter.adoc
 
@@ -164,7 +186,18 @@ dev:
         - action: make_file
           file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
           render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-names-to-topology.adoc
+            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/add-filter-to-named-topology.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/stop-streams-app.sh
+          render:
+            skip: true
+
+        - name: wait for streams to stop
+          action: sleep
+          ms: 5000
+          render:
+            skip: true         
 
         - action: execute_async
           file: tutorial-steps/dev/run-dev-app-names-with-filter.sh
@@ -192,12 +225,4 @@ dev:
           ms: 5000
           render:
             skip: true
-
-    - title: Conclusion
-      content:
-        - action:
-            skip: true
-         
-          render:
-            file: tutorials/naming-changelog-repartition-topics/kstreams/markup/dev/conclusion.adoc
 

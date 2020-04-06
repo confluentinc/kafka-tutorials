@@ -42,8 +42,7 @@ public class NamingChangelogAndRepartitionTopics {
     return props;
   }
 
-  public Topology buildTopology(Properties envProps,
-                                CountDownLatch countDownLatch) {
+  public Topology buildTopology(Properties envProps) {
     final StreamsBuilder builder = new StreamsBuilder();
     final String inputTopic = envProps.getProperty("input.topic.name");
     final String outputTopic = envProps.getProperty("output.topic.name");
@@ -84,7 +83,7 @@ public class NamingChangelogAndRepartitionTopics {
     }
 
     joinedStream.to(joinTopic, Produced.with(longSerde, stringSerde));
-    countStream.map((k,v) -> KeyValue.pair(k.toString(), v.toString())).peek((k, v) -> countDownLatch.countDown()).to(outputTopic, Produced.with(stringSerde, stringSerde));
+    countStream.map((k,v) -> KeyValue.pair(k.toString(), v.toString())).to(outputTopic, Produced.with(stringSerde, stringSerde));
 
 
     return builder.build();
@@ -134,10 +133,21 @@ public class NamingChangelogAndRepartitionTopics {
 
     final NamingChangelogAndRepartitionTopics instance = new NamingChangelogAndRepartitionTopics();
     final Properties envProps = instance.loadEnvProperties(args[0]);
-    //used to shutdown after 3 records processed
-    final CountDownLatch latch = new CountDownLatch(3);
+    if (args.length > 1 ) {
+      final String namesAndFilter = args[1];
+
+      if (namesAndFilter.contains("filter")) {
+        envProps.put("add.filter", "true");
+      }
+
+      if (namesAndFilter.contains("names")) {
+        envProps.put("add.names", "true");
+      }
+    }
+
+    final CountDownLatch latch = new CountDownLatch(1);
     final Properties streamProps = instance.buildStreamsProperties(envProps);
-    final Topology topology = instance.buildTopology(envProps, latch);
+    final Topology topology = instance.buildTopology(envProps);
 
     instance.createTopics(envProps);
 
@@ -148,13 +158,13 @@ public class NamingChangelogAndRepartitionTopics {
       @Override
       public void run() {
         streams.close(Duration.ofSeconds(5));
+        latch.countDown();
       }
     });
 
     try {
       streams.start();
       latch.await();
-      streams.close(Duration.ofSeconds(1));
     } catch (Throwable e) {
       System.exit(1);
     }

@@ -1,8 +1,5 @@
 Now that you have an uberjar for the Kafka Streams application, you can launch it locally.  In most tutorials, the Kafka Streams application runs until you shut it down.  In this tutorial you'll make changes to the topology which requires you to restart the streams application.
 
-To make things a bit easier for you, the streams application in this tutorial will shut down after it processes the expected number of test messages.  But this is not typicaly behavior, usually once a streams application is started you leave it running.
-
-
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/render-run-dev-app.sh %}</code></pre>
 +++++
