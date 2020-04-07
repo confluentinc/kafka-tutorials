@@ -227,6 +227,11 @@ dev:
             skip: true
 
         - action: execute
+          file: tutorial-steps/dev/stop-streams-app.sh
+          render:
+            skip: true  
+
+        - action: execute
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
