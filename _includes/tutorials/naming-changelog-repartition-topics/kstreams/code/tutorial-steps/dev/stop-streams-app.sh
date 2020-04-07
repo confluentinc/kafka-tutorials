@@ -1,1 +1,1 @@
-kill $(cat configuration/app.pid)
+kill -s SIGINT $(cat configuration/app.pid)
