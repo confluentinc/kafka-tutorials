@@ -63,6 +63,11 @@
             Vanilla Kafka
           </option>
           {% endif %}
+          {% if site.data.tutorials[page.static_data].status.spring-kafka == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kafka.html" {% if page.stack == 'kafka' %} selected {% endif %}>
+          Spring Kafka
+          </option>
+          {% endif %}
         </select>
       </div>
       <div class="cflt-tabs">
