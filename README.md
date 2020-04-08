@@ -92,7 +92,7 @@ Let's describe each script.
 As the name implies, the `gen_project.sh` script generates the minimal structure for a viable Kafka Tutorials tutorial.  The code and text contained in the tutorial are place holders, and you'll update those with your code and writing to complete the tutorial.
 
 The script expects you to supply a properties file for setting the name and other parts of the tutorial.  Here's an example properties file you can use.
-```
+```sh
 #!/bin/sh
 
 # space-separated list of types could be one of ksql or kstreams
@@ -149,7 +149,7 @@ If you only specified one tutorial type (`ksql` or `kstreams`) then you'd only h
 
 As the name implies, this script creates a clone of an existing tutorial.  The clone script changes the name of the tutorial throughout the content.  To clone a tutorial, you also need to provide a properties file
 
-```
+```sh
 #!/bin/sh
 
 # clones everything ksql and kstreams
