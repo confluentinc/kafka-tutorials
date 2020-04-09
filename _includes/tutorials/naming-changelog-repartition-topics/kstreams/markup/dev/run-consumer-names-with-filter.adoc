@@ -21,18 +21,15 @@ The last three records, `2-4, 2-5, 2-6`, show the correct output, as you produce
 
 You have updated your topology and reused the existing state stores and internal topics!
 
-
-
-
-. Always name stateful operators
-. If you haven't named your stateful operators and you need to update your topology, use the `https://docs.confluent.io/current/streams/developer-guide/app-reset-tool.html[Application Reset Tool]` to reprocess records.
-
 ++++
 <br/> <br/>
 <h4 class="subtitle">
   <div class="text">Some points to remember</div>
 </h4>
 ++++
+
+. Always name stateful operators
+. If you haven't named your stateful operators and you need to update your topology, use the `https://docs.confluent.io/current/streams/developer-guide/app-reset-tool.html[Application Reset Tool]` to reprocess records.
 
 - **Aggregation repartition topics (if needed)**
    . Use the `Grouped.as()` method
