@@ -5,14 +5,13 @@ The text assumes a method buildTopology exists and constructs the Kafka Streams 
 
 The point of this tutorial is to discuss the importance of naming state stores (hence `changelog` topics) and repartition topics.  In addition to having a more readable topology description, you can make your Kafka Streams application more robust to topology changes.
 
-First look at the code of the Kafka Streams application:
+Lets look at the core logic of the Kafka Streams application:
 +++++
 <pre class="snippet"><code class="java">
   KStream&lt;Long, Example&gt; inputStream = builder.stream(inputTopic, Consumed.with(longSerde, exampleSerde))
                                                   .selectKey((k, v) -> Long.parseLong(v.getName().substring(0, 1)));
 
   KStream&lt;Long, Long&gt; countStream = inputStream.groupByKey().count().toStream();
-
 
   KStream&lt;Long, String&gt; joinedStream = inputStream.join(exampleCountStream, (v1, v2) -> v1.getName() + v2.toString(),
                                                               JoinWindows.of(Duration.ofMillis(100)),
@@ -25,24 +24,23 @@ In the `inputStream` there is a `selectKey()` operation, changing the key of the
 
 As a result, executing the `inputStream.groupByKey()` operation forces a repartition to make sure the modified keys end up on the correct partition.
 
-Additionally, `count()` is an aggregation so Kafka Streams creates state store and a changelog topic for fault-tolerance of the state store.
+Additionally, `count()` is an aggregation, so Kafka Streams creates a state store plus a changelog topic for fault-tolerance of the state store.
 
-There are additional state stores and another reparition topic in this topology, but we'll focus on the `countStream` to keep things simple.  But the same principles apply to any state store, changelog and repartition topic.
+There are additional state stores and another repartition topic in this topology, but we'll focus on the `countStream` to keep things simple.  The same principles apply to any state store, changelog and repartition topic.
 
 When using the DSL, Kafka Streams generates the names for each processor, state store, and any required internal topics.  To view a textual representation of your topology, you can run `Topology.describe()`.
 
-We won't show a full description here, but describing our topology here results in the following names for the state store, changelog and repartition topic:
+We won't show the full output here, but describing this topology indicates the following names for the state store, changelog and repartition topic:
 
 -  state store - `<application.id>-KSTREAM-AGGREGATE-STATE-STORE-0000000002`
 -  changelog topic - `<application.id>-KSTREAM-AGGREGATE-STATE-STORE-0000000002-changelog`
 -  repartition topic - `<application.id>-KSTREAM-AGGREGATE-STATE-STORE-0000000002-repartition`
 
 
-You'll notice the number `0000000002` at the end of the names.  Kafka Streams appends an incrementing number as part of the name for each part of the topology.  Here the state store, changelog topic and repartition topic share the same number as by default they re-use the name of the state store for their name.
+You'll notice the number `0000000002` at the end of the names.  Kafka Streams appends an incrementing number as part of the name for each part of the topology.  Here the state store, changelog topic, and repartition topic share the same number, since by default, they reuse the name of the corresponding state store.
 
-Now go ahead and create the following file at `src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java`
+Now go ahead and create the following file at `src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java`.
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java %}</code></pre>
 +++++
-

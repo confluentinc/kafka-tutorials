@@ -8,15 +8,13 @@
 
 ////
 
-Go back to the producer/consumer terminal and start the console-producer again
+Go back to the producer/consumer terminal and start the console-producer again.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/console-producer.sh %}</code></pre>
 +++++
 
-You are going to send the exact same data from before, as we want to update the counts for existing records.
-
-Copy and paste the following into the prompt and press enter:
+We'll send the exact same data from before, as we want to update the counts for existing records. Copy and paste the following into the prompt and press enter:
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/input.txt %}</code></pre>

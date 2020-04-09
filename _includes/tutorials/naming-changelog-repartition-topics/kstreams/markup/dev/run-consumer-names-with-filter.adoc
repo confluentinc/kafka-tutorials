@@ -4,7 +4,7 @@
 
 ////
 
-Now stop the console-prodcer (if you haven't already) and start a console-consumer (for the last time I promise!)
+Finally, start a console-consumer.
 
 
 +++++
@@ -17,20 +17,20 @@ You should see the following output:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/expected-output-names-with-filter.txt %}</code></pre>
 +++++
 
-Looking at the last three records you see `2-4, 2-5, 2-6`.  This output is correct as you produced six records with the same key, so the final count is accurate.
+The last three records, `2-4, 2-5, 2-6`, show the correct output, as you produced six records with the same key.
 
-You have updated your topology and re-used the existing state stores and internal topics!
-
-
+You have updated your topology and reused the existing state stores and internal topics!
 
 
-. Always name sateful operators
-. If you haven't named your stateful operators and you need to update your toplogy, use the `https://docs.confluent.io/current/streams/developer-guide/app-reset-tool.html[Application Reset Tool]` to reprocess records (tutorial coming soon!).
+
+
+. Always name stateful operators
+. If you haven't named your stateful operators and you need to update your topology, use the `https://docs.confluent.io/current/streams/developer-guide/app-reset-tool.html[Application Reset Tool]` to reprocess records.
 
 ++++
 <br/> <br/>
 <h4 class="subtitle">
-  <div class="text">Conclusion - Some points to remember</div>
+  <div class="text">Some points to remember</div>
 </h4>
 ++++
 
@@ -43,12 +43,11 @@ You have updated your topology and re-used the existing state stores and interna
 - **Joins**
    . Use the `StreamJoined` configuration object
    . `StreamJoined.name()` names the join processors and provides the base-name of the repartition topic (if needed)
-   . `StreamJoined.withStoreName()` used to name the state stores associated with the join.
+   . `StreamJoined.withStoreName()` is used to name the state stores associated with the join.
    . If you need to provide `Serdes` you'll use `StreamJoined` as well
 
 - **State Stores**
    . Use `Materialized.as()` method
    . Use `Materialized` for state store `Serdes` if needed
-
 
 

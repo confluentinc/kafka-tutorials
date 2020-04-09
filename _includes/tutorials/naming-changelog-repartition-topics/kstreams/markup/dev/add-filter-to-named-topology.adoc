@@ -11,9 +11,8 @@ Now let's add a new operator (`filter()`) to the named topology:
 
 But this time, adding a new processor won't change the name of the stateful parts of your application, as you've explicity named them in the previous step.
 
-Now go back to the window running the streams application and do a `CTRL+C` then restart the streams application with this command:
+In the terminal running the streams application, do a `CTRL+C`, then restart the streams application with this command:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/render-run-dev-app-names-with-filter.sh %}</code></pre>
 +++++
-

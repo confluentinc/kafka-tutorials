@@ -181,7 +181,7 @@ dev:
           render:
             skip: true
 
-    - title: Update named topology
+    - title: Update the named topology
       content:    
         - action: make_file
           file: src/main/java/io/confluent/developer/NamingChangelogAndRepartitionTopics.java
@@ -204,7 +204,7 @@ dev:
           render:
             skip: true
 
-    - title: Produce records updated named topology
+    - title: Produce records to the updated, named topology
       content:
         - action: execute
           file: tutorial-steps/dev/console-producer.sh
@@ -235,4 +235,3 @@ dev:
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
-

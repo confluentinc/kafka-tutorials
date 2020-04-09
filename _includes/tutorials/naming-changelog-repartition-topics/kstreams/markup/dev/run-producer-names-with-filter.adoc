@@ -8,7 +8,7 @@
 
 ////
 
-One last time from your consusmer/producer terminal,  start a console-producer
+One last time, from your producer/consumer terminal,  start a console-producer
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/console-producer.sh %}</code></pre>

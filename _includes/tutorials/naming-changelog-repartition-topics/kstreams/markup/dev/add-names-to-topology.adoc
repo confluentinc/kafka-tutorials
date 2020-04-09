@@ -1,4 +1,4 @@
-Now let's start over but this time you'll update the topology and provide names to all stateful operators:
+Now let's start over. This time you'll update the topology and provide names to all stateful operators.
 
 
 +++++
@@ -16,7 +16,7 @@ Now let's start over but this time you'll update the topology and provide names 
 
 Just like you've done throughout the tutorial, the changes are made by using feature flags which are enabled by parameters you pass to start the application.
 
-Now go back to the window running the streams application and do a `CTRL+C` then restart the streams application with this command:
+In the terminal running the streams application, do a `CTRL+C`, then restart the streams application with this command:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/render-run-dev-app-names-no-filter.sh %}</code></pre>

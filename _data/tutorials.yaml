@@ -252,7 +252,7 @@ naming-changelog-repartition-topics:
   meta-description: "How to name stateful operations in Kafka Streams"
   slug: "/naming-stateful-operations"
   problem: "you have an existing Kafka Streams application and you want to make changes to the topology, but you'd like the new topology to remain compatible with the existing one"
-  introduction: "Consider an existing Kafka Streams application and you want to add or remove some operations.  In this tutorial we'll show how to name the changelog and repartition topics so topology updates don't break compatibility with your existing application"
+  introduction: "You want to add or remove some operations in your Kafka Streams application.  In this tutorial we'll name the changelog and repartition topics so that the topology updates don't break compatibility."
   status:
     ksql: disabled
     kstreams: enabled

@@ -17,6 +17,6 @@ For this run you should see all six records plus three new records:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/expected-output-names-no-filter.txt %}</code></pre>
 +++++
 
-Since you used data resulting in new keys `2-1, 2-2, 2-3` looks correct.
+Since you used data resulting in new keys, `2-1, 2-2, 2-3` looks correct.
 
 You can close this consumer for now with a `CTRL+C`.
