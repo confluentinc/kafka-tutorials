@@ -205,6 +205,15 @@ udf:
     kstreams: disabled
     kafka: disabled
 
+deserialization-errors:
+  title: "How to handle deserialization errors"
+  meta-description: "How to handle deserialization errors"
+  slug: "/handling-deserialization-errors"
+  problem: "you have created a stream/table that contains a schema associated, and you want to understand why some events are not being written correctly."
+  introduction: "During the development of event streaming applications, it is very common to have situations where some streams or tables are not receiving some events that has been sent to it. Often this happens because there was an deserialization error due to the event not being in the right format, but that is not so trivial to figure out. In this tutorial, we'll write a program that monitors a stream of sensors. Any deserialization error that happens in this stream will be made available in another stream that can be queried to check errors."
+  status:
+    ksql: enabled
+    
 flatten-nested-data:
   title: "How to flatten deeply nested events"
   meta-description: "How to flatten deeply nested events"
