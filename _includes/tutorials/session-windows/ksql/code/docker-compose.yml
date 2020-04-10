@@ -50,7 +50,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
   ksqldb:
-    image: confluentinc/ksqldb-server:0.8.0
+    image: confluentinc/ksqldb-server:0.8.1
     hostname: ksqldb
     container_name: ksqldb
     depends_on:

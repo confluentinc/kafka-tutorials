@@ -1,5 +1,5 @@
-Key format: UNDEFINED
-Value format: AVRO
+Key format: SESSION(AVRO) or HOPPING(AVRO) or TUMBLING(AVRO) or AVRO or SESSION(PROTOBUF) or HOPPING(PROTOBUF) or TUMBLING(PROTOBUF) or PROTOBUF or SESSION(JSON) or HOPPING(JSON) or TUMBLING(JSON) or JSON or SESSION(JSON_SR) or HOPPING(JSON_SR) or TUMBLING(JSON_SR) or JSON_SR or SESSION(KAFKA_INT) or HOPPING(KAFKA_INT) or TUMBLING(KAFKA_INT) or KAFKA_INT or SESSION(KAFKA_BIGINT) or HOPPING(KAFKA_BIGINT) or TUMBLING(KAFKA_BIGINT) or KAFKA_BIGINT or SESSION(KAFKA_DOUBLE) or HOPPING(KAFKA_DOUBLE) or TUMBLING(KAFKA_DOUBLE) or KAFKA_DOUBLE or SESSION(KAFKA_STRING) or HOPPING(KAFKA_STRING) or TUMBLING(KAFKA_STRING) or KAFKA_STRING
+Value format: AVRO or KAFKA_STRING
 rowtime: 2/28/20 4:50:44 PM UTC, key: <null>, value: {"ARTIST": "Metallica", "TITLE": "Fade to Black", "GENRE": "rock"}
 rowtime: 2/28/20 4:50:45 PM UTC, key: <null>, value: {"ARTIST": "Smashing Pumpkins", "TITLE": "Today", "GENRE": "rock"}
 rowtime: 2/28/20 4:50:45 PM UTC, key: <null>, value: {"ARTIST": "Pink Floyd", "TITLE": "Another Brick in the Wall", "GENRE": "rock"}
@@ -9,3 +9,4 @@ rowtime: 2/28/20 4:50:45 PM UTC, key: <null>, value: {"ARTIST": "Wolfgang Amadeu
 rowtime: 2/28/20 4:50:45 PM UTC, key: <null>, value: {"ARTIST": "Johann Pachelbel", "TITLE": "Canon", "GENRE": "classical"}
 rowtime: 2/28/20 4:50:45 PM UTC, key: <null>, value: {"ARTIST": "Ludwig van Beethoven", "TITLE": "Symphony No. 5", "GENRE": "classical"}
 rowtime: 2/28/20 4:50:45 PM UTC, key: <null>, value: {"ARTIST": "Edward Elgar", "TITLE": "Pomp and Circumstance", "GENRE": "classical"}
+Topic printing ceased

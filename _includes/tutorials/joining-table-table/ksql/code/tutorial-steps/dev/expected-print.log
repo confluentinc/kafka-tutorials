@@ -1,5 +1,6 @@
-Key format: MIXED
+Key format: KAFKA_STRING
 Value format: AVRO
 rowtime: 3/1/20 4:40:21 AM UTC, key: Die Hard, value: {"M_ROWKEY": "Die Hard", "M_TITLE": "Die Hard", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Bruce Willis"}
 rowtime: 3/1/20 4:40:21 AM UTC, key: The Big Lebowski, value: {"M_ROWKEY": "The Big Lebowski", "M_TITLE": "The Big Lebowski", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Jeff Bridges"}
 rowtime: 3/1/20 4:40:21 AM UTC, key: The Godfather, value: {"M_ROWKEY": "The Godfather", "M_TITLE": "The Godfather", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Al Pacino"}
+Topic printing ceased

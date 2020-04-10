@@ -1,4 +1,4 @@
-Key format: KAFKA (INTEGER)
+Key format: KAFKA_INT
 Value format: AVRO
 rowtime: 3/2/20 3:01:14 PM UTC, key: 294, value: {"RATINGS_ROWKEY": 294, "TITLE": "Die Hard", "RATING": 8.2}
 rowtime: 3/2/20 3:01:14 PM UTC, key: 294, value: {"RATINGS_ROWKEY": 294, "TITLE": "Die Hard", "RATING": 8.5}
@@ -9,3 +9,4 @@ rowtime: 3/2/20 3:01:14 PM UTC, key: 782, value: {"RATINGS_ROWKEY": 782, "TITLE"
 rowtime: 3/2/20 3:01:15 PM UTC, key: 128, value: {"RATINGS_ROWKEY": 128, "TITLE": "The Big Lebowski", "RATING": 8.7}
 rowtime: 3/2/20 3:01:15 PM UTC, key: 128, value: {"RATINGS_ROWKEY": 128, "TITLE": "The Big Lebowski", "RATING": 8.4}
 rowtime: 3/2/20 3:01:15 PM UTC, key: 780, value: {"RATINGS_ROWKEY": 780, "TITLE": "Super Mario Bros.", "RATING": 2.1}
+Topic printing ceased
