@@ -5,7 +5,7 @@ CREATE STREAM customers (rowkey int key, firstname string, lastname string, phon
 
 CREATE STREAM customers_with_area_code AS
     SELECT
-      rowkey,
+      customers.rowkey as id,
       firstname,
       lastname,
       phonenumber,
