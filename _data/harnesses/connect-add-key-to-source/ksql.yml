@@ -125,7 +125,7 @@ prod:
   steps:
     - title: Write your statements to a file
       content:
-        - action: make_file
+        - action: skip
           file: src/statements.sql
           render:
             file: tutorials/connect-add-key-to-source/ksql/markup/dev/make-src-file.adoc
