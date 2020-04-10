@@ -195,4 +195,8 @@ blocks:
         - name: KStreams Running Average tests
           commands:
             - make -C _includes/tutorials/aggregating-average/kstreams/code tutorial
-   
+
+        - name: KStreams Test Streams choosing output topic dynamically tests
+          commands:
+            - make -C _includes/tutorials/dynamic-output-topic/kstreams/code tutorial
+        
