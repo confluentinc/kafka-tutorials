@@ -15,6 +15,7 @@ import org.apache.kafka.streams.kstream.Produced;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -116,7 +117,7 @@ public class StreamsIngest {
     Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
       @Override
       public void run() {
-        streams.close();
+        streams.close(Duration.ofSeconds(5));
         latch.countDown();
       }
     });
