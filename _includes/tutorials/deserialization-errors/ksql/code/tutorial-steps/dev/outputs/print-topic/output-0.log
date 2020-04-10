@@ -1,2 +1,0 @@
-Format:JSON
-{"ROWTIME":1579905826934,"ROWKEY":"null","level":"ERROR","logger":"processing.CSAS_SENSORS_0.KsqlTopic.source.deserializer","time":1579905826920,"message":{"type":0,"deserializationError":{"errorMessage":"This Object doesn't represent a boolean","recordB64":"eyJpZCI6ICIxYTA3NmE2NC00YTg0LTQwY2ItYTJlOC0yMTkwZjNiMzc0NjUiLCAidGltZXN0YW1wIjogIjIwMjAtMDEtMTUgMDI6MzA6MzAiLCAiZW5hYmxlZCI6ICJ0cnVlIn0=","cause":[]},"recordProcessingError":null,"productionError":null}}

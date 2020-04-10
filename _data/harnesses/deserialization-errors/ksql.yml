@@ -40,8 +40,9 @@ dev:
     - title: Create the input topic with a stream
       content:
         - action: docker_ksql_cli_session
-          container: ksql-cli
+          container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 45
           render:
             file: tutorials/deserialization-errors/ksql/markup/dev/start-cli.adoc
           stdin:
@@ -59,29 +60,27 @@ dev:
           render:
             file: tutorials/deserialization-errors/ksql/markup/dev/run-producer.adoc
 
-    - title: Checking for if deserialization errors has happened
+    - title: Checking of deserialization errors
       content:
         - action: docker_ksql_cli_session
-          container: ksql-cli
+          container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 43
           render:
             file: tutorials/deserialization-errors/ksql/markup/dev/start-cli.adoc
           stdin:
             - file: tutorial-steps/dev/set-properties.sql
               render:
                 file: tutorials/deserialization-errors/ksql/markup/dev/set-properties.adoc
-
+            - file: tutorial-steps/dev/set-properties.sql
+              render:
+                file: tutorials/deserialization-errors/ksql/markup/dev/set-properties.adoc
             - file: tutorial-steps/dev/transient-query.sql
               render:
                 file: tutorials/deserialization-errors/ksql/markup/dev/transient-query.adoc
-
             - file: tutorial-steps/dev/check-errors-query.sql
               render:
                 file: tutorials/deserialization-errors/ksql/markup/dev/check-errors-query.adoc
-
-            - file: tutorial-steps/dev/print-topic.sql
-              render:
-                file: tutorials/deserialization-errors/ksql/markup/dev/print-topic.adoc
           stdout:
             directory: tutorial-steps/dev/outputs
 
