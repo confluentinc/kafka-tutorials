@@ -1,16 +1,17 @@
 buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.commercehub.gradle.plugin:gradle-avro-plugin:0.15.1'
-        classpath 'com.github.jengelman.gradle.plugins:shadow:4.0.2'
-    }
+  repositories {
+    jcenter()
+  }
+  dependencies {
+    classpath 'com.commercehub.gradle.plugin:gradle-avro-plugin:0.15.1'
+    classpath 'com.github.jengelman.gradle.plugins:shadow:5.2.0'
+  }
 }
 
 plugins {
-    id 'java'
-    id 'com.google.cloud.tools.jib' version '1.1.1'
+  id 'java'
+  id 'idea'
+  id 'com.google.cloud.tools.jib' version '2.1.0'
 }
 
 sourceCompatibility = '1.8'
@@ -18,48 +19,49 @@ targetCompatibility = '1.8'
 version = '0.0.1'
 
 repositories {
-    mavenCentral()
-    jcenter()
+  mavenCentral()
+  jcenter()
 
-    maven {
-        url 'http://packages.confluent.io/maven'
-    }
+  maven {
+    url 'https://packages.confluent.io/maven'
+  }
 }
 
 apply plugin: 'com.commercehub.gradle.plugin.avro'
 apply plugin: 'com.github.johnrengelman.shadow'
 
 dependencies {
-    compile 'org.apache.avro:avro:1.8.2'
-    implementation 'org.slf4j:slf4j-simple:1.7.26'
-    implementation 'io.confluent:kafka-streams-avro-serde:5.2.0'
-    testCompile 'junit:junit:4.12'
-    testCompile "org.testcontainers:kafka:1.11.3"
+  implementation 'org.apache.avro:avro:1.9.1'
+  implementation 'org.slf4j:slf4j-simple:1.7.28'
+  implementation 'io.confluent:kafka-streams-avro-serde:5.4.1'
+  testImplementation 'junit:junit:4.12'
+  testImplementation "org.testcontainers:kafka:1.13.0"
 }
 
 test {
-    testLogging {
-        outputs.upToDateWhen { false }
-        showStandardStreams = true
-        exceptionFormat = 'full'
-    }
+  testLogging {
+    outputs.upToDateWhen { false }
+    showStandardStreams = true
+    exceptionFormat = 'full'
+  }
 }
 
 task run(type: JavaExec) {
-   main = 'io.confluent.developer.TransformEvents'
-   classpath = sourceSets.main.runtimeClasspath
-   args = ['configuration/dev.properties']
+  main = 'io.confluent.developer.TransformEvents'
+  classpath = sourceSets.main.runtimeClasspath
+  args = ['configuration/dev.properties']
 }
 
 jar {
   manifest {
     attributes(
-      'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-      'Main-Class': 'io.confluent.developer.TransformEvents'
+        'Class-Path': configurations.compileClasspath.collect { it.getName() }.join(' '),
+        'Main-Class': 'io.confluent.developer.TransformEvents'
     )
   }
 }
 
 shadowJar {
-    archiveName = "kafka-transforming-standalone-${version}.${extension}"
+  archiveBaseName = "kafka-transforming-standalone"
+  archiveClassifier = ''
 }

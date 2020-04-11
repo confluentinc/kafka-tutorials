@@ -15,11 +15,6 @@ button {
   font-family: "MarkOT";
 }
 
-.logo {
-  height: 33px;
-  width: auto;
-}
-
 .card-cta {
 
 .cta-button {
@@ -52,52 +47,73 @@ body {
   background: #f9f9fa;
   font-size: 14px;
   line-height: 1;
+}
 
-  nav {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    background: #fff;
+.nav-company {
+    padding: 10px;
 
-    .container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    a {
+        font-size: 10px;
+        letter-spacing: 1.17px;
+        font-weight: 600;
+        line-height: 20px;
 
-      @media (max-width: 1087px) {
-        margin: 0 20px;
-      }
-
-      > div:first-child {
-        @media (max-width: 480px) {
-          width: 45%;
-        }
-      }
-
-      .join {
-        p {
-          display: inline-block;
-          font-size: 14px;
-          font-weight: 500;
-          color: $baseColor;
-          margin-right: 10px;
-
-          @media (max-width: 640px) {
-            display: none;
-          }
-        }
-
-        .cta-button {
-          span {
-            display: none;
-
-            @media (min-width: 370px) and (max-width: 640px) {
-              display: inline-block;
-            }
-          }
-        }
-      }
+        &:hover { text-decoration: underline; }
     }
-  }
+}
+
+.navbar {
+    margin: 0 25px;
+    background: none;
+    padding: 18px 0;
+
+    .navbar-brand .navbar-item {
+        padding: 0;
+        .logo {
+            max-height: none;
+            height: 39px;
+            width: auto;
+            margin-right: 10px;
+        }
+
+    }
+
+    .navbar-burger span { height: 2px; }
+
+    .navbar-menu .navbar-item {
+        color: #222;
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: .7px;
+        margin: 20px;
+        padding: 0;
+        a {
+            color: inherit;
+            padding: 2px 0;
+        }
+
+        @media screen and (min-width: 1079px) {
+            margin: 0 20px;
+
+            .link {
+                margin-top: 2px;
+                color: inherit;
+                border-bottom: 5px solid transparent;
+                &:hover { border-color: #b78142; }
+            }
+
+            .cta {
+                background-color: #38cced;
+                color: #fff;
+                border-radius: 6px;
+                padding: 12px 30px 10px 30px;
+                margin-right: 0;
+                border: none;
+
+                .icon { display: inline-block; }
+            }
+        }
+    }
 }
 
 .snippet-wrapper {

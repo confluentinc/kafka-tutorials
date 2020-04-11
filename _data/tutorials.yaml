@@ -171,9 +171,10 @@ connect-add-key-to-source:
   title: "Add key to data ingested through Kafka Connect"
   slug: "/connect-add-key-to-source"
   problem: "You have data in a source system (such as a database) that you want to stream into Kafka using Kafka Connect. You want to add a key to the data as part of the ingest."
-  introduction: "Kafka Connect is the integration API for Apache Kafka. It enables you to stream data from source systems (such databases, message queues, SaaS platforms, and flat files) into Kafka, and from Kafka to target systems. When you stream data into Kafka you often need to set the key correctly for partitioning and application logic reasons. There are different ways to set the key correctly and these tutorials will show you how. It will also cover how to declare the schema and use Kafka Streams to process the data using SpecificAvro."
+  introduction: "Kafka Connect is the integration API for Apache Kafka. It enables you to stream data from source systems (such databases, message queues, SaaS platforms, and flat files) into Kafka, and from Kafka to target systems. When you stream data into Kafka you often need to set the key correctly for partitioning and application logic reasons. In this example there is data about cities in a database, and we want to key the resulting Kafka message by the city_id field. There are different ways to set the key correctly and these tutorials will show you how. It will also cover how to declare the schema and use Kafka Streams to process the data using SpecificAvro. "
   status:
-    ksql: disabled
+    ksql: enabled
+    kafka: enabled
     kstreams: enabled
 
 finding-distinct:
@@ -230,6 +231,28 @@ aggregating-average:
   slug: "/aggregating-average"
   problem: "Kafka Streams natively supports \"incremental\" aggregation functions, in which the aggregation result is updated based on the values captured by each window. Incremental functions include count, sum, min, and max. An average aggregation cannot be computed incrementally. However, as this tutorial shows, it can be implemented by composing incremental functions, namely count and sum."
   introduction: "Consider a topic with events that represent ratings of movies. In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
+dynamic-output-topic:
+  title: "How to dynamically choose the output topic"
+  meta-description: "How to dynamically choose the output topic"
+  slug: "/dynamic-output-topic"
+  problem: "you need to determine which topic to send records to dynamically"
+  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topic.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
+naming-changelog-repartition-topics:
+  title: "How to name stateful operations in Kafka Streams"
+  meta-description: "How to name stateful operations in Kafka Streams"
+  slug: "/naming-stateful-operations"
+  problem: "you have an existing Kafka Streams application and you want to make changes to the topology, but you'd like the new topology to remain compatible with the existing one"
+  introduction: "You want to add or remove some operations in your Kafka Streams application.  In this tutorial we'll name the changelog and repartition topics so that the topology updates don't break compatibility."
   status:
     ksql: disabled
     kstreams: enabled
