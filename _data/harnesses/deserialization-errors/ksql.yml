@@ -60,7 +60,7 @@ dev:
           render:
             file: tutorials/deserialization-errors/ksql/markup/dev/run-producer.adoc
 
-    - title: Checking of deserialization errors
+    - title: Checking for deserialization errors
       content:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
@@ -69,9 +69,6 @@ dev:
           render:
             file: tutorials/deserialization-errors/ksql/markup/dev/start-cli.adoc
           stdin:
-            - file: tutorial-steps/dev/set-properties.sql
-              render:
-                file: tutorials/deserialization-errors/ksql/markup/dev/set-properties.adoc
             - file: tutorial-steps/dev/set-properties.sql
               render:
                 file: tutorials/deserialization-errors/ksql/markup/dev/set-properties.adoc
