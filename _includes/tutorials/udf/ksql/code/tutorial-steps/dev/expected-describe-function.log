@@ -1,7 +1,7 @@
 Name        : VWAP
 Overview    : Volume weighted average price
 Type        : SCALAR
-Jar         : /etc/ksql/ext/udf-0.0.1.jar
+Jar         : /etc/ksqldb/ext/udf-0.0.1.jar
 Variations  : 
 
 	Variation   : VWAP(bid DOUBLE, bidQty INT, ask DOUBLE, askQty INT)

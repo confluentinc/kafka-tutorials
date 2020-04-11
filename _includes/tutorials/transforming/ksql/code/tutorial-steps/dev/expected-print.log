@@ -1,6 +1,7 @@
-Key format: KAFKA (INTEGER)
+Key format: KAFKA_INT
 Value format: AVRO
 rowtime: 2/27/20 8:01:28 PM UTC, key: 294, value: {"ID": 294, "TITLE": "Die Hard", "YEAR": 1988, "GENRE": "action"}
 rowtime: 2/27/20 8:01:28 PM UTC, key: 354, value: {"ID": 354, "TITLE": "Tree of Life", "YEAR": 2011, "GENRE": "drama"}
 rowtime: 2/27/20 8:01:28 PM UTC, key: 782, value: {"ID": 782, "TITLE": "A Walk in the Clouds", "YEAR": 1995, "GENRE": "romance"}
 rowtime: 2/27/20 8:01:28 PM UTC, key: 128, value: {"ID": 128, "TITLE": "The Big Lebowski", "YEAR": 1998, "GENRE": "comedy"}
+Topic printing ceased

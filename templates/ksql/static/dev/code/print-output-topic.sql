@@ -1,0 +1,1 @@
+PRINT 'sport_events' FROM BEGINNING LIMIT 2;

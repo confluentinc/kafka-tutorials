@@ -120,6 +120,14 @@ hopping-windows:
   status:
     ksql: enabled
 
+session-windows:
+  title: "Create session windows"
+  slug: "/create-session-windows"
+  problem: "you have time-series events in a Kafka topic, and you want to group them into variable-size, non-overlapping time intervals based on a configurable inactivity period."
+  introduction: "Given a topic of click events on a website, there are various ways that we can process it. As well as simply counting the number of clicks in a regular time frame (using hopping or tumbling windows), we can also perform sessionization on the data. Here the length of the time window is based on the concept of a session, which is defined based on a period of inactivity. A given user might visit a website multiple times a day, but in distinct visits. Using session windows, we can analyze the number of clicks and duration per visit."
+  status:
+    ksql: enabled
+
 aggregating-count:
   title: "How to count a stream of events"
   meta-description: "Learn to count a stream of events"
@@ -159,13 +167,14 @@ serialization:
     ksql: enabled
     kstreams: enabled
 
-connect-jdbc-kstreams-rekey-specificavro:
-  title: "Ingesting data via a JDBC source connector into Kafka Streams as SpecificAvro, adding a key in Kafka Streams"
-  slug: "/connect-jdbc-kstreams-rekey-specificavro"
-  problem: "you have data in a table in a database, are pulling that data via a JDBC source connector (which by default does not add a key to the Kafka message), and you want to create a Kafka Stream using SpecificAvro, letting Kafka Streams add the key."
-  introduction: "Consider a database with a table with names of cities. The JDBC source connector can read that data into Kafka but, by default, the topic will not have keys. In Kafka Streams, ingest that data using SpecificAvro and add a key to the stream."
+connect-add-key-to-source:
+  title: "Add key to data ingested through Kafka Connect"
+  slug: "/connect-add-key-to-source"
+  problem: "You have data in a source system (such as a database) that you want to stream into Kafka using Kafka Connect. You want to add a key to the data as part of the ingest."
+  introduction: "Kafka Connect is the integration API for Apache Kafka. It enables you to stream data from source systems (such databases, message queues, SaaS platforms, and flat files) into Kafka, and from Kafka to target systems. When you stream data into Kafka you often need to set the key correctly for partitioning and application logic reasons. In this example there is data about cities in a database, and we want to key the resulting Kafka message by the city_id field. There are different ways to set the key correctly and these tutorials will show you how. It will also cover how to declare the schema and use Kafka Streams to process the data using SpecificAvro. "
   status:
-    ksql: disabled
+    ksql: enabled
+    kafka: enabled
     kstreams: enabled
 
 finding-distinct:
@@ -196,6 +205,15 @@ udf:
     kstreams: disabled
     kafka: disabled
 
+deserialization-errors:
+  title: "How to handle deserialization errors"
+  meta-description: "How to handle deserialization errors"
+  slug: "/handling-deserialization-errors"
+  problem: "you have created a stream/table that contains a schema associated, and you want to understand why some events are not being written correctly."
+  introduction: "During the development of event streaming applications, it is very common to have situations where some streams or tables are not receiving some events that has been sent to it. Often this happens because there was an deserialization error due to the event not being in the right format, but that is not so trivial to figure out. In this tutorial, we'll write a program that monitors a stream of sensors. Any deserialization error that happens in this stream will be made available in another stream that can be queried to check errors."
+  status:
+    ksql: enabled
+    
 flatten-nested-data:
   title: "How to flatten deeply nested events"
   meta-description: "How to flatten deeply nested events"
@@ -205,4 +223,37 @@ flatten-nested-data:
   status:
     ksql: enabled
     kstreams: disabled
+    kafka: disabled
+
+aggregating-average:
+  title: "Compute an average aggregation"
+  meta-description: "Compute an average aggregation"
+  slug: "/aggregating-average"
+  problem: "Kafka Streams natively supports \"incremental\" aggregation functions, in which the aggregation result is updated based on the values captured by each window. Incremental functions include count, sum, min, and max. An average aggregation cannot be computed incrementally. However, as this tutorial shows, it can be implemented by composing incremental functions, namely count and sum."
+  introduction: "Consider a topic with events that represent ratings of movies. In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
+dynamic-output-topic:
+  title: "How to dynamically choose the output topic"
+  meta-description: "How to dynamically choose the output topic"
+  slug: "/dynamic-output-topic"
+  problem: "you need to determine which topic to send records to dynamically"
+  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topic.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
+naming-changelog-repartition-topics:
+  title: "How to name stateful operations in Kafka Streams"
+  meta-description: "How to name stateful operations in Kafka Streams"
+  slug: "/naming-stateful-operations"
+  problem: "you have an existing Kafka Streams application and you want to make changes to the topology, but you'd like the new topology to remain compatible with the existing one"
+  introduction: "You want to add or remove some operations in your Kafka Streams application.  In this tutorial we'll name the changelog and repartition topics so that the topology updates don't break compatibility."
+  status:
+    ksql: disabled
+    kstreams: enabled
     kafka: disabled
