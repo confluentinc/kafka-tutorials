@@ -1,5 +1,0 @@
-Issue the following to create a new stream that is continuously populated by its query, using the output from `REGEXREPLACE` in the column `area_code`:
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/rekeying-function/ksql/code/tutorial-steps/dev/continuous-regex.sql %}</code></pre>
-+++++
