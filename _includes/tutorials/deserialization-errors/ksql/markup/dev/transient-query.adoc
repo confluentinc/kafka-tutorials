@@ -11,5 +11,5 @@ The output should look similar to:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
 +++++
 
-If testing purposes, you can omit the limit clause to check if indeed there is only two records in the stream.
+For testing purposes, you can omit the limit clause to check if indeed there is only two records in the stream.
 Do it if you feel the urge to double-check this.
