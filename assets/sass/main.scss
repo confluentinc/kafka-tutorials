@@ -63,7 +63,7 @@ body {
 }
 
 .navbar {
-    margin: 0 25px;
+    margin: 0 15px;
     background: none;
     padding: 18px 0;
 
@@ -72,10 +72,25 @@ body {
         .logo {
             max-height: none;
             height: 39px;
-            width: auto;
+            width: 125px;
             margin-right: 10px;
         }
 
+        .sub-domain {
+            width: 125px;
+        }
+
+    }
+
+    @media screen and (min-width: 1079px) {
+        margin: 0 25px;
+
+        .navbar-brand .navbar-item {
+            .logo, .sub-domain {
+                width: auto;
+            }
+
+        }
     }
 
     .navbar-burger span { height: 2px; }
@@ -92,7 +107,11 @@ body {
             padding: 2px 0;
         }
 
+        width: 100%;
+
+
         @media screen and (min-width: 1079px) {
+            width: auto;
             margin: 0 20px;
 
             .link {
@@ -173,6 +192,10 @@ body {
         font-weight: bold;
         line-height: 1.2;
         max-width: 650px;
+
+        @media screen and (max-width: 479px) {
+            font-size: 50px;
+        }
       }
     }
 
