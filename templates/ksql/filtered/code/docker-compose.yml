@@ -11,6 +11,8 @@ services:
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
+    networks:
+      -cp
 
   broker:
     image: confluentinc/cp-enterprise-kafka:<CP-VERSION>
@@ -35,6 +37,9 @@ services:
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
       CONFLUENT_METRICS_ENABLE: 'true'
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
+    networks:
+      - cp
+
 
   schema-registry:
     image: confluentinc/cp-schema-registry:<CP-VERSION>
@@ -48,6 +53,8 @@ services:
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
+    networks:
+      - cp
 
   ksqldb-server:
     image: confluentinc/ksqldb-server:<KSQLDB-VERSION>
@@ -66,6 +73,8 @@ services:
       KSQL_LISTENERS: "http://0.0.0.0:8088"
       KSQL_CACHE_MAX_BYTES_BUFFERING: 0
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+    networks:
+      - cp
 
   ksqldb-cli:
     image: confluentinc/ksqldb-cli:<KSQLDB-VERSION>
@@ -80,3 +89,9 @@ services:
     volumes:
       - ./src:/opt/app/src
       - ./test:/opt/app/test
+    networks:
+      - cp
+
+  networks:
+    cp:
+     name: cp_network
