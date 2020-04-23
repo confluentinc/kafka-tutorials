@@ -257,3 +257,14 @@ naming-changelog-repartition-topics:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+
+cogrouping-streams:
+  title: "How to combine stream aggregates together in a single larger object"
+  meta-description: "How to combine stream aggregates together in a single larger object"
+  slug: "/cogrouping-streams"
+  problem: "you have multiple streams with an aggregate value that you want to combine into a single object"
+  introduction: "You have mulitple streams with an aggregate value but you want to group them all together - cogrouping.  In this tutorial we'll cover how to use the KStreams CoGrouping functionality to merge mulitple aggregates into a single aggregate object"
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
