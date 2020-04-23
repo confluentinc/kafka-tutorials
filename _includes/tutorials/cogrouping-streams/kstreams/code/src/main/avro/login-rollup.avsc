@@ -1,0 +1,15 @@
+{
+  "namespace": "io.confluent.developer.avro",
+  "type": "record",
+  "name": "LoginRollup",
+  "fields": [
+    {"name": "login_by_app_and_user", "type": {
+      "type": "map",
+      "values": {
+        "type": "map",
+        "values": {"type": "long"}
+      }
+    }
+    }
+  ]
+}
