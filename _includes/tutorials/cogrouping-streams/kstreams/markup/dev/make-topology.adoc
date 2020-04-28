@@ -30,6 +30,8 @@ Next, you have three input streams (`appOneStream`, `appTwoStream`, and `appThre
 
 Now with your `KGroupedStream` objects, you start creating your larger aggregate by calling `KGroupedStream.cogroup()` on the first stream, using your `Aggregator`.  This first step returns a `CogroupedKStream` instance.  Then for each remaining `KGroupedStream`, you execute `CogroupedKSteam.cogroup()` using one of the `KGroupedStream` instances and the `Aggregator` you created previously.  You repeat this sequence of calls for all of the `KGroupedStream` objects you want to combine into an overall aggregate.
 
+For more background on cogrouping functionality in stream you can https://cwiki.apache.org/confluence/display/KAFKA/KIP-150+-+Kafka-Streams+Cogroup[read the KIP proposal].
+
 
 Now go ahead and create the Java file at `src/main/java/io/confluent/developer/CogroupingStreams.java`.
 +++++
