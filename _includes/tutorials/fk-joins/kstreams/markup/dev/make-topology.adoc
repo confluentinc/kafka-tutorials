@@ -18,6 +18,8 @@ If you have a situation where you have two tables for which the primary keys don
 
 With the `trackPurchases` table and the `albums` table in hand, all that remains is to join them using the `join()` method. It's a wonderfully simply one-liner, but we have concealed a bit of complexity in the form of the `MusicInterestJoiner` class. More on that in a moment.
 
+For more background on `KTable` foreign key joins you can https://cwiki.apache.org/confluence/display/KAFKA/KIP-213+Support+non-key+joining+in+KTable[read the original KIP proposal].
+
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/fk-joins/kstreams/code/src/main/java/io/confluent/developer/FkJoinTableToTable.java %}</code></pre>
 +++++
