@@ -5,8 +5,10 @@ import io.confluent.common.utils.TestUtils;
 import io.confluent.developer.avro.LoginEvent;
 import io.confluent.developer.avro.LoginRollup;
 import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import io.confluent.kafka.streams.serdes.avro.PrimitiveAvroSerde;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -83,7 +85,7 @@ public class CogroupingStreams {
         final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
         final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
         final Map<String, String> config = new HashMap<>();
-        config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
+        config.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 envProps.getProperty("schema.registry.url"));
         deserializer.configure(config, isKey);
         serializer.configure(config, isKey);
@@ -94,7 +96,7 @@ public class CogroupingStreams {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
 
         final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
+        serdeConfig.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 envProps.getProperty("schema.registry.url"));
 
         specificAvroSerde.configure(serdeConfig, false);
