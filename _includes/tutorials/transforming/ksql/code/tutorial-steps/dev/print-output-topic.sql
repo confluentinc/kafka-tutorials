@@ -1,1 +1,1 @@
-PRINT 'parsed_movies' FROM BEGINNING LIMIT 4;
+PRINT parsed_movies FROM BEGINNING LIMIT 4;
