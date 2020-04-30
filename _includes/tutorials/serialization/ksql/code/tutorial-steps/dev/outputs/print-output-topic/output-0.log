@@ -1,5 +1,6 @@
-Key format: KAFKA (BIGINT or DOUBLE)
+Key format: KAFKA_BIGINT or KAFKA_DOUBLE or KAFKA_STRING
 Value format: AVRO
-rowtime: 3/3/20 7:43:06 PM UTC, key: 1, value: {"MOVIE_ID": 1, "TITLE": "Lethal Weapon", "RELEASE_YEAR": 1992}
-rowtime: 3/3/20 7:43:07 PM UTC, key: 2, value: {"MOVIE_ID": 2, "TITLE": "Die Hard", "RELEASE_YEAR": 1988}
-rowtime: 3/3/20 7:43:07 PM UTC, key: 3, value: {"MOVIE_ID": 3, "TITLE": "Predator", "RELEASE_YEAR": 1997}
+rowtime: 4/30/20 4:34:10 PM UTC, key: 1, value: {"MOVIE_ID": 1, "TITLE": "Lethal Weapon", "RELEASE_YEAR": 1992}
+rowtime: 4/30/20 4:34:10 PM UTC, key: 2, value: {"MOVIE_ID": 2, "TITLE": "Die Hard", "RELEASE_YEAR": 1988}
+rowtime: 4/30/20 4:34:11 PM UTC, key: 3, value: {"MOVIE_ID": 3, "TITLE": "Predator", "RELEASE_YEAR": 1997}
+Topic printing ceased
