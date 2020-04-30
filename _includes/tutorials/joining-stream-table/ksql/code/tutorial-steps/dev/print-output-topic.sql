@@ -1,1 +1,1 @@
-PRINT 'rated_movies' FROM BEGINNING LIMIT 9;
+PRINT rated_movies FROM BEGINNING LIMIT 9;
