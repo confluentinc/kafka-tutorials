@@ -9,7 +9,7 @@ build/
 .jekyll-metadata
 node_modules/
 out/
-*/dev/outputs/
+**/tutorial-steps/dev/outputs/
 .DS_Store
 harness_runner/harness_runner.egg-info
 __pycache__
@@ -24,4 +24,3 @@ bin/
 s3_website.yml
 harness_runner/harness_runner.pyc
 *_checklist.txt
-actual-output.json
