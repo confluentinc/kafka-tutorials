@@ -268,3 +268,15 @@ cogrouping-streams:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+
+console-consumer-produer-basic:
+  title: "Console Consumer and Producer Basics"
+  meta-description: "Produce and consume your first message with Kafka"
+  slug: "/kafka-console-consumer-producer-basics"
+  problem: "you are brand new to Kafka and you want to experiment by producing and consuming a message quickly"
+  introduction: "So you are excited to get started with Kafka and youd like to produce and consume some messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+    
