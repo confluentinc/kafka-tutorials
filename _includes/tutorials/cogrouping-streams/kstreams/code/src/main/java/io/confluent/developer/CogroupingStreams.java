@@ -4,11 +4,9 @@ package io.confluent.developer;
 import io.confluent.common.utils.TestUtils;
 import io.confluent.developer.avro.LoginEvent;
 import io.confluent.developer.avro.LoginRollup;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import io.confluent.kafka.streams.serdes.avro.PrimitiveAvroSerde;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -44,7 +42,7 @@ public class CogroupingStreams {
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
         props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 10 * 1024 * 1024);
         return props;
     }
