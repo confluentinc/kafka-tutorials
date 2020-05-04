@@ -3,9 +3,9 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-The `Aggregator` you saw in the previous step, constructs a map keeping a count of user logins per user, per application, so a map of maps.  Here you'll see the core logic of the `LoginAggregator`, and the code is straightforward, as you can see below.
+The `Aggregator` you saw in the previous step constructs a map of maps: the count of logins per user, per application.  Below is the core logic of the `LoginAggregator`.
 
-Each call to `Aggregator.apply` retrieves the user login map for the given application id (or creating one if it doesn't exist).  From there, the `Aggregator` increments the login count for the given user.
+Each call to `Aggregator.apply` retrieves the user login map for the given application id (or creates one if it doesn't exist).  From there, the `Aggregator` increments the login count for the given user.
 
 ++++
 <pre class="snippet">
