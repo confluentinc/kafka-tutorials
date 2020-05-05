@@ -1,12 +1,12 @@
 Key format: KAFKA_INT
 Value format: AVRO
-rowtime: 4/30/20 4:36:18 PM UTC, key: 294, value: {"ID": 294, "RATING": 8.2}
-rowtime: 4/30/20 4:36:18 PM UTC, key: 294, value: {"ID": 294, "RATING": 8.5}
-rowtime: 4/30/20 4:36:19 PM UTC, key: 354, value: {"ID": 354, "RATING": 9.9}
-rowtime: 4/30/20 4:36:19 PM UTC, key: 354, value: {"ID": 354, "RATING": 9.7}
-rowtime: 4/30/20 4:36:19 PM UTC, key: 782, value: {"ID": 782, "RATING": 7.8}
-rowtime: 4/30/20 4:36:19 PM UTC, key: 128, value: {"ID": 128, "RATING": 8.7}
-rowtime: 4/30/20 4:36:19 PM UTC, key: 128, value: {"ID": 128, "RATING": 8.4}
-rowtime: 4/30/20 4:36:19 PM UTC, key: 782, value: {"ID": 782, "RATING": 7.7}
-rowtime: 4/30/20 4:36:20 PM UTC, key: 780, value: {"ID": 780, "RATING": 2.1}
+rowtime: 2020/05/04 23:24:30.376 Z, key: 294, value: {"ID": 294, "RATING": 8.2}
+rowtime: 2020/05/04 23:24:30.684 Z, key: 354, value: {"ID": 354, "RATING": 9.9}
+rowtime: 2020/05/04 23:24:30.781 Z, key: 354, value: {"ID": 354, "RATING": 9.7}
+rowtime: 2020/05/04 23:24:30.949 Z, key: 782, value: {"ID": 782, "RATING": 7.7}
+rowtime: 2020/05/04 23:24:31.099 Z, key: 128, value: {"ID": 128, "RATING": 8.4}
+rowtime: 2020/05/04 23:24:30.560 Z, key: 294, value: {"ID": 294, "RATING": 8.5}
+rowtime: 2020/05/04 23:24:30.873 Z, key: 782, value: {"ID": 782, "RATING": 7.8}
+rowtime: 2020/05/04 23:24:31.021 Z, key: 128, value: {"ID": 128, "RATING": 8.7}
+rowtime: 2020/05/04 23:24:31.178 Z, key: 780, value: {"ID": 780, "RATING": 2.1}
 Topic printing ceased
