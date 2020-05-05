@@ -1,7 +1,0 @@
-Key format: SESSION(KAFKA_STRING) or HOPPING(KAFKA_STRING) or TUMBLING(KAFKA_STRING) or KAFKA_STRING
-Value format: AVRO or KAFKA_STRING
-rowtime: 4/30/20 4:09:08 PM UTC, key: [Geo@3323741605926824302/8243668832417095762], value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Song of Ice and Fire"}
-rowtime: 4/30/20 4:09:09 PM UTC, key: [Geo@3323741605926824302/8243668832417095762], value: {"AUTHOR": "George R. R. Martin", "TITLE": "Fire & Blood"}
-rowtime: 4/30/20 4:09:10 PM UTC, key: [Geo@3323741605926824302/8243668832417095762], value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Dream of Spring"}
-rowtime: 4/30/20 4:09:11 PM UTC, key: [Geo@3323741605926824302/8243668832417095762], value: {"AUTHOR": "George R. R. Martin", "TITLE": "The Ice Dragon"}
-Topic printing ceased
