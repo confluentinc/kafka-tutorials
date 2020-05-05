@@ -1,7 +1,0 @@
-+-------------------------------------------+-------------------------------------------+-------------------------------------------+
-|LOGGER                                     |LEVEL                                      |MESSAGE__DESERIALIZATIONERROR__ERRORMESSAGE|
-+-------------------------------------------+-------------------------------------------+-------------------------------------------+
-|processing.CSAS_SENSORS_0.KsqlTopic.Source.|ERROR                                      |mvn value from topic: SENSORS_RAW          |
-|deserializer                               |                                           |                                           |
-Limit Reached
-Query terminated

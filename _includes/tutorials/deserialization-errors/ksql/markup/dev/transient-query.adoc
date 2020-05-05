@@ -8,7 +8,7 @@ In order to check if these two records were properly written into the stream, ru
 The output should look similar to:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/expected-transient-query.log %}</code></pre>
 +++++
 
 For testing purposes, you can omit the limit clause to check if indeed there is only two records in the stream.

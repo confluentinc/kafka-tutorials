@@ -6,5 +6,5 @@ To check that it's working, print out the contents of the output stream's underl
 
 This should yield the following output:
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/joining-table-table/ksql/code/tutorial-steps/dev/outputs/print-output-topic/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/joining-table-table/ksql/code/tutorial-steps/dev/expected-print.log %}</code></pre>
 +++++
