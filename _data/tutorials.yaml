@@ -270,7 +270,7 @@ cogrouping-streams:
     kafka: disabled
 
 console-consumer-produer-basic:
-  title: "Console Producer and Consume Basics"
+  title: "Console Producer and Consume Basics, no (de)serializers"
   meta-description: "Produce and consume your first message with Kafka"
   slug: "/kafka-console-consumer-producer-basics"
   problem: "you are brand new to Kafka and you want to experiment by producing and consuming a message quickly"
