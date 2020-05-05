@@ -1,7 +1,7 @@
 Key format: KAFKA_INT
 Value format: AVRO
-rowtime: 4/30/20 4:06:32 PM UTC, key: 294, value: {"ID": 294, "TITLE": "Die Hard", "YEAR": 1988, "GENRE": "action"}
-rowtime: 4/30/20 4:06:32 PM UTC, key: 354, value: {"ID": 354, "TITLE": "Tree of Life", "YEAR": 2011, "GENRE": "drama"}
-rowtime: 4/30/20 4:06:32 PM UTC, key: 782, value: {"ID": 782, "TITLE": "A Walk in the Clouds", "YEAR": 1995, "GENRE": "romance"}
-rowtime: 4/30/20 4:06:33 PM UTC, key: 128, value: {"ID": 128, "TITLE": "The Big Lebowski", "YEAR": 1998, "GENRE": "comedy"}
+rowtime: 2020/05/04 22:09:54.713 Z, key: 294, value: {"ID": 294, "TITLE": "Die Hard", "YEAR": 1988, "GENRE": "action"}
+rowtime: 2020/05/04 22:09:55.012 Z, key: 354, value: {"ID": 354, "TITLE": "Tree of Life", "YEAR": 2011, "GENRE": "drama"}
+rowtime: 2020/05/04 22:09:55.217 Z, key: 782, value: {"ID": 782, "TITLE": "A Walk in the Clouds", "YEAR": 1995, "GENRE": "romance"}
+rowtime: 2020/05/04 22:09:55.379 Z, key: 128, value: {"ID": 128, "TITLE": "The Big Lebowski", "YEAR": 1998, "GENRE": "comedy"}
 Topic printing ceased

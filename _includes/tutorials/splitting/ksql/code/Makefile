@@ -12,5 +12,5 @@ tutorial:
 	harness-runner ../../../../../_data/harnesses/splitting/ksql.yml $(TEMP_DIR)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-outputs/query-drama.log $(DEV_OUTPUTS_DIR)/query-drama/output-0.log
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-outputs/negative-query.log $(DEV_OUTPUTS_DIR)/query-not-drama-fantasy/output-0.log
-	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 3- $(STEPS_DIR)/dev/expected-outputs/printed-topic.log) <(cut -d ',' -f 3- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log)"
+	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 2- $(STEPS_DIR)/dev/expected-outputs/printed-topic.log) <(cut -d ',' -f 2- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log)"
 	diff --strip-trailing-cr $(STEPS_DIR)/test/expected-results.log $(TEST_OUTPUTS_DIR)/test-results.log

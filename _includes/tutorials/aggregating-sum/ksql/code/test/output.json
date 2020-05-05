@@ -1,5 +1,6 @@
 {
   "outputs": [
+    {"topic": "MOVIE_REVENUE", "key": "Aliens", "value": {"TITLE": "Aliens", "TOTAL_VALUE": 10}, "timestamp": 1563444000000},
     {"topic": "MOVIE_REVENUE", "key": "Die Hard", "value": {"TITLE": "Die Hard", "TOTAL_VALUE": 12}, "timestamp": 1563444000000},
     {"topic": "MOVIE_REVENUE", "key": "Die Hard", "value": {"TITLE": "Die Hard", "TOTAL_VALUE": 24}, "timestamp": 1563444060000},
     {"topic": "MOVIE_REVENUE", "key": "The Godfather", "value": {"TITLE": "The Godfather", "TOTAL_VALUE": 12}, "timestamp": 1563444091000},
