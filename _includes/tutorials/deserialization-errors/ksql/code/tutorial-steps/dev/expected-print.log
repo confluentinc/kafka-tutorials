@@ -1,0 +1,3 @@
+Key format: UNDEFINED
+Value format: JSON
+rowtime: 5/5/20 9:32:02 AM UTC, key: <null>, value: {"level":"ERROR","logger":"processing.CSAS_SENSORS_0.KsqlTopic.Source.deserializer","time":1588671122813,"message":{"type":0,"deserializationError":{"errorMessage":"mvn value from topic: SENSORS_RAW","recordB64":"eyJpZCI6ICIxYTA3NmE2NC00YTg0LTQwY2ItYTJlOC0yMTkwZjNiMzc0NjUiLCAidGltZXN0YW1wIjogIjIwMjAtMDEtMTUgMDI6MzA6MzAiLCAiZW5hYmxlZCI6ICJ0cnVlIn0=","cause":["Can't convert type. sourceType: TextNode, requiredType: BOOLEAN, path: $.ENABLED","Can't convert type. sourceType: TextNode, requiredType: BOOLEAN, path: .ENABLED","Can't convert type. sourceType: TextNode, requiredType: BOOLEAN"]},"recordProcessingError":null,"productionError":null}}
