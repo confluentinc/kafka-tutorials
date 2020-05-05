@@ -1,7 +1,0 @@
-Key format: SESSION(AVRO) or HOPPING(AVRO) or TUMBLING(AVRO) or AVRO or SESSION(PROTOBUF) or HOPPING(PROTOBUF) or TUMBLING(PROTOBUF) or PROTOBUF or SESSION(JSON) or HOPPING(JSON) or TUMBLING(JSON) or JSON or SESSION(JSON_SR) or HOPPING(JSON_SR) or TUMBLING(JSON_SR) or JSON_SR or SESSION(KAFKA_INT) or HOPPING(KAFKA_INT) or TUMBLING(KAFKA_INT) or KAFKA_INT or SESSION(KAFKA_BIGINT) or HOPPING(KAFKA_BIGINT) or TUMBLING(KAFKA_BIGINT) or KAFKA_BIGINT or SESSION(KAFKA_DOUBLE) or HOPPING(KAFKA_DOUBLE) or TUMBLING(KAFKA_DOUBLE) or KAFKA_DOUBLE or SESSION(KAFKA_STRING) or HOPPING(KAFKA_STRING) or TUMBLING(KAFKA_STRING) or KAFKA_STRING
-Value format: AVRO or KAFKA_STRING
-rowtime: 4/30/20 4:12:11 PM UTC, key: <null>, value: {"NAME": "Bill Murray", "TITLE": "Ghostbusters"}
-rowtime: 4/30/20 4:12:11 PM UTC, key: <null>, value: {"NAME": "Judy Garland", "TITLE": "The Wizard of Oz"}
-rowtime: 4/30/20 4:12:12 PM UTC, key: <null>, value: {"NAME": "Keanu Reeves", "TITLE": "The Matrix"}
-rowtime: 4/30/20 4:12:12 PM UTC, key: <null>, value: {"NAME": "Laura Dern", "TITLE": "Jurassic Park"}
-Topic printing ceased

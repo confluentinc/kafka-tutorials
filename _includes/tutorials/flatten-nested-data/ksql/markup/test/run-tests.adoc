@@ -7,5 +7,5 @@ Lastly, invoke the tests using the test runner and the statements file that you 
 Which should pass:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/flatten-nested-data/ksql/code/tutorial-steps/test/outputs/test-results.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/flatten-nested-data/ksql/code/tutorial-steps/test/expected-results.log %}</code></pre>
 +++++

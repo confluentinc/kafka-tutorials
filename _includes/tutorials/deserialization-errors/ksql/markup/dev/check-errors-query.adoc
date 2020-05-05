@@ -9,5 +9,5 @@ With the https://docs.confluent.io/current/ksql/docs/developer-guide/processing-
 This query should produce the following output:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/outputs/check-errors-query/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/expected-check-errors-query.log %}</code></pre>
 +++++
