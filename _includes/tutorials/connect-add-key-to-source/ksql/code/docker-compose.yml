@@ -77,15 +77,15 @@ services:
       KSQL_CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: '1'
       KSQL_CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: '1'
       KSQL_CONNECT_LOG4J_APPENDER_STDOUT_LAYOUT_CONVERSIONPATTERN: "[%d] %p %X{connector.context}%m (%c:%L)%n"
-      KSQL_CONNECT_PLUGIN_PATH: '/usr/share/java,/usr/share/confluent-hub-components/,/data/connect-jars'
+      KSQL_CONNECT_PLUGIN_PATH: '/home/appuser/share/java,/home/appuser/confluent-hub-components/,/data/connect-jars'
     command: 
       # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
       - bash 
       - -c 
       - |
         echo "Installing connector plugins"
-        mkdir -p /usr/share/confluent-hub-components/
-        confluent-hub install --no-prompt --component-dir /usr/share/confluent-hub-components/ confluentinc/kafka-connect-jdbc:5.4.1
+        mkdir -p ~/confluent-hub-components/
+        /home/appuser/bin/confluent-hub install --no-prompt --component-dir confluent-hub-components/ confluentinc/kafka-connect-jdbc:5.4.1
         #
         echo "Launching ksqlDB"
         /usr/bin/docker/run & 
