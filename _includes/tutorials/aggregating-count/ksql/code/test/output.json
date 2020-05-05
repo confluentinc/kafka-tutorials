@@ -1,5 +1,6 @@
 {
   "outputs": [
+    {"topic": "MOVIE_TICKETS_SOLD", "key": "Aliens", "value": {"TITLE": "Aliens", "TICKETS_SOLD": 1}, "timestamp": 1563444000000},
     {"topic": "MOVIE_TICKETS_SOLD", "key": "Die Hard", "value": {"TITLE": "Die Hard", "TICKETS_SOLD": 1}, "timestamp": 1563444000000},
     {"topic": "MOVIE_TICKETS_SOLD", "key": "Die Hard", "value": {"TITLE": "Die Hard", "TICKETS_SOLD": 2}, "timestamp": 1563444060000},
     {"topic": "MOVIE_TICKETS_SOLD", "key": "The Godfather", "value": {"TITLE": "The Godfather", "TICKETS_SOLD": 1}, "timestamp": 1563444091000},

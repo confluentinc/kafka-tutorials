@@ -1,5 +1,6 @@
-Key format: KAFKA (STRING)
-Value format: JSON
-rowtime: 1/15/20 2:30:30 AM UTC, key: 1, value: {"ID":"1","START_PERIOD":"02:25:00","END_PERIOD":"02:35:00","AVG_READING":42}
-rowtime: 1/15/20 2:30:30 AM UTC, key: 1, value: {"ID":"1","START_PERIOD":"02:30:00","END_PERIOD":"02:40:00","AVG_READING":40}
-rowtime: 1/15/20 2:35:30 AM UTC, key: 1, value: {"ID":"1","START_PERIOD":"02:30:00","END_PERIOD":"02:40:00","AVG_READING":42}
+Key format: JSON or KAFKA_STRING
+Value format: JSON or KAFKA_STRING
+rowtime: 2020/01/15 02:30:30.000 Z, key: 1, value: {"ID":"1","START_PERIOD":"02:25:00","END_PERIOD":"02:35:00","AVG_READING":42}
+rowtime: 2020/01/15 02:30:30.000 Z, key: 1, value: {"ID":"1","START_PERIOD":"02:30:00","END_PERIOD":"02:40:00","AVG_READING":40}
+rowtime: 2020/01/15 02:35:30.000 Z, key: 1, value: {"ID":"1","START_PERIOD":"02:30:00","END_PERIOD":"02:40:00","AVG_READING":42}
+Topic printing ceased
