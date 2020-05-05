@@ -20,7 +20,7 @@ yq r "$(dirname $0)/../.semaphore/semaphore.yml" -j \
     | jq -r '.blocks[] |= select(.name=="Run the tests")' \
     | jq -r --arg expr $filter_job_regex '(.blocks[0].task.jobs) |= [.[] | select(.commands[0] | test($expr))]' \
     | yq w - fail_fast.stop.when true \
-    | yq w - 'blocks[0].task.prologue[+]' "aws ecr get-login-password --region $docker_registry_region | docker login --username AWS --password-stdin $docker_registry" \
-    | yq w - 'blocks[0].task.secrets[+]' aws_credentials \
+    | yq w - 'blocks[0].task.prologue.commands[+]' "aws ecr get-login-password --region $docker_registry_region | docker login --username AWS --password-stdin $docker_registry" \
+    | yq w - 'blocks[0].task.secrets[+].name' aws_credentials \
     | yq d - promotions \
     | yq r --prettyPrint - 
