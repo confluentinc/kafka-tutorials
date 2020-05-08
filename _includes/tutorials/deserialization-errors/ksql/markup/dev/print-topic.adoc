@@ -8,7 +8,7 @@ Print the contents of its underlying topic to see some more.
 The output should look similar to:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/outputs/print-topic/output-0.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/expected-print.log %}</code></pre>
 +++++
 
 Note the presence of a field called `recordB64`.
