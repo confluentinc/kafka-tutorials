@@ -2,6 +2,15 @@
   "inputs": [
     {
       "topic": "movies",
+      "key": "Aliens",
+      "value": {
+        "ID": 48,
+        "TITLE": "Aliens",
+        "RELEASE_YEAR": 1986
+      }
+    },
+    {
+      "topic": "movies",
       "key": "Die Hard",
       "value": {
         "ID": 294,
@@ -25,6 +34,14 @@
         "ID": 128,
         "TITLE": "The Godfather",
         "RELEASE_YEAR": 1998
+      }
+    },
+    {
+      "topic": "lead_actors",
+      "key": "Aliens",
+      "value": {
+        "TITLE": "Aliens",
+        "ACTOR_NAME": "Sigourney Weaver"
       }
     },
     {
