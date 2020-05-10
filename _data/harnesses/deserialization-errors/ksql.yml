@@ -78,6 +78,9 @@ dev:
             - file: tutorial-steps/dev/check-errors-query.sql
               render:
                 file: tutorials/deserialization-errors/ksql/markup/dev/check-errors-query.adoc
+            - file: tutorial-steps/dev/print-topic.sql
+              render:
+                file: tutorials/deserialization-errors/ksql/markup/dev/print-topic.adoc
           stdout:
             directory: tutorial-steps/dev/outputs
 

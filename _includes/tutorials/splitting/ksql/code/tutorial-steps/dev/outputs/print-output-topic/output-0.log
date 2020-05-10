@@ -1,7 +1,0 @@
-Key format: ¯\_(ツ)_/¯ - no data processed
-Value format: AVRO or KAFKA_STRING
-rowtime: 2020/05/04 23:40:52.078 Z, key: <null>, value: {"NAME": "Bill Murray", "TITLE": "Ghostbusters"}
-rowtime: 2020/05/04 23:40:52.454 Z, key: <null>, value: {"NAME": "Judy Garland", "TITLE": "The Wizard of Oz"}
-rowtime: 2020/05/04 23:40:52.537 Z, key: <null>, value: {"NAME": "Keanu Reeves", "TITLE": "The Matrix"}
-rowtime: 2020/05/04 23:40:52.607 Z, key: <null>, value: {"NAME": "Laura Dern", "TITLE": "Jurassic Park"}
-Topic printing ceased
