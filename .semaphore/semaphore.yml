@@ -211,3 +211,11 @@ blocks:
           commands:
             - make -C _includes/tutorials/console-consumer-produer-basic/kafka/code tutorial
             
+        - name: KStreams Test Reading Primitive Values from the Console Consumer tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-primitive-values/kafka/code tutorial
+
+        - name: Kafka Test Kafka Console Consumer with Primitive Keys and Values tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-primitive-keys-values/kafka/code tutorial
+            

@@ -1,0 +1,7 @@
+Now launch Confluent Platform by running:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-primitive-keys-values/kafka/code/tutorial-steps/dev/docker-compose-up.sh %}</code></pre>
++++++
+
+For this tutorial, your `docker-compose` runs a `connect-datagen` to pre-populate a topic you'll need for this tutorial.
