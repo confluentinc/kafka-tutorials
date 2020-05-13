@@ -8,19 +8,18 @@ Kafka topic          : all_songs (partitions: 1, replication: 1)
 Statement            : CREATE STREAM all_songs (artist VARCHAR, title VARCHAR, genre VARCHAR)
     WITH (kafka_topic='all_songs', partitions=1, value_format='avro');
 
- Field   | Type                      
+ Field  | Type
 
- ROWTIME | BIGINT           (system) 
- ROWKEY  | VARCHAR(STRING)  (system) 
- ARTIST  | VARCHAR(STRING)           
- TITLE   | VARCHAR(STRING)           
- GENRE   | VARCHAR(STRING)           
+ ROWKEY | VARCHAR(STRING)  (key)
+ ARTIST | VARCHAR(STRING)
+ TITLE  | VARCHAR(STRING)
+ GENRE  | VARCHAR(STRING)
 
 
 Queries that write from this STREAM
 -----------------------------------
-InsertQuery_0 (REBALANCING) : INSERT INTO all_songs SELECT artist, title, 'rock' AS genre FROM rock_songs;
-InsertQuery_7 (REBALANCING) : INSERT INTO all_songs SELECT artist, title, 'classical' AS genre FROM classical_songs;
+INSERTQUERY_7 (RUNNING) : INSERT INTO all_songs SELECT artist, title, 'classical' AS genre FROM classical_songs;
+INSERTQUERY_0 (RUNNING) : INSERT INTO all_songs SELECT artist, title, 'rock' AS genre FROM rock_songs;
 
 For query topology and execution plan please run: EXPLAIN <QueryId>
 
