@@ -2,5 +2,7 @@ docker exec -it broker /usr/bin/kafka-console-consumer --topic example --bootstr
  --from-beginning \
  --property print.key=true \
  --property key.separator=" : " \
+ --key-deserializer "org.apache.kafka.common.serialization.LongDeserializer" \
+ --value-deserializer "org.apache.kafka.common.serialization.DoubleDeserializer" \
  --max-messages 10
  

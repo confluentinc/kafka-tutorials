@@ -280,17 +280,6 @@ console-consumer-produer-basic:
     kstreams: disabled
     kafka: enabled
 
-console-consumer-primitive-values:
-  title: "How to use the console consumer to read non-primitive values"
-  meta-description: "How to use the console consumer to read non-primitive values"
-  slug: "/console-consumer-primitive-values"
-  problem: "you are writing records (key - Long, Value - Double) to a topic and you want to inspect the records, but running the console consumer doesnt' show expected results"
-  introduction: "You want to inspect/debug records written to a topic.  The keys and values are long and doubles, repsectively.  In this tutorial you'll learn how to specify key and value deserializers with the console consumer"
-  status:
-    ksql: disabled
-    kstreams: disabled
-    kafka: enabled
-
 console-consumer-primitive-keys-values:
   title: "How to use the console consumer to read non-string primitive keys values"
   meta-description: "How to use the console consumer to read non-string primitive keys and values"
