@@ -1,18 +1,16 @@
-Next let's open up a console consumer again, but this time you'll ready everthing that your producer has sent to the topic. you created in the previous step.
+Now let's update your command to the console consumer to specify the deserializer for keys and values.
 
-Run this command in a new terminal to start the consumer and note the additional property `--from-beginning`:
-
+In the same window of your previous console consumer run this updated command:
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-primitive-keys-values/kafka/code/tutorial-steps/dev/console-consumer-from-beginning.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-primitive-keys-values/kafka/code/tutorial-steps/dev/console-consumer-keys-deserializers.sh %}</code></pre>
 +++++
 
-After the consumer starts you should see the following output in a few seconds:
+After the consumer starts you should see readable numbers similar to this:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-primitive-keys-values/kafka/code/tutorial-steps/dev/expected-output-step-two.txt %}</code></pre>
 +++++
 
+Now you know how to configure a console consumer to handle prmitive types - Double, Long, Float, Integer and Short.
 
-One word of caution with using the `--from-beginning` flag. As the name implies this setting forces the consumer retrieve _**every record**_ currently on the topic.  So it's best to use when testing  and learning and not on a production topic.
-
-Again, once you've recieved all records, close this console consumer by entering a `CTRL+C`.
+Strings are the default value so you don't have to specify a deserializer for those.

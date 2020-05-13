@@ -23,11 +23,17 @@ dev:
           file: tutorial-steps/dev/wait-for-containers.sh
           render:
             skip: true
-            
+
+        - name: wait for ksqldb-server and connectors
+          action: sleep
+          ms: 30000
+          render:
+            skip: true
+
     - title: Start an initial console consumer
       content:
         - action: execute_async
-          file: tutorial-steps/dev/harness-console-consumer.sh
+          file: tutorial-steps/dev/harness-console-consumer-keys.sh
           stdout: tutorial-steps/dev/outputs/actual-output-step-one.txt
           render:
             file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/consume-topic.adoc
@@ -36,7 +42,7 @@ dev:
     - title: Specify key and value deserializers
       content:
       - action: execute_async
-        file: tutorial-steps/dev/harness-console-consumer-from-beginning.sh
+        file: tutorial-steps/dev/harness-console-consumer-keys-deserializers.sh
         stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
         render:
           file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/consume-topic-from-beginning.adoc

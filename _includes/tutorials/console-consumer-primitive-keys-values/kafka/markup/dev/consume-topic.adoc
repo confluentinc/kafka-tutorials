@@ -1,8 +1,15 @@
-In this tutorial, you'll use a topic that the `docker-compose` step populates ahead of time.  Your focus here is the reading values on the command line with the console consumer.  The records have the format of `key = Long` and `value = Double`.
+Now you'll use a topic created in the previous step.  Your focus here is the reading values on the command line with the console consumer.  The records have the format of `key = Long` and `value = Double`.
 
 Now let's start up a console consumer to read some records.  Open a new terminal window run this command:
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-primitive-keys-values/kafka/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-primitive-keys-values/kafka/code/tutorial-steps/dev/console-consumer-keys.sh %}</code></pre>
 +++++
 
-The consumer will start up and block waiting for records, you won't see any output until after the next step.
+After the consumer starts up, you'll get some output, but nothing readable is on the screen.  You should see something similar to this:
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-primitive-keys-values/kafka/code/tutorial-steps/dev/expected-output-step-one.txt %}</code></pre>
++++++
+
+The output looks like this because you are consuming records with a `Long` key and a `Double` value, but you haven't provided the correct deserializer for longs or doubles.
+
+Close the consumer with a `CTRL+C` command.
