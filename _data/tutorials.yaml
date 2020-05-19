@@ -133,7 +133,7 @@ aggregating-count:
   meta-description: "Learn to count a stream of events"
   slug: "/create-stateful-aggregation-count"
   problem: "you have data in a Kafka topic and want to count the number of events based on some criteria."
-  introduction: "Suppose you have a topic with events that represent ticket sales for movies. In this tutorial, you'll see an example of a Kafka Streams and ksqlDB 'groupby count'.  To implement this example, we'll write a program that calculates the total number of tickets sold per movie."
+  introduction: "Suppose you have a topic with events that represent ticket sales for movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams and ksqlDB.  We'll write a program that calculates the total number of tickets sold per movie."
   status:
     ksql: enabled
     kstreams: enabled
