@@ -1,211 +1,88 @@
-version: v1.0
-name: Kafka Tutorials pipeline
 agent:
   machine:
-    type: e1-standard-2
     os_image: ubuntu1804
-
-promotions:
-  - name: Deploy to live site
-    pipeline_file: live-site-deploy.yml
-    auto_promote_on:
-      - result: passed
-        branch:
-          - ^release$
-
-  - name: Deploy to staging site
-    pipeline_file: staging-site-deploy.yml
-    auto_promote_on:
-      - result: passed
-        branch:
-          - ^master$
-
+    type: e1-standard-2
 blocks:
-  - name: Build the website
-    task:
-      prologue:
-        commands:
-          - checkout
-          - cache restore
-          - npm install
-          - gem install bundler --no-ri --no-rdoc
-          - bundle install
-          - cache store
-      jobs:
-        - name: Compile with Jekyll
-          commands:
-            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
-            - cache store site-$SEMAPHORE_GIT_SHA _site
-
-  - name: Run the tests
-    execution_time_limit:
-      minutes: 15
-    task:
-      secrets:
-        - name: aws_credentials
-      prologue:
-        commands:
-          - checkout
-          - >
-            aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
-          - sudo pip3 install -e harness_runner/
-          - >
-            find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
-      jobs:
-        - name: KSQL transforming tests
-          commands:
-            - make -C _includes/tutorials/transforming/ksql/code tutorial
-
-        - name: KStreams transforming tests
-          commands:
-            - make -C _includes/tutorials/transforming/kstreams/code tutorial
-
-        - name: Kafka transforming tests
-          commands:
-            - make -C _includes/tutorials/transforming/kafka/code tutorial
-
-        - name: KSQL filtering tests
-          commands:
-            - make -C _includes/tutorials/filtering/ksql/code tutorial
-
-        - name: KStreams filtering tests
-          commands:
-            - make -C _includes/tutorials/filtering/kstreams/code tutorial
-
-        - name: KSQL splitting tests
-          commands:
-            - make -C _includes/tutorials/splitting/ksql/code tutorial
-
-        - name: KStreams splitting tests
-          commands:
-            - make -C _includes/tutorials/splitting/kstreams/code tutorial
-
-        - name: KSQL merging tests
-          commands:
-            - make -C _includes/tutorials/merging/ksql/code tutorial
-
-        - name: KStreams merging tests
-          commands:
-            - make -C _includes/tutorials/merging/kstreams/code tutorial
-
-        - name: KSQL join stream to stream tests
-          commands:
-            - make -C _includes/tutorials/joining-stream-stream/ksql/code tutorial
-
-        - name: KSQL join stream to table tests
-          commands:
-            - make -C _includes/tutorials/joining-stream-table/ksql/code tutorial
-
-        - name: KStreams join stream to table tests
-          commands:
-            - make -C _includes/tutorials/joining-stream-table/kstreams/code tutorial
-
-        - name: KStreams table to table foreign key join tests
-          commands:
-            - make -C _includes/tutorials/fk-joins/kstreams/code tutorial
-
-        - name: KSQL join table to table tests
-          commands:
-            - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
-
-        - name: KStreams tumbling windows tests
-          commands:
-            - make -C _includes/tutorials/tumbling-windows/kstreams/code tutorial
-
-        - name: KSQL tumbling windows tests
-          commands:
-            - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
-
-        - name: KSQL session windows tests
-          commands:
-            - make -C _includes/tutorials/session-windows/ksql/code tutorial
-
-        - name: KSQL aggregation count tests
-          commands:
-            - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
-
-        - name: KSQL aggregation MIN/MAX tests
-          commands:
-            - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
-
-        - name: KSQL aggregation sum tests
-          commands:
-            - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
-
-        - name: KStreams aggregation sum tests
-          commands:
-            - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
-
-        - name: KSQL serialization tests
-          commands:
-            - make -C _includes/tutorials/serialization/ksql/code tutorial
-
-        - name: KStreams Serialization tests
-          commands:
-            - make -C _includes/tutorials/serialization/kstreams/code tutorial
-
-        - name: KSQL rekey stream tests
-          commands:
-            - make -C _includes/tutorials/rekeying/ksql/code tutorial
-
-        - name: KSQL rekey stream with function tests
-          commands:
-            - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
-
-        - name: KStreams finding distinct events tests
-          commands:
-            - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
-            
-        - name: KStreams Connect key tests
-          commands:
-            - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
-
-        - name: Kafka Connect SMT key tests
-          commands:
-            - make -C _includes/tutorials/connect-add-key-to-source/kafka/code tutorial
-
-        - name: ksqlDB  Connect SMT key tests
-          commands:
-            - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
-
-        - name: KStreams emit a final result from a time window
-          commands:
-            - make -C _includes/tutorials/window-final-result/kstreams/code tutorial
-
-        - name: KSQL UDF tests
-          commands:
-            - make -C _includes/tutorials/udf/ksql/code tutorial
-
-        - name: KSQL hopping windows tests
-          commands:
-            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
-  
-        - name: KSQL finding distinct events tests
-          commands:
-            - make -C _includes/tutorials/finding-distinct/ksql/code tutorial
-            
-        - name: KSQL flatten nested data
-          commands:
-            - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
-      
-        - name: KSQL deserialization errors tests
-          commands:
-            - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
-            
-        - name: KStreams aggregation MIN/MAX tests
-          commands:
-            - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
-
-        - name: KStreams Running Average tests
-          commands:
-            - make -C _includes/tutorials/aggregating-average/kstreams/code tutorial
-        - name: KStreams Test Streams choosing output topic dynamically tests
-          commands:
-            - make -C _includes/tutorials/dynamic-output-topic/kstreams/code tutorial
-        
-        - name: KStreams Test Streams naming changelog and repartition topics tests
-          commands:
-            - make -C _includes/tutorials/naming-changelog-repartition-topics/kstreams/code tutorial
-        - name: KStreams Test Cogrouping Streams tests
-          commands:
-            - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
+- execution_time_limit:
+    minutes: 15
+  name: Run the tests
+  task:
+    jobs:
+    - commands:
+      - make -C _includes/tutorials/transforming/ksql/code tutorial
+      name: KSQL transforming tests
+    - commands:
+      - make -C _includes/tutorials/filtering/ksql/code tutorial
+      name: KSQL filtering tests
+    - commands:
+      - make -C _includes/tutorials/splitting/ksql/code tutorial
+      name: KSQL splitting tests
+    - commands:
+      - make -C _includes/tutorials/merging/ksql/code tutorial
+      name: KSQL merging tests
+    - commands:
+      - make -C _includes/tutorials/joining-stream-stream/ksql/code tutorial
+      name: KSQL join stream to stream tests
+    - commands:
+      - make -C _includes/tutorials/joining-stream-table/ksql/code tutorial
+      name: KSQL join stream to table tests
+    - commands:
+      - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
+      name: KSQL join table to table tests
+    - commands:
+      - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
+      name: KSQL tumbling windows tests
+    - commands:
+      - make -C _includes/tutorials/session-windows/ksql/code tutorial
+      name: KSQL session windows tests
+    - commands:
+      - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
+      name: KSQL aggregation count tests
+    - commands:
+      - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
+      name: KSQL aggregation MIN/MAX tests
+    - commands:
+      - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
+      name: KSQL aggregation sum tests
+    - commands:
+      - make -C _includes/tutorials/serialization/ksql/code tutorial
+      name: KSQL serialization tests
+    - commands:
+      - make -C _includes/tutorials/rekeying/ksql/code tutorial
+      name: KSQL rekey stream tests
+    - commands:
+      - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+      name: KSQL rekey stream with function tests
+    - commands:
+      - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
+      name: ksqlDB  Connect SMT key tests
+    - commands:
+      - make -C _includes/tutorials/udf/ksql/code tutorial
+      name: KSQL UDF tests
+    - commands:
+      - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
+      name: KSQL hopping windows tests
+    - commands:
+      - make -C _includes/tutorials/finding-distinct/ksql/code tutorial
+      name: KSQL finding distinct events tests
+    - commands:
+      - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
+      name: KSQL flatten nested data
+    - commands:
+      - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
+      name: KSQL deserialization errors tests
+    prologue:
+      commands:
+      - checkout
+      - |
+        aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
+      - sudo pip3 install -e harness_runner/
+      - |
+        find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
+    secrets:
+    - name: aws_credentials
+name: Kafka Tutorials pipeline
+version: v1.0
+fail_fast:
+  stop:
+    when: true
