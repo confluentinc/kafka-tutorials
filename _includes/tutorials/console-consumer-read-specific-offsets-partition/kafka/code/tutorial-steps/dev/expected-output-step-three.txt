@@ -1,12 +1,3 @@
-null-the
-null-lazy
-null-fox
-null-jumped over the brown cow
-null-how now
-null-brown cow
-null-all streams lead
-null-to Kafka!
-key1-what a lovely
-key1-bunch of coconuts
-foo-bar
-fun-not quarantine
+key2-Go to
+key3-Kafka
+key4-summit

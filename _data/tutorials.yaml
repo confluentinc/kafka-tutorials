@@ -280,6 +280,7 @@ console-consumer-produer-basic:
     kstreams: disabled
     kafka: enabled
 
+
 console-consumer-primitive-keys-values:
   title: "How to use the console consumer to read non-string primitive keys values"
   meta-description: "How to use the console consumer to read non-string primitive keys and values"
@@ -291,7 +292,7 @@ console-consumer-primitive-keys-values:
     kstreams: disabled
     kafka: enabled
 
- console-consumer-read-specific-offsets-partition:
+console-consumer-read-specific-offsets-partition:
   title: "How to read from a specific offset and partition with the Console Consumer"
   meta-description: "How to read from a specific offset and partition with the Console Consumer"
   slug: "/kafka-console-consumer-read-specific-offsets-partitions"

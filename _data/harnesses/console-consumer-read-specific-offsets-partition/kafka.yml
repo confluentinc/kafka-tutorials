@@ -24,86 +24,70 @@ dev:
           render:
             skip: true
 
-    - title: Create a topic
+    - title: Create a topic with multiple partitions
       content:
         - action: execute
           file: tutorial-steps/dev/create-topic.sh
           render:
             file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/create-topic.adoc
-            
-    - title: Start a console consumer
-      content:
-        - action: execute_async
-          file: tutorial-steps/dev/harness-console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-step-one.txt
-          render:
-            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic.adoc
 
-    - title: Produce your first records
+    - title: Produce records with keys and values
       content:
         - action: execute
-          file: tutorial-steps/dev/console-producer.sh
+          file: tutorial-steps/dev/console-producer-keys.sh
           stdin: tutorial-steps/dev/input-step-one.txt
           render:
-            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/produce-topic.adoc
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/produce-topic-keys-values.adoc  
+            
+    - title: Start a console consumer to read from the first partition
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/harness-console-consumer-keys-partition-zero.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-step-one.txt
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic-partition-zero.adoc
 
         - name: wait for consumer to read records
           action: sleep
-          ms: 5000
+          ms: 10000
+          render:
+            skip: true
+
+    - title: Start a console consumer to read from the second partition
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/harness-console-consumer-keys-partition-one.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic-partition-one.adoc
+
+        - name: wait for consumer to read records
+          action: sleep
+          ms: 10000
+          render:
+            skip: true
+
+    - title: Read records starting from a specific offset
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/harness-console-consumer-keys-partition-one-offset-six.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic-partition-offsets.adoc
+
+        - name: wait for consumer to read records
+          action: sleep
+          ms: 10000
           render:
             skip: true
             
-    - title: Read all records
+    - title: Clean up
       content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/input-step-two.txt
-          render:
-            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/produce-topic-from-beginning.adoc
-
-
-    - title: Start a new consumer to read all records
-      content:
-      - action: execute_async
-        file: tutorial-steps/dev/harness-console-consumer-from-beginning.sh
-        stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
-        render:
-          file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic-from-beginning.adoc
-
-
-      - name: wait for consumer to read records
-        action: sleep
-        ms: 10000
-        render:
-          skip: true
-
-    - title: Produce records with full key-value pairs
-      content:
-      - action: execute
-        file: tutorial-steps/dev/console-producer-keys.sh
-        stdin: tutorial-steps/dev/input-step-three.txt
-        render:
-         file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/produce-topic-keys-values.adoc
-
-    - title: Start a consumer to show full key-value pairs
-      content:
-      - action: execute_async
-        file: tutorial-steps/dev/harness-console-consumer-keys.sh
-        stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
-        render:
-          file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic-key-value.adoc
-
-
-      - name: wait for consumer to read records
-        action: sleep
-        ms: 5000
-        render:
-          skip: true
-
       - action: execute
         file: tutorial-steps/dev/clean-up.sh
         render:
-          skip: true
+          file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/clean-up.adoc
+
 
 
 

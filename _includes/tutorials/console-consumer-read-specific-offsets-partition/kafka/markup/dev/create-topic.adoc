@@ -1,4 +1,6 @@
-Your first step is to create a topic to produce to and consume from.  Use the following command to create the topic:
+Your first step is to create a topic to produce to and consume from.  This time you'll add more than one partition so you can see how the keys end up on different partitions.
+
+Use the following command to create the topic:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/kafka/code/tutorial-steps/dev/create-topic.sh %}</code></pre>
