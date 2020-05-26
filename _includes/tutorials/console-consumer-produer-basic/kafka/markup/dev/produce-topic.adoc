@@ -1,4 +1,10 @@
-To produce your first record into Kafka, open a terminal window an run the following command:
+To produce your first record into Kafka, open a terminal window an run the following command to get an open shell on your docker container:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/open-docker-shell.sh %}</code></pre>
++++++
+
+Then run the folling command to start a console producer:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/console-producer.sh %}</code></pre>

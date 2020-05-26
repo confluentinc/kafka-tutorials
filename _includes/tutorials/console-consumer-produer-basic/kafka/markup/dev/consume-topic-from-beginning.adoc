@@ -1,6 +1,6 @@
 Next let's open up a console consumer again, but this time you'll ready everthing that your producer has sent to the topic. you created in the previous step.
 
-Run this command in a new terminal to start the consumer and note the additional property `--from-beginning`:
+Run this command in the container shell you created for your first consumer and note the additional property `--from-beginning`:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/console-consumer-from-beginning.sh %}</code></pre>

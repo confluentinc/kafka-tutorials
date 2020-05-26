@@ -42,7 +42,7 @@ dev:
     - title: Produce your first records
       content:
         - action: execute
-          file: tutorial-steps/dev/console-producer.sh
+          file: tutorial-steps/dev/harness-console-producer.sh
           stdin: tutorial-steps/dev/input-step-one.txt
           render:
             file: tutorials/console-consumer-produer-basic/kafka/markup/dev/produce-topic.adoc
@@ -56,7 +56,7 @@ dev:
     - title: Read all records
       content:
         - action: execute
-          file: tutorial-steps/dev/console-producer.sh
+          file: tutorial-steps/dev/harness-console-producer.sh
           stdin: tutorial-steps/dev/input-step-two.txt
           render:
             file: tutorials/console-consumer-produer-basic/kafka/markup/dev/produce-topic-from-beginning.adoc
@@ -80,7 +80,7 @@ dev:
     - title: Produce records with full key-value pairs
       content:
       - action: execute
-        file: tutorial-steps/dev/console-producer-keys.sh
+        file: tutorial-steps/dev/harness-console-producer-keys.sh
         stdin: tutorial-steps/dev/input-step-three.txt
         render:
          file: tutorials/console-consumer-produer-basic/kafka/markup/dev/produce-topic-keys-values.adoc
@@ -100,10 +100,13 @@ dev:
         render:
           skip: true
 
+    - title: Clean Up
+      content:
       - action: execute
         file: tutorial-steps/dev/clean-up.sh
         render:
-          skip: true
+          file: tutorials/console-consumer-produer-basic/kafka/markup/dev/clean-up.adoc
+
 
 
 

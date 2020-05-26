@@ -1,4 +1,12 @@
-Next let's open up a console consumer to read records sent to the topic you created in the previous step.  From the same terminal you used to create the topic, run this command:
+Next let's open up a console consumer to read records sent to the topic you created in the previous step.
+
+First let's open a command prompt from docker. From the same terminal you used to create the topic, run this command:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/open-docker-shell.sh %}</code></pre>
++++++
+
+Then run this command to start a console consumer:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>
