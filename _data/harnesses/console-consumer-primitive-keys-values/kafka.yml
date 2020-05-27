@@ -36,7 +36,7 @@ dev:
           file: tutorial-steps/dev/harness-console-consumer-keys.sh
           stdout: tutorial-steps/dev/outputs/actual-output-step-one.txt
           render:
-            file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/consume-topic.adoc
+            file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/consume-topic-no-deserializers.adoc
 
 
     - title: Specify key and value deserializers
@@ -45,8 +45,7 @@ dev:
         file: tutorial-steps/dev/harness-console-consumer-keys-deserializers.sh
         stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
         render:
-          file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/consume-topic-from-beginning.adoc
-
+          file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/consume-topic-with-deserializers.adoc
 
       - name: wait for consumer to read records
         action: sleep
@@ -54,10 +53,12 @@ dev:
         render:
           skip: true
 
+    - title: Clean up
+      content:
       - action: execute
         file: tutorial-steps/dev/clean-up.sh
         render:
-          skip: true
+          file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/clean-up.adoc
 
 
 
