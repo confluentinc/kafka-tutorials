@@ -60,7 +60,7 @@
           {% endif %}.0
           {% if site.data.tutorials[page.static_data].status.kafka == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kafka.html" {% if page.stack == 'kafka' %} selected {% endif %}>
-            Vanilla Kafka
+            Basic Kafka
           </option>
           {% endif %}
         </select>
@@ -79,7 +79,7 @@
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kafka == 'enabled' %}
           <a class="button {% if page.stack == 'kafka' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kafka.html">
-            Vanilla Kafka
+            Basic Kafka
           </a>
           {% endif %}
         </div>
