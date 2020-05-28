@@ -1,4 +1,4 @@
-In the first consumer example, you observed all incoming records becuase the conusmer was already running, waiting for incoming records.
+In the first consumer example, you observed all incoming records becuase the consumer was already running, waiting for incoming records.
 
 But what if the records were produced before you started your consumer?  In that case you wouldn't see the records as the console consumer by default only reads incoming records arriving after it has started up.
 
@@ -11,4 +11,3 @@ Now go back to your producer console and send the following records:
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/input-step-two.txt %}</code></pre>
 +++++
-
