@@ -27,14 +27,14 @@ dev:
     - title: Create a topic with multiple partitions
       content:
         - action: execute
-          file: tutorial-steps/dev/create-topic.sh
+          file: tutorial-steps/dev/harness-create-topic.sh
           render:
             file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/create-topic.adoc
 
     - title: Produce records with keys and values
       content:
         - action: execute
-          file: tutorial-steps/dev/console-producer-keys.sh
+          file: tutorial-steps/dev/harness-console-producer-keys.sh
           stdin: tutorial-steps/dev/input-step-one.txt
           render:
             file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/produce-topic-keys-values.adoc  

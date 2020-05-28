@@ -1,1 +1,1 @@
-docker exec -i broker /usr/bin/kafka-topics --create --topic example-topic --zookeeper zookeeper:2181 --replication-factor 1 --partitions 2
+kafka-topics --create --topic example-topic --bootstrap-server broker:9092 --replication-factor 1 --partitions 2

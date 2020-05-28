@@ -293,11 +293,11 @@ console-consumer-primitive-keys-values:
     kafka: enabled
 
 console-consumer-read-specific-offsets-partition:
-  title: "How to read from a specific offset and partition with the Console Consumer"
-  meta-description: "How to read from a specific offset and partition with the Console Consumer"
+  title: "How to read from a specific offset and partition with the Kafka Console Consumer"
+  meta-description: "How to read from a specific offset and partition with the Kafka Console Consumer"
   slug: "/kafka-console-consumer-read-specific-offsets-partitions"
   problem: "you need to read from a specific offset and partition of a topic"
-  introduction: "You are confirming record arrivals and you'd like to read from a specific offset in a topic partition.   In this tutorial you'll learn how to use the console consumer to quickly debug issues by reading from a specific offset as well as control the number of records you read."
+  introduction: "You are confirming record arrivals and you'd like to read from a specific offset in a topic partition.   In this tutorial you'll learn how to use the Kafka console consumer to quickly debug issues by reading from a specific offset as well as control the number of records you read."
   status:
     ksql: disabled
     kstreams: disabled

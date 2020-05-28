@@ -2,9 +2,8 @@ So far you've learned how to consume records from a specific partition. But when
 
 If you haven't done so already, close the previous console consumer with a `CTRL+C`.
 
-From the previous step you know there are 9 records in the second partition.  In this step you'll only consume records starting from offset 5. The changes in this command include removing the `--from-begining` propery and adding an `--offset` flag
+From the previous step you know there are 9 records in the second partition.  In this step you'll only consume records starting from offset 6, so you should only see the last 3 records on the screen. The changes in this command include removing the `--from-begining` propery and adding an `--offset` flag
 
-It's import to note, when you specify the offset to start consuming from, it's _**exclusive**_ of the number given.  By giving a specific offset, you are saying "I'm only interested in records _**after**_ this specific offset".  That's exactly how commiting works in Kafka, consumer commits the offset of the last record read, so it will start consuming from the _*next*_ available offset.
 
 Here's the command to read records from the second partition starting at offset 6:
 
@@ -18,6 +17,6 @@ After a few seconds you should see something like this
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/kafka/code/tutorial-steps/dev/expected-output-step-three.txt %}</code></pre>
 +++++
 
-So you can see here, you've consumed records starting from offset 6 to the end, which includes record with offsets of `7, 8, and 9` the last three records.
+So you can see here, you've consumed records starting from offset 6 to the end, which includes record with offsets of `6, 7, and 8` the last three records.
 
 Go ahead and shut down the current consumer with a `CTRL+C`
