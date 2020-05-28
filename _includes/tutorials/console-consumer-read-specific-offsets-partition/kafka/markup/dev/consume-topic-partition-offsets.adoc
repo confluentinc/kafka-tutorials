@@ -1,4 +1,4 @@
-So far you've learned how to consume records from a specific partition. But when you specify the partition, you can optionally specify the offest to start conuming from.  Specifying a specific offset can be helpful when debugging an issue, in that you can skip consuming records that you konw aren't a potential problem.
+So far you've learned how to consume records from a specific partition. When you specify the partition, you can optionally specify the offest to start conuming from.  Specifying a specific offset can be helpful when debugging an issue, in that you can skip consuming records that you know aren't a potential problem.
 
 If you haven't done so already, close the previous console consumer with a `CTRL+C`.
 
