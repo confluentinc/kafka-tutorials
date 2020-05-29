@@ -1,7 +1,7 @@
 {
   "inputs": [
     {
-      "topic": "json-movies",
+      "topic": "avro-movies",
       "key": 1,
       "value": {
         "TITLE": "Lethal Weapon",
@@ -9,7 +9,7 @@
       }
     },
     {
-      "topic": "json-movies",
+      "topic": "avro-movies",
       "key": 2,
       "value": {
         "TITLE": "Die Hard",
@@ -17,7 +17,7 @@
       }
     },
     {
-      "topic": "json-movies",
+      "topic": "avro-movies",
       "key": 3,
       "value": {
         "TITLE": "Predator",

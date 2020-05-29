@@ -162,10 +162,10 @@ serialization:
   meta-description: "Learn to convert a stream's serialization format"
   slug: "/changing-serialization-format"
   problem: "you have a Kafka topic with the data serialized in a particular format, and you want to change the format to something else."
-  introduction: "Consider a topic with events that represent movie releases. The events in the topic are formatted with JSON. In this tutorial, we'll write a program that creates a new topic with the same events, but formatted with Avro."
+  introduction: "Consider a topic with events that represent movie releases. The events in the topic are formatted with Avro. In this tutorial, we'll write a program that creates a new topic with the same events, but formatted with Protobuf."
   status:
     ksql: enabled
-    kstreams: enabled
+    kstreams: false
 
 connect-add-key-to-source:
   title: "Add key to data ingested through Kafka Connect"

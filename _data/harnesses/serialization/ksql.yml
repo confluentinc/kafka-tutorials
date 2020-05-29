@@ -39,21 +39,21 @@ dev:
           render:
             file: tutorials/serialization/ksql/markup/dev/start-cli.adoc
           stdin:
-            - file: tutorial-steps/dev/create-json-movies.sql
+            - file: tutorial-steps/dev/create-avro-movies.sql
               render:
-                file: tutorials/serialization/ksql/markup/dev/create-json-movies.adoc
+                file: tutorials/serialization/ksql/markup/dev/create-avro-movies.adoc
 
-            - file: tutorial-steps/dev/populate-json-movies.sql
+            - file: tutorial-steps/dev/populate-avro-movies.sql
               render:
-                file: tutorials/serialization/ksql/markup/dev/populate-json-movies.adoc
+                file: tutorials/serialization/ksql/markup/dev/populate-avro-movies.adoc
 
             - file: tutorial-steps/dev/set-properties_offset.sql
               render:
                 file: tutorials/serialization/ksql/markup/dev/set-properties_offset.adoc
 
-            - file: tutorial-steps/dev/create-avro-movies.sql
+            - file: tutorial-steps/dev/create-proto-movies.sql
               render:
-                file: tutorials/serialization/ksql/markup/dev/create-avro-movies.adoc
+                file: tutorials/serialization/ksql/markup/dev/create-proto-movies.adoc
 
             - file: tutorial-steps/dev/print-output-topic.sql
               render:
