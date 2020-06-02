@@ -79,7 +79,7 @@ make -C _includes/tutorials/filtering/ksql/code tutorial
 
 Substituting in the appropriate tutorial path.
 
-Note: you will need to be logged in to Docker to be able to access the docker images.
+Note: if you are testing unreleased ksqlDB Docker images, you will need to be logged in to AWS ECR.
 
 ## Add code for a new tutorial
 
