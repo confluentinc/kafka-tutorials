@@ -1,7 +1,7 @@
-Key format: SESSION(KAFKA_STRING) or HOPPING(KAFKA_STRING) or TUMBLING(KAFKA_STRING) or KAFKA_STRING
+Key format: KAFKA_BIGINT or KAFKA_DOUBLE or KAFKA_STRING
 Value format: AVRO or KAFKA_STRING
-rowtime: 2020/05/04 22:29:44.239 Z, key: [Geo@3323741605926824302/8243668832417095762], value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Song of Ice and Fire"}
-rowtime: 2020/05/04 22:29:44.493 Z, key: [Geo@3323741605926824302/8243668832417095762], value: {"AUTHOR": "George R. R. Martin", "TITLE": "Fire & Blood"}
-rowtime: 2020/05/04 22:29:44.937 Z, key: [Geo@3323741605926824302/8243668832417095762], value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Dream of Spring"}
-rowtime: 2020/05/04 22:29:45.144 Z, key: [Geo@3323741605926824302/8243668832417095762], value: {"AUTHOR": "George R. R. Martin", "TITLE": "The Ice Dragon"}
+rowtime: 2020/06/02 14:36:36.846 Z, key: 2, value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Song of Ice and Fire"}
+rowtime: 2020/06/02 14:36:37.057 Z, key: 4, value: {"AUTHOR": "George R. R. Martin", "TITLE": "Fire & Blood"}
+rowtime: 2020/06/02 14:36:37.350 Z, key: 7, value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Dream of Spring"}
+rowtime: 2020/06/02 14:36:37.541 Z, key: 9, value: {"AUTHOR": "George R. R. Martin", "TITLE": "The Ice Dragon"}
 Topic printing ceased
