@@ -237,9 +237,21 @@ You can do the same for Kafka Streams and Kafka, by using the `kstreams` and `ka
 
 Lastly, create a Makefile in the `code` directory to invoke the harness runner and check any outputs that it produces. Then modify the `.semaphore/semaphore.yml` file to invoke that Makefile. This will make sure your tutorial gets checked by the CI system.
 
+## Updating dependency versions
+
+The following regular expressions may be useful to group-update all dependencies within the repo:
+
+* `confluentinc\/cp-([^:]*):\d+.\d+.\d+` will match all Confluent Platform components, _except_ ksqlDB.
+   Capture group 1 can be used to build the component name.
+* `confluentinc\/ksqldb-([^:]*):\d+.\d+.\d+` will match all ksqlDB components.
+   Capture group 1 can be used to build the component name.
+
 ## Updating kafka-tutorials.confluent.io
 
 The `release` branch tracks the content and code comprising the live site. Confluent manages the release process.
+
+The `ksqldb-latest` branch builds against the lastest `master` branch of ksqlDB, and should be used for updates that are only in the master branch of ksqlDB. 
+Confluent manages the processes of merging changes from this branch.
 
 #### Prepare a release PR
 
