@@ -5,7 +5,6 @@
       "key": "Aliens",
       "value": {
         "ID": 48,
-        "TITLE": "Aliens",
         "RELEASE_YEAR": 1986
       }
     },
@@ -14,7 +13,6 @@
       "key": "Die Hard",
       "value": {
         "ID": 294,
-        "TITLE": "Die Hard",
         "RELEASE_YEAR": 1998
       }
     },
@@ -23,7 +21,6 @@
       "key": "The Big Lebowski",
       "value": {
         "ID": 128,
-        "TITLE": "The Big Lebowski",
         "RELEASE_YEAR": 1998
       }
     },
@@ -32,7 +29,6 @@
       "key": "The Godfather",
       "value": {
         "ID": 128,
-        "TITLE": "The Godfather",
         "RELEASE_YEAR": 1998
       }
     },
@@ -40,7 +36,6 @@
       "topic": "lead_actors",
       "key": "Aliens",
       "value": {
-        "TITLE": "Aliens",
         "ACTOR_NAME": "Sigourney Weaver"
       }
     },
@@ -48,7 +43,6 @@
       "topic": "lead_actors",
       "key": "Die Hard",
       "value": {
-        "TITLE": "Die Hard",
         "ACTOR_NAME": "Bruce Willis"
       }
     },
@@ -56,7 +50,6 @@
       "topic": "lead_actors",
       "key": "The Big Lebowski",
       "value": {
-        "TITLE": "The Big Lebowski",
         "ACTOR_NAME": "Jeff Bridges"
       }
     },
@@ -64,7 +57,6 @@
       "topic": "lead_actors",
       "key": "The Godfather",
       "value": {
-        "TITLE": "The Godfather",
         "ACTOR_NAME": "Al Pacino"
       }
     }
