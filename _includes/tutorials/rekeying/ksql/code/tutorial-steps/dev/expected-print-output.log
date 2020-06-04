@@ -1,0 +1,12 @@
+Key format: KAFKA_INT
+Value format: AVRO
+rowtime: 2020/05/04 23:24:30.376 Z, key: 294, value: {"RATING": 8.2}
+rowtime: 2020/05/04 23:24:30.684 Z, key: 354, value: {"RATING": 9.9}
+rowtime: 2020/05/04 23:24:30.781 Z, key: 354, value: {"RATING": 9.7}
+rowtime: 2020/05/04 23:24:30.949 Z, key: 782, value: {"RATING": 7.7}
+rowtime: 2020/05/04 23:24:31.099 Z, key: 128, value: {"RATING": 8.4}
+rowtime: 2020/05/04 23:24:30.560 Z, key: 294, value: {"RATING": 8.5}
+rowtime: 2020/05/04 23:24:30.873 Z, key: 782, value: {"RATING": 7.8}
+rowtime: 2020/05/04 23:24:31.021 Z, key: 128, value: {"RATING": 8.7}
+rowtime: 2020/05/04 23:24:31.178 Z, key: 780, value: {"RATING": 2.1}
+Topic printing ceased
