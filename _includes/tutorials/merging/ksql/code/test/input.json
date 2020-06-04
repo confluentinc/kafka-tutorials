@@ -2,7 +2,6 @@
   "inputs": [
     {
       "topic": "rock_songs",
-      "key": "Metallica",
       "value": {
         "artist": "Metallica",
         "title": "Fade to Black"
@@ -10,7 +9,6 @@
     },
     {
       "topic": "rock_songs",
-      "key": "Smashing Pumpkins",
       "value": {
         "artist": "Smashing Pumpkins",
         "title": "Today"
@@ -18,7 +16,6 @@
     },
     {
       "topic": "rock_songs",
-      "key": "Pink Floyd",
       "value": {
         "artist": "Pink Floyd",
         "title": "Another Brick in the Wall"
@@ -26,7 +23,6 @@
     },
     {
       "topic": "rock_songs",
-      "key": "Van Halen",
       "value": {
         "artist": "Van Halen",
         "title": "Jump"
@@ -34,7 +30,6 @@
     },
     {
       "topic": "rock_songs",
-      "key": "Led Zeppelin",
       "value": {
         "artist": "Led Zeppelin",
         "title": "Kashmir"
@@ -42,7 +37,6 @@
     },
     {
       "topic": "classical_songs",
-      "key": "Wolfgang Amadeus Mozart",
       "value": {
         "artist": "Wolfgang Amadeus Mozart",
         "title": "The Magic Flute"
@@ -50,7 +44,6 @@
     },
     {
       "topic": "classical_songs",
-      "key": "Johann Pachelbel",
       "value": {
         "artist": "Johann Pachelbel",
         "title": "Canon"
@@ -58,7 +51,6 @@
     },
     {
       "topic": "classical_songs",
-      "key": "Ludwig van Beethoven",
       "value": {
         "artist": "Ludwig van Beethoven",
         "title": "Symphony No. 5"
@@ -66,7 +58,6 @@
     },
     {
       "topic": "classical_songs",
-      "key": "Edward Elgar",
       "value": {
         "artist": "Edward Elgar",
         "title": "Pomp and Circumstance"
