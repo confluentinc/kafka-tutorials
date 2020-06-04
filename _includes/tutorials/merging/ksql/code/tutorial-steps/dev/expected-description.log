@@ -1,6 +1,5 @@
 Name                 : ALL_SONGS
 Type                 : STREAM
-Key field            : 
 Timestamp field      : Not set - using <ROWTIME>
 Key format           : KAFKA
 Value format         : AVRO
@@ -10,7 +9,6 @@ Statement            : CREATE STREAM all_songs (artist VARCHAR, title VARCHAR, g
 
  Field  | Type
 
- ROWKEY | VARCHAR(STRING)  (key)
  ARTIST | VARCHAR(STRING)
  TITLE  | VARCHAR(STRING)
  GENRE  | VARCHAR(STRING)
