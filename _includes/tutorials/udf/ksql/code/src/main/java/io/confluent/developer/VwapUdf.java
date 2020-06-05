@@ -20,7 +20,7 @@ public class VwapUdf {
         return ((ask * askQty) + (bid * bidQty)) / (bidQty + askQty);
     }
 
-    @Udf(description = "vwap for market prices as integers, returns double")
+    @Udf(description = "vwap for market prices as doubles, returns double")
     public double vwap(
             @UdfParameter(value = "bid")
             final double bid,
