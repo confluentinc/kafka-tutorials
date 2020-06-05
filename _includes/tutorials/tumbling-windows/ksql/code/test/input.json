@@ -2,7 +2,6 @@
   "inputs": [
     {
       "topic": "ratings",
-      "key": "Die Hard",
       "value": {
         "title": "Die Hard",
         "release_year": 1998,
@@ -12,7 +11,6 @@
     },
     {
       "topic": "ratings",
-      "key": "Die Hard",
       "value": {
         "title": "Die Hard",
         "release_year": 1998,
@@ -22,7 +20,6 @@
     },
     {
       "topic": "ratings",
-      "key": "Die Hard",
       "value": {
         "title": "Die Hard",
         "release_year": 1998,
@@ -32,7 +29,6 @@
     },
     {
       "topic": "ratings",
-      "key": "Tree of Life",
       "value": {
         "title": "Tree of Life",
         "release_year": 2011,
@@ -42,7 +38,6 @@
     },
     {
       "topic": "ratings",
-      "key": "Tree of Life",
       "value": {
         "title": "Tree of Life",
         "release_year": 2011,
@@ -52,7 +47,6 @@
     },
     {
       "topic": "ratings",
-      "key": "A Walk in the Clouds",
       "value": {
         "title": "A Walk in the Clouds",
         "release_year": 1995,
@@ -62,7 +56,6 @@
     },
     {
       "topic": "ratings",
-      "key": "A Walk in the Clouds",
       "value": {
         "title": "A Walk in the Clouds",
         "release_year": 1995,
@@ -72,7 +65,6 @@
     },
     {
       "topic": "ratings",
-      "key": "A Walk in the Clouds",
       "value": {
         "title": "A Walk in the Clouds",
         "release_year": 1995,
@@ -82,7 +74,6 @@
     },
     {
       "topic": "ratings",
-      "key": "The Big Lebowski",
       "value": {
         "title": "The Big Lebowski",
         "release_year": 1998,
@@ -92,7 +83,6 @@
     },
     {
       "topic": "ratings",
-      "key": "The Big Lebowski",
       "value": {
         "title": "The Big Lebowski",
         "release_year": 1998,
@@ -102,7 +92,6 @@
     },
     {
       "topic": "ratings",
-      "key": "Super Mario Bros.",
       "value": {
         "title": "Super Mario Bros.",
         "release_year": 1993,
