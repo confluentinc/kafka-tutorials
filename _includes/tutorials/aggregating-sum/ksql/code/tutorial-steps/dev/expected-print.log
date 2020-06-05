@@ -1,6 +1,6 @@
 Key format: KAFKA_STRING
 Value format: AVRO or KAFKA_STRING
-rowtime: 2019/07/18 10:00:00.000 Z, key: Aliens, value: {"TITLE": "Aliens", "TOTAL_VALUE": 10}
-rowtime: 2019/07/18 10:01:36.000 Z, key: Die Hard, value: {"TITLE": "Die Hard", "TOTAL_VALUE": 48}
-rowtime: 2019/07/18 11:03:50.000 Z, key: The Big Lebowski, value: {"TITLE": "The Big Lebowski", "TOTAL_VALUE": 24}
+rowtime: 2019/07/18 10:00:00.000 Z, key: Aliens, value: {"TOTAL_VALUE": 10}
+rowtime: 2019/07/18 10:01:36.000 Z, key: Die Hard, value: {"TOTAL_VALUE": 48}
+rowtime: 2019/07/18 11:03:50.000 Z, key: The Big Lebowski, value: {"TOTAL_VALUE": 24}
 Topic printing ceased
