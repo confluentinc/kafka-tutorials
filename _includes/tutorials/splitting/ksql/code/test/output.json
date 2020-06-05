@@ -2,7 +2,6 @@
   "outputs": [
     {
       "topic": "ACTINGEVENTS_FANTASY",
-      "key": "Bill Murray",
       "value": {
         "NAME": "Bill Murray",
         "TITLE": "Ghostbusters"
@@ -10,31 +9,30 @@
     },
     {
       "topic": "ACTINGEVENTS_OTHER",
-      "key": "Christian Bale",
       "value": {
         "NAME": "Christian Bale",
-        "TITLE": "The Dark Knight"
+        "TITLE": "The Dark Knight",
+        "GENRE": "crime"
       }
     },
     {
       "topic": "ACTINGEVENTS_OTHER",
-      "key": "Diane Keaton",
       "value": {
         "NAME": "Diane Keaton",
-        "TITLE": "The Godfather: Part II"
+        "TITLE": "The Godfather: Part II",
+        "GENRE": "crime"
       }
     },
     {
       "topic": "ACTINGEVENTS_OTHER",
-      "key": "Jennifer Aniston",
       "value": {
         "NAME": "Jennifer Aniston",
-        "TITLE": "Office Space"
+        "TITLE": "Office Space",
+        "GENRE": "comedy"
       }
     },
     {
       "topic": "ACTINGEVENTS_FANTASY",
-      "key": "Judy Garland",
       "value": {
         "NAME": "Judy Garland",
         "TITLE": "The Wizard of Oz"
@@ -42,7 +40,6 @@
     },
     {
       "topic": "ACTINGEVENTS_FANTASY",
-      "key": "Keanu Reeves",
       "value": {
         "NAME": "Keanu Reeves",
         "TITLE": "The Matrix"
@@ -50,7 +47,6 @@
     },
     {
       "topic": "ACTINGEVENTS_FANTASY",
-      "key": "Laura Dern",
       "value": {
         "NAME": "Laura Dern",
         "TITLE": "Jurassic Park"
@@ -58,7 +54,6 @@
     },
     {
       "topic": "ACTINGEVENTS_DRAMA",
-      "key": "Matt Damon",
       "value": {
         "NAME": "Matt Damon",
         "TITLE": "The Martian"
@@ -66,7 +61,6 @@
     },
     {
       "topic": "ACTINGEVENTS_DRAMA",
-      "key": "Meryl Streep",
       "value": {
         "NAME": "Meryl Streep",
         "TITLE": "The Iron Lady"
@@ -74,7 +68,6 @@
     },
     {
       "topic": "ACTINGEVENTS_DRAMA",
-      "key": "Russell Crowe",
       "value": {
         "NAME": "Russell Crowe",
         "TITLE": "Gladiator"
@@ -82,15 +75,14 @@
     },
     {
       "topic": "ACTINGEVENTS_OTHER",
-      "key": "Will Smith",
       "value": {
         "NAME": "Will Smith",
-        "TITLE": "Men in Black"
+        "TITLE": "Men in Black",
+        "GENRE": "comedy"
       }
     },
     {
       "topic": "ACTINGEVENTS_FANTASY",
-      "key": "Barret Oliver",
       "value": {
         "NAME": "Barret Oliver",
         "TITLE": "The NeverEnding Story"
