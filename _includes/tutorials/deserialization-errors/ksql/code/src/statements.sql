@@ -3,7 +3,7 @@ CREATE STREAM SENSORS_RAW (id VARCHAR, timestamp VARCHAR, enabled BOOLEAN)
           VALUE_FORMAT = 'JSON',
           TIMESTAMP = 'TIMESTAMP',
           TIMESTAMP_FORMAT = 'yyyy-MM-dd HH:mm:ss',
-          PARTITIONS = 1, REPLICAS = 1);
+          PARTITIONS = 1);
 
 CREATE STREAM SENSORS AS
     SELECT
