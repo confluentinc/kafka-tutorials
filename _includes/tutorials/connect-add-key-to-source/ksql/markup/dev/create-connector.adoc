@@ -7,7 +7,7 @@ Launch the ksqlDB CLI:
 
 From the ksqlDB prompt you can create the JDBC source connector. There are a couple of points to note: 
 
-1. The `transforms` stanza which is responsible for setting the key to the value of the `city_id` field. They run in the order define by `transforms`:
+1. The `transforms` stanza, which is responsible for setting the key to the value of the `city_id` field. They run in the order defined by `transforms`:
     * - `copyFieldToKey` sets the key to a struct containing the `city_id` field from the value.
     * - `extractKeyFromStruct` sets the key to just the `city_id` field of the struct set by the previous step.
     * - `removeKeyFromValue` removes the `city_id` from the message value, as its now stored in the message key.
