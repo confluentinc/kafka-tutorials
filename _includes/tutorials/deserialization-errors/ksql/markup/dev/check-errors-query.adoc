@@ -11,7 +11,7 @@ As we configured the processing log to include the payload of the message, we ca
 
 Notice we needed to quote the `topic` field in the `WHERE` clause, as it's a reserved word.
 
-While the `ERRORMESSAGE` is a little cryptic in this instances, the `CAUSE` and `MSG` columns would be enough to diagnose the issue here.
+While the `ERRORMESSAGE` is a little cryptic in this instance, the `CAUSE` and `MSG` columns would be enough to diagnose the issue here.
 
 This query should produce the following output:
 
