@@ -5,7 +5,6 @@
       "key": 1,
       "value": {
         "TITLE": "Lethal Weapon",
-        "MOVIE_ID": 1,
         "RELEASE_YEAR": 1992
       }
     },
@@ -14,7 +13,6 @@
       "key": 2,
       "value": {
         "TITLE": "Die Hard",
-        "MOVIE_ID": 2,
         "RELEASE_YEAR": 1988
       }
     },
@@ -23,7 +21,6 @@
       "key": 3,
       "value": {
         "TITLE": "Predator",
-        "MOVIE_ID": 3,
         "RELEASE_YEAR": 1997
       }
     }
