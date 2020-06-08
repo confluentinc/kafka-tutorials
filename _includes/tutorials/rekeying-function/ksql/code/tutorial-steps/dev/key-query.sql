@@ -1,4 +1,4 @@
-SELECT ROWKEY, FIRSTNAME, LASTNAME, PHONENUMBER, REGEXREPLACE(phonenumber, '\\(?(\\d{3}).*', '$1') as area_code
+SELECT ID, FIRSTNAME, LASTNAME, PHONENUMBER, REGEXREPLACE(phonenumber, '\\(?(\\d{3}).*', '$1') as area_code
 FROM CUSTOMERS
 EMIT CHANGES
 LIMIT 10;
