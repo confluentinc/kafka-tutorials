@@ -1,4 +1,4 @@
-To check that it’s working, lets first describe the new stream:
+To check that it’s working, let's first describe the new stream:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/rekeying/ksql/code/tutorial-steps/dev/describe-output.sql %}</code></pre>
