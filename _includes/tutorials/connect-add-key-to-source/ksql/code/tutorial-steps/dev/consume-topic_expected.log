@@ -1,9 +1,9 @@
 Key format: KAFKA_INT or KAFKA_STRING
 Value format: AVRO or KAFKA_STRING
-rowtime: 3/25/20 11:53:36 AM UTC, key: 1, value: {"city_id": 1, "name": "Raleigh", "state": "NC"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 2, value: {"city_id": 2, "name": "Mountain View", "state": "CA"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 3, value: {"city_id": 3, "name": "Knoxville", "state": "TN"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 4, value: {"city_id": 4, "name": "Houston", "state": "TX"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 5, value: {"city_id": 5, "name": "Olympia", "state": "WA"}
-rowtime: 3/25/20 11:53:36 AM UTC, key: 6, value: {"city_id": 6, "name": "Bismarck", "state": "ND"}
+rowtime: 3/25/20 11:53:36 AM UTC, key: 1, value: {"name": "Raleigh", "state": "NC"}
+rowtime: 3/25/20 11:53:36 AM UTC, key: 2, value: {"name": "Mountain View", "state": "CA"}
+rowtime: 3/25/20 11:53:36 AM UTC, key: 3, value: {"name": "Knoxville", "state": "TN"}
+rowtime: 3/25/20 11:53:36 AM UTC, key: 4, value: {"name": "Houston", "state": "TX"}
+rowtime: 3/25/20 11:53:36 AM UTC, key: 5, value: {"name": "Olympia", "state": "WA"}
+rowtime: 3/25/20 11:53:36 AM UTC, key: 6, value: {"name": "Bismarck", "state": "ND"}
 Topic printing ceased
