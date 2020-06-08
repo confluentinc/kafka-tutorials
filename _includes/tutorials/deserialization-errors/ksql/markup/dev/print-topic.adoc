@@ -10,7 +10,3 @@ The output should look similar to:
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/expected-print.log %}</code></pre>
 +++++
-
-Note the presence of a field called `recordB64`.
-This field contains the record that caused the deserialization error, in Base64 format.
-If you decode this data, then you will have access to the record that caused the issue.
