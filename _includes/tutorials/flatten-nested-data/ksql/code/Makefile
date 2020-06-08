@@ -12,3 +12,4 @@ tutorial:
 	harness-runner ../../../../../_data/harnesses/flatten-nested-data/ksql.yml $(TEMP_DIR)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-transient-flattening.log $(DEV_OUTPUTS_DIR)/transient-flattening/output-0.log
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-transient-query.log $(DEV_OUTPUTS_DIR)/transient-query/output-0.log
+	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/test/expected-results.log) <(sort $(TEST_OUTPUTS_DIR)/test-results.log)"
