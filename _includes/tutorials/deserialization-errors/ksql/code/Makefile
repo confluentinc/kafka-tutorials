@@ -13,3 +13,4 @@ tutorial:
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-transient-query.log $(DEV_OUTPUTS_DIR)/transient-query/output-0.log
 	bash -c "diff --strip-trailing-cr <(sort <(cut -d ',' -f 6- $(STEPS_DIR)/dev/expected-print.log)) <(sort <(cut -d ',' -f 6- $(DEV_OUTPUTS_DIR)/print-topic/output-0.log))"
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-check-errors-query.log $(DEV_OUTPUTS_DIR)/check-errors-query/output-0.log
+	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/test/expected-results.log) <(sort $(TEST_OUTPUTS_DIR)/test-results.log)"
