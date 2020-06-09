@@ -22,6 +22,9 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
+        {% if page.community_contribution %}
+        <span class="community-contribution">Community contribution ✨</span>
+        {% endif %}
         <div class="headline">
           <h1>{{ site.data.tutorials[page.static_data].title }}</h1>
         </div>
@@ -57,7 +60,7 @@
           {% endif %}.0
           {% if site.data.tutorials[page.static_data].status.kafka == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kafka.html" {% if page.stack == 'kafka' %} selected {% endif %}>
-            Vanilla Kafka
+            Basic Kafka
           </option>
           {% endif %}
         </select>
@@ -76,7 +79,7 @@
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kafka == 'enabled' %}
           <a class="button {% if page.stack == 'kafka' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kafka.html">
-            Vanilla Kafka
+            Basic Kafka
           </a>
           {% endif %}
         </div>
@@ -92,18 +95,22 @@
               <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
               {% endfor %}
             </ul>
-            <li><a href="#test-it">Test it</a></li>
-            <ul>
-              {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
-              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
-              {% endfor %}
-            </ul>
-            <li><a href="#take-it-to-prod">Take it to production</a></li>
-            <ul>
-              {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
-              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
-              {% endfor %}
-            </ul>
+            {% if site.data.harnesses[page.static_data][page.stack].test %}
+              <li><a href="#test-it">Test it</a></li>
+              <ul>
+                {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
+                <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% if site.data.harnesses[page.static_data][page.stack].prod %}
+              <li><a href="#take-it-to-prod">Take it to production</a></li>
+              <ul>
+                {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
+                <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </ul>
         </div>
       </div>

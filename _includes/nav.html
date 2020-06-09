@@ -2,18 +2,31 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.google_tag_manager_id }}" height="0"
     width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<nav>
+<div class="nav-company has-text-centered has-background-black is-uppercase">
+  <a class="has-text-white" target="_blank" href="https://confluent.io">Go to confluent.io</a>
+</div>
+<nav class="navbar">
   <div class="container">
-    <div>
-      <a href="{{ "/" | relative_url }}">
-        <img class="logo"
-          src="{{ "https://assets.confluent.io/m/3e08126501efd1d6/original/20200122-SVG-confluent_logo-dkblue.svg" | relative_url }}"
-          alt="Confluent" />
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{{ "/" | relative_url }}">
+        <img class="logo" src="{{ "/assets/img/logo.svg" | relative_url }}" alt="Confluent" />
+        <svg class="sub-domain" xmlns="http://www.w3.org/2000/svg" width="150" height="32" viewBox="0 0 180 29"><g fill="none" fill-rule="evenodd"><rect width="100%" height="100%" fill="#F3F4F7" rx="5"></rect><text fill="#000" font-family="Roboto" font-size="17.037" font-weight="bold" letter-spacing=".7"><tspan x="11" y="21">KAFKA TUTORIALS</tspan></text></g></svg>
+      </a>
+      <a class="navbar-burger">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </a>
     </div>
-    <div class="join">
-      <p>Join the Community. Contribute a tutorial.</p>
-      <a class="cta-button primary" href="{{ site.contribute_url }}">Contribute <span>a tutorial</span></a>
+    <div class="navbar-menu is-uppercase">
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <a class="link" href="https://developer.confluent.io">Confluent Developer</a>
+        </div>
+        <div class="navbar-item">
+          <a class="cta" href="{{ site.contribute_url }}"><span class="icon"><i class="fab fa-github"></i></span><span>Contribute</span></a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>

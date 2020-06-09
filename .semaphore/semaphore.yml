@@ -41,10 +41,16 @@ blocks:
     execution_time_limit:
       minutes: 15
     task:
+      secrets:
+        - name: aws_credentials
       prologue:
         commands:
           - checkout
+          - >
+            aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
           - sudo pip3 install -e harness_runner/
+          - >
+            find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
       jobs:
         - name: KSQL transforming tests
           commands:
@@ -110,6 +116,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
 
+        - name: KSQL session windows tests
+          commands:
+            - make -C _includes/tutorials/session-windows/ksql/code tutorial
+
         - name: KSQL aggregation count tests
           commands:
             - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
@@ -146,9 +156,17 @@ blocks:
           commands:
             - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
             
-        - name: KStreams connect jdbc specific avro tests
+        - name: KStreams Connect key tests
           commands:
-            - make -C _includes/tutorials/connect-jdbc-kstreams-rekey-specificavro/kstreams/code tutorial
+            - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
+
+        - name: Kafka Connect SMT key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/kafka/code tutorial
+
+        - name: ksqlDB  Connect SMT key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
 
         - name: KStreams emit a final result from a time window
           commands:
@@ -161,7 +179,7 @@ blocks:
         - name: KSQL hopping windows tests
           commands:
             - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
-
+  
         - name: KSQL finding distinct events tests
           commands:
             - make -C _includes/tutorials/finding-distinct/ksql/code tutorial
@@ -169,7 +187,40 @@ blocks:
         - name: KSQL flatten nested data
           commands:
             - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
+      
+        - name: KSQL deserialization errors tests
+          commands:
+            - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
             
         - name: KStreams aggregation MIN/MAX tests
           commands:
             - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
+
+        - name: KStreams Running Average tests
+          commands:
+            - make -C _includes/tutorials/aggregating-average/kstreams/code tutorial
+        - name: KStreams Test Streams choosing output topic dynamically tests
+          commands:
+            - make -C _includes/tutorials/dynamic-output-topic/kstreams/code tutorial
+        
+        - name: KStreams Test Streams naming changelog and repartition topics tests
+          commands:
+            - make -C _includes/tutorials/naming-changelog-repartition-topics/kstreams/code tutorial
+
+        - name: KStreams Test Cogrouping Streams tests
+          commands:
+            - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
+
+        - name: Kafka Console Consumer Produer Basics tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-produer-basic/kafka/code tutorial
+            
+        - name: Kafka Test Kafka Console Consumer with Primitive Keys and Values tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-primitive-keys-values/kafka/code tutorial
+
+        - name: Kafka Test Kafka Console Consumer Read Specific Offsets and Partitions tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-read-specific-offsets-partition/kafka/code tutorial
+        
+        

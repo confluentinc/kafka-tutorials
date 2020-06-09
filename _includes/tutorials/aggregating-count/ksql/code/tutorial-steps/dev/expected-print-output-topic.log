@@ -1,5 +1,6 @@
-Key format: MIXED
-Value format: AVRO
-rowtime: 2/28/20 10:09:46 PM UTC, key: Die Hard, value: {"TITLE": "Die Hard", "TICKETS_SOLD": 3}
-rowtime: 2/28/20 10:09:46 PM UTC, key: The Big Lebowski, value: {"TITLE": "The Big Lebowski", "TICKETS_SOLD": 2}
-rowtime: 2/28/20 10:09:46 PM UTC, key: The Godfather, value: {"TITLE": "The Godfather", "TICKETS_SOLD": 4}
+Key format: KAFKA_STRING
+Value format: AVRO or KAFKA_STRING
+rowtime: 2020/05/04 21:19:17.935 Z, key: Aliens, value: {"TITLE": "Aliens", "TICKETS_SOLD": 1}
+rowtime: 2020/05/04 21:19:18.365 Z, key: Die Hard, value: {"TITLE": "Die Hard", "TICKETS_SOLD": 3}
+rowtime: 2020/05/04 21:19:18.586 Z, key: The Big Lebowski, value: {"TITLE": "The Big Lebowski", "TICKETS_SOLD": 2}
+Topic printing ceased

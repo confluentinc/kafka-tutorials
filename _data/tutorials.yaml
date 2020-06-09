@@ -96,7 +96,7 @@ rekeying-function:
   meta-description: "Learn to rekey a stream with a function"
   slug: "/rekey-with-function"
   problem: "you have a Kafka topic and you want to change the key of the messages. The new key is a variation of data you currently have in the messages. A small fragment of code could convert the data you have to the new key."
-  introduction: "Consider a stream of customer information events keyed by id. Each event contains a few attributes, including the customer's phone number. In this tutorial, we'll write a program that rekeys the topic by the area address of the phone number. Customers of the same area code will be placed into the same partition in the new topic."
+  introduction: "Consider a stream of customer information events keyed by id. Each event contains a few attributes, including the customer's phone number. In this tutorial, we'll write a program that rekeys the topic by the area code of the phone number. Customers of the same area code will be placed into the same partition in the new topic."
   status:
     ksql: enabled
     kstreams: enabled
@@ -120,12 +120,20 @@ hopping-windows:
   status:
     ksql: enabled
 
+session-windows:
+  title: "Create session windows"
+  slug: "/create-session-windows"
+  problem: "you have time-series events in a Kafka topic, and you want to group them into variable-size, non-overlapping time intervals based on a configurable inactivity period."
+  introduction: "Given a topic of click events on a website, there are various ways that we can process it. As well as simply counting the number of clicks in a regular time frame (using hopping or tumbling windows), we can also perform sessionization on the data. Here the length of the time window is based on the concept of a session, which is defined based on a period of inactivity. A given user might visit a website multiple times a day, but in distinct visits. Using session windows, we can analyze the number of clicks and duration per visit."
+  status:
+    ksql: enabled
+
 aggregating-count:
   title: "How to count a stream of events"
   meta-description: "Learn to count a stream of events"
   slug: "/create-stateful-aggregation-count"
   problem: "you have data in a Kafka topic and want to count the number of events based on some criteria."
-  introduction: "Suppose you have a topic with events that represent ticket sales for movies. In this tutorial, we'll write a program that calculates the total number of tickets sold per movie."
+  introduction: "Suppose you have a topic with events that represent ticket sales for movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams and ksqlDB.  We'll write a program that calculates the total number of tickets sold per movie."
   status:
     ksql: enabled
     kstreams: enabled
@@ -159,13 +167,14 @@ serialization:
     ksql: enabled
     kstreams: enabled
 
-connect-jdbc-kstreams-rekey-specificavro:
-  title: "Ingesting data via a JDBC source connector into Kafka Streams as SpecificAvro, adding a key in Kafka Streams"
-  slug: "/connect-jdbc-kstreams-rekey-specificavro"
-  problem: "you have data in a table in a database, are pulling that data via a JDBC source connector (which by default does not add a key to the Kafka message), and you want to create a Kafka Stream using SpecificAvro, letting Kafka Streams add the key."
-  introduction: "Consider a database with a table with names of cities. The JDBC source connector can read that data into Kafka but, by default, the topic will not have keys. In Kafka Streams, ingest that data using SpecificAvro and add a key to the stream."
+connect-add-key-to-source:
+  title: "Add key to data ingested through Kafka Connect"
+  slug: "/connect-add-key-to-source"
+  problem: "You have data in a source system (such as a database) that you want to stream into Kafka using Kafka Connect. You want to add a key to the data as part of the ingest."
+  introduction: "Kafka Connect is the integration API for Apache Kafka. It enables you to stream data from source systems (such databases, message queues, SaaS platforms, and flat files) into Kafka, and from Kafka to target systems. When you stream data into Kafka you often need to set the key correctly for partitioning and application logic reasons. In this example there is data about cities in a database, and we want to key the resulting Kafka message by the city_id field. There are different ways to set the key correctly and these tutorials will show you how. It will also cover how to declare the schema and use Kafka Streams to process the data using SpecificAvro. "
   status:
-    ksql: disabled
+    ksql: enabled
+    kafka: enabled
     kstreams: enabled
 
 finding-distinct:
@@ -196,6 +205,15 @@ udf:
     kstreams: disabled
     kafka: disabled
 
+deserialization-errors:
+  title: "How to handle deserialization errors"
+  meta-description: "How to handle deserialization errors"
+  slug: "/handling-deserialization-errors"
+  problem: "you have created a stream/table that contains a schema associated, and you want to understand why some events are not being written correctly."
+  introduction: "During the development of event streaming applications, it is very common to have situations where some streams or tables are not receiving some events that has been sent to it. Often this happens because there was an deserialization error due to the event not being in the right format, but that is not so trivial to figure out. In this tutorial, we'll write a program that monitors a stream of sensors. Any deserialization error that happens in this stream will be made available in another stream that can be queried to check errors."
+  status:
+    ksql: enabled
+    
 flatten-nested-data:
   title: "How to flatten deeply nested events"
   meta-description: "How to flatten deeply nested events"
@@ -206,3 +224,81 @@ flatten-nested-data:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
+
+aggregating-average:
+  title: "Compute an average aggregation"
+  meta-description: "Compute an average aggregation"
+  slug: "/aggregating-average"
+  problem: "Kafka Streams natively supports \"incremental\" aggregation functions, in which the aggregation result is updated based on the values captured by each window. Incremental functions include count, sum, min, and max. An average aggregation cannot be computed incrementally. However, as this tutorial shows, it can be implemented by composing incremental functions, namely count and sum."
+  introduction: "Consider a topic with events that represent ratings of movies. In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
+dynamic-output-topic:
+  title: "How to dynamically choose the output topic"
+  meta-description: "How to dynamically choose the output topic"
+  slug: "/dynamic-output-topic"
+  problem: "you need to determine which topic to send records to dynamically"
+  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topic.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
+naming-changelog-repartition-topics:
+  title: "How to name stateful operations in Kafka Streams"
+  meta-description: "How to name stateful operations in Kafka Streams"
+  slug: "/naming-stateful-operations"
+  problem: "you have an existing Kafka Streams application and you want to make changes to the topology, but you'd like the new topology to remain compatible with the existing one"
+  introduction: "You want to add or remove some operations in your Kafka Streams application.  In this tutorial we'll name the changelog and repartition topics so that the topology updates don't break compatibility."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
+cogrouping-streams:
+  title: "How to combine stream aggregates together in a single larger object"
+  meta-description: "How to combine stream aggregates together in a single larger object"
+  slug: "/cogrouping-streams"
+  problem: "you have multiple streams, each with an aggregate value like `count`,  that you want to combine into a single result"
+  introduction: "You want to compute the count of user login events per application in your system, grouping the individual result from each source stream into one aggregated object.  In this tutorial we'll cover how to use the Kafka Streams Cogrouping functionality to accomplish this task with clear, performant code"
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
+console-consumer-produer-basic:
+  title: "Console Producer and Consumer Basics, no (de)serializers"
+  meta-description: "Produce and consume your first message with Kafka"
+  slug: "/kafka-console-consumer-producer-basics"
+  problem: "you are brand new to Kafka and you want to experiment by producing and consuming a message quickly"
+  introduction: "So you are excited to get started with Kafka and youd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Note this tutorial doesn't cover using (de)serializers. Using (de)serializers with the console consumer and producer are covered in separate tutorials"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+
+
+console-consumer-primitive-keys-values:
+  title: "How to use the console consumer to read non-string primitive keys values"
+  meta-description: "How to use the console consumer to read non-string primitive keys and values"
+  slug: "/console-consumer-primitive-values"
+  problem: "you are writing records (key - Long, Value - Double) to a topic and you want to inspect the records, but running the console consumer doesnt' show expected results"
+  introduction: "You want to inspect/debug records written to a topic.  The keys and values are long and doubles, repsectively.  In this tutorial you'll learn how to specify key and value deserializers with the console consumer"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+
+console-consumer-read-specific-offsets-partition:
+  title: "How to read from a specific offset and partition with the Kafka Console Consumer"
+  meta-description: "How to read from a specific offset and partition with the Kafka Console Consumer"
+  slug: "/kafka-console-consumer-read-specific-offsets-partitions"
+  problem: "you need to read from a specific offset and partition of a topic"
+  introduction: "You are confirming record arrivals and you'd like to read from a specific offset in a topic partition.   In this tutorial you'll learn how to use the Kafka console consumer to quickly debug issues by reading from a specific offset as well as control the number of records you read."
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled

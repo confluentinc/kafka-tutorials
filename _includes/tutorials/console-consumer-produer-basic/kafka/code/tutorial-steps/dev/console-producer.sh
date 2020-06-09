@@ -1,0 +1,1 @@
+kafka-console-producer --topic example-topic --broker-list broker:9092

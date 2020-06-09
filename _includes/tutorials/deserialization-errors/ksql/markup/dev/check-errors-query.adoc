@@ -1,0 +1,13 @@
+Now here comes the fun part. We know that at least one of the records produced had an error, because we specified the field `ENABLED` as a string instead of a boolean. This should yield one deserialization error because we can't write a string into a boolean.
+Therefore, this one error needs to show up somewhere.
+With the https://docs.confluent.io/current/ksql/docs/developer-guide/processing-log.html[KSQL Processing Log] feature enabled, you can query a stream called `KSQL_PROCESSING_LOG` to check for deserialization errors.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/check-errors-query.sql %}</code></pre>
++++++
+
+This query should produce the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/expected-check-errors-query.log %}</code></pre>
++++++

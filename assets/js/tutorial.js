@@ -49,4 +49,11 @@ $(document).ready(function() {
   $(".cflt-options select").on("change", function() {
     window.location.href = this.value;
   });
+
+
+  $('.navbar-burger').on('click', function(e) {
+    e.preventDefault();
+    $('.navbar-burger').toggleClass('is-active');
+    $('.navbar-menu').toggleClass('is-active');
+  });
 });
