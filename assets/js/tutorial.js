@@ -6,6 +6,15 @@ $(document).ready(function() {
 
   var clipboard = new ClipboardJS(".copy-btn");
 
+  clipboard.on('success', function (e) {
+    e.clearSelection();
+    e.trigger.classList.add('copied');
+
+    setTimeout(function () {
+      e.trigger.classList.remove('copied');
+    }, 1500);
+  });
+
   $("pre").each(function(index, element) {
     //Set up copy buttons.
     var id = "snippet-" + index;
