@@ -255,4 +255,8 @@ blocks:
         - name: Kafka Consumer Application tests
           commands:
             - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
-            
+        
+        - name: KStreams Test Converting a KStream to a KTable tests
+          commands:
+            - make -C _includes/tutorials/streams-to-table/kstreams/code tutorial
+
