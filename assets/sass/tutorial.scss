@@ -146,11 +146,22 @@
   }
 
   .tutorial-media-container {
-    margin-top: 60px;
-    iframe {
-      width:100%;
-      height:331px;
-    }
+      margin-top: 60px;
+
+      .image {
+          position: relative;
+          height: 0;
+          overflow: hidden;
+          padding-bottom: 50%;
+
+          iframe {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+          }
+      }
   }
 
   @media screen and (max-width: 640px) {
