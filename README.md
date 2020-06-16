@@ -237,6 +237,29 @@ You can do the same for Kafka Streams and Kafka, by using the `kstreams` and `ka
 
 Lastly, create a Makefile in the `code` directory to invoke the harness runner and check any outputs that it produces. Then modify the `.semaphore/semaphore.yml` file to invoke that Makefile. This will make sure your tutorial gets checked by the CI system.
 
+## Working with the harness file
+
+Given the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  It should be noted the harness file is in the [YAML file formt](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.
+
+#### 1. Structure
+
+Three top-level sections make up the harness file:
+
+* dev - the setup and teaching portion of the tutorial (required)
+* test - test setup and execution of tests, if any (optional)
+* prod - steps to build and deploy a docker image of the tutorial code (optional)
+
+In some cases, having a test and or prod section doesn't make sense, so those sections can be left out of the harness file.  The Apache Kafka console producer and consumer tutorials are a good example of tutorials that don't need a test or prod section.
+
+The `dev`, `test`, and `prod` sections contain a top-level element `steps`.  The `steps` contains any number of well, steps for the user to walk through.  Addtionally the `harness_runner` script follows the same steps for executing the tutorial automatically during builds.  The steps in any section are structured in the same way, so we'll only discuss the make-up of a single section.
+
+* Title - each section starts with a `title` element and as the label suggests, the text provided here is the text used the label the step for the tutorial user and the output to the console by the harness runner.  The `title` section contains one element - `content`
+
+* Content - the 
+
+
+
+
 ## Updating dependency versions
 
 The following regular expressions may be useful to group-update all dependencies within the repo:
