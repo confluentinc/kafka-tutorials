@@ -74,6 +74,11 @@ mainClassName = 'io.confluent.developer.serialization.SerializationTutorial'
 
 protobuf {
   generatedFilesBaseDir = "$buildDir/generated-main-proto-java/"
+
+  protoc {
+    artifact = "com.google.protobuf:protoc:3.12.3"
+  }
+
 }
 
 clean {
