@@ -1,0 +1,155 @@
+/** Admonition **/
+/* span.icon > .fa {
+  cursor: default;
+} */
+
+.admonitionblock td.icon {
+  text-align: center;
+  width: 80px;
+}
+
+.admonitionblock td.icon [class^='fa icon-'] {
+  font-size: 2.5em;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+
+.admonitionblock td.icon .icon-note:before {
+  content: '\f05a';
+  color: #19407c;
+}
+
+.admonitionblock td.icon .icon-tip:before {
+  content: '\f0eb';
+  text-shadow: 1px 1px 2px rgba(155, 155, 0, 0.8);
+  color: #111;
+}
+
+.admonitionblock td.icon .icon-warning:before {
+  content: '\f071';
+  color: #bf6900;
+}
+
+.admonitionblock td.icon .icon-caution:before {
+  content: '\f06d';
+  color: #bf3400;
+}
+
+.admonitionblock td.icon .icon-important:before {
+  content: '\f06a';
+  color: #bf0000;
+}
+/** END - Admonition **/
+
+/** Callouts **/
+.conum[data-value] {
+  display: inline-block;
+  color: #fff !important;
+  background: rgba(0, 0, 0, 0.8);
+  -webkit-border-radius: 1em;
+  border-radius: 1em;
+  text-align: center;
+  font-size: 0.75em;
+  width: 1.67em;
+  height: 1.67em;
+  line-height: 1.67em;
+  font-family: 'Open Sans', 'DejaVu Sans', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+
+.conum[data-value] * {
+  color: #fff !important;
+}
+
+.conum[data-value] + b {
+  display: none;
+}
+
+.conum[data-value]::after {
+  content: attr(data-value);
+}
+
+pre .conum[data-value] {
+  position: relative;
+  top: -0.125em;
+}
+
+b.conum * {
+  color: inherit !important;
+}
+
+.conum:not([data-value]):empty {
+  display: none;
+}
+/** END - Callouts **/
+
+/** Customization **/
+.colist {
+  margin-bottom: 20px;
+}
+
+.colist table {
+  width: auto;
+}
+
+.admonitionblock {
+  border-radius: 4px;
+  margin-bottom: 20px;
+  padding: 20px 30px;
+}
+
+.admonitionblock tbody tr {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.admonitionblock td.icon {
+  justify-content: flex-start;
+  padding: 0;
+  width: 40px;
+}
+
+.admonitionblock td.content {
+  flex: 1;
+  margin-left: 20px;
+  line-height: 1.3;
+  padding: 0;
+  vertical-align: middle;
+}
+
+.admonitionblock td.content * {
+  color: inherit;
+}
+
+.admonitionblock.note {
+  background-color: #cce5ff;
+  border-color: #b8daff;
+  color: #004085;
+}
+
+.admonitionblock.important {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.admonitionblock.warning {
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+  color: #856404;
+}
+
+.admonitionblock.caution {
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+  color: #0c5460;
+}
+
+.admonitionblock.tip {
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+/** END - Admonition **/
