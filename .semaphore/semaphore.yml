@@ -227,4 +227,4 @@ blocks:
       epilogue:
        on_pass:
          commands:
-           - exit 0
+           - echo "Test passed"
