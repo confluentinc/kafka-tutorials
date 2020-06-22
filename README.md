@@ -29,8 +29,6 @@
   * [Updating kafka-tutorials.confluent.io](#updating-kafka-tutorialsconfluentio)
       - [Prepare a release PR](#prepare-a-release-pr)
 
-<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
-
 # Kafka Tutorials
 
 The source code for the [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/). Read about it [in our blog post](https://www.confluent.io/blog/announcing-apache-kafka-tutorials).
@@ -278,14 +276,20 @@ This section is not meant to be an exhaustive decription of the harness file.  N
 
 #### TL;DR
 
-To run a tutorial programatically do the following stepes. Note these instructions assume you've already checked out the kafka-tutorials repo).
+To run a tutorial programatically do the following stepes. Note to follow these instructions you'll need to checkout the kafka-tutorials repo:
+
+1. git clone https://github.com/confluentinc/kafka-tutorials.git
+2. cd kafka-tutorials
+
+Once you have the kafka-tutorials repo checked out do the following:
 
 1. cd into `_includes/tutorials/<tutorial name>/<type>/code` directory where type is one of `ksql | kstreams | kafka`.
+    * For exmaple `cd _includes/tutorials/fk-joins/kstreams/code`
 2. run the `make` command.
 
 The `Makefile` will delete and re-create the `outputs` directory used contain files with output from various steps used to verify the tutorial steps.
 
-Here's an example of the contents of a `Makefile`:
+Here's of [the contents of an actual `Makefile`](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/fk-joins/kstreams/code/Makefile) :
 
 ```yml
 STEPS_DIR := tutorial-steps
@@ -299,7 +303,9 @@ tutorial:
   diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.json $(DEV_OUTPUTS_DIR)/music-interest.json
 ```
 
-The last line uses the `diff` command to validate expected output against the actual output of tutorial steps.  The `Makefile` may have more than one valdiation step so it will have separate `diff` commmands for each verification.  For example:
+The last line uses the `diff` command to validate expected output against the actual output of tutorial steps.  The `Makefile` may have more than one valdiation step so it will have separate `diff` commmands for each verification.  
+
+For example here's the `Makefile` from the [dynamic output topics tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/dynamic-output-topic/kstreams/code/Makefile)
 
 ```yml
 STEPS_DIR := tutorial-steps
@@ -325,11 +331,11 @@ Three top-level sections make up the harness file:
 * test - test setup and execution of tests, if any (optional)
 * prod - steps to build and deploy a docker image of the tutorial code (optional)
 
-In some cases, having a test and or prod section doesn't make sense, so those sections can be left out of the harness file.  The Apache Kafka console producer and consumer tutorials are a good example of tutorials that don't need a test or prod section.
+In some cases, having a test and or prod section doesn't make sense, so those sections can be left out of the harness file.  The Apache Kafka [console producer and consumer basic operations](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-produer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are a good example of tutorials that don't need a test or prod section.
 
 The `dev`, `test`, and `prod` sections contain a top-level element `steps`.  The `steps` contains any number of well, steps for the user to walk through.  Addtionally the `harness_runner` script follows the same steps for executing the tutorial automatically during builds.  The steps in any section are structured in the same way, so we'll only discuss the make-up of a single section.
 
-For reference here is an example section
+For reference here is an example section of the harness file from the [console consumer primitive keys and values tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml)
 
 ```yml
  - title: Get Confluent Platform
