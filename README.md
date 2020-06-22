@@ -237,13 +237,13 @@ You can do the same for Kafka Streams and Kafka, by using the `kstreams` and `ka
 
 Lastly, create a Makefile in the `code` directory to invoke the harness runner and check any outputs that it produces. Then modify the `.semaphore/semaphore.yml` file to invoke that Makefile. This will make sure your tutorial gets checked by the CI system.
 
-## Working with the harness file
+## Testing Locally
 
 Given the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  It should be noted the harness file is in the [YAML file formt](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generates the structure of the rendered tutorial and also validates any output of tutorial steps against expected values.
 
 This section is not meant to be an exhaustive decription of the harness file.  New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove sections as needed.
 
-#### TLDR;
+#### TL;DR
 
 To run a tutorial programatically do the following stepes. Note these instructions assume you've already checked out the kafka-tutorials repo).
 
@@ -364,7 +364,7 @@ In the next sections you'll see how to use `action` keys to organize your harnes
             file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/init.adoc
     ```
 
-    Somtimes the `execute` step is an _internal_ step only for the harness runner. Internal steps ignore the `render:` using a `skip: true` entry
+    Sometimes the `execute` step is an _internal_ step only for the harness runner. Internal steps ignore the `render:` using a `skip: true` entry
     ```yml
       - name: wait for ksqldb-server and connectors
           action: sleep
