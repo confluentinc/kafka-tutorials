@@ -320,9 +320,6 @@ tutorial:
   diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-special-output.json $(DEV_OUTPUTS_DIR)/actual-special-order-output.json
 ```
 
-
-
-
 #### 1. Structure
 
 Three top-level sections make up the harness file:
@@ -372,6 +369,7 @@ For reference here is an example section of the harness file from the [console c
     * `action: execute_async` - an asynchronous step, this indicates a step the user will keep running for some portion of the tutorial.
     * `action: sleep` - pause the test runner for an amount of time specified by the `ms` key. You use `sleep` key to allow some asnyc action to complete
         * `ms: NNN` - the time in milliseconds you want the test harness to pause execution.  You only use `ms` after an `action: sleep` entry.
+    * `docker_ksql_cli_session` - an action starting a ksqlDB CLI session for working through a tutorial
 
 In the next sections you'll see how to use `action` keys to organize your harness files
 
@@ -446,8 +444,32 @@ In the next sections you'll see how to use `action` keys to organize your harnes
               file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/consume-topic-no-deserializers.adoc
     ```
 
+* `docker_ksql_cli_session` The `docker_ksql_cli_session` sets up ksqlDB tutorial users to start a ksqlDB CLI session so the user can execute various `SQL` files to complete the tutorial.
+    ```yml
+      - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 20
+          render:
+            file: tutorials/aggregating-sum/ksql/markup/dev/start-cli.adoc
+    ```
+    The `docker_ksql_cli_session` contains the following keys:
+    * `container:` - The name of the [ksqldb-cli docker image in the docker-compose.yml](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/aggregating-sum/ksql/code/docker-compose.yml#L70-L82) file.
+    * `docker_bootup_file:` - Tutorial users and the harness runner [execute this file](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/start-cli.sh) to start the dockerized CLI session.
+    * `column_width:` - Formats the ksqlDB query output
+    * `render:` - The harness renders the file  corresponding to the `file:` key to tutorial users with the command to start the CLI session. 
+    * `stdin:` - stdin key [contains one or more `file`](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/aggregating-sum/ksql.yml#L41-L68) keys specifying the different `SQL` file to execute for the tutorial.
+    ```yml
+        stdin:
+            - file: tutorial-steps/dev/create-movie-ticket-sales.sql
+              render:
+                file: tutorials/aggregating-sum/ksql/markup/dev/create-movie-ticket-sales.adoc
 
-
+            - file: tutorial-steps/dev/populate-movie-ticket-sales.sql
+              render:
+                file: tutorials/aggregating-sum/ksql/markup/dev/populate-movie-ticket-sales.adoc
+    ```
+    * `stdout:` - Contains `directory:` specifying the directory to capture all query output.
 
 
 ## Updating dependency versions
