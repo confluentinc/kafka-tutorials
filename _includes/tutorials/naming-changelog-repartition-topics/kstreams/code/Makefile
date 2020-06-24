@@ -7,4 +7,6 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/naming-changelog-repartition-topics/kstreams.yml $(TEMP_DIR)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-total-output.txt $(DEV_OUTPUTS_DIR)/actual-output.txt
-	exit
+	reset && echo
+	
+
