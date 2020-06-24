@@ -8,4 +8,5 @@ tutorial:
 	harness-runner ../../../../../_data/harnesses/connect-add-key-to-source/kstreams.yml $(TEMP_DIR)
 	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-input-events.log <(tail -6 $(DEV_OUTPUTS_DIR)/actual-input-events.log)"
 	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.log <(tail -6 $(DEV_OUTPUTS_DIR)/actual-output-events.log)"
-	exit
+	reset && echo
+	
