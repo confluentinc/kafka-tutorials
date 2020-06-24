@@ -324,3 +324,15 @@ change-topic-partitions-replicas:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
+
+kafka-consumer-application:
+  title: "How to build your first Apache Kafka consumer application"
+  meta-description: "How to build your first Apache Kafka consumer application"
+  slug: "/creating-first-apache-kafka-consumer-application"
+  problem: "you need to build your first Kafka consumer application"
+  introduction: "You'd like to integrate an Apache Kafka consumer in your microservice application, but you're not sure where to start.  In this tutorial you'll build a small application reading records from Kafka with a KafkaConsumer.  You can use the code in this tutorial as an example of how to use an Apache Kafka consumer"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+
