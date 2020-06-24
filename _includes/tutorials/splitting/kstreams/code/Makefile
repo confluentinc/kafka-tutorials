@@ -9,5 +9,5 @@ tutorial:
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-drama-events.json $(DEV_OUTPUTS_DIR)/actual-drama-events.json
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-fantasy-events.json $(DEV_OUTPUTS_DIR)/actual-fantasy-events.json
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-other-events.json $(DEV_OUTPUTS_DIR)/actual-other-events.json
-	reset
+	reset && echo
 

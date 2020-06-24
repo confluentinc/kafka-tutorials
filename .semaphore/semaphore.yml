@@ -224,7 +224,3 @@ blocks:
           commands:
             - make -C _includes/tutorials/console-consumer-read-specific-offsets-partition/kafka/code tutorial
         
-      epilogue:
-       on_pass:
-         commands:
-           - echo "Test passed! should exit" && kill $(ps aux | grep "java" | grep -v 'grep' | awk '{print $2}')

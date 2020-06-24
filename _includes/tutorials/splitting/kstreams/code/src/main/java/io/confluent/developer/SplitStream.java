@@ -13,6 +13,7 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 
 import java.io.FileInputStream;
+import java.time.Duration;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.CountDownLatch;
@@ -106,7 +107,7 @@ public class SplitStream {
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close();
+                streams.close(Duration.ofSeconds(2));
                 latch.countDown();
             }
         });
