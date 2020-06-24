@@ -60,4 +60,5 @@ jar {
 shadowJar {
   archiveBaseName = "naming-changelog-repartition-topics-standalone"
   archiveClassifier = ''
+  from './resources/main'
 }
