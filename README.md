@@ -253,13 +253,13 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 
 ## Testing Locally
 
-Given the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  It should be noted the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generates the structure of the rendered tutorial and also validates any output of tutorial steps against expected values.
+Given the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  You should note the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generate the rendered tutorial structure and validate any output of tutorial steps against expected values.
 
-This section is not meant to be an exhaustive decription of the harness file.  New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove sections as needed.
+New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove parts as needed.
 
 #### TL;DR
 
-To run a tutorial programatically do the following stepes. Note to follow these instructions you'll need to checkout the kafka-tutorials repo:
+To run a tutorial programmatically, do the following steps. Note to follow these instructions you'll need to check out the kafka-tutorials repo:
 
 1. git clone https://github.com/confluentinc/kafka-tutorials.git
 2. cd kafka-tutorials
@@ -278,7 +278,7 @@ Once you have the kafka-tutorials repo checked out do the following:
    * `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`.
    * For example `(cd _includes/tutorials/transforming/kstreams/code/ && make)`
 
-The `Makefile` will delete and re-create the `outputs` directory used contain files with output from various steps used to verify the tutorial steps.
+The `Makefile` will delete and re-create the `outputs` directory used to contain files with output from various steps used to verify the tutorial steps.
 
 Here's of [the contents of an actual `Makefile`](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/fk-joins/kstreams/code/Makefile) :
 
@@ -294,9 +294,9 @@ tutorial:
   diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.json $(DEV_OUTPUTS_DIR)/music-interest.json
 ```
 
-The last line uses the `diff` command to validate expected output against the actual output of tutorial steps.  The `Makefile` may have more than one valdiation step so it will have separate `diff` commmands for each verification.  
+The last line uses the `diff` command to validate expected output against the tutorial steps' actual output.  The `Makefile` may have more than one validation action to have separate `diff` commands for each verification.  
 
-For example here's the `Makefile` from the [dynamic output topics tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/dynamic-output-topic/kstreams/code/Makefile)
+For example, here's the `Makefile` from the [dynamic output topics tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/dynamic-output-topic/kstreams/code/Makefile)
 
 ```yml
 STEPS_DIR := tutorial-steps
@@ -319,9 +319,9 @@ Three top-level sections make up the harness file:
 * test - test setup and execution of tests, if any (optional)
 * prod - steps to build and deploy a docker image of the tutorial code (optional)
 
-In some cases, having a test and or prod section doesn't make sense, so those sections can be left out of the harness file.  The Apache Kafka [console producer and consumer basic operations](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-produer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are a good example of tutorials that don't need a test or prod section.
+In some cases, having a test and/or prod section doesn't make sense, so you can omit those portions of the harness file.  The Apache Kafka [console producer and consumer basic operations](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-produer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are an excellent example of tutorials that don't need a test or prod section.
 
-The `dev`, `test`, and `prod` sections contain a top-level element `steps`.  The `steps` contains any number of well, steps for the user to walk through.  Addtionally the `harness_runner` script follows the same steps for executing the tutorial automatically during builds.  The steps in any section are structured in the same way, so we'll only discuss the make-up of a single section.
+The `dev`, `test`, and `prod` sections contain a top-level element `steps`.  The `steps` contains any number of well, steps for the user to walk through.  Additionally, the `harness_runner` script follows the same steps for executing the tutorial automatically during builds.  All sections contain the same step structure, so we'll only discuss the make-up of a single section.
 
 For reference here is an example section of the harness file from the [console consumer primitive keys and values tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml)
 
@@ -351,25 +351,25 @@ For reference here is an example section of the harness file from the [console c
 ```
 
 
-* Title - each section starts with a `title` element and as the label suggests, the text provided here is the text used the label the step for the tutorial user and the output to the console by the harness runner.  The `title` section contains one element - `content`
+* Title - each section starts with a `title` element, and as the label suggests, the text provided here is the text used the label the step for the tutorial user and the output to the console by the harness runner.  The `title` section contains one element - `content`
 
-* content - the `content` section (a YAML `dictionary`) contains an arbitrary sized list of YAML dictionaries named `action`. An `action` key creates an anonymous step i.e. not specified in the output of the test runner.  For output in the test runner, you can provide a `-name` key followed by some text for console output.
+* content - the `content` section (a YAML `dictionary`) contains an arbitrary sized list of YAML dictionaries named `action`. An `action` key creates an anonymous step, i.e., not specified in the test runner's output.  For output in the test runner, you can provide a `-name` key, followed by some text for console output.
 * action - `action` keys drive the behavior of the harness. An action key can be one of these values
-    * `action: make_file` - an action prompting the user to create a file for the tutorial.
+    * `action: make_file` - Prompts the user to create a file for the tutorial.
     * `action: execute` - a synchronous action step
     * `action: execute_async` - an asynchronous step, this indicates a step the user will keep running for some portion of the tutorial.
-    * `action: sleep` - pause the test runner for an amount of time specified by the `ms` key. You use `sleep` key to allow some asnyc action to complete
+    * `action: sleep` - pause the test runner for an amount of time specified by the `ms` key. You use `sleep` key to allow some async action to complete
         * `ms: NNN` - the time in milliseconds you want the test harness to pause execution.  You only use `ms` after an `action: sleep` entry.
     * `docker_ksql_cli_session` - an action starting a ksqlDB CLI session for working through a tutorial
 
-In the next sections you'll see how to use `action` keys to organize your harness files
+In the next sections, you'll see how to use `action` keys to organize your harness files.
 
 
 
 #### 2. Action type descriptions and examples
 
 * `make_file`
-    The `make_file` instructs the user to create a file an existing file required to run the tutorial.  Some examples are the `docker-compose.yml` file , a `statements.sql` (ksqlDB) , and Java files.
+    The `make_file` instructs the user to create a file an existing file required to run the tutorial.  Some examples are the `docker-compose.yml` file, a `statements.sql` (ksqlDB), and Java files.
 
     A `make_file` with a file to render look like this:
     ```yml
@@ -380,10 +380,10 @@ In the next sections you'll see how to use `action` keys to organize your harnes
     ```
 
     * `file:` the path and name to the file.  The path is relative to `<tutorial-name>/<type>/code>` .The harness runner will use the file during the automated tutorial execution.
-    * `render:` the file to render.  The `render` key is followed by one of two possible keys:
+    * `render:` the file to render.  The `render` key has one of the two possible keys:
         * `file:` the path and name of the file to render to the user. 
 
-* `execute` The `execute` step is a synchronous execution step during the tutorial for the user as well as the harness runner
+* `execute` The `execute` step is a synchronous execution step during the tutorial for the user and the harness runner
 
     ```yml
      - action: execute
@@ -411,7 +411,7 @@ In the next sections you'll see how to use `action` keys to organize your harnes
           render:
             file: tutorials/aggregating-sum/ksql/markup/test/run-tests.adoc
     ```
-    Here you can see the `stdout:`  key specifying the file used to capture the output of an `execute` step
+    Here you can see the `stdout:`  key specifying the file used to capture the output of an `execute` step.
 
 * `execute_async` The `execute_async` step is for steps needing to execute in the background while the user continues going through the tutorial
   
@@ -424,7 +424,7 @@ In the next sections you'll see how to use `action` keys to organize your harnes
               file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/start-compose.adoc
      ```
 
-    Another example using a console consumer. Note the use of `stdout:` to capture the output from the consumer for testing.
+    Here's another example of using a console consumer. Note the use of `stdout:` to capture the output from the consumer for testing.
     ```yml
      - title: Start an initial console consumer
         content:
