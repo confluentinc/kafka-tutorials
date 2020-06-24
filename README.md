@@ -7,7 +7,7 @@
   * [Testing Locally](#testing-locally)
   * [Updating dependency versions](#updating-dependency-versions)
   * [Updating kafka-tutorials.confluent.io](#updating-kafka-tutorialsconfluentio)
-  
+
 
 # Kafka Tutorials
 
@@ -18,6 +18,9 @@ The source code for the [Kafka Tutorials microsite](https://kafka-tutorials.conf
 If you want to hack on this site to add a new tutorial or make a change, follow these instructions.
 
 ### Prerequisites
+
+The followging prerequisites are **_only_** required if you are going to run the microsite locally.  
+If you are interested in testing tutorials locally see the [Testing Locally](#testing-locally) section of the README.
 
 Make sure you have the following installed:
 
@@ -250,7 +253,7 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 
 ## Testing Locally
 
-Given the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  It should be noted the harness file is in the [YAML file formt](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generates the structure of the rendered tutorial and also validates any output of tutorial steps against expected values.
+Given the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  It should be noted the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generates the structure of the rendered tutorial and also validates any output of tutorial steps against expected values.
 
 This section is not meant to be an exhaustive decription of the harness file.  New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove sections as needed.
 
@@ -263,9 +266,17 @@ To run a tutorial programatically do the following stepes. Note to follow these 
 
 Once you have the kafka-tutorials repo checked out do the following:
 
-1. cd into `_includes/tutorials/<tutorial name>/<type>/code` directory where type is one of `ksql | kstreams | kafka`.
-    * For exmaple `cd _includes/tutorials/fk-joins/kstreams/code`
-2. run the `make` command.
+1. Create a `Dockerfile` with the following content:
+    ```text
+     FROM python:3.7-slim
+     RUN pip3 install pyyaml
+    ```
+2. Then run the following command to build and execute the docker image:
+    * `docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ -it --rm runner bash -c 'cd /harness_runner/ && pip3 install -e .'`
+
+3. run the `make` command
+   * `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`.
+   * For example `(cd _includes/tutorials/transforming/kstreams/code/ && make)`
 
 The `Makefile` will delete and re-create the `outputs` directory used contain files with output from various steps used to verify the tutorial steps.
 
