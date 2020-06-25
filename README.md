@@ -256,8 +256,8 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 The [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/) shows users how to execute each tutorial step-by-step.
 However, there are some scenarios when a user may want to run and test a tutorial in a more automated fashion:
 
-1. Make a small change to the code and validate that the tutorial still works end-to-end
-2. Run a tutorial and leave it running to then play with it
+1. End-to-end: make a small change to the code and validate that the tutorial still works end-to-end
+2. Run-and-play: run a tutorial and leave it running to then play with it
 
 This section describes how you can use the `harness-runner` to run a single tutorial programmatically.
 
@@ -297,19 +297,19 @@ and then run the following command to build and execute the docker image:
 docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ -it --rm runner bash -c 'cd /harness_runner/ && pip3 install -e .'
 ```
 
-3. Run the harness runner as `make`, across all `dev`, `test`, and `prod` stages to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
+3. End-to-end: run the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make)
 ```
 
-4. Run the harness runner as `make SEQUENCE="dev, test"`, just across `dev`, and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
+4. Run-and-play: run the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")
 ```
 
-Now you can play with the environment as shown below.  Don't forget to shutdown Docker containers when you are done.
+Now you can play with the environment, some sample commands shown below.  Don't forget to shutdown Docker containers when you are done.
 
 ```
 docker exec broker kafka-topics --list --bootstrap-server localhost:9092
