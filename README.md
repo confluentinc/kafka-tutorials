@@ -253,30 +253,70 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 
 ## Testing Locally
 
-Given the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  You should note the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generate the rendered tutorial structure and validate any output of tutorial steps against expected values.
+The [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/) shows users how to execute each tutorial step-by-step.
+However, there are some scenarios when a user may want to run and test a tutorial in a more automated fashion:
+
+1. Make a small change to the code and validate that the tutorial still works end-to-end
+2. Run a tutorial and leave it running to then play with it
+
+This section describes how you can use the `harness-runner` to run a single tutorial programmatically.
+
+Given that the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  You should note the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generate the rendered tutorial structure and validate any output of tutorial steps against expected values.
 
 New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove parts as needed.
 
-#### TL;DR
+### TL;DR
 
-To run a tutorial programmatically, do the following steps. Note to follow these instructions you'll need to check out the kafka-tutorials repo:
+To run a tutorial programmatically, do the following steps.
 
-1. git clone https://github.com/confluentinc/kafka-tutorials.git
-2. cd kafka-tutorials
+1. Check out the kafka-tutorials GitHub repo:
 
-Once you have the kafka-tutorials repo checked out do the following:
+```bash
+git clone https://github.com/confluentinc/kafka-tutorials.git
+cd kafka-tutorials
+```
 
-1. Create a `Dockerfile` with the following content:
-    ```text
-     FROM python:3.7-slim
-     RUN pip3 install pyyaml
-    ```
-2. Then run the following command to build and execute the docker image:
-    * `docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ -it --rm runner bash -c 'cd /harness_runner/ && pip3 install -e .'`
+2. Install the packages for the harness runner.
 
-3. run the `make` command
-   * `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`.
-   * For example `(cd _includes/tutorials/transforming/kstreams/code/ && make)`
+If you have `pip3` installed locally:
+
+```bash
+(cd /harness_runner/ && pip3 install -e .)
+```
+
+If you don't have `pip3` installed locally, create a `Dockerfile` with the following content:
+
+```text
+FROM python:3.7-slim
+RUN pip3 install pyyaml
+```
+
+and then run the following command to build and execute the docker image:
+
+```
+docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ -it --rm runner bash -c 'cd /harness_runner/ && pip3 install -e .'
+```
+
+3. Run the harness runner as `make`, across all `dev`, `test`, and `prod` stages to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
+
+```
+(cd _includes/tutorials/transforming/kstreams/code/ && make)
+```
+
+4. Run the harness runner as `make SEQUENCE="dev, test"`, just across `dev`, and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
+
+```
+(cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")
+```
+
+Now you can play with the environment as shown below.  Don't forget to shutdown Docker containers when you are done.
+
+```
+docker exec broker kafka-topics --list --bootstrap-server localhost:9092
+docker exec -it ksqldb-cli ksql http://ksqldb-server:8088               
+```
+
+### Makefile Details
 
 The `Makefile` will delete and re-create the `outputs` directory used to contain files with output from various steps used to verify the tutorial steps.
 
