@@ -261,10 +261,6 @@ However, there are some scenarios when a user may want to run and test a tutoria
 
 This section describes how you can use the `harness-runner` to run a single tutorial programmatically.
 
-Given that the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  You should note the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generate the rendered tutorial structure and validate any output of tutorial steps against expected values.
-
-New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove parts as needed.
-
 ### TL;DR
 
 To run a tutorial programmatically, do the following steps.
@@ -350,6 +346,12 @@ tutorial:
   diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output.json $(DEV_OUTPUTS_DIR)/actual-output.json
   diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-special-output.json $(DEV_OUTPUTS_DIR)/actual-special-order-output.json
 ```
+
+### Harness Details
+
+Given that the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  You should note the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generate the rendered tutorial structure and validate any output of tutorial steps against expected values.
+
+New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove parts as needed.
 
 #### 1. Structure
 
