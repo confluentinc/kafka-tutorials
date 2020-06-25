@@ -253,13 +253,13 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 
 ## Testing Locally
 
-The [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/) shows users how to execute each tutorial step-by-step.
+The [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/) shows how to manually execute each tutorial step-by-step.
 However, there are some scenarios when a user may want to run and test a tutorial in a more automated fashion:
 
-1. End-to-end: make a small change to the code and validate that the tutorial still works end-to-end
-2. Run-and-play: run a tutorial and leave it running to then play with it
+1. End-to-end: user makes a small change to the code and wants to validate that the tutorial still works end-to-end
+2. Run-and-play: user runs a tutorial and wants to leave it running to play with the environment
 
-This section describes how you can use the `harness-runner` to run a single tutorial programmatically.
+This section describes how you can do this using the `harness-runner` to programmatically run a single tutorial.
 
 ### TL;DR
 
