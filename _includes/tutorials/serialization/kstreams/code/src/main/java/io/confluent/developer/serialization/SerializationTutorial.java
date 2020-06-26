@@ -3,6 +3,7 @@ package io.confluent.developer.serialization;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
@@ -12,6 +13,7 @@ import org.apache.kafka.streams.kstream.Produced;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,10 +22,12 @@ import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
 import io.confluent.developer.avro.Movie;
-import io.confluent.developer.serialization.serde.MovieJsonSerde;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
+import io.confluent.developer.proto.MovieProtos;
+import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+import io.confluent.kafka.streams.serdes.protobuf.KafkaProtobufSerde;
 
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 import static java.lang.Integer.parseInt;
 import static java.lang.Short.parseShort;
 import static org.apache.kafka.common.serialization.Serdes.Long;
@@ -38,7 +42,7 @@ public class SerializationTutorial {
     props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
     props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, String().getClass());
     props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, String().getClass());
-    props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
     return props;
   }
@@ -52,42 +56,61 @@ public class SerializationTutorial {
     List<NewTopic> topics = new ArrayList<>();
 
     topics.add(new NewTopic(
-        envProps.getProperty("input.json.movies.topic.name"),
-        parseInt(envProps.getProperty("input.json.movies.topic.partitions")),
-        parseShort(envProps.getProperty("input.json.movies.topic.replication.factor"))));
+        envProps.getProperty("input.avro.movies.topic.name"),
+        parseInt(envProps.getProperty("input.avro.movies.topic.partitions")),
+        parseShort(envProps.getProperty("input.avro.movies.topic.replication.factor"))));
 
     topics.add(new NewTopic(
-        envProps.getProperty("output.avro.movies.topic.name"),
-        parseInt(envProps.getProperty("output.avro.movies.topic.partitions")),
-        parseShort(envProps.getProperty("output.avro.movies.topic.replication.factor"))));
+        envProps.getProperty("output.proto.movies.topic.name"),
+        parseInt(envProps.getProperty("output.proto.movies.topic.partitions")),
+        parseShort(envProps.getProperty("output.proto.movies.topic.replication.factor"))));
 
     client.createTopics(topics);
     client.close();
   }
 
-  private SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
+  protected SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
     SpecificAvroSerde<Movie> movieAvroSerde = new SpecificAvroSerde<>();
 
-    final HashMap<String, String> serdeConfig = new HashMap<>();
-    serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                    envProps.getProperty("schema.registry.url"));
-
-    movieAvroSerde.configure(serdeConfig, false);
+    Map<String, String> serdeConfig = new HashMap<>();
+    serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    movieAvroSerde.configure(
+        serdeConfig, false);
     return movieAvroSerde;
   }
 
-  protected Topology buildTopology(Properties envProps, final SpecificAvroSerde<Movie> movieSpecificAvroSerde) {
-    final String inputJsonTopicName = envProps.getProperty("input.json.movies.topic.name");
-    final String outAvroTopicName = envProps.getProperty("output.avro.movies.topic.name");
+  protected KafkaProtobufSerde<MovieProtos.Movie> movieProtobufSerde(Properties envProps) {
+    final KafkaProtobufSerde<MovieProtos.Movie> protobufSerde = new KafkaProtobufSerde<>();
+
+    Map<String, String> serdeConfig = new HashMap<>();
+    serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    protobufSerde.configure(
+        serdeConfig, false);
+    return protobufSerde;
+  }
+
+  protected Topology buildTopology(Properties envProps,
+                                   final SpecificAvroSerde<Movie> movieSpecificAvroSerde,
+                                   final KafkaProtobufSerde<MovieProtos.Movie> movieProtoSerde) {
+    
+    final String inputAvroTopicName = envProps.getProperty("input.avro.movies.topic.name");
+    final String outProtoTopicName = envProps.getProperty("output.proto.movies.topic.name");
 
     final StreamsBuilder builder = new StreamsBuilder();
 
-    // topic contains values in json format
-    final KStream<Long, Movie> jsonMovieStream =
-        builder.stream(inputJsonTopicName, Consumed.with(Long(), new MovieJsonSerde()));
+    // topic contains values in avro format
+    final KStream<Long, Movie> avroMovieStream =
+        builder.stream(inputAvroTopicName, Consumed.with(Long(), movieSpecificAvroSerde));
 
-    // write movie data in avro format
-    jsonMovieStream.to(outAvroTopicName, Produced.with(Long(), movieSpecificAvroSerde));
+    //convert and write movie data in protobuf format
+    avroMovieStream
+        .map((key, avroMovie) ->
+                 new KeyValue<>(key, MovieProtos.Movie.newBuilder()
+                     .setMovieId(avroMovie.getMovieId())
+                     .setTitle(avroMovie.getTitle())
+                     .setReleaseYear(avroMovie.getReleaseYear())
+                     .build()))
+        .to(outProtoTopicName, Produced.with(Long(), movieProtoSerde));
 
     return builder.build();
   }
@@ -101,10 +124,13 @@ public class SerializationTutorial {
   }
 
   private void runTutorial(String configPath) throws IOException {
+
     Properties envProps = this.loadEnvProperties(configPath);
     Properties streamProps = this.buildStreamsProperties(envProps);
-    Topology topology = this.buildTopology(envProps, this.movieAvroSerde(envProps));
-
+    
+    Topology topology = this.buildTopology(envProps, 
+                                           this.movieAvroSerde(envProps), 
+                                           this.movieProtobufSerde(envProps));
     this.createTopics(envProps);
 
     final KafkaStreams streams = new KafkaStreams(topology, streamProps);
@@ -114,12 +140,13 @@ public class SerializationTutorial {
     Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
       @Override
       public void run() {
-        streams.close();
+        streams.close(Duration.ofSeconds(5));
         latch.countDown();
       }
     });
 
     try {
+      streams.cleanUp();
       streams.start();
       latch.await();
     } catch (Throwable e) {
