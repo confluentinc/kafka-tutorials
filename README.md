@@ -222,7 +222,7 @@ This section is generally for those who work at Confluent and will be integratin
 
 #### 1. Create a harness for the tutorial
 
-The harness is the main data structure that allows us to both test and render a tutorial from one form. Make a new directory under `_data/harnesses/` for your tutorial slug name and stack, like `_data/harnessess/<your tutorial short name>/ksql.yml`. Follow the existing harnesses to get a feel for what this looks like. The main thing to notice is that each step has a `render` attribute that points to a file. Create the markup for this in the next section.
+The harness is the main data structure that allows us to both test and render a tutorial from one form. Make a new directory under `_data/harnesses/` for your tutorial slug name and stack, like `_data/harnesses/<your tutorial short name>/ksql.yml`. Follow the existing harnesses to get a feel for what this looks like. The main thing to notice is that each step has a `render` attribute that points to a file. Create the markup for this in the next section.
 
 #### 2. Create markup for the tutorial
 
@@ -286,7 +286,7 @@ FROM python:3.7-slim
 RUN pip3 install pyyaml
 ```
 
-and then run the following command to build and execute the docker image:
+and then run the following command to build and execute the Docker image:
 
 ```
 docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ -it --rm runner bash -c 'cd /harness_runner/ && pip3 install -e .'
@@ -519,7 +519,7 @@ The following regular expressions may be useful to group-update all dependencies
 
 The `release` branch tracks the content and code comprising the live site. Confluent manages the release process.
 
-The `ksqldb-latest` branch builds against the lastest `master` branch of ksqlDB, and should be used for updates that are only in the master branch of ksqlDB. 
+The `ksqldb-latest` branch builds against the latest `master` branch of ksqlDB, and should be used for updates that are only in the master branch of ksqlDB.
 Confluent manages the processes of merging changes from this branch.
 
 #### Prepare a release PR
