@@ -306,11 +306,18 @@ docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ 
 (cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")
 ```
 
-Now you can play with the environment, some sample commands shown below.  Don't forget to shutdown Docker containers when you are done.
+Now you can play with the environment, some sample commands shown below.
 
 ```
 docker exec broker kafka-topics --list --bootstrap-server localhost:9092
 docker exec -it ksqldb-cli ksql http://ksqldb-server:8088               
+```
+
+Because the Docker containers are left running, don't forget to clean up when you are done.
+
+```
+docker container ls
+docker container rm -f <container id>
 ```
 
 ### Makefile Details
