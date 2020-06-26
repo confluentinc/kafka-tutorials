@@ -1,5 +1,5 @@
 First, create a test file at `configuration/test.properties`:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-consumer-application/kstreams/code/configuration/test.properties %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-consumer-application/kafka/code/configuration/test.properties %}</code></pre>
 +++++

@@ -46,24 +46,8 @@ dev:
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/make-dev-file.adoc
             
-    - title: Create a schema for the model obect
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-avro-dir.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-avro-dir.adoc
 
-        - action: make_file
-          file: src/main/avro/example.avsc
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-avro-schema.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/build-project.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/build-project.adoc
-
-    - title: Create the Kafka Streams topology
+    - title: Create the Kafka Consumer Application
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
@@ -75,7 +59,7 @@ dev:
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/make-topology.adoc 
 
-    - title: Compile and run the Kafka Streams program
+    - title: Compile and run the Kafka Consumer program
       content:
         - action: execute
           file: tutorial-steps/dev/build-uberjar.sh

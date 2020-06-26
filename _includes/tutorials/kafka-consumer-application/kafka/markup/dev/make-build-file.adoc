@@ -1,5 +1,5 @@
 Create the following Gradle build file, named `build.gradle` for the project:
 
 +++++
-<pre class="snippet"><code class="groovy">{% include_raw tutorials/kafka-consumer-application/kstreams/code/build.gradle %}</code></pre>
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/kafka-consumer-application/kafka/code/build.gradle %}</code></pre>
 +++++

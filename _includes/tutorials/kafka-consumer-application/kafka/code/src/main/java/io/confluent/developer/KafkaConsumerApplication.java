@@ -3,84 +3,49 @@ package io.confluent.developer;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.Properties;
-import java.util.Set;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.serialization.StringDeserializer;
 
 public class KafkaConsumerApplication {
 
   private volatile boolean keepConsuming = true;
-  private final Set<String> words = new HashSet<>();
-  private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+  private ConsumerRecordsHandler<String, String> recordsHandler;
+  private Consumer<String, String> consumer;
 
-
-  public Properties buildProperties(Properties envProps) {
-    Properties props = new Properties();
-
-    props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-    props.put("topic", envProps.getProperty("input.topic.name"));
-    props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-    props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-    props.put(ConsumerConfig.MAX_POLL_INTERVAL_MS_CONFIG, 300000);
-    props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true);
-    props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-    props.put(ConsumerConfig.GROUP_ID_CONFIG, "consumer-tutorial");
-
-    return props;
+  public KafkaConsumerApplication(final Consumer<String, String> consumer,
+                                  final ConsumerRecordsHandler<String, String> recordsHandler) {
+    this.consumer = consumer;
+    this.recordsHandler = recordsHandler;
   }
 
-  public void runConsumer(final Properties consumerProps) {
-    final Runnable consumerRunnable = () -> {
-      try (final KafkaConsumer<String, String> consumer = new KafkaConsumer<>(consumerProps)) {
-        consumer.subscribe(Collections.singletonList(consumerProps.getProperty("topic")));
-
-        while (keepConsuming) {
-          final ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofSeconds(1));
-          consumerRecords.forEach(record -> {
-            final String value = record.value();
-            System.out.println("Read record value [" + value + "]");
-            words.add(value);
-            if (value.equalsIgnoreCase("quit")) {
-              keepConsuming = false;
-            }
-          });
-        }
+  public void runConsume(final Properties consumerProps) {
+    try {
+      consumer.subscribe(Collections.singletonList(consumerProps.getProperty("input.topic.name")));
+      while (keepConsuming) {
+        final ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofSeconds(1));
+        recordsHandler.process(consumerRecords);
+        consumer.commitSync();
       }
-    };
-    executorService.submit(consumerRunnable);
-  }
-  // This method is not thread-safe, it's only
-  // here for testing purposes.
-  public Set<String> words() {
-    return new HashSet<>(words);
+    } finally {
+      consumer.close();
+    }
   }
 
   public void shutdown() {
     keepConsuming = false;
-    try {
-      executorService.awaitTermination(3, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-    }
   }
 
-  public Properties loadEnvProperties(String fileName) throws IOException {
-    final Properties envProps = new Properties();
+  public static Properties loadProperties(String fileName) throws IOException {
+    final Properties props = new Properties();
     final FileInputStream input = new FileInputStream(fileName);
-    envProps.load(input);
+    props.load(input);
     input.close();
-
-    return envProps;
+    return props;
   }
 
   public static void main(String[] args) throws Exception {
@@ -90,18 +55,15 @@ public class KafkaConsumerApplication {
           "This program takes one argument: the path to an environment configuration file.");
     }
 
-    final KafkaConsumerApplication consumerApplication = new KafkaConsumerApplication();
-    final Properties envProps = consumerApplication.loadEnvProperties(args[0]);
-    final Properties consumerProps = consumerApplication.buildProperties(envProps);
-    final CountDownLatch countDownLatch = new CountDownLatch(1);
+    final Properties consumerAppProps = KafkaConsumerApplication.loadProperties(args[0]);
+    final String filePath = consumerAppProps.getProperty("file.path");
+    final Consumer<String, String> consumer = new KafkaConsumer<>(consumerAppProps);
+    final ConsumerRecordsHandler<String, String> recordsHandler = new FileWritingRecordsHandler(Paths.get(filePath));
+    final KafkaConsumerApplication consumerApplication = new KafkaConsumerApplication(consumer, recordsHandler);
 
-    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            consumerApplication.shutdown();
-            countDownLatch.countDown();
-    }));
+    Runtime.getRuntime().addShutdownHook(new Thread(consumerApplication::shutdown));
 
-    consumerApplication.runConsumer(consumerProps);
-    countDownLatch.await();
+    consumerApplication.runConsume(consumerAppProps);
   }
 
 }

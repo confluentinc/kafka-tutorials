@@ -3,95 +3,64 @@ package io.confluent.developer;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-import java.util.ArrayList;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.Set;
-import java.util.TreeSet;
-import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.producer.KafkaProducer;
-import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.StringSerializer;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Rule;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.MockConsumer;
+import org.apache.kafka.clients.consumer.OffsetResetStrategy;
+import org.apache.kafka.common.TopicPartition;
 import org.junit.Test;
-import org.testcontainers.containers.KafkaContainer;
 
 
 public class KafkaConsumerApplicationTest {
 
   private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
-  @Rule
-  public KafkaContainer kafkaContainer = new KafkaContainer();
-
-  @After
-  public void tearDown() {
-    kafkaContainer.stop();
-  }
-
   @Test
   public void consumerTest() throws Exception {
-    final KafkaConsumerApplication consumerApplication = new KafkaConsumerApplication();
-    final Properties envProps = consumerApplication.loadEnvProperties(TEST_CONFIG_FILE);
 
-    envProps.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaContainer.getBootstrapServers());
+    final Path tempFilePath = Files.createTempFile("test-consumer-output", ".out");
+    final ConsumerRecordsHandler<String, String> recordsHandler = new FileWritingRecordsHandler(tempFilePath);
+    final Properties testConsumerProps = KafkaConsumerApplication.loadProperties(TEST_CONFIG_FILE);
+    final String topic = testConsumerProps.getProperty("input.topic.name");
+    final MockConsumer<String, String> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
+    final TopicPartition topicPartition = new TopicPartition(topic, 0);
 
-    final Properties consumerProps = consumerApplication.buildProperties(envProps);
-    final Set<String> expectedValues = new TreeSet<>(Arrays.asList("foo", "bar", "baz"));
+    final KafkaConsumerApplication consumerApplication = new KafkaConsumerApplication(mockConsumer, recordsHandler);
 
-    createTopics(envProps);
-    consumerApplication.runConsumer(consumerProps);
-
-    produceTestRecords(envProps);
-    // give the consumer time consume
-    Thread.sleep(3000);
-
+    new Thread(() -> consumerApplication.runConsume(testConsumerProps)).start();
+    Thread.sleep(250);
+    addTopicPartitonAssignmentAndAddConsumerRecords(topic, mockConsumer, topicPartition);
+    Thread.sleep(250);
     consumerApplication.shutdown();
 
-    Set<String> actualValues = new TreeSet<>(consumerApplication.words());
-    assertThat(actualValues, equalTo(expectedValues));
+    final List<String> expectedWords = Arrays.asList("foo", "bar", "baz");
+    List<String> actualRecords = Files.readAllLines(tempFilePath);
+    assertThat(actualRecords, equalTo(expectedWords));
+  }
+
+  private void addTopicPartitonAssignmentAndAddConsumerRecords(final String topic,
+                                 final MockConsumer<String, String> mockConsumer,
+                                 final TopicPartition topicPartition) {
+
+    final Map<TopicPartition, Long> beginningOffsets = new HashMap<>();
+    beginningOffsets.put(topicPartition, 0L);
+    mockConsumer.rebalance(Collections.singletonList(topicPartition));
+    mockConsumer.updateBeginningOffsets(beginningOffsets);
+    addConsumerRecords(mockConsumer,topic);
+  }
+
+  private void addConsumerRecords(final MockConsumer<String, String> mockConsumer, final String topic) {
+    mockConsumer.addRecord(new ConsumerRecord<>(topic, 0, 0, null, "foo"));
+    mockConsumer.addRecord(new ConsumerRecord<>(topic, 0, 1, null, "bar"));
+    mockConsumer.addRecord(new ConsumerRecord<>(topic, 0, 2, null, "baz"));
   }
 
 
-
-  private void produceTestRecords(final Properties properties) {
-    final String topic = properties.getProperty("input.topic.name");
-    final Properties producerProperties = new Properties();
-    producerProperties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-    producerProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-    producerProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaContainer.getBootstrapServers());
-
-    try (final KafkaProducer<String, String> producer = new KafkaProducer<>(producerProperties)) {
-      producer.send(producerRecord(topic, "foo"));
-      producer.send(producerRecord(topic, "bar"));
-      producer.send(producerRecord(topic, "baz"));
-      producer.flush();
-    }
-  }
-
-  private void createTopics(final Properties envProps) {
-    final Map<String, Object> config = new HashMap<>();
-    config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-    try (final AdminClient client = AdminClient.create(config)) {
-      final List<NewTopic> topics = new ArrayList<>();
-      topics.add(new NewTopic(
-          envProps.getProperty("input.topic.name"),
-          Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-          Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
-
-      client.createTopics(topics);
-    }
-  }
-
-  private ProducerRecord<String, String> producerRecord(final String topic,  final String value) {
-      return new ProducerRecord<>(topic, value);
-  }
 }
