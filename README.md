@@ -19,15 +19,14 @@ If you want to hack on this site to add a new tutorial or make a change, follow 
 
 ### Prerequisites
 
-The followging prerequisites are **_only_** required if you are going to run the microsite locally.  
+The following prerequisites are **_only_** required if you are going to run the microsite locally.
 If you are interested in testing tutorials locally see the [Testing Locally](#testing-locally) section of the README.
-
-Make sure you have the following installed:
 
 - ruby 2.3 or later
 - [bundler](https://bundler.io/)
 - npm
 - python3 / pip3
+- gradle
 
 On the Mac, you can get the dependencies like this:
 
@@ -293,13 +292,15 @@ and then run the following command to build and execute the docker image:
 docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ -it --rm runner bash -c 'cd /harness_runner/ && pip3 install -e .'
 ```
 
-3. End-to-end: run the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
+3. Install [gradle](https://gradle.org/install/) for tutorials that compile any code.
+
+4. End-to-end: run the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make)
 ```
 
-4. Run-and-play: run the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
+5. Run-and-play: run the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")
