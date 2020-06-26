@@ -165,7 +165,7 @@ serialization:
   introduction: "Consider a topic with events that represent movie releases. The events in the topic are formatted with Avro. In this tutorial, we'll write a program that creates a new topic with the same events, but formatted with Protobuf."
   status:
     ksql: enabled
-    kstreams: enable
+    kstreams: enabled
 
 connect-add-key-to-source:
   title: "Add key to data ingested through Kafka Connect"
