@@ -335,7 +335,7 @@ docker container rm -f <container id>
 
 The `Makefile` will delete and re-create the `outputs` directory used to contain files with output from various steps used to verify the tutorial steps.
 
-Here's of [the contents of an actual `Makefile`](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/fk-joins/kstreams/code/Makefile) :
+Here is [the contents of an actual `Makefile`](_includes/tutorials/fk-joins/kstreams/code/Makefile) :
 
 ```yml
 STEPS_DIR := tutorial-steps
@@ -351,7 +351,7 @@ tutorial:
 
 The last line uses the `diff` command to validate expected output against the tutorial steps' actual output.  The `Makefile` may have more than one validation action to have separate `diff` commands for each verification.  
 
-For example, here's the `Makefile` from the [dynamic output topics tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/dynamic-output-topic/kstreams/code/Makefile)
+For example, here's the `Makefile` from the [dynamic output topics tutorial](_includes/tutorials/dynamic-output-topic/kstreams/code/Makefile)
 
 ```yml
 STEPS_DIR := tutorial-steps
@@ -380,11 +380,11 @@ Three top-level sections make up the harness file:
 * test - test setup and execution of tests, if any (optional)
 * prod - steps to build and deploy a docker image of the tutorial code (optional)
 
-In some cases, having a test and/or prod section doesn't make sense, so you can omit those portions of the harness file.  The Apache Kafka [console producer and consumer basic operations](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-produer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are an excellent example of tutorials that don't need a test or prod section.
+In some cases, having a test and/or prod section doesn't make sense, so you can omit those portions of the harness file.  The Apache Kafka [console producer and consumer basic operations](_data/harnesses/console-consumer-produer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are an excellent example of tutorials that don't need a test or prod section.
 
 The `dev`, `test`, and `prod` sections contain a top-level element `steps`.  The `steps` contains any number of well, steps for the user to walk through.  Additionally, the `harness_runner` script follows the same steps for executing the tutorial automatically during builds.  All sections contain the same step structure, so we'll only discuss the make-up of a single section.
 
-For reference here is an example section of the harness file from the [console consumer primitive keys and values tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml)
+For reference here is an example section of the harness file from the [console consumer primitive keys and values tutorial](_data/harnesses/console-consumer-primitive-keys-values/kafka.yml)
 
 ```yml
  - title: Get Confluent Platform
@@ -506,11 +506,11 @@ In the next sections, you'll see how to use `action` keys to organize your harne
             file: tutorials/aggregating-sum/ksql/markup/dev/start-cli.adoc
     ```
     The `docker_ksql_cli_session` contains the following keys:
-    * `container:` - The name of the [ksqldb-cli docker image in the docker-compose.yml](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/aggregating-sum/ksql/code/docker-compose.yml#L70-L82) file.
-    * `docker_bootup_file:` - Tutorial users and the harness runner [execute this file](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/start-cli.sh) to start the dockerized CLI session.
+    * `container:` - The name of the [ksqldb-cli docker image in the docker-compose.yml](_includes/tutorials/aggregating-sum/ksql/code/docker-compose.yml#L70-L82) file.
+    * `docker_bootup_file:` - Tutorial users and the harness runner [execute this file](_includes/tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/start-cli.sh) to start the dockerized CLI session.
     * `column_width:` - Formats the ksqlDB query output
     * `render:` - The harness renders the file  corresponding to the `file:` key to tutorial users with the command to start the CLI session. 
-    * `stdin:` - stdin key [contains one or more `file`](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/aggregating-sum/ksql.yml#L41-L68) keys specifying the different `SQL` file to execute for the tutorial.
+    * `stdin:` - stdin key [contains one or more `file`](_data/harnesses/aggregating-sum/ksql.yml#L41-L68) keys specifying the different `SQL` file to execute for the tutorial.
     ```yml
         stdin:
             - file: tutorial-steps/dev/create-movie-ticket-sales.sql
