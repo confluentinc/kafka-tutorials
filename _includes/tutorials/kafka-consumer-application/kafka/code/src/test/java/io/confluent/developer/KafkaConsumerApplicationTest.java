@@ -36,7 +36,7 @@ public class KafkaConsumerApplicationTest {
 
     new Thread(() -> consumerApplication.runConsume(testConsumerProps)).start();
     Thread.sleep(250);
-    addTopicPartitonAssignmentAndAddConsumerRecords(topic, mockConsumer, topicPartition);
+    addTopicPartitionsAssignmentAndAddConsumerRecords(topic, mockConsumer, topicPartition);
     Thread.sleep(250);
     consumerApplication.shutdown();
 
@@ -45,7 +45,7 @@ public class KafkaConsumerApplicationTest {
     assertThat(actualRecords, equalTo(expectedWords));
   }
 
-  private void addTopicPartitonAssignmentAndAddConsumerRecords(final String topic,
+  private void addTopicPartitionsAssignmentAndAddConsumerRecords(final String topic,
                                  final MockConsumer<String, String> mockConsumer,
                                  final TopicPartition topicPartition) {
 

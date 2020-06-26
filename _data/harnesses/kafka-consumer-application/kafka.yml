@@ -57,7 +57,7 @@ dev:
         - action: make_file
           file: src/main/java/io/confluent/developer/KafkaConsumerApplication.java
           render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-topology.adoc 
+            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-consumer-app.adoc 
 
     - title: Compile and run the Kafka Consumer program
       content:

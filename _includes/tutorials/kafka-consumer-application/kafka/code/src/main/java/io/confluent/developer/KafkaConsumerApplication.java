@@ -29,7 +29,6 @@ public class KafkaConsumerApplication {
       while (keepConsuming) {
         final ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofSeconds(1));
         recordsHandler.process(consumerRecords);
-        consumer.commitSync();
       }
     } finally {
       consumer.close();
