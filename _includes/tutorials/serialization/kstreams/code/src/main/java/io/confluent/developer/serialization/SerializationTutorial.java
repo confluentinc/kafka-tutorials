@@ -72,16 +72,20 @@ public class SerializationTutorial {
   protected SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
     SpecificAvroSerde<Movie> movieAvroSerde = new SpecificAvroSerde<>();
 
-    movieAvroSerde.configure(Map.of(SCHEMA_REGISTRY_URL_CONFIG,
-                                    envProps.getProperty("schema.registry.url")), false);
+    Map<String, String> serdeConfig = new HashMap<>();
+    serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    movieAvroSerde.configure(
+        serdeConfig, false);
     return movieAvroSerde;
   }
 
   protected KafkaProtobufSerde<MovieProtos.Movie> movieProtobufSerde(Properties envProps) {
     final KafkaProtobufSerde<MovieProtos.Movie> protobufSerde = new KafkaProtobufSerde<>();
 
-    protobufSerde.configure(Map.of(SCHEMA_REGISTRY_URL_CONFIG,
-                                   envProps.getProperty("schema.registry.url")), false);
+    Map<String, String> serdeConfig = new HashMap<>();
+    serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    protobufSerde.configure(
+        serdeConfig, false);
     return protobufSerde;
   }
 

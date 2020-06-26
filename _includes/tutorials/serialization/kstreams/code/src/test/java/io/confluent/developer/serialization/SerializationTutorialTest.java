@@ -10,7 +10,6 @@ import java.util.Properties;
 
 import io.confluent.developer.avro.Movie;
 import io.confluent.developer.proto.MovieProtos;
-import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import io.confluent.kafka.streams.serdes.protobuf.KafkaProtobufSerde;
 
@@ -55,11 +54,11 @@ public class SerializationTutorialTest {
    * @return a list of three (3) movie
    */
   private List<MovieProtos.Movie> expectedMovies() {
-    return List.of(
-        newBuilder().setMovieId(1L).setTitle("Lethal Weapon").setReleaseYear(1992).build(),
-        newBuilder().setMovieId(2L).setTitle("Die Hard").setReleaseYear(1988).build(),
-        newBuilder().setMovieId(3L).setTitle("Predator").setReleaseYear(1987).build()
-    );
+    List<MovieProtos.Movie> movieList = new java.util.ArrayList<>();
+    movieList.add(newBuilder().setMovieId(1L).setTitle("Lethal Weapon").setReleaseYear(1992).build());
+    movieList.add(newBuilder().setMovieId(2L).setTitle("Die Hard").setReleaseYear(1988).build());
+    movieList.add(newBuilder().setMovieId(3L).setTitle("Predator").setReleaseYear(1987).build());
+    return movieList;
   }
 
   /**
@@ -68,8 +67,10 @@ public class SerializationTutorialTest {
    * @return a list of three (3) movies
    */
   private List<Movie> prepareInputFixture() {
-    return List.of(new Movie(1L, "Lethal Weapon", 1992),
-                   new Movie(2L, "Die Hard", 1988),
-                   new Movie(3L, "Predator", 1987));
+    List<Movie> movieList = new java.util.ArrayList<>();
+    movieList.add(new Movie(1L, "Lethal Weapon", 1992));
+    movieList.add(new Movie(2L, "Die Hard", 1988));
+    movieList.add(new Movie(3L, "Predator", 1987));
+    return movieList;
   }
 }
