@@ -107,7 +107,7 @@ dev:
           render:
             file: tutorials/serialization/kstreams/markup/dev/run-consumer.adoc
 
-    - title: Produce some JSON-formatted movies to the input topic
+    - title: Produce some Avro-formatted movies to the input topic
       content:
         - action: execute
           file: tutorial-steps/dev/console-producer-movies.sh
