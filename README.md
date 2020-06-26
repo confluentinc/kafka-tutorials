@@ -27,6 +27,7 @@ If you are interested in testing tutorials locally see the [Testing Locally](#te
 - npm
 - python3 / pip3
 - gradle
+- docker-compose
 
 On the Mac, you can get the dependencies like this:
 
@@ -255,14 +256,20 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 The [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/) shows how to manually execute each tutorial step-by-step.
 However, there are some scenarios when a user may want to run and test a tutorial in a more automated fashion:
 
-1. End-to-end: user makes a small change to the code and wants to validate that the tutorial still works end-to-end
-2. Run-and-play: user runs a tutorial and wants to leave it running to play with the environment
+- End-to-end: user makes a small change to the code and wants to validate that the tutorial still works end-to-end
+- Run-and-play: user runs a tutorial and wants to leave it running to play with the environment
 
-This section describes how you can do this using the `harness-runner` to programmatically run a single tutorial.
+This section describes how you can do either of these scenarios using the `harness-runner` to programmatically run a single tutorial.
 
-### TL;DR
+### Prerequisites
 
-To run a tutorial programmatically, do the following steps.
+The following prerequisites are required if you are going to run a tutorial programmatically.
+
+- python3 / pip3
+- gradle
+- docker-compose
+
+### Environment Setup
 
 1. Check out the kafka-tutorials GitHub repo:
 
@@ -294,13 +301,17 @@ docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ 
 
 3. Install [gradle](https://gradle.org/install/) for tutorials that compile any code.
 
-4. End-to-end: run the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
+4. Install Docker Compose
+
+### Run a tutorial
+
+1. End-to-end: execute the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make)
 ```
 
-5. Run-and-play: run the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
+2. Run-and-play: execute the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")
