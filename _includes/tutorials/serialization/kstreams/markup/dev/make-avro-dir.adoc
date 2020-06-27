@@ -1,5 +1,4 @@
-Since we'll be converting events into Avro, we'll need to specify a schema for them.
-In this case, our events represent movies with a few attributes, such as the release year.
+Out input events are in Avro format, we'll need to specify a schema for them.
 Go ahead and create a directory for your schemas: 
 
 +++++

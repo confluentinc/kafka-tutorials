@@ -1,7 +1,7 @@
 {
   "outputs": [
     {
-      "topic": "avro-movies",
+      "topic": "proto-movies",
       "key": 1,
       "value": {
         "TITLE": "Lethal Weapon",
@@ -10,7 +10,7 @@
       }
     },
     {
-      "topic": "avro-movies",
+      "topic": "proto-movies",
       "key": 2,
       "value": {
         "TITLE": "Die Hard",
@@ -19,7 +19,7 @@
       }
     },
     {
-      "topic": "avro-movies",
+      "topic": "proto-movies",
       "key": 3,
       "value": {
         "TITLE": "Predator",

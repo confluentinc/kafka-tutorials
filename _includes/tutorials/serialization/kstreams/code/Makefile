@@ -7,4 +7,4 @@ tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/serialization/kstreams.yml $(TEMP_DIR) $(SEQUENCE)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/avro-movies.txt $(DEV_OUTPUTS_DIR)/avro-movies-actual.txt
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/proto-movies.txt $(DEV_OUTPUTS_DIR)/proto-movies-actual.txt
