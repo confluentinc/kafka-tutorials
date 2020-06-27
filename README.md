@@ -19,15 +19,15 @@ If you want to hack on this site to add a new tutorial or make a change, follow 
 
 ### Prerequisites
 
-The followging prerequisites are **_only_** required if you are going to run the microsite locally.  
+The following prerequisites are **_only_** required if you are going to run the microsite locally.
 If you are interested in testing tutorials locally see the [Testing Locally](#testing-locally) section of the README.
-
-Make sure you have the following installed:
 
 - ruby 2.3 or later
 - [bundler](https://bundler.io/)
 - npm
 - python3 / pip3
+- gradle
+- docker-compose
 
 On the Mac, you can get the dependencies like this:
 
@@ -223,7 +223,7 @@ This section is generally for those who work at Confluent and will be integratin
 
 #### 1. Create a harness for the tutorial
 
-The harness is the main data structure that allows us to both test and render a tutorial from one form. Make a new directory under `_data/harnesses/` for your tutorial slug name and stack, like `_data/harnessess/<your tutorial short name>/ksql.yml`. Follow the existing harnesses to get a feel for what this looks like. The main thing to notice is that each step has a `render` attribute that points to a file. Create the markup for this in the next section.
+The harness is the main data structure that allows us to both test and render a tutorial from one form. Make a new directory under `_data/harnesses/` for your tutorial slug name and stack, like `_data/harnesses/<your tutorial short name>/ksql.yml`. Follow the existing harnesses to get a feel for what this looks like. The main thing to notice is that each step has a `render` attribute that points to a file. Create the markup for this in the next section.
 
 #### 2. Create markup for the tutorial
 
@@ -253,34 +253,89 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 
 ## Testing Locally
 
-Given the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  You should note the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generate the rendered tutorial structure and validate any output of tutorial steps against expected values.
+The [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/) shows how to manually execute each tutorial step-by-step.
+However, there are some scenarios when a user may want to run and test a tutorial in a more automated fashion:
 
-New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove parts as needed.
+- End-to-end: user makes a small change to the code and wants to validate that the tutorial still works end-to-end
+- Run-and-play: user runs a tutorial and wants to leave it running to play with the environment
 
-#### TL;DR
+This section describes how you can do either of these scenarios using the `harness-runner` to programmatically run a single tutorial.
 
-To run a tutorial programmatically, do the following steps. Note to follow these instructions you'll need to check out the kafka-tutorials repo:
+### Prerequisites
 
-1. git clone https://github.com/confluentinc/kafka-tutorials.git
-2. cd kafka-tutorials
+The following prerequisites are required if you are going to run a tutorial programmatically.
 
-Once you have the kafka-tutorials repo checked out do the following:
+- python3 / pip3
+- gradle
+- docker-compose
 
-1. Create a `Dockerfile` with the following content:
-    ```text
-     FROM python:3.7-slim
-     RUN pip3 install pyyaml
-    ```
-2. Then run the following command to build and execute the docker image:
-    * `docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ -it --rm runner bash -c 'cd /harness_runner/ && pip3 install -e .'`
+### Environment Setup
 
-3. run the `make` command
-   * `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`.
-   * For example `(cd _includes/tutorials/transforming/kstreams/code/ && make)`
+1. Check out the kafka-tutorials GitHub repo:
+
+```bash
+git clone https://github.com/confluentinc/kafka-tutorials.git
+cd kafka-tutorials
+```
+
+2. Install the packages for the harness runner.
+
+If you have `pip3` installed locally:
+
+```bash
+(cd /harness_runner/ && pip3 install -e .)
+```
+
+If you don't have `pip3` installed locally, create a `Dockerfile` with the following content:
+
+```text
+FROM python:3.7-slim
+RUN pip3 install pyyaml
+```
+
+and then run the following command to build and execute the Docker image:
+
+```
+docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ -it --rm runner bash -c 'cd /harness_runner/ && pip3 install -e .'
+```
+
+3. Install [gradle](https://gradle.org/install/) for tutorials that compile any code.
+
+4. Install Docker Compose
+
+### Run a tutorial
+
+1. End-to-end: execute the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
+
+```
+(cd _includes/tutorials/transforming/kstreams/code/ && make)
+```
+
+2. Run-and-play: execute the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
+
+```
+(cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")
+```
+
+Now you can play with the environment, some sample commands shown below.
+
+```
+docker exec broker kafka-topics --list --bootstrap-server localhost:9092
+docker exec -it ksqldb-cli ksql http://ksqldb-server:8088               
+```
+
+Because the Docker containers are left running, don't forget to clean up when you are done.
+
+```
+docker container ls
+docker container rm -f <container id>
+```
+
+### Makefile Details
 
 The `Makefile` will delete and re-create the `outputs` directory used to contain files with output from various steps used to verify the tutorial steps.
 
-Here's of [the contents of an actual `Makefile`](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/fk-joins/kstreams/code/Makefile) :
+Here is [the contents of an actual `Makefile`](_includes/tutorials/fk-joins/kstreams/code/Makefile) :
 
 ```yml
 STEPS_DIR := tutorial-steps
@@ -296,7 +351,7 @@ tutorial:
 
 The last line uses the `diff` command to validate expected output against the tutorial steps' actual output.  The `Makefile` may have more than one validation action to have separate `diff` commands for each verification.  
 
-For example, here's the `Makefile` from the [dynamic output topics tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/dynamic-output-topic/kstreams/code/Makefile)
+For example, here's the `Makefile` from the [dynamic output topics tutorial](_includes/tutorials/dynamic-output-topic/kstreams/code/Makefile)
 
 ```yml
 STEPS_DIR := tutorial-steps
@@ -311,6 +366,12 @@ tutorial:
   diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-special-output.json $(DEV_OUTPUTS_DIR)/actual-special-order-output.json
 ```
 
+### Harness Details
+
+Given that the test harness is the `heart` of a tutorial, it will be helpful to describe in detail how to work with a `kafka|ksql|kstreams.yml` file.  You should note the harness file is in the [YAML file format](https://en.wikipedia.org/wiki/YAML), so formatting properly is essential.  The harness files generate the rendered tutorial structure and validate any output of tutorial steps against expected values.
+
+New tutorial authors should not need to create a harness file from scratch, using either the `tools/gen_project.sh` or  `tools/clone.sh` script will provide a usable harness file.  This section should provide enough guidance to add, update, or remove parts as needed.
+
 #### 1. Structure
 
 Three top-level sections make up the harness file:
@@ -319,11 +380,11 @@ Three top-level sections make up the harness file:
 * test - test setup and execution of tests, if any (optional)
 * prod - steps to build and deploy a docker image of the tutorial code (optional)
 
-In some cases, having a test and/or prod section doesn't make sense, so you can omit those portions of the harness file.  The Apache Kafka [console producer and consumer basic operations](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-produer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are an excellent example of tutorials that don't need a test or prod section.
+In some cases, having a test and/or prod section doesn't make sense, so you can omit those portions of the harness file.  The Apache Kafka [console producer and consumer basic operations](_data/harnesses/console-consumer-produer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are an excellent example of tutorials that don't need a test or prod section.
 
 The `dev`, `test`, and `prod` sections contain a top-level element `steps`.  The `steps` contains any number of well, steps for the user to walk through.  Additionally, the `harness_runner` script follows the same steps for executing the tutorial automatically during builds.  All sections contain the same step structure, so we'll only discuss the make-up of a single section.
 
-For reference here is an example section of the harness file from the [console consumer primitive keys and values tutorial](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/console-consumer-primitive-keys-values/kafka.yml)
+For reference here is an example section of the harness file from the [console consumer primitive keys and values tutorial](_data/harnesses/console-consumer-primitive-keys-values/kafka.yml)
 
 ```yml
  - title: Get Confluent Platform
@@ -445,11 +506,11 @@ In the next sections, you'll see how to use `action` keys to organize your harne
             file: tutorials/aggregating-sum/ksql/markup/dev/start-cli.adoc
     ```
     The `docker_ksql_cli_session` contains the following keys:
-    * `container:` - The name of the [ksqldb-cli docker image in the docker-compose.yml](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/aggregating-sum/ksql/code/docker-compose.yml#L70-L82) file.
-    * `docker_bootup_file:` - Tutorial users and the harness runner [execute this file](https://github.com/confluentinc/kafka-tutorials/blob/master/_includes/tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/start-cli.sh) to start the dockerized CLI session.
+    * `container:` - The name of the [ksqldb-cli docker image in the docker-compose.yml](_includes/tutorials/aggregating-sum/ksql/code/docker-compose.yml#L70-L82) file.
+    * `docker_bootup_file:` - Tutorial users and the harness runner [execute this file](_includes/tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/start-cli.sh) to start the dockerized CLI session.
     * `column_width:` - Formats the ksqlDB query output
     * `render:` - The harness renders the file  corresponding to the `file:` key to tutorial users with the command to start the CLI session. 
-    * `stdin:` - stdin key [contains one or more `file`](https://github.com/confluentinc/kafka-tutorials/blob/master/_data/harnesses/aggregating-sum/ksql.yml#L41-L68) keys specifying the different `SQL` file to execute for the tutorial.
+    * `stdin:` - stdin key [contains one or more `file`](_data/harnesses/aggregating-sum/ksql.yml#L41-L68) keys specifying the different `SQL` file to execute for the tutorial.
     ```yml
         stdin:
             - file: tutorial-steps/dev/create-movie-ticket-sales.sql
@@ -476,7 +537,7 @@ The following regular expressions may be useful to group-update all dependencies
 
 The `release` branch tracks the content and code comprising the live site. Confluent manages the release process.
 
-The `ksqldb-latest` branch builds against the lastest `master` branch of ksqlDB, and should be used for updates that are only in the master branch of ksqlDB. 
+The `ksqldb-latest` branch builds against the latest `master` branch of ksqlDB, and should be used for updates that are only in the master branch of ksqlDB.
 Confluent manages the processes of merging changes from this branch.
 
 #### Prepare a release PR
