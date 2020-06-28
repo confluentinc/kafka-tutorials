@@ -1,0 +1,9 @@
+As discussed earlier, our schema will be represented by case classes.
+Add the following case class in the schema package.
+
+`src/main/scala/io/confluent/developer/schema/Book.scala`:
++++++
+<pre class="snippet"><code class="scala">{%
+    include_raw tutorials/produce-consume-lang/scala/code/src/main/scala/io/confluent/developer/schema/Book.scala
+%}</code></pre>
++++++

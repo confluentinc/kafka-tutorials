@@ -1,0 +1,17 @@
+Add in the _project_ folder the file `project/plugins.sbt` with all the Sbt plugins required.
+
++++++
+<pre class="snippet"><code class="scala">{%
+    include_raw tutorials/produce-consume-lang/scala/code/project/plugins.sbt
+%}</code></pre>
++++++
+`sbt-jib` is an sbt alternative to the gradle/maven plugin for https://github.com/GoogleContainerTools/jib[Jib].
+It will be useful to package our application.
+
+
+Note: Most tutorials will include a schema code generation plugin.
+Since code generation is not a common practice in scala we will deal with the schema by using automatic
+derivation instead. If you still want to use code generation with sbt plugins,
+the classic https://github.com/sbt/sbt-avro[Java class generation plugin] can be used in our scala application.
+But plugins like https://github.com/julianpeeters/sbt-avrohugger[avro-hugger]
+will be a better fit for our scala application since it brings scala case class generation.

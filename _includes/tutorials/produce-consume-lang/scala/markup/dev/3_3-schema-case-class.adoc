@@ -1,0 +1,6 @@
+`src/main/scala/io/confluent/developer/schema/BookType.scala`:
++++++
+<pre class="snippet"><code class="scala">{%
+    include_raw tutorials/produce-consume-lang/scala/code/src/main/scala/io/confluent/developer/schema/BookType.scala
+%}</code></pre>
++++++

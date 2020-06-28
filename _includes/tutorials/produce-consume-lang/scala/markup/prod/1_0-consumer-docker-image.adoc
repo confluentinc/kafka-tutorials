@@ -1,0 +1,9 @@
+In your terminal, execute the following command to invoke the Jib plugin and build a docker image for the consumer app:
+
++++++
+<pre class="snippet"><code class="bash">{%
+    include_raw tutorials/produce-consume-lang/scala/code/tutorial-steps/prod/build-consumer.sh
+%}</code></pre>
++++++
+
+Find the sbt task configuration of `packageConsumer` in the _build.sbt_ file.

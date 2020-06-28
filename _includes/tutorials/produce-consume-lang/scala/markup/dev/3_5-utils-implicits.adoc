@@ -1,0 +1,11 @@
+Finally, we will also add a package object to hold all the necessary functions (CSV conversion, JSON Conversion ...)
+that are not directly related to our goal (produce and consume). Theses functions will increase the interactive aspect
+of the tutorial.
+
+Add `src/main/scala/io/confluent/developer/schema/package.scala`:
+
++++++
+<pre class="snippet"><code class="scala">{%
+    include_raw tutorials/produce-consume-lang/scala/code/src/main/scala/io/confluent/developer/schema/package.scala
+%}</code></pre>
++++++

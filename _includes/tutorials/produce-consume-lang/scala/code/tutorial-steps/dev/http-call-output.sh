@@ -1,0 +1,1 @@
+curl http://localhost:8080/books | jq  '{results:[.results[].title] | sort_by(.)}'

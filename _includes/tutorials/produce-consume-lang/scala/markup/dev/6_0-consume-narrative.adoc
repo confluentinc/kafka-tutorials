@@ -1,0 +1,46 @@
+The following Scala class will be the entry point of the consumer application.
+At `src/main/scala/io/confluent/developer/Consumer.scala` add:
+
++++++
+<pre class="snippet"><code class="java">{%
+    include_raw tutorials/produce-consume-lang/scala/code/src/main/scala/io/confluent/developer/Consumer.scala
+%}</code></pre>
++++++
+
+Lets’s describe the keys pieces of this program.
+
+Reminder: we use an externalised config and this app loads its config from the _consumer_ bloc of the `application.conf`
+
+A `Consumer#conusme` function covers most of the record consumption.
+
+- `Consumer#conusme` takes a
+`https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html[KafkaConsumer]`
+and gives back a collection of `Book`.
+
+- `Consumer#consume` call the `KafkaConsumer#poll` and gets a `ConsumerRecords` filed with as much books as the
+`fetch.max.bytes` Consumer Config allows.
+
+- `Consumer#consume` extracts the value from each records. The consumed books will filled `bookMap`, our book collection
+of type `mutable.Map[String, Book]`.
+
+- We also have two functions `getCount` and `getBooks` just to define two HTTP routes.
+
+🤔 🤔 Now what do we need to call our new `Consumer#consume` function?
+
+- `reflectionDeserializer4S[T]` is introduced to lighten the tutorial and quickly get a `Deserializer[Book]`
+(See dev part n°3).
+
+- We carefully configure, the deserializer with a map containing the schema-registry url.
+
+- Then we instantiate the `KafkaConsumer` by passing a Java Properties from the _consumer.client-config_ block of
+`application.conf`.
+
+- We subscribe to the book's topics by calling `KafkaConsumer#suscribe` with a topic name collection.
+
+That's it! we are ready to poll records in a infinite while loop to keep our Map of book updated.
+
+Note that we've added a shut down hook to close the consumer by calling `KafkaConsumer#close`.
+
+Note that the `KafkaConsumer` is created and used in a new thread.
+It's is really important to use it in a _*single*_ Thread.
+In our case it's not the main thread just because we also have a HTTP server.
