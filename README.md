@@ -303,7 +303,7 @@ docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ 
 
 4. Install Docker Compose
 
-5. (optional) If you would like to use Confluent Control Center with any Kafka Tutorial, run the [tools/docker_compose_overrides_for_c3.sh](tools/docker_compose_overrides_for_c3.sh) script which adds a `docker-compose.override.yml` file to each tutorial's `_includes/tutorials/<tutorial name>/<type>/code` path. The override file adds a Docker container for [Confluent Control Center](https://hub.docker.com/r/confluentinc/cp-enterprise-control-center) and ensures the Kafka broker is running [Confluent Server](https://hub.docker.com/r/confluentinc/cp-server) with the Broker metrics enabled. Then run each tutorial as explained in the next section.
+5. (optional) If you would like to use Confluent Control Center with any Kafka Tutorial, run the [tools/docker_compose_overrides_for_c3.sh](tools/docker_compose_overrides_for_c3.sh) script which adds a `docker-compose.override.yml` file to each tutorial's `_includes/tutorials/<tutorial name>/<type>/code` path. The override file adds a Docker container for [Confluent Control Center](https://hub.docker.com/r/confluentinc/cp-enterprise-control-center) and ensures the Kafka broker is running [Confluent Server](https://hub.docker.com/r/confluentinc/cp-server) with [Confluent Metrics Reporter](https://docs.confluent.io/current/kafka/metrics-reporter.html) enabled. Then run each tutorial as explained in the next section.
 
 ```
 (cd tools && ./docker_compose_overrides_for_c3.sh)
