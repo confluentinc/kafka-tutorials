@@ -29,8 +29,8 @@ public class KafkaConsumerApplicationTest {
     final ConsumerRecordsHandler<String, String> recordsHandler = new FileWritingRecordsHandler(tempFilePath);
     final Properties testConsumerProps = KafkaConsumerApplication.loadProperties(TEST_CONFIG_FILE);
     final String topic = testConsumerProps.getProperty("input.topic.name");
-    final MockConsumer<String, String> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
     final TopicPartition topicPartition = new TopicPartition(topic, 0);
+    final MockConsumer<String, String> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
 
     final KafkaConsumerApplication consumerApplication = new KafkaConsumerApplication(mockConsumer, recordsHandler);
 

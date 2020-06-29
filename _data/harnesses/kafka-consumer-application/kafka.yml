@@ -24,6 +24,14 @@ dev:
           render:
             skip: true
 
+    - title: Create a topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/harness-create-topic.sh
+          render:
+            file: tutorials/kafka-consumer-application/kafka/markup/dev/create-topic.adoc
+            
+
     - title: Configure the project
       content:
         - action: make_file
@@ -53,6 +61,16 @@ dev:
           file: tutorial-steps/dev/make-src-dir.sh
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/make-src-dir.adoc
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/ConsumerRecordsHandler.java
+          render:
+            skip: true
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/FileWritingRecordsHandler.java
+          render:
+            skip: true
             
         - action: make_file
           file: src/main/java/io/confluent/developer/KafkaConsumerApplication.java
@@ -74,24 +92,19 @@ dev:
     - title: Produce sample data to the input topic
       content:
         - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/example-input.json
+          file: tutorial-steps/dev/harness-console-producer.sh
+          stdin: tutorial-steps/dev/input.txt
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/run-producer.adoc
 
-    - title: Consume data from the output topic
+    - title: View consumed records written to a file
       content:
-        - action: execute_async
-          file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.json
+        - action: execute
+          file: tutorial-steps/dev/print-consumer-file-results.sh
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/run-consumer.adoc
+            file: tutorials/kafka-consumer-application/kafka/markup/dev/print-consumer-file-results.adoc
 
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 5000
-          render:
-            skip: true
 
 test:
   steps:
@@ -112,7 +125,7 @@ test:
         - action: make_file
           file: src/test/java/io/confluent/developer/KafkaConsumerApplicationTest.java
           render:
-            file: tutorials/kafka-consumer-application/kafka/markup/test/make-topology-test.adoc
+            file: tutorials/kafka-consumer-application/kafka/markup/test/make-consumer-applicaion-test.adoc
 
     - title: Invoke the tests
       content:

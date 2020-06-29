@@ -13,48 +13,87 @@ First create the interface at `src/main/java/io/confluent/developer/ConsumerReco
 
 Using an interface will make it easier to change how you want to work with `ConsumerRecords` with out having to modify all of your application code.
 
-Next create an implementation of the `ConsumerRecordsHandler` interface - `FileWritingRecordsHandler.java`
+Next create an implementation of the `ConsumerRecordsHandler` interface - `src/main/java/io/confluent/developer/FileWritingRecordsHandler.java`
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/kafka-consumer-application/kafka/code/src/main/java/io/confluent/developer/FileWritingRecordsHandler.java %}</code></pre>
 +++++
 
-The `FileWritingRecordsHandler` is a simple class that writes the values of the consumed records to a file.  In practice you're certain to do a more realistic workload.
-
-
-The second class you'll create is the `src/main/java/io/confluent/developer/KafkaConsumerApplication.java` which provides .  Let's take a close look at the `KafkaConsumerApplication` constructor and the `runConsume` methods.
+While the `FileWritingRecordsHandler` is a simple class that writes values of consumed records to a file, it's worth a quick review of the `process` method:
 
 [source, java]
-.KafkaConsumerApplication constructor
-----
-public KafkaConsumerApplication(final Consumer<String, String> consumer,
-                                final ConsumerRecordsHandler<String, String> recordsHandler) {
-    this.consumer = consumer;
-    this.recordsHandler = recordsHandler;
-}
-----
-
-Here you're suppling instances of the `Consumer` and `ConsumerRecordsHandler` via constructor parameters.  By specifying interfaces vs. concreate implentations you can more easily test the `KafkaConsumerApplication` class.  Also, interfaces make it simple to change `ConsumerRecord` handling at run-time.
-
-Next, let's take a look at the `KafkaConsumerApplication.process()` method, which provides the core functinoality of this tutorial.
-
-[source, java]
-.KafkaConsumerApplication.process
+.FileWritingRecordsHandler.process
 ----
  @Override
-  public void process(ConsumerRecords<String, String> consumerRecords) {
+  public void process(final ConsumerRecords<String, String> consumerRecords) {
     final List<String> valueList = new ArrayList<>();
-    consumerRecords.forEach(record -> valueList.add(record.value()));
-    if (!valueList.isEmpty()) {
+    consumerRecords.forEach(record -> valueList.add(record.value())); // <1>
+    if (!valueList.isEmpty()) {  //<2>
       try {
-        Files.write(path, valueList, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND);
+        Files.write(path, valueList, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND);  //<3>
       } catch (IOException e) {
           throw new RuntimeException(e);
       }
     }
   }
 ----
+<1> Iterate over all of the records and store the `value` in a `List`
+<2> If the isn't empty let's do something!
+<3> Pass the `List&lt;String&gt;` of records to the `Files.write()` method
 
+
+In practice you're certain to do a more realistic workload.
+
+
+
+
+The second class you'll create is `KafkaConsumerApplication` which is the main point of this tutorial; consuming records from a Kafka topic.
+
+
+Let's go over some of the key parts of the `KafkaConsumerApplication`.
+
+First, take a look at the constructor:
+
+[source, java]
+.KafkaConsumerApplication constructor
+----
+public KafkaConsumerApplication(final Consumer<String, String> consumer,
+                                final ConsumerRecordsHandler<String, String> recordsHandler) { // <1>
+    this.consumer = consumer;
+    this.recordsHandler = recordsHandler;
+}
+----
+
+<1> Here you're suppling instances of the `Consumer` and `ConsumerRecordsHandler` via constructor parameters.
+
+By using interfaces vs. concreate implentations you can more easily test the `KafkaConsumerApplication` class by swapping in a `MockConsumer` for the test.  We'll cover testing in an upcoming section.  Also, interfaces make it simple to change `ConsumerRecord` handling at run-time.
+
+Next, let's review the `KafkaConsumerApplication.runConsumer()` method, which provides the core functionality of this tutorial.
+
+[source, java]
+.KafkaConsumerApplication.process
+----
+  public void runConsume(final Properties consumerProps) {
+    try {
+      consumer.subscribe(Collections.singletonList(consumerProps.getProperty("input.topic.name"))); // <1>
+      while (keepConsuming) { // <2>
+        final ConsumerRecords<String, String> consumerRecords = consumer.poll(Duration.ofSeconds(1));  // <3>
+        recordsHandler.process(consumerRecords); // <4>
+      }
+    } finally {
+      consumer.close(); // <5>
+    }
+  }
+----
+
+<1> Subscribing to the Kafka topic.
+<2> Using an instance variable `keepConsuming` to run the Kafka consumer indefinitely.  The `KafkaConsumerApplication.shutdown()` method sets `keepConsuming` to `false`.
+<3> Polling for new records, waiting at most one second for new records.  The `Consumer.poll()` method may return zero results.  The consumer is expected to call `poll()` again within five minutes, from the `max.poll.interval.ms` config described in step three, "Configure the project".
+<4> Handing off the polled `ConsumerRecords` to the `ConsumerRecordsHandler` interface.
+<5> Closing the consumer is essential to prevent resource leaking, hence the `finally` block.
+
+
+Now go ahead and create the `src/main/java/io/confluent/developer/KafkaConsumerApplication.java` file:
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/kafka-consumer-application/kafka/code/src/main/java/io/confluent/developer/KafkaConsumerApplication.java %}</code></pre>

@@ -17,7 +17,7 @@ public class FileWritingRecordsHandler implements ConsumerRecordsHandler<String,
   }
 
   @Override
-  public void process(ConsumerRecords<String, String> consumerRecords) {
+  public void process(final ConsumerRecords<String, String> consumerRecords) {
     final List<String> valueList = new ArrayList<>();
     consumerRecords.forEach(record -> valueList.add(record.value()));
     if (!valueList.isEmpty()) {
