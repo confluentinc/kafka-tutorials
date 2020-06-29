@@ -303,6 +303,13 @@ docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ 
 
 4. Install Docker Compose
 
+5. (optional) If you would like to use Confluent Control Center with any Kafka Tutorial, run the [tools/docker_compose_overrides_for_c3.sh](tools/docker_compose_overrides_for_c3.sh) script which adds a `docker-compose.override.yml` file to each tutorial's Docker environment. Then run each tutorial as explained in the next section.
+
+```
+cd tools
+./docker_compose_overrides_for_c3.sh
+```
+
 ### Run a tutorial
 
 1. End-to-end: execute the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
