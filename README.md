@@ -305,7 +305,7 @@ docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ 
 
 ### Run a tutorial
 
-1. (optional) If you want to augment or override a tutorial's Docker environment, set the Docker Compose CLI environment variable `COMPOSE_FILE` to include `docker-compose.yml` and the absolute path to a `docker-compose.override.yml` file.  For example, to use Confluent Control Center with any Kafka Tutorial, set `COMPOSE_FILE` to `docker-compose.yml` and the absolute path to [this docker-compose.override.yml](tools/docker-compose.override.yml).
+1. (optional) If you want to augment or override a tutorial's Docker environment, set the Docker Compose CLI environment variable `COMPOSE_FILE` to include `docker-compose.yml` and **_the absolute path_** to a `docker-compose.override.yml` file.  For example, to use Confluent Control Center with any Kafka Tutorial, set `COMPOSE_FILE` to `docker-compose.yml` and the absolute path to [this docker-compose.override.yml](tools/docker-compose.override.yml).
 
 ```
 export COMPOSE_FILE=docker-compose.yml:<path to Kafka Tutorials>/tools/docker-compose.override.yml
