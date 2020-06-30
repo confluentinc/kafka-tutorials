@@ -233,7 +233,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
         
-        - name: KStreams Test Kafka Consumer Application tests
+        - name: Kafka Consumer Application tests
           commands:
-            - make -C _includes/tutorials/kafka-consumer-application/kstreams/code tutorial
+            - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
             
