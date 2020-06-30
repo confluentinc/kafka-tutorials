@@ -34,6 +34,8 @@ public class KafkaConsumerApplicationTest {
 
     final KafkaConsumerApplication consumerApplication = new KafkaConsumerApplication(mockConsumer, recordsHandler);
 
+    // the KafkaConsumerApplication runs synchronously so the test needs to run
+    // the application in its own thread
     new Thread(() -> consumerApplication.runConsume(testConsumerProps)).start();
     Thread.sleep(250);
     addTopicPartitionsAssignmentAndAddConsumerRecords(topic, mockConsumer, topicPartition);
