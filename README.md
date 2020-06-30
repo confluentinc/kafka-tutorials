@@ -303,21 +303,21 @@ docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ 
 
 4. Install Docker Compose
 
-5. (optional) If you would like to use Confluent Control Center with any Kafka Tutorial, run the [tools/docker_compose_overrides_for_c3.sh](tools/docker_compose_overrides_for_c3.sh) script which adds a `docker-compose.override.yml` file to each tutorial's `_includes/tutorials/<tutorial name>/<type>/code` path. The override file adds a Docker container for [Confluent Control Center](https://hub.docker.com/r/confluentinc/cp-enterprise-control-center) and ensures the Kafka broker is running [Confluent Server](https://hub.docker.com/r/confluentinc/cp-server) with [Confluent Metrics Reporter](https://docs.confluent.io/current/kafka/metrics-reporter.html) enabled. Then run each tutorial as explained in the next section.
-
-```
-(cd tools && ./docker_compose_overrides_for_c3.sh)
-```
-
 ### Run a tutorial
 
-1. End-to-end: execute the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
+1. (optional) If you want to augment a tutorial's Docker environment with additional containers, set the Docker Compose CLI environment variable `COMPOSE_FILE` to include `docker-compose.yml` and the absolute path to a docker-compose.override.yml file.  For example, use Confluent Control Center with any Kafka Tutorial, set `COMPOSE_FILE` to `docker-compose.yml` and the absolute path to [this docker-compose.override.yml](docker-compose.override.yml). This file adds a Docker container for [Confluent Control Center](https://hub.docker.com/r/confluentinc/cp-enterprise-control-center) and ensures the Kafka broker is running [Confluent Server](https://hub.docker.com/r/confluentinc/cp-server) with [Confluent Metrics Reporter](https://docs.confluent.io/current/kafka/metrics-reporter.html) enabled. Then run each tutorial as explained in the next section.
+
+```
+export COMPOSE_FILE=docker-compose.yml:<path to Kafka Tutorials>/tools/docker-compose.override.yml
+```
+
+2. End-to-end: execute the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make)
 ```
 
-2. Run-and-play: execute the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
+3. Run-and-play: execute the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")

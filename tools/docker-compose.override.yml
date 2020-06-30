@@ -1,11 +1,3 @@
-#!/bin/sh
-
-TOOLS_HOME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-KT_HOME=$(dirname "${TOOLS_HOME}")
-
-DOCKER_COMPOSE_OVERRIDE=docker-compose.override.yml
-
-cat <<EOF > $DOCKER_COMPOSE_OVERRIDE
 version: "2"
 
 services:
@@ -38,9 +30,3 @@ services:
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
       CONFLUENT_METRICS_ENABLE: 'true'
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
-EOF
-
-for instance in `cd $KT_HOME && find . -name docker-compose.yml`; do
-  DESTINATION="$( cd "$( dirname "${KT_HOME}/${instance}" )" >/dev/null && pwd )"
-  yes | cp $DOCKER_COMPOSE_OVERRIDE $DESTINATION
-done
