@@ -9,20 +9,34 @@ At `src/main/scala/io/confluent/developer/Producer.scala` add:
 
 Lets's describe the keys pieces of this program.
 
-- Reminder: we use an externalised config and this app loads its config from the _producer_ bloc
+NOTE: we use an externalised config and this app loads its config from the _producer_ bloc
 of the `application.conf`
 
 A `Producer#produce` function covers most of the record production.
 
-- `Producer#produce` takes a
+[source,scala]
+----
+def produce(producer: KafkaProducer[Bytes, Book], topic: String, book: Book): Future[RecordMetadata] = { //<1>
+    val record: ProducerRecord[Bytes, Book] = new ProducerRecord(topic, book) //<2>
+
+    producer.send(record, new Callback { //<3>
+      override def onCompletion(metadata: RecordMetadata, exception: Exception): Unit = Option(exception) //<4>
+        .map(ex => logger error s"fail to produce record due to: ${ex.getMessage}")
+        .getOrElse(logger info s"successfully produced - ${printMetaData(metadata)}")
+    })
+}
+----
+
+<1> `Producer#produce` takes a
 `https://kafka.apache.org/25/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html[KafkaProducer]`,
 a topic name, and an instance of book to send into a Kafka topic.
 
-- `Producer#produce` wraps our book with a `ProducerRecord[K, V]`, that's where attache the topic name to the book.
+<2> `Producer#produce` wraps our book with a `ProducerRecord[K, V]`, that's where attache the topic name to the book.
 
-- `Producer#produce` call the `KafkaProducer#send` method and gets back Java future tight to the broker acknowledgement.
+<3> `Producer#produce` call the `KafkaProducer#send` method and gets back Java future tight to the broker
+acknowledgement.
 
-- `Producer#produce` use a
+<4> `Producer#produce` use a
 `https://kafka.apache.org/25/javadoc/index.html?org/apache/kafka/clients/producer/KafkaProducer.html[CallBack]`
 to confirm the future completion and the record write.
 
@@ -43,5 +57,5 @@ from _kafka.common.utils_ package.
 
 That's it! we are ready to produce records.
 
-Note that at the end of the programme we use `KafkaProducer#flush` to check
+NOTE: At the end of the programme we use `KafkaProducer#flush` to check
 if the latest messages have been written and `KafkaProducer#close` stop our connection.

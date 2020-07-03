@@ -1,7 +1,7 @@
 The case class instances in our code will be serialized in an https://avro.apache.org/[Avro] format.
 To do so, we will need the appropriate serializers/deserializers.
 We add the following function to easily create a `Serializer[T]` where `T` in the type of the key or the value
-we'd like to serialise.
+we'd like to serialise. Add the class: `src/main/scala/io/confluent/developer/schema/ScalaReflectionSerde.scala`
 
 +++++
 <pre class="snippet"><code class="scala">{%

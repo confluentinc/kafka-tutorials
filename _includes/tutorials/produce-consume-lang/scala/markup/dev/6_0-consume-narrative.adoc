@@ -9,21 +9,31 @@ At `src/main/scala/io/confluent/developer/Consumer.scala` add:
 
 Lets’s describe the keys pieces of this program.
 
-Reminder: we use an externalised config and this app loads its config from the _consumer_ bloc of the `application.conf`
+NOTE: We use an externalised config and this app loads its config from the _consumer_ bloc of the `application.conf`
 
 A `Consumer#conusme` function covers most of the record consumption.
 
-- `Consumer#conusme` takes a
+[source,scala]
+----
+def consume(consumer: KafkaConsumer[Bytes, Book]): Vector[Book] = { //<1>
+
+  val books: ConsumerRecords[Bytes, Book] = consumer.poll((1 second) toJava) //<2>
+
+  books.asScala.toVector.map(_.value()) //<3>
+}
+----
+
+<1> `Consumer#conusme` takes a
 `https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html[KafkaConsumer]`
 and gives back a collection of `Book`.
 
-- `Consumer#consume` call the `KafkaConsumer#poll` and gets a `ConsumerRecords` filed with as much books as the
+<2> `Consumer#consume` call the `KafkaConsumer#poll` and gets a `ConsumerRecords` filed with as much books as the
 `fetch.max.bytes` Consumer Config allows.
 
-- `Consumer#consume` extracts the value from each records. The consumed books will filled `bookMap`, our book collection
+<3> `Consumer#consume` extracts the value from each records. The consumed books will filled `bookMap`, our book collection
 of type `mutable.Map[String, Book]`.
 
-- We also have two functions `getCount` and `getBooks` just to define two HTTP routes.
+We also have two functions `getCount` and `getBooks` just to define two HTTP routes.
 
 🤔 🤔 Now what do we need to call our new `Consumer#consume` function?
 
@@ -39,8 +49,8 @@ of type `mutable.Map[String, Book]`.
 
 That's it! we are ready to poll records in a infinite while loop to keep our Map of book updated.
 
-Note that we've added a shut down hook to close the consumer by calling `KafkaConsumer#close`.
+WARNING: We've added a shut down hook to close the consumer by calling `KafkaConsumer#close`.
 
-Note that the `KafkaConsumer` is created and used in a new thread.
+WARNING: The `KafkaConsumer` is created and used in a new thread.
 It's is really important to use it in a _*single*_ Thread.
 In our case it's not the main thread just because we also have a HTTP server.

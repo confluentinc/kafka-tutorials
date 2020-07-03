@@ -9,7 +9,7 @@ We can create a book by starting the Produce app:
 And then typing the book to the standard entry (type "exit" to stop the program)
 
 +++++
-<pre class="snippet"><code class="bash">produce-a-book> Loic D.,How to sharpen a knife,Other,10,2020-06-09</code></pre>
+<pre class="snippet"><code class="bash">Loic D.,How to sharpen a knife,Other,10,2020-06-09</code></pre>
 +++++
 
 or, by directly passing the book as argument:

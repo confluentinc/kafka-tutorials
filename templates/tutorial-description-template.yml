@@ -11,7 +11,9 @@
     kafka: disabled
     c: disabled
     go: disabled
-    python: disabled
+    groovy: disabled
     nodejs: disabled
-    swift: disabled
+    python: disabled
+    ruby: disabled
     scala: disabled
+    swift: disabled

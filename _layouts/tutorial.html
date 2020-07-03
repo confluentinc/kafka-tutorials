@@ -69,31 +69,6 @@
           Scala
           </option>
           {% endif %}
-          {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html" {% if page.stack == 'python' %} selected {% endif %}>
-          Python
-          </option>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.nodejs == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/nodejs.html" {% if page.stack == 'nodejs' %} selected {% endif %}>
-          Node.js
-          </option>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.go == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/go.html" {% if page.stack == 'go' %} selected {% endif %}>
-          Go
-          </option>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.swift == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/swift.html" {% if page.stack == 'swift' %} selected {% endif %}>
-          Swift
-          </option>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.go == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/go.html" {% if page.stack == 'go' %} selected {% endif %}>
-          Go
-          </option>
-          {% endif %}
         </select>
       </div>
       <div class="cflt-tabs">
@@ -116,31 +91,6 @@
           {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
           <a class="button {% if page.stack == 'scala' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html">
             Scala
-          </a>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
-          <a class="button {% if page.stack == 'python' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html">
-            Python
-          </a>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.nodejs == 'enabled' %}
-          <a class="button {% if page.stack == 'nodejs' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/nodejs.html">
-            Node.js
-          </a>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.go == 'enabled' %}
-          <a class="button {% if page.stack == 'go' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/go.html">
-            Go
-          </a>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.swift == 'enabled' %}
-          <a class="button {% if page.stack == 'swift' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/swift.html">
-            Swift
-          </a>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.c == 'enabled' %}
-          <a class="button {% if page.stack == 'c' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/c.html">
-            C
           </a>
           {% endif %}
         </div>
