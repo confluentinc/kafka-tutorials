@@ -59,21 +59,12 @@ dev:
       content:
       - action: execute_async
         file: tutorial-steps/dev/harness-console-consumer-keys.sh
-        stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
+        stdout: tutorial-steps/dev/outputs/consume-topic.log
         render:
           file: tutorials/kafka-connect-datagen-self-managed/kafka/markup/dev/consume-topic-key-value.adoc
 
       - name: wait for consumer to read records
         action: sleep
-        ms: 5000
+        ms: 10000
         render:
           skip: true
-
-prod:
-            
-    - title: Clean up
-      content:
-      - action: execute
-        file: tutorial-steps/dev/clean-up.sh
-        render:
-          file: tutorials/kafka-connect-datagen-self-managed/kafka/markup/dev/clean-up.adoc

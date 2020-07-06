@@ -1,4 +1,4 @@
-Now that the kafka-connect-datagen is running, run the Kafka console consumer to see the data streaming into the Kafka topic.
+Now that the kafka-connect-datagen is running, run the Kafka Avro console consumer to see the data streaming into the Kafka topic.
 
 Note the added properties of `print.key` and `key.separator`.
 
