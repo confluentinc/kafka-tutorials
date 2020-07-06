@@ -68,3 +68,12 @@ dev:
         ms: 10000
         render:
           skip: true
+
+prod:
+  steps:
+    - title: Cleanup Docker containers
+      content:
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
