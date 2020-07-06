@@ -302,3 +302,14 @@ console-consumer-read-specific-offsets-partition:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+
+kafka-connect-datagen-self-managed:
+  title: "How to generate mock data to a local Kafka topic using the Kafka Connect Datagen"
+  meta-description: "How to generate mock data to a local Kafka topic using the Kafka Connect Datagen"
+  slug: "/kafka-connect-datagen-self-managed"
+  problem: "you want to test your Kafka applications but need mock data produced to Kafka topics."
+  introduction: "You will run a self-managed kafka-connect-datagen connector to produce mock data"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
