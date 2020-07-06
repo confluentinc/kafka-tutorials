@@ -5,31 +5,31 @@ dev:
         - action: execute
           file: tutorial-steps/dev/init.sh
           render:
-            file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/init.adoc
+            file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/init.adoc
         - action: execute
           file: tutorial-steps/dev/make-dirs.sh
           render:
-            file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/make-dirs.adoc
+            file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/make-dirs.adoc
             
     - title: Prepare the source data
       content:
-        - change_directory: kafka-connect-datagen-self-managed
+        - change_directory: kafka-connect-datagen-local
           action: make_file
           file: cities.sql
           render:
-            file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/make-sql-commandfile.adoc
+            file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/make-sql-commandfile.adoc
 
     - title: Get Confluent Platform
       content:
         - action: make_file
           file: docker-compose.yml
           render:
-            file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/make-docker-compose.adoc
+            file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/make-docker-compose.adoc
 
         - action: execute_async
           file: tutorial-steps/dev/docker-compose-up.sh
           render:
-            file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/start-compose.adoc
+            file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/start-compose.adoc
 
         - action: execute
           file: tutorial-steps/dev/wait-for-containers.sh
@@ -42,7 +42,7 @@ dev:
           file: tutorial-steps/dev/query-postgres.sh
           stdout: tutorial-steps/dev/outputs/query-postgres.log
           render:
-            file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/query-postgres.adoc
+            file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/query-postgres.adoc
 
     - title: Create the connector
       content:
@@ -57,7 +57,7 @@ dev:
           stdin:
             - file: tutorial-steps/dev/create-connector.sql
               render:
-                file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/create-connector.adoc
+                file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/create-connector.adoc
 
         - action: sleep
           ms: 5000
@@ -75,10 +75,10 @@ dev:
           stdin:
             - file: tutorial-steps/dev/check-connector.sql
               render:
-                file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/check-connector.adoc
+                file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/check-connector.adoc
             - file: tutorial-steps/dev/describe-connector.sql
               render:
-                file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/describe-connector.adoc
+                file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/describe-connector.adoc
             
     - title: Consume events from the output topic
       content:
@@ -93,7 +93,7 @@ dev:
           stdin:
             - file: tutorial-steps/dev/consume-topic.sql
               render:
-                file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/consume-topic.adoc
+                file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/consume-topic.adoc
 
     - title: Declare the topic as a ksqlDB table
       content:
@@ -108,17 +108,17 @@ dev:
           stdin:
             - file: tutorial-steps/dev/create-table.sql
               render:
-                file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/create-table.adoc
+                file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/create-table.adoc
             - file: tutorial-steps/dev/query-table.sql
               render:
-                file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/query-table.adoc
+                file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/query-table.adoc
 
     - title: Clean up
       content:
       - action: execute
         file: tutorial-steps/dev/clean-up.sh
         render:
-          file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/clean-up.adoc
+          file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/clean-up.adoc
 
 
 prod:
@@ -128,7 +128,7 @@ prod:
         - action: skip
           file: src/statements.sql
           render:
-            file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/dev/make-src-file.adoc
+            file: tutorials/kafka-connect-datagen-local/ksql/markup/dev/make-src-file.adoc
 
     - title: Send the statements to the REST endpoint
       content:
@@ -144,7 +144,7 @@ prod:
 
         - action: skip
           render:
-            file: tutorials/kafka-connect-datagen-self-managed/ksql/markup/prod/submit-to-api.adoc
+            file: tutorials/kafka-connect-datagen-local/ksql/markup/prod/submit-to-api.adoc
 
         - action: execute
           file: tutorial-steps/dev/clean-up.sh

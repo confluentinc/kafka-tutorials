@@ -1,5 +1,5 @@
 Create a `Dockerfile` to build the container for Connect bundled with the free and open source `kafka-connect-datagen` connector. The connector is installed from Confluent Hub.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-self-managed/kafka/code/Dockerfile %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-local/kafka/code/Dockerfile %}</code></pre>
 +++++
