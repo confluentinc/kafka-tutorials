@@ -68,6 +68,8 @@ dev:
         ms: 5000
         render:
           skip: true
+
+prod:
             
     - title: Clean up
       content:
