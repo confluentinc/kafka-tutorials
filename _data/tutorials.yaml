@@ -308,7 +308,7 @@ kafka-connect-datagen-local:
   meta-description: "How to generate mock data to a local Kafka topic using the Kafka Connect Datagen"
   slug: "/kafka-connect-datagen-local"
   problem: "you want to test your Kafka applications but need mock data produced to Kafka topics."
-  introduction: "You will run a local instance of the kafka-connect-datagen connector to produce mock data to a local Kafka cluster"
+  introduction: "You will run a local instance of the <a href=\"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen\">Kafka Connect Datagen</a> connector to produce mock data to a local Kafka cluster. This facilitates learning about Kafka and testing your applications."
   status:
     ksql: disabled
     kstreams: disabled
