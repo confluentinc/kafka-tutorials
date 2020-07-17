@@ -1,1 +1,1 @@
-CREATE STREAM s2 WITH (kafka_topic = 'topic2', partitions = 8);
+CREATE STREAM S2 (COLUMN1 VARCHAR) WITH (KAFKA_TOPIC = 'topic2', VALUE_FORMAT = 'JSON', PARTITIONS = 8);

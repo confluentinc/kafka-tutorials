@@ -7,7 +7,7 @@ dev:
           render:
             file: tutorials/changing-number-partitions/ksql/markup/dev/init.adoc
 
-        - change_directory: filter-events
+        - change_directory: changing-number-partitions
           action: execute
           file: tutorial-steps/dev/make-dirs.sh
           render:
@@ -53,11 +53,11 @@ dev:
           render:
             file: tutorials/changing-number-partitions/ksql/markup/dev/start-cli.adoc
           stdin:
-            - file: tutorial-steps/dev/create-inputs.sql
+            - file: tutorial-steps/dev/create-original-stream.sql
               render:
                 file: tutorials/changing-number-partitions/ksql/markup/dev/create-inputs.adoc
 
-            - file: tutorial-steps/dev/create-inputs.sql
+            - file: tutorial-steps/dev/create-new-stream.sql
               render:
                 file: tutorials/changing-number-partitions/ksql/markup/dev/create-new-stream.adoc
           stdout:
