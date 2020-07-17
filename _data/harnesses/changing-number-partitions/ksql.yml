@@ -93,6 +93,18 @@ test:
           render:
             file: tutorials/changing-number-partitions/ksql/markup/test/produce-data-input.adoc
 
+    - title: View the data by partition in the original topic
+      content:
+        - action: execute
+          render:
+            file: tutorials/changing-number-partitions/ksql/markup/test/consume-data-topic1-by-partition.adoc
+
+    - title: View the data by partition in the new topic
+      content:
+        - action: execute
+          render:
+            file: tutorials/changing-number-partitions/ksql/markup/test/consume-data-topic2-by-partition.adoc
+
 prod:
   steps:
     - title: Send the statements to the REST API

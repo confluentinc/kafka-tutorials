@@ -1,0 +1,9 @@
+To produce data into the Kafka topic, open another terminal window and run the following command to open a second shell on the broker container:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/changing-number-partitions/ksql/code/test/produce-data-input.sh %}</code></pre>
++++++
+
+The producer will start and wait for you to enter input.
+Copy and paste the contents of `test/input.txt`.
+Close the producer by entering CTRL+C.
