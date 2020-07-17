@@ -30,19 +30,19 @@ dev:
           render:
             skip: true
 
-    - title: Create a topic
+    - title: Create the original topic
       content:
         - action: execute
           file: tutorial-steps/dev/create-topic.sh
           render:
             file: tutorials/changing-number-partitions/ksql/markup/dev/create-topic.adoc
 
-    - title: Describe the topic
+    - title: Describe the original topic
       content:
         - action: execute
-          file: tutorial-steps/dev/describe-topic.sh
+          file: tutorial-steps/dev/describe-original-topic.sh
           render:
-            file: tutorials/changing-number-partitions/ksql/markup/dev/describe-topic.adoc
+            file: tutorials/changing-number-partitions/ksql/markup/dev/describe-original-topic.adoc
 
     - title: Write the program interactively using the CLI
       content:
@@ -57,27 +57,19 @@ dev:
               render:
                 file: tutorials/changing-number-partitions/ksql/markup/dev/create-inputs.adoc
 
-            - file: tutorial-steps/dev/populate-stream.sql
+            - file: tutorial-steps/dev/create-inputs.sql
               render:
-                file: tutorials/changing-number-partitions/ksql/markup/dev/populate-stream.adoc
-
-            - file: tutorial-steps/dev/set-properties.sql
-              render:
-                file: tutorials/changing-number-partitions/ksql/markup/dev/set-properties.adoc
-
-            - file: tutorial-steps/dev/transient-query.sql
-              render:
-                file: tutorials/changing-number-partitions/ksql/markup/dev/transient-query.adoc
-
-            - file: tutorial-steps/dev/continuous-select.sql
-              render:
-                file: tutorials/changing-number-partitions/ksql/markup/dev/continuous-select.adoc
-
-            - file: tutorial-steps/dev/print-output-topic.sql
-              render:
-                file: tutorials/changing-number-partitions/ksql/markup/dev/print-topic.adoc
+                file: tutorials/changing-number-partitions/ksql/markup/dev/create-new-stream.adoc
           stdout:
             directory: tutorial-steps/dev/outputs
+
+    - title: Describe the new topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/describe-new-topic.sh
+          render:
+            file: tutorials/changing-number-partitions/ksql/markup/dev/describe-new-topic.adoc
+
 
     - title: Write your statements to a file
       content:

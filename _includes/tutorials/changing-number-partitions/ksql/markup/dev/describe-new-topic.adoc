@@ -1,0 +1,12 @@
+Describe the properties of the new topic underlying the ksqlDB stream you just created.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/changing-number-partitions/ksql/code/tutorial-steps/dev/describe-new-topic.sh %}</code></pre>
++++++
+
+The output should be the following. Notice that the topic has 8 partitions, numbered 0 thru 7.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/changing-number-partitions/ksql/code/tutorial-steps/dev/expected-output-describe-topic2.txt %}</code></pre>
++++++
+

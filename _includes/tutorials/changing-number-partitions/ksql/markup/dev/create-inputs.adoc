@@ -1,5 +1,5 @@
-First, you'll need to create a Kafka topic and stream to represent the publications. The following creates both in one shot:
+First, you'll need to create a ksqlDB stream for the original topic.
 
 +++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/changing-number-partitions/ksql/code/tutorial-steps/dev/create-inputs.sql %}</code></pre>
+<pre class="snippet"><code class="sql">{% include_raw tutorials/changing-number-partitions/ksql/code/tutorial-steps/dev/create-original-stream.sql %}</code></pre>
 +++++
