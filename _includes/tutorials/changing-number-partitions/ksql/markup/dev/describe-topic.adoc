@@ -1,0 +1,12 @@
+Describe the properties of the topic you just created.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/changing-number-partitions/ksql/code/tutorial-steps/dev/describe-topic.sh %}</code></pre>
++++++
+
+The output should be the following. Notice that the topic has 4 partitions, numbered 0 thru 3.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/changing-number-partitions/ksql/code/tutorial-steps/dev/expected-output-describe-topic1.txt %}</code></pre>
++++++
+

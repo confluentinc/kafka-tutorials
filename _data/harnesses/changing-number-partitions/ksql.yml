@@ -30,6 +30,20 @@ dev:
           render:
             skip: true
 
+    - title: Create a topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/create-topic.sh
+          render:
+            file: tutorials/changing-number-partitions/ksql/markup/dev/create-topic.adoc
+
+    - title: Describe the topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/describe-topic.sh
+          render:
+            file: tutorials/changing-number-partitions/ksql/markup/dev/describe-topic.adoc
+
     - title: Write the program interactively using the CLI
       content:
         - action: docker_ksql_cli_session
