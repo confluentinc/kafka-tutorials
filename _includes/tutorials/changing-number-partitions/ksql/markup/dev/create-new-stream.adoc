@@ -1,4 +1,4 @@
-Next, create a new ksqlDB stream, referencing a new target Kafka topic (that should not already exist) to back this new stream. This is where we specify the desired partition count for this new Kafka topic.
+Next, create a new ksqlDB stream, referencing a new target Kafka topic (that should not already exist). This is where we specify the desired partition count for the new Kafka topic.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/changing-number-partitions/ksql/code/tutorial-steps/dev/create-new-stream.sql %}</code></pre>
