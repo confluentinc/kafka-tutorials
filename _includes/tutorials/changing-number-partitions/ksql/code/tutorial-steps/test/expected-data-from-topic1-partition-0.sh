@@ -10,3 +10,4 @@ a,{"column1": "3"}
 b,{"column1": "3"}
 c,{"column1": "3"}
 d,{"column1": "3"}
+Processed a total of 12 messages

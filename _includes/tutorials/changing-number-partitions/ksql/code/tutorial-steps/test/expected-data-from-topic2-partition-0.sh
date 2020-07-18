@@ -7,3 +7,4 @@ c,{"COLUMN1":"2"}
 a,{"COLUMN1":"3"}
 b,{"COLUMN1":"3"}
 c,{"COLUMN1":"3"}
+Processed a total of 9 messages
