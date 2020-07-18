@@ -104,6 +104,7 @@ test:
     - title: View the data in the original topic (partition 0)
       content:
         - action: execute
+          file: tutorial-steps/test/harness-console-consumer-topic1-partition-0.sh
           stdout: tutorial-steps/test/outputs/actual-output-topic1-partition-0.txt
           render:
             file: tutorials/changing-number-partitions/ksql/markup/test/consume-data-topic1-partition-0.adoc
@@ -111,6 +112,7 @@ test:
     - title: View the data in the new topic (partition 0)
       content:
         - action: execute
+          file: tutorial-steps/test/harness-console-consumer-topic2-partition-0.sh
           stdout: tutorial-steps/test/outputs/actual-output-topic2-partition-0.txt
           render:
             file: tutorials/changing-number-partitions/ksql/markup/test/consume-data-topic2-partition-0.adoc
@@ -118,6 +120,7 @@ test:
     - title: View the data in the new topic (partition 1)
       content:
         - action: execute
+          file: tutorial-steps/test/harness-console-consumer-topic2-partition-1.sh
           stdout: tutorial-steps/test/outputs/actual-output-topic2-partition-1.txt
           render:
             file: tutorials/changing-number-partitions/ksql/markup/test/consume-data-topic2-partition-1.adoc
