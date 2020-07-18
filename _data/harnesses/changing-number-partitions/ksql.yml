@@ -67,9 +67,9 @@ dev:
       content:
         - action: execute
           file: tutorial-steps/dev/describe-new-topic.sh
+          stdout: tutorial-steps/dev/outputs/actual-describe-from-topic2.txt
           render:
             file: tutorials/changing-number-partitions/ksql/markup/dev/describe-new-topic.adoc
-
 
     - title: Write your statements to a file
       content:

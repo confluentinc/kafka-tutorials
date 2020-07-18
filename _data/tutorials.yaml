@@ -304,11 +304,11 @@ console-consumer-read-specific-offsets-partition:
     kafka: enabled
 
 changing-number-partitions:
-  title: "How to change the number of partitions in a Kafka topic"
-  meta-description: "How to change the number of partitions in a Kafka topic"
+  title: "How to change the number of partitions and replicas of a Kafka topic"
+  meta-description: "How to change the number of partitions and replicas of a Kafka topic"
   slug: "/changing-number-partitions"
-  problem: "You have an existing Kafka topic and want to have a Kafka topic with the same data but a different number of partitions"
-  introduction: "If you have a Kafka topic but want to change the number of partitions, you can't change the original topic because it's an immutable log. Instead, you can use a streaming transformation to automatically stream all the messages from the original topic into a new Kafka topic with the desired number of partitions."
+  problem: "You have an existing Kafka topic and want to have a Kafka topic with the same data but a different number of partitions and replicas"
+  introduction: "If you have a Kafka topic but want to change the number of partitions and replicas, you can use a streaming transformation to automatically stream all the messages from the original topic into a new Kafka topic with the desired number of partitions and replicas."
   status:
     ksql: enabled
     kstreams: disabled
