@@ -97,7 +97,7 @@ test:
 
         - name: wait for producer to write records
           action: sleep
-          ms: 10000
+          ms: 2000
           render:
             skip: true
 

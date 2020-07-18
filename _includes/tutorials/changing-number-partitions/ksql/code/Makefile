@@ -11,6 +11,6 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/changing-number-partitions/ksql.yml $(TEMP_DIR) $(SEQUENCE)
-	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/outputs/expected-output-topic1-partition-0.txt <(head -n 8 $(DEV_OUTPUTS_DIR)/actual-output-topic1-partition-0.txt)"
-	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/outputs/expected-output-topic2-partition-0.txt <(head -n 8 $(DEV_OUTPUTS_DIR)/actual-output-topic2-partition-0.txt)"
-	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/outputs/expected-output-topic2-partition-1.txt <(head -n 8 $(DEV_OUTPUTS_DIR)/actual-output-topic2-partition-1.txt)"
+	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/expected-data-topic1-partition-0.sh <(head -n 8 $(TEST_OUTPUTS_DIR)/actual-output-topic1-partition-0.txt)"
+	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/expected-data-topic2-partition-0.sh <(head -n 8 $(TEST_OUTPUTS_DIR)/actual-output-topic2-partition-0.txt)"
+	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/expected-data-topic2-partition-1.sh <(head -n 8 $(TEST_OUTPUTS_DIR)/actual-output-topic2-partition-1.txt)"
