@@ -307,8 +307,8 @@ changing-number-partitions:
   title: "How to change the number of partitions in a Kafka topic"
   meta-description: "How to change the number of partitions in a Kafka topic"
   slug: "/changing-number-partitions"
-  problem: "You have an existing Kafka topic and want to transform that topic to have a different number of partitions"
-  introduction: "If you have an existing Kafka topic with a certain number of partitions, you can copy all the data from that topic into a new Kafka topic with a different number of partitions. Because these are streaming transformations, the source Kafka topic gets streamed to the new topic with the desired number of partitions, and the target topic is kept in sync with every single message that subsequently arrives on the source topic."
+  problem: "You have an existing Kafka topic and want to have a Kafka topic with the same data but a different number of partitions"
+  introduction: "If you have a Kafka topic but want to change the number of partitions, you can't change the original topic because it's an immutable log. Instead, you can use a streaming transformation to automatically stream all the messages from the original topic into a new Kafka topic with the desired number of partitions."
   status:
     ksql: enabled
     kstreams: disabled
