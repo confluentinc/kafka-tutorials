@@ -90,6 +90,7 @@ test:
     - title: Produce the test data to the original topic
       content:
         - action: execute
+          file: tutorial-steps/test/harness-console-producer.sh
           stdin: test/input.txt
           render:
             file: tutorials/changing-number-partitions/ksql/markup/test/produce-data-input.adoc
