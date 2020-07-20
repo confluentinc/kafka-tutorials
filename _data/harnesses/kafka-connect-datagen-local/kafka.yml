@@ -76,4 +76,4 @@ prod:
         - action: execute
           file: tutorial-steps/dev/clean-up.sh
           render:
-            skip: true
+            file: tutorials/kafka-connect-datagen-local/kafka/markup/dev/clean-up.adoc
