@@ -1,5 +1,0 @@
-Your first step is to create the original topic. Use the following command to create the topic `topic1` with 1 partition:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/changing-number-partitions/ksql/code/tutorial-steps/dev/create-topic.sh %}</code></pre>
-+++++

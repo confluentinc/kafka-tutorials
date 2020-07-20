@@ -1,0 +1,5 @@
+Create a file at `test/input.txt` with input records that will be written to the original topic for testing. The records have the format `<key>,<value>`.
+
++++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/change-topic-partitions-replicas/ksql/code/test/input.txt %}</code></pre>
++++++
