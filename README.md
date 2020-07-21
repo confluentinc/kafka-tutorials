@@ -317,10 +317,10 @@ export COMPOSE_FILE=docker-compose.yml:<path to Kafka Tutorials>/tools/docker-co
 (cd _includes/tutorials/transforming/kstreams/code/ && make)
 ```
 
-3. Run-and-play: execute the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
+3. Run-and-play: execute the harness runner for a single tutorial by calling `make SEQUENCE='"dev, test"'`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE='"dev, test"')` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
-(cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")
+(cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE='"dev, test"')
 ```
 
 Now you can play with the environment, some sample commands shown below.
