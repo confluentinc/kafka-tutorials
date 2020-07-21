@@ -223,5 +223,7 @@ blocks:
         - name: Kafka Test Kafka Console Consumer Read Specific Offsets and Partitions tests
           commands:
             - make -C _includes/tutorials/console-consumer-read-specific-offsets-partition/kafka/code tutorial
-        
-        
+
+        - name: Kafka Test Connect Datagen Local
+          commands:
+            - make -C _includes/tutorials/kafka-connect-datagen-local/kafka/code tutorial
