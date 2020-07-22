@@ -6,7 +6,7 @@
 
 Your consumer application should have consumed all the records sent and written them out to a file.
 
-Run this command to print the results to the console:
+In a new terminal, run this command to print the results to the console:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-consumer-application/kafka/code/tutorial-steps/dev/print-consumer-file-results.sh %}</code></pre>

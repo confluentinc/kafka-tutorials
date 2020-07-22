@@ -25,7 +25,7 @@ public KafkaConsumerApplication(final Consumer<String, String> consumer,
 
 By using interfaces vs. concreate implentations you can more easily test the `KafkaConsumerApplication` class by swapping in a `MockConsumer` for the test.  We'll cover testing in an upcoming section.  Also, interfaces make it simple to change `ConsumerRecord` handling at run-time.
 
-In this tutorial you'll inject the dependencies in the `KafkaConsumerApplication.main()` method, but in practice you'll may use some depnendency injection code such as the  https://spring.io/projects/spring-framework[Spring Framework].
+In this tutorial you'll inject the dependencies in the `KafkaConsumerApplication.main()` method, but in practice you may want to use a dependency injection framework library, such as the  https://spring.io/projects/spring-framework[Spring Framework].
 
 
 Next, let's review the `KafkaConsumerApplication.runConsumer()` method, which provides the core functionality of this tutorial.

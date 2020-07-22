@@ -1,7 +1,7 @@
 
 In this step we're going to create a topic for use during this tutorial.
 
-But your first, you're going to open a shell on the docker broker contaniner.
+But first, you're going to open a shell on the broker docker container.
 
 Open a new terminal and window then run this command:
 +++++
