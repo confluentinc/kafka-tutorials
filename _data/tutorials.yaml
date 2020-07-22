@@ -376,3 +376,15 @@ streams-to-table:
     kstreams: enabled
     kafka: disabled
 
+kafka-producer-application:
+  title: "I NEED TO BE UPDATED"
+  meta-description: "I NEED TO BE UPDATED"
+  slug: "/creating-first-apache-kafka-producer-application"
+  problem: "I NEED TO BE UPDATED"
+  introduction: "I NEED TO BE UPDATED"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+
+
