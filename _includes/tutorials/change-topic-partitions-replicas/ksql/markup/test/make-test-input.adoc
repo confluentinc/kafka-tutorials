@@ -1,5 +1,9 @@
-Create a file at `test/input.txt` with input records that will be written to the original topic for testing. The records have the format `<key>,<value>`.
+The following represents a few records to be written to the original topic `topic1`.
+The records have the format `<key>,<value>`.
+Copy these records and paste them into the `kafka-console-producer` prompt that you started in the previous step.
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/change-topic-partitions-replicas/ksql/code/test/input.txt %}</code></pre>
 +++++
+
+Stop the producer by entering CTRL+C.

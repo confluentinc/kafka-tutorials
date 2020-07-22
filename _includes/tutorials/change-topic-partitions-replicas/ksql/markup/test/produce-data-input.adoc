@@ -4,6 +4,4 @@ To produce data into the original Kafka topic `topic1`, open another terminal wi
 <pre class="snippet"><code class="shell">{% include_raw tutorials/change-topic-partitions-replicas/ksql/code/test/produce-data-input.sh %}</code></pre>
 +++++
 
-The producer will start and wait for you to enter input.
-Copy and paste the contents of `test/input.txt`.
-Close the producer by entering CTRL+C.
+The producer will start and wait for you to enter input in the next step.

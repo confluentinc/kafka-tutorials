@@ -5,3 +5,5 @@ The result of `SELECT * FROM S1` causes every record from Kafka topic `topic1` (
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/change-topic-partitions-replicas/ksql/code/tutorial-steps/dev/create-new-stream.sql %}</code></pre>
 +++++
+
+Exit ksqlDB by typing `exit;`
