@@ -224,6 +224,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/console-consumer-read-specific-offsets-partition/kafka/code tutorial
 
+        - name: Kafka Test Connect Datagen Local
+          commands:
+            - make -C _includes/tutorials/kafka-connect-datagen-local/kafka/code tutorial
+            
         - name: ksqlDB Test Change number of partitions and replicas
           commands:
             - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
