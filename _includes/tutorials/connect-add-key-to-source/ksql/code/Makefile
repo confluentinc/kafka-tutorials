@@ -1,11 +1,12 @@
 STEPS_DIR := tutorial-steps
 DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
 TEMP_DIR := $(shell mktemp -d)
+SEQUENCE := "dev, test, prod"
 
 tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
-	harness-runner ../../../../../_data/harnesses/connect-add-key-to-source/ksql.yml $(TEMP_DIR)
+	harness-runner ../../../../../_data/harnesses/connect-add-key-to-source/ksql.yml $(TEMP_DIR) $(SEQUENCE)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/query-postgres_expected.log $(DEV_OUTPUTS_DIR)/query-postgres.log
 	# tr is used to replace - with spaces from the ksql CLI output, because the file being compared to is what is rendered in the tutorial
 	bash -c "diff --ignore-all-space --strip-trailing-cr <(cat $(STEPS_DIR)/dev/create-connector_expected.log|tr '-' ' ') $(DEV_OUTPUTS_DIR)/create-connector/output-0.log"
