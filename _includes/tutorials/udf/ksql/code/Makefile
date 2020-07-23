@@ -14,3 +14,4 @@ tutorial:
 	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-describe-function.log $(DEV_OUTPUTS_DIR)/describe-function/output-0.log"
 	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/dev/expected-print-stream.log) <(sort $(DEV_OUTPUTS_DIR)/transient-query/output-0.log)"
 	bash -c "diff --strip-trailing-cr <(sort <(cut -d ',' -f 2- $(STEPS_DIR)/dev/expected-print-topic.log)) <(sort <(cut -d ',' -f 2- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log))"
+	reset

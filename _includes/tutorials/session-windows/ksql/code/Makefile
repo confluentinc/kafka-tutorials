@@ -15,3 +15,4 @@ tutorial:
 	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/dev/expected-transient-query.log) <(sort $(DEV_OUTPUTS_DIR)/transient-query/*.log)"
 	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 2- $(STEPS_DIR)/dev/expected-print-topic.log) <(cut -d ',' -f 2- $(DEV_OUTPUTS_DIR)/print-topic/*.log)"
 	diff --strip-trailing-cr $(STEPS_DIR)/test/expected-results.log $(TEST_OUTPUTS_DIR)/test-results.log
+	reset

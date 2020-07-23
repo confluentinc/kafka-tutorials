@@ -15,3 +15,4 @@ tutorial:
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-outputs/negative-query.log $(DEV_OUTPUTS_DIR)/query-not-drama-fantasy/output-0.log
 	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 2- $(STEPS_DIR)/dev/expected-outputs/printed-topic.log) <(cut -d ',' -f 2- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log)"
 	diff --strip-trailing-cr $(STEPS_DIR)/test/expected-results.log $(TEST_OUTPUTS_DIR)/test-results.log
+	reset

@@ -7,3 +7,4 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/kafka-consumer-application/kafka.yml $(TEMP_DIR)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output.txt $(DEV_OUTPUTS_DIR)/actual-output.txt
+	reset
