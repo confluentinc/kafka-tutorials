@@ -142,7 +142,7 @@ There are some additional steps you'll need to take to complete the tutorial:
 1. Update the following entries in _data/tutorials.yaml file
     a. title
     b. meta-description
-    c. problem
+    c. question
     c. introduction
 
 You can find these fields by searching for my-tutorial-name in the _data/tutorials.yaml file.
@@ -197,9 +197,9 @@ It's still valuable to read through the next section to learn how all the tutori
 ## Description of tutorial parts
 
 
-#### 1. Describe the problem your tutorial solves
+#### 1. Describe the question your tutorial answers
 
-The first thing to do is articulate what problem your tutorial is meant to solve. Every tutorial contains a problem statement and an example scenario. Edit `_data/tutorials.yml` and add your entry. The top item in this file represents the _short name_ for your tutorial. For example, the tutorial for transforming events of a stream is _transforming_. You'll also notice a `status` attribute. You can `enable` as many stacks as you'd like to author for this tutorial, but we recommend starting with just one.
+The first thing to do is articulate what question your tutorial is meant to answer. Every tutorial contains a question and an example scenario. Edit `_data/tutorials.yml` and add your entry. The top item in this file represents the _short name_ for your tutorial. For example, the tutorial for transforming events of a stream is _transforming_. You'll also notice a `status` attribute. You can `enable` as many stacks as you'd like to author for this tutorial, but we recommend starting with just one.
 
 #### 2. Make the directory structure
 
