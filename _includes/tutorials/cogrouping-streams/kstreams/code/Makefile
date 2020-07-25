@@ -8,3 +8,4 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/cogrouping-streams/kstreams.yml $(TEMP_DIR) $(SEQUENCE)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output.json $(DEV_OUTPUTS_DIR)/actual-output.json
+	reset

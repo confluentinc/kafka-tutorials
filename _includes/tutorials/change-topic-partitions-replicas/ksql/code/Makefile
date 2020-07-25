@@ -15,3 +15,4 @@ tutorial:
 	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/expected-data-from-topic1-partition-0.sh $(TEST_OUTPUTS_DIR)/actual-output-topic1-partition-0.txt"
 	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/expected-data-from-topic2-partition-0.sh $(TEST_OUTPUTS_DIR)/actual-output-topic2-partition-0.txt"
 	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/expected-data-from-topic2-partition-1.sh $(TEST_OUTPUTS_DIR)/actual-output-topic2-partition-1.txt"
+	reset

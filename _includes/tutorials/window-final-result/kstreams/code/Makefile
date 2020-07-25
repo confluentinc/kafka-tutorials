@@ -8,3 +8,4 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/window-final-result/kstreams.yml $(TEMP_DIR) $(SEQUENCE)
 	bash -c 'diff --strip-trailing-cr <(cat $(STEPS_DIR)/dev/expected-count.txt) <(cat $(DEV_OUTPUTS_DIR)/actual-count.txt)'
+	reset

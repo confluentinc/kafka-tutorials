@@ -13,3 +13,4 @@ tutorial:
 	harness-runner ../../../../../_data/harnesses/serialization/ksql.yml $(TEMP_DIR) $(SEQUENCE)
 	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 2- $(STEPS_DIR)/dev/expected-print.log) <(cut -d ',' -f 2- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log)"
 	diff --strip-trailing-cr $(STEPS_DIR)/test/expected-results.log $(TEST_OUTPUTS_DIR)/test-results.log
+	reset

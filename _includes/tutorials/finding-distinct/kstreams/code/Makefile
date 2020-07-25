@@ -20,3 +20,4 @@ tutorial:
 	make --no-print-directory create-outputs-dir
 	make --no-print-directory run-harness
 	make --no-print-directory diff
+	reset

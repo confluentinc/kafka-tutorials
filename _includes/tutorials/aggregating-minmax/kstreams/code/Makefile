@@ -8,3 +8,4 @@ tutorial:
 	mkdir -p $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/aggregating-minmax/kstreams.yml $(TEMP_DIR) $(SEQUENCE)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output-events.json $(DEV_OUTPUTS_DIR)/actual-output-events.json
+	reset

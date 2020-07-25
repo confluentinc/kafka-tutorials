@@ -8,3 +8,4 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/tumbling-windows/kstreams.yml $(TEMP_DIR) $(SEQUENCE)
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/windowed-counted-ratings.txt $(DEV_OUTPUTS_DIR)/windowed-ratings-actual.txt
+	reset

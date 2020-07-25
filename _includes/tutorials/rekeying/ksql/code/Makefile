@@ -14,3 +14,4 @@ tutorial:
 	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/dev/expected-key-query.log) <(sort $(DEV_OUTPUTS_DIR)/key-query/output-0.log)"
 	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/dev/expected-query-rekeyed-stream.log) <(sort $(DEV_OUTPUTS_DIR)/query-rekeyed-stream/output-0.log)"
 	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 2- $(STEPS_DIR)/dev/expected-print.log|sort) <(cut -d ',' -f 2- $(DEV_OUTPUTS_DIR)/print-output-topic/output-0.log|sort)"
+	reset
