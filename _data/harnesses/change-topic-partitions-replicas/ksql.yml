@@ -139,3 +139,11 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/clean-up.adoc
+
+ccloud:
+  steps:
+    - title: Run your app in Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/change-topic-partitions-replicas/ksql/markup/ccloud/try-ccloud.adoc

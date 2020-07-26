@@ -112,6 +112,14 @@
                 {% endfor %}
               </ul>
             {% endif %}
+            {% if site.data.harnesses[page.static_data][page.stack].ccloud %}
+              <li><a href="#deploy-on-confluent-cloud">Deploy on Confluent Cloud</a></li>
+              <ul>
+                {% for step in site.data.harnesses[page.static_data][page.stack].ccloud.steps %}
+                <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+                {% endfor %}
+              </ul>
+            {% endif %}
           </ul>
         </div>
         <div class="column is-7 tutorial-media-container">
