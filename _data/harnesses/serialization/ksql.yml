@@ -106,4 +106,4 @@ prod:
       content:
         - action: skip
           render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/prod/try-ccloud.adoc
+            file: shared/markup/prod/try-ccloud.adoc
