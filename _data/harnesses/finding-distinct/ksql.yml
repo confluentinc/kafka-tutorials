@@ -51,6 +51,10 @@ dev:
               render:
                 file: tutorials/finding-distinct/ksql/markup/dev/set-properties.adoc
 
+            - file: tutorial-steps/dev/set-properties2.sql
+              render:
+                file: tutorials/finding-distinct/ksql/markup/dev/set-properties2.adoc
+
             - file: tutorial-steps/dev/transient-window.sql
               render:
                 file: tutorials/finding-distinct/ksql/markup/dev/transient-window.adoc
