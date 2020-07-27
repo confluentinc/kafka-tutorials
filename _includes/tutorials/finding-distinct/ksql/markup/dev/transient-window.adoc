@@ -1,4 +1,8 @@
-Let's experiment with these events. We need to create a query capable of displaying only distinct events, which means that duplicate IP addresses should be filtered out. Events are de-duped within a 2 minute window, and only unique clicks will be shown on that window. We are going to use the `LIMIT` keyword to limit the amount of records shown in the output. If you want to experiment with this query and assess if it is displaying the correct results, go ahead and remove the limit keyword.
+Let's experiment with these events. We need to create a query capable of displaying only distinct events, which means that duplicate IP addresses should be filtered out. Events are de-duped within a 2-minute window, and only unique clicks will be shown on that window.
+
+In the `docker-compose.yml` file above, note the configuration `KSQL_CACHE_MAX_BYTES_BUFFERING: 0` in the `ksql-server` entry. This setting affects the frequency of output for tables, and the value of `0` instructs ksqlDB to emit each matching record as soon as it is processed. Without this configuration, some records could appear to be "missed" due to the default batching behavior.
+
+We are going to use the `LIMIT` keyword to limit the amount of records shown in the output. If you want to experiment with this query and assess if it is displaying the correct results, go ahead and remove the limit keyword.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/ksql/code/tutorial-steps/dev/transient-window.sql %}</code></pre>
