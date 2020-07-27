@@ -105,37 +105,4 @@
     </div>
   </section>
   {% endif %}
-
-  {% if site.data.harnesses[page.static_data][page.stack].ccloud %}
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-        <div class="column is-full">
-          <h2 class="title tutorial-section-title" id="deploy-on-confluent-cloud">Deploy on Confluent Cloud</h2>
-          {% for step in site.data.harnesses[page.static_data][page.stack].ccloud.steps %}
-
-          <div class="tutorial-try-it-step">
-            <h4 class="subtitle" id="{{ step.title | slugify }}">
-              <div class="num">{{ forloop.index }}</div>
-              <div class="text">{{ step.title }}</div>
-            </h4>
-
-            {% for section in step.content %}
-
-            {% if section.render.skip != true %}
-
-            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
-            {{ prose | asciidocify }}
-
-            {% endif %}
-
-            {% endfor %}
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
 </div>

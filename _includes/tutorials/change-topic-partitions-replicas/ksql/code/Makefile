@@ -3,7 +3,7 @@ DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
 TEST_OUTPUTS_DIR := $(STEPS_DIR)/test/outputs
 PROD_OUTPUTS_DIR := $(STEPS_DIR)/prod/outputs
 TEMP_DIR := $(shell mktemp -d)
-SEQUENCE := "dev, test, prod, ccloud"
+SEQUENCE := "dev, test, prod"
 
 tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true

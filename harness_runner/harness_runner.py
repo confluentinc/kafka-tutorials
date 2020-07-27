@@ -131,7 +131,7 @@ def run_steps(harness, temp_dir, sequence):
             kill_async_process(proc)
         time.sleep(5)
 
-def execute(file_name, temp_dir, sequence="dev, test, prod, ccloud"):
+def execute(file_name, temp_dir, sequence="dev, test, prod"):
     harness = load_file(file_name)
     seq = split_sequence(sequence)
     run_steps(harness, temp_dir, seq)
