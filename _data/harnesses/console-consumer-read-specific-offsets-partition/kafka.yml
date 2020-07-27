@@ -88,8 +88,10 @@ dev:
         render:
           file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/clean-up.adoc
 
-
-
-
-
-
+prod:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/change-topic-partitions-replicas/ksql/markup/prod/try-ccloud.adoc

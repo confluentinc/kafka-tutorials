@@ -77,3 +77,9 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             file: tutorials/kafka-connect-datagen-local/kafka/markup/dev/clean-up.adoc
+
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/change-topic-partitions-replicas/ksql/markup/prod/try-ccloud.adoc
