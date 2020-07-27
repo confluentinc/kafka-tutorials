@@ -140,7 +140,7 @@ prod:
           render:
             file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/clean-up.adoc
 
-    - title: Run your app in Confluent Cloud
+    - title: Run your app to Confluent Cloud
       content:
         - action: skip
           render:

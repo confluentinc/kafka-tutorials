@@ -1,4 +1,8 @@
-Run your application on https://confluent.cloud[Confluent Cloud], a fully-managed Apache Kafka service.
-From the Confluent Cloud UI, click on `Tools & client config` to get the appropriate client configurations for your application, e.g. Kafka cluster bootstrap servers and credentials, Confluent Cloud Schema Registry and credentials, etc.
+Run your application backed to a Kafka cluster in https://confluent.cloud[Confluent Cloud], a fully-managed Apache Kafka service.
 
-Use the Confluent Cloud promo code `C50INTEG` to receive an additional $50 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+First, create your cluster in Confluent Cloud.
+Use the promo code `C50INTEG` to receive an additional $50 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+
+Next, from the Confluent Cloud UI, click on `Tools & client config` to get the appropriate client configurations, e.g. Kafka cluster bootstrap servers and credentials, Confluent Cloud Schema Registry and credentials, etc., and set them in your client application.
+
+Now you're all set to your run application locally while your Kafka topics and stream processing is backed to your Confluent Cloud instance.
