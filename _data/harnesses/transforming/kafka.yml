@@ -179,6 +179,8 @@ prod:
           render:
             skip: true
 
+ccloud:
+  steps:
     - title: Run your app to Confluent Cloud
       content:
         - action: skip
