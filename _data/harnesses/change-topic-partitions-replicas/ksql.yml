@@ -140,8 +140,10 @@ prod:
           render:
             file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/clean-up.adoc
 
+ccloud:
+  steps:
     - title: Run your app to Confluent Cloud
       content:
         - action: skip
           render:
-            file: shared/markup/prod/try-ccloud.adoc
+            file: shared/markup/ccloud/try-ccloud.adoc
