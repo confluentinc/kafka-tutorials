@@ -260,7 +260,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/streams-to-table/kstreams/code tutorial
             
-        - name: KStreams Test Kafka Producer Application tests
+        - name: Kafka Producer Application tests
           commands:
             - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
 
