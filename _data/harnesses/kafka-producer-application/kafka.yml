@@ -68,9 +68,9 @@ dev:
     - title: Create data to produce to Kafka
       content:
         - action: make_file
-          file: tutorial-steps/dev/input.txt
+          file: input.txt
           render:
-            file: tutorials/kafka-producer-application/kafka/markup/dev/run-producer.adoc        
+            file: tutorials/kafka-producer-application/kafka/markup/dev/create-data-file.adoc        
 
     - title: Compile and run the KafkaProducer application
       content:
@@ -81,14 +81,14 @@ dev:
 
         - action: execute
           file: tutorial-steps/dev/run-dev-app.sh
-          stdin: tutorial-steps/dev/input-harness.txt
+          stdin: tutorial-steps/dev/input-harness-filename.txt
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/run-dev-app.adoc
 
     - title: Confirm records sent by consuming from topic
       content:
         - action: execute_async
-          file: tutorial-steps/dev/console-consumer.sh
+          file: tutorial-steps/dev/harness-console-consumer.sh
           stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/run-consumer.adoc
@@ -118,7 +118,7 @@ test:
         - action: make_file
           file: src/test/java/io/confluent/developer/KafkaProducerApplicationTest.java
           render:
-            file: tutorials/kafka-producer-application/kafka/markup/test/make-topology-test.adoc
+            file: tutorials/kafka-producer-application/kafka/markup/test/make-application-test.adoc
 
     - title: Invoke the tests
       content:
@@ -153,4 +153,14 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
+
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc
+
 

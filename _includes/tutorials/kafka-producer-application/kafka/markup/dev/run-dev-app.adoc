@@ -16,3 +16,34 @@ Copy and paste the following to publish the records from the file you created in
 ----
 input.txt
 ----
+
+
+After you hit the enter key you should see something like this on the console:
+
+[source, text]
+----
+Offsets and timestamps committed in batch from input.txt
+Offset 0 timestamp 1596134973737
+Offset 1 timestamp 1596134973747
+Offset 2 timestamp 1596134973747
+Offset 3 timestamp 1596134973747
+Offset 4 timestamp 1596134973747
+Offset 5 timestamp 1596134973747
+Offset 6 timestamp 1596134973748
+Offset 7 timestamp 1596134973748
+Offset 8 timestamp 1596134973750
+Offset 9 timestamp 1596134973750
+Offset 10 timestamp 1596134973750
+Enter the file path to publish records >
+----
+
+Now you can experiment some by creating your own file in base directory and submit the file name at the command prompt.
+
+Remember any data before the `#` is the key and data after is the value.
+When you are done, whether you do any additional work or not, enter "quit" at the command promp to shut the application down.
+
+
+[source, text]
+----
+quit
+----

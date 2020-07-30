@@ -31,8 +31,14 @@ public class KafkaProducerApplication {
 
   public Future<RecordMetadata> produce(final String message) {
     final String[] parts = message.split("#");
-    final String key = parts[0];
-    final String value = parts[1];
+    final String key, value;
+    if (parts.length > 1) {
+      key = parts[0];
+      value = parts[1];
+    } else {
+      key = "NO-KEY";
+      value = parts[0];
+    }
     final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(outTopic, key, value);
     return producer.send(producerRecord);
   }
@@ -50,8 +56,9 @@ public class KafkaProducerApplication {
     return envProps;
   }
 
-  public void printMetadata(Collection<Future<RecordMetadata>> metadata) {
-    System.out.println("Offsets and timestamps committed in batch");
+  public void printMetadata(final Collection<Future<RecordMetadata>> metadata,
+                            final String fileName) {
+    System.out.println("Offsets and timestamps committed in batch from " + fileName);
          metadata.forEach(m -> {
            try {
              final RecordMetadata recordMetadata = m.get();
@@ -84,9 +91,12 @@ public class KafkaProducerApplication {
       filePath = stdinReader.readLine();
       while (filePath != null && !filePath.equalsIgnoreCase("quit")) {
         try {
-          List<String> linesToProduce = Files.readAllLines(Paths.get(filePath));;
-          List<Future<RecordMetadata>> metadata = linesToProduce.stream().map(producerApp::produce).collect(Collectors.toList());
-          producerApp.printMetadata(metadata);
+          List<String> linesToProduce = Files.readAllLines(Paths.get(filePath));
+          List<Future<RecordMetadata>> metadata = linesToProduce.stream()
+                                                                .filter(l -> !l.trim().isEmpty())
+                                                                .map(producerApp::produce)
+                                                                .collect(Collectors.toList());
+          producerApp.printMetadata(metadata, filePath);
           System.out.println("Enter the file path to publish records > ");
           filePath = stdinReader.readLine();
         } catch (IOException e) {
