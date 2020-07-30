@@ -1,20 +1,17 @@
 package io.confluent.developer;
 
-import static org.junit.Assert.assertEquals;
 
-import io.confluent.developer.avro.Example;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertThat;
+
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
-import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.Serde;
-import org.apache.kafka.common.serialization.Serializer;
-import org.apache.kafka.streams.TestInputTopic;
-import org.apache.kafka.streams.TestOutputTopic;
-import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.TopologyTestDriver;
+import java.util.stream.Collectors;
+import org.apache.kafka.clients.producer.MockProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.streams.KeyValue;
 import org.junit.Test;
 
 
@@ -23,48 +20,24 @@ public class KafkaProducerApplicationTest {
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
     @Test
-    public void exampleTest() throws IOException {
-        final KafkaProducerApplication instance = new KafkaProducerApplication();
-        final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
+    public void testProduce() throws IOException {
+        final MockProducer<String, String> mockProducer = new MockProducer<>();
+        final Properties props = KafkaProducerApplication.loadProperties(TEST_CONFIG_FILE);
+        final String topic = props.getProperty("output.topic.name");
+        final KafkaProducerApplication producerApp = new KafkaProducerApplication(mockProducer, topic);
+        final List<String> records = Arrays.asList("foo#bar", "bar#foo", "baz#bar");
 
-        final Properties streamProps = instance.buildStreamsProperties(envProps);
+        records.forEach(producerApp::produce);
 
-        final String exampleInputTopic = envProps.getProperty("input.topic.name");
-        final String exampleOutputTopic = envProps.getProperty("output.topic.name");
-      
-        final Topology topology = instance.buildTopology(envProps);
-        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
+        final List<KeyValue<String, String>> expectedList = Arrays.asList(KeyValue.pair("foo", "bar"), KeyValue.pair("bar", "foo"), KeyValue.pair("baz", "bar"));
+        final List<KeyValue<String, String>> actualList = mockProducer.history().stream().map(this::toKeyValue).collect(Collectors.toList());
 
-            final Serde<Long> longAvroSerde = KafkaProducerApplication.<Long>getPrimitiveAvroSerde(envProps, true);
-            final SpecificAvroSerde<Example> exampleAvroSerde = KafkaProducerApplication.<Example>getSpecificAvroSerde(envProps);
-
-            final Serializer<Long> keySerializer = longAvroSerde.serializer();
-            final Deserializer<Long> keyDeserializer = longAvroSerde.deserializer();
-            final Serializer<Example> exampleSerializer = exampleAvroSerde.serializer();
-            final Deserializer<Example> exampleDeserializer = exampleAvroSerde.deserializer();
-
-            final TestInputTopic<Long, Example>  inputTopic = testDriver.createInputTopic(exampleInputTopic, keySerializer, exampleSerializer);
-            final TestOutputTopic<Long, Example> outputTopic = testDriver.createOutputTopic(exampleOutputTopic, keyDeserializer, exampleDeserializer);
+        assertThat(actualList, equalTo(expectedList));
+        producerApp.shutdown();
+    }
 
 
-            final List<Example> examples = new ArrayList<>();
-            examples.add(Example.newBuilder().setId(5L).setName("foo").build());
-            examples.add(Example.newBuilder().setId(6L).setName("bar").build());
-            examples.add(Example.newBuilder().setId(7L).setName("baz").build());
-
-             final List<Example> expectedExamples = new ArrayList<>();
-            expectedExamples.add(Example.newBuilder().setId(5L).setName("Hello foo").build());
-            expectedExamples.add(Example.newBuilder().setId(6L).setName("Hello bar").build());
-            expectedExamples.add(Example.newBuilder().setId(7L).setName("Hello baz").build());
-
-
-            for (final Example example : examples) {
-                inputTopic.pipeInput(example.getId(), example);
-            }
-
-            final List<Example> actualExampleResults = outputTopic.readValuesToList();
-
-            assertEquals(expectedExamples, actualExampleResults);
-        }
+    private KeyValue<String, String> toKeyValue(final ProducerRecord<String, String> producerRecord) {
+        return KeyValue.pair(producerRecord.key(), producerRecord.value());
     }
 }

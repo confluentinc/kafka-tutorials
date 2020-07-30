@@ -1,5 +1,18 @@
-Now that you have an uberjar for the Kafka Streams application, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it. There is always another message to process, so streaming applications don't exit until you force them.
-
+Now that you have an uberjar for the KafkaProducerApplication, you can launch it locally.
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
 +++++
+
+After you run the previous command, you will see a prompt asking you to provide the name of file that the KafkaProducerApplication will process and publish records to Kafka.  It should look like this:
+
+[source, text]
+----
+  Enter the file path to publish records >
+----
+
+Copy and paste the following to publish the records from the file you created in the previous step:
+
+[source, text]
+----
+input.txt
+----

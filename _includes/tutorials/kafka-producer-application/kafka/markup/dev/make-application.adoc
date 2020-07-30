@@ -1,0 +1,64 @@
+////
+In this file you describe the Kafka streams topology, and should cover the main points of the tutorial.
+The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
+////
+Before you create your application file, let's look at some of the key points of this program:
+
+[source, java]
+.KafkaProducerApplication constructor
+----
+
+public class KafkaProducerApplication {
+
+  private final Producer<String, String> producer;
+  final String outTopic;
+
+  public KafkaProducerApplication(final Producer<String, String> producer,  <1>
+                                  final String topic) {                     <2>
+    this.producer = producer;
+    outTopic = topic;
+  }
+
+----
+
+<1> Passing in the `Producer` instance as a constructor parameter.
+<2> The topic to write records to
+
+
+In this tutorial you'll inject the dependencies in the `KafkaProducerApplication.main()` method, but in practice you may want to use a dependency injection framework library, such as the  https://spring.io/projects/spring-framework[Spring Framework].
+
+Having this thin wrapper class around a `Producer` is not required.  But it does help with making our code easier to test.  We'll go into more details in the testing section of the tutorial.
+
+
+Next let's take a look at the `KafkaProducerApplication.produce` method
+[source, java]
+.KafkaProducerApplication.produce
+----
+public Future<RecordMetadata> produce(final String message) {
+    final String[] parts = message.split("#");  <1>
+    final String key = parts[0];
+    final String value = parts[1];
+    final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(outTopic, key, value);  <2>
+    return producer.send(producerRecord);                 <3>
+  }
+
+----
+
+<1> Processing the String for sending message
+<2> Creating the `ProducerRecord`
+<3> Sending the record to the broker
+
+The `KafkaProducerApplication.produce` method does some processing on a `String` then sends the https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.  Again by having the processing encapsulated in a method we can easily test this code.
+
+Notice that https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html#send-org.apache.kafka.clients.producer.ProducerRecord-[`KafkaProducer.send`] returns a https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Future.html[Future] with a type of https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/RecordMetadata.html[RecordMetadata].
+
+The `KafkaProducer.send` method is asynchronous and returns as soon as the provided record is placed in the buffer of records to be sent to the broker. The `RecordMetadata` contains metadata about a particular record after it has been acknowledged.  This tutorial prints the `timestamp` and `offset` for each record sent using the `RecordMetadata` object.  You should note that calling `Future.get()` for any record will block until the produce request completes.
+
+
+Now go ahead and create the following file at `src/main/java/io/confluent/developer/KafkaProducerApplication.java`.
+
+// Full topology description goes here
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/kafka-producer-application/kafka/code/src/main/java/io/confluent/developer/KafkaProducerApplication.java %}</code></pre>
++++++

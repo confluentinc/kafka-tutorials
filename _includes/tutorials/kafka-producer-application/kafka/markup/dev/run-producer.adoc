@@ -8,16 +8,9 @@
 
 ////
 
-In a new terminal, run:
+In a new terminal create the following file `input.txt` in the base directory of the tutorial.  The numbers before the `#` will be the key and the part after will be the value.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/dev/console-producer.sh %}</code></pre>
+<pre class="snippet"><code class="json">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/dev/input.txt %}</code></pre>
 +++++
 
-When the console producer starts, it will log some messages and hang, waiting for your input. Copy and paste one line at a time and press enter to send it. Note that these lines contain hard tabs between the key and the value, so retyping them without the tab will not work.
-
-Each line represents input data for the Kafka Streams application.  To send all of the events below, paste the following into the prompt and press enter:
-
-+++++
-<pre class="snippet"><code class="json">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/dev/example-input.json %}</code></pre>
-+++++

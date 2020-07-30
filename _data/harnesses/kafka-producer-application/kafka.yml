@@ -24,6 +24,13 @@ dev:
           render:
             skip: true
 
+    - title: Create a topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/harness-create-topic.sh
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/dev/create-topic.adoc
+
     - title: Configure the project
       content:
         - action: make_file
@@ -46,7 +53,7 @@ dev:
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/make-dev-file.adoc
 
-    - title: Create the Kafka Producer application
+    - title: Create the KafkaProducer application
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
@@ -56,33 +63,33 @@ dev:
         - action: make_file
           file: src/main/java/io/confluent/developer/KafkaProducerApplication.java
           render:
-            file: tutorials/kafka-producer-application/kafka/markup/dev/make-topology.adoc 
+            file: tutorials/kafka-producer-application/kafka/markup/dev/make-application.adoc 
 
-    - title: Compile and run the Kafka Proucer application
+    - title: Create data to produce to Kafka
+      content:
+        - action: make_file
+          file: tutorial-steps/dev/input.txt
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/dev/run-producer.adoc        
+
+    - title: Compile and run the KafkaProducer application
       content:
         - action: execute
           file: tutorial-steps/dev/build-uberjar.sh
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/build-uberjar.adoc
 
-        - action: execute_async
+        - action: execute
           file: tutorial-steps/dev/run-dev-app.sh
+          stdin: tutorial-steps/dev/input-harness.txt
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/run-dev-app.adoc
 
-    - title: Produce sample data to the input topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/example-input.json
-          render:
-            file: tutorials/kafka-producer-application/kafka/markup/dev/run-producer.adoc
-
-    - title: Consume data from the output topic
+    - title: Confirm records sent by consuming from topic
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.json
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/run-consumer.adoc
 
