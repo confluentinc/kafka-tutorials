@@ -1,29 +1,26 @@
 package io.confluent.developer;
 
-import org.apache.avro.Schema;
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
-import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
-import org.apache.kafka.streams.test.ConsumerRecordFactory;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 import io.confluent.developer.avro.TicketSale;
-import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient;
-import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
 import static java.util.Arrays.asList;
@@ -31,19 +28,10 @@ import static java.util.Arrays.asList;
 public class AggregatingSumTest {
 
   private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+  private TopologyTestDriver testDriver;
 
-  private SpecificAvroSerde<TicketSale> makeSerializer(Properties envProps)
-      throws IOException, RestClientException {
-
-    final MockSchemaRegistryClient client = new MockSchemaRegistryClient();
-    String inputTopic = envProps.getProperty("input.topic.name");
-    String outputTopic = envProps.getProperty("output.topic.name");
-
-    final Schema schema = TicketSale.SCHEMA$;
-    client.register(inputTopic + "-value", schema);
-    client.register(outputTopic + "-value", schema);
-
-    SpecificAvroSerde<TicketSale> serde = new SpecificAvroSerde<>(client);
+  private SpecificAvroSerde<TicketSale> makeSerializer(Properties envProps) {
+    SpecificAvroSerde<TicketSale> serde = new SpecificAvroSerde<>();
 
     Map<String, String> config = new HashMap<>();
     config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
@@ -53,16 +41,10 @@ public class AggregatingSumTest {
   }
 
   @Test
-  public void shouldSumTicketSales() throws IOException, RestClientException {
+  public void shouldSumTicketSales() throws IOException {
     AggregatingSum aggSum = new AggregatingSum();
     Properties envProps = aggSum.loadEnvProperties(TEST_CONFIG_FILE);
     Properties streamProps = aggSum.buildStreamsProperties(envProps);
-
-    // workaround https://stackoverflow.com/a/50933452/27563
-    final String tempDirectory = Files.createTempDirectory("kafka-streams")
-        .toAbsolutePath()
-        .toString();
-    streamProps.setProperty(StreamsConfig.STATE_DIR_CONFIG, tempDirectory);
 
     String inputTopic = envProps.getProperty("input.topic.name");
     String outputTopic = envProps.getProperty("output.topic.name");
@@ -70,15 +52,15 @@ public class AggregatingSumTest {
     final SpecificAvroSerde<TicketSale> ticketSaleSpecificAvroSerde = makeSerializer(envProps);
 
     Topology topology = aggSum.buildTopology(envProps, ticketSaleSpecificAvroSerde);
-    TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
+    testDriver = new TopologyTestDriver(topology, streamProps);
 
     Serializer<String> keySerializer = Serdes.String().serializer();
     Deserializer<String> keyDeserializer = Serdes.String().deserializer();
 
-    ConsumerRecordFactory<String, TicketSale>
-        inputFactory =
-        new ConsumerRecordFactory<>(keySerializer, ticketSaleSpecificAvroSerde.serializer());
-
+    final TestInputTopic<String, TicketSale>
+        testDriverInputTopic =
+        testDriver.createInputTopic(inputTopic, keySerializer, ticketSaleSpecificAvroSerde.serializer());
+    
     final List<TicketSale>
         input = asList(
                   new TicketSale("Die Hard", "2019-07-18T10:00:00Z", 12),
@@ -92,28 +74,29 @@ public class AggregatingSumTest {
                   new TicketSale("The Godfather", "2019-07-18T11:40:09Z", 18)
                 );
 
-    List<Integer> expectedOutput = new ArrayList<Integer>(Arrays.asList(12, 24, 12, 48, 30, 12, 24, 66, 84));
+    List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(12, 24, 12, 48, 30, 12, 24, 66, 84));
 
     for (TicketSale ticketSale : input) {
-      testDriver.pipeInput(inputFactory.create(inputTopic, "", ticketSale));
+      testDriverInputTopic.pipeInput("", ticketSale);
     }
 
-    List<Integer> actualOutput = new ArrayList<>();
-    while (true) {
-      ProducerRecord<String, Integer>
-          record =
-          testDriver.readOutput(outputTopic, keyDeserializer, Serdes.Integer().deserializer());
-
-      if (record != null) {
-        actualOutput.add(record.value());
-      } else {
-        break;
-      }
-    }
-
+    List<Integer> actualOutput =
+        testDriver
+            .createOutputTopic(outputTopic, keyDeserializer, Serdes.Integer().deserializer())
+            .readKeyValuesToList()
+            .stream()
+            .filter(Objects::nonNull)
+            .map(record -> record.value)
+            .collect(Collectors.toList());
+    
     System.out.println(actualOutput);
     Assert.assertEquals(expectedOutput, actualOutput);
 
+  }
+
+  @After
+  public void cleanup() {
+    testDriver.close();
   }
 
 }
