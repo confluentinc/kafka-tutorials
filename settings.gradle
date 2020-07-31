@@ -1,3 +1,14 @@
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+    jcenter()
+    maven {
+      name "JCenter Gradle Plugins"
+      url  "https://dl.bintray.com/gradle/gradle-plugins"
+    }
+  }
+}
+
 rootProject.name = 'kafka-tutorials'
 
 import static groovy.io.FileType.DIRECTORIES
@@ -7,7 +18,7 @@ def getProjectName(String dir) {
   return (dir - (rootDir.toString() + "/")).replaceAll("/", ":")
 }
 
-def skipDirs = ~/^(templates|window-final-result|build|…*|src|out)/
+def skipDirs = ~/^(templates|build|…*|src|out)/
 
 def preDir = {
   if (skipDirs.matcher(it.name).matches()) {
