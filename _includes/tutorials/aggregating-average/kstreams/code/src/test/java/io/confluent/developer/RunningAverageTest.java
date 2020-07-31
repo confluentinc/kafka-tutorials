@@ -55,7 +55,7 @@ public class RunningAverageTest {
     final Properties mockProps = new Properties();
     mockProps.put("application.id", "kafka-movies-test");
     mockProps.put("bootstrap.servers", "DUMMY_KAFKA_CONFLUENT_CLOUD_9092");
-    mockProps.put("schema.registry.url", "DUMMY_SR_CONFLUENT_CLOUD_8080");
+    mockProps.put("schema.registry.url", "mock://DUMMY_SR_CONFLUENT_CLOUD_8080");
     mockProps.put("default.topic.replication.factor", "1");
     mockProps.put("offset.reset.policy", "latest");
     mockProps.put("specific.avro.reader", true);
@@ -64,13 +64,7 @@ public class RunningAverageTest {
     final Properties streamsConfig = streamsApp.buildStreamsProperties(mockProps);
 
     StreamsBuilder builder = new StreamsBuilder();
-
-    // workaround https://stackoverflow.com/a/50933452/27563
-    final String tempDirectory = Files.createTempDirectory("kafka-streams")
-        .toAbsolutePath()
-        .toString();
-    streamsConfig.setProperty(StreamsConfig.STATE_DIR_CONFIG, tempDirectory);
-
+    
     final Map<String, String> mockSerdeConfig = RunningAverage.getSerdeConfig(streamsConfig);
 
     SpecificAvroSerde<CountAndSum> countAndSumSerde = new SpecificAvroSerde<>(new MockSchemaRegistryClient());

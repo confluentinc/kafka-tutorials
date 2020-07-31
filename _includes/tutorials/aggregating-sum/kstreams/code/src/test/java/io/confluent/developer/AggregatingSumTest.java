@@ -5,6 +5,7 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
 import org.apache.kafka.streams.test.ConsumerRecordFactory;
@@ -12,6 +13,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -55,6 +57,12 @@ public class AggregatingSumTest {
     AggregatingSum aggSum = new AggregatingSum();
     Properties envProps = aggSum.loadEnvProperties(TEST_CONFIG_FILE);
     Properties streamProps = aggSum.buildStreamsProperties(envProps);
+
+    // workaround https://stackoverflow.com/a/50933452/27563
+    final String tempDirectory = Files.createTempDirectory("kafka-streams")
+        .toAbsolutePath()
+        .toString();
+    streamProps.setProperty(StreamsConfig.STATE_DIR_CONFIG, tempDirectory);
 
     String inputTopic = envProps.getProperty("input.topic.name");
     String outputTopic = envProps.getProperty("output.topic.name");

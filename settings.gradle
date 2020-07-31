@@ -1,0 +1,25 @@
+rootProject.name = 'kafka-tutorials'
+
+import static groovy.io.FileType.DIRECTORIES
+import static groovy.io.FileVisitResult.SKIP_SUBTREE
+
+def getProjectName(String dir) {
+  return (dir - (rootDir.toString() + "/")).replaceAll("/", ":")
+}
+
+def skipDirs = ~/^(templates|window-final-result|build|…*|src|out)/
+
+def preDir = {
+  if (skipDirs.matcher(it.name).matches()) {
+    return SKIP_SUBTREE
+  }
+}
+
+rootDir.traverse(
+    type: DIRECTORIES,
+    preDir: preDir
+) { dir ->
+  if (new File(dir, "build.gradle").exists()) {
+    include getProjectName(dir.toString())
+  }
+}

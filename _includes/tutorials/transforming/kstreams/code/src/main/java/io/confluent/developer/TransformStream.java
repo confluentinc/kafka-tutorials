@@ -1,20 +1,30 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.Movie;
-import io.confluent.developer.avro.RawMovie;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.*;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
+import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Produced;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
+
+import io.confluent.developer.avro.Movie;
+import io.confluent.developer.avro.RawMovie;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 
 public class TransformStream {
 
@@ -25,7 +35,7 @@ public class TransformStream {
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
     }
@@ -36,7 +46,7 @@ public class TransformStream {
 
         KStream<String, RawMovie> rawMovies = builder.stream(inputTopic);
         KStream<Long, Movie> movies = rawMovies.map((key, rawMovie) ->
-                new KeyValue<Long, Movie>(rawMovie.getId(), convertRawMovie(rawMovie)));
+                                                        new KeyValue<>(rawMovie.getId(), convertRawMovie(rawMovie)));
 
         movies.to("movies", Produced.with(Serdes.Long(), movieAvroSerde(envProps)));
 
@@ -44,7 +54,7 @@ public class TransformStream {
     }
 
     public static Movie convertRawMovie(RawMovie rawMovie) {
-        String titleParts[] = rawMovie.getTitle().split("::");
+        String[] titleParts = rawMovie.getTitle().split("::");
         String title = titleParts[0];
         int releaseYear = Integer.parseInt(titleParts[1]);
         return new Movie(rawMovie.getId(), title, releaseYear, rawMovie.getGenre());
@@ -54,8 +64,8 @@ public class TransformStream {
         SpecificAvroSerde<Movie> movieAvroSerde = new SpecificAvroSerde<>();
 
         final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
+        serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
+                        envProps.getProperty("schema.registry.url"));
 
         movieAvroSerde.configure(serdeConfig, false);
         return movieAvroSerde;

@@ -1,24 +1,31 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.SongEvent;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
-import org.apache.kafka.streams.test.ConsumerRecordFactory;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.stream.Collectors;
+
+import io.confluent.developer.avro.SongEvent;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
 
 public class MergeStreamsTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+    private TopologyTestDriver testDriver;
 
     public SpecificAvroSerializer<SongEvent> makeSerializer(Properties envProps) {
         SpecificAvroSerializer<SongEvent> serializer = new SpecificAvroSerializer<>();
@@ -51,15 +58,13 @@ public class MergeStreamsTest {
         String allGenresTopic = envProps.getProperty("output.topic.name");
 
         Topology topology = ms.buildTopology(envProps);
-        TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
+        testDriver = new TopologyTestDriver(topology, streamProps);
 
         Serializer<String> keySerializer = Serdes.String().serializer();
         SpecificAvroSerializer<SongEvent> valueSerializer = makeSerializer(envProps);
 
         Deserializer<String> keyDeserializer = Serdes.String().deserializer();
         SpecificAvroDeserializer<SongEvent> valueDeserializer = makeDeserializer(envProps);
-
-        ConsumerRecordFactory<String, SongEvent> inputFactory = new ConsumerRecordFactory<>(keySerializer, valueSerializer);
 
         List<SongEvent> rockSongs = new ArrayList<>();
         List<SongEvent> classicalSongs = new ArrayList<>();
@@ -75,30 +80,40 @@ public class MergeStreamsTest {
         classicalSongs.add(SongEvent.newBuilder().setArtist("Ludwig van Beethoven").setTitle("Symphony No. 5").build());
         classicalSongs.add(SongEvent.newBuilder().setArtist("Edward Elgar").setTitle("Pomp and Circumstance").build());
 
+        final TestInputTopic<String, SongEvent>
+            rockSongsTestDriverTopic =
+            testDriver.createInputTopic(rockTopic, keySerializer, valueSerializer);
+
+        final TestInputTopic<String, SongEvent>
+            classicRockSongsTestDriverTopic =
+            testDriver.createInputTopic(classicalTopic, keySerializer, valueSerializer);
+
         for (SongEvent song : rockSongs) {
-            testDriver.pipeInput(inputFactory.create(rockTopic, song.getArtist(), song));
+            rockSongsTestDriverTopic.pipeInput(song.getArtist(), song);
         }
 
         for (SongEvent song : classicalSongs) {
-            testDriver.pipeInput(inputFactory.create(classicalTopic, song.getArtist(), song));
+            classicRockSongsTestDriverTopic.pipeInput(song.getArtist(), song);
         }
 
-        List<SongEvent> actualOutput = new ArrayList<>();
-        while (true) {
-            ProducerRecord<String, SongEvent> record = testDriver.readOutput(allGenresTopic, keyDeserializer, valueDeserializer);
-
-            if (record != null) {
-                actualOutput.add(record.value());
-            } else {
-                break;
-            }
-        }
-
+        List<SongEvent> actualOutput =
+            testDriver
+                .createOutputTopic(allGenresTopic, keyDeserializer, valueDeserializer)
+                .readKeyValuesToList()
+                .stream()
+                .filter(record -> record.value != null)
+                .map(record -> record.value)
+                .collect(Collectors.toList());
+        
         List<SongEvent> expectedOutput = new ArrayList<>();
         expectedOutput.addAll(rockSongs);
         expectedOutput.addAll(classicalSongs);
-
+        
         Assert.assertEquals(expectedOutput, actualOutput);
     }
 
+    @After
+    public void cleanup() {
+        testDriver.close();
+    }
 }
