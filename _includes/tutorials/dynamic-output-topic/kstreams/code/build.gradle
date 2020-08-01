@@ -59,5 +59,6 @@ jar {
 }
 
 shadowJar {
-    archiveName = "dynamic-output-topic-standalone-${version}.${extension}"
+    archivesBaseName = "dynamic-output-topic-standalone"
+    archiveClassifier = ''
 }

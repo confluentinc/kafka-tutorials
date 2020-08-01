@@ -60,5 +60,6 @@ jar {
 }
 
 shadowJar {
-    archiveName = "kstreams-aggregating-minmax-standalone-${version}.${extension}"
+    archiveBaseName = "kstreams-aggregating-minmax-standalone"
+    archiveClassifier = ''
 }
