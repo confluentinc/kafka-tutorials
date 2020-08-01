@@ -12,4 +12,12 @@ subprojects {
         '-Werror'
     ]
   }
+
+  tasks.withType(Test) {
+    testLogging {
+      outputs.upToDateWhen { false }
+      events 'standard_out'
+      exceptionFormat = "full"
+    }
+  }
 }
