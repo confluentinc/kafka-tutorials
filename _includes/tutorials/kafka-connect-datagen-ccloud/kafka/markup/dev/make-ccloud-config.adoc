@@ -1,4 +1,4 @@
-Complete the link:https://docs.confluent.io/current/quickstart/cloud-quickstart/index.html[Confluent Cloud Quick Start] to get set up.
+To get setup on link:https://confluent.cloud[Confluent Cloud], follow the link:https://docs.confluent.io/current/quickstart/cloud-quickstart/index.html[Confluent Cloud Quick Start].
 Use the promo code `CC100KTS` to receive an additional $100 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
 
 After you finish the quickstart, you should have:
