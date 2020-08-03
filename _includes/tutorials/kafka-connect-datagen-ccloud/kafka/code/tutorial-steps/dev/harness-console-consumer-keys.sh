@@ -1,8 +1,1 @@
-docker-compose exec connect kafka-avro-console-consumer \
- --bootstrap-server broker:9092 \
- --property schema.registry.url=http://schema-registry:8081 \
- --topic pageviews \
- --property print.key=true \
- --property key.deserializer=org.apache.kafka.common.serialization.StringDeserializer \
- --property key.separator=" : " \
- --max-messages 10
+ccloud kafka topic consume mytopic --value-format json --print-key --from-beginning 

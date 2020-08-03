@@ -1,4 +1,5 @@
-Provision the Kafka Connect Datagen source connector in Confluent Cloud. It automatically creates the Kafka topic `pageviews` and produces data to it with a schema specification from https://github.com/confluentinc/kafka-connect-datagen/blob/master/src/main/resources/pageviews_schema.avro
+Provision the Kafka Connect Datagen source connector.
+Referencing the connector configuration file `datagen-source-config.json` that you created in the previous step, provision the connector.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/create-connector.sh %}</code></pre>

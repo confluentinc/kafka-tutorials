@@ -1,5 +1,5 @@
 {
-    "name" : "Datagen-mytopic",
+    "name" : "datagen_ccloud_01",
     "connector.class": "DatagenSource",
     "kafka.api.key": "<API KEY>",
     "kafka.api.secret" : "<API SECRET>",
