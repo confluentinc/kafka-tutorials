@@ -9,8 +9,7 @@ dev:
 
     - title: Create your Kafka cluster in Confluent Cloud
       content:
-        - action: make_file
-          file: ccloud.config
+        - action: skip
           render:
             file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/make-ccloud-config.adoc
 
