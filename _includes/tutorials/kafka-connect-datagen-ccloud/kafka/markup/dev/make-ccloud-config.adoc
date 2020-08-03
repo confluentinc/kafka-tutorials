@@ -1,7 +1,8 @@
-Complete the link:https://docs.confluent.io/current/quickstart/cloud-quickstart/index.html[Confluent Cloud Quick Start] which walks through the required steps to obtain:
+Complete the link:https://docs.confluent.io/current/quickstart/cloud-quickstart/index.html[Confluent Cloud Quick Start] to get set up.
+Use the promo code `CC100KTS` to receive an additional $100 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+
+After you finish the quickstart, you should have:
 
 1. A Confluent Cloud user account: email address and password that logs you into the Confluent Cloud UI
 2. Access to a Confluent Cloud cluster: identification of the broker's endpoint `<BROKER ENDPOINT>` via the Confluent Cloud UI or the link:https://docs.confluent.io/current/cloud/cli/index.html[Confluent Cloud CLI] command `ccloud kafka cluster describe` (if you don't have a cluster yet, follow the quick start above to create one)
 3. Credentials to the cluster: a valid API key `<API KEY>` and secret `<API SECRET>` for the user or service account
-
-Use the promo code `CC100KTS` to receive an additional $100 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).

@@ -13,59 +13,24 @@ dev:
           render:
             file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/make-ccloud-config.adoc
 
-    - title: Create the connector
-      content:
-        - action: execute
-          file: tutorial-steps/dev/create-connector.sh
-          stdout: tutorial-steps/dev/outputs/create-connector.log
-          render:
-            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/create-connector.adoc
-
-        - name: give Kafka Connect chance to create the connector
-          action: sleep
-          ms: 5000
-          render:
-            skip: true
-
-        - action: execute
-          file: tutorial-steps/dev/check-connector.sh
-          stdout: tutorial-steps/dev/outputs/check-connector.log
-          render:
-            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/check-connector.adoc
-
-        - name: give Kafka Connect further chance to get the data to the topic
-          action: sleep
-          ms: 5000
-          render:
-            skip: true
-
-    - title: Consume events from the Kafka topic
-      content:
-      - action: execute_async
-        file: tutorial-steps/dev/harness-console-consumer-keys.sh
-        stdout: tutorial-steps/dev/outputs/consume-topic.log
-        render:
-          file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/consume-topic-key-value.adoc
-
-      - name: wait for consumer to read records
-        action: sleep
-        ms: 10000
-        render:
-          skip: true
-
-prod:
-  steps:
-    - title: Cleanup Docker containers
-      content:
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/clean-up.adoc
-
-ccloud:
-  steps:
-    - title: Run your app to Confluent Cloud
+    - title: Create the connector configuration file
       content:
         - action: skip
           render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/create-connector-config.adoc
+
+    - title: Provision the connector in Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/provision-connector.adoc
+
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/check-connector.adoc
+
+    - title: Consume events from the Kafka topic
+      content:
+      - action: skip
+        render:
+          file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/consume-topic-key-value.adoc
