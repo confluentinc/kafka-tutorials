@@ -7,12 +7,22 @@
 @import "_footer";
 @import "_form";
 @import "tutorial";
+@import "asciidoc";
 
 body,
 select,
 input,
 button {
   font-family: "MarkOT";
+}
+
+a {
+  color: #003cc8;
+  
+  &:hover {
+    color: #003cc8;
+    text-decoration: underline;
+  }
 }
 
 .card-cta {
@@ -139,7 +149,7 @@ body {
   position: relative;
   margin: 5px 0 20px 0;
 
-  .snippet {
+  .snippet, .highlight {
     background: #f9f9fa;
     border-radius: 4px;
 
@@ -150,7 +160,7 @@ body {
       color: $textColor;
     }
   }
-
+  
   .icon {
     position: absolute;
     top: 10px;
@@ -161,6 +171,31 @@ body {
 
     &.copy-btn {
       right: 10px;
+
+      &.copied {
+        &::before {
+          position: absolute;
+          top: 100%;
+          z-index: 1;
+          width: 0;
+          height: 0;
+          border-left: 5px solid transparent;
+          border-right: 5px solid transparent;
+          border-bottom: 5px solid #333;
+          content: '';
+        }
+
+        &::after {
+          content: 'Copied!';
+          position: absolute;
+          top: calc(100% + 5px);
+          background: #333;
+          color: white;
+          padding: 8px 10px;
+          font-size: 14px;
+          border-radius: 4px;
+        }
+      }
     }
 
     &.toggle-expand {
@@ -299,6 +334,10 @@ body {
 }
 
 .secondary-card-row {
+  margin-top: 25px;
+}
+
+.third-card-row {
   margin-top: 25px;
 }
 

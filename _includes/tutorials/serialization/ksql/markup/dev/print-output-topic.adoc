@@ -11,6 +11,6 @@ This should yield the following output:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/serialization/ksql/code/tutorial-steps/dev/expected-print.log %}</code></pre>
 +++++
 
-Notice the 'Value format' is reported as `AVRO`.
+Notice the 'Value format' is reported as `PROTOBUF`.
 
-Congrats! You've taken a topic formatted with JSON and created a continuously updating copy on a new topic in Avro.
+Congrats! You've taken a topic formatted with Avro and created a continuously updating copy on a new topic in Protobuf.

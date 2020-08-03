@@ -16,9 +16,11 @@ When the producer starts up, copy and paste these JSON lines into the terminal:
 Looking back in the consumer terminal, these are the results you should see if you paste in all the movies above:
 
 +++++
-<pre class="snippet"><code class="json">{% include_raw tutorials/serialization/kstreams/code/tutorial-steps/dev/avro-movies.txt %}</code></pre>
+<pre class="snippet"><code class="json">{% include_raw tutorials/serialization/kstreams/code/tutorial-steps/dev/proto-movies.txt %}</code></pre>
 +++++
 
-You'll notice that they look identical to the input that you produced. The contents are in fact the same. But since Avro isn't a human-readable format, the `kafka-avro-console-consumer` tool helpfully formatted the contents in something we can read, which happens to be JSON.
+You'll notice that they look identical to the input that you produced. 
+The contents are in fact the same. 
+But since Avro isn't a human-readable format, the `kafka-protobuf-console-consumer` tool helpfully formatted the contents in something we can read, which happens to be JSON.
 
 Congrats! You've converted formats across two topics.

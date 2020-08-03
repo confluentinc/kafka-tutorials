@@ -29,6 +29,21 @@
     </section>
     <div class="cards-container">
       <div class="cards">
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-kafka-blue.svg" | relative_url }}" />
+            <div>Kafka 101</div>
+          </div>
+          <ul>
+            <li><a href="kafka-console-consumer-producer-basics/kafka.html">Console producer and consumer basics</a></li>
+            <li><a href="kafka-console-consumer-primitive-keys-values/kafka.html">Console consumer with primitive keys and values</a></li>
+            <li><a href="kafka-console-consumer-read-specific-offsets-partitions/kafka.html">Console consumer reads from a specific offset and partition</a></li>
+            <li><a href="change-topic-partitions-replicas/ksql.html">Change the number of partitions and replicas of a Kafka topic</a></li>
+            <li><a href="creating-first-apache-kafka-consumer-application/kafka.html">Build your first Kafka consumer application</a></li>
+          </ul>
+        </div>
+
         <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
@@ -40,15 +55,16 @@
             <li><a href="filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
             <li><a href="rekey-a-stream/ksql.html">Rekey a stream with a value</a></li>
             <li><a href="rekey-with-function/ksql.html">Rekey a stream with a function</a></li>
-            <li><a href="changing-serialization-format/ksql.html">Convert a stream's serialization format</a></li>
-            <li><a href="split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
-            <li><a href="merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
-            <li><a href="finding-distinct-events/ksql.html">Finding distinct events</a></li>
-            <li><a href="udf/ksql.html">Apply a custom, User-Defined Function</a></li>
-            <li><a href="handling-deserialization-errors/ksql.html">Handling deserialization errors</a></li>
-            <li><a href="dynamic-output-topic/kstreams.html">Choosing the output topic dynamically</a></li>
-            <li><a href="naming-stateful-operations/kstreams.html">Naming stateful operations</a></li>
+            <li class="more is-hidden"><a href="changing-serialization-format/ksql.html">Convert a stream's serialization format</a></li>
+            <li class="more is-hidden"><a href="split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
+            <li class="more is-hidden"><a href="merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
+            <li class="more is-hidden"><a href="finding-distinct-events/ksql.html">Find distinct events</a></li>
+            <li class="more is-hidden"><a href="udf/ksql.html">Apply a custom, user-defined function</a></li>
+            <li class="more is-hidden"><a href="handling-deserialization-errors/ksql.html">Handle deserialization errors</a></li>
+            <li class="more is-hidden"><a href="dynamic-output-topic/kstreams.html">Choose the output topic dynamically</a></li>
+            <li class="more is-hidden"><a href="naming-stateful-operations/kstreams.html">Name stateful operations</a></li>
           </ul>
+          <div id="show"><a class="button is-small is-fullwidth">More</a></div>
         </div>
         <div class="card">
           <div class="title">
@@ -60,9 +76,12 @@
             <li><a href="create-stateful-aggregation-sum/ksql.html">Sum a stream of events</a></li>
             <li><a href="create-stateful-aggregation-minmax/ksql.html">Find the min/max in a stream of events</a></li>
             <li><a href="aggregating-average/kstreams.html">Calculate a running average</a></li>
-            <li><a href="cogrouping-streams/kstreams.html">Cogrouping multiple streams of aggregates</a></li>
+            <li><a href="cogrouping-streams/kstreams.html">Cogroup multiple streams of aggregates</a></li>
           </ul>
         </div>
+      </div>
+
+      <div class="cards secondary-card-row">
         <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-join.svg" | relative_url }}" />
@@ -75,9 +94,7 @@
             <li><a href="foreign-key-joins/kstreams.html">Join two tables with a foreign key</a></li>
           </ul>
         </div>
-      </div>
 
-      <div class="cards secondary-card-row">
         <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-time.svg" | relative_url }}" />
@@ -97,10 +114,13 @@
             <div>Connect data sources & sinks.</div>
           </div>
           <ul>
+            <li><a href="kafka-connect-datagen-local/kafka.html">Produce mock data to a local Kafka topic</a></li>
             <li><a href="connect-add-key-to-source/kstreams.html">Add a key to a stream from a JDBC source</a></li>
           </ul>
         </div>
-
+       </div>
+       
+       <div class="cards third-card-row">
         <div class="card card-cta">
           <div class="content">
             <div>Be the first to be notified about new tutorials</div>
@@ -123,6 +143,7 @@
           </div>
         </div>
       </div>
+    </div>
     </div>
 
     {% include footer.html %}

@@ -196,3 +196,11 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc
