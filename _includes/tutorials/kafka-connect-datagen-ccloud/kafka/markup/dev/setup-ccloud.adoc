@@ -1,5 +1,5 @@
-If this is your first time using link:https://confluent.cloud[Confluent Cloud], follow the manual steps in the link:https://docs.confluent.io/current/quickstart/cloud-quickstart/index.html[Confluent Cloud Quick Start].
-Be sure to also install the link:https://docs.confluent.io/current/cloud/cli/install.html[Confluent Cloud CLI].
-Use the promo code `CC100KTS` to receive an additional $100 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+If this is your first time using link:https://confluent.cloud[Confluent Cloud], follow the manual steps in the link:https://docs.confluent.io/current/quickstart/cloud-quickstart/index.html[Confluent Cloud Quick Start]. When signing up, use the promo code `CC100KTS` to receive an additional $100 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+
+Be sure to install the link:https://docs.confluent.io/current/cloud/cli/install.html[Confluent Cloud CLI].
 
 If you are already a Confluent Cloud user, consider running the link:https://github.com/confluentinc/examples/tree/latest/ccloud/ccloud-stack[ccloud-stack utility] to create a new stack in Confluent Cloud for this tutorial.
