@@ -92,7 +92,7 @@ dev:
           render:
             file: tutorials/produce-consume-lang/scala/markup/dev/3_3-schema-case-class.adoc
 
-    - title: Setup the serialisation method
+    - title: Setup the serialization method
       content:
         - action: make_file
           file: src/main/scala/io/confluent/developer/schema/ScalaReflectionSerde.scala

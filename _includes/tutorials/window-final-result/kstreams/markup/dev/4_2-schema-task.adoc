@@ -1,4 +1,4 @@
-Add the following class in the file `src/main/java/io/confluent/developer/helper/SchemaPublication.java` package
+Add the following class in the `src/main/java/io/confluent/developer/helper/SchemaPublication.java` package
 
 +++++
 <pre class="snippet"><code class="java">{%
