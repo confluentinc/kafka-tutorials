@@ -82,6 +82,19 @@ cd harness_runner
 pip3 install -e .
 ```
 
+
+#### 6. Running the tests locally
+
+You can run any of the automated tests locally using a command like:
+
+```
+make -C _includes/tutorials/filtering/ksql/code tutorial
+```
+
+Substituting in the appropriate tutorial path.
+
+Note: if you are testing unreleased ksqlDB Docker images, you will need to be logged in to AWS ECR.
+
 ## Add code for a new tutorial
 
 A tutorial is a short procedure, targeted at developers, for getting a certain thing done using Confluent Platform.
@@ -142,7 +155,7 @@ There are some additional steps you'll need to take to complete the tutorial:
 1. Update the following entries in _data/tutorials.yaml file
     a. title
     b. meta-description
-    c. problem
+    c. question
     c. introduction
 
 You can find these fields by searching for my-tutorial-name in the _data/tutorials.yaml file.
@@ -197,9 +210,9 @@ It's still valuable to read through the next section to learn how all the tutori
 ## Description of tutorial parts
 
 
-#### 1. Describe the problem your tutorial solves
+#### 1. Describe the question your tutorial answers
 
-The first thing to do is articulate what problem your tutorial is meant to solve. Every tutorial contains a problem statement and an example scenario. Edit `_data/tutorials.yml` and add your entry. The top item in this file represents the _short name_ for your tutorial. For example, the tutorial for transforming events of a stream is _transforming_. You'll also notice a `status` attribute. You can `enable` as many stacks as you'd like to author for this tutorial, but we recommend starting with just one.
+The first thing to do is articulate what question your tutorial is meant to answer. Every tutorial contains a question and an example scenario. Edit `_data/tutorials.yml` and add your entry. The top item in this file represents the _short name_ for your tutorial. For example, the tutorial for transforming events of a stream is _transforming_. You'll also notice a `status` attribute. You can `enable` as many stacks as you'd like to author for this tutorial, but we recommend starting with just one.
 
 #### 2. Make the directory structure
 
@@ -305,16 +318,22 @@ docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ 
 
 ### Run a tutorial
 
-1. End-to-end: execute the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
+1. (optional) If you want to augment or override a tutorial's Docker environment, set the Docker Compose CLI environment variable `COMPOSE_FILE` to include `docker-compose.yml` and **_the absolute path_** to a `docker-compose.override.yml` file.  For example, to use Confluent Control Center with any Kafka Tutorial, set `COMPOSE_FILE` to `docker-compose.yml` and the absolute path to [this docker-compose.override.yml](tools/docker-compose.override.yml).
+
+```
+export COMPOSE_FILE=docker-compose.yml:<path to Kafka Tutorials>/tools/docker-compose.override.yml
+```
+
+2. End-to-end: execute the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
 (cd _includes/tutorials/transforming/kstreams/code/ && make)
 ```
 
-2. Run-and-play: execute the harness runner for a single tutorial by calling `make SEQUENCE="dev, test"`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE="dev, test")` where type is one of `ksql | kstreams | kafka`. Example:
+3. Run-and-play: execute the harness runner for a single tutorial by calling `make SEQUENCE='"dev, test"'`, just across `dev` and `test` stages, which leaves all resources and Docker containers running so you can then play with it.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make SEQUENCE='"dev, test"')` where type is one of `ksql | kstreams | kafka`. Example:
 
 ```
-(cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE="dev, test")
+(cd _includes/tutorials/transforming/kstreams/code/ && make SEQUENCE='"dev, test"')
 ```
 
 Now you can play with the environment, some sample commands shown below.

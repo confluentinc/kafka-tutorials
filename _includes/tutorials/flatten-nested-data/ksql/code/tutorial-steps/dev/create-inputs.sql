@@ -18,4 +18,4 @@ CREATE STREAM ORDERS (
           VALUE_FORMAT = 'JSON',
           TIMESTAMP = 'TIMESTAMP',
           TIMESTAMP_FORMAT = 'yyyy-MM-dd HH:mm:ss',
-          PARTITIONS = 1, REPLICAS = 1);
+          PARTITIONS = 1);

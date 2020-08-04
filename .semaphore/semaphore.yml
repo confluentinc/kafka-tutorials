@@ -200,6 +200,7 @@ blocks:
         - name: KStreams Running Average tests
           commands:
             - make -C _includes/tutorials/aggregating-average/kstreams/code tutorial
+            
         - name: KStreams Test Streams choosing output topic dynamically tests
           commands:
             - make -C _includes/tutorials/dynamic-output-topic/kstreams/code tutorial
@@ -223,5 +224,16 @@ blocks:
         - name: Kafka Test Kafka Console Consumer Read Specific Offsets and Partitions tests
           commands:
             - make -C _includes/tutorials/console-consumer-read-specific-offsets-partition/kafka/code tutorial
+
+        - name: Kafka Test Connect Datagen Local
+          commands:
+            - make -C _includes/tutorials/kafka-connect-datagen-local/kafka/code tutorial
+            
+        - name: ksqlDB Test Change number of partitions and replicas
+          commands:
+            - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
         
-        
+        - name: Kafka Consumer Application tests
+          commands:
+            - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
+            

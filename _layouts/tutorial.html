@@ -30,8 +30,8 @@
           <h1>{{ site.data.tutorials[page.static_data].title }}</h1>
         </div>
         <div class="summary">
-          <h2>Problem:</h2>
-          <p>{{site.data.tutorials[page.static_data].problem }}</p>
+          <h2>Question:</h2>
+          <p>{{site.data.tutorials[page.static_data].question }}</p>
         </div>
       </div>
     </div>
@@ -121,6 +121,14 @@
                 <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
                 {% endfor %}
               </ul>
+            {% endif %}
+            {% if site.data.harnesses[page.static_data][page.stack].ccloud %}
+               <li><a href="#deploy-on-confluent-cloud">Deploy on Confluent Cloud</a></li>
+               <ul>
+                 {% for step in site.data.harnesses[page.static_data][page.stack].ccloud.steps %}
+                 <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+                 {% endfor %}
+               </ul>
             {% endif %}
           </ul>
         </div>

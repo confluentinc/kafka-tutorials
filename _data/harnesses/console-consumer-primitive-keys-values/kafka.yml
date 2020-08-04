@@ -60,7 +60,10 @@ dev:
         render:
           file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/clean-up.adoc
 
-
-
-
-
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc
