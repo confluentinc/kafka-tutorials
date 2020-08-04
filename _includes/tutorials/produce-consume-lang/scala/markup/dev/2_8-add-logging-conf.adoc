@@ -1,4 +1,4 @@
-Add in your project resources the file `src/main/resources/logback.xml`:
+Add the logging configuration to your project resources in the file `src/main/resources/logback.xml`:
 
 +++++
 <pre class="snippet"><code class="xml">{%

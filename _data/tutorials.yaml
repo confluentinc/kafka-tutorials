@@ -340,7 +340,7 @@ produce-consume-lang:
   title: "Produce and Consume Records in multiple languages"
   meta-description: "Produce and Consume Records in multiple languages"
   slug: "/produce-and-consume-lang/"
-  question: "you have a scala application in your favorite programming language and you'd like to consume/produce events from/to Kafka"
+  question: "you want to produce and consume events from Kafka using a programming language other than Java"
   introduction: "You want to enrich and expose a list of books from a library. You have to produce an event for each book acquisition (title, editor, release ...), and consume back the same events to serve the book collection over HTTP."
   status:
     ksql: disabled

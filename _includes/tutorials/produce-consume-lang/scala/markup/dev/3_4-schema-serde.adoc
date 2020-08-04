@@ -1,4 +1,4 @@
-The case class instances in our code will be serialized in an https://avro.apache.org/[Avro] format.
+In this tutorial, events will be will be serialized in https://avro.apache.org/[Avro] format.
 To do so, we will need the appropriate serializers/deserializers.
 We add the following function to easily create a `Serializer[T]` where `T` in the type of the key or the value
 we'd like to serialise. Add the class: `src/main/scala/io/confluent/developer/schema/ScalaReflectionSerde.scala`
@@ -9,13 +9,7 @@ we'd like to serialise. Add the class: `src/main/scala/io/confluent/developer/sc
 %}</code></pre>
 +++++
 
-While the specific method (where code is generated from schemas) for creating record is more common,
-in scala you might want to use the reflection method (where schemas is generated from code)
-to preserve your case class flexibility. Since Confluent 5.4.0, a
-`https://docs.confluent.io/current/streams/developer-guide/datatypes.html#reflection-avro[ReflectionAvroSerde]` class
-let you do that, but using it in scala might result in a incomplete type management. The previous file shows
-a quick way to cover this need in scala by using https://github.com/sksamuel/avro4s[Avro4s].
-Avro4s is a scala library generation of Apache Avro objects. It will create records or instances in two steps:
-
-- Serialization:    Raw bytes <- Generic Records <- Case Class Instances
-- Deserialization:  Raw bytes -> Generic Records -> Case Class Instances
+In this tutorial we are going to use a reflection based serialization method using https://github.com/sksamuel/avro4s[Avro4s], which is a serializing/deserializing library for Avro written in Scala.
+Avro4s performs it's de/serialization in multiple stages:
+- For Serialization:        `Case Class Instance   ->  Generic Record -> Avro Formatted Bytes`
+- For Deserialization:      `Avro Formatted bytes -> Generic Record -> Case Class Instance`

@@ -1,4 +1,4 @@
-Add the corresponding conf classes `/src/main/scala/io/confluent/developer/Configuration.scala`:
+Add the corresponding configuration classes `src/main/scala/io/confluent/developer/Configuration.scala`:
 
 +++++
 <pre class="snippet"><code class="scala">{%

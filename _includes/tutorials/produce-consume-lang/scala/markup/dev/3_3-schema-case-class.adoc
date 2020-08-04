@@ -1,3 +1,4 @@
+And the following Enum type to represent the book type.
 `src/main/scala/io/confluent/developer/schema/BookType.scala`:
 +++++
 <pre class="snippet"><code class="scala">{%

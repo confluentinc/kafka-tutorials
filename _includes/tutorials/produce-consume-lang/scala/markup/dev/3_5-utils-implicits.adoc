@@ -1,6 +1,4 @@
-In consequence, we will also add a package object to hold all the necessary functions (CSV conversion, JSON Conversion ...)
-that are not directly related to our goal (produce and consume). Theses functions will increase the interactive aspect
-of the tutorial.
+Let's add some helper functions to the code making our application more interactive.
 
 Add `src/main/scala/io/confluent/developer/schema/package.scala`:
 
