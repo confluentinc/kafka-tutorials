@@ -2,7 +2,6 @@
   "outputs": [
     {
       "topic": "FLATTENED_ORDERS",
-      "key": "1",
       "value": {
         "ORDER_ID": "1",
         "ORDER_TS": "2020-01-18 01:12:05",
@@ -24,7 +23,6 @@
     },
     {
       "topic": "FLATTENED_ORDERS",
-      "key": "2",
       "value": {
         "ORDER_ID": "2",
         "ORDER_TS": "2020-01-18 01:35:12",
@@ -46,7 +44,6 @@
     },
     {
       "topic": "FLATTENED_ORDERS",
-      "key": "3",
       "value": {
         "ORDER_ID": "3",
         "ORDER_TS": "2020-01-18 01:58:55",
@@ -68,7 +65,6 @@
     },
     {
       "topic": "FLATTENED_ORDERS",
-      "key": "4",
       "value": {
         "ORDER_ID": "4",
         "ORDER_TS": "2020-01-18 02:31:43",

@@ -1,6 +1,6 @@
 Key format: KAFKA_STRING
 Value format: AVRO
-rowtime: 2020/05/04 22:03:47.754 Z, key: Aliens, value: {"M_ROWKEY": "Aliens", "M_TITLE": "Aliens", "RELEASE_YEAR": 1986, "ACTOR_NAME": "Sigourney Weaver"}
-rowtime: 2020/05/04 22:03:47.879 Z, key: Die Hard, value: {"M_ROWKEY": "Die Hard", "M_TITLE": "Die Hard", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Bruce Willis"}
-rowtime: 2020/05/04 22:03:47.997 Z, key: The Big Lebowski, value: {"M_ROWKEY": "The Big Lebowski", "M_TITLE": "The Big Lebowski", "RELEASE_YEAR": 1998, "ACTOR_NAME": "Jeff Bridges"}
+rowtime: 2020/05/04 22:03:47.754 Z, key: Aliens, value: {"ID": 48, "RELEASE_YEAR": 1986, "ACTOR_NAME": "Sigourney Weaver"}
+rowtime: 2020/05/04 22:03:47.879 Z, key: Die Hard, value: {"ID": 294, "RELEASE_YEAR": 1998, "ACTOR_NAME": "Bruce Willis"}
+rowtime: 2020/05/04 22:03:47.997 Z, key: The Big Lebowski, value: {"ID": 128, "RELEASE_YEAR": 1998, "ACTOR_NAME": "Jeff Bridges"}
 Topic printing ceased

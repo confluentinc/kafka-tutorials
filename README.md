@@ -82,6 +82,19 @@ cd harness_runner
 pip3 install -e .
 ```
 
+
+#### 6. Running the tests locally
+
+You can run any of the automated tests locally using a command like:
+
+```
+make -C _includes/tutorials/filtering/ksql/code tutorial
+```
+
+Substituting in the appropriate tutorial path.
+
+Note: if you are testing unreleased ksqlDB Docker images, you will need to be logged in to AWS ECR.
+
 ## Add code for a new tutorial
 
 A tutorial is a short procedure, targeted at developers, for getting a certain thing done using Confluent Platform.

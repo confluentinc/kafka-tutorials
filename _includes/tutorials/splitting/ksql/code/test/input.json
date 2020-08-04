@@ -2,7 +2,6 @@
   "inputs": [
     {
       "topic": "acting-events",
-      "key": "Bill Murray",
       "value": {
         "name": "Bill Murray",
         "title": "Ghostbusters",
@@ -11,7 +10,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Christian Bale",
       "value": {
         "name": "Christian Bale",
         "title": "The Dark Knight",
@@ -20,7 +18,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Diane Keaton",
       "value": {
         "name": "Diane Keaton",
         "title": "The Godfather: Part II",
@@ -29,7 +26,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Jennifer Aniston",
       "value": {
         "name": "Jennifer Aniston",
         "title": "Office Space",
@@ -38,7 +34,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Judy Garland",
       "value": {
         "name": "Judy Garland",
         "title": "The Wizard of Oz",
@@ -47,7 +42,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Keanu Reeves",
       "value": {
         "name": "Keanu Reeves",
         "title": "The Matrix",
@@ -56,7 +50,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Laura Dern",
       "value": {
         "name": "Laura Dern",
         "title": "Jurassic Park",
@@ -65,7 +58,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Matt Damon",
       "value": {
         "name": "Matt Damon",
         "title": "The Martian",
@@ -74,7 +66,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Meryl Streep",
       "value": {
         "name": "Meryl Streep",
         "title": "The Iron Lady",
@@ -83,7 +74,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Russell Crowe",
       "value": {
         "name": "Russell Crowe",
         "title": "Gladiator",
@@ -92,7 +82,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Will Smith",
       "value": {
         "name": "Will Smith",
         "title": "Men in Black",
@@ -101,7 +90,6 @@
     },
     {
       "topic": "acting-events",
-      "key": "Barret Oliver",
       "value": {
         "name": "Barret Oliver",
         "title": "The NeverEnding Story",
