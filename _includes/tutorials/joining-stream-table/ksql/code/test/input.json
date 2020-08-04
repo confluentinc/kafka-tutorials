@@ -4,7 +4,6 @@
       "topic": "movies",
       "key": 294,
       "value": {
-        "id": 294,
         "title": "Die Hard",
         "release_year": 1998
       }
@@ -13,7 +12,6 @@
       "topic": "movies",
       "key": 354,
       "value": {
-        "id": 354,
         "title": "Tree of Life",
         "release_year": 2011
       }
@@ -22,7 +20,6 @@
       "topic": "movies",
       "key": 782,
       "value": {
-        "id": 782,
         "title": "A Walk in the Clouds",
         "release_year": 1995
       }
@@ -31,7 +28,6 @@
       "topic": "movies",
       "key": 128,
       "value": {
-        "id": 128,
         "title": "The Big Lebowski",
         "release_year": 1998
       }
@@ -40,7 +36,6 @@
       "topic": "movies",
       "key": 780,
       "value": {
-        "id": 780,
         "title": "Super Mario Bros.",
         "release_year": 1993
       }
@@ -49,7 +44,6 @@
       "topic": "ratings",
       "key": 294,
       "value": {
-        "id": 294,
         "rating": 8.2
       }
     },
@@ -57,7 +51,6 @@
       "topic": "ratings",
       "key": 294,
       "value": {
-        "id": 294,
         "rating": 8.5
       }
     },
@@ -65,7 +58,6 @@
       "topic": "ratings",
       "key": 354,
       "value": {
-        "id": 354,
         "rating": 9.9
       }
     },
@@ -73,7 +65,6 @@
       "topic": "ratings",
       "key": 354,
       "value": {
-        "id": 354,
         "rating": 9.7
       }
     },
@@ -81,7 +72,6 @@
       "topic": "ratings",
       "key": 782,
       "value": {
-        "id": 782,
         "rating": 7.8
       }
     },
@@ -89,7 +79,6 @@
       "topic": "ratings",
       "key": 782,
       "value": {
-        "id": 782,
         "rating": 7.7
       }
     },
@@ -97,7 +86,6 @@
       "topic": "ratings",
       "key": 128,
       "value": {
-        "id": 128,
         "rating": 8.7
       }
     },
@@ -105,7 +93,6 @@
       "topic": "ratings",
       "key": 128,
       "value": {
-        "id": 128,
         "rating": 8.4
       }
     },
@@ -113,7 +100,6 @@
       "topic": "ratings",
       "key": 780,
       "value": {
-        "id": 780,
         "rating": 2.1
       }
     }

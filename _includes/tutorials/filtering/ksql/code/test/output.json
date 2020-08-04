@@ -2,7 +2,7 @@
   "outputs": [
     {
       "topic": "george_martin_books",
-      "key": "George R. R. Martin",
+      "key": 2,
       "value": {
         "AUTHOR": "George R. R. Martin",
         "TITLE": "A Song of Ice and Fire"
@@ -10,7 +10,7 @@
     },
     {
       "topic": "george_martin_books",
-      "key": "George R. R. Martin",
+      "key": 4,
       "value": {
         "AUTHOR": "George R. R. Martin",
         "TITLE": "Fire & Blood"
@@ -18,7 +18,7 @@
     },
     {
       "topic": "george_martin_books",
-      "key": "George R. R. Martin",
+      "key": 7,
       "value": {
         "AUTHOR": "George R. R. Martin",
         "TITLE": "A Dream of Spring"
@@ -26,7 +26,7 @@
     },
     {
       "topic": "george_martin_books",
-      "key": "George R. R. Martin",
+      "key": 9,
       "value": {
         "AUTHOR": "George R. R. Martin",
         "TITLE": "The Ice Dragon"

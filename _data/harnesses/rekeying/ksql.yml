@@ -47,22 +47,22 @@ dev:
               render:
                 file: tutorials/rekeying/ksql/markup/dev/populate-stream.adoc
 
+            - file: tutorial-steps/dev/print-input-topic.sql
+              render:
+                file: tutorials/rekeying/ksql/markup/dev/print-input-topic.adoc
+
             - file: tutorial-steps/dev/set-properties.sql
               render:
                 file: tutorials/rekeying/ksql/markup/dev/set-properties.adoc
-
-            - file: tutorial-steps/dev/key-query.sql
-              render:
-                file: tutorials/rekeying/ksql/markup/dev/key-query.adoc
 
             - file: tutorial-steps/dev/continuous-rekey.sql
               render:
                 file: tutorials/rekeying/ksql/markup/dev/continuous-rekey.adoc
 
-            - file: tutorial-steps/dev/query-rekeyed-stream.sql
+            - file: tutorial-steps/dev/describe-output.sql
               render:
-                file: tutorials/rekeying/ksql/markup/dev/query-rekeyed-stream.adoc
-              
+                file: tutorials/rekeying/ksql/markup/dev/describe-output.adoc
+
             - file: tutorial-steps/dev/print-output-topic.sql
               render:
                 file: tutorials/rekeying/ksql/markup/dev/print-output-topic.adoc

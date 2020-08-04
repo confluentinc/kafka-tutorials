@@ -1,4 +1,4 @@
-Let's fix that. Using KSQL's appropriately named `PARTITION BY` clause we can apply a key to the messages and write it to a new stream. Here we'll use the movie identifier, `ID`. Issue the following to create a new stream that is continuously populated by its query:
+Then, issue the following to create a new stream that is continuously populated by its query:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/rekeying/ksql/code/tutorial-steps/dev/continuous-rekey.sql %}</code></pre>

@@ -6,10 +6,12 @@ CREATE SOURCE CONNECTOR JDBC_SOURCE_POSTGRES_01 WITH (
     'mode'= 'incrementing',
     'incrementing.column.name'= 'city_id',
     'topic.prefix'= 'postgres_',
-    'transforms'= 'copyFieldToKey,extractValuefromStruct',
+    'transforms'= 'copyFieldToKey,extractKeyFromStruct,removeKeyFromValue',
     'transforms.copyFieldToKey.type'= 'org.apache.kafka.connect.transforms.ValueToKey',
     'transforms.copyFieldToKey.fields'= 'city_id',
-    'transforms.extractValuefromStruct.type'= 'org.apache.kafka.connect.transforms.ExtractField$Key',
-    'transforms.extractValuefromStruct.field'= 'city_id',
+    'transforms.extractKeyFromStruct.type'= 'org.apache.kafka.connect.transforms.ExtractField$Key',
+    'transforms.extractKeyFromStruct.field'= 'city_id',
+    'transforms.removeKeyFromValue.type'= 'org.apache.kafka.connect.transforms.ReplaceField$Value',
+    'transforms.removeKeyFromValue.blacklist'= 'city_id',
     'key.converter' = 'org.apache.kafka.connect.converters.IntegerConverter'
 );
