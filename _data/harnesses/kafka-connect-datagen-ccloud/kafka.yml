@@ -7,11 +7,23 @@ dev:
           render:
             file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/init.adoc
 
-    - title: Create your Kafka cluster in Confluent Cloud
+    - title: Get setup on Confluent Cloud
       content:
         - action: skip
           render:
-            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/make-ccloud-config.adoc
+            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/setup-ccloud.adoc
+
+    - title: Identify cluster connection info
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/get-ccloud-config.adoc
+
+    - title: Create the Kafka topic
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/create-topic.adoc
 
     - title: Create the connector configuration file
       content:
@@ -34,3 +46,9 @@ dev:
       - action: skip
         render:
           file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/consume-topic-key-value.adoc
+
+    - title: Cleanup your environment
+      content:
+      - action: skip
+        render:
+          file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/clean-up.adoc

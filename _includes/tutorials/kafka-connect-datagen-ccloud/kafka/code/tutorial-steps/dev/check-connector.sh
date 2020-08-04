@@ -1,1 +1,1 @@
-ccloud connector describe
+ccloud connector list

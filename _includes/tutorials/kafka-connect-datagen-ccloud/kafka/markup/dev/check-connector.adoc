@@ -1,10 +1,10 @@
-Check that the connector is running:
+Check the status of the connector:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/check-connector.sh %}</code></pre>
 +++++
 
-It will take a few minutes for the connector to start and change from state `PROVISIONING` to `RUNNING`.
+Wait a minute for the connector to start. It will change state from `PROVISIONING` to `RUNNING` when it is ready.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/check-connector_expected.log %}</code></pre>

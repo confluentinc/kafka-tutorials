@@ -1,0 +1,5 @@
+After you finish the quickstart, you should have the following three things:
+
+1. *A Confluent Cloud user account*: email address and password that logs you into the Confluent Cloud UI and Confluent Cloud CLI
+2. *Access to a Confluent Cloud cluster*: know your broker's endpoint `<BROKER ENDPOINT>`. You can get your cluster's endpoint via (a) the Confluent Cloud UI `Tools and client configuration` section or (b) the link:https://docs.confluent.io/current/cloud/cli/command-reference/kafka/cluster/ccloud_kafka_cluster_describe.html[Confluent Cloud CLI]
+3. *Credentials to the cluster*: a valid API key `<API KEY>` and secret `<API SECRET>` for your user or service account. If using a service account, set required ACLs.

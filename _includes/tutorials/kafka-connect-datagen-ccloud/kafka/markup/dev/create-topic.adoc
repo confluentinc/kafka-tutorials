@@ -1,0 +1,5 @@
+Create a Kafka topic called `mytopic` in Confluent Cloud.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/create-topic.sh %}</code></pre>
++++++
