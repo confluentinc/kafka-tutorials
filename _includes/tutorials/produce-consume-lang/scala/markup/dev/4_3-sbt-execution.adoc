@@ -6,5 +6,5 @@ include_raw tutorials/produce-consume-lang/scala/code/tutorial-steps/dev/run-hel
 %}</code></pre>
 +++++
 
-Check the `build.sbt` again. You will find the tasks declared as `TaskKey[Unit]` with a main class corresponding to the
-two last tasks.
+These sbt tasks are defined in the `build.sbt` file and are declared as `TaskKey[Unit]` with the corresponding
+main class.

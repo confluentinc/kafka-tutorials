@@ -10,5 +10,5 @@ Same thing for the schemas.
 <pre class="snippet"><code class="bash">./gradlew publishSchemas</code></pre>
 +++++
 
-These sbt tasks are defined in the `build.sbt` file and are declared as `TaskKey[Unit]` with the corresponding main
-class.
+Check the `build.gradle` again. You will find the tasks declared as `JavaExec` with a main class corresponding to the
+two last files

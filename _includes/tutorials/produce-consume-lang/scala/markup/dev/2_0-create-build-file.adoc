@@ -1,4 +1,4 @@
-Create the following Sbt build file, named `build.sbt` at the root of the project folder:
+Create the following Sbt build file, named `build.sbt` for the project:
 
 +++++
 <pre class="snippet"><code class="groovy">{%
