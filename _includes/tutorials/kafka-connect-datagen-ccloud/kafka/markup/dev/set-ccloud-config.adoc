@@ -1,0 +1,13 @@
+View the local configuration file that was created after you provisioned a new `ccloud-stack`:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/view-ccloud-config.sh %}</code></pre>
++++++
+
+Your output should resemble:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/sample-stack.cfg %}</code></pre>
++++++
+ 
+Notice the service account id `<SERVICE ACCOUNT ID>` and its credentials for the Kafka cluster `<API KEY>` and `<API SECRET>`.
