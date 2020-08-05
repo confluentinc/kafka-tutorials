@@ -1,4 +1,4 @@
-View the local configuration file that was created after you provisioned a new `ccloud-stack`:
+View the local configuration file that was created after you provisioned a new `ccloud-stack`, where `*` in this case is the new service account id:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/view-ccloud-config.sh %}</code></pre>
