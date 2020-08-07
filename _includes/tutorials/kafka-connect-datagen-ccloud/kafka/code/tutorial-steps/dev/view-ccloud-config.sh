@@ -1,1 +1,1 @@
-cat stack-configs/demo-env-*.cfg
+cat stack-configs/java-service-account-*.config
