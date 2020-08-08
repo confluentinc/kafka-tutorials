@@ -13,7 +13,6 @@ ThisBuild / organizationName := "confluent"
 ThisBuild / javacOptions ++= Seq("-source", "1.8", "-target", "1.8", "-Xlint")
 
 ThisBuild / scalacOptions ++= Seq("-language:postfixOps")
-ThisBuild / jibRegistry := ""
 
 def dockerPackage(command: String, settings: Seq[Def.Setting[_]]): Command = Command.command(command) { state =>
   val settingsState = (Project extract state).appendWithoutSession(settings, state)
@@ -25,6 +24,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "produce-consume-scala",
     resolvers += "Confluent Repo" at "http://packages.confluent.io/maven",
+    jibRegistry := "",
     libraryDependencies ++= katancsv ++: (caskHttp ::
       avro4S ::
       logback ::

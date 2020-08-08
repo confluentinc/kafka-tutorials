@@ -1,5 +1,7 @@
 package io.confluent.developer
 
+import java.util.concurrent.{Executors, ScheduledExecutorService, TimeUnit}
+
 import io.confluent.developer.Configuration.ConsumerConf
 import io.confluent.developer.schema.ScalaReflectionSerde.reflectionDeserializer4S
 import io.confluent.developer.schema.{Book, ScalaReflectionSerde}
@@ -16,6 +18,7 @@ import scala.collection.mutable
 import scala.concurrent.duration._
 import scala.jdk.CollectionConverters._
 import scala.jdk.DurationConverters._
+import scala.util.Try
 
 object Consumer extends cask.MainRoutes with ScalaReflectionSerde with Configuration {
 
@@ -28,6 +31,7 @@ object Consumer extends cask.MainRoutes with ScalaReflectionSerde with Configura
   )
 
   override def port: Int = consumerConf.port
+
   override def host: String = consumerConf.host
 
   private def logger: Logger = LoggerFactory.getLogger(getClass)
@@ -43,8 +47,7 @@ object Consumer extends cask.MainRoutes with ScalaReflectionSerde with Configura
       bookMap.toArray.map { case (_: String, book: Book) =>
         upickle.default.writeJs(book)
       }: _*
-    )
-    )
+    ))
   }
 
   def consume(consumer: KafkaConsumer[Bytes, Book]): Vector[Book] = {
@@ -54,8 +57,8 @@ object Consumer extends cask.MainRoutes with ScalaReflectionSerde with Configura
     books.asScala.toVector.map(_.value())
   }
 
-  new Thread(() => {
-
+  val scheduler: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
+  scheduler.schedule(() => {
     logger debug "creating the deserializers and configuring"
     val bookDeserializer: Deserializer[Book] = reflectionDeserializer4S[Book]
     bookDeserializer.configure(schemaRegistryConfigMap.asJava, false)
@@ -69,24 +72,29 @@ object Consumer extends cask.MainRoutes with ScalaReflectionSerde with Configura
 
     consumer.subscribe(Vector(consumerConf.topics.bookTopic.name).asJava)
 
-    sys.addShutdownHook {
-      logger warn s"closing the kafka consumer"
-      consumer.close((5 second) toJava)
-    }
-
-    while (true) {
+    while (!scheduler.isShutdown) {
       Thread.sleep((2 second) toMillis)
 
       logger debug s"polling the new events"
       val books: Vector[Book] = consume(consumer)
 
-      if(books.nonEmpty) logger info s"just polled ${books.size} books from kafka"
+      if (books.nonEmpty) logger info s"just polled ${books.size} books from kafka"
       books.foreach { book =>
         bookMap += book.title -> book
       }
     }
 
-  }).start()
+    logger info "Closing the kafka consumer"
+    Try(consumer.close()).recover {
+      case error => logger error("Failed to close the kafka consumer", error)
+    }
+
+  }, 0, TimeUnit.SECONDS)
+
+  sys.addShutdownHook {
+    scheduler.shutdown()
+    scheduler.awaitTermination(10, TimeUnit.SECONDS)
+  }
 
   logger info s"starting the HTTP server"
   initialize()
