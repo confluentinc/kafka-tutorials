@@ -158,26 +158,13 @@ dev:
 
     - title: Run the consumer
       content:
-        - action: execute_async
-          file: tutorial-steps/dev/consume.sh
+        - action: skip
           render:
             file: tutorials/produce-consume-lang/scala/markup/dev/6_1-consume-execution.adoc
 
         - action: skip
           render:
             file: tutorials/produce-consume-lang/scala/markup/dev/6_2-consume-result.adoc
-
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 30000
-          render:
-            skip: true
-
-        - action: execute
-          file: tutorial-steps/dev/http-call-output.sh
-          stdout: tutorial-steps/dev/outputs/actual-result.json
-          render:
-            skip: true
 
 test:
   steps:
@@ -254,6 +241,18 @@ prod:
           file: tutorial-steps/prod/run-producer-container.sh
           render:
             file: tutorials/produce-consume-lang/scala/markup/prod/3_1-run-producer-container.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 30000
+          render:
+            skip: true
+
+        - action: execute
+          file: tutorial-steps/prod/http-call-output.sh
+          stdout: tutorial-steps/prod/outputs/actual-result.json
+          render:
+            skip: true
 
         - action: execute
           file: tutorial-steps/prod/clean-up.sh

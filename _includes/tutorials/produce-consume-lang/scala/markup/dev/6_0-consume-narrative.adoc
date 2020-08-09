@@ -27,7 +27,7 @@ def consume(consumer: KafkaConsumer[Bytes, Book]): Vector[Book] = { //<1>
 `https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html[KafkaConsumer]`
 and gives back a collection of `Book`.
 
-<2> <2> We call the `KafkaConsumer#poll` function on the `KafkaConsumer` which returns a `ConsumerRecords`
+<2> We call the `KafkaConsumer#poll` function on the `KafkaConsumer` which returns a `ConsumerRecords`
 containing Book instances.
 
 <3> For each returned value in the `ConsumerRecords` instance, the record value is extracted and passed
