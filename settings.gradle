@@ -68,6 +68,7 @@ include '_includes:tutorials:tumbling-windows:kstreams:code'
 // udf is an exception
 include '_includes:tutorials:udf:ksql:code'
 include '_includes:tutorials:window-final-result:kstreams:code'
+include '_includes:tutorials:produce-consume-lang:scala:code'
 // <end>
 
 // if new tutorial wasn't included in `settings.gradle` build will fail
