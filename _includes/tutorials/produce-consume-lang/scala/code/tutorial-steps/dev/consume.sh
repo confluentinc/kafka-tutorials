@@ -1,0 +1,1 @@
+./sbtx "-Djline.terminal=none" --error consume

@@ -1,0 +1,9 @@
+Add in the _project_ folder the file `project/plugins.sbt` with all the Sbt plugins required.
+
++++++
+<pre class="snippet"><code class="scala">{%
+    include_raw tutorials/produce-consume-lang/scala/code/project/plugins.sbt
+%}</code></pre>
++++++
+`sbt-jib` is an sbt alternative to the gradle/maven plugin for https://github.com/GoogleContainerTools/jib[Jib].
+Jib will be useful to package our application into a Docker image.

@@ -1,0 +1,7 @@
+List the dependencies under the _project_ folder in the file `project/Dependencies.scala`:
+
++++++
+<pre class="snippet"><code class="scala">{%
+    include_raw tutorials/produce-consume-lang/scala/code/project/Dependencies.scala
+%}</code></pre>
++++++

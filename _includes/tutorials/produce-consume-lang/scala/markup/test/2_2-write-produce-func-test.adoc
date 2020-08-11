@@ -1,0 +1,7 @@
+Add the produce function test class: `src/test/scala/io/confluent/developer/ProducerSpec.scala`:
+
++++++
+<pre class="snippet"><code class="bash">{%
+    include_raw tutorials/produce-consume-lang/scala/code/src/test/scala/io/confluent/developer/ProducerSpec.scala
+%}</code></pre>
++++++
