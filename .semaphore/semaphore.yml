@@ -37,6 +37,21 @@ blocks:
             - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
             - cache store site-$SEMAPHORE_GIT_SHA _site
 
+  - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore
+      jobs:
+        - name: Tests
+          matrix:
+            - env_var: JAVA_VERSION
+              values: ["8", "11"]
+          commands:
+            - sem-version java $JAVA_VERSION
+            - ./gradlew clean test
+
   - name: Run the tests
     execution_time_limit:
       minutes: 15

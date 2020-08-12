@@ -22,7 +22,7 @@ repositories {
     jcenter()
 
     maven {
-        url "http://packages.confluent.io/maven"
+        url "https://packages.confluent.io/maven"
     }
 }
 
@@ -33,12 +33,12 @@ apply plugin: "application"
 mainClassName = "io.confluent.developer.AggregatingMinMax"
 
 dependencies {
-    compile "org.apache.avro:avro:1.8.2"
+    implementation "org.apache.avro:avro:1.8.2"
     implementation "org.slf4j:slf4j-simple:1.7.26"
     implementation "org.apache.kafka:kafka-streams:2.4.0"
     implementation "io.confluent:kafka-streams-avro-serde:5.4.0"
-    testCompile "org.apache.kafka:kafka-streams-test-utils:2.4.0"
-    testCompile "junit:junit:4.12"
+    testImplementation "org.apache.kafka:kafka-streams-test-utils:2.4.0"
+    testImplementation "junit:junit:4.12"
     testImplementation 'org.hamcrest:hamcrest:2.2'
 }
 
@@ -53,12 +53,13 @@ test {
 jar {
   manifest {
     attributes(
-      "Class-Path": configurations.compile.collect { it.getName() }.join(" "),
+      "Class-Path": configurations.compileClasspath.collect { it.getName() }.join(" "),
       "Main-Class": "io.confluent.developer.AggregatingMinMax"
     )
   }
 }
 
 shadowJar {
-    archiveName = "kstreams-aggregating-minmax-standalone-${version}.${extension}"
+    archiveBaseName = "kstreams-aggregating-minmax-standalone"
+    archiveClassifier = ''
 }

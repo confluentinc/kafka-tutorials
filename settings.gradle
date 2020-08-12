@@ -1,0 +1,93 @@
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+    jcenter()
+    maven {
+      name "JCenter Gradle Plugins"
+      url "https://dl.bintray.com/gradle/gradle-plugins"
+    }
+  }
+}
+
+rootProject.name = 'kafka-tutorials'
+
+import static groovy.io.FileType.DIRECTORIES
+import static groovy.io.FileVisitResult.SKIP_SUBTREE
+
+def getProjectName(String dir) {
+  return (dir - (rootDir.toString() + "/")).replaceAll("/", ":")
+}
+
+def skipDirs = ~/^(templates|build|…*|src|out)/
+
+def preDir = {
+  if (skipDirs.matcher(it.name).matches()) {
+    return SKIP_SUBTREE
+  }
+}
+
+// dynamic project discovery won't work with dependabot
+/*
+rootDir.traverse(
+    type: DIRECTORIES,
+    preDir: preDir
+) { dir ->
+  if (new File(dir, "build.gradle").exists()) {
+    include getProjectName(dir.toString())
+  }
+}
+*/
+
+// <beginning> include projects 
+include '_includes:tutorials:aggregating-average:kstreams:code'
+include '_includes:tutorials:aggregating-count:kstreams:code'
+include '_includes:tutorials:aggregating-minmax:kstreams:code'
+include '_includes:tutorials:aggregating-sum:kstreams:code'
+include '_includes:tutorials:cogrouping-streams:kstreams:code'
+include '_includes:tutorials:connect-add-key-to-source:kafka:code'
+include '_includes:tutorials:connect-add-key-to-source:kstreams:code'
+include '_includes:tutorials:console-consumer-primitive-keys-values:kafka:code'
+include '_includes:tutorials:console-consumer-produer-basic:kafka:code'
+include '_includes:tutorials:console-consumer-read-specific-offsets-partition:kafka:code'
+include '_includes:tutorials:dynamic-output-topic:kstreams:code'
+include '_includes:tutorials:filtering:kstreams:code'
+include '_includes:tutorials:finding-distinct:kstreams:code'
+include '_includes:tutorials:fk-joins:kstreams:code'
+include '_includes:tutorials:joining-stream-table:kstreams:code'
+include '_includes:tutorials:kafka-connect-datagen-local:kafka:code'
+include '_includes:tutorials:kafka-consumer-application:kafka:code'
+include '_includes:tutorials:merging:kstreams:code'
+include '_includes:tutorials:naming-changelog-repartition-topics:kstreams:code'
+include '_includes:tutorials:serialization:kstreams:code'
+include '_includes:tutorials:splitting:kstreams:code'
+//include '_includes:tutorials:spring-kafka-error-handling:kafka:code'
+//include '_includes:tutorials:streams-to-table:kstreams:code'
+include '_includes:tutorials:transforming:kafka:code'
+include '_includes:tutorials:transforming:kstreams:code'
+include '_includes:tutorials:tumbling-windows:kstreams:code'
+// udf is an exception
+include '_includes:tutorials:udf:ksql:code'
+include '_includes:tutorials:window-final-result:kstreams:code'
+include '_includes:tutorials:produce-consume-lang:scala:code'
+// <end>
+
+// if new tutorial wasn't included in `settings.gradle` build will fail
+// and project needs to be added here
+file('_includes/tutorials/').eachDir { dir ->
+
+  dir.traverse(type: DIRECTORIES,
+               maxDepth: 1,
+               preDir: preDir) {
+    def directoryName = it.toString()
+    
+    // ksql projects don't use gradle. we will skip it
+    if (!(directoryName.contains("ksql")) && directoryName.endsWith("code")) {
+      def projectName = getProjectName(directoryName)
+      //debug: println projectName
+      if (!findProject(":${projectName}")) {
+        throw new GradleException(
+            "Tutorial ${projectName} was not included into the build. Check settings.gradle for details.")
+      }
+    }
+  }
+}

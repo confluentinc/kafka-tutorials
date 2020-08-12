@@ -2,107 +2,95 @@ package io.confluent.developer;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import io.confluent.developer.avro.PressureAlert;
-import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient;
-import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-import org.apache.kafka.clients.producer.ProducerRecord;
+
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.utils.Bytes;
+import org.apache.kafka.streams.TestInputTopic;
+import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
 import org.apache.kafka.streams.kstream.TimeWindows;
 import org.apache.kafka.streams.kstream.Windowed;
-import org.apache.kafka.streams.test.ConsumerRecordFactory;
+import org.apache.kafka.streams.test.TestRecord;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.time.Duration;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
-import static com.github.grantwest.eventually.EventuallyLambdaMatcher.eventuallyEval;
-import static io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
+import io.confluent.developer.avro.PressureAlert;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 import static org.apache.kafka.streams.kstream.WindowedSerdes.timeWindowedSerdeFrom;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.equalTo;
 
 public class WindowFinalResultTest {
 
-    private TopologyTestDriver topologyTestDriver;
+    private TopologyTestDriver testDriver;
+    private TestOutputTopic<Windowed<String>, Long> testOutputTopic;
     private SpecificAvroSerde<PressureAlert> pressureSerde;
 
-    private Config config = ConfigFactory.load("test.properties");
+    private final Config config = ConfigFactory.load("test.properties");
 
-    private String inputTopic = this.config.getString("input.topic.name");
-    private String outputTopic = this.config.getString("output.topic.name");
+    private final String inputTopic = this.config.getString("input.topic.name");
+    private final String outputTopic = this.config.getString("output.topic.name");
 
-    private Duration testWindowSize = config.getDuration("window.size");
-    private Duration testGracePeriodSize = config.getDuration("window.grace.period");
-    private Serde<Windowed<String>> keyResultSerde = timeWindowedSerdeFrom(String.class, testWindowSize.toMillis());
+    private final Duration testWindowSize = config.getDuration("window.size");
+    private final Duration testGracePeriodSize = config.getDuration("window.grace.period");
+    private final Serde<Windowed<String>> keyResultSerde = timeWindowedSerdeFrom(String.class, testWindowSize.toMillis());
 
     private TimeWindows makeFixedTimeWindow() {
         return TimeWindows.of(testWindowSize).advanceBy(testWindowSize).grace(testGracePeriodSize);
     }
 
-    private SpecificAvroSerde<PressureAlert> makePressureAlertSerde() throws IOException, RestClientException {
-
-        final MockSchemaRegistryClient client = new MockSchemaRegistryClient();
-
-        String subject = String.format("%s-value", config.getString("input.topic.name"));
-
-        client.register(subject, PressureAlert.SCHEMA$);
-
+    private SpecificAvroSerde<PressureAlert> makePressureAlertSerde() {
+        
         Map<String, String> schemaRegistryConfigMap = Collections.singletonMap(
                 SCHEMA_REGISTRY_URL_CONFIG,
                 config.getString(SCHEMA_REGISTRY_URL_CONFIG)
         );
 
-        SpecificAvroSerde<PressureAlert> serde = new SpecificAvroSerde<>(client);
-
+        SpecificAvroSerde<PressureAlert> serde = new SpecificAvroSerde<>();
         serde.configure(schemaRegistryConfigMap, false);
 
         return serde;
     }
+    
+    private List<TestRecord<Windowed<String>, Long>> readAtLeastNOutputs(int size) {
+        final List<TestRecord<Windowed<String>, Long>> testRecords = testOutputTopic.readRecordsToList();
+        Assert.assertThat(testRecords.size(), 
+                          equalTo(size));
 
-    private ProducerRecord<Windowed<String>, Long> readNext() {
-        return topologyTestDriver.readOutput(
-                this.outputTopic,
-                this.keyResultSerde.deserializer(),
-                Serdes.Long().deserializer()
-        );
-    }
-
-    private List<ProducerRecord<Windowed<String>, Long>> readAtLeastNOutputs(int size) {
-        List<ProducerRecord<Windowed<String>, Long>> result = new ArrayList<>();
-
-        Assert.assertThat(() -> {
-            ProducerRecord<Windowed<String>, Long> record = readNext();
-            if(null != record) result.add(record);
-            return result.size();
-        }, eventuallyEval(is(size), this.testGracePeriodSize));
-
-        return result;
+        return testRecords;
     }
 
     @Before
-    public void setUp() throws IOException, RestClientException {
+    public void setUp() {
         this.pressureSerde = makePressureAlertSerde();
         Topology topology = WindowFinalResult.buildTopology(config, makeFixedTimeWindow(), this.pressureSerde);
-        this.topologyTestDriver = new TopologyTestDriver(topology, WindowFinalResult.buildProperties(config));
+        this.testDriver = new TopologyTestDriver(topology, WindowFinalResult.buildProperties(config));
+        this.testOutputTopic = testDriver.createOutputTopic(outputTopic,this.keyResultSerde.deserializer(), Serdes.Long().deserializer() );
     }
 
     @After
     public void tearDown() {
-        topologyTestDriver.close();
+        testDriver.close();
     }
 
     @Test
     public void topologyShouldGroupOverDatetimeWindows() {
-        ConsumerRecordFactory<Bytes, PressureAlert> inputFactory =
-                new ConsumerRecordFactory<>(Serdes.Bytes().serializer(), this.pressureSerde.serializer());
+        final TestInputTopic<Bytes, PressureAlert>
+            testDriverInputTopic =
+            testDriver.createInputTopic(this.inputTopic, Serdes.Bytes().serializer(), this.pressureSerde.serializer());
 
         List<PressureAlert> inputs = Arrays.asList(
                 new PressureAlert("101", "2019-09-21T05:30:01.+0200", Integer.MAX_VALUE),
@@ -116,16 +104,16 @@ public class WindowFinalResultTest {
         );
 
         inputs.forEach(pressureAlert ->
-                this.topologyTestDriver.pipeInput(inputFactory.create(this.inputTopic, null, pressureAlert))
+                testDriverInputTopic.pipeInput(null, pressureAlert)
         );
 
-        List<ProducerRecord<Windowed<String>, Long>> result = readAtLeastNOutputs(3);
+        List<TestRecord<Windowed<String>, Long>> result = readAtLeastNOutputs(3);
 
-        Optional<ProducerRecord<Windowed<String>, Long>> resultOne = result
+        Optional<TestRecord<Windowed<String>, Long>> resultOne = result
                 .stream().filter(Objects::nonNull).filter(r -> r.key().window().start() == 1569036600000L).findAny();
-        Optional<ProducerRecord<Windowed<String>, Long>> resultTwo = result
+        Optional<TestRecord<Windowed<String>, Long>> resultTwo = result
                 .stream().filter(Objects::nonNull).filter(r -> r.key().window().start() == 1569037500000L).findAny();
-        Optional<ProducerRecord<Windowed<String>, Long>> resultThree = result
+        Optional<TestRecord<Windowed<String>, Long>> resultThree = result
                 .stream().filter(Objects::nonNull).filter(r -> r.key().window().start() == 1569038110000L).findAny();
 
         Assert.assertTrue(resultOne.isPresent());
@@ -142,15 +130,15 @@ public class WindowFinalResultTest {
                         element.key().window().end() - element.key().window().start()
                 )
         );
-
-        Assert.assertNull(readNext());
     }
 
     @Test
     public void topologyShouldGroupById() {
-        ConsumerRecordFactory<Bytes, PressureAlert> inputFactory =
-                new ConsumerRecordFactory<>(Serdes.Bytes().serializer(), this.pressureSerde.serializer());
 
+        final TestInputTopic<Bytes, PressureAlert>
+            testDriverInputTopic =
+            testDriver.createInputTopic(this.inputTopic, Serdes.Bytes().serializer(), this.pressureSerde.serializer());
+        
         List<PressureAlert> inputs = Arrays.asList(
                 new PressureAlert("101", "2019-09-21T05:30:01.+0200", Integer.MAX_VALUE),
                 new PressureAlert("101", "2019-09-21T05:30:02.+0200", Integer.MAX_VALUE),
@@ -166,16 +154,16 @@ public class WindowFinalResultTest {
         );
 
         inputs.forEach(pressureAlert ->
-                this.topologyTestDriver.pipeInput(inputFactory.create(this.inputTopic, null, pressureAlert))
+                           testDriverInputTopic.pipeInput(null, pressureAlert)
         );
 
-        List<ProducerRecord<Windowed<String>, Long>> result = readAtLeastNOutputs(3);
+        List<TestRecord<Windowed<String>, Long>> result = readAtLeastNOutputs(3);
 
-        Optional<ProducerRecord<Windowed<String>, Long>> resultOne =
+        Optional<TestRecord<Windowed<String>, Long>> resultOne =
                 result.stream().filter(Objects::nonNull).filter(r -> r.key().key().equals("101")).findAny();
-        Optional<ProducerRecord<Windowed<String>, Long>> resultTwo =
+        Optional<TestRecord<Windowed<String>, Long>> resultTwo =
                 result.stream().filter(Objects::nonNull).filter(r -> r.key().key().equals("102")).findAny();
-        Optional<ProducerRecord<Windowed<String>, Long>> resultThree =
+        Optional<TestRecord<Windowed<String>, Long>> resultThree =
                 result.stream().filter(Objects::nonNull).filter(r -> r.key().key().equals("103")).findAny();
 
         Assert.assertTrue(resultOne.isPresent());
@@ -186,6 +174,6 @@ public class WindowFinalResultTest {
         Assert.assertEquals(3L, resultTwo.get().value().longValue());
         Assert.assertEquals(3L, resultThree.get().value().longValue());
 
-        Assert.assertNull(readNext());
+        //Assert.assertNull(readNext());
     }
 }

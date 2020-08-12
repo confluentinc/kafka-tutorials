@@ -55,14 +55,16 @@ test {
 jar {
   manifest {
     attributes(
-        "Class-Path": configurations.runtime.collect { it.getName() }.join(" "),
+        "Class-Path": configurations.runtimeClasspath.collect { it.getName() }.join(" "),
         "Main-Class": mainClassName
     )
   }
 }
 
+
 shadowJar {
-  archiveFileName = "aggregating-average-standalone-$version.$extension"
+  archiveBaseName = "aggregating-average-standalone"
+  archiveClassifier = ''
 }
 
 jib {
