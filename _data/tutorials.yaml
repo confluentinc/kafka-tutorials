@@ -314,6 +314,17 @@ kafka-connect-datagen-local:
     kstreams: disabled
     kafka: enabled
 
+kafka-connect-datagen-ccloud:
+  title: "How to generate mock data to a Kafka topic in Confluent Cloud using the fully-managed Kafka Connect Datagen"
+  meta-description: "How to generate mock data to a Kafka topic in Confluent Cloud using the fully-managed Kafka Connect Datagen"
+  slug: "/kafka-connect-datagen-ccloud"
+  question: "How can I produce mock data to Kafka topics in Confluent Cloud to test my Kafka applications?"
+  introduction: "You will run a fully-managed instance of the <a href=\"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen\">Kafka Connect Datagen</a> connector to produce mock data to a Kafka topic in <a href=\"https://confluent.cloud\">Confluent Cloud</a>. This helps you test your applications in the cloud."
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+
 change-topic-partitions-replicas:
   title: "How to change the number of partitions and replicas of a Kafka topic"
   meta-description: "How to change the number of partitions or replicas of a Kafka topic"
