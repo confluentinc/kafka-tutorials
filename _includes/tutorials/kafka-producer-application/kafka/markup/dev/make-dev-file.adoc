@@ -6,10 +6,16 @@ Then create a development file at `configuration/dev.properties`:
 
 Let's do a quick walkthrough of some of the properties.
 
-`key.serializer` - The serializer the `KafkaProducer` will use to serialize the key.
-`value.serializer` - The serializer the `KafkaProducer` will use to serialize the value.
-`acks` - The `KafkaProducer` uses the `acks` configuration to tell the lead broker how many acknowledements to wait for to consider a produce request complete. Acceptable settings are `0`, `1`, or `all`.
+https://kafka.apache.org/documentation/#key.serializer[key.serializer] - The serializer the `KafkaProducer` will use to serialize the key.
+
+https://kafka.apache.org/documentation/#value.serializer[value.serializer] - The serializer the `KafkaProducer` will use to serialize the value.
+
+https://kafka.apache.org/documentation/#acks[acks] - The `KafkaProducer` uses the `acks` configuration to tell the lead broker how many acknowledements to wait for to consider a produce request complete. Acceptable settings are `0`, `1`, `-1`, or all`.  Setting `acks` to `-1` is the same as setting it to `all`.  The default setting is `1`.
+
 
 - Setting `acks` to `0` could be considered "fire and forget" as once the producer sends the record batch it is considered succesful even though the records may not reach the broker at all. So record loss is possible.  The offsets for records are always set to `-1`.
 - Setting `acks` to `1` means the leader added the records to its local log, but didn't wait for any acknowledgement from the followers.  While `acks=1` is a higher durablity guarantee, should the leader fail before the followers have repliated the record, then data loss will occur
-- Using `acks=all` ensures the leader persisted the record to its log and recieved acknowledgement of replication from all in-sync replicas.  This setting gives the highest data durability guarantee.
+- Using `acks=all` ensures the leader persisted the record to its log and recieved acknowledgement of replication from all in-sync replicas.  This setting gives the highest data durability guarantee.  When using `aks=all`, it's stongly reccomended to set https://kafka.apache.org/documentation/#min.insync.replicas[min.insync.replicas] to `2` instead of the default of `1`.  By changing the `min.insync.replicas` value, should the availablity of in-sync replicas drop to less than the configured amount (2 in this case), the producer will raise an exception (`NotEnoughReplicas` or `NotEnoughReplicasAfterAppend`).
+
+
+I've only covered a small sub-set of producer confgurations, the full list can be found in the https://kafka.apache.org/documentation/#producerconfigs[producer configs section] in the Apache Kafka documentation.

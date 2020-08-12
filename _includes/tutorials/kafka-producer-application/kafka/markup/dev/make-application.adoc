@@ -35,7 +35,7 @@ Next let's take a look at the `KafkaProducerApplication.produce` method
 .KafkaProducerApplication.produce
 ----
 public Future<RecordMetadata> produce(final String message) {
-    final String[] parts = message.split("#");  <1>
+    final String[] parts = message.split("-");  <1>
     final String key, value;
     if (parts.length > 1) {
       key = parts[0];
@@ -54,11 +54,11 @@ public Future<RecordMetadata> produce(final String message) {
 <2> Creating the `ProducerRecord`
 <3> Sending the record to the broker
 
-The `KafkaProducerApplication.produce` method does some processing on a `String` then sends the https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.  Again by having the processing encapsulated in a method we can easily test this code.
+The `KafkaProducerApplication.produce` method does some processing on a `String` then sends the https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.
 
 Notice that https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html#send-org.apache.kafka.clients.producer.ProducerRecord-[`KafkaProducer.send`] returns a https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Future.html[Future] with a type of https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/RecordMetadata.html[RecordMetadata].
 
-The `KafkaProducer.send` method is asynchronous and returns as soon as the provided record is placed in the buffer of records to be sent to the broker. The `RecordMetadata` contains metadata about a particular record after it has been acknowledged.  This tutorial prints the `timestamp` and `offset` for each record sent using the `RecordMetadata` object.  You should note that calling `Future.get()` for any record will block until the produce request completes.
+The `KafkaProducer.send` method is asynchronous and returns as soon as the provided record is placed in the buffer of records to be sent to the broker. Once the broker acknowledges that the record has been appended to its log, the broker completes the produce request, which the application receives as `RecordMetadata`—information about the committed message.  This tutorial prints the `timestamp` and `offset` for each record sent using the `RecordMetadata` object.  You should note that calling `Future.get()` for any record will block until the produce request completes.
 
 
 Now go ahead and create the following file at `src/main/java/io/confluent/developer/KafkaProducerApplication.java`.

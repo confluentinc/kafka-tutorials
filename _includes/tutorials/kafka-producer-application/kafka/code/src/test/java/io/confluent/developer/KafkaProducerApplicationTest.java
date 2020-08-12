@@ -25,14 +25,14 @@ public class KafkaProducerApplicationTest {
         final Properties props = KafkaProducerApplication.loadProperties(TEST_CONFIG_FILE);
         final String topic = props.getProperty("output.topic.name");
         final KafkaProducerApplication producerApp = new KafkaProducerApplication(mockProducer, topic);
-        final List<String> records = Arrays.asList("foo#bar", "bar#foo", "baz#bar", "great-weather");
+        final List<String> records = Arrays.asList("foo-bar", "bar-foo", "baz-bar", "great:weather");
 
         records.forEach(producerApp::produce);
 
         final List<KeyValue<String, String>> expectedList = Arrays.asList(KeyValue.pair("foo", "bar"),
             KeyValue.pair("bar", "foo"),
             KeyValue.pair("baz", "bar"),
-            KeyValue.pair("NO-KEY","great-weather"));
+            KeyValue.pair("NO-KEY","great:weather"));
 
         final List<KeyValue<String, String>> actualList = mockProducer.history().stream().map(this::toKeyValue).collect(Collectors.toList());
 

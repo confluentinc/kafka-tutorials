@@ -108,7 +108,7 @@ test:
           render:
             file: tutorials/kafka-producer-application/kafka/markup/test/make-test-file.adoc
 
-    - title: Write a test
+    - title: Write a unit test
       content:
         - action: execute
           file: tutorial-steps/test/make-test-dir.sh

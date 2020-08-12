@@ -30,7 +30,7 @@ public class KafkaProducerApplication {
   }
 
   public Future<RecordMetadata> produce(final String message) {
-    final String[] parts = message.split("#");
+    final String[] parts = message.split("-");
     final String key, value;
     if (parts.length > 1) {
       key = parts[0];
@@ -62,7 +62,7 @@ public class KafkaProducerApplication {
          metadata.forEach(m -> {
            try {
              final RecordMetadata recordMetadata = m.get();
-             System.out.println("Offset " + recordMetadata.offset() + " timestamp " + recordMetadata.timestamp());
+             System.out.println("Record written to offset " + recordMetadata.offset() + " timestamp " + recordMetadata.timestamp());
            } catch (InterruptedException | ExecutionException e) {
                if (e instanceof  InterruptedException) {
                   Thread.currentThread().interrupt();
