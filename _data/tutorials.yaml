@@ -364,3 +364,15 @@ produce-consume-lang:
     ruby: disabled
     scala: enabled
     swift: disabled
+
+streams-to-table:
+  title: "How to convert a Kafka Streams KStream to a KTable"
+  meta-description: "How to convert a Kafka Streams KStream to a KTable"
+  slug: "/kafka-streams-convert-to-ktable"
+  problem: "you have a KStream and you'd like to convert it to a KTable without having to perform an aggregation operation"
+  introduction: "You have a KStream and you need to convert it to a KTable, but you don't need an aggregation operation. With the 2.5 release of Apache Kafka, Kafka Streams introduced a new method KStream.toTable allowing users to easily convert a KStream to a KTable without having to perform an aggregation operation."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+
