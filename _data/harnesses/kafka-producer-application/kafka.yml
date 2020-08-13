@@ -48,6 +48,8 @@ dev:
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/make-config-dir.adoc
 
+    - title: Add application and producer properties
+      content:
         - action: make_file
           file: configuration/dev.properties
           render:
@@ -81,7 +83,6 @@ dev:
 
         - action: execute
           file: tutorial-steps/dev/run-dev-app.sh
-          stdin: tutorial-steps/dev/input-harness-filename.txt
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/run-dev-app.adoc
 

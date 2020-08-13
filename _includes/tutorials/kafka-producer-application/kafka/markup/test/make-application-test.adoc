@@ -23,7 +23,7 @@ records.forEach(producerApp::produce); <1>
 final List<KeyValue<String, String>> expectedList = Arrays.asList(KeyValue.pair("foo", "bar"),
             KeyValue.pair("bar", "foo"),
             KeyValue.pair("baz", "bar"),
-            KeyValue.pair("NO-KEY","great-weather")); <2>
+            KeyValue.pair("NO-KEY","great:weather")); <2>
 final List<KeyValue<String, String>> actualList = mockProducer.history().stream().map(this::toKeyValue).collect(Collectors.toList()); <3>
 
 ----

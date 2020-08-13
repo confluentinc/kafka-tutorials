@@ -25,9 +25,10 @@ public class KafkaProducerApplication {
 <2> The topic to write records to
 
 
-In this tutorial you'll inject the dependencies in the `KafkaProducerApplication.main()` method, but in practice you may want to use a dependency injection framework library, such as the  https://spring.io/projects/spring-framework[Spring Framework].
+In this tutorial you'll inject the dependencies in the `KafkaProducerApplication.main()` method.
+Having this thin wrapper class around a `Producer` is not required, but it does help with making our code easier to test.  We'll go into more details in the testing section of the tutorial.
 
-Having this thin wrapper class around a `Producer` is not required.  But it does help with making our code easier to test.  We'll go into more details in the testing section of the tutorial.
+(In practice you may want to use a dependency injection framework library, such as the  https://spring.io/projects/spring-framework[Spring Framework]).
 
 
 Next let's take a look at the `KafkaProducerApplication.produce` method
@@ -50,15 +51,14 @@ public Future<RecordMetadata> produce(final String message) {
 
 ----
 
-<1> Processing the String for sending message
-<2> Creating the `ProducerRecord`
-<3> Sending the record to the broker
+<1> Process the String for sending message
+<2> Create the `ProducerRecord`
+<3> Send the record to the broker
 
-The `KafkaProducerApplication.produce` method does some processing on a `String` then sends the https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.
-
+The `KafkaProducerApplication.produce` method does some processing on a `String`, and then sends the https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.
 Notice that https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html#send-org.apache.kafka.clients.producer.ProducerRecord-[`KafkaProducer.send`] returns a https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Future.html[Future] with a type of https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/RecordMetadata.html[RecordMetadata].
 
-The `KafkaProducer.send` method is asynchronous and returns as soon as the provided record is placed in the buffer of records to be sent to the broker. Once the broker acknowledges that the record has been appended to its log, the broker completes the produce request, which the application receives as `RecordMetadata`—information about the committed message.  This tutorial prints the `timestamp` and `offset` for each record sent using the `RecordMetadata` object.  You should note that calling `Future.get()` for any record will block until the produce request completes.
+The `KafkaProducer.send` method is asynchronous and returns as soon as the provided record is placed in the buffer of records to be sent to the broker. Once the broker acknowledges that the record has been appended to its log, the broker completes the produce request, which the application receives as `RecordMetadata`—information about the committed message.  This tutorial prints the `timestamp` and `offset` for each record sent using the `RecordMetadata` object.  Note that calling `Future.get()` for any record will block until the produce request completes.
 
 
 Now go ahead and create the following file at `src/main/java/io/confluent/developer/KafkaProducerApplication.java`.

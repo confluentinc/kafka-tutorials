@@ -4,13 +4,13 @@ Then create a development file at `configuration/dev.properties`:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/configuration/dev.properties %}</code></pre>
 +++++
 
-Let's do a quick walkthrough of some of the properties.
+Let's do a quick walkthrough of some of the producer properties.
 
 https://kafka.apache.org/documentation/#key.serializer[key.serializer] - The serializer the `KafkaProducer` will use to serialize the key.
 
 https://kafka.apache.org/documentation/#value.serializer[value.serializer] - The serializer the `KafkaProducer` will use to serialize the value.
 
-https://kafka.apache.org/documentation/#acks[acks] - The `KafkaProducer` uses the `acks` configuration to tell the lead broker how many acknowledements to wait for to consider a produce request complete. Acceptable settings are `0`, `1`, `-1`, or all`.  Setting `acks` to `-1` is the same as setting it to `all`.  The default setting is `1`.
+https://kafka.apache.org/documentation/#acks[acks] - The `KafkaProducer` uses the `acks` configuration to tell the lead broker how many acknowledements to wait for to consider a produce request complete. Acceptable values for `acks` are: `0`, `1` (the default), `-1`, or `all`.  Setting `acks` to `-1` is the same as setting it to `all`.
 
 
 - `acks=0`: "fire and forget", once the producer sends the record batch it is considered successful
@@ -18,4 +18,4 @@ https://kafka.apache.org/documentation/#acks[acks] - The `KafkaProducer` uses th
 - `acks=all`: highest data durability guarantee, the leader broker persisted the record to its log and received acknowledgement of replication from all in-sync replicas When using `aks=all`, it's stongly reccomended to update https://kafka.apache.org/documentation/#min.insync.replicas[min.insync.replicas] as well.
 
 
-I've only covered a small sub-set of producer confgurations, the full list can be found in the https://kafka.apache.org/documentation/#producerconfigs[producer configs section] in the Apache Kafka documentation.
+This is only a small sub-set of producer configuration parameters. The full list of producer configuration parameters can be found in the https://kafka.apache.org/documentation/#producerconfigs[Apache Kafka documentation].
