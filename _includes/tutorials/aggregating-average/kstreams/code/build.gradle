@@ -61,7 +61,6 @@ jar {
   }
 }
 
-
 shadowJar {
   archiveBaseName = "aggregating-average-standalone"
   archiveClassifier = ''
@@ -70,8 +69,7 @@ shadowJar {
 jib {
   container {
     mainClass = mainClassName
-    jvmFlags =["-Dconfig.file=/prod.properties"]
+    jvmFlags = ["-Dconfig.file=/prod.properties"]
   }
-
-  extraDirectory = file("${rootDir.getPath()}/configuration")
+  extraDirectories.paths = file("${rootDir.getPath()}/configuration")
 }
