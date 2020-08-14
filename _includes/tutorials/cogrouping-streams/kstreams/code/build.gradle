@@ -34,7 +34,7 @@ dependencies {
     implementation "org.apache.avro:avro:1.9.1"
     implementation "org.slf4j:slf4j-simple:1.7.30"
     implementation "org.apache.kafka:kafka-streams:2.5.0"
-    implementation "org.apache.kafka:kafka-clients:2.5.0"
+    implementation "org.apache.kafka:kafka-clients:5.3.1-ce"
     implementation "io.confluent:kafka-streams-avro-serde:5.5.0"
 
     testImplementation "org.apache.kafka:kafka-streams-test-utils:2.5.0"
