@@ -376,3 +376,15 @@ streams-to-table:
     kstreams: enabled
     kafka: disabled
 
+kafka-producer-application:
+  title: "How build your first Apache KafkaProducer application"
+  meta-description: "How build your first Apache KafkaProducer application"
+  slug: "/creating-first-apache-kafka-producer-application"
+  question: "How do I get started in building my first Kafka producer application?"
+  introduction: "You'd like to integrate an Apache KafkaProducer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application writing records to Kafka with a KafkaProducer.  You can use the code in this tutorial as an example of how to use an Apache Kafka producer"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+
+
