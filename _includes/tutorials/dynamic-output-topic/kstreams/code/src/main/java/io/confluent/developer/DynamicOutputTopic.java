@@ -1,24 +1,6 @@
 package io.confluent.developer;
 
 
-import io.confluent.common.utils.TestUtils;
-import io.confluent.developer.avro.CompletedOrder;
-import io.confluent.developer.avro.Order;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.security.SecureRandom;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Random;
-import java.util.concurrent.CountDownLatch;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -34,6 +16,25 @@ import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.kstream.ValueMapper;
 import org.apache.kafka.streams.processor.TopicNameExtractor;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
+
+import io.confluent.common.utils.TestUtils;
+import io.confluent.developer.avro.CompletedOrder;
+import io.confluent.developer.avro.Order;
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
+
 public class DynamicOutputTopic {
 
     static final double FAKE_PRICE = 0.467423D;
@@ -44,7 +45,7 @@ public class DynamicOutputTopic {
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
     }
@@ -88,8 +89,8 @@ public class DynamicOutputTopic {
         final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
         final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
         final Map<String, String> config = new HashMap<>();
-        config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
+        config.put(SCHEMA_REGISTRY_URL_CONFIG,
+                   envProps.getProperty("schema.registry.url"));
         deserializer.configure(config, isKey);
         serializer.configure(config, isKey);
         return (Serde<T>)Serdes.serdeFrom(serializer, deserializer);
@@ -99,8 +100,8 @@ public class DynamicOutputTopic {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
 
         final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
+        serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
+                        envProps.getProperty("schema.registry.url"));
 
         specificAvroSerde.configure(serdeConfig, false);
         return specificAvroSerde;
