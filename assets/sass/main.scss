@@ -61,14 +61,13 @@ body {
 
 .nav-company {
     padding: 10px;
+    font-size: 10px;
+    letter-spacing: 1.17px;
+    font-weight: 600;
+    line-height: 20px;
 
     a {
-        font-size: 10px;
-        letter-spacing: 1.17px;
-        font-weight: 600;
-        line-height: 20px;
-
-        &:hover { text-decoration: underline; }
+        text-decoration: underline;
     }
 }
 
