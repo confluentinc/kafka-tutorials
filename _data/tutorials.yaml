@@ -398,7 +398,6 @@ kafka-producer-application:
     kstreams: disabled
     kafka: enabled
 
-
 kafka-producer-application-callback:
   title: "How build an Apache KafkaProducer application using callbacks"
   meta-description: "How build an Apache KafkaProducer application using callbacks"
@@ -418,6 +417,7 @@ kafka-producer-application-callback:
     scala: disabled
     swift: disabled
 
+
 count-messages:
   title: "How to count messages in a Kafka topic"
   meta-description: "How to count messages in a Kafka topic"
@@ -428,6 +428,25 @@ count-messages:
     ksql: enabled
     kstreams: disabled
     kafka: enabled
+    c : disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
+kafka-streams-schedule-operations:
+  title: "I NEED TO BE UPDATED"
+  meta-description: "I NEED TO BE UPDATED"
+  slug: "/kafka-streams-schedule-operations"
+  question: "I NEED TO BE UPDATED"
+  introduction: "I NEED TO BE UPDATED"
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
     c: disabled
     go: disabled
     groovy: disabled

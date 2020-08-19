@@ -1,0 +1,166 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/init.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Configure the project
+      content:
+        - action: make_file
+          file: build.gradle
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-build-file.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/gradle-wrapper.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-gradle-wrapper.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-config-dir.adoc
+
+        - action: make_file
+          file: configuration/dev.properties
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-dev-file.adoc
+            
+    - title: Create a schema for the model obect
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-avro-dir.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-avro-dir.adoc
+
+        - action: make_file
+          file: src/main/avro/example.avsc
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-avro-schema.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/build-project.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/build-project.adoc
+
+    - title: Create the Kafka Streams topology
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-src-dir.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-src-dir.adoc
+            
+        - action: make_file
+          file: src/main/java/io/confluent/developer/KafkaStreamsPunctuation.java
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-topology.adoc 
+
+    - title: Compile and run the Kafka Streams program
+      content:
+        - action: execute
+          file: tutorial-steps/dev/build-uberjar.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/build-uberjar.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/run-dev-app.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/run-dev-app.adoc
+
+    - title: Produce sample data to the input topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/console-producer.sh
+          stdin: tutorial-steps/dev/example-input.json
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/run-producer.adoc
+
+    - title: Consume data from the output topic
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/console-consumer.sh
+          stdout: tutorial-steps/dev/outputs/actual-output.json
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/run-consumer.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+test:
+  steps:
+    - title: Create a test configuration file
+      content:
+        - action: make_file
+          file: configuration/test.properties
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/test/make-test-file.adoc
+
+    - title: Write a test
+      content:
+        - action: execute
+          file: tutorial-steps/test/make-test-dir.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/test/make-test-dir.adoc
+
+        - action: make_file
+          file: src/test/java/io/confluent/developer/KafkaStreamsPunctuationTest.java
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/test/make-topology-test.adoc
+
+    - title: Invoke the tests
+      content:
+        - action: execute
+          file: tutorial-steps/test/invoke-tests.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/test/invoke-tests.adoc
+
+prod:
+  steps:
+    - title: Create a production configuration file
+      content:
+        - action: make_file
+          file: configuration/prod.properties
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/prod/make-prod-file.adoc
+
+    - title: Build a Docker image
+      content:
+        - action: execute
+          file: tutorial-steps/prod/build-image.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/prod/build-image.adoc
+
+    - title: Launch the container
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/prod/launch-container.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
+

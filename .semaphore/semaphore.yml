@@ -295,3 +295,7 @@ blocks:
         - name: Kafka Count messages on a topic tutorial tests
           commands:
             - make -C _includes/tutorials/count-messages/kafka/code tutorial
+
+        - name: KStreams Test Streams schedule operations tests
+          commands:
+            - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
