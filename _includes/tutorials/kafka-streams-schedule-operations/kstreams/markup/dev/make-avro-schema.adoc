@@ -9,9 +9,13 @@
   If you are'nt using Avro, delete this file from the folder.
 ////
 
-Then create the following Avro schema file at `src/main/avro/example.avsc` for the movies lookup table:
+Then create the following Avro schema file at `src/main/avro/pageviews.avsc` for our pageviews object:
 
 +++++
-<pre class="snippet"><code class="avro">{% include_raw tutorials/kafka-streams-schedule-operations/kstreams/code/src/main/avro/example.avsc %}</code></pre>
+<pre class="snippet"><code class="avro">{% include_raw tutorials/kafka-streams-schedule-operations/kstreams/code/src/main/avro/pageviews.avsc %}</code></pre>
 +++++
+
+You'll also need the schema file for data generation.
+
+After you've created the file, run this command `cp src/main/avro/pageviews.avsc .` to copy the schema file to your tutorial working directory.
 
