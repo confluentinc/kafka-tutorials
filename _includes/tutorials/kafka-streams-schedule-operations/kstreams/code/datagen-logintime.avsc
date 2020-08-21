@@ -1,13 +1,13 @@
 {
   "namespace": "io.confluent.developer.avro",
   "type": "record",
-  "name": "Pageviews",
+  "name": "LoginTime",
   "fields": [
-    {"name": "viewtime", "type": {
+    {"name": "logintime", "type": {
       "type": "long",
       "format_as_time" : "unix_long",
       "arg.properties": {
-        "iteration": { "start": 1, "step": 10}
+        "iteration": { "start": 1, "step": 100}
       }
     }},
     {"name": "userid", "type": {
@@ -16,10 +16,10 @@
         "regex": "User_[1-9]{0,1}"
       }
     }},
-    {"name": "pageid", "type": {
+    {"name": "appid", "type": {
       "type": "string",
       "arg.properties": {
-        "regex": "Page_[1-9][0-9]?"
+        "regex": "App[1-9][0-9]?"
       }
     }}
   ]

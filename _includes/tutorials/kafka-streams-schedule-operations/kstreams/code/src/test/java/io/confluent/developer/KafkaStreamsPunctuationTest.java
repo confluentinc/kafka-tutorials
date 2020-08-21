@@ -1,7 +1,7 @@
 package io.confluent.developer;
 
 
-import io.confluent.developer.avro.Pageviews;
+import io.confluent.developer.avro.LoginTime;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
@@ -18,12 +18,15 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertSame;
+
 
 
 public class KafkaStreamsPunctuationTest {
@@ -42,35 +45,34 @@ public class KafkaStreamsPunctuationTest {
         final Topology topology = instance.buildTopology(envProps);
         try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
 
-            final SpecificAvroSerde<Pageviews> exampleAvroSerde = KafkaStreamsPunctuation.<Pageviews>getSpecificAvroSerde(envProps);
+            final SpecificAvroSerde<LoginTime> exampleAvroSerde = KafkaStreamsPunctuation.<LoginTime>getSpecificAvroSerde(envProps);
 
             final Serializer<String> keySerializer = Serdes.String().serializer();
-            final Serializer<Pageviews> exampleSerializer = exampleAvroSerde.serializer();
+            final Serializer<LoginTime> exampleSerializer = exampleAvroSerde.serializer();
             final Deserializer<Long> valueDeserializer = Serdes.Long().deserializer();
             final Deserializer<String> keyDeserializer = Serdes.String().deserializer();
+            long timestamp = Instant.now().toEpochMilli();
 
-            final TestInputTopic<String, Pageviews>  inputTopic = testDriver.createInputTopic(pageviewsInputTopic, keySerializer, exampleSerializer);
+            final TestInputTopic<String, LoginTime>  inputTopic = testDriver.createInputTopic(pageviewsInputTopic,
+                                                                                              keySerializer,
+                                                                                              exampleSerializer);
+
             final TestOutputTopic<String, Long> outputTopic = testDriver.createOutputTopic(outputTopicName, keyDeserializer, valueDeserializer);
 
-            final List<Pageviews> pageviews = new ArrayList<>();
-            pageviews.add(Pageviews.newBuilder().setViewtime(5L).setPageid("test-page").setUserid("user-1").build());
-            pageviews.add(Pageviews.newBuilder().setViewtime(10L).setPageid("test-page").setUserid("user-1").build());
-            pageviews.add(Pageviews.newBuilder().setViewtime(5L).setPageid("test-page").setUserid("user-2").build());
-            pageviews.add(Pageviews.newBuilder().setViewtime(25L).setPageid("test-page").setUserid("user-3").build());
+            final List<LoginTime> loggedOnTimes = new ArrayList<>();
+            loggedOnTimes.add(LoginTime.newBuilder().setLogintime(5L).setAppid("test-page").setUserid("user-1").build());
+            loggedOnTimes.add(LoginTime.newBuilder().setLogintime(5L).setAppid("test-page").setUserid("user-2").build());
+            loggedOnTimes.add(LoginTime.newBuilder().setLogintime(10L).setAppid("test-page").setUserid("user-1").build());
+            loggedOnTimes.add(LoginTime.newBuilder().setLogintime(25L).setAppid("test-page").setUserid("user-3").build());
+            loggedOnTimes.add(LoginTime.newBuilder().setLogintime(10L).setAppid("test-page").setUserid("user-2").build());
 
-            final List<KeyValue<String, Long>> expectedResults = Arrays.asList(KeyValue.pair("user-1", 5L),KeyValue.pair("user-1", 15L),KeyValue.pair("user-3", 25L));
-
-            long timestamp = Instant.now().toEpochMilli();
-            for (final Pageviews pageview : pageviews) {
-                inputTopic.pipeInput(pageview.getUserid(), pageview, timestamp);
-                timestamp = Instant.ofEpochMilli(timestamp).plusSeconds(3).toEpochMilli();
-            }
+            List<KeyValue<String, LoginTime>> keyValues = loggedOnTimes.stream().map(o -> KeyValue.pair(o.getUserid(),o)).collect(Collectors.toList());
+            inputTopic.pipeKeyValueList(keyValues, Instant.now(), Duration.ofSeconds(2));
 
             final List<KeyValue<String, Long>> actualResults = outputTopic.readKeyValuesToList();
+            assertThat(actualResults.size(), is(greaterThanOrEqualTo(1)));
 
-            assertEquals(expectedResults, actualResults);
-
-            KeyValueStore<String, Long> store = testDriver.getKeyValueStore("view-count-store");
+            KeyValueStore<String, Long> store = testDriver.getKeyValueStore("logintime-store");
 
             testDriver.advanceWallClockTime(Duration.ofSeconds(20));
             

@@ -4,11 +4,27 @@
 
 ////
 
-Before you start producing ratings, it's a good idea to set up the consumer on the output topic. This way, as soon as you produce data you can see the results as they are output.
-
+Now that your Kafka Streams application is running, start a console-consumer to confirm the output:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-streams-schedule-operations/kstreams/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>
 +++++
 
-You won't see any results until the next step.
+Your results should look someting like this:
+++++
+<pre class="snippet"><code class="shell">
+User_6 @Thu Aug 20 16:30:33 EDT 2020 : 1
+User_9 @Thu Aug 20 16:30:35 EDT 2020 : 601
+User_9 @Thu Aug 20 16:30:40 EDT 2020 : 2903
+User_4 @Thu Aug 20 16:30:45 EDT 2020 : 5904
+User_3 @Thu Aug 20 16:30:50 EDT 2020 : 13305
+User_8 @Thu Aug 20 16:30:55 EDT 2020 : 28909
+User_9 @Thu Aug 20 16:31:00 EDT 2020 : 18303
+User_9 @Thu Aug 20 16:31:05 EDT 2020 : 24804
+User_9 @Thu Aug 20 16:31:10 EDT 2020 : 32205
+User_9 @Thu Aug 20 16:31:15 EDT 2020 : 58108
+</code></pre>
+++++
+
+
+The timestamp after the user-id is there to help see the time when Kafka Streams executed the puntuation.  In practice you most likely wouldn't append a timestamp to your key.

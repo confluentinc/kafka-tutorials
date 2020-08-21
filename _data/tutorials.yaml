@@ -438,11 +438,11 @@ count-messages:
     swift: disabled
 
 kafka-streams-schedule-operations:
-  title: "I NEED TO BE UPDATED"
-  meta-description: "I NEED TO BE UPDATED"
+  title: "How to schedule operations in Kafka Streams"
+  meta-description: "How to schedule operations in Kafka Streams"
   slug: "/kafka-streams-schedule-operations"
-  question: "I NEED TO BE UPDATED"
-  introduction: "I NEED TO BE UPDATED"
+  question: "How can I have recurring operations in Kafka Streams?"
+  introduction: "You'd like to have some periodic functionality execute in your Kafka Streams application.  In this tutorial you'll learn how to use puncuation in Kafka Streams for executing work at regular intervals."
   status:
     ksql: disabled
     kstreams: enabled

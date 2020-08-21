@@ -54,7 +54,7 @@ dev:
             file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-avro-dir.adoc
 
         - action: make_file
-          file: src/main/avro/example.avsc
+          file: src/main/avro/logintime.avsc
           render:
             file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-avro-schema.adoc
 
@@ -75,6 +75,24 @@ dev:
           render:
             file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-topology.adoc 
 
+    - title: Start data generation for the Kafka Streams application
+      content:
+        - action: execute
+          file: tutorial-steps/dev/create-connector.sh
+          render:
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/generate-data.adoc
+
+        - name: wait for the datagen to start
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+        - action: make_file
+          file: datagen-logintime.avsc
+          render:
+            skip: true
+
     - title: Compile and run the Kafka Streams program
       content:
         - action: execute
@@ -87,19 +105,11 @@ dev:
           render:
             file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/run-dev-app.adoc
 
-    - title: Produce sample data to the input topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/example-input.json
-          render:
-            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/run-producer.adoc
-
     - title: Consume data from the output topic
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.json
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
             file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/run-consumer.adoc
 
@@ -163,4 +173,11 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc
 

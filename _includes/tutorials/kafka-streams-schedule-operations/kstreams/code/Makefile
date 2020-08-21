@@ -7,5 +7,5 @@ tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/kafka-streams-schedule-operations/kstreams.yml $(TEMP_DIR) $(SEQUENCE)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-output.json $(DEV_OUTPUTS_DIR)/actual-output.json
+	bash -c "diff --strip-trailing-cr  <(tail -n 1 $(STEPS_DIR)/dev/expected-output.txt) <(tail -n 1 $(DEV_OUTPUTS_DIR)/actual-output.txt)"
 	reset

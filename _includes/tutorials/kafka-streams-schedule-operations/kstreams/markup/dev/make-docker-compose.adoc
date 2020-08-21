@@ -3,3 +3,5 @@ Next, create the following `docker-compose.yml` file to obtain Confluent Platfor
 +++++
 <pre class="snippet"><code class="dockerfile">{% include_raw tutorials/kafka-streams-schedule-operations/kstreams/code/docker-compose.yml %}</code></pre>
 +++++
+
+In this tutorial you'll use the https://github.com/confluentinc/kafka-connect-datagen[kafka-connect-datagen] so Kafka Connect is part of this `docker-compose.yml` file.  I won't go into the configuration specics the datagen-connector in this tutorial. You can look at the https://kafka-tutorials.confluent.io/kafka-connect-datagen-local/kafka.html[Kafka Connect Datagen tutorial] for more details.

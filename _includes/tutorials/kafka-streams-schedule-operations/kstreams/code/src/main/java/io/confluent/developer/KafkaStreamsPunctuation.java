@@ -1,7 +1,7 @@
 package io.confluent.developer;
 
 
-import io.confluent.developer.avro.Pageviews;
+import io.confluent.developer.avro.LoginTime;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.avro.specific.SpecificRecord;
@@ -16,6 +16,7 @@ import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.Named;
 import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.kstream.Transformer;
 import org.apache.kafka.streams.kstream.TransformerSupplier;
@@ -52,22 +53,23 @@ public class KafkaStreamsPunctuation {
 
     public Topology buildTopology(Properties envProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String pageviewsInputTopic = envProps.getProperty("input.topic.name");
+        final String loginTimeInputTopic = envProps.getProperty("input.topic.name");
         final String outputTopic = envProps.getProperty("output.topic.name");
-        final String viewCountStore = "view-count-store";
-        final Serde<Pageviews> pageviewSerde = getSpecificAvroSerde(envProps);
-        StoreBuilder<KeyValueStore<String, Long>> storeBuilder = Stores.keyValueStoreBuilder(Stores.inMemoryKeyValueStore(viewCountStore),Serdes.String(), Serdes.Long());
+        final String loginTimeStore = "logintime-store";
+        final Serde<LoginTime> loginTimeSerde = getSpecificAvroSerde(envProps);
+        StoreBuilder<KeyValueStore<String, Long>> storeBuilder = Stores.keyValueStoreBuilder(Stores.inMemoryKeyValueStore(loginTimeStore),Serdes.String(), Serdes.Long());
         builder.addStateStore(storeBuilder);
-        final KStream<String, Pageviews> pageviewStream = builder.stream(pageviewsInputTopic, Consumed.with(Serdes.String(), pageviewSerde));
+        final KStream<String, LoginTime> loginTimeStream = builder.stream(loginTimeInputTopic, Consumed.with(Serdes.String(), loginTimeSerde));
 
-        pageviewStream.transform(getProcessor(viewCountStore), viewCountStore).to(outputTopic, Produced.with(Serdes.String(), Serdes.Long()));
+        loginTimeStream.transform(getTransformerSupplier(loginTimeStore), Named.as("max-login-time-transformer"),loginTimeStore)
+                      .to(outputTopic, Produced.with(Serdes.String(), Serdes.Long()));
 
         return builder.build();
     }
 
 
-    private TransformerSupplier<String, Pageviews, KeyValue<String, Long>> getProcessor(final String storeName) {
-	    return () -> new Transformer<String, Pageviews, KeyValue<String, Long>>() {
+    private TransformerSupplier<String, LoginTime, KeyValue<String, Long>> getTransformerSupplier(final String storeName) {
+	    return () -> new Transformer<String, LoginTime, KeyValue<String, Long>>() {
 	        private KeyValueStore<String, Long> store;
 	        private ProcessorContext context;
             @Override
@@ -100,15 +102,14 @@ public class KafkaStreamsPunctuation {
                         }
                     }
                 }
-                context.forward(maxValueKey, maxValue);
-                System.out.println("@" + new Date(timestamp) +" User with max cumulative view-time " + maxValueKey + " view-ime " + maxValue);
+                context.forward(maxValueKey +" @" + new Date(timestamp), maxValue);
             }
 
             @Override
-            public KeyValue<String, Long> transform(String key, Pageviews value) {
-                   Long currentVT = store.putIfAbsent(key, value.getViewtime());
+            public KeyValue<String, Long> transform(String key, LoginTime value) {
+                   Long currentVT = store.putIfAbsent(key, value.getLogintime());
                    if (currentVT != null) {
-                       store.put(key, currentVT + value.getViewtime());
+                       store.put(key, currentVT + value.getLogintime());
                    }
                    return null;
             }
