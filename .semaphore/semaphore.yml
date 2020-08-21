@@ -324,4 +324,9 @@ blocks:
         - name: KSQL anomaly detection tests
           commands:
             - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
+
+        - name: Kafka Consuming and Producing AVRO messages with console tools tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
+
             

@@ -404,7 +404,6 @@ kafka-producer-application-callback:
   slug: "/kafka-producer-callback-application"
   question: "How do I use callbacks with a KafkaProducer to handle produce responses"
   introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handing the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle repsones from producing records"
-  status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
@@ -417,6 +416,16 @@ kafka-producer-application-callback:
     scala: disabled
     swift: disabled
 
+console-consumer-produer-avro:
+  title: "Avro Console Producer and Consumer Basics and Schema Registry"
+  meta-description: "Produce and consume your first message with Kafka in Avro format"
+  slug: "/kafka-console-consumer-producer-avro"
+  question: "What is the simplest way to write messages encode in Avro format to and read messages from Kafka?"
+  introduction: "So you are excited to get started with Kafka and you would like to produce and consume some messages in Avro format.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
 
 count-messages:
   title: "How to count messages in a Kafka topic"
