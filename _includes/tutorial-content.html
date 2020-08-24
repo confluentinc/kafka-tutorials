@@ -7,7 +7,7 @@
 
           {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
 
-          <div class="tutorial-try-it-step">
+          <div class="tutorial-try-it-step content">
             <h4 class="subtitle" id="{{ step.title | slugify }}">
               <div class="num">{{ forloop.index }}</div>
               <div class="text">{{ step.title }}</div>
