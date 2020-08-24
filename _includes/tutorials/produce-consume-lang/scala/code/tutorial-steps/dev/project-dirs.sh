@@ -1,0 +1,1 @@
+mkdir -p produce-consume-scala/project && cd produce-consume-scala

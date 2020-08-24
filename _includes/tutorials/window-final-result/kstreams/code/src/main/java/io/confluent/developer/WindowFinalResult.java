@@ -19,14 +19,14 @@ import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.Properties;
 
-import static io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 import static java.util.Collections.singletonMap;
 import static org.apache.kafka.streams.kstream.Suppressed.BufferConfig.unbounded;
 import static org.apache.kafka.streams.kstream.WindowedSerdes.timeWindowedSerdeFrom;
 
 public class WindowFinalResult {
 
-    private static Logger logger = LoggerFactory.getLogger(WindowFinalResult.class);
+    private static final Logger logger = LoggerFactory.getLogger(WindowFinalResult.class);
 
     public static Properties buildProperties(Config config) {
         Properties properties = new Properties();

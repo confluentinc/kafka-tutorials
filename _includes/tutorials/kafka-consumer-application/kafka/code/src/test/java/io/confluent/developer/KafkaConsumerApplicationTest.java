@@ -37,9 +37,9 @@ public class KafkaConsumerApplicationTest {
     // the KafkaConsumerApplication runs synchronously so the test needs to run
     // the application in its own thread
     new Thread(() -> consumerApplication.runConsume(testConsumerProps)).start();
-    Thread.sleep(250);
+    Thread.sleep(500);
     addTopicPartitionsAssignmentAndAddConsumerRecords(topic, mockConsumer, topicPartition);
-    Thread.sleep(250);
+    Thread.sleep(500);
     consumerApplication.shutdown();
 
     final List<String> expectedWords = Arrays.asList("foo", "bar", "baz");

@@ -9,3 +9,11 @@
     ksql: <KSQL-ENABLED>
     kstreams: <KSTREAMS-ENABLED>
     kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled

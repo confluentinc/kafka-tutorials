@@ -1,26 +1,35 @@
 package io.confluent.developer;
 
+import org.apache.kafka.common.serialization.Deserializer;
+import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.TestInputTopic;
+import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.TopologyTestDriver;
+import org.junit.After;
+import org.junit.Test;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.stream.Collectors;
+
 import io.confluent.developer.avro.Movie;
 import io.confluent.developer.avro.RawMovie;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.serialization.Serializer;
-import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.TopologyTestDriver;
-import static org.junit.Assert.*;
 
-import org.apache.kafka.streams.test.ConsumerRecordFactory;
-import org.junit.Test;
-
-import java.io.IOException;
-import java.util.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class TransformStreamTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+    private TopologyTestDriver testDriver;
 
     public SpecificAvroSerializer<RawMovie> makeSerializer(Properties envProps) {
         SpecificAvroSerializer<RawMovie> serializer = new SpecificAvroSerializer<>();
@@ -43,35 +52,29 @@ public class TransformStreamTest {
     }
 
     private List<Movie> readOutputTopic(TopologyTestDriver testDriver,
-                                              String topic,
-                                              Deserializer<String> keyDeserializer,
-                                              SpecificAvroDeserializer<Movie> valueDeserializer) {
-        List<Movie> results = new ArrayList<>();
+                                        String topic,
+                                        Deserializer<String> keyDeserializer,
+                                        SpecificAvroDeserializer<Movie> valueDeserializer) {
 
-        while (true) {
-            ProducerRecord<String, Movie> record = testDriver.readOutput(topic, keyDeserializer, valueDeserializer);
-
-            if (record != null) {
-                results.add(record.value());
-            } else {
-                break;
-            }
-        }
-
-        return results;
+        return testDriver
+            .createOutputTopic(topic, keyDeserializer, valueDeserializer)
+            .readKeyValuesToList()
+            .stream()
+            .filter(Objects::nonNull)
+            .map(record -> record.value)
+            .collect(Collectors.toList());
     }
 
     @Test
     public void testMovieConverter() {
-      TransformStream ts = new TransformStream();
-      Movie movie;
+        Movie movie;
 
-      movie = ts.convertRawMovie(new RawMovie(294L, "Tree of Life::2011", "drama"));
-      assertNotNull(movie);
-      assertEquals(294, movie.getId().intValue());
-      assertEquals("Tree of Life", movie.getTitle());
-      assertEquals(2011, movie.getReleaseYear().intValue());
-      assertEquals("drama", movie.getGenre());
+        movie = TransformStream.convertRawMovie(new RawMovie(294L, "Tree of Life::2011", "drama"));
+        assertNotNull(movie);
+        assertEquals(294, movie.getId().intValue());
+        assertEquals("Tree of Life", movie.getTitle());
+        assertEquals(2011, movie.getReleaseYear().intValue());
+        assertEquals("drama", movie.getGenre());
     }
 
 
@@ -85,15 +88,13 @@ public class TransformStreamTest {
         String outputTopic = envProps.getProperty("output.topic.name");
 
         Topology topology = ts.buildTopology(envProps);
-        TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
+        testDriver = new TopologyTestDriver(topology, streamProps);
 
         Serializer<String> keySerializer = Serdes.String().serializer();
         SpecificAvroSerializer<RawMovie> valueSerializer = makeSerializer(envProps);
 
         Deserializer<String> keyDeserializer = Serdes.String().deserializer();
         SpecificAvroDeserializer<Movie> valueDeserializer = makeDeserializer(envProps);
-
-        ConsumerRecordFactory<String, RawMovie> inputFactory = new ConsumerRecordFactory<>(keySerializer, valueSerializer);
 
         List<RawMovie> input = new ArrayList<>();
         input.add(RawMovie.newBuilder().setId(294).setTitle("Die Hard::1988").setGenre("action").build());
@@ -107,13 +108,23 @@ public class TransformStreamTest {
         expectedOutput.add(Movie.newBuilder().setTitle("A Walk in the Clouds").setId(782).setReleaseYear(1995).setGenre("romance").build());
         expectedOutput.add(Movie.newBuilder().setTitle("The Big Lebowski").setId(128).setReleaseYear(1998).setGenre("comedy").build());
 
+        final TestInputTopic<String, RawMovie>
+            testDriverInputTopic =
+            testDriver.createInputTopic(inputTopic, keySerializer, valueSerializer);
+        
         for (RawMovie rawMovie : input) {
-            testDriver.pipeInput(inputFactory.create(inputTopic, rawMovie.getTitle(), rawMovie));
+            testDriverInputTopic.pipeInput(rawMovie.getTitle(), rawMovie);
         }
-
         List<Movie> actualOutput = readOutputTopic(testDriver, outputTopic, keyDeserializer, valueDeserializer);
 
         assertEquals(expectedOutput, actualOutput);
+    }
+
+    @After
+    public void cleanup() {
+        if (testDriver != null) {
+            testDriver.close();
+        }
     }
 
 }

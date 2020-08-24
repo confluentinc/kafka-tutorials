@@ -37,6 +37,21 @@ blocks:
             - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
             - cache store site-$SEMAPHORE_GIT_SHA _site
 
+  - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
+    task:
+      prologue:
+        commands:
+          - checkout
+          - cache restore
+      jobs:
+        - name: Tests
+          matrix:
+            - env_var: JAVA_VERSION
+              values: ["8", "11"]
+          commands:
+            - sem-version java $JAVA_VERSION
+            - ./gradlew clean test
+
   - name: Run the tests
     execution_time_limit:
       minutes: 15
@@ -229,6 +244,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-connect-datagen-local/kafka/code tutorial
             
+        - name: Kafka Test Connect Datagen CCloud
+          commands:
+            - make -C _includes/tutorials/kafka-connect-datagen-ccloud/kafka/code tutorial
+            
         - name: ksqlDB Test Change number of partitions and replicas
           commands:
             - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
@@ -236,4 +255,13 @@ blocks:
         - name: Kafka Consumer Application tests
           commands:
             - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
+        
+        - name: KStreams Test Converting a KStream to a KTable tests
+          commands:
+            - make -C _includes/tutorials/streams-to-table/kstreams/code tutorial
             
+        - name: Kafka Producer Application tests
+          commands:
+            - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
+
+

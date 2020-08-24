@@ -1,21 +1,34 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.Rating;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.*;
-import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
+import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.Topology;
+import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.TimeWindows;
+import org.apache.kafka.streams.kstream.Windowed;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.TimeZone;
 import java.util.concurrent.CountDownLatch;
+
+import io.confluent.developer.avro.Rating;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 
 public class TumblingWindow {
 
@@ -26,7 +39,7 @@ public class TumblingWindow {
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
         props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName());
         props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
         try {
@@ -47,13 +60,13 @@ public class TumblingWindow {
         final String ratingCountTopic = envProps.getProperty("rating.count.topic.name");
 
         builder.<String, Rating>stream(ratingTopic)
-                .map((key, rating) -> new KeyValue<>(rating.getTitle().toString(), rating))
-                .groupByKey()
-                .windowedBy(TimeWindows.of(Duration.ofMinutes(10)))
-                .count()
-                .toStream()
-                .map((Windowed<String> key, Long count) -> new KeyValue(key.key(), count.toString()))
-                .to(ratingCountTopic, Produced.with(Serdes.String(), Serdes.String()));
+            .map((key, rating) -> new KeyValue<>(rating.getTitle(), rating))
+            .groupByKey()
+            .windowedBy(TimeWindows.of(Duration.ofMinutes(10)))
+            .count()
+            .toStream()
+            .map((Windowed<String> key, Long count) -> new KeyValue<>(key.key(), count.toString()))
+            .to(ratingCountTopic, Produced.with(Serdes.String(), Serdes.String()));
 
         return builder.build();
     }
@@ -73,8 +86,8 @@ public class TumblingWindow {
         SpecificAvroSerde<Rating> movieAvroSerde = new SpecificAvroSerde<>();
 
         final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
+        serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
+                        envProps.getProperty("schema.registry.url"));
 
         movieAvroSerde.configure(serdeConfig, false);
         return movieAvroSerde;
