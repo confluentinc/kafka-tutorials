@@ -387,3 +387,22 @@ kafka-producer-application:
     kstreams: disabled
     kafka: enabled
 
+
+kafka-producer-application-callback:
+  title: "How build an Apache KafkaProducer application using callbacks"
+  meta-description: "How build an Apache KafkaProducer application using callbacks"
+  slug: "/kafka-producer-callback-application"
+  question: "How do I use callbacks with a KafkaProducer to handle produce responses"
+  introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handing the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle repsones from producing records"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
