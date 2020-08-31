@@ -29,10 +29,9 @@ import java.util.stream.Stream;
 
 import io.confluent.demo.CountAndSum;
 import io.confluent.demo.Rating;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
-import static io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 import static java.lang.Integer.parseInt;
 import static java.lang.Short.parseShort;
 import static java.util.Optional.ofNullable;
@@ -57,7 +56,7 @@ public class RunningAverage {
     config.put(BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
     config.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Long().getClass());
     config.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Double().getClass());
-    config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    config.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
     config.put(REPLICATION_FACTOR_CONFIG, envProps.getProperty("default.topic.replication.factor"));
     config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, envProps.getProperty("offset.reset.policy"));
@@ -191,7 +190,7 @@ public class RunningAverage {
     return map;
   }
 
-  private Properties loadEnvProperties() {
+  protected Properties loadEnvProperties() {
     final Config load = ConfigFactory.load();
     final Map<String, Object> map = load.entrySet()
         .stream()
