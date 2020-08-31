@@ -1,1 +1,1 @@
-mkdir kafka-producer-application && cd kafka-producer-application
+mkdir kafka-producer-application-callback && cd kafka-producer-application-callback

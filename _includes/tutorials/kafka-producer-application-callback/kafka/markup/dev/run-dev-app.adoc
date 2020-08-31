@@ -1,6 +1,6 @@
 Now that you have an uberjar for the KafkaProducerCallbackApplication, you can launch it locally.
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application-callback/kafka/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
 +++++
 
 After you run the previous command, the application will process the file and you should something like this on the console:

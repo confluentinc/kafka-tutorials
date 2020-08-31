@@ -9,5 +9,5 @@ This tutorial uses three streams: one called `movies` that holds movie reference
 Create a directory for the schemas that represent the events in the stream:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/dev/make-avro-dir.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application-callback/kafka/code/tutorial-steps/dev/make-avro-dir.sh %}</code></pre>
 +++++

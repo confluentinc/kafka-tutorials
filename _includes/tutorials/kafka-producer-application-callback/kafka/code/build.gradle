@@ -58,6 +58,6 @@ jar {
 }
 
 shadowJar {
-    archiveBaseName = "kafka-producer-application-callback-standalone"
+    archiveBaseName = "kafka-producer-application-callback-callback-standalone"
     archiveClassifier = ''
 }
