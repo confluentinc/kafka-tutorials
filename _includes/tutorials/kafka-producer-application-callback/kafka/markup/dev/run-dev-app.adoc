@@ -1,4 +1,4 @@
-Now that you have an uberjar for the KafkaProducerApplication, you can launch it locally.
+Now that you have an uberjar for the KafkaProducerCallbackApplication, you can launch it locally.
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
 +++++

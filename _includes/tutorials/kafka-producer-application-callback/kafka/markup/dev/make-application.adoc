@@ -5,15 +5,15 @@ The text assumes a method buildTopology exists and constructs the Kafka Streams 
 Before you create your application file, let's look at some of the key points of this program:
 
 [source, java]
-.KafkaProducerApplication constructor
+.KafkaProducerCallbackApplication constructor
 ----
 
-public class KafkaProducerApplication {
+public class KafkaProducerCallbackApplication {
 
   private final Producer<String, String> producer;
   final String outTopic;
 
-  public KafkaProducerApplication(final Producer<String, String> producer,  <1>
+  public KafkaProducerCallbackApplication(final Producer<String, String> producer,  <1>
                                   final String topic) {                     <2>
     this.producer = producer;
     outTopic = topic;
@@ -25,15 +25,15 @@ public class KafkaProducerApplication {
 <2> The topic to write records to
 
 
-In this tutorial you'll inject the dependencies in the `KafkaProducerApplication.main()` method.
+In this tutorial you'll inject the dependencies in the `KafkaProducerCallbackApplication.main()` method.
 Having this thin wrapper class around a `Producer` is not required, but it does help with making our code easier to test.  We'll go into more details in the testing section of the tutorial.
 
 (In practice you may want to use a dependency injection framework library, such as the  https://spring.io/projects/spring-framework[Spring Framework]).
 
 
-Next let's take a look at the `KafkaProducerApplication.produce` method
+Next let's take a look at the `KafkaProducerCallbackApplication.produce` method
 [source, java]
-.KafkaProducerApplication.produce
+.KafkaProducerCallbackApplication.produce
 ----
 public Future<RecordMetadata> produce(final String message) {
     final String[] parts = message.split("-");  <1>
@@ -55,16 +55,16 @@ public Future<RecordMetadata> produce(final String message) {
 <2> Create the `ProducerRecord`
 <3> Send the record to the broker
 
-The `KafkaProducerApplication.produce` method does some processing on a `String`, and then sends the https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.
+The `KafkaProducerCallbackApplication.produce` method does some processing on a `String`, and then sends the https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.
 Notice that https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/KafkaProducer.html#send-org.apache.kafka.clients.producer.ProducerRecord-[`KafkaProducer.send`] returns a https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/concurrent/Future.html[Future] with a type of https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/RecordMetadata.html[RecordMetadata].
 
 The `KafkaProducer.send` method is asynchronous and returns as soon as the provided record is placed in the buffer of records to be sent to the broker. Once the broker acknowledges that the record has been appended to its log, the broker completes the produce request, which the application receives as `RecordMetadata`—information about the committed message.  This tutorial prints the `timestamp` and `offset` for each record sent using the `RecordMetadata` object.  Note that calling `Future.get()` for any record will block until the produce request completes.
 
 
-Now go ahead and create the following file at `src/main/java/io/confluent/developer/KafkaProducerApplication.java`.
+Now go ahead and create the following file at `src/main/java/io/confluent/developer/KafkaProducerCallbackApplication.java`.
 
 // Full topology description goes here
 
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/kafka-producer-application/kafka/code/src/main/java/io/confluent/developer/KafkaProducerApplication.java %}</code></pre>
+<pre class="snippet"><code class="java">{% include_raw tutorials/kafka-producer-application-callback/kafka/code/src/main/java/io/confluent/developer/KafkaProducerCallbackApplication.java %}</code></pre>
 +++++

@@ -15,16 +15,16 @@ import org.apache.kafka.streams.KeyValue;
 import org.junit.Test;
 
 
-public class KafkaProducerApplicationTest {
+public class KafkaProducerCallbackApplicationTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
     @Test
     public void testProduce() throws IOException {
         final MockProducer<String, String> mockProducer = new MockProducer<>();
-        final Properties props = KafkaProducerApplication.loadProperties(TEST_CONFIG_FILE);
+        final Properties props = KafkaProducerCallbackApplication.loadProperties(TEST_CONFIG_FILE);
         final String topic = props.getProperty("output.topic.name");
-        final KafkaProducerApplication producerApp = new KafkaProducerApplication(mockProducer, topic);
+        final KafkaProducerCallbackApplication producerApp = new KafkaProducerCallbackApplication(mockProducer, topic);
         final List<String> records = Arrays.asList("foo-bar", "bar-foo", "baz-bar", "great:weather");
 
         records.forEach(producerApp::produce);

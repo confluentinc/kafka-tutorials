@@ -17,12 +17,12 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
-public class KafkaProducerApplication {
+public class KafkaProducerCallbackApplication {
 
     private final Producer<String, String> producer;
     final String outTopic;
 
-    public KafkaProducerApplication(final Producer<String, String> producer,
+    public KafkaProducerCallbackApplication(final Producer<String, String> producer,
                                     final String topic) {
         this.producer = producer;
         outTopic = topic;
@@ -77,10 +77,10 @@ public class KafkaProducerApplication {
                             "the path to the file with records to send");
         }
 
-        final Properties props = KafkaProducerApplication.loadProperties(args[0]);
+        final Properties props = KafkaProducerCallbackApplication.loadProperties(args[0]);
         final String topic = props.getProperty("output.topic.name");
         final Producer<String, String> producer = new KafkaProducer<>(props);
-        final KafkaProducerApplication producerApp = new KafkaProducerApplication(producer, topic);
+        final KafkaProducerCallbackApplication producerApp = new KafkaProducerCallbackApplication(producer, topic);
 
         // Attach shutdown handler to catch Control-C.
         Runtime.getRuntime().addShutdownHook(new Thread(producerApp::shutdown));
