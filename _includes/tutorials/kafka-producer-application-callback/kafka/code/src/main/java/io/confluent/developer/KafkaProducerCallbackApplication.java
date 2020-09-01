@@ -4,18 +4,13 @@ package io.confluent.developer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.RecordMetadata;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.stream.Collectors;
 
 public class KafkaProducerCallbackApplication {
 
@@ -28,7 +23,7 @@ public class KafkaProducerCallbackApplication {
         outTopic = topic;
     }
 
-    public Future<RecordMetadata> produce(final String message) {
+    public void produce(final String message) {
         final String[] parts = message.split("-");
         final String key, value;
         if (parts.length > 1) {
@@ -38,8 +33,18 @@ public class KafkaProducerCallbackApplication {
             key = "NO-KEY";
             value = parts[0];
         }
+
         final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(outTopic, key, value);
-        return producer.send(producerRecord);
+         producer.send(producerRecord, (recordMetadata, exception) -> {
+              if (exception == null) {
+                  System.out.println("Record written to offset " +
+                          recordMetadata.offset() + " timestamp " +
+                          recordMetadata.timestamp());
+              } else {
+                  System.err.println("An error occurred");
+                  exception.printStackTrace(System.err);
+              }
+        });
     }
 
     public void shutdown() {
@@ -53,21 +58,6 @@ public class KafkaProducerCallbackApplication {
         input.close();
 
         return envProps;
-    }
-
-    public void printMetadata(final Collection<Future<RecordMetadata>> metadata,
-                              final String fileName) {
-        System.out.println("Offsets and timestamps committed in batch from " + fileName);
-        metadata.forEach(m -> {
-            try {
-                final RecordMetadata recordMetadata = m.get();
-                System.out.println("Record written to offset " + recordMetadata.offset() + " timestamp " + recordMetadata.timestamp());
-            } catch (InterruptedException | ExecutionException e) {
-                if (e instanceof InterruptedException) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        });
     }
 
     public static void main(String[] args) throws Exception {
@@ -87,12 +77,9 @@ public class KafkaProducerCallbackApplication {
         String filePath = args[1];
         try {
             List<String> linesToProduce = Files.readAllLines(Paths.get(filePath));
-            List<Future<RecordMetadata>> metadata = linesToProduce.stream()
-                    .filter(l -> !l.trim().isEmpty())
-                    .map(producerApp::produce)
-                    .collect(Collectors.toList());
-            producerApp.printMetadata(metadata, filePath);
-
+            linesToProduce.stream()
+                          .filter(l -> !l.trim().isEmpty())
+                          .forEach(producerApp::produce);
         } catch (IOException e) {
             System.err.println(String.format("Error reading file %s due to %s", filePath, e));
         }
