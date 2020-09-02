@@ -35,7 +35,7 @@ public class KafkaProducerCallbackApplication {
         }
 
         final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(outTopic, key, value);
-         producer.send(producerRecord, (recordMetadata, exception) -> {
+        producer.send(producerRecord, (recordMetadata, exception) -> {
               if (exception == null) {
                   System.out.println("Record written to offset " +
                           recordMetadata.offset() + " timestamp " +
