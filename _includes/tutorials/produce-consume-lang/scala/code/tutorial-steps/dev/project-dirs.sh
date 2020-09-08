@@ -1,1 +1,1 @@
-mkdir -p produce-consume-scala/project && cd produce-consume-scala
+mkdir -p produce-consume-scala/ && cd produce-consume-scala

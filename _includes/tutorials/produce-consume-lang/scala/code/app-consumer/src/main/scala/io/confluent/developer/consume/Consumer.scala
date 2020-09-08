@@ -1,7 +1,8 @@
-package io.confluent.developer
+package io.confluent.developer.consume
 
 import java.util.concurrent.{Executors, ScheduledExecutorService, TimeUnit}
 
+import io.confluent.developer.Configuration
 import io.confluent.developer.Configuration.ConsumerConf
 import io.confluent.developer.schema.ScalaReflectionSerde.reflectionDeserializer4S
 import io.confluent.developer.schema.{Book, ScalaReflectionSerde}
@@ -44,7 +45,7 @@ object Consumer extends cask.MainRoutes with ScalaReflectionSerde with Configura
   @cask.get("/books")
   def getBooks(): Obj = {
     ujson.Obj("results" -> ujson.Arr(
-      bookMap.toArray.map { case (_: String, book: Book) =>
+      bookMap.toIndexedSeq.map { case (_: String, book: Book) =>
         upickle.default.writeJs(book)
       }: _*
     ))
@@ -86,7 +87,7 @@ object Consumer extends cask.MainRoutes with ScalaReflectionSerde with Configura
 
     logger info "Closing the kafka consumer"
     Try(consumer.close()).recover {
-      case error => logger error("Failed to close the kafka consumer", error)
+      case error => logger.error("Failed to close the kafka consumer", error)
     }
 
   }, 0, TimeUnit.SECONDS)

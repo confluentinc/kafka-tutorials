@@ -1,9 +1,11 @@
 The following Scala class defines our Consumer application.
-Add the following class to the file `src/main/scala/io/confluent/developer/Consumer.scala`
+Add the following class to the file
+
+`app-consumer/src/main/scala/io/confluent/developer/consume/Consumer.scala`
 
 +++++
 <pre class="snippet"><code class="java">{%
-    include_raw tutorials/produce-consume-lang/scala/code/src/main/scala/io/confluent/developer/Consumer.scala
+    include_raw tutorials/produce-consume-lang/scala/code/app-consumer/src/main/scala/io/confluent/developer/consume/Consumer.scala
 %}</code></pre>
 +++++
 

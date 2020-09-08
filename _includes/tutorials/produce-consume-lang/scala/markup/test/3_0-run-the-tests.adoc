@@ -9,23 +9,40 @@ Finally, run the test by typing:
 It should output the following:
 
 +++++
-<pre class="snippet"><code class="text">[info] ConsumerSpec:
-[info] consume
-[info] - should fetch the existing records from kafka
-[info]   + Given a consumer config
-[info]   + And a collection of books
-[info]   + When we consume back the records
-[info]   + Then a collection of books is returned
-[info] ProducerSpec:
-[info] produce
-[info] - should write a series of new books to kafka
-[info]   + Given a producer config
-[info]   + And a collection of books
-[info]   + When the books get produced
-[info]   + Then records can be fetched from Kafka
-[info] Run completed in 13 seconds, 991 milliseconds.
-[info] Total number of tests run: 2
-[info] Suites: completed 2, aborted 0
-[info] Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0
-[info] All tests passed.</code></pre>
+<pre class="snippet"><code class="text">> Task :app-consumer:spec
+Discovery starting.
+Discovery completed in 2 seconds, 922 milliseconds.
+Run starting. Expected test count is: 1
+ConsumerSpec:
+consume
+- should fetch the existing records from kafka
+  + Given a consumer config
+  + And a collection of books
+  + When we consume back the records
+  + Then a collection of books is returned
+Run completed in 1 minute, 11 seconds.
+Total number of tests run: 1
+Suites: completed 2, aborted 0
+Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
+All tests passed.
+
+> Task :app-producer:spec
+Discovery starting.
+Discovery completed in 2 seconds, 373 milliseconds.
+Run starting. Expected test count is: 1
+ProducerSpec:
+produce
+- should write a series of new books to kafka
+  + Given a producer config
+  + And a collection of books
+  + When the books get produced
+  + Then records can be fetched from Kafka
+Run completed in 17 seconds, 802 milliseconds.
+Total number of tests run: 1
+Suites: completed 2, aborted 0
+Tests: succeeded 1, failed 0, canceled 0, ignored 0, pending 0
+All tests passed.
+
+BUILD SUCCESSFUL in 1m 34s
+14 actionable tasks: 2 executed, 12 up-to-date</code></pre>
 +++++

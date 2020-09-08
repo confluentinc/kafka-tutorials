@@ -19,5 +19,5 @@ In a third terminal call your new service to get all the books.
 Let's now play with these two programs and the Confluent Platform:
 
 +++++
-<script id="asciicast-342832" src="https://asciinema.org/a/342832.js" async></script>
+<script id="asciicast-358242" src="https://asciinema.org/a/358242.js" async></script>
 +++++

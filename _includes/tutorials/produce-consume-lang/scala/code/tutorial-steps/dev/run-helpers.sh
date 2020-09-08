@@ -1,1 +1,1 @@
-./sbtx "-Djline.terminal=none" --error topicCreation schemaPublication
+./gradlew -q --console=plain topicCreation schemaPublication

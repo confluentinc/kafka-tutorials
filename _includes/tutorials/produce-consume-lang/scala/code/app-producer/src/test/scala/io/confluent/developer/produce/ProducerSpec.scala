@@ -1,8 +1,9 @@
-package io.confluent.developer
+package io.confluent.developer.produce
 
 import java.time.LocalDate
 
 import io.confluent.developer.Configuration.{ProducerConf, TopicConf}
+import io.confluent.developer.KafkaFlatSpec
 import io.confluent.developer.schema.BookType.{Novel, Other, Tech}
 import io.confluent.developer.schema.{Book, ScalaReflectionSerde}
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG
