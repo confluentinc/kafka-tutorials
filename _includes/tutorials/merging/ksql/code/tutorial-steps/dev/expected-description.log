@@ -26,3 +26,11 @@ Local runtime statistics
 
 
 (Statistics of the local KSQL server interaction with the Kafka topic all_songs)
+
+Consumer Groups summary:
+
+Consumer Group       : _confluent-ksql-default_query_INSERTQUERY_0
+<no offsets committed by this group yet>
+
+Consumer Group       : _confluent-ksql-default_query_INSERTQUERY_7
+<no offsets committed by this group yet>
