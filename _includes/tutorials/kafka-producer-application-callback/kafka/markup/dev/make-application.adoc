@@ -66,15 +66,15 @@ public void produce(final String message) {
 <4> If there's no exceptions print the offset and timestamp of the acknowleged record
 <5> Error handling portion-in this case printing the stacktrace to `System.err`
 
-The `KafkaProducerCallbackApplication.produce` method does some processing on a `String`, and then sends the https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.
+The `KafkaProducerCallbackApplication.produce` method does some processing on a `String`, and then sends it as a https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.
 
 Notice that this overload of the https://javadoc.io/static/org.apache.kafka/kafka-clients/2.6.0/org/apache/kafka/clients/producer/KafkaProducer.html#send-org.apache.kafka.clients.producer.ProducerRecord-org.apache.kafka.clients.producer.Callback--[`KafkaProducer.send`] method accepts a second parameter, an instance of the https://kafka.apache.org/26/javadoc/org/apache/kafka/clients/producer/Callback.html[Callback] interface.
 
-The `Callback` provides a way of handling any actions you want to take on request completion *_asynchronously_*.  Note that the `Callback` code executes on the producer's I/O thread so any actions here should execute quickly.  Any time consuming tasks could cause a delay in sending new records.
+The `Callback` provides a way of handling any actions you want to take on request completion *_asynchronously_*.  Note that the `Callback` code executes on the producer's I/O thread and any time consuming tasks could cause a delay in sending new records, so any code here should be designed to execute quickly.  
 
 The `KafkaProducer.send` method is asynchronous and returns as soon as the provided record is placed in the buffer of records to be sent to the broker. Once the broker acknowledges that the record has been appended to its log, the broker completes the produce request, which the application receives as `RecordMetadata`—information about the committed message.
 
-The code in the callback prints the `timestamp` and `offset` for each record sent using the `RecordMetadata` object.
+In this example, the code in the callback just prints information from each record's `RecordMetadata` object, specifically the `timestamp` and `offset`.
 
 
 Now go ahead and create the following file at `src/main/java/io/confluent/developer/KafkaProducerCallbackApplication.java`.
