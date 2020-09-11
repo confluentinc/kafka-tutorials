@@ -39,7 +39,7 @@ dependencies {
   implementation 'com.google.code.gson:gson:2.8.5'
 
   testImplementation "org.apache.kafka:kafka-streams-test-utils:2.5.1"
-  testImplementation 'junit:junit:4.12'
+  testImplementation 'junit:junit:4.13'
 }
 
 test {
