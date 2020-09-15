@@ -88,6 +88,7 @@ pip3 install -e .
 You can run any of the automated tests locally using a command like:
 
 ```
+cd ..
 make -C _includes/tutorials/filtering/ksql/code tutorial
 ```
 
