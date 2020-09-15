@@ -210,6 +210,7 @@ It's still valuable to read through the next section to learn how all the tutori
 
 ## Description of tutorial parts
 
+_If you used the clone script then many of these will already exist and will just need customising for your particular tutorial._
 
 #### 1. Describe the question your tutorial answers
 
@@ -217,7 +218,7 @@ The first thing to do is articulate what question your tutorial is meant to answ
 
 #### 2. Make the directory structure
 
-Next, make a few directories to set up for the project:
+Next, make a few directories to set up for the project.
 
 ```
 mkdir _includes/tutorials/<your tutorial short name>/<stack>/code
