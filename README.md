@@ -218,7 +218,7 @@ The first thing to do is articulate what question your tutorial is meant to answ
 
 #### 2. Make the directory structure
 
-Next, make a few directories to set up for the project.
+Next, make a few directories to set up for the project:
 
 ```
 mkdir _includes/tutorials/<your tutorial short name>/<stack>/code
