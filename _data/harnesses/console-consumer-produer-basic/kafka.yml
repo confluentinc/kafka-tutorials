@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title: Answer Me Now
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-produer-basic/kafka/markup/answer/answer.adoc
+
 dev:
   steps:
     - title: Initialize the project
