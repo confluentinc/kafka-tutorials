@@ -20,7 +20,7 @@ tutorial_main:
 	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/dev/04a-build-table.out <(tail -n+3 $(DEV_OUTPUTS_DIR)/04a-build-table/output-0.log)"
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/04c-pull-query-table.out $(DEV_OUTPUTS_DIR)/04c-pull-query-table/output-0.log
 	diff --strip-trailing-cr $(STEPS_DIR)/dev/05a-pull-query-restapi.out $(DEV_OUTPUTS_DIR)/05a-pull-query-restapi.log
-	diff --strip-trailing-cr $(STEPS_DIR)/test/02-expected-results.out $(TEST_OUTPUTS_DIR)/test-results.log
+	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/02-expected-results.out <(grep -v 'OpenJDK 64-Bit Server VM warning' $(TEST_OUTPUTS_DIR)/test-results.log)"
 
 cleanup:
 	cd $(TEMP_DIR)

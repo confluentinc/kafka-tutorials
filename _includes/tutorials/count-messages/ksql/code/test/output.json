@@ -1,6 +1,6 @@
 { "outputs": [
         { "topic": "MSG_COUNT", "timestamp":1600341475094, "key": "X", "value": {"MSG_CT": 1}},
-        { "topic": "MSG_COUNT", "timestamp":1600341475206, "key": "X", "value": {"MSG_CT": 1}},
+        { "topic": "MSG_COUNT", "timestamp":1600341475206, "key": "X", "value": {"MSG_CT": 2}},
         { "topic": "MSG_COUNT", "timestamp":1600341475478, "key": "X", "value": {"MSG_CT": 3}},
         { "topic": "MSG_COUNT", "timestamp":1600341475955, "key": "X", "value": {"MSG_CT": 4}},
         { "topic": "MSG_COUNT", "timestamp":1600341476073, "key": "X", "value": {"MSG_CT": 5}},
