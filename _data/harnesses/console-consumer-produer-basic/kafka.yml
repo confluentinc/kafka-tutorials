@@ -1,11 +1,11 @@
 answer:
   steps:
-    - title: Produce
+    - title: Console producer
       content:
         - action: skip
           render:
             file: tutorials/console-consumer-produer-basic/kafka/markup/answer/produce.adoc
-    - title: Consume
+    - title: Console consumer
       content:
         - action: skip
           render:
