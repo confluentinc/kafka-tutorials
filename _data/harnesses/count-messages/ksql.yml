@@ -1,0 +1,120 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/01a-init.sh
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/01a-init.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/01b-make-dirs.sh
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/01b-make-dirs.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/02a-make-docker-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/02b-docker-compose-up.sh
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/02b-start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/02c-wait-for-containers.sh
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/02c-wait-for-containers.adoc
+
+    - title: Launch the ksqlDB CLI and declare a stream
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb
+          docker_bootup_file: tutorial-steps/dev/03a-start-ksqldb-cli.sh
+          column_width: 24
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/03a-start-ksqldb-cli.adoc
+          stdin:
+            - file: tutorial-steps/dev/03b-declare-pageview-stream.sql
+              render:
+                file: tutorials/count-messages/ksql/markup/dev/03b-declare-pageview-stream.adoc
+
+          stdout:
+            directory: tutorial-steps/dev/outputs
+
+    - title: Count all the messages in a topic
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb
+          docker_bootup_file: tutorial-steps/dev/03a-start-ksqldb-cli.sh
+          column_width: 24
+          render:
+            skip: true
+          stdin:
+
+            - file: tutorial-steps/dev/03c-set-offset-earliest.sql
+              render:
+                file: tutorials/count-messages/ksql/markup/dev/03c-set-offset-earliest.adoc
+                
+            - file: tutorial-steps/dev/03d-count-all-messages-pageview.sql
+              render:
+                file: tutorials/count-messages/ksql/markup/dev/03d-count-all-messages-pageview.adoc
+
+            - file: tutorial-steps/dev/04a-build-table.sql
+              render:
+                file: tutorials/count-messages/ksql/markup/dev/04a-build-table.adoc
+            - file: tutorial-steps/dev/04b-push-query-table.sql
+              render:
+                file: tutorials/count-messages/ksql/markup/dev/empty.adoc
+            - file: tutorial-steps/dev/04c-pull-query-table.sql
+              render:
+                file: tutorials/count-messages/ksql/markup/dev/04c-pull-query-table.adoc
+          stdout:
+            directory: tutorial-steps/dev/outputs
+
+    - title: Query the number of messages using the REST API
+      content:
+        - action: execute
+          file: tutorial-steps/dev/05a-pull-query-restapi.sh
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/05a-pull-query-restapi.adoc
+          stdout: tutorial-steps/dev/outputs/05a-pull-query-restapi.log
+          
+    - title: Write your statements to a file
+      content:
+        - action: make_file
+          file: src/statements.sql
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/07a-make-src-file.adoc
+
+test:
+  steps:
+    - title: Create the test data
+      content:
+        - action: make_file
+          file: test/input.json
+          render:
+            file: tutorials/count-messages/ksql/markup/test/00-make-test-input.adoc
+
+        - action: make_file
+          file: test/output.json
+          render:
+            file: tutorials/count-messages/ksql/markup/test/01-make-test-output.adoc
+
+    - title: Invoke the tests
+      content:
+        - action: execute
+          file: tutorial-steps/test/02-run-tests.sh
+          stdout: tutorial-steps/test/outputs/test-results.log
+          render:
+            file: tutorials/count-messages/ksql/markup/test/02-run-tests.adoc
+
+    - title: Clean up
+      content:
+        - action: execute
+          file: tutorial-steps/test/03-clean-up.sh
+          render:
+            file: tutorials/count-messages/ksql/markup/test/03-clean-up.adoc

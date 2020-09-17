@@ -268,3 +268,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
             
+        
+        - name: KSQL Count messages on a topic tutorial tests
+          commands:
+            - make -C _includes/tutorials/count-messages/ksql/code tutorial
