@@ -5,10 +5,10 @@
      <div class="container">
        <div class="columns">
          <div class="column is-full">
-           <h2 class="title tutorial-section-title" id="quickie">Quick Answer</h2>
+           <h2 class="title tutorial-section-title" id="short-answer">Answer</h2>
            {% for step in site.data.harnesses[page.static_data][page.stack].answer.steps %}
 
-            <div class="tutorial-quick-answer-step">
+            <div class="tutorial-try-it-step">
              <h4 class="subtitle" id="{{ step.title | slugify }}">
                <div class="num">{{ forloop.index }}</div>
                <div class="text">{{ step.title }}</div>
@@ -31,7 +31,6 @@
      </div>
    </section>
    {% endif %}
-
 
   <section class="section">
     <div class="container">

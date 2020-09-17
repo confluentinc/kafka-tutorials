@@ -1,10 +1,15 @@
 answer:
   steps:
-    - title: Answer Me Now
+    - title: Produce
       content:
         - action: skip
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/answer/answer.adoc
+            file: tutorials/console-consumer-produer-basic/kafka/markup/answer/produce.adoc
+    - title: Consume
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-produer-basic/kafka/markup/answer/consume.adoc
 
 dev:
   steps:
