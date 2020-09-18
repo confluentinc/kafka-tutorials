@@ -180,17 +180,28 @@ As the name implies, this script creates a clone of an existing tutorial.  The c
 ```sh
 #!/bin/sh
 
-# clones everything ksql and kstreams
-ORIG_TUTORIAL=filtering
+#SAMPLE-PROPERTIES-FILE-CONTENT
+
+# By using the basename of a tutorial everything is cloned possibly ksql, kstreams, and kafka 
+ORIG_TUTORIAL=connect-add-key-to-source
+
+# to only clone a kafka tutorial
+ORIG_TUTORIAL=console-consumer-produer-basic/kafka
 
 # to clone just the ksql part
-#ORIG_TUTORIAL=filtering/ksql
+ORIG_TUTORIAL=connect-add-key-to-source/ksql
 
 # to clone just the kstreams portion
-#ORIG_TUTORIAL=filtering/kstreams
-NEW_TUTORIAL=something-close-to-filtering
-SEMAPHORE_TEST_NAME="My New Filtering Tutorial"
-PERMALINK=filtering-new-hotness-tutorial
+ORIG_TUTORIAL=connect-add-key-to-source/kstreams
+
+!!!! IMPORTANT YOU MUST ONLY HAVE ONE ORIG_TUTORIAL VARIABLE !!!!
+
+# Add a new tutorial name
+NEW_TUTORIAL=junkA
+# Add a new sempahore test name
+SEMAPHORE_TEST_NAME="My New Junk Tutorial"
+# Add a new PERMALINK
+PERMALINK=a-junk-tutorial
 ```
 
 To clone a tutorial:
