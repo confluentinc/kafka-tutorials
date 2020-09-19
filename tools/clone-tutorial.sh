@@ -120,21 +120,19 @@ if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 
 echo "Doing replacement of ${ORIG_TUTORIAL_BASE_DIR_NAME} -> ${NEW_TUTORIAL}"
 
-# Sometimes sed chokes with an illegal character error and I can't figure it out so using a different command for now
-#grep -Rl $ORIG_TUTORIAL_BASE_DIR_NAME  $TUTORIALS_DIR/$NEW_TUTORIAL/ | xargs sed -i '.orig' "s/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g"
 # May need this for debugging
-echo "REPLACE NAME COMMAND (for possible debugging) - bash -c \"find $TUTORIALS_DIR/$NEW_TUTORIAL -type f -print0 | xargs -0  perl -pi -e 's/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g'"
-echo "!!!!!! If there are a lot of files this can take a few seconds PLEASE be patient !!!!!!"
+#echo "REPLACE NAME COMMAND (for possible debugging) - bash -c \"find $TUTORIALS_DIR/$NEW_TUTORIAL -type f -print0 | xargs -0  perl -pi -e 's/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g'"
+echo "!!!!!! If there are a lot of files this can take a few seconds !!!!!!"
 
 bash -c "find $TUTORIALS_DIR/$NEW_TUTORIAL -type f -print0 | xargs -0  perl -pi -e 's/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g'"
-echo "Completed with the name replacements"
-echo "Doing name replacements on test harness files"
-grep -Rl $ORIG_TUTORIAL_BASE_DIR_NAME  $TEST_HARNESS_DIR/$NEW_TUTORIAL/ | xargs sed -i '.orig' "s/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g"
-echo "Completed with the name test harness replacements"
 
-#find $TUTORIALS_DIR/$NEW_TUTORIAL -type f -name '*.orig*' -exec rm {} \;
-echo "removing .orig files from test hareness dir"
-find $TEST_HARNESS_DIR/$NEW_TUTORIAL -type f -name '*.orig*' -exec rm {} \;
+echo "Completed with the name replacements"
+
+echo "Doing name replacements on test harness files"
+
+bash -c "find $TEST_HARNESS_DIR/$NEW_TUTORIAL -type f -print0 | xargs -0  perl -pi -e 's/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g'"
+
+echo "Completed with the name test harness replacements"
 
 TEMP_WORK_DIR="TEMP-WORK-${NEW_TUTORIAL}"
 
