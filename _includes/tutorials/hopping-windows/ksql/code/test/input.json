@@ -4,7 +4,6 @@
       "topic": "TEMPERATURE_READINGS",
       "key": "1",
       "value": {
-        "ID": "1",
         "TIMESTAMP": "2020-01-15 02:20:30",
         "READING": 50
       }
@@ -13,7 +12,6 @@
       "topic": "TEMPERATURE_READINGS",
       "key": "1",
       "value": {
-        "ID": "1",
         "TIMESTAMP": "2020-01-15 02:25:30",
         "READING": 45
       }
@@ -22,7 +20,6 @@
       "topic": "TEMPERATURE_READINGS",
       "key": "1",
       "value": {
-        "ID": "1",
         "TIMESTAMP": "2020-01-15 02:30:30",
         "READING": 40
       }
@@ -31,7 +28,6 @@
       "topic": "TEMPERATURE_READINGS",
       "key": "1",
       "value": {
-        "ID": "1",
         "TIMESTAMP": "2020-01-15 02:35:30",
         "READING": 45
       }
@@ -40,7 +36,6 @@
       "topic": "TEMPERATURE_READINGS",
       "key": "1",
       "value": {
-        "ID": "1",
         "TIMESTAMP": "2020-01-15 02:40:30",
         "READING": 50
       }
@@ -49,7 +44,6 @@
       "topic": "TEMPERATURE_READINGS",
       "key": "1",
       "value": {
-        "ID": "1",
         "TIMESTAMP": "2020-01-15 02:45:30",
         "READING": 55
       }
@@ -58,7 +52,6 @@
       "topic": "TEMPERATURE_READINGS",
       "key": "1",
       "value": {
-        "ID": "1",
         "TIMESTAMP": "2020-01-15 02:50:30",
         "READING": 60
       }

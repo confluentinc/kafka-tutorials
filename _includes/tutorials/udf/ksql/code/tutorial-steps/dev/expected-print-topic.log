@@ -1,14 +1,15 @@
-Key format: KAFKA (STRING)
+Key format: KAFKA_STRING
 Value format: AVRO
-rowtime: 3/2/20 7:56:23 PM UTC, key: ZTEST, value: {"TICKER": "ZTEST", "VWAP": 20.0}
-rowtime: 3/2/20 7:56:24 PM UTC, key: ZVV, value: {"TICKER": "ZVV", "VWAP": 30.0}
-rowtime: 3/2/20 7:56:24 PM UTC, key: ZVZZT, value: {"TICKER": "ZVZZT", "VWAP": 40.0}
-rowtime: 3/2/20 7:56:24 PM UTC, key: ZXZZT, value: {"TICKER": "ZXZZT", "VWAP": 50.0}
-rowtime: 3/2/20 7:56:24 PM UTC, key: ZTEST, value: {"TICKER": "ZTEST", "VWAP": 16.0}
-rowtime: 3/2/20 7:56:25 PM UTC, key: ZVV, value: {"TICKER": "ZVV", "VWAP": 33.0}
-rowtime: 3/2/20 7:56:25 PM UTC, key: ZVZZT, value: {"TICKER": "ZVZZT", "VWAP": 36.0}
-rowtime: 3/2/20 7:56:25 PM UTC, key: ZXZZT, value: {"TICKER": "ZXZZT", "VWAP": 53.0}
-rowtime: 3/2/20 7:56:25 PM UTC, key: ZTEST, value: {"TICKER": "ZTEST", "VWAP": 17.0}
-rowtime: 3/2/20 7:56:25 PM UTC, key: ZVV, value: {"TICKER": "ZVV", "VWAP": 30.0}
-rowtime: 3/2/20 7:56:25 PM UTC, key: ZVZZT, value: {"TICKER": "ZVZZT", "VWAP": 40.0}
-rowtime: 3/2/20 7:56:25 PM UTC, key: ZXZZT, value: {"TICKER": "ZXZZT", "VWAP": 50.0}
+rowtime: 2020/05/04 23:03:23.467 Z, key: ZTEST, value: {"VWAP": 20.0}
+rowtime: 2020/05/04 23:03:23.672 Z, key: ZVV, value: {"VWAP": 30.0}
+rowtime: 2020/05/04 23:03:23.801 Z, key: ZVZZT, value: {"VWAP": 40.0}
+rowtime: 2020/05/04 23:03:23.967 Z, key: ZXZZT, value: {"VWAP": 50.0}
+rowtime: 2020/05/04 23:03:24.100 Z, key: ZTEST, value: {"VWAP": 16.0}
+rowtime: 2020/05/04 23:03:24.399 Z, key: ZVV, value: {"VWAP": 33.0}
+rowtime: 2020/05/04 23:03:24.551 Z, key: ZVZZT, value: {"VWAP": 36.0}
+rowtime: 2020/05/04 23:03:24.705 Z, key: ZXZZT, value: {"VWAP": 53.0}
+rowtime: 2020/05/04 23:03:24.844 Z, key: ZTEST, value: {"VWAP": 17.0}
+rowtime: 2020/05/04 23:03:24.980 Z, key: ZVV, value: {"VWAP": 30.0}
+rowtime: 2020/05/04 23:03:25.096 Z, key: ZVZZT, value: {"VWAP": 40.0}
+rowtime: 2020/05/04 23:03:25.400 Z, key: ZXZZT, value: {"VWAP": 50.0}
+Topic printing ceased

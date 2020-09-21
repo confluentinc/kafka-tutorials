@@ -55,12 +55,14 @@ if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 		echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE} of ${ORIG_TUTORIAL}"
 	elif [ "${SINGLE_TYPE_CLONE}" == "kstreams" ]; then
 	    echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE} of ${ORIG_TUTORIAL}"
+	elif [ "${SINGLE_TYPE_CLONE}" == "kafka" ]; then
+	    echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE} of ${ORIG_TUTORIAL}"
 	else
 		echo "Unrecognized type [${SINGLE_TYPE_CLONE}], quitting"
 		exit 1
 	fi
 else 
-	echo "Cloning ${ORIG_TUTORIAL} if both ksql and kstreams exist then both of those are cloned"
+	echo "Cloning ${ORIG_TUTORIAL} if both ksql, kstreams, and kafka exist then both of those are cloned"
 fi
 
 ORIG_CLONE_FILES_DIR=$ORIG_TUTORIAL_BASE_DIR_NAME
@@ -106,6 +108,7 @@ TEMP_WORK_DIR="TEMP-WORK-${NEW_TUTORIAL}"
 
 KSQL_ENABLED="disabled"
 KSTREAMS_ENABLED="disabled"
+KAFKA_ENABLED="disabled"
 
 NEW_TUTORIAL_ENTRY=$(cat $KT_HOME/_data/tutorials.yaml | grep ${NEW_TUTORIAL} | wc -l)
 mkdir $TEMP_WORK_DIR
@@ -125,13 +128,20 @@ if [ "${NEW_TUTORIAL_ENTRY}" -eq 0 ]; then
 	    fi
 
 	    if [ $type == "kstreams" ]; then
-           KSTREAMS_ENABLED="endabled"
+           KSTREAMS_ENABLED="enabled"
 	       sed -i '.orig' "s/<KSTREAMS-ENABLED>/${KSTREAMS_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 	    fi 
+
+	    if [ $type == "kafka" ]; then
+	    	KAFKA_ENABLED="enabled"
+	    	sed -i '.orig' "s/kafka: disabled/kafka: ${KAFKA_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
+	    fi
+
 	done
 
 	sed -i '.orig' "s/<KSQL-ENABLED>/${KSQL_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml	
 	sed -i '.orig' "s/<KSTREAMS-ENABLED>/${KSTREAMS_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
+	sed -i '.orig' "s/<KAFKA-ENABLED>/${KAFKA_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 
     echo "Adding new entry into ${KT_HOME}/_data/tutorials.yaml now"
     cat $TEMP_WORK_DIR/tutorial-description-template.yml >> $KT_HOME/_data/tutorials.yaml
@@ -180,6 +190,27 @@ for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
 		       cp $TEMP_WORK_DIR/kstreams-front-matter-template.html $KT_HOME/tutorials/$NEW_TUTORIAL/kstreams.html
 		       echo "Adding entry for test-running for ${NEW_TUTORIAL} kstreams in ${KT_HOME}/.semaphore/semaphore.yaml"
 		       cat $TEMP_WORK_DIR/kstreams-semaphore-template.yml >> $KT_HOME/.semaphore/semaphore.yml
+		    else
+		      echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/kstreams"
+		    fi	
+	    fi 
+
+
+	    if [ $type == "kafka" ]; then
+	    	if [ ! -f $KT_HOME/tutorials/$NEW_TUTORIAL/kstreams.html ]; then 
+
+	           cp $KT_HOME/templates/kafka/filtered/kafka-* $TEMP_WORK_DIR
+
+		       sed -i '.orig' "s/<PERMALINK>/${PERMALINK}/g" $TEMP_WORK_DIR/kafka-front-matter-template.html
+		       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/kafka-front-matter-template.html
+
+		       sed -i '.orig' "s/<SEMAPHORE-TEST-NAME>/${SEMAPHORE_TEST_NAME}/g" $TEMP_WORK_DIR/kafka-semaphore-template.yml
+		       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/kafka-semaphore-template.yml
+               
+               echo "Adding new front-matter file for kafka.html" 
+		       cp $TEMP_WORK_DIR/kafka-front-matter-template.html $KT_HOME/tutorials/$NEW_TUTORIAL/kafka.html
+		       echo "Adding entry for test-running for ${NEW_TUTORIAL} kafka in ${KT_HOME}/.semaphore/semaphore.yaml"
+		       cat $TEMP_WORK_DIR/kafka-semaphore-template.yml >> $KT_HOME/.semaphore/semaphore.yml
 		    else
 		      echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/ksql"
 		    fi	

@@ -2,13 +2,16 @@ package io.confluent.developer.helper;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import io.confluent.developer.avro.PressureAlert;
-import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient;
-import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+
+import io.confluent.developer.avro.PressureAlert;
+import io.confluent.kafka.schemaregistry.avro.AvroSchema;
+import io.confluent.kafka.schemaregistry.client.CachedSchemaRegistryClient;
+import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
 
 public class SchemaPublication {
 
@@ -26,8 +29,8 @@ public class SchemaPublication {
             logger.info(String.format("Schemas publication at: %s", registryUrl));
 
             schemaRegistryClient.register(
-                    String.format("%s-value", config.getString("input.topic.name")),
-                    PressureAlert.SCHEMA$
+                String.format("%s-value", config.getString("input.topic.name")),
+                new AvroSchema(PressureAlert.SCHEMA$)
             );
         } catch (IOException | RestClientException e) {
             e.printStackTrace();

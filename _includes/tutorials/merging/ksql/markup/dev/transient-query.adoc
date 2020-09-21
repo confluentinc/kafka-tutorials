@@ -1,4 +1,4 @@
-Let's quickly check the contents of the stream to see that records of all genres are present. Issue the following transient query. This will block and continue to return results until its limit is reached or you tell it to stop.
+Let's quickly check the contents of the stream to see that records of all genres are present. Issue the following transient push query. This will block and continue to return results until its limit is reached or you tell it to stop.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/merging/ksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
@@ -7,5 +7,5 @@ Let's quickly check the contents of the stream to see that records of all genres
 This should yield the following output:
 
 +++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/merging/ksql/code/tutorial-steps/dev/outputs/transient-query/output-0.log %}</code></pre>
+<pre class="snippet"><code class="sql">{% include_raw tutorials/merging/ksql/code/tutorial-steps/dev/expected-transient.log %}</code></pre>
 +++++

@@ -1,0 +1,7 @@
+Create the following Sbt build file, named `build.sbt` for the project:
+
++++++
+<pre class="snippet"><code class="groovy">{%
+    include_raw tutorials/produce-consume-lang/scala/code/build.sbt
+%}</code></pre>
++++++

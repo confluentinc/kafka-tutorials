@@ -4,7 +4,6 @@
       "topic": "rated_movies",
       "key": 294,
       "value": {
-        "ID": 294,
         "TITLE": "Die Hard",
         "RELEASE_YEAR": 1998,
         "RATING": 8.2
@@ -14,7 +13,6 @@
       "topic": "rated_movies",
       "key": 294,
       "value": {
-        "ID": 294,
         "TITLE": "Die Hard",
         "RELEASE_YEAR": 1998,
         "RATING": 8.5
@@ -24,7 +22,6 @@
       "topic": "rated_movies",
       "key": 354,
       "value": {
-        "ID": 354,
         "TITLE": "Tree of Life",
         "RELEASE_YEAR": 2011,
         "RATING": 9.9
@@ -34,7 +31,6 @@
       "topic": "rated_movies",
       "key": 354,
       "value": {
-        "ID": 354,
         "TITLE": "Tree of Life",
         "RELEASE_YEAR": 2011,
         "RATING": 9.7
@@ -44,7 +40,6 @@
       "topic": "rated_movies",
       "key": 782,
       "value": {
-        "ID": 782,
         "TITLE": "A Walk in the Clouds",
         "RELEASE_YEAR": 1995,
         "RATING": 7.8
@@ -54,7 +49,6 @@
       "topic": "rated_movies",
       "key": 782,
       "value": {
-        "ID": 782,
         "TITLE": "A Walk in the Clouds",
         "RELEASE_YEAR": 1995,
         "RATING": 7.7
@@ -64,7 +58,6 @@
       "topic": "rated_movies",
       "key": 128,
       "value": {
-        "ID": 128,
         "TITLE": "The Big Lebowski",
         "RELEASE_YEAR": 1998,
         "RATING": 8.7
@@ -74,7 +67,6 @@
       "topic": "rated_movies",
       "key": 128,
       "value": {
-        "ID": 128,
         "TITLE": "The Big Lebowski",
         "RELEASE_YEAR": 1998,
         "RATING": 8.4
@@ -84,7 +76,6 @@
       "topic": "rated_movies",
       "key": 780,
       "value": {
-        "ID": 780,
         "TITLE": "Super Mario Bros.",
         "RELEASE_YEAR": 1993,
         "RATING": 2.1

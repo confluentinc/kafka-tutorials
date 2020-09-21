@@ -1,1 +1,1 @@
-java -jar build/libs/kstreams-serialization-0.0.1-standalone.jar configuration/dev.properties
+java -jar build/libs/kstreams-serialization-standalone-0.0.1.jar configuration/dev.properties

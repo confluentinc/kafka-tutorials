@@ -1,0 +1,1 @@
+docker exec -i broker /usr/bin/kafka-console-producer --topic input-topic --broker-list broker:9092

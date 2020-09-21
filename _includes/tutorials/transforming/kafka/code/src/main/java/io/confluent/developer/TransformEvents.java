@@ -1,27 +1,29 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.Movie;
-import io.confluent.developer.avro.RawMovie;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
-
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
-import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
+
+import io.confluent.developer.avro.Movie;
+import io.confluent.developer.avro.RawMovie;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
+
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 
 public class TransformEvents {
 
@@ -46,7 +48,7 @@ public class TransformEvents {
         props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, SpecificAvroSerializer.class.getName());
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
 
@@ -62,7 +64,7 @@ public class TransformEvents {
         props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, SpecificAvroDeserializer.class.getName());
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
 
@@ -114,7 +116,7 @@ public class TransformEvents {
 
         try (AdminClient adminClient = AdminClient.create(config)) {
 
-            List<String> topics = new ArrayList<String>();
+            List<String> topics = new ArrayList<>();
             topics.add(envProps.getProperty("input.topic.name"));
             topics.add(envProps.getProperty("output.topic.name"));
     
@@ -124,7 +126,7 @@ public class TransformEvents {
 
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         if (args.length < 1) {
             throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");

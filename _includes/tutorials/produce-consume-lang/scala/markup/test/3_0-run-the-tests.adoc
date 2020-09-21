@@ -1,0 +1,31 @@
+Finally, run the test by typing:
+
++++++
+<pre class="snippet"><code class="bash">{%
+    include_raw tutorials/produce-consume-lang/scala/code/tutorial-steps/test/run-unit-test-dir.sh
+%}</code></pre>
++++++
+
+It should output the following:
+
++++++
+<pre class="snippet"><code class="text">[info] ConsumerSpec:
+[info] consume
+[info] - should fetch the existing records from kafka
+[info]   + Given a consumer config
+[info]   + And a collection of books
+[info]   + When we consume back the records
+[info]   + Then a collection of books is returned
+[info] ProducerSpec:
+[info] produce
+[info] - should write a series of new books to kafka
+[info]   + Given a producer config
+[info]   + And a collection of books
+[info]   + When the books get produced
+[info]   + Then records can be fetched from Kafka
+[info] Run completed in 13 seconds, 991 milliseconds.
+[info] Total number of tests run: 2
+[info] Suites: completed 2, aborted 0
+[info] Tests: succeeded 2, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.</code></pre>
++++++
