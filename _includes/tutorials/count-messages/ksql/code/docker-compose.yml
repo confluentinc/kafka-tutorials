@@ -126,3 +126,16 @@ services:
     volumes:
       - ./src:/opt/app/src
       - ./test:/opt/app/test
+
+
+  kafkacat:
+    image: edenhill/kafkacat:1.6.0
+    container_name: kafkacat
+    links:
+      - broker
+    entrypoint: 
+      - /bin/sh 
+      - -c 
+      - |
+        apk add jq; 
+        while [ 1 -eq 1 ];do sleep 60;done
