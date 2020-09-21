@@ -122,32 +122,7 @@ services:
                     "tasks.max": "1"
                 }'
 
-        curl -i -X PUT http://localhost:8083/connectors/datagen_02/config \
-             -H "Content-Type: application/json" \
-              -d '{
-                    "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
-                    "value.converter.schemas.enable":false,
-                    "value.converter":"org.apache.kafka.connect.json.JsonConverter",
-                    "kafka.topic": "trades",
-                    "quickstart": "Stock_Trades",
-                    "max.interval": 1000,
-                    "iterations": 4242424242,
-                    "tasks.max": "1"
-                }'
-
         sleep infinity
     volumes:
       - ./src:/opt/app/src
       - ./test:/opt/app/test
-
-  kafkacat:
-    image: edenhill/kafkacat:1.6.0
-    container_name: kafkacat
-    links:
-      - broker
-    entrypoint: 
-      - /bin/sh 
-      - -c 
-      - |
-        apk add jq; 
-        while [ 1 -eq 1 ];do sleep 60;done
