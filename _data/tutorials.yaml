@@ -412,11 +412,11 @@ count-messages:
   meta-description: "How to count messages in a Kafka topic"
   slug: "/how-to-count-messages-on-a-kafka-topic"
   question: "How can I count the number of messages in a Kafka topic?"
-  introduction: "Messages are stored in Kafka topics until they are removed by Kafka. It can be useful to know how many messages there are currently in a topic. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic, as well as break it down by time periods and particular fields."
+  introduction: "Messages are stored in Kafka topics until they are removed by Kafka. It can be useful to know how many messages there are currently in a topic. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic."
   status:
     ksql: enabled
     kstreams: disabled
-    kafka: disabled
+    kafka: enabled
     c: disabled
     go: disabled
     groovy: disabled
