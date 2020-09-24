@@ -133,14 +133,14 @@ public class JoinStreamToTableTest {
             movieTestInputTopic = testDriver.createInputTopic(tableTopic, keySerializer, movieSerializer);
 
         for (Movie movie : movies) {
-            movieTestInputTopic.pipeInput(movie.getId().toString(), movie);
+            movieTestInputTopic.pipeInput(String.valueOf(movie.getId()), movie);
         }
 
         final TestInputTopic<String, Rating>
             ratingTestInputTopic =
             testDriver.createInputTopic(streamTopic, keySerializer, ratingSerializer);
         for (Rating rating : ratings) {
-            ratingTestInputTopic.pipeInput(rating.getId().toString(), rating);
+            ratingTestInputTopic.pipeInput(String.valueOf(rating.getId()), rating);
         }
 
         List<RatedMovie> actualOutput = readOutputTopic(testDriver, outputTopic, stringDeserializer, valueDeserializer);
