@@ -22,7 +22,7 @@ dev:
         - action: execute
           file: tutorial-steps/dev/02c-wait-for-containers.sh
           render:
-            skip: true
+            file: tutorials/count-messages/kafka/markup/dev/02c-wait-for-containers.adoc
 
     - title: Run kafkacat to count the messages
       content:
