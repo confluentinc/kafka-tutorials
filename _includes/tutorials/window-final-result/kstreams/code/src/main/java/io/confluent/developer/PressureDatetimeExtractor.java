@@ -14,7 +14,7 @@ import java.time.format.DateTimeFormatter;
 
 public class PressureDatetimeExtractor implements TimestampExtractor {
 
-    private DateTimeFormatter formatter;
+    private final DateTimeFormatter formatter;
     private static final Logger logger = LoggerFactory.getLogger(TimestampExtractor.class);
 
     public PressureDatetimeExtractor(Config config) {

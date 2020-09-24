@@ -1,1 +1,1 @@
-PRINT 'avro-movies' FROM BEGINNING LIMIT 3;
+PRINT 'proto-movies' FROM BEGINNING LIMIT 3;

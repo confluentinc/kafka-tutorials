@@ -9,7 +9,6 @@ build/
 .jekyll-metadata
 node_modules/
 out/
-*/outputs/*
 .DS_Store
 harness_runner/harness_runner.egg-info
 __pycache__
@@ -24,3 +23,9 @@ bin/
 s3_website.yml
 harness_runner/harness_runner.pyc
 *_checklist.txt
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build

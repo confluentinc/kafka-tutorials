@@ -2,7 +2,6 @@
   "inputs": [
     {
       "topic": "ORDERS",
-      "key": "1",
       "value": {
         "id": "1",
         "timestamp": "2020-01-18 01:12:05",
@@ -31,7 +30,6 @@
     },
     {
       "topic": "ORDERS",
-      "key": "2",
       "value": {
         "id": "2",
         "timestamp": "2020-01-18 01:35:12",
@@ -60,7 +58,6 @@
     },
     {
       "topic": "ORDERS",
-      "key": "3",
       "value": {
         "id": "3",
         "timestamp": "2020-01-18 01:58:55",
@@ -89,7 +86,6 @@
     },
     {
       "topic": "ORDERS",
-      "key": "4",
       "value": {
         "id": "4",
         "timestamp": "2020-01-18 02:31:43",

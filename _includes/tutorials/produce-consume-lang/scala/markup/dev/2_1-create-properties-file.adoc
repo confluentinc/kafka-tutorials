@@ -1,0 +1,7 @@
+Create the following Sbt settings file under the _project_ folder, named `project/build.properties`:
+
++++++
+<pre class="snippet"><code class="property">{%
+    include_raw tutorials/produce-consume-lang/scala/code/project/build.properties
+%}</code></pre>
++++++

@@ -2,10 +2,18 @@
   "outputs": [
     {
       "topic": "MOVIES_ENRICHED",
+      "key": "Aliens",
+      "value": {
+        "ID": 48,
+        "RELEASE_YEAR": 1986,
+        "ACTOR_NAME": "Sigourney Weaver"
+      }
+    },
+    {
+      "topic": "MOVIES_ENRICHED",
       "key": "Die Hard",
       "value": {
         "ID": 294,
-        "M_TITLE": "Die Hard",
         "RELEASE_YEAR": 1998,
         "ACTOR_NAME": "Bruce Willis"
       }
@@ -15,7 +23,6 @@
       "key": "The Big Lebowski",
       "value": {
         "ID": 128,
-        "M_TITLE": "The Big Lebowski",
         "RELEASE_YEAR": 1998,
         "ACTOR_NAME": "Jeff Bridges"
       }
@@ -25,7 +32,6 @@
       "key": "The Godfather",
       "value": {
         "ID": 128,
-        "M_TITLE": "The Godfather",
         "RELEASE_YEAR": 1998,
         "ACTOR_NAME": "Al Pacino"
       }

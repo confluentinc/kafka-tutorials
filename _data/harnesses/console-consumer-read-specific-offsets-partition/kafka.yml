@@ -1,0 +1,97 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/init.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Create a topic with multiple partitions
+      content:
+        - action: execute
+          file: tutorial-steps/dev/harness-create-topic.sh
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/create-topic.adoc
+
+    - title: Produce records with keys and values
+      content:
+        - action: execute
+          file: tutorial-steps/dev/harness-console-producer-keys.sh
+          stdin: tutorial-steps/dev/input-step-one.txt
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/produce-topic-keys-values.adoc  
+            
+    - title: Start a console consumer to read from the first partition
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/harness-console-consumer-keys-partition-zero.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-step-one.txt
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic-partition-zero.adoc
+
+        - name: wait for consumer to read records
+          action: sleep
+          ms: 10000
+          render:
+            skip: true
+
+    - title: Start a console consumer to read from the second partition
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/harness-console-consumer-keys-partition-one.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic-partition-one.adoc
+
+        - name: wait for consumer to read records
+          action: sleep
+          ms: 10000
+          render:
+            skip: true
+
+    - title: Read records starting from a specific offset
+      content:
+        - action: execute_async
+          file: tutorial-steps/dev/harness-console-consumer-keys-partition-one-offset-six.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/consume-topic-partition-offsets.adoc
+
+        - name: wait for consumer to read records
+          action: sleep
+          ms: 10000
+          render:
+            skip: true
+            
+    - title: Clean up
+      content:
+      - action: execute
+        file: tutorial-steps/dev/clean-up.sh
+        render:
+          file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/clean-up.adoc
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc

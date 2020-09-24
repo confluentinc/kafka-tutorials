@@ -37,4 +37,17 @@ $(function() {
 
         return false;
     });
+
+    $('.navbar-burger').on('click', function(e) {
+        e.preventDefault();
+        $('.navbar-burger').toggleClass('is-active');
+        $('.navbar-menu').toggleClass('is-active');
+    });
+
+    $('#show a').on('click', function(e) {
+        e.preventDefault();
+        $('#show a').text($('#show a').text() == 'More' ? 'Less' : 'More');
+        $('.more').toggleClass('is-hidden');
+        return false;
+    });         
 });

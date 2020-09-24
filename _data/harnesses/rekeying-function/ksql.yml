@@ -87,9 +87,6 @@ dev:
             - file: tutorial-steps/dev/key-query.sql
               render:
                 file: tutorials/rekeying-function/ksql/markup/dev/key-query.adoc
-            - file: tutorial-steps/dev/continuous-regex.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/continuous-regex.adoc
             - file: tutorial-steps/dev/continuous-rekey.sql
               render:
                 file: tutorials/rekeying-function/ksql/markup/dev/continuous-rekey.adoc
@@ -134,3 +131,16 @@ prod:
         - action: skip
           render:
             file: tutorials/rekeying-function/ksql/markup/prod/submit-to-api.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc
