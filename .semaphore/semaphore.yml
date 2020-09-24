@@ -267,4 +267,11 @@ blocks:
         - name: Kafka Test Kafka Produer with Callbacks tests
           commands:
             - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
-            
+
+        - name: KSQL Count messages on a topic tutorial tests
+          commands:
+            - make -C _includes/tutorials/count-messages/ksql/code tutorial
+
+        - name: Kafka Count messages on a topic tutorial tests
+          commands:
+            - make -C _includes/tutorials/count-messages/kafka/code tutorial
