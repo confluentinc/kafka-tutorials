@@ -1,0 +1,1 @@
+PRINT clicks LIMIT 5;
