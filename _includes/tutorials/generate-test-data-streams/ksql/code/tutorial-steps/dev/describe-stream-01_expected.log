@@ -1,0 +1,11 @@
+Name                 : CLICKS
+ Field      | Type
+----------------------------------------
+ ROWTIME    | BIGINT           (system)
+ ROWKEY     | VARCHAR(STRING)  (system)
+ USER_AGENT | VARCHAR(STRING)
+ SOURCE_IP  | VARCHAR(STRING)
+ PATH       | VARCHAR(STRING)
+ HOST       | VARCHAR(STRING)
+----------------------------------------
+For runtime statistics and query details run: DESCRIBE EXTENDED <Stream,Table>;
