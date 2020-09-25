@@ -1,4 +1,4 @@
-Next let's open up a console consumer again, but this time you'll ready everthing that your producer has sent to the topic. you created in the previous step.
+Next let's open up a console consumer again, but this time you'll ready everything that your producer has sent to the topic. you created in the previous step.
 
 Run this command in the container shell you created for your first consumer and note the additional property `--from-beginning`:
 
@@ -15,4 +15,4 @@ After the consumer starts you should see the following output in a few seconds:
 
 One word of caution with using the `--from-beginning` flag. As the name implies this setting forces the consumer retrieve _**every record**_ currently on the topic.  So it's best to use when testing  and learning and not on a production topic.
 
-Again, once you've recieved all records, close this console consumer by entering a `CTRL+C`.
+Again, once you've received all records, close this console consumer by entering a `CTRL+C`.
