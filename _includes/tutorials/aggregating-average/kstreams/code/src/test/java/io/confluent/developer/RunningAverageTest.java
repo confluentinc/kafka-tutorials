@@ -13,6 +13,7 @@ import org.apache.kafka.streams.TopologyTestDriver;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.state.KeyValueStore;
+import org.hamcrest.MatcherAssert;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
 import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
 
 @Slf4j
 public class RunningAverageTest {
@@ -98,7 +98,7 @@ public class RunningAverageTest {
     // I expect second record in topic will contain correct result
     final KeyValue<Long, Double> longDoubleKeyValue = keyValues.get(1);
     System.out.println("longDoubleKeyValue = " + longDoubleKeyValue);
-    assertThat(longDoubleKeyValue,
+    MatcherAssert.assertThat(longDoubleKeyValue,
                equalTo(new KeyValue<>(362L, 9.0)));
 
     final KeyValueStore<Long, Double>
