@@ -286,7 +286,7 @@ console-consumer-produer-basic:
   meta-description: "Produce and consume your first message with Kafka"
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
-  introduction: "So you are excited to get started with Kafka and youd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Note this tutorial doesn't cover using (de)serializers. Using (de)serializers with the console consumer and producer are covered in separate tutorials"
+  introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Note this tutorial doesn't cover using (de)serializers. Using (de)serializers with the console consumer and producer are covered in separate tutorials."
   status:
     ksql: disabled
     kstreams: disabled
