@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.15.1"
+        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.21.0"
         classpath "com.github.jengelman.gradle.plugins:shadow:4.0.2"
     }
 }
