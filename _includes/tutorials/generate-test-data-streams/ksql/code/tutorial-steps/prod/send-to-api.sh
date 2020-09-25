@@ -1,8 +1,3 @@
-# debug stuff
-ls -l src
-cat src/statements.sql
-pwd
-# as you were
 tr '\n' ' ' < src/statements.sql | \
 sed 's/;/;\'$'\n''/g' | \
 while read stmt; do
