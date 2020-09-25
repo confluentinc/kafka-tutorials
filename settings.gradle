@@ -72,6 +72,8 @@ include '_includes:tutorials:udf:ksql:code'
 include '_includes:tutorials:window-final-result:kstreams:code'
 include '_includes:tutorials:produce-consume-lang:scala:code'
 include '_includes:tutorials:kafka-connect-datagen-ccloud:kafka:code'
+include '_includes:tutorials:generate-test-data-streams:kafka:code'
+include '_includes:tutorials:count-messages:kafka:code'
 // <end>
 
 // if new tutorial wasn't included in `settings.gradle` build will fail
