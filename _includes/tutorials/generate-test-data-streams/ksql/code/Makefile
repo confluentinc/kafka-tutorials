@@ -31,11 +31,15 @@ tutorial:
 	# 1. The $ needs to be $$ because of how make parses it
 	# 2. The resulting $1 that's used in awk needs to be escaped 
 	#     to \$1 because https://unix.stackexchange.com/questions/577491/script-not-working-when-passed-to-bash-via-c/577492#577492
-	bash -c "diff <(wc -l $(STEPS_DIR)/dev/consume-topic_expected.log|awk '{print \$$1}')   <(wc -l $(DEV_OUTPUTS_DIR)/consume-topic/output-0.log|awk '{print \$$1}')"
+	#
+	# Unless ksqlDB adds support for SLEEP, or we split the docker_ksql_cli_session and insert a bash sleep step (a lot of heavy lifting), this option will hopefully suffice for now. It simply greps out the offending KAFKA_STRING mention in the test at the end.
+	# See https://github.com/confluentinc/kafka-tutorials/issues/510
+	bash -c "diff <(wc -l $(STEPS_DIR)/dev/consume-topic_expected.log|awk '{print \$$1}')   <(grep -v \"Value format: AVRO or KAFKA_STRING\" $(DEV_OUTPUTS_DIR)/consume-topic/output-0.log|wc -l|awk '{print \$$1}')"
 	bash -c "diff <(wc -l $(STEPS_DIR)/dev/join-streams-do_expected.log|awk '{print \$$1}') <(wc -l $(DEV_OUTPUTS_DIR)/join-streams-do/output-0.log|awk '{print \$$1}')"
 	bash -c "diff <(wc -l $(STEPS_DIR)/dev/query-stream-01_expected.log|awk '{print \$$1}') <(wc -l $(DEV_OUTPUTS_DIR)/query-stream-01/output-1.log|awk '{print \$$1}')"
 	# Since the PRINT header output is relevant to check we test that here
-	bash -c "diff <(head -n2 $(STEPS_DIR)/dev/consume-topic_expected.log)   <(head -n2 $(DEV_OUTPUTS_DIR)/consume-topic/output-0.log)"
+	# Added grep -v to deal with same issue as https://github.com/confluentinc/kafka-tutorials/issues/510
+	bash -c "diff <(head -n2 $(STEPS_DIR)/dev/consume-topic_expected.log)   <(grep -v \"Value format: AVRO or KAFKA_STRING\" $(DEV_OUTPUTS_DIR)/consume-topic/output-0.log|grep -v rowtime|head -n2 )"
 
 	# ----
 	# In this test we strip out everything except for the confirmation message "<service> is ready". 
@@ -46,3 +50,5 @@ tutorial:
 	# Check the deploy to prod steps
 	bash -c "diff --ignore-all-space --strip-trailing-cr $(STEPS_DIR)/prod/check-deploy_expected.log $(PROD_OUTPUTS_DIR)/check-deploy.out"
 	bash -c "diff --ignore-all-space --strip-trailing-cr $(STEPS_DIR)/prod/send-to-api_expected.log $(PROD_OUTPUTS_DIR)/send-to-api.out"
+
+
