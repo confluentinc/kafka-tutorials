@@ -1,0 +1,21 @@
+We recommend you run this tutorial in a new Confluent Cloud environment so it doesn't interfere with your other work, and the easiest way to do this is to use the `ccloud-stack` utility.
+This provisions a new Confluent Cloud stack with a new environment, a new service account, a new Kafka cluster and associated credentials, enables Schema Registry and associated credentials, ACLs with wildcard for the service account, and a local configuration file with all above connection information.
+For more information on `ccloud-stack`, read the link:https://github.com/confluentinc/examples/blob/latest/ccloud/ccloud-stack/README.md[documentation].
+
+
+Get the open source library link:https://github.com/confluentinc/examples/blob/latest/utils/ccloud_library.sh[ccloud_library.sh] which has functions to interact with Confluent Cloud, including `ccloud-stack`.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/ccloud-produce-consume/kafka/code/tutorial-steps/dev/get-ccloud-library.sh %}</code></pre>
++++++
+
+Create your stack of Confluent Cloud resources by running the following command.
+Set `CLUSTER_CLOUD` and `CLUSTER_REGION` as needed (defaults are shown below).
+
+NOTE: To avoid unexpected charges, carefully evaluate the cost of resources before launching the script and ensure all resources are destroyed after you are done running the tutorial.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/ccloud-produce-consume/kafka/code/tutorial-steps/dev/run-ccloud-stack.sh %}</code></pre>
++++++
+
+The `false` passed to the command indicates we do not want to create a ksqlDB application which we do not need for this tutorial.
