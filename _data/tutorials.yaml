@@ -398,7 +398,6 @@ kafka-producer-application:
     kstreams: disabled
     kafka: enabled
 
-
 kafka-producer-application-callback:
   title: "How build an Apache KafkaProducer application using callbacks"
   meta-description: "How build an Apache KafkaProducer application using callbacks"
@@ -418,6 +417,7 @@ kafka-producer-application-callback:
     scala: disabled
     swift: disabled
 
+
 count-messages:
   title: "How to count messages in a Kafka topic"
   meta-description: "How to count messages in a Kafka topic"
@@ -428,6 +428,25 @@ count-messages:
     ksql: enabled
     kstreams: disabled
     kafka: enabled
+    c : disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
+kafka-streams-schedule-operations:
+  title: "How to schedule operations in Kafka Streams"
+  meta-description: "How to schedule operations in Kafka Streams"
+  slug: "/kafka-streams-schedule-operations"
+  question: "How can I schedule recurring operations in Kafka Streams?"
+  introduction: "You'd like to have some periodic functionality execute in your Kafka Streams application.  In this tutorial you'll learn how to use puncuation in Kafka Streams for executing work at regular intervals."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
     c: disabled
     go: disabled
     groovy: disabled
