@@ -19,25 +19,25 @@ NOTE: The following detailed sections are already included in the application fi
 .Using the Transformer in the Kafka Streams application
 ----
 final KStream<String, LoginTime> loginTimeStream = builder.stream(loginTimeInputTopic, Consumed.with(Serdes.String(), loginTimeSerde));
-loginTimeStream.transform(getTransformerSupplier(loginTimeStore), Named.as("max-login-time-transformer"),loginTimeStore) <1>
+loginTimeStream.transform(getTransformerSupplier(loginTimeStore), Named.as("max-login-time-transformer"),loginTimeStor/e) //<1>
                .to(outputTopic, Produced.with(Serdes.String(), Serdes.Long()));
 
 
 private TransformerSupplier<String, LoginTime, KeyValue<String, Long>> getTransformerSupplier(final String storeName) {
-	    return () -> new Transformer<String, LoginTime, KeyValue<String, Long>>() { <2>
+	    return () -> new Transformer<String, LoginTime, KeyValue<String, Long>>() { //<2>
 	        private KeyValueStore<String, Long> store;
 	        private ProcessorContext context;
             @Override
-            public void init(ProcessorContext context) { <3>
+            public void init(ProcessorContext context) { //<3>
                    this.context = context;
                    store = (KeyValueStore<String, Long>) this.context.getStateStore(storeName);
-                   this.context.schedule(Duration.ofSeconds(5), PunctuationType.STREAM_TIME, this::streamTimePunctuator); <4>
-                   this.context.schedule(Duration.ofSeconds(20), PunctuationType.WALL_CLOCK_TIME, this::wallClockTimePunctuator); <5>
+                   this.context.schedule(Duration.ofSeconds(5), PunctuationType.STREAM_TIME, this::streamTimePunctuator); //<4>
+                   this.context.schedule(Duration.ofSeconds(20), PunctuationType.WALL_CLOCK_TIME, this::wallClockTimePunctuator); //<5>
             }
 
 
 @Override
-public KeyValue<String, Long> transform(String key, LoginTime value) { <6>
+public KeyValue<String, Long> transform(String key, LoginTime value) { //<6>
        Long currentVT = store.putIfAbsent(key, value.getLogintime());
        if (currentVT != null) {
            store.put(key, currentVT + value.getLogintime());

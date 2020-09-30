@@ -26,14 +26,15 @@ loggedOnTimes.add(LoginTime.newBuilder().setLogintime(25L).setAppid("test-page")
 loggedOnTimes.add(LoginTime.newBuilder().setLogintime(10L).setAppid("test-page").setUserid("user-2").build());
 
 List<KeyValue<String, LoginTime>> keyValues = loggedOnTimes.stream().map(o -> KeyValue.pair(o.getUserid(),o)).collect(Collectors.toList());
-inputTopic.pipeKeyValueList(keyValues,      <1>
-                            Instant.now(),  <2>
-                            Duration.ofSeconds(2)); <3>
+inputTopic.pipeKeyValueList(keyValues,      //<1>
+                            Instant.now(),  //<2>
+                            Duration.ofSeconds(2)); //<3>
+
 ----
 
-<1> Piping through all the records
-<2> Setting the initial timestamp
-<3> How much to increse each subsequent timestamp
+<1> Piping through all the records.
+<2> Setting the initial timestamp.
+<3> How much to increase each subsequent timestamp.
 
 The https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/TestInputTopic.html#pipeKeyValueList-java.util.List-java.time.Instant-java.time.Duration-[TestInputTopic] provides useful methods when testing your topology and you need timestamps to drive behavior.  In this case, you expect the streams application to fire a punctuation every 5 seconds. The `TestInputTopic.pipeKeyValueList` gives you the ability to achieve the desired behavior.
 

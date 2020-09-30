@@ -45,13 +45,12 @@ public class KafkaStreamsPunctuationTest {
         final Topology topology = instance.buildTopology(envProps);
         try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
 
-            final SpecificAvroSerde<LoginTime> exampleAvroSerde = KafkaStreamsPunctuation.<LoginTime>getSpecificAvroSerde(envProps);
+            final SpecificAvroSerde<LoginTime> exampleAvroSerde = KafkaStreamsPunctuation.getSpecificAvroSerde(envProps);
 
             final Serializer<String> keySerializer = Serdes.String().serializer();
             final Serializer<LoginTime> exampleSerializer = exampleAvroSerde.serializer();
             final Deserializer<Long> valueDeserializer = Serdes.Long().deserializer();
             final Deserializer<String> keyDeserializer = Serdes.String().deserializer();
-            long timestamp = Instant.now().toEpochMilli();
 
             final TestInputTopic<String, LoginTime>  inputTopic = testDriver.createInputTopic(pageviewsInputTopic,
                                                                                               keySerializer,
