@@ -296,7 +296,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/count-messages/kafka/code tutorial
 
-				 - name: Kafka Test ccloud produce and consume
+        - name: Kafka Test ccloud produce and consume
           commands:
             - make -C _includes/tutorials/ccloud-produce-consume/kafka/code tutorial
 
