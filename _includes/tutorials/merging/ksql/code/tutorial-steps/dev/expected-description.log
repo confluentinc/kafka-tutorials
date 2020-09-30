@@ -4,8 +4,7 @@ Timestamp field      : Not set - using <ROWTIME>
 Key format           : KAFKA
 Value format         : AVRO
 Kafka topic          : all_songs (partitions: 1, replication: 1)
-Statement            : CREATE STREAM all_songs (artist VARCHAR, title VARCHAR, genre VARCHAR)
-    WITH (kafka_topic='all_songs', partitions=1, value_format='avro');
+Statement            : CREATE STREAM ALL_SONGS (ARTIST STRING, TITLE STRING, GENRE STRING) WITH (KAFKA_TOPIC='all_songs', KEY_FORMAT='KAFKA', PARTITIONS=1, VALUE_FORMAT='AVRO');
 
  Field  | Type
 
@@ -16,8 +15,8 @@ Statement            : CREATE STREAM all_songs (artist VARCHAR, title VARCHAR, g
 
 Queries that write from this STREAM
 -----------------------------------
+INSERTQUERY_5 (RUNNING) : INSERT INTO all_songs SELECT artist, title, 'rock' AS genre FROM rock_songs;
 INSERTQUERY_7 (RUNNING) : INSERT INTO all_songs SELECT artist, title, 'classical' AS genre FROM classical_songs;
-INSERTQUERY_0 (RUNNING) : INSERT INTO all_songs SELECT artist, title, 'rock' AS genre FROM rock_songs;
 
 For query topology and execution plan please run: EXPLAIN <QueryId>
 
