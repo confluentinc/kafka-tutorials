@@ -28,8 +28,8 @@ Local runtime statistics
 
 Consumer Groups summary:
 
-Consumer Group       : _confluent-ksql-default_query_INSERTQUERY_0
+Consumer Group       : _confluent-ksql-default_query_INSERTQUERY_7
 <no offsets committed by this group yet>
 
-Consumer Group       : _confluent-ksql-default_query_INSERTQUERY_7
+Consumer Group       : _confluent-ksql-default_query_INSERTQUERY_5
 <no offsets committed by this group yet>
