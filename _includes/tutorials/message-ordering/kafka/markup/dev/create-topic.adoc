@@ -1,5 +1,5 @@
 Your first step is to create the original Kafka topic. Use the following command to create the topic `topic1` with 1 partition and 1 replica:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/ksql/code/tutorial-steps/dev/create-topic.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/create-topic.sh %}</code></pre>
 +++++

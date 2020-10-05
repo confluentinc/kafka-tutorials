@@ -3,7 +3,7 @@ Each line has the format `<key>,<value>`, whereby the `,` is the special delimit
 Copy these records and paste them into the `kafka-console-producer` prompt that you started in the previous step.
 
 +++++
-<pre class="snippet"><code class="json">{% include_raw tutorials/message-ordering/ksql/code/test/input.txt %}</code></pre>
+<pre class="snippet"><code class="json">{% include_raw tutorials/message-ordering/kafka/code/test/input.txt %}</code></pre>
 +++++
 
 Stop the producer by entering CTRL+C.

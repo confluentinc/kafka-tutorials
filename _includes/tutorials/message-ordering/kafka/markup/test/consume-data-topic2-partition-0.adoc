@@ -1,13 +1,13 @@
 Now consume data from the new Kafka topic `topic2`. First look at the data in partition 0.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/ksql/code/test/consume-data-output-partition-0.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/test/consume-data-output-partition-0.sh %}</code></pre>
 +++++
 
 You should see some of the records in this partition. In this example, the partitioner put all records with a key value of `a`, `b`, or `c` into partition 0.
 
 +++++
-<pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/ksql/code/tutorial-steps/test/expected-data-from-topic2-partition-0.sh %}</code></pre>
+<pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-data-from-topic2-partition-0.sh %}</code></pre>
 +++++
 
 Notice that the ordering of the data is still maintained per key.
