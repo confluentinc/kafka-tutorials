@@ -1,5 +1,5 @@
 We recommend you run this tutorial in a new Confluent Cloud environment so it doesn't interfere with your other work, and the easiest way to do this is to use the `ccloud-stack` utility.
-This provisions a new Confluent Cloud stack with a new environment, a new service account, a new Kafka cluster and associated credentials, enables Schema Registry and associated credentials, ACLs with wildcard for the service account, and a local configuration file with all above connection information.
+The ccloud-stack utility provisions a new Confluent Cloud stack with a new environment, a new service account, a new Kafka cluster, and associated credentials. It also enables Schema Registry and credentials, wildcard ACLs for the service account, and a local configuration file with all the above connection information.
 For more information on `ccloud-stack`, read the link:https://docs.confluent.io/current/tutorials/examples/ccloud/docs/ccloud-stack.html[documentation].
 
 
