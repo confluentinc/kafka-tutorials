@@ -455,3 +455,14 @@ kafka-streams-schedule-operations:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+message-ordering:
+  title: "How to maintain message ordering"
+  meta-description: "How to maintain message ordering"
+  slug: "/message-ordering"
+  question: "How can I maintain the order of messages in a Kafka topic partition?"
+  introduction: "When order matters, you want to ensure that you do not have any out-of-order messages.  In this tutorial, you will learn how to configure producers to ensure messages are consumed in the same order that they are produced, on a per topic partition basis."
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled

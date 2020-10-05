@@ -1,0 +1,7 @@
+To produce data into the original Kafka topic `topic1`, open another terminal window and run the following command to open a second shell on the broker container:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/ksql/code/test/produce-data-input.sh %}</code></pre>
++++++
+
+The producer will start and wait for you to enter input in the next step.

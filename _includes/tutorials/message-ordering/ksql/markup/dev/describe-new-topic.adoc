@@ -1,0 +1,12 @@
+Describe the properties of the new topic, `topic2`, underlying the ksqlDB stream you just created.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/ksql/code/tutorial-steps/dev/describe-new-topic.sh %}</code></pre>
++++++
+
+The output should be the following. Notice that the topic has 2 partitions, numbered 0 and 1, and 2 replicas on brokers with ids of `101` and `102`.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/ksql/code/tutorial-steps/dev/expected-output-describe-topic2.txt %}</code></pre>
++++++
+
