@@ -1,5 +1,0 @@
-First, you'll need to create a ksqlDB stream for the original topic `topic1`—let's call the stream `s1`. The statement below specifies the message value serialization format is `JSON` but in your environment, `VALUE_FORMAT` should be set to match the https://docs.ksqldb.io/en/latest/developer-guide/serialization/#serialization-formats[serialization format] of your original topic.
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/create-original-stream.sql %}</code></pre>
-+++++

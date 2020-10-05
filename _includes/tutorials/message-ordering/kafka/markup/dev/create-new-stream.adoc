@@ -1,9 +1,0 @@
-Next, create a new ksqlDB stream—let's call it `s2`—that will be backed by a new target Kafka topic `topic2` with the desired number of partitions and replicas. Using the `WITH` clause, you can specify the partitions and replicas of the underlying Kafka topic.
-
-The result of `SELECT * FROM S1` causes every record from Kafka topic `topic1` (with 1 partition and 1 replica) to be produced to Kafka topic `topic2` (with 2 partitions and 2 replicas).
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/create-new-stream.sql %}</code></pre>
-+++++
-
-Exit ksqlDB by typing `exit;`

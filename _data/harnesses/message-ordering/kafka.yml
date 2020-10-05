@@ -44,39 +44,29 @@ dev:
           render:
             file: tutorials/message-ordering/kafka/markup/dev/describe-original-topic.adoc
 
-    - title: Write the program interactively using the CLI
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 24
-          render:
-            file: tutorials/message-ordering/kafka/markup/dev/start-cli.adoc
-          stdin:
-            - file: tutorial-steps/dev/create-original-stream.sql
-              render:
-                file: tutorials/message-ordering/kafka/markup/dev/create-inputs.adoc
-
-            - file: tutorial-steps/dev/create-new-stream.sql
-              render:
-                file: tutorials/message-ordering/kafka/markup/dev/create-new-stream.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
-
-    - title: Describe the new topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/describe-new-topic.sh
-          stdout: tutorial-steps/dev/outputs/actual-describe-from-topic2.txt
-          render:
-            file: tutorials/message-ordering/kafka/markup/dev/describe-new-topic.adoc
-
-    - title: Write your statements to a file
+    - title: Configure the project
       content:
         - action: make_file
-          file: src/statements.sql
+          file: build.gradle
           render:
-            file: tutorials/message-ordering/kafka/markup/dev/make-src-file.adoc
+            file: tutorials/message-ordering/kafka/markup/dev/make-build-file.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/gradle-wrapper.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-gradle-wrapper.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-config-dir.adoc
+
+    - title: Add application and producer properties
+      content:
+        - action: make_file
+          file: configuration/dev.properties
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-dev-file.adoc
 
 test:
   steps:
