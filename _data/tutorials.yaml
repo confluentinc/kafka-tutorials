@@ -426,6 +426,15 @@ count-messages:
   introduction: "Messages are stored in Kafka topics until they are removed by Kafka. It can be useful to know how many messages there are currently in a topic. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic."
   status:
     ksql: enabled
+
+ccloud-produce-consume:
+  title: "How to produce and consume records from Confluent Cloud using ccloud CLI"
+  meta-description: "How to produce and consume records from Confluent Cloud using ccloud CLI"
+  slug: "/ccloud-produce-consume"
+  question: "How do I use the ccloud CLI to produce and consume records from a Confluent Cloud topic"
+  introduction: "In this tutorial you learn how to use the ccloud CLI to produce and consume records from a Kafka topic in <a href=\"https://confluent.cloud\">Confluent Cloud</a>. This can help you build and debug your Confluent Cloud based event streaming applications."
+  status:
+    ksql: disabled
     kstreams: disabled
     kafka: enabled
     c : disabled
@@ -455,3 +464,4 @@ kafka-streams-schedule-operations:
     ruby: disabled
     scala: disabled
     swift: disabled
+
