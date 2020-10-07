@@ -20,10 +20,10 @@ promotions:
         branch:
           - ^master$
 
-  - name: Stage a PR 
+  - name: Stage PRs for review 
     pipeline_file: pr-staging-deploy.yml
     auto_promote:
-      when: "branch =~ '^DEVX\.' or branch =~ '^GH\.'"
+      when: "branch != 'master' or branch != 'release' or branch !~ '^dependabot\.'"
 
 blocks:
   - name: Build the website
