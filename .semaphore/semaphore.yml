@@ -20,6 +20,12 @@ promotions:
         branch:
           - ^master$
 
+  - name: Stage a PR 
+    pipeline_file: pr-staging-deploy.yml
+    auto_promote_on:
+      branch:
+        - ^(DEVX|GH).*
+
 blocks:
   - name: Build the website
     task:
