@@ -40,7 +40,7 @@ blocks:
         - name: Compile with Jekyll
           commands:
             - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH"
-            - cache store site-$SEMAPHORE_GIT_BRANCH _site
+            - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
     task:
