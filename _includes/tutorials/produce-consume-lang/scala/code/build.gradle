@@ -61,8 +61,9 @@ configure(subprojects) {
     apply plugin: 'com.github.johnrengelman.shadow'
 
     dependencies {
-        implementation rootProject
-        testImplementation rootProject.sourceSets.test.output
+        implementation parent
+        testImplementation parent
+        testImplementation parent.sourceSets.test.output
     }
 
     task spec(dependsOn: ['compileTestScala'], type: JavaExec) {
@@ -77,12 +78,12 @@ configure(subprojects) {
     tasks.jib.dependsOn build
 }
 
-configure(project(':app-producer')) {
+configure(project('produce-consume-scala-producer-app')) {
     mainClassName = 'io.confluent.developer.produce.Producer'
     jib.to.image = "io.confluent.developer/scala-producer:${version}"
 }
 
-configure(project(':app-consumer')) {
+configure(project('produce-consume-scala-consumer-app')) {
     mainClassName = 'io.confluent.developer.consume.Consumer'
     jib.to.image = "io.confluent.developer/scala-consumer:${version}"
 }
