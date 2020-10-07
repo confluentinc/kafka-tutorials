@@ -1,0 +1,57 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/ccloud-produce-consume/kafka/markup/dev/init.adoc
+
+    - title: Get Confluent Cloud and the CLI
+      content:
+        - action: skip
+          render:
+            file: tutorials/ccloud-produce-consume/kafka/markup/dev/get-ccloud.adoc
+
+    - title: Provision a new ccloud-stack on Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/ccloud-produce-consume/kafka/markup/dev/setup-ccloud.adoc
+
+    - title: View cluster connection info
+      content:
+        - action: skip
+          render:
+            file: tutorials/ccloud-produce-consume/kafka/markup/dev/set-ccloud-config.adoc
+
+    - title: Create the Kafka topic
+      content:
+        - action: skip
+          render:
+            file: tutorials/ccloud-produce-consume/kafka/markup/dev/create-topic.adoc
+
+    - title: Create a schema for your records 
+      content:
+      - action: skip
+        render:
+          file: tutorials/ccloud-produce-consume/kafka/markup/dev/create-schema.adoc
+    
+    - title: Start a console consumer 
+      content:
+      - action: skip
+        render:
+          file: tutorials/ccloud-produce-consume/kafka/markup/dev/consume-topic-key-value.adoc
+
+    - title: Produce events to the Kafka topic
+      content:
+      - action: skip
+        render:
+          file: tutorials/ccloud-produce-consume/kafka/markup/dev/produce-topic-key-value.adoc
+
+
+    - title: Cleanup your environment
+      content:
+      - action: skip
+        render:
+          file: tutorials/ccloud-produce-consume/kafka/markup/dev/clean-up.adoc

@@ -226,6 +226,17 @@ flatten-nested-data:
     kstreams: disabled
     kafka: disabled
 
+generate-test-data-streams:
+  title: "Generate complex streams of test data"
+  meta-description: "Generate complex streams of test data"
+  question: "How can I generate realistic test data in Kafka?"
+  slug: "/generate-streams-of-test-data"
+  introduction: "Perhaps you are building an application, or constructing a pipeline, and you would like some mock data to test it with. Using this connector it's possible to generate realistic test data that can also be made referentially consistent across topics."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: enabled
+    
 aggregating-average:
   title: "Compute an average aggregation"
   meta-description: "Compute an average aggregation"
@@ -275,7 +286,7 @@ console-consumer-produer-basic:
   meta-description: "Produce and consume your first message with Kafka"
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
-  introduction: "So you are excited to get started with Kafka and youd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Note this tutorial doesn't cover using (de)serializers. Using (de)serializers with the console consumer and producer are covered in separate tutorials"
+  introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Note this tutorial doesn't cover using (de)serializers. Using (de)serializers with the console consumer and producer are covered in separate tutorials."
   status:
     ksql: disabled
     kstreams: disabled
@@ -386,4 +397,71 @@ kafka-producer-application:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+
+kafka-producer-application-callback:
+  title: "How build an Apache KafkaProducer application using callbacks"
+  meta-description: "How build an Apache KafkaProducer application using callbacks"
+  slug: "/kafka-producer-callback-application"
+  question: "How do I use callbacks with a KafkaProducer to handle produce responses"
+  introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handing the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle repsones from producing records"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
+
+count-messages:
+  title: "How to count messages in a Kafka topic"
+  meta-description: "How to count messages in a Kafka topic"
+  slug: "/how-to-count-messages-on-a-kafka-topic"
+  question: "How can I count the number of messages in a Kafka topic?"
+  introduction: "Messages are stored in Kafka topics until they are removed by Kafka. It can be useful to know how many messages there are currently in a topic. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic."
+  status:
+    ksql: enabled
+
+ccloud-produce-consume:
+  title: "How to produce and consume records from Confluent Cloud using ccloud CLI"
+  meta-description: "How to produce and consume records from Confluent Cloud using ccloud CLI"
+  slug: "/ccloud-produce-consume"
+  question: "How do I use the ccloud CLI to produce and consume records from a Confluent Cloud topic"
+  introduction: "In this tutorial you learn how to use the ccloud CLI to produce and consume records from a Kafka topic in <a href=\"https://confluent.cloud\">Confluent Cloud</a>. This can help you build and debug your Confluent Cloud based event streaming applications."
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+    c : disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
+kafka-streams-schedule-operations:
+  title: "How to schedule operations in Kafka Streams"
+  meta-description: "How to schedule operations in Kafka Streams"
+  slug: "/kafka-streams-schedule-operations"
+  question: "How can I schedule recurring operations in Kafka Streams?"
+  introduction: "You'd like to have some periodic functionality execute in your Kafka Streams application.  In this tutorial you'll learn how to use puncuation in Kafka Streams for executing work at regular intervals."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
 

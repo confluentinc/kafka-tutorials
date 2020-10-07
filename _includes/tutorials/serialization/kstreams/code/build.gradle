@@ -3,8 +3,8 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.15.1"
-    classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.12"
+    classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.21.0"
+    classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.13"
   }
 }
 
@@ -12,9 +12,9 @@ plugins {
   id "java"
   id "application"
   id "idea"
-  id "com.google.cloud.tools.jib" version "2.5.0"
-  id "com.github.johnrengelman.shadow" version "5.1.0"
-  id "com.google.protobuf" version "0.8.12"
+  id "com.google.cloud.tools.jib" version "2.5.1"
+  id "com.github.johnrengelman.shadow" version "6.0.0"
+  id "com.google.protobuf" version "0.8.13"
 }
 
 sourceCompatibility = "1.8"
@@ -33,17 +33,17 @@ apply plugin: "com.commercehub.gradle.plugin.avro"
 apply plugin: "com.github.johnrengelman.shadow"
 
 dependencies {
-  implementation "org.apache.avro:avro:1.8.2"
-  implementation "com.google.protobuf:protobuf-java:3.11.4"
+  implementation "org.apache.avro:avro:1.10.0"
+  implementation "com.google.protobuf:protobuf-java:3.13.0"
   implementation "org.slf4j:slf4j-simple:1.7.30"
   implementation "org.apache.kafka:kafka-streams:2.5.0"
   implementation "io.confluent:kafka-streams-avro-serde:5.5.1"
   implementation "io.confluent:kafka-streams-protobuf-serde:5.5.1"
-  implementation 'com.google.code.gson:gson:2.8.5'
+  implementation 'com.google.code.gson:gson:2.8.6'
 
   testImplementation "org.apache.kafka:kafka-streams-test-utils:2.5.0"
   testImplementation 'junit:junit:4.13'
-  testImplementation 'org.assertj:assertj-core:3.16.1'
+  testImplementation 'org.assertj:assertj-core:3.17.2'
 }
 
 test {

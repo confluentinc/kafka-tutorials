@@ -71,9 +71,9 @@ public class TransformStreamTest {
 
         movie = TransformStream.convertRawMovie(new RawMovie(294L, "Tree of Life::2011", "drama"));
         assertNotNull(movie);
-        assertEquals(294, movie.getId().intValue());
+        assertEquals(294L, movie.getId());
         assertEquals("Tree of Life", movie.getTitle());
-        assertEquals(2011, movie.getReleaseYear().intValue());
+        assertEquals(2011, movie.getReleaseYear());
         assertEquals("drama", movie.getGenre());
     }
 

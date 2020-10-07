@@ -51,14 +51,14 @@ public class JoinStreamToTable {
         final MovieRatingJoiner joiner = new MovieRatingJoiner();
 
         KStream<String, Movie> movieStream = builder.<String, Movie>stream(movieTopic)
-                .map((key, movie) -> new KeyValue<>(movie.getId().toString(), movie));
+                .map((key, movie) -> new KeyValue<>(String.valueOf(movie.getId()), movie));
 
         movieStream.to(rekeyedMovieTopic);
 
         KTable<String, Movie> movies = builder.table(rekeyedMovieTopic);
 
         KStream<String, Rating> ratings = builder.<String, Rating>stream(ratingTopic)
-                .map((key, rating) -> new KeyValue<>(rating.getId().toString(), rating));
+                .map((key, rating) -> new KeyValue<>(String.valueOf(rating.getId()), rating));
 
         KStream<String, RatedMovie> ratedMovie = ratings.join(movies, joiner);
 

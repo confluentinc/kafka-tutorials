@@ -1,0 +1,9 @@
+When you are done producing and consuming records, press `Ctrl-c` in the producer and consumer terminals to stop them.
+
+Because your Confluent Cloud cluster is using real cloud resources and is billable, delete the connector and clean up your Confluent Cloud environment when you complete this tutorial.
+You can use Confluent Cloud CLI or Confluent UI, but for this tutorial you can use the `ccloud_library.sh` library again.
+Pass in the `SERVICE_ACCOUNT_ID` that was generated when the `ccloud-stack` was created.
+
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/ccloud-produce-consume/kafka/code/tutorial-steps/dev/clean-up.sh %}</code></pre>
++++++
