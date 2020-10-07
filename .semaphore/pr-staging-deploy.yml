@@ -13,5 +13,6 @@ blocks:
         - name: Compile and deploy site
           commands:
             - checkout
+            - cache restore site-$SEMAPHORE_GIT_BRANCH
             - aws s3 cp --recursive ./_site "s3://kafka-tutorials-staging/$SEMAPHORE_GIT_BRANCH/"
             - echo "Deployed to http://kafka-tutorials-staging.s3-website-us-west-2.amazonaws.com/$SEMAPHORE_GIT_BRANCH/"
