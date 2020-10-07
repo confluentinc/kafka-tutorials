@@ -52,9 +52,9 @@ blocks:
             - sem-version java $JAVA_VERSION
             - ./gradlew clean test
 
-  - name: Run the tests
+  - name: Run first block of tests
     execution_time_limit:
-      minutes: 15
+      minutes: 10
     task:
       secrets:
         - name: aws_credentials
@@ -167,6 +167,22 @@ blocks:
         - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+  
+  - name: Run second block of tests
+    execution_time_limit:
+      minutes: 10
+    task:
+      secrets:
+        - name: aws_credentials
+      prologue:
+        commands:
+          - checkout
+          - >
+            aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
+          - sudo pip3 install -e harness_runner/
+          - >
+            find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
+      jobs:
 
         - name: KStreams finding distinct events tests
           commands:
@@ -211,6 +227,10 @@ blocks:
         - name: KStreams aggregation MIN/MAX tests
           commands:
             - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
+        
+        - name: KSQL Generate streams of test data tests
+          commands:
+            - make -C _includes/tutorials/generate-test-data-streams/ksql/code tutorial
 
         - name: KStreams Running Average tests
           commands:
@@ -264,4 +284,22 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
 
+        - name: Kafka Test Kafka Produer with Callbacks tests
+          commands:
+            - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
 
+        - name: KSQL Count messages on a topic tutorial tests
+          commands:
+            - make -C _includes/tutorials/count-messages/ksql/code tutorial
+
+        - name: Kafka Count messages on a topic tutorial tests
+          commands:
+            - make -C _includes/tutorials/count-messages/kafka/code tutorial
+
+        - name: Kafka Test ccloud produce and consume
+          commands:
+            - make -C _includes/tutorials/ccloud-produce-consume/kafka/code tutorial
+
+        - name: KStreams Test Streams schedule operations tests
+          commands:
+            - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial

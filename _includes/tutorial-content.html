@@ -50,7 +50,7 @@
           <h2 class="title tutorial-section-title" id="test-it">Test it</h2>
           {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
 
-          <div class="tutorial-try-it-step">
+          <div class="tutorial-try-it-step content">
             <h4 class="subtitle" id="{{ step.title | slugify }}">
               <div class="num">{{ forloop.index }}</div>
               <div class="text">{{ step.title }}</div>

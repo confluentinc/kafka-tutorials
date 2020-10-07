@@ -1,4 +1,5 @@
-Now that you have a stream of JSON events, let's convert them to Avro. Set the following properties to ensure that you're reading from the beginning of the stream:
+Now that you have a stream of Avro events, let's convert them to Protobuf. 
+Set the following properties to ensure that you're reading from the beginning of the stream:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/serialization/ksql/code/tutorial-steps/dev/set-properties_offset.sql %}</code></pre>

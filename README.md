@@ -88,6 +88,7 @@ pip3 install -e .
 You can run any of the automated tests locally using a command like:
 
 ```
+cd ..
 make -C _includes/tutorials/filtering/ksql/code tutorial
 ```
 
@@ -140,8 +141,8 @@ PERMALINK="seo-friendly-link-to-my-tutorial"
 To run this script:
 
 1. Create a branch
-2. Make sure you are in the `Kafka Tutorials` base directory
-3. Execute `> tools/gen_project.sh ~/my_tutorial_props.sh`
+2. Make sure you are in the `kafka-tutorials` base directory
+3. Execute `./tools/gen_project.sh my_tutorial_props.sh`
 
 You'll see a lot of information scroll across the screen, describing each step of the tutorial generation process. The last part of the information presented is a checklist of what you'll need to do to complete your tutorial, aside from adding your code and tutorial text.
 
@@ -179,24 +180,35 @@ As the name implies, this script creates a clone of an existing tutorial.  The c
 ```sh
 #!/bin/sh
 
-# clones everything ksql and kstreams
-ORIG_TUTORIAL=filtering
+#SAMPLE-PROPERTIES-FILE-CONTENT
+
+# By using the basename of a tutorial everything is cloned possibly ksql, kstreams, and kafka 
+ORIG_TUTORIAL=connect-add-key-to-source
+
+# to only clone a kafka tutorial
+ORIG_TUTORIAL=console-consumer-produer-basic/kafka
 
 # to clone just the ksql part
-#ORIG_TUTORIAL=filtering/ksql
+ORIG_TUTORIAL=connect-add-key-to-source/ksql
 
 # to clone just the kstreams portion
-#ORIG_TUTORIAL=filtering/kstreams
-NEW_TUTORIAL=something-close-to-filtering
-SEMAPHORE_TEST_NAME="My New Filtering Tutorial"
-PERMALINK=filtering-new-hotness-tutorial
+ORIG_TUTORIAL=connect-add-key-to-source/kstreams
+
+!!!! IMPORTANT YOU MUST ONLY HAVE ONE ORIG_TUTORIAL VARIABLE !!!!
+
+# Add a new tutorial name
+NEW_TUTORIAL=junkA
+# Add a new sempahore test name
+SEMAPHORE_TEST_NAME="My New Junk Tutorial"
+# Add a new PERMALINK
+PERMALINK=a-junk-tutorial
 ```
 
 To clone a tutorial:
 
 1. Create a branch
-2. Make sure you are in the `Kafka Tutorials` base directory
-3. Execute `> tools/clone_tutorial.sh ~/clone-tutorial-props.sh`
+2. Make sure you are in the `kafka-tutorials` base directory
+3. Execute `./tools/clone_tutorial.sh my-clone-tutorial-props.sh`
 
 You'll see a similar output scroll across the screen, including the checklist for items you'll need to do for a completed tutorial.
 
@@ -209,6 +221,7 @@ It's still valuable to read through the next section to learn how all the tutori
 
 ## Description of tutorial parts
 
+_If you used the clone script then many of these will already exist and will just need customising for your particular tutorial._
 
 #### 1. Describe the question your tutorial answers
 

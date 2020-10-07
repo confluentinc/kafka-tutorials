@@ -1,12 +1,15 @@
 package io.confluent.developer;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.Matchers.*;
+
+import org.junit.Test;
+
+import java.util.HashMap;
 
 import io.confluent.developer.avro.LoginEvent;
 import io.confluent.developer.avro.LoginRollup;
-import java.util.HashMap;
-import org.junit.Test;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 public class LoginAggregatorTest {
 
