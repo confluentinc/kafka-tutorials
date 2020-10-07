@@ -23,7 +23,7 @@ promotions:
   - name: Stage a PR 
     pipeline_file: pr-staging-deploy.yml
     auto_promote:
-      when: "branch =~ '^DEVX\.' or branch =~ '^GH\.')"
+      when: "branch =~ '^DEVX\.' or branch =~ '^GH\.'"
 
 blocks:
   - name: Build the website
