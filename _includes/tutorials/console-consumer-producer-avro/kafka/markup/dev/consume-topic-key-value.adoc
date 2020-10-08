@@ -3,13 +3,13 @@ Now that we've produced full key-value pairs from the command line, you'll want 
 If your console consumer from the previous step is still open, shut it down with a `CTRL+C`.  Then run the following command to re-open the console consumer but now it will print the full key-value pair.  Note the added properties of `print.key` and `key.separator`.  You should also take note that there's a different key separator used here, you don't have to use the same one between console producers and consumers.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/console-consumer-keys.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/console-consumer-keys.sh %}</code></pre>
 +++++
 
 After the consumer starts you should see the following output in a few seconds:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/expected-output-step-three.txt %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/expected-output-step-three.txt %}</code></pre>
 +++++
 
 Since we kept the `--from-beginning` property, you'll see all the records sent to the topic.  You'll notice the results before you sent keys `null-<value>`.

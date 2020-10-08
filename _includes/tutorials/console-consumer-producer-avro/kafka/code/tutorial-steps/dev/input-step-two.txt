@@ -1,4 +1,3 @@
-how now
-brown cow
-all streams lead
-to Kafka!
+{"number": 2343436, "date": 1596491687, "shipping_address": "89 Addison St, Palo Alto, 94302 CA, USA", "subtotal": 10.0, "shipping_cost": 0.0, "tax": 1, "grand_total": 11.0}
+{"number": 2343437, "date": 1596490492, "shipping_address": "456 Charles St, Beverly Hills, 90209 CA, USA", "subtotal": 450.0, "shipping_cost": 10.0, "tax": 28.91, "grand_total": 488.91}
+{"number": 2343438, "date": 1596490692, "shipping_address": "456 Preston St, Brooklyn, 11212 NY, USA", "subtotal": 34.0, "shipping_cost": 2.0, "tax": 3, "grand_total": 39.00}

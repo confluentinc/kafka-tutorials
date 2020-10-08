@@ -31,6 +31,13 @@ dev:
           render:
             file: tutorials/console-consumer-producer-avro/kafka/markup/dev/create-topic.adoc
 
+    - title: Create a schema
+      content:
+          - action: execute
+            file:
+            render:
+              file: tutorials/console-consumer-producer-avro/kafka/markup/dev/create-schema.adoc
+
     - title: Start an Avro console consumer
       content:
         - action: execute_async
@@ -66,7 +73,7 @@ dev:
       content:
         - action: execute_async
           file: tutorial-steps/dev/harness-console-consumer-from-beginning.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
+          stdout: tutorial-steps/dev/outputs/input-step-two.txt
           render:
             file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic-from-beginning.adoc
 

@@ -41,4 +41,4 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
     volumes:
-      - ./schema:/opt/app/schema
+      - ./schema:/opt/app/schema/

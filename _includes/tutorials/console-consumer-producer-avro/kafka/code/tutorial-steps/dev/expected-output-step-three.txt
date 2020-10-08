@@ -1,12 +1,7 @@
-null-the
-null-lazy
-null-fox
-null-jumped over the brown cow
-null-how now
-null-brown cow
-null-all streams lead
-null-to Kafka!
-key1-what a lovely
-key1-bunch of coconuts
-foo-bar
-fun-not quarantine
+null-{"number":2343434,"date":1596490462,"shipping_address":"456 Everett St, Palo Alto, 94301 CA, USA","subtotal":99.0,"shipping_cost":0.0,"tax":8.91,"grand_total":107.91}
+null-{"number":2343435,"date":1596491687,"shipping_address":"518 Castro St, Mountain View, 94305 CA, USA","subtotal":25.0,"shipping_cost":0.0,"tax":2.91,"grand_total":27.91}
+null-{"number":2343436,"date":1596491687,"shipping_address":"89 Addison St, Palo Alto, 94302 CA, USA","subtotal":10.0,"shipping_cost":0.0,"tax":1.0,"grand_total":11.0}
+null-{"number":2343437,"date":1596490492,"shipping_address":"456 Charles St, Beverly Hills, 90209 CA, USA","subtotal":450.0,"shipping_cost":10.0,"tax":28.91,"grand_total":488.91}
+null-{"number":2343438,"date":1596490692,"shipping_address":"456 Preston St, Brooklyn, 11212 NY, USA","subtotal":34.0,"shipping_cost":2.0,"tax":3.0,"grand_total":39.0}
+"122345"-{"number":2343439,"date":1596501510,"shipping_address":"1600 Pennsylvania Avenue NW, Washington, DC 20500, USA","subtotal":1000.0,"shipping_cost":20.0,"tax":0.0,"grand_total":1020.0}
+"256743"-{"number":2343440,"date":1596501510,"shipping_address":"55 Music Concourse Dr, San Francisco, CA 94118, USA","subtotal":345.0,"shipping_cost":10.0,"tax":10.0,"grand_total":365.0}
