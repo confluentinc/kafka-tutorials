@@ -85,7 +85,7 @@ services:
       - |
         echo "Installing connector plugins"
         mkdir -p ~/confluent-hub-components/
-        /home/appuser/bin/confluent-hub install --no-prompt --component-dir confluent-hub-components/ confluentinc/kafka-connect-jdbc:6.0.0
+        /home/appuser/bin/confluent-hub install --no-prompt --component-dir confluent-hub-components/ confluentinc/kafka-connect-jdbc:5.4.1
         #
         echo "Launching ksqlDB"
         /usr/bin/docker/run & 
