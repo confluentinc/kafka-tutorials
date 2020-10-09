@@ -1,0 +1,24 @@
+Before you create your application file, let's look at some of the relevant `ProducerConfig` configuration parameters:
+
+[source, java]
+----
+props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
+props.put(ProducerConfig.ACKS_CONFIG, "all");
+----
+
+The first configuration sets the producer parameter https://kafka.apache.org/documentation/#enable.idempotence[enable.idempotence].
+When set to `true`, the producer ensures that exactly one copy of each message is written. The default value is `enable.idempotence=false`, so you must explicitly set this to `enable.idempotence=true`.
+
+The second configuration sets the producer parameter https://kafka.apache.org/documentation/#acks[acks].
+The `KafkaProducer` uses the `acks` configuration to tell the lead broker how many acknowledgments to wait for to consider a produce request complete. You must set `acks=all` in order to use the idempotent producer, otherwise the producer cannot guarantee idempotence. The default value is `acks=1`, so you must explicitly set this to `acks=all`.
+
+Not shown is the producer parameter https://kafka.apache.org/documentation/#max.in.flight.requests.per.connection[max.in.flight.requests.per.connection], which is the maximum number of unacknowledged requests the producer sends on a single connection before blocking.
+The idempotent producer still maintains message order even with pipelining (i.e., `max.in.flight.requests.per.connection` can be greater than 1), and the maximum value supported with idempotency is 5. The default value is already `max.in.flight.requests.per.connection=5`, so no change is required for the idempotent producer regarding this parameter.
+
+This is only a small sub-set of producer configuration parameters. The full list of producer configuration parameters can be found in the https://kafka.apache.org/documentation/#producerconfigs[Apache Kafka documentation].
+
+Now go ahead and create the following file at `src/main/java/io/confluent/developer/KafkaProducerApplication.java`.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/message-ordering/kafka/code/src/main/java/io/confluent/developer/KafkaProducerApplication.java %}</code></pre>
++++++

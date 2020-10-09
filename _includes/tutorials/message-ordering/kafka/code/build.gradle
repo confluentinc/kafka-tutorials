@@ -58,6 +58,6 @@ jar {
 }
 
 shadowJar {
-    archiveBaseName = "kafka-producer-application-standalone"
+    archiveBaseName = "message-ordering-standalone"
     archiveClassifier = ''
 }
