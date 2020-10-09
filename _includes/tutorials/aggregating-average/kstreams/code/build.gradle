@@ -40,7 +40,7 @@ dependencies {
   testImplementation "junit:junit:4.13"
   testImplementation 'org.hamcrest:hamcrest:2.2'
 
-  testCompileOnly "org.projectlombok:lombok:1.18.12"
+  testCompileOnly "org.projectlombok:lombok:1.18.14"
   testAnnotationProcessor "org.projectlombok:lombok:1.18.12"
 }
 
