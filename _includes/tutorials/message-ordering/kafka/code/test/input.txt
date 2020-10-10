@@ -1,12 +1,12 @@
-a,{"column1": "1"}
-b,{"column1": "1"}
-c,{"column1": "1"}
-d,{"column1": "1"}
-a,{"column1": "2"}
-b,{"column1": "2"}
-c,{"column1": "2"}
-d,{"column1": "2"}
-a,{"column1": "3"}
-b,{"column1": "3"}
-c,{"column1": "3"}
-d,{"column1": "3"}
+a-1
+b-2
+c-3
+d-4
+a-5
+b-6
+c-7
+d-8
+a-9
+b-10
+c-11
+d-12

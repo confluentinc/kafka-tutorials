@@ -1,0 +1,16 @@
+Dumping /var/lib/kafka/data/myTopic-0/00000000000000000000.log
+Starting offset: 0
+baseOffset: 0 lastOffset: 7 count: 8 baseSequence: 0 lastSequence: 7 producerId: 0 producerEpoch: 0 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 0 CreateTime: 1602292460613 size: 133 magic: 2 compresscodec: NONE crc: 756416397 isvalid: true
+| offset: 0 CreateTime: 1602292460602 keysize: 1 valuesize: 1 sequence: 0 headerKeys: [] key: a payload: 1
+| offset: 1 CreateTime: 1602292460612 keysize: 1 valuesize: 1 sequence: 1 headerKeys: [] key: b payload: 2
+| offset: 2 CreateTime: 1602292460612 keysize: 1 valuesize: 1 sequence: 2 headerKeys: [] key: c payload: 3
+| offset: 3 CreateTime: 1602292460612 keysize: 1 valuesize: 1 sequence: 3 headerKeys: [] key: d payload: 4
+| offset: 4 CreateTime: 1602292460612 keysize: 1 valuesize: 1 sequence: 4 headerKeys: [] key: a payload: 5
+| offset: 5 CreateTime: 1602292460612 keysize: 1 valuesize: 1 sequence: 5 headerKeys: [] key: b payload: 6
+| offset: 6 CreateTime: 1602292460612 keysize: 1 valuesize: 1 sequence: 6 headerKeys: [] key: c payload: 7
+| offset: 7 CreateTime: 1602292460613 keysize: 1 valuesize: 1 sequence: 7 headerKeys: [] key: d payload: 8
+baseOffset: 8 lastOffset: 11 count: 4 baseSequence: 8 lastSequence: 11 producerId: 0 producerEpoch: 0 partitionLeaderEpoch: 0 isTransactional: false isControl: false position: 133 CreateTime: 1602292460619 size: 100 magic: 2 compresscodec: NONE crc: 2125698840 isvalid: true
+| offset: 8 CreateTime: 1602292460613 keysize: 1 valuesize: 1 sequence: 8 headerKeys: [] key: a payload: 9
+| offset: 9 CreateTime: 1602292460618 keysize: 1 valuesize: 2 sequence: 9 headerKeys: [] key: b payload: 10
+| offset: 10 CreateTime: 1602292460619 keysize: 1 valuesize: 2 sequence: 10 headerKeys: [] key: c payload: 11
+| offset: 11 CreateTime: 1602292460619 keysize: 1 valuesize: 2 sequence: 11 headerKeys: [] key: d payload: 12

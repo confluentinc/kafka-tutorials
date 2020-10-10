@@ -1,4 +1,4 @@
-kafka-console-consumer --topic myTopic \
+docker-compose exec broker kafka-console-consumer --topic myTopic \
  --bootstrap-server broker:9092 \
  --from-beginning \
  --property print.key=true \

@@ -1,7 +1,7 @@
 Consume data from the original Kafka topic, specifying only to read from partition 1.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/test/consume-data-input.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/test/consume-data-input-partition-1.sh %}</code></pre>
 +++++
 
 You should see only some of the records in this partition.
