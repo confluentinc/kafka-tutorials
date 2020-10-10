@@ -461,7 +461,7 @@ message-ordering:
   meta-description: "How to maintain message ordering on a per key basis"
   slug: "/message-ordering"
   question: "How can I maintain the order of messages in a Kafka topic partition, per key?"
-  introduction: "Typically, message ordering needs to be maintained not across an entire Kafka topic (which could only be achieved with a single partition) but for a given key.  In this tutorial, you will learn how to configure producers to ensure that there are no out-of-order messages, on a per key basis, written to a topic with multiple partitions."
+  introduction: "Typically, message ordering needs to be maintained not across an entire Kafka topic (which could only be achieved with a single partition) but for a given key.  In this tutorial, you will learn how to configure idempotent producers to ensure that there are no out-of-order messages, on a per key basis, written to a topic with multiple partitions."
   status:
     ksql: disabled
     kstreams: disabled

@@ -1,4 +1,4 @@
-Consume data from the original Kafka topic, specifying only to read from partition 1.
+Consume data from the Kafka topic, specifying only to read from partition 1.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/test/consume-data-input-partition-1.sh %}</code></pre>

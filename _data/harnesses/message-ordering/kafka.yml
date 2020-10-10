@@ -99,13 +99,15 @@ dev:
           render:
             file: tutorials/message-ordering/kafka/markup/dev/run-dev-app.adoc
 
-    - title: Confirm records sent by consuming from topic
+test:
+  steps:
+    - title: View all records in the topic across all partitions
       content:
         - action: execute_async
-          file: tutorial-steps/dev/harness-console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.txt
+          file: tutorial-steps/test/harness-console-consumer.sh
+          stdout: tutorial-steps/test/outputs/actual-output.txt
           render:
-            file: tutorials/message-ordering/kafka/markup/dev/run-consumer.adoc
+            file: tutorials/message-ordering/kafka/markup/test/run-consumer.adoc
 
         - name: wait for the consumer to read the messages
           action: sleep
@@ -113,9 +115,6 @@ dev:
           render:
             skip: true
 
-
-test:
-  steps:
     - title: Consume the data in partition 0
       content:
         - action: execute
@@ -124,7 +123,7 @@ test:
           render:
             file: tutorials/message-ordering/kafka/markup/test/consume-data-myTopic-partition-0.adoc
 
-    - title: Dump the partition 0 log segments from the broker
+    - title: View the broker log segment file for partition 0
       content:
         - action: execute
           file: tutorial-steps/test/log-segments-myTopic-partition-0.sh
@@ -140,7 +139,7 @@ test:
           render:
             file: tutorials/message-ordering/kafka/markup/test/consume-data-myTopic-partition-1.adoc
 
-    - title: Dump the partition 1 log segments from the broker 
+    - title: View the broker log segment file for partition 1
       content:
         - action: execute 
           file: tutorial-steps/test/log-segments-myTopic-partition-1.sh

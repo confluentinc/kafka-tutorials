@@ -1,4 +1,4 @@
-To produce data into the original Kafka topic `myTopic`, open another terminal window and run the following command to open a second shell on the broker container:
+To produce data into the Kafka topic `myTopic`, open another terminal window and run the following command to open a second shell on the broker container:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/test/produce-data-input.sh %}</code></pre>
