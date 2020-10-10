@@ -457,11 +457,11 @@ kafka-streams-schedule-operations:
     swift: disabled
 
 message-ordering:
-  title: "How to maintain message ordering per key"
-  meta-description: "How to maintain message ordering on a per key basis"
+  title: "How to maintain message ordering and no message duplication"
+  meta-description: "How to maintain message ordering and no message duplication"
   slug: "/message-ordering"
-  question: "How can I maintain the order of messages in a Kafka topic partition, per key?"
-  introduction: "Typically, message ordering needs to be maintained not across an entire Kafka topic (which could only be achieved with a single partition) but for a given key.  In this tutorial, you will learn how to configure idempotent producers to ensure that there are no out-of-order messages, on a per key basis, written to a topic with multiple partitions."
+  question: "How can I maintain the order of messages and prevent message duplication in a Kafka topic partition?"
+  introduction: "If your applications needs to maintain ordering of messages with no duplication, you can enable your Kafka producer for idempotency. An idempotent producer has a unique producer ID and uses unique sequence IDs for each message, which allows the broker to ensure it is committing ordered messages with no duplication, on a per partition basis."
   status:
     ksql: disabled
     kstreams: disabled

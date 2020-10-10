@@ -30,21 +30,21 @@ dev:
           render:
             skip: true
 
-    - title: Create the original topic
+    - title: Create the Kafka topic
       content:
         - action: execute
           file: tutorial-steps/dev/create-topic.sh
           render:
             file: tutorials/message-ordering/kafka/markup/dev/create-topic.adoc
 
-    - title: Describe the original topic
+    - title: Describe the topic
       content:
         - action: execute
           file: tutorial-steps/dev/describe-original-topic.sh
           render:
             file: tutorials/message-ordering/kafka/markup/dev/describe-original-topic.adoc
 
-    - title: Configure the project
+    - title: Configure the project application
       content:
         - action: make_file
           file: build.gradle
@@ -61,14 +61,14 @@ dev:
           render:
             file: tutorials/message-ordering/kafka/markup/dev/make-config-dir.adoc
 
-    - title: Add application and producer properties
+    - title: Set the application properties
       content:
         - action: make_file
           file: configuration/dev.properties
           render:
             file: tutorials/message-ordering/kafka/markup/dev/make-dev-file.adoc
 
-    - title: Create the KafkaProducer application
+    - title: Create the Kafka Producer application
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
