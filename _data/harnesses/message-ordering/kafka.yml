@@ -148,21 +148,6 @@ test:
           render:
             file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-myTopic-partition-1.adoc
 
-prod:
-  steps:
-    - title: Send the statements to the REST API
-      content:
-        - action: skip
-          render:
-            file: tutorials/message-ordering/kafka/markup/prod/submit-to-api.adoc
-
-    - title: Clean up Docker containers
-      content:
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            file: tutorials/message-ordering/kafka/markup/dev/clean-up.adoc
-
 ccloud:
   steps:
     - title: Run your app to Confluent Cloud
