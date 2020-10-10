@@ -11,6 +11,6 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/message-ordering/kafka.yml $(TEMP_DIR) $(SEQUENCE)
-	grep "Topic: topic2	PartitionCount: 2	ReplicationFactor: 2	Configs:" $(DEV_OUTPUTS_DIR)/actual-describe-from-topic2.txt
-	bash -c "diff --strip-trailing-cr $(STEPS_DIR)/test/expected-data-from-myTopic-partition-0.sh $(TEST_OUTPUTS_DIR)/actual-output-myTopic-partition-0.txt"
+	bash -c "diff -B --strip-trailing-cr $(STEPS_DIR)/test/expected-data-from-myTopic-partition-0.sh $(TEST_OUTPUTS_DIR)/actual-output-myTopic-partition-0.txt"
+	bash -c "diff -B --strip-trailing-cr $(STEPS_DIR)/test/expected-data-from-myTopic-partition-1.sh $(TEST_OUTPUTS_DIR)/actual-output-myTopic-partition-1.txt"
 	reset

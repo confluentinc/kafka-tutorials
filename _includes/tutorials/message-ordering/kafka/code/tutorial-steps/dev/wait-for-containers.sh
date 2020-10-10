@@ -1,3 +1,14 @@
-while [ $(curl -s -o /dev/null -w %{http_code} http://localhost:8088/) -eq 000 ] ; do sleep 5 ; done;
-# Back off for ksqlDB server to get out of the initialization phase.
-sleep 5
+#!/bin/bash
+  
+function readiness_probe {
+    nc -z -w 2 0.0.0.0 29092
+}
+
+echo "Waiting for the broker to become available ..."
+
+readiness_probe
+
+while [[ $? != 0 ]]; do
+    sleep 5
+    readiness_probe
+done
