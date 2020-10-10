@@ -116,28 +116,7 @@ dev:
 
 test:
   steps:
-    - title: Run the console Kafka producer
-      content:
-        - action: execute
-          file: tutorial-steps/test/harness-console-producer.sh
-          stdin: test/input.txt
-          render:
-            file: tutorials/message-ordering/kafka/markup/test/produce-data-input.adoc
-
-        - name: wait for producer to write records
-          action: sleep
-          ms: 2000
-          render:
-            skip: true
-
-    - title: Produce data to the original Kafka topic
-      content:
-        - action: make_file
-          file: test/input.txt
-          render:
-            file: tutorials/message-ordering/kafka/markup/test/make-test-input.adoc
-
-    - title: View the data in the original topic (partition 0)
+    - title: Consume the data in partition 0
       content:
         - action: execute
           file: tutorial-steps/test/harness-console-consumer-topic1-partition-0.sh
@@ -145,21 +124,29 @@ test:
           render:
             file: tutorials/message-ordering/kafka/markup/test/consume-data-topic1-partition-0.adoc
 
-    - title: View the data in the new topic (partition 0)
+    - title: Dump the partition 0 log segments from the broker
       content:
         - action: execute
-          file: tutorial-steps/test/harness-console-consumer-topic2-partition-0.sh
-          stdout: tutorial-steps/test/outputs/actual-output-topic2-partition-0.txt
+          file: tutorial-steps/test/log-segments-topic1-partition-0.sh
+          stdout: tutorial-steps/test/outputs/actual-output-log-segments-topic1-partition-0.txt
           render:
-            file: tutorials/message-ordering/kafka/markup/test/consume-data-topic2-partition-0.adoc
+            file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-topic1-partition-0.adoc
 
-    - title: View the data in the new topic (partition 1)
+    - title: Consume the data in partition 1
       content:
         - action: execute
-          file: tutorial-steps/test/harness-console-consumer-topic2-partition-1.sh
-          stdout: tutorial-steps/test/outputs/actual-output-topic2-partition-1.txt
+          file: tutorial-steps/test/harness-console-consumer-topic1-partition-1.sh
+          stdout: tutorial-steps/test/outputs/actual-output-topic1-partition-1.txt
           render:
-            file: tutorials/message-ordering/kafka/markup/test/consume-data-topic2-partition-1.adoc
+            file: tutorials/message-ordering/kafka/markup/test/consume-data-topic1-partition-1.adoc
+
+    - title: Dump the partition 1 log segments from the broker 
+      content:
+        - action: execute 
+          file: tutorial-steps/test/log-segments-topic1-partition-1.sh
+          stdout: tutorial-steps/test/outputs/actual-output-log-segments-topic1-partition-1.txt
+          render:
+            file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-topic1-partition-1.adoc
 
 prod:
   steps:

@@ -1,0 +1,12 @@
+Now let's look at the Kafka broker's log files using the `DumpLogSegments` utility, 
+Dump the logs from the topic's partition 0.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/test/dump-log-segments-0.sh %}</code></pre>
++++++
+
+You should see:
+
++++++
+<pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-data-from-topic1-partition-0.sh %}</code></pre>
++++++
