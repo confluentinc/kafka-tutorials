@@ -8,34 +8,31 @@ After you run the previous command, the application will process the file and yo
 [source, text]
 ----
 [main] INFO org.apache.kafka.clients.producer.KafkaProducer - [Producer clientId=myApp] Instantiated an idempotent producer. <1>
-[main] INFO org.apache.kafka.clients.producer.KafkaProducer - [Producer clientId=myApp] Overriding the default retries config to the recommended value of 2147483647 since the idempotent producer is enabled. <2>
 ....
-[kafka-producer-network-thread | myApp] INFO org.apache.kafka.clients.producer.internals.TransactionManager - [Producer clientId=myApp] ProducerId set to 0 with epoch 0 <3>
+[kafka-producer-network-thread | myApp] INFO org.apache.kafka.clients.producer.internals.TransactionManager - [Producer clientId=myApp] ProducerId set to 0 with epoch 0 <2>
 ----
 
-<1> Confirmation that the producer is configured for idempotency
+<1> The producer is configured for idempotency
 
-<2> The `retries` configuration parameter automatically gets set to `2147483647`
-
-<3> This app has `ProducerId=0` (If you were to run the app again, then it would increase to `ProducerId=1`)
+<2> This app has been assigned `ProducerId=0` (If you were to run the app again, then it would increase to `ProducerId=1`)
 
 And then you should see the output from the Producer application, which displays confirmation at which offset each record was written to:
 
 [source, text]
 ----
 Offsets and timestamps committed in batch from input.txt
-Record written to offset 0 timestamp 1602292460602
-Record written to offset 1 timestamp 1602292460612
-Record written to offset 2 timestamp 1602292460612
-Record written to offset 3 timestamp 1602292460612
-Record written to offset 4 timestamp 1602292460612
-Record written to offset 5 timestamp 1602292460612
-Record written to offset 6 timestamp 1602292460612
-Record written to offset 7 timestamp 1602292460613
-Record written to offset 8 timestamp 1602292460613
-Record written to offset 9 timestamp 1602292460618
-Record written to offset 10 timestamp 1602292460619
-Record written to offset 11 timestamp 1602292460619
+Record written to offset 0 timestamp 1602295941743 partition 0
+Record written to offset 1 timestamp 1602295941753 partition 0
+Record written to offset 2 timestamp 1602295941753 partition 0
+Record written to offset 0 timestamp 1602295941753 partition 1
+Record written to offset 3 timestamp 1602295941754 partition 0
+Record written to offset 4 timestamp 1602295941754 partition 0
+Record written to offset 5 timestamp 1602295941754 partition 0
+Record written to offset 1 timestamp 1602295941754 partition 1
+Record written to offset 6 timestamp 1602295941754 partition 0
+Record written to offset 7 timestamp 1602295941754 partition 0
+Record written to offset 8 timestamp 1602295941754 partition 0
+Record written to offset 2 timestamp 1602295941754 partition 1
 ----
 
 Now you can experiment some by creating your own file in base directory and re-run the above command and substitute your file name for `input.txt`

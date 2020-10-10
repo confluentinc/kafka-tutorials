@@ -63,7 +63,7 @@ public class KafkaProducerApplication {
         metadata.forEach(m -> {
             try {
                 final RecordMetadata recordMetadata = m.get();
-                System.out.println("Record written to offset " + recordMetadata.offset() + " timestamp " + recordMetadata.timestamp());
+                System.out.println("Record written to offset " + recordMetadata.offset() + " timestamp " + recordMetadata.timestamp() + " partition " + recordMetadata.partition());
             } catch (InterruptedException | ExecutionException e) {
                 if (e instanceof InterruptedException) {
                     Thread.currentThread().interrupt();
@@ -80,11 +80,14 @@ public class KafkaProducerApplication {
         }
 
         final Properties props = KafkaProducerApplication.loadProperties(args[0]);
-        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "false");
+
+        props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
         props.put(ProducerConfig.ACKS_CONFIG, "all");
+
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "myApp");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+
         final String topic = props.getProperty("output.topic.name");
         final Producer<String, String> producer = new KafkaProducer<>(props);
         final KafkaProducerApplication producerApp = new KafkaProducerApplication(producer, topic);
