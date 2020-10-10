@@ -7,6 +7,6 @@ Describe the properties of the topic that you just created.
 The output should be the following. Notice that the topic has 2 partitions numbered 0 and 1.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/expected-output-describe-topic1.txt %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/expected-output-describe-myTopic.txt %}</code></pre>
 +++++
 

@@ -1,4 +1,4 @@
-Consume data from the original Kafka topic, specifying only to read from partition 0.
+Consume data from the original Kafka topic, specifying only to read from partition 1.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/test/consume-data-input.sh %}</code></pre>
@@ -7,7 +7,7 @@ Consume data from the original Kafka topic, specifying only to read from partiti
 You should see only some of the records in this partition.
 
 +++++
-<pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-data-from-topic1-partition-0.sh %}</code></pre>
+<pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-data-from-myTopic-partition-1.sh %}</code></pre>
 +++++
 
 Close the consumer by entering CTRL+C.

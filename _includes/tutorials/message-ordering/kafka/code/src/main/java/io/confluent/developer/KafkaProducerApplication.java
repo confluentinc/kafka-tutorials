@@ -3,8 +3,10 @@ package io.confluent.developer;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -80,8 +82,9 @@ public class KafkaProducerApplication {
         final Properties props = KafkaProducerApplication.loadProperties(args[0]);
         props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
         props.put(ProducerConfig.ACKS_CONFIG, "all");
-        props.put(ProducerConfig.ACKS_CONFIG, "all");
         props.put(ProducerConfig.CLIENT_ID_CONFIG, "myApp");
+        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         final String topic = props.getProperty("output.topic.name");
         final Producer<String, String> producer = new KafkaProducer<>(props);
         final KafkaProducerApplication producerApp = new KafkaProducerApplication(producer, topic);

@@ -1,3 +1,0 @@
-Topic: topic1	PartitionCount: 2	ReplicationFactor: 1	Configs: 
-	Topic: topic1	Partition: 0	Leader: 101	Replicas: 101	Isr: 101
-	Topic: topic1	Partition: 1	Leader: 101	Replicas: 101	Isr: 101

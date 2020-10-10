@@ -119,34 +119,34 @@ test:
     - title: Consume the data in partition 0
       content:
         - action: execute
-          file: tutorial-steps/test/harness-console-consumer-topic1-partition-0.sh
-          stdout: tutorial-steps/test/outputs/actual-output-topic1-partition-0.txt
+          file: tutorial-steps/test/harness-console-consumer-myTopic-partition-0.sh
+          stdout: tutorial-steps/test/outputs/actual-output-myTopic-partition-0.txt
           render:
-            file: tutorials/message-ordering/kafka/markup/test/consume-data-topic1-partition-0.adoc
+            file: tutorials/message-ordering/kafka/markup/test/consume-data-myTopic-partition-0.adoc
 
     - title: Dump the partition 0 log segments from the broker
       content:
         - action: execute
-          file: tutorial-steps/test/log-segments-topic1-partition-0.sh
-          stdout: tutorial-steps/test/outputs/actual-output-log-segments-topic1-partition-0.txt
+          file: tutorial-steps/test/log-segments-myTopic-partition-0.sh
+          stdout: tutorial-steps/test/outputs/actual-output-log-segments-myTopic-partition-0.txt
           render:
-            file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-topic1-partition-0.adoc
+            file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-myTopic-partition-0.adoc
 
     - title: Consume the data in partition 1
       content:
         - action: execute
-          file: tutorial-steps/test/harness-console-consumer-topic1-partition-1.sh
-          stdout: tutorial-steps/test/outputs/actual-output-topic1-partition-1.txt
+          file: tutorial-steps/test/harness-console-consumer-myTopic-partition-1.sh
+          stdout: tutorial-steps/test/outputs/actual-output-myTopic-partition-1.txt
           render:
-            file: tutorials/message-ordering/kafka/markup/test/consume-data-topic1-partition-1.adoc
+            file: tutorials/message-ordering/kafka/markup/test/consume-data-myTopic-partition-1.adoc
 
     - title: Dump the partition 1 log segments from the broker 
       content:
         - action: execute 
-          file: tutorial-steps/test/log-segments-topic1-partition-1.sh
-          stdout: tutorial-steps/test/outputs/actual-output-log-segments-topic1-partition-1.txt
+          file: tutorial-steps/test/log-segments-myTopic-partition-1.sh
+          stdout: tutorial-steps/test/outputs/actual-output-log-segments-myTopic-partition-1.txt
           render:
-            file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-topic1-partition-1.adoc
+            file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-myTopic-partition-1.adoc
 
 prod:
   steps:
