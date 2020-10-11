@@ -2,13 +2,13 @@ Now let's look at the Kafka broker's log segment files using the `DumpLogSegment
 First, let's examine partition 0, indicated by the `0` in `myTopic-0`.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/test/dump-log-segments-0.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/dump-log-segments-0.sh %}</code></pre>
 +++++
 
 You should see:
 
 +++++
-<pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/log-segments-myTopic-partition-0.txt %}</code></pre>
+<pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-log-segments-myTopic-partition-0.txt %}</code></pre>
 +++++
 
 Note the familiar `producerId: 0`, which corresponds to the earlier log output when we ran the producer application.
