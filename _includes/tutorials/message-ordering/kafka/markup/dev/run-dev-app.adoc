@@ -34,8 +34,3 @@ Record written to offset 7 timestamp 1602295941754 partition 0
 Record written to offset 8 timestamp 1602295941754 partition 0
 Record written to offset 2 timestamp 1602295941754 partition 1
 ----
-
-Now you can experiment some by creating your own file in base directory and re-run the above command and substitute your file name for `input.txt`
-
-Remember any data before the `-` is the key and data after is the value.
-
