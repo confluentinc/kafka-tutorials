@@ -4,12 +4,12 @@ Run a console consumer to read all the messages from `myTopic` to confirm the pr
 <pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/console-consumer.sh %}</code></pre>
 +++++
 
-The output from the consumer can vary if you added any of your own records, but it should look something like below.
+The output from the consumer should look something like below.
 Notice that the messages are not in order—this is expected!
-This illustrates that message order is not maintained across topic partitions, it only maintains message order per partition.
+This illustrates that for the consumer, message order is not maintained across topic partitions, it is only maintained per partition (as we will see in the next few steps).
 
 ++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-output-consumer-all-partitions.txt %}</code></pre>
 ++++
 
-Close the consumer with a `CTRL+C` then the broker shell with a `CTRL+D`
+Close the consumer with a `CTRL+C`.
