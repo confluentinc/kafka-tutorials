@@ -34,8 +34,8 @@
       image: confluentinc/cp-schema-registry:6.0.0
       hostname: schema-registry
       container_name: schema-registry
-    depends_on:
-      - broker
+      depends_on:
+        - broker
       ports:
         - "8081:8081"
       environment:
