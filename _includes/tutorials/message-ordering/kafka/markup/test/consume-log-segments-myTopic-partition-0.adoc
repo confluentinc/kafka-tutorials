@@ -1,4 +1,4 @@
-Now let's look at the Kafka broker's log segment files using the `DumpLogSegments` utility.
+Now let's look at the Kafka broker's log segment files using the `kafka-dump-log` administrative tool.
 First, examine partition 0, indicated by the `0` in `myTopic-0`.
 
 +++++
@@ -11,9 +11,9 @@ You should see:
 <pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-log-segments-myTopic-partition-0.txt %}</code></pre>
 +++++
 
-Note the familiar `producerId: 0`, which corresponds to the earlier log output when we ran the producer application.
-(If the producer were not idempotent, you would see `producerId: -1`.)
+Note the familiar `producerId: 0`, which corresponds to the earlier log output from the producer application run.
+(If the producer were not configured to be idempotent, this would show `producerId: -1`.)
 
-Also observe that each message has a unique sequence number, starting with `sequence: 0` through `sequence: 8`.
-This sequence number is how the broker detects ensures idempotency per partition (if there are retries) and ordered messages (if sequences numbers are sent out of sequence).
-(If the producer were not idempotent, you would see `sequence: -1`.)
+Also observe that each message has a unique sequence number, starting with `sequence: 0` through `sequence: 8`, that are not duplicated and are all in order.
+The broker checks the sequence number to ensure idempotency per partition (if there are retries) and ordered messages (if sequences numbers are sent out of sequence).
+(If the producer were not configured to be idempotent, the messages would show `sequence: -1`.)
