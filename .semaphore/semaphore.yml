@@ -20,6 +20,11 @@ promotions:
         branch:
           - ^master$
 
+  - name: Stage PRs for review 
+    pipeline_file: pr-staging-deploy.yml
+    auto_promote:
+      when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot\.'"
+
 blocks:
   - name: Build the website
     task:
@@ -34,7 +39,7 @@ blocks:
       jobs:
         - name: Compile with Jekyll
           commands:
-            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
+            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH"
             - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
@@ -295,6 +300,10 @@ blocks:
         - name: Kafka Count messages on a topic tutorial tests
           commands:
             - make -C _includes/tutorials/count-messages/kafka/code tutorial
+
+        - name: Kafka Test ccloud produce and consume
+          commands:
+            - make -C _includes/tutorials/ccloud-produce-consume/kafka/code tutorial
 
         - name: KStreams Test Streams schedule operations tests
           commands:
