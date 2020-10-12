@@ -37,7 +37,7 @@ public class KafkaProducerApplication {
             key = parts[0];
             value = parts[1];
         } else {
-            key = "NO-KEY";
+            key = null;
             value = parts[0];
         }
         final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(outTopic, key, value);
