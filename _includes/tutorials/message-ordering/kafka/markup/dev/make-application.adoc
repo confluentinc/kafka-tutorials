@@ -1,20 +1,21 @@
 Before you create your full application code, let's highlight the most important `ProducerConfig` configuration parameters:
 
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/answer-code.java %}</code></pre>
+<pre class="snippet"><code class="bash">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/answer-code.java %}</code></pre>
 +++++
 
-The following two parameters are required:
+The following parameter is *required* to be explicitly configured:
 
 * https://kafka.apache.org/documentation/#enable.idempotence[enable.idempotence]: when set to `true`, it enables an idempotent producer which ensures that exactly one copy of each message is written to the brokers, and in order.
   The default value is `enable.idempotence=false`, so you must explicitly set this to `enable.idempotence=true`.
   For further reading on producer idempotency, please see https://cwiki.apache.org/confluence/display/KAFKA/KIP-98+-+Exactly+Once+Delivery+and+Transactional+Messaging#KIP98ExactlyOnceDeliveryandTransactionalMessaging-IdempotentProducerGuarantees[KIP-98].
 
-* https://kafka.apache.org/documentation/#acks[acks]: the `KafkaProducer` uses the `acks` configuration to tell the leader broker how many acknowledgments to wait for to consider a produce request complete.
-  You must set `acks=all` in order to use the idempotent producer, otherwise the producer cannot guarantee idempotence.
-  The default value is `acks=1`, so you must explicitly set this to `acks=all`.
+The other parameters may not be required to be explicitly set, but there are some noteworthy caveats:
 
-The following two parameters have acceptable defaults and are not required to be changed, so they are not shown above, but they are described in this tutorial because the producer validates them when `enable.idempotence=true`:
+* https://kafka.apache.org/documentation/#acks[acks]: the `KafkaProducer` uses the `acks` configuration to tell the leader broker how many acknowledgments to wait for to consider a produce request complete.
+  This value must be `acks=all` for the idempotent producer to work, otherwise the producer cannot guarantee idempotence.
+  The default value is `acks=1`, so you have two choices: (a) do not explicitly set it in the configuration and allow the producer automatically override it, or (b) explicitly set this to `acks=all`.
+  The producer will fail to start if `enable.idempotence=true` and your application configures this to anything but `acks=all`.
 
 * https://kafka.apache.org/documentation/#max.in.flight.requests.per.connection[max.in.flight.requests.per.connection]: the maximum number of unacknowledged requests the producer sends on a single connection before blocking.
   The idempotent producer still maintains message order even with pipelining (i.e., `max.in.flight.requests.per.connection` can be greater than 1), and the maximum value supported with idempotency is 5. The default value is already `max.in.flight.requests.per.connection=5`, so no change is required for the idempotent producer.

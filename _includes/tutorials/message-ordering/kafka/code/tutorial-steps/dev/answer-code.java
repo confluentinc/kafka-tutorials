@@ -1,2 +1,4 @@
-props.put(ProducerConfig.ENABLE_IDEMPOTENCE_CONFIG, "true");
-props.put(ProducerConfig.ACKS_CONFIG, "all");
+enable.idempotence=true
+acks=all
+max.in.flight.requests.per.connection=5
+retries=2147483647
