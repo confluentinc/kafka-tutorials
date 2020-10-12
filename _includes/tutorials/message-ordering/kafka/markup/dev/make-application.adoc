@@ -1,4 +1,4 @@
-Before you create your full application code, let's highlight the most important `ProducerConfig` configuration parameters:
+Before you create your full application code, let's highlight some of the most important `ProducerConfig` configuration parameters relevant to the idempotent producer:
 
 +++++
 <pre class="snippet"><code class="bash">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/answer-code.java %}</code></pre>
@@ -8,7 +8,6 @@ The following parameter is *required* to be explicitly configured:
 
 * https://kafka.apache.org/documentation/#enable.idempotence[enable.idempotence]: when set to `true`, it enables an idempotent producer which ensures that exactly one copy of each message is written to the brokers, and in order.
   The default value is `enable.idempotence=false`, so you must explicitly set this to `enable.idempotence=true`.
-  For further reading on producer idempotency, please see https://cwiki.apache.org/confluence/display/KAFKA/KIP-98+-+Exactly+Once+Delivery+and+Transactional+Messaging#KIP98ExactlyOnceDeliveryandTransactionalMessaging-IdempotentProducerGuarantees[KIP-98].
 
 The other parameters may not be required to be explicitly set, but there are some noteworthy caveats:
 
@@ -24,7 +23,9 @@ The other parameters may not be required to be explicitly set, but there are som
   The only requirement for idempotency is that this is greater than zero.
   The default value is already `retries=2147483647`, so no change is required for the idempotent producer.
 
-This is only a small sub-set of producer configuration parameters. The full list of producer configuration parameters can be found in the https://kafka.apache.org/documentation/#producerconfigs[Apache Kafka documentation].
+This is only a small subset of producer configuration parameters focused on idempotent producer semantics.
+For further reading, please see https://cwiki.apache.org/confluence/display/KAFKA/KIP-98+-+Exactly+Once+Delivery+and+Transactional+Messaging#KIP98ExactlyOnceDeliveryandTransactionalMessaging-IdempotentProducerGuarantees[KIP-98].
+This KIP also discusses other elements of exactly once semantics (EOS), including transactional guarantees which enable applications to produce to multiple partitions atomically, ie. all writes across multiple partitions can succeed or fail as a unit.
 
 Now let's create the application source code at `src/main/java/io/confluent/developer/KafkaProducerApplication.java`.
 
