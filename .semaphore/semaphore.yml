@@ -309,6 +309,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
         
-        - name: KSQL Message Ordering tests
+        - name: Kafka Message Ordering tests
           commands:
-            - make -C _includes/tutorials/message-ordering/ksql/code tutorial
+            - make -C _includes/tutorials/message-ordering/kafka/code tutorial
