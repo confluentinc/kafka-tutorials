@@ -1,5 +1,5 @@
 Now let's look at the Kafka broker's log segment files using the `DumpLogSegments` utility.
-First, let's examine partition 0, indicated by the `0` in `myTopic-0`.
+First, examine partition 0, indicated by the `0` in `myTopic-0`.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/dump-log-segments-0.sh %}</code></pre>

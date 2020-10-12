@@ -19,7 +19,7 @@ The idempotent producer still maintains message order even with pipelining (i.e.
 
 This is only a small sub-set of producer configuration parameters. The full list of producer configuration parameters can be found in the https://kafka.apache.org/documentation/#producerconfigs[Apache Kafka documentation].
 
-Now go ahead and create the following file at `src/main/java/io/confluent/developer/KafkaProducerApplication.java`.
+Now let's create the application source code at `src/main/java/io/confluent/developer/KafkaProducerApplication.java`.
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/message-ordering/kafka/code/src/main/java/io/confluent/developer/KafkaProducerApplication.java %}</code></pre>

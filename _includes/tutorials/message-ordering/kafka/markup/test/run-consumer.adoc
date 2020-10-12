@@ -1,16 +1,15 @@
-Now run a console consumer to read all the messages from `myTopic` to confirm the producer published the expected records.
+Run a console consumer to read all the messages from `myTopic` to confirm the producer published the expected records.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/console-consumer.sh %}</code></pre>
 +++++
 
 The output from the consumer can vary if you added any of your own records, but it should look something like below.
 Notice that the messages are not in order—this is expected!
-We show this to make the point that the idempotent producer maintains order per partition (as we'll see in the next steps), but it does not maintain order across topic partitions.
+This illustrates that message order is not maintained across topic partitions, it only maintains message order per partition.
 
 ++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/dev/expected-output.txt %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-output-consumer-all-partitions.txt %}</code></pre>
 ++++
 
-
-Now close the consumer with a `CTRL+C` then the broker shell with a `CTRL+D`
+Close the consumer with a `CTRL+C` then the broker shell with a `CTRL+D`

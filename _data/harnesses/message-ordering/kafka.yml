@@ -101,23 +101,23 @@ dev:
 
 test:
   steps:
-    - title: View all records in the topic across all partitions
+    - title: View all records in the topic
       content:
         - action: execute_async
-          file: tutorial-steps/dev/console-consumer.sh
+          file: tutorial-steps/test/console-consumer.sh
           stdout: tutorial-steps/test/outputs/actual-output.txt
           render:
             file: tutorials/message-ordering/kafka/markup/test/run-consumer.adoc
 
         - name: wait for the consumer to read the messages
           action: sleep
-          ms: 5000
+          ms: 8000
           render:
             skip: true
 
     - title: Consume the data in partition 0
       content:
-        - action: execute
+        - action: execute_async
           file: tutorial-steps/test/harness-console-consumer-myTopic-partition-0.sh
           stdout: tutorial-steps/test/outputs/actual-output-myTopic-partition-0.txt
           render:
@@ -125,7 +125,7 @@ test:
 
         - name: wait for the consumer to read the messages
           action: sleep
-          ms: 5000
+          ms: 8000
           render:
             skip: true
 
@@ -137,15 +137,9 @@ test:
           render:
             file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-myTopic-partition-0.adoc
 
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 5000
-          render:
-            skip: true
-
     - title: Consume the data in partition 1
       content:
-        - action: execute
+        - action: execute_async
           file: tutorial-steps/test/harness-console-consumer-myTopic-partition-1.sh
           stdout: tutorial-steps/test/outputs/actual-output-myTopic-partition-1.txt
           render:
@@ -153,23 +147,18 @@ test:
 
         - name: wait for the consumer to read the messages
           action: sleep
-          ms: 5000
+          ms: 8000
           render:
             skip: true
 
     - title: View the broker log segment file for partition 1
       content:
-        - action: execute 
+        - action: execute
           file: tutorial-steps/test/dump-log-segments-1.sh
           stdout: tutorial-steps/test/outputs/actual-output-log-segments-myTopic-partition-1.txt
           render:
             file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-myTopic-partition-1.adoc
 
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 5000
-          render:
-            skip: true
 
 ccloud:
   steps:

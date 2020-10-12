@@ -1,4 +1,4 @@
-Now, let's use the `DumpLogSegments` utility again to examine partition 1, indicated by the `1` in `myTopic-1`.
+Use the `DumpLogSegments` utility again to examine partition 1, indicated by the `1` in `myTopic-1`.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/dump-log-segments-1.sh %}</code></pre>
