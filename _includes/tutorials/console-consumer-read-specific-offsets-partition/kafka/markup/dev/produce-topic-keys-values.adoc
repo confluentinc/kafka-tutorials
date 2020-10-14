@@ -1,7 +1,7 @@
 To get started, lets produce some records to your new topic.
 
 Since you've created a topic with more than one partition, you'll send full key-value pairs so you'll be able to see how different keys end up on different partitions.
-To send full key-value pairs you'll specify the `parse.keys` and `key.separtor` options to the console producer command.
+To send full key-value pairs you'll specify the `parse.keys` and `key.separator` options to the console producer command.
 
 Let's run the following command in the broker container shell from the previous step to start a new console producer:
 

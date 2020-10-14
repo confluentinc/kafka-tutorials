@@ -63,7 +63,7 @@ public void produce(final String message) {
 <1> Process the String for sending message
 <2> Create the `ProducerRecord`
 <3> Send the record to the broker specifying a `Callback` instance as a lambda function
-<4> If there's no exceptions print the offset and timestamp of the acknowleged record
+<4> If there's no exceptions print the offset and timestamp of the acknowledged record
 <5> Error handling portion-in this case printing the stacktrace to `System.err`
 
 The `KafkaProducerCallbackApplication.produce` method does some processing on a `String`, and then sends it as a https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/producer/ProducerRecord.html[`ProducerRecord`].  While this code is a trivial example, it's enough to show the example of using a `KafkaProducer`.

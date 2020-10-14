@@ -5,4 +5,4 @@ Feel free to add your favorite book in the list, then run the following command 
 %}</code></pre>
 +++++
 
-Now let's see if the records have been correctly writen in Kafka and if the consumer App can poll theme.
+Now let's see if the records have been correctly written in Kafka and if the consumer App can poll theme.

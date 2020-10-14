@@ -11,7 +11,7 @@ Lets’s describe the keys pieces of this program.
 
 NOTE: The Consumer application loads its configuration from the _consumer_ bloc of the `application.conf`
 
-A `Consumer#conusme` function covers most of the record consumption.
+A `Consumer#consume` function covers most of the record consumption.
 
 [source,scala]
 ----
@@ -23,7 +23,7 @@ def consume(consumer: KafkaConsumer[Bytes, Book]): Vector[Book] = { //<1>
 }
 ----
 
-<1> `Consumer#conusme` takes a
+<1> `Consumer#consume` takes a
 `https://kafka.apache.org/25/javadoc/org/apache/kafka/clients/consumer/KafkaConsumer.html[KafkaConsumer]`
 and gives back a collection of `Book`.
 
@@ -45,7 +45,7 @@ Registry.
 - The `KafkaConsumer` reads it's configuration from the _consumer.client-config_ block of
 `application.conf`.
 
-- Finally, we subscribe to the `BOOK` topic by calling `KafkaConsumer#suscribe`.
+- Finally, we subscribe to the `BOOK` topic by calling `KafkaConsumer#subscribe`.
 
 That's it! we are ready to poll records in a loop, updating our map of books.  The map of books is used to respond to
 queries on the HTTP routes.
