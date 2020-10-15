@@ -1,0 +1,5 @@
+Likewise, you'll need a Kafka topic and a stream to represent transaction events. The transaction information includes the identifier, the user sending the money and the name of the recipient.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/create-transactions-stream.sql %}</code></pre>
++++++

@@ -465,3 +465,24 @@ kafka-streams-schedule-operations:
     scala: disabled
     swift: disabled
 
+
+anomaly-detection:
+  title: "Detecting abnormal transactions"
+  meta-description: "Detecting abnormal transactions"
+  slug: "/anomaly-detection"
+  question: "If I have time-series events in a Kafka topic and a table of reference data, how can I find abnormal events in fixed-size, non-overlapping, contiguous time intervals?"
+  introduction: "Consider a topic with events containing information about financial transactions and a table with known suspicious names. A common pattern for fraudsters is to disguise transactions under the name of a popular organization, the idea being that that chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, USPS, etc., are likely to look similar and blend in.
+
+                 There will normally be a group of such transactions that occur within a 24-hour period, where they are all new—that is, they have not been seen within the last 30 days. When it comes to fraud detection, financial institutions will categorize this behavior as unusual and alert their fraud team to investigate immediately to block the offending card."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
