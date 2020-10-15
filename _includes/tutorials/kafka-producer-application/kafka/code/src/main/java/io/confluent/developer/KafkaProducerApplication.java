@@ -92,7 +92,7 @@ public class KafkaProducerApplication {
             producerApp.printMetadata(metadata, filePath);
 
         } catch (IOException e) {
-            System.err.printf("Error reading file %s due to %s", filePath, e);
+            System.err.printf("Error reading file %s due to %s %n", filePath, e);
         }
         finally {
             producerApp.shutdown();
