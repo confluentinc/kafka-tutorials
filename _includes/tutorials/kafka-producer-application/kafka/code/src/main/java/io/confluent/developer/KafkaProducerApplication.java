@@ -94,6 +94,8 @@ public class KafkaProducerApplication {
         } catch (IOException e) {
             System.err.printf("Error reading file %s due to %s", filePath, e);
         }
-        producerApp.shutdown();
+        finally {
+            producerApp.shutdown();
+        }
     }
 }
