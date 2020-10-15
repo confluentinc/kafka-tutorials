@@ -35,7 +35,7 @@ public class KafkaProducerApplication {
             key = parts[0];
             value = parts[1];
         } else {
-            key = "NO-KEY";
+            key = null;
             value = parts[0];
         }
         final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(outTopic, key, value);
@@ -81,9 +81,7 @@ public class KafkaProducerApplication {
         final String topic = props.getProperty("output.topic.name");
         final Producer<String, String> producer = new KafkaProducer<>(props);
         final KafkaProducerApplication producerApp = new KafkaProducerApplication(producer, topic);
-
-        // Attach shutdown handler to catch Control-C.
-        Runtime.getRuntime().addShutdownHook(new Thread(producerApp::shutdown));
+        
         String filePath = args[1];
         try {
             List<String> linesToProduce = Files.readAllLines(Paths.get(filePath));
@@ -94,7 +92,7 @@ public class KafkaProducerApplication {
             producerApp.printMetadata(metadata, filePath);
 
         } catch (IOException e) {
-            System.err.println(String.format("Error reading file %s due to %s", filePath, e));
+            System.err.printf("Error reading file %s due to %s", filePath, e);
         }
         producerApp.shutdown();
     }
