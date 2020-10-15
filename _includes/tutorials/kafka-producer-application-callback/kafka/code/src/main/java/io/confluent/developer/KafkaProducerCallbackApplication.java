@@ -80,7 +80,8 @@ public class KafkaProducerCallbackApplication {
                           .forEach(producerApp::produce);
         } catch (IOException e) {
             System.err.printf("Error reading file %s due to %s", filePath, e);
+        } finally {
+           producerApp.shutdown();
         }
-        producerApp.shutdown();
     }
 }
