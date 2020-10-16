@@ -1,0 +1,8 @@
+Key format: ¯\_(ツ)_/¯ - no data processed
+Value format: JSON or KAFKA_STRING
+rowtime: 2020/10/16 00:04:38.702 Z, key: <null>, value: {"ORDER_ID":1,"PRODUCT":"Heart Rate Monitor Fitness Tracker","ORDER_TOTAL_USD":"119.93","TOWN":"Denver","COUNTRY":"USA"}
+rowtime: 2020/10/16 00:04:38.755 Z, key: <null>, value: {"ORDER_ID":1,"PRODUCT":"Foam Roller","ORDER_TOTAL_USD":"34.95","TOWN":"Los Angeles","COUNTRY":"USA"}
+rowtime: 2020/10/16 00:04:38.807 Z, key: <null>, value: {"ORDER_ID":1,"PRODUCT":"Hydration Belt","ORDER_TOTAL_USD":"50.00","TOWN":"Tuscan","COUNTRY":"USA"}
+rowtime: 2020/10/16 00:04:38.858 Z, key: <null>, value: {"ORDER_ID":1,"PRODUCT":"Wireless Headphones","ORDER_TOTAL_USD":"175.93","TOWN":"Tulsa","COUNTRY":"USA"}
+rowtime: 2020/10/16 00:04:38.899 Z, key: <null>, value: {"ORDER_ID":1,"PRODUCT":"Comfort Insoles","ORDER_TOTAL_USD":"49.95","TOWN":"Portland","COUNTRY":"usa"}
+rowtime: 2020/10/16 00:04:38.939 Z, key: <null>, value: {"ORDER_ID":1,"PRODUCT":"Running Beanie","ORDER_TOTAL_USD":"13.73","TOWN":"Omaha","COUNTRY":"USA"}

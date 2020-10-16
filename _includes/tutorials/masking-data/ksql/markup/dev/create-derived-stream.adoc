@@ -1,0 +1,5 @@
+Our first masking technique will be to create a derived topic in which all PII is excluded:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/create-derived-stream.sql %}</code></pre>
++++++

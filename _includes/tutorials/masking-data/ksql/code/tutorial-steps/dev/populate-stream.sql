@@ -1,0 +1,6 @@
+INSERT INTO purchases (order_id, customer_name, date_of_birth, product, order_total_usd, town, country) VALUES (1, 'Britney', '2/29/2000', 'Heart Rate Monitor Fitness Tracker', '119.93', 'Denver', 'USA');
+INSERT INTO purchases (order_id, customer_name, date_of_birth, product, order_total_usd, town, country) VALUES (1, 'Michael', '6/8/1981', 'Foam Roller', '34.95', 'Los Angeles', 'USA');
+INSERT INTO purchases (order_id, customer_name, date_of_birth, product, order_total_usd, town, country) VALUES (1, 'Kimmy', '5/19/1978', 'Hydration Belt', '50.00', 'Tuscan', 'USA');
+INSERT INTO purchases (order_id, customer_name, date_of_birth, product, order_total_usd, town, country) VALUES (1, 'Samantha', '8/5/1983', 'Wireless Headphones', '175.93', 'Tulsa', 'USA');
+INSERT INTO purchases (order_id, customer_name, date_of_birth, product, order_total_usd, town, country) VALUES (1, 'Jonathon', '1/31/1981', 'Comfort Insoles', '49.95', 'Portland', 'usa');
+INSERT INTO purchases (order_id, customer_name, date_of_birth, product, order_total_usd, town, country) VALUES (1, 'Raymond', '7/29/2001', 'Running Beanie', '13.73', 'Omaha', 'USA');

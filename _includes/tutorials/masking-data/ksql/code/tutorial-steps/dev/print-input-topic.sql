@@ -1,0 +1,1 @@
+PRINT purchases FROM BEGINNING LIMIT 6;

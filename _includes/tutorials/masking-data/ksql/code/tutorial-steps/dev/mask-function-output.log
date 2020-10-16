@@ -1,0 +1,11 @@
++--------------------------------------+--------------------------------------+--------------------------------------+--------------------------------------+
+|CUSTOMER_NAME                         |DATE_OF_BIRTH                         |PRODUCT                               |ORDER_TOTAL_USD                       |
++--------------------------------------+--------------------------------------+--------------------------------------+--------------------------------------+
+|Xxxxxxx                               |n-nn-nnnn                             |Heart Rate Monitor Fitness Tracker    |119.93                                |
+|Xxxxxxx                               |n-n-nnnn                              |Foam Roller                           |34.95                                 |
+|Xxxxx                                 |n-nn-nnnn                             |Hydration Belt                        |50.00                                 |
+|Xxxxxxxx                              |n-n-nnnn                              |Wireless Headphones                   |175.93                                |
+|Xxxxxxxx                              |n-nn-nnnn                             |Comfort Insoles                       |49.95                                 |
+|Xxxxxxx                               |n-nn-nnnn                             |Running Beanie                        |13.73                                 |
+Limit Reached
+Query terminated

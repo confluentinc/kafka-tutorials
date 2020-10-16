@@ -1,0 +1,6 @@
+The second technique for masking data utilizes KSQL's built in `MASK` functions. Here, we retain the customer name and date of birth, but obfuscated:
+
+TODO: talk about what different types of masking functions do
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/mask-function.sql %}</code></pre>
++++++

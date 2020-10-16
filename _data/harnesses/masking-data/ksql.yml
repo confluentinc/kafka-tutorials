@@ -1,0 +1,72 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/masking-data/ksql/markup/dev/init.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/masking-data/ksql/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/masking-data/ksql/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Write the program interactively using the CLI
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 11
+          render:
+            file: tutorials/masking-data/ksql/markup/dev/start-cli.adoc
+          stdin:
+            - file: tutorial-steps/dev/create-ratings-stream.sql
+              render:
+                file: tutorials/masking-data/ksql/markup/dev/create-ratings-stream.adoc
+
+            - file: tutorial-steps/dev/populate-stream.sql
+              render:
+                file: tutorials/masking-data/ksql/markup/dev/populate-stream.adoc
+
+            - file: tutorial-steps/dev/print-input-topic.sql
+              render:
+                file: tutorials/masking-data/ksql/markup/dev/print-input-topic.adoc
+
+            - file: tutorial-steps/dev/create-derived-stream.sql
+              render:
+                file: tutorials/masking-data/ksql/markup/dev/create-derived-stream.adoc
+
+            - file: tutorial-steps/dev/print-derived-topic.sql
+              render:
+                file: tutorials/masking-data/ksql/markup/dev/print-derived-topic.adoc
+
+            - file: tutorial-steps/dev/mask-function.sql
+              render:
+                file: tutorials/masking-data/ksql/markup/dev/mask-function.adoc
+
+            - file: tutorial-steps/dev/mask-function-output.log
+              render:
+                file: tutorials/masking-data/ksql/markup/dev/mask-function-output.adoc
+          stdout:
+            directory: tutorial-steps/dev/outputs
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc
