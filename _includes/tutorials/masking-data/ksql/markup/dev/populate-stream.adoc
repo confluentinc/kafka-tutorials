@@ -1,5 +1,4 @@
-Then insert the purchase data. Because the stream has no key, the records will be inserted in approximately a round-robin manner across the different partitions.
-
+Then insert the purchase data using the following commands:
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/populate-stream.sql %}</code></pre>
 +++++
