@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     implementation 'io.confluent.ksql:ksql-udf:5.4.3'
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
 }
 
 task copyJar(type: Copy) {
