@@ -1,4 +1,9 @@
-Our purchases stream is created and should be populated with data, let's double check that by using `PRINT` to see the stream's contents.
+First we tell ksqlDB to query data from the beginning of the topic:
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/set-offset-reset.sql %}</code></pre>
++++++
+
+Our purchases stream is created and should be populated with data, let's double check that with the following command:
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/print-input-topic.sql %}</code></pre>
 +++++
@@ -8,7 +13,4 @@ This should yield roughly the following output. The order will be different depe
 <pre class="snippet"><code class="shell">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/expected-print-input.log %}</code></pre>
 +++++
 
-Next we will highlight two ways to mask PII data, both methods will result in new streams. In order to pull all of the preexisting events from our original purchases stream into these new streams, let's set our offset reset property to the following:
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/set-offset-reset.sql %}</code></pre>
-+++++
+

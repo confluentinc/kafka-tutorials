@@ -1,1 +1,4 @@
-PRINT purchases FROM BEGINNING LIMIT 6;
+SELECT *
+    FROM purchases
+    EMIT CHANGES
+    LIMIT 6;

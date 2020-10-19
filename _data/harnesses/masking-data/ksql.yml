@@ -7,6 +7,12 @@ dev:
           render:
             file: tutorials/masking-data/ksql/markup/dev/init.adoc
 
+        - change_directory: masking-data
+          action: execute
+          file: tutorial-steps/dev/make-dirs.sh
+          render:
+            file: tutorials/masking-data/ksql/markup/dev/make-dirs.adoc
+
     - title: Get Confluent Platform
       content:
         - action: make_file
@@ -33,9 +39,9 @@ dev:
           render:
             file: tutorials/masking-data/ksql/markup/dev/start-cli.adoc
           stdin:
-            - file: tutorial-steps/dev/create-ratings-stream.sql
+            - file: tutorial-steps/dev/create-purchases.sql
               render:
-                file: tutorials/masking-data/ksql/markup/dev/create-ratings-stream.adoc
+                file: tutorials/masking-data/ksql/markup/dev/create-purchases.adoc
 
             - file: tutorial-steps/dev/populate-stream.sql
               render:
@@ -45,23 +51,51 @@ dev:
               render:
                 file: tutorials/masking-data/ksql/markup/dev/print-input-topic.adoc
 
-            - file: tutorial-steps/dev/create-derived-stream.sql
+            - file: tutorial-steps/dev/create-purchases-pii-removed.sql
               render:
-                file: tutorials/masking-data/ksql/markup/dev/create-derived-stream.adoc
+                file: tutorials/masking-data/ksql/markup/dev/create-purchases-pii-removed.adoc
 
             - file: tutorial-steps/dev/print-derived-topic.sql
               render:
                 file: tutorials/masking-data/ksql/markup/dev/print-derived-topic.adoc
 
-            - file: tutorial-steps/dev/mask-function.sql
+            - file: tutorial-steps/dev/create-purchases-pii-obfuscated.sql
               render:
-                file: tutorials/masking-data/ksql/markup/dev/mask-function.adoc
+                file: tutorials/masking-data/ksql/markup/dev/create-purchases-pii-obfuscated.adoc
 
             - file: tutorial-steps/dev/mask-function-output.log
               render:
                 file: tutorials/masking-data/ksql/markup/dev/mask-function-output.adoc
           stdout:
             directory: tutorial-steps/dev/outputs
+
+    - title: Write your statements to a file
+      content:
+        - action: make_file
+          file: src/statements.sql
+          render:
+            file: tutorials/masking-data/ksql/markup/dev/make-src-file.adoc
+test:
+  steps:
+    - title: Create the test data
+      content:
+        - action: make_file
+          file: test/input.json
+          render:
+            file: tutorials/masking-data/ksql/markup/test/make-test-input.adoc
+
+        - action: make_file
+          file: test/output.json
+          render:
+            file: tutorials/masking-data/ksql/markup/test/make-test-output.adoc
+
+    - title: Invoke the tests
+      content:
+        - action: execute
+          file: tutorial-steps/test/run-tests.sh
+          stdout: tutorial-steps/test/outputs/test-results.log
+          render:
+            file: tutorials/aggregating-count/ksql/markup/test/run-tests.adoc
 
 ccloud:
   steps:

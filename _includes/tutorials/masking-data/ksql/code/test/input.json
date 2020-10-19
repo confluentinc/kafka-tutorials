@@ -1,66 +1,75 @@
 {
   "inputs": [
     {
-      "topic": "ratings",
+      "topic": "purchases",
       "value": {
-        "id": 294,
-        "rating": 8.2
+        "order_id": 1,
+        "customer_name": "Britney",
+        "date_of_birth":  "02/29/2000",
+        "product":  "Heart Rate Monitor Fitness Tracker",
+        "order_total_usd":  119.93,
+        "town": "Denver",
+        "country": "USA"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "purchases",
       "value": {
-        "id": 294,
-        "rating": 8.5
+        "order_id": 2,
+        "customer_name": "Michael",
+        "date_of_birth":  "06/08/1981",
+        "product":  "Foam Roller",
+        "order_total_usd":  34.95,
+        "town": "Los Angeles",
+        "country": "USA"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "purchases",
       "value": {
-        "id": 354,
-        "rating": 9.9
+        "order_id": 3,
+        "customer_name": "Kimmy",
+        "date_of_birth": "05/19/1978",
+        "product": "Hydration Belt",
+        "order_total_usd": 50.00,
+        "town": "Tuscan",
+        "country": "USA"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "purchases",
       "value": {
-        "id": 354,
-        "rating": 9.7
+        "order_id": 4,
+        "customer_name": "Samantha",
+        "date_of_birth":  "08/05/1983",
+        "product": "Wireless Headphones",
+        "order_total_usd": 175.93,
+        "town": "Tulsa",
+        "country": "USA"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "purchases",
       "value": {
-        "id": 782,
-        "rating": 7.8
+        "order_id": 5,
+        "customer_name": "Jonathon",
+        "date_of_birth": "01/31/1981",
+        "product": "Comfort Insoles",
+        "order_total_usd": 49.95,
+        "town": "Portland",
+        "country": "USA"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "purchases",
       "value": {
-        "id": 782,
-        "rating": 7.7
-      }
-    },
-    {
-      "topic": "ratings",
-      "value": {
-        "id": 128,
-        "rating": 8.7
-      }
-    },
-    {
-      "topic": "ratings",
-      "value": {
-        "id": 128,
-        "rating": 8.4
-      }
-    },
-    {
-      "topic": "ratings",
-      "value": {
-        "id": 780,
-        "rating": 2.1
+        "order_id": 6,
+        "customer_name": "Raymond",
+        "date_of_birth": "07/29/2001",
+        "product": "Running Beanie",
+        "order_total_usd": 13.73,
+        "town": "Omaha",
+        "country": "USA"
       }
     }
   ]

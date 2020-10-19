@@ -1,9 +1,11 @@
-Key format: ¯\_(ツ)_/¯ - no data processed
-Value format: JSON or KAFKA_STRING
-rowtime: 2020/10/16 00:04:38.702 Z, key: <null>, value: {"ORDER_ID":1,"CUSTOMER_NAME":"Britney","DATE_OF_BIRTH":"2/29/2000","PRODUCT":"Heart Rate Monitor Fitness Tracker","ORDER_TOTAL_USD":"119.93","TOWN":"Denver","COUNTRY":"USA"}
-rowtime: 2020/10/16 00:04:38.755 Z, key: <null>, value: {"ORDER_ID":1,"CUSTOMER_NAME":"Michael","DATE_OF_BIRTH":"6/8/1981","PRODUCT":"Foam Roller","ORDER_TOTAL_USD":"34.95","TOWN":"Los Angeles","COUNTRY":"USA"}
-rowtime: 2020/10/16 00:04:38.807 Z, key: <null>, value: {"ORDER_ID":1,"CUSTOMER_NAME":"Kimmy","DATE_OF_BIRTH":"5/19/1978","PRODUCT":"Hydration Belt","ORDER_TOTAL_USD":"50.00","TOWN":"Tuscan","COUNTRY":"USA"}
-rowtime: 2020/10/16 00:04:38.858 Z, key: <null>, value: {"ORDER_ID":1,"CUSTOMER_NAME":"Samantha","DATE_OF_BIRTH":"8/5/1983","PRODUCT":"Wireless Headphones","ORDER_TOTAL_USD":"175.93","TOWN":"Tulsa","COUNTRY":"USA"}
-rowtime: 2020/10/16 00:04:38.899 Z, key: <null>, value: {"ORDER_ID":1,"CUSTOMER_NAME":"Jonathon","DATE_OF_BIRTH":"1/31/1981","PRODUCT":"Comfort Insoles","ORDER_TOTAL_USD":"49.95","TOWN":"Portland","COUNTRY":"usa"}
-rowtime: 2020/10/16 00:04:38.939 Z, key: <null>, value: {"ORDER_ID":1,"CUSTOMER_NAME":"Raymond","DATE_OF_BIRTH":"7/29/2001","PRODUCT":"Running Beanie","ORDER_TOTAL_USD":"13.73","TOWN":"Omaha","COUNTRY":"USA"}
-Topic printing ceased
++----------------------------+----------------------------+----------------------------+----------------------------+----------------------------+----------------------------+----------------------------+
+|ORDER_ID                    |CUSTOMER_NAME               |DATE_OF_BIRTH               |PRODUCT                     |ORDER_TOTAL_USD             |TOWN                        |COUNTRY                     |
++----------------------------+----------------------------+----------------------------+----------------------------+----------------------------+----------------------------+----------------------------+
+|1                           |Britney                     |02/29/2000                  |Heart Rate Monitor Fitness T|119.93                      |Denver                      |USA                         |
+|2                           |Michael                     |06/08/1981                  |Foam Roller                 |34.95                       |Los Angeles                 |USA                         |
+|3                           |Kimmy                       |05/19/1978                  |Hydration Belt              |50.0                        |Tuscan                      |USA                         |
+|4                           |Samantha                    |08/05/1983                  |Wireless Headphones         |175.93                      |Tulsa                       |USA                         |
+|5                           |Jonathon                    |01/31/1981                  |Comfort Insoles             |49.95                       |Portland                    |USA                         |
+|6                           |Raymond                     |07/29/2001                  |Running Beanie              |13.73                       |Omaha                       |USA                         |
+Limit Reached
+Query terminated
