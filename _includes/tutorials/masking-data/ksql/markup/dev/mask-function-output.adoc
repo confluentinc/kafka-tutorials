@@ -1,9 +1,0 @@
-When printing the contents of the 'purchases_pii_obfuscated' stream, use command below...
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/print-masked-stream.sql %}</code></pre>
-+++++
-
-We can see that the sensative data is masked with x's or n's:
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/mask-function-output.log %}</code></pre>
-+++++

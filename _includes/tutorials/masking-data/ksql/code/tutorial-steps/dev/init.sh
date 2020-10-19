@@ -1,1 +1,1 @@
-mkdir mask-data && cd mask-data
+mkdir masking-data && cd masking-data

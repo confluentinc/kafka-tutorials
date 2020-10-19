@@ -47,25 +47,30 @@ dev:
               render:
                 file: tutorials/masking-data/ksql/markup/dev/populate-stream.adoc
 
-            - file: tutorial-steps/dev/print-input-topic.sql
+            - file: tutorial-steps/dev/set-offset-reset.sql
               render:
-                file: tutorials/masking-data/ksql/markup/dev/print-input-topic.adoc
+                file: tutorials/masking-data/ksql/markup/dev/set-offset-reset.adoc
+
+            - file: tutorial-steps/dev/print-purchases-topic.sql
+              render:
+                file: tutorials/masking-data/ksql/markup/dev/print-purchases-topic.adoc
 
             - file: tutorial-steps/dev/create-purchases-pii-removed.sql
               render:
                 file: tutorials/masking-data/ksql/markup/dev/create-purchases-pii-removed.adoc
 
-            - file: tutorial-steps/dev/print-derived-topic.sql
+            - file: tutorial-steps/dev/print-purchases-removed-topic.sql
               render:
-                file: tutorials/masking-data/ksql/markup/dev/print-derived-topic.adoc
+                file: tutorials/masking-data/ksql/markup/dev/print-purchases-removed-topic.adoc
 
             - file: tutorial-steps/dev/create-purchases-pii-obfuscated.sql
               render:
                 file: tutorials/masking-data/ksql/markup/dev/create-purchases-pii-obfuscated.adoc
 
-            - file: tutorial-steps/dev/mask-function-output.log
+            - file: tutorial-steps/dev/print-purchases-obfuscated-topic.sql
               render:
-                file: tutorials/masking-data/ksql/markup/dev/mask-function-output.adoc
+                file: tutorials/masking-data/ksql/markup/dev/print-purchases-obfuscated-topic.adoc
+
           stdout:
             directory: tutorial-steps/dev/outputs
 
@@ -95,7 +100,20 @@ test:
           file: tutorial-steps/test/run-tests.sh
           stdout: tutorial-steps/test/outputs/test-results.log
           render:
-            file: tutorials/aggregating-count/ksql/markup/test/run-tests.adoc
+            file: tutorials/masking-data/ksql/markup/test/run-tests.adoc
+
+prod:
+  steps:
+    - title: Send the statements to the REST endpoint
+      content:
+        - action: skip
+          render:
+            file: tutorials/masking-data/ksql/markup/prod/submit-to-api.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
 
 ccloud:
   steps:
