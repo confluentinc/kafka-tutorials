@@ -6,7 +6,7 @@
         "order_id": 1,
         "customer_name": "Britney",
         "date_of_birth":  "02/29/2000",
-        "product":  "Heart Rate Monitor Fitness Tracker",
+        "product":  "Heart Rate Monitor",
         "order_total_usd":  119.93,
         "town": "Denver",
         "country": "USA"

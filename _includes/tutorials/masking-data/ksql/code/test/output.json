@@ -4,7 +4,7 @@
       "topic": "purchases_pii_removed",
       "value": {
         "ORDER_ID": 1,
-        "PRODUCT":  "Heart Rate Monitor Fitness Tracker",
+        "PRODUCT":  "Heart Rate Monitor",
         "ORDER_TOTAL_USD":  119.93,
         "TOWN": "Denver",
         "COUNTRY": "USA"
@@ -66,7 +66,7 @@
         "ORDER_ID": 1,
         "CUSTOMER_NAME": "Xxxxxxx",
         "DATE_OF_BIRTH":  "nn-nn-nnnn",
-        "PRODUCT":  "Heart Rate Monitor Fitness Tracker",
+        "PRODUCT":  "Heart Rate Monitor",
         "ORDER_TOTAL_USD":  119.93,
         "TOWN": "Denver",
         "COUNTRY": "USA"
