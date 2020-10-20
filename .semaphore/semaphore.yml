@@ -167,6 +167,10 @@ blocks:
         - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+
+        - name: Kafka produce and consume in Scala
+          commands:
+            - make -C _includes/tutorials/produce-consume-lang/scala/code tutorial
   
   - name: Run second block of tests
     execution_time_limit:
@@ -303,3 +307,4 @@ blocks:
         - name: KStreams Test Streams schedule operations tests
           commands:
             - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
+

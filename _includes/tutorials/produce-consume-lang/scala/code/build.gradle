@@ -62,7 +62,6 @@ configure(subprojects) {
 
     dependencies {
         implementation parent
-        testImplementation parent
         testImplementation parent.sourceSets.test.output
     }
 

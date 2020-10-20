@@ -71,7 +71,7 @@ class ConsumerSpec extends KafkaFlatSpec with ScalaReflectionSerde {
       val records: List[Book] = consumer.poll((1 second) toJava).asScala.map(_.value()).toList
 
       records should have length 3
-      records should contain only (newBook1, newBook2, newBook3)
+      records should contain theSameElementsAs(newBook1 :: newBook2 :: newBook3 :: Nil)
     }
   }
 }
