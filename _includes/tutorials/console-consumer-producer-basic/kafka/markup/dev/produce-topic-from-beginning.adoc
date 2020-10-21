@@ -9,5 +9,5 @@ To demonstrate reading from the beginning, close the current console consumer.
 Now go back to your producer console and send the following records:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/input-step-two.txt %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/kafka/code/tutorial-steps/dev/input-step-two.txt %}</code></pre>
 +++++

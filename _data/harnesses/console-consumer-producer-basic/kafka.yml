@@ -18,19 +18,19 @@ dev:
         - action: execute
           file: tutorial-steps/dev/init.sh
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/dev/init.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/dev/init.adoc
 
     - title: Get Confluent Platform
       content:
         - action: make_file
           file: docker-compose.yml
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/dev/make-docker-compose.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/dev/make-docker-compose.adoc
 
         - action: execute_async
           file: tutorial-steps/dev/docker-compose-up.sh
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/dev/start-compose.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/dev/start-compose.adoc
 
         - action: execute
           file: tutorial-steps/dev/wait-for-containers.sh
@@ -42,7 +42,7 @@ dev:
         - action: execute
           file: tutorial-steps/dev/create-topic.sh
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/dev/create-topic.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/dev/create-topic.adoc
             
     - title: Start a console consumer
       content:
@@ -50,7 +50,7 @@ dev:
           file: tutorial-steps/dev/harness-console-consumer.sh
           stdout: tutorial-steps/dev/outputs/actual-output-step-one.txt
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/dev/consume-topic.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/dev/consume-topic.adoc
 
     - title: Produce your first records
       content:
@@ -58,7 +58,7 @@ dev:
           file: tutorial-steps/dev/harness-console-producer.sh
           stdin: tutorial-steps/dev/input-step-one.txt
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/dev/produce-topic.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/dev/produce-topic.adoc
 
         - name: wait for consumer to read records
           action: sleep
@@ -72,7 +72,7 @@ dev:
           file: tutorial-steps/dev/harness-console-producer.sh
           stdin: tutorial-steps/dev/input-step-two.txt
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/dev/produce-topic-from-beginning.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/dev/produce-topic-from-beginning.adoc
 
 
     - title: Start a new consumer to read all records
@@ -81,7 +81,7 @@ dev:
         file: tutorial-steps/dev/harness-console-consumer-from-beginning.sh
         stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
         render:
-          file: tutorials/console-consumer-produer-basic/kafka/markup/dev/consume-topic-from-beginning.adoc
+          file: tutorials/console-consumer-producer-basic/kafka/markup/dev/consume-topic-from-beginning.adoc
 
 
       - name: wait for consumer to read records
@@ -96,7 +96,7 @@ dev:
         file: tutorial-steps/dev/harness-console-producer-keys.sh
         stdin: tutorial-steps/dev/input-step-three.txt
         render:
-         file: tutorials/console-consumer-produer-basic/kafka/markup/dev/produce-topic-keys-values.adoc
+         file: tutorials/console-consumer-producer-basic/kafka/markup/dev/produce-topic-keys-values.adoc
 
     - title: Start a consumer to show full key-value pairs
       content:
@@ -104,7 +104,7 @@ dev:
         file: tutorial-steps/dev/harness-console-consumer-keys.sh
         stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
         render:
-          file: tutorials/console-consumer-produer-basic/kafka/markup/dev/consume-topic-key-value.adoc
+          file: tutorials/console-consumer-producer-basic/kafka/markup/dev/consume-topic-key-value.adoc
 
 
       - name: wait for consumer to read records
@@ -118,7 +118,7 @@ dev:
       - action: execute
         file: tutorial-steps/dev/clean-up.sh
         render:
-          file: tutorials/console-consumer-produer-basic/kafka/markup/dev/clean-up.adoc
+          file: tutorials/console-consumer-producer-basic/kafka/markup/dev/clean-up.adoc
 
 ccloud:
   steps:

@@ -281,7 +281,7 @@ cogrouping-streams:
     kstreams: enabled
     kafka: disabled
 
-console-consumer-produer-basic:
+console-consumer-producer-basic:
   title: "Console Producer and Consumer Basics, no (de)serializers"
   meta-description: "Produce and consume your first message with Kafka"
   slug: "/kafka-console-consumer-producer-basics"
