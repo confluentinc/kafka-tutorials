@@ -7,7 +7,7 @@
 # ORIG_TUTORIAL=connect-add-key-to-source
 
 # to only clone a kafka tutorial
-#ORIG_TUTORIAL=console-consumer-produer-basic/kafka
+#ORIG_TUTORIAL=console-consumer-producer-basic/kafka
 
 # to clone just the ksql part
 #ORIG_TUTORIAL=connect-add-key-to-source/ksql

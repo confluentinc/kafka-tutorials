@@ -6,14 +6,14 @@ To enable sending full key-value pairs from the command line you add two propert
 Let's try to send some full key-value records now.  If your previous console producer is still running close it with a `CTRL+C` and run the following command to start a new console producer:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/console-producer-keys.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/kafka/code/tutorial-steps/dev/console-producer-keys.sh %}</code></pre>
 +++++
 
 
 Then enter these records either one at time or copy-paste all of them into the terminal and hit enter:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/input-step-three.txt %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/kafka/code/tutorial-steps/dev/input-step-three.txt %}</code></pre>
 +++++
 
 

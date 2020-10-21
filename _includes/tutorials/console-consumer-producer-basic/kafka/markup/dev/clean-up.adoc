@@ -5,5 +5,5 @@ Go back to your open windows and stop any console producers and consumers with a
 Then you can shut down the stack by running:
 
 +++++
-<pre class="snippet"><code class="groovy">{% include_raw tutorials/console-consumer-produer-basic/kafka/code/tutorial-steps/dev/clean-up.sh %}</code></pre>
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/console-consumer-producer-basic/kafka/code/tutorial-steps/dev/clean-up.sh %}</code></pre>
 +++++

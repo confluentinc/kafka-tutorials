@@ -259,7 +259,7 @@ blocks:
 
         - name: Kafka Console Consumer Produer Basics tests
           commands:
-            - make -C _includes/tutorials/console-consumer-produer-basic/kafka/code tutorial
+            - make -C _includes/tutorials/console-consumer-producer-basic/kafka/code tutorial
             
         - name: Kafka Test Kafka Console Consumer with Primitive Keys and Values tests
           commands:
