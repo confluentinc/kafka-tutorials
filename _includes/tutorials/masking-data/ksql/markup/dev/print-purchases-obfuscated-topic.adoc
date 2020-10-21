@@ -22,3 +22,5 @@ In the example above, the following types of characters in `CUSTOMER_NAME` would
 *Other types of `MASK` Functions:* +
 ksqlDB offers a variety of different masking functions that allow you to mask the farthest or nearest _x_ number of characters on right or left. Check out the https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/scalar-functions/#mask[*ksqlDB documentation*,window=_blank] for more information.
 ====
+
+Type 'exit' and hit enter to shutdown the ksqlDB cli.
