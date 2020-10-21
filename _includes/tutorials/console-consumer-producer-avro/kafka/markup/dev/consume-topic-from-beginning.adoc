@@ -1,4 +1,4 @@
-Next let's open up a console consumer again, but this time you'll ready everthing that your producer has sent to the topic. you created in the previous step.
+Next let's open up a console consumer again, but this time you will consume everything including what the producer sent in the previous step.
 
 Run this command in the container shell you created for your first consumer and note the additional property `--from-beginning`:
 
