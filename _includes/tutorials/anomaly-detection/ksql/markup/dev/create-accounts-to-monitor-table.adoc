@@ -1,0 +1,5 @@
+Use a tumbling window create a table of accounts (USERNAME) against which there are more than three suspicious transactions within a 24-hour window:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/create-accounts-to-monitor-table.sql %}</code></pre>
++++++

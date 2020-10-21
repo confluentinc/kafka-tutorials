@@ -1,0 +1,11 @@
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (9900, 'alan jones', 'verizon', 22.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (12, 'bruce atkins', 'joe blogs', 7.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (13, 'mary simpson', 'joe blogs', 70.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (9903, 'alan jones', 'verizon', 61.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (9901, 'alan jones', 'alcatel', 83.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (9902, 'alan jones', 'best buy', 46.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (9904, 'alan jones', 'alcatel', 59.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (6, 'bruce atkins', 'confluent cloud', 21.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (18, 'mary simpson', 'target', 70.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (7, 'bruce atkins', 'peebles', 100.0);
+INSERT INTO transactions (TXN_ID, USERNAME, RECIPIENT, AMOUNT) VALUES (19, 'mary simpson', 'kohls', 7.0);

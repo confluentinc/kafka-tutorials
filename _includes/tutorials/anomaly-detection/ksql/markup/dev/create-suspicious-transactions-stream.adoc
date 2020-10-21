@@ -1,0 +1,5 @@
+Using the list of suspicious destination names for transactions, create a new stream of events containing transactions that were sent to an account name contained in the SUSPICIOUS_NAMES list:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/create-suspicious-transactions-stream.sql %}</code></pre>
++++++

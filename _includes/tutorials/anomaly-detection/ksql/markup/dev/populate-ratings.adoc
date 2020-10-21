@@ -1,5 +1,0 @@
-In a similar manner, populate the ratings stream:
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/populate-ratings.sql %}</code></pre>
-+++++

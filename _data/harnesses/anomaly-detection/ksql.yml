@@ -7,7 +7,7 @@ dev:
           render:
             file: tutorials/anomaly-detection/ksql/markup/dev/init.adoc
 
-        - change_directory: join-stream-and-table
+        - change_directory: anomaly-detection
           action: execute
           file: tutorial-steps/dev/make-dirs.sh
           render:
@@ -41,35 +41,40 @@ dev:
           stdin:
             - file: tutorial-steps/dev/create-suspicious-names-table.sql
               render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/create-inputs.adoc
+                file: tutorials/anomaly-detection/ksql/markup/dev/create-suspicious-names-table.adoc
 
             - file: tutorial-steps/dev/create-transactions-stream.sql
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/create-transactions-stream.adoc
 
-            - file: tutorial-steps/dev/populate-movies.sql
+            - file: tutorial-steps/dev/populate-transactions.sql
               render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/populate-movies.adoc
+                file: tutorials/anomaly-detection/ksql/markup/dev/populate-transactions.adoc
 
-            - file: tutorial-steps/dev/populate-ratings.sql
+            - file: tutorial-steps/dev/populate-suspicious-names.sql
               render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/populate-ratings.adoc
+                file: tutorials/anomaly-detection/ksql/markup/dev/populate-suspicious-names.adoc
 
             - file: tutorial-steps/dev/set-properties.sql
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/set-properties.adoc
 
-            - file: tutorial-steps/dev/transient-join.sql
+            - file: tutorial-steps/dev/create-suspicious-transactions-stream.sql
               render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/transient-join.adoc
+                file: tutorials/anomaly-detection/ksql/markup/dev/create-suspicious-transactions-stream.adoc
 
-            - file: tutorial-steps/dev/continuous-join.sql
+            - file: tutorial-steps/dev/find-suspicious-transactions.sql
               render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/continuous-join.adoc
+                file: tutorials/anomaly-detection/ksql/markup/dev/find-suspicious-transactions.adoc
 
-            - file: tutorial-steps/dev/print-output-topic.sql
+            - file: tutorial-steps/dev/create-accounts-to-monitor-table.sql
               render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/print-output-topic.adoc
+                file: tutorials/anomaly-detection/ksql/markup/dev/create-accounts-to-monitor-table.adoc
+
+            - file: tutorial-steps/dev/print-accounts-to-monitor.sql
+              render:
+                file: tutorials/anomaly-detection/ksql/markup/dev/print-accounts-to-monitor.adoc
+
           stdout:
             directory: tutorial-steps/dev/outputs
 

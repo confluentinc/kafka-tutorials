@@ -309,6 +309,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
         
-        - name: KSQL KSQL detecting abnormal transactions tests
+        - name: KSQL detecting abnormal transactions tests
           commands:
             - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
