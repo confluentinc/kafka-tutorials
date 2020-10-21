@@ -20,5 +20,5 @@ There are a few types of masking functions and optional parameters that may be o
 In the example above, the following types of characters in `CUSTOMER_NAME` would be masked: upper-case letters would become `X`, lower-case letters would become `x`, numbers would become `n`, and other characters would become `-`. This is the default setting if no mask characters are present. Set a given mask character to NULL to prevent any masking of that character type. +
 
 *Other types of `MASK` Functions:* +
-KSQL offers a variety of different masking functions that allow you to mask the farthest or nearest _x_ number of characters on right or left. Check out the KSQL documentation link:https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/scalar-functions/#mask[*link here*,window=_blank] for more information.
+ksqlDB offers a variety of different masking functions that allow you to mask the farthest or nearest _x_ number of characters on right or left. Check out the https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/scalar-functions/#mask[*ksqlDB documentation*,window=_blank] for more information.
 ====

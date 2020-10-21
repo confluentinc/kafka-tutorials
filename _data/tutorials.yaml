@@ -470,7 +470,7 @@ masking-data:
   title: "Masking data"
   meta-description: "Masking data"
   slug: "/masking-data"
-  question: "If I have a Kafka topic, how do I continuously mask a set of fields?"
+  question: "How can I mask fields in my Kafka topic?"
   introduction: "Suppose you have a topic that contains personally identifiable information (PII), we'll write a program to persist the events in the original topic to a new Kafka topic with the PII removed or obfuscated."
   status:
     ksql: enabled
