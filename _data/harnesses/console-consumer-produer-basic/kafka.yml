@@ -1,3 +1,16 @@
+answer:
+  steps:
+    - title: Console producer
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-produer-basic/kafka/markup/answer/produce.adoc
+    - title: Console consumer
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-produer-basic/kafka/markup/answer/consume.adoc
+
 dev:
   steps:
     - title: Initialize the project

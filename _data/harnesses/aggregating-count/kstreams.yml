@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title: count() method
+      content:
+        - action: skip
+          render:
+            file: tutorials/aggregating-count/kstreams/markup/answer/count-method.adoc
+
 dev:
   steps:
     - title: Initialize the project

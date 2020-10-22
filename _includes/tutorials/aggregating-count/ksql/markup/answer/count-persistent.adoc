@@ -1,0 +1,3 @@
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/aggregating-count/ksql/code/tutorial-steps/dev/persistent-query.sql %}</code></pre>
++++++

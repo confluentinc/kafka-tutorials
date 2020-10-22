@@ -21,9 +21,9 @@ public KafkaConsumerApplication(final Consumer<String, String> consumer,
 }
 ----
 
-<1> Here you're suppling instances of the `Consumer` and `ConsumerRecordsHandler` via constructor parameters.
+<1> Here you're supplying instances of the `Consumer` and `ConsumerRecordsHandler` via constructor parameters.
 
-By using interfaces vs. concreate implentations you can more easily test the `KafkaConsumerApplication` class by swapping in a `MockConsumer` for the test.  We'll cover testing in an upcoming section.  Also, interfaces make it simple to change `ConsumerRecord` handling at run-time.
+By using interfaces vs. concrete implementations you can more easily test the `KafkaConsumerApplication` class by swapping in a `MockConsumer` for the test.  We'll cover testing in an upcoming section.  Also, interfaces make it simple to change `ConsumerRecord` handling at run-time.
 
 In this tutorial you'll inject the dependencies in the `KafkaConsumerApplication.main()` method, but in practice you may want to use a dependency injection framework library, such as the  https://spring.io/projects/spring-framework[Spring Framework].
 
