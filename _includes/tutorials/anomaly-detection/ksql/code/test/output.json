@@ -1,84 +1,77 @@
 {
   "outputs": [
     {
-      "topic": "rated_movies",
-      "key": 294,
+      "topic": "suspicious_transactions",
       "value": {
-        "TITLE": "Die Hard",
-        "RELEASE_YEAR": 1998,
-        "RATING": 8.2
+        "TXN_ID": 9900,
+        "USERNAME": "Abby Normal",
+        "RECIPIENT": "Verizon",
+        "AMOUNT": 22.0,
+        "TIMESTAMP": "2020-10-20 13:05:36"
       }
     },
     {
-      "topic": "rated_movies",
-      "key": 294,
+      "topic": "suspicious_transactions",
       "value": {
-        "TITLE": "Die Hard",
-        "RELEASE_YEAR": 1998,
-        "RATING": 8.5
+        "TXN_ID": 9903,
+        "USERNAME": "Abby Normal",
+        "RECIPIENT": "Verizon",
+        "AMOUNT": 61.0,
+        "TIMESTAMP": "2020-10-20 13:31:02"
       }
     },
     {
-      "topic": "rated_movies",
-      "key": 354,
+      "topic": "suspicious_transactions",
       "value": {
-        "TITLE": "Tree of Life",
-        "RELEASE_YEAR": 2011,
-        "RATING": 9.9
+        "TXN_ID": 9901,
+        "USERNAME": "Abby Normal",
+        "RECIPIENT": "Spirit Halloween",
+        "AMOUNT": 83.0,
+        "TIMESTAMP": "2020-10-20 13:44:41"
       }
     },
     {
-      "topic": "rated_movies",
-      "key": 354,
+      "topic": "suspicious_transactions",
       "value": {
-        "TITLE": "Tree of Life",
-        "RELEASE_YEAR": 2011,
-        "RATING": 9.7
+        "TXN_ID": 9902,
+        "USERNAME": "Abby Normal",
+        "RECIPIENT": "Spirit Halloween",
+        "AMOUNT": 46.0,
+        "TIMESTAMP": "2020-10-20 13:44:43"
       }
     },
     {
-      "topic": "rated_movies",
-      "key": 782,
+      "topic": "suspicious_transactions",
       "value": {
-        "TITLE": "A Walk in the Clouds",
-        "RELEASE_YEAR": 1995,
-        "RATING": 7.8
+        "TXN_ID": 9904,
+        "USERNAME": "Abby Normal",
+        "RECIPIENT": "Spirit Halloween",
+        "AMOUNT": 49.0,
+        "TIMESTAMP": "2020-10-20 13:44:44"
       }
     },
     {
-      "topic": "rated_movies",
-      "key": 782,
+      "topic": "suspicious_transactions",
       "value": {
-        "TITLE": "A Walk in the Clouds",
-        "RELEASE_YEAR": 1995,
-        "RATING": 7.7
+        "TXN_ID": 7,
+        "USERNAME": "Victor von Frankenstein",
+        "RECIPIENT": "Verizon",
+        "AMOUNT": 100.0,
+        "TIMESTAMP": "2020-10-20 13:55:06"
       }
     },
     {
-      "topic": "rated_movies",
-      "key": 128,
+      "topic": "accounts_to_monitor",
+      "key": "Abby Normal",
+      "window": {
+        "start": 1603152000000,
+        "end": 1603238400000,
+        "type": "time"
+      },
       "value": {
-        "TITLE": "The Big Lebowski",
-        "RELEASE_YEAR": 1998,
-        "RATING": 8.7
-      }
-    },
-    {
-      "topic": "rated_movies",
-      "key": 128,
-      "value": {
-        "TITLE": "The Big Lebowski",
-        "RELEASE_YEAR": 1998,
-        "RATING": 8.4
-      }
-    },
-    {
-      "topic": "rated_movies",
-      "key": 780,
-      "value": {
-        "TITLE": "Super Mario Bros.",
-        "RELEASE_YEAR": 1993,
-        "RATING": 2.1
+        "USERNAME": "Abby Normal",
+        "WINDOW_START": "2020-10-20 00:00:00 +0000",
+        "WINDOW_END": "2020-10-21 00:00:00 +0000"
       }
     }
   ]
