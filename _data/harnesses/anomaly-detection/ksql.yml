@@ -35,7 +35,7 @@ dev:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 20
+          column_width: 25
           render:
             file: tutorials/anomaly-detection/ksql/markup/dev/start-cli.adoc
           stdin:
@@ -47,17 +47,17 @@ dev:
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/create-transactions-stream.adoc
 
-            - file: tutorial-steps/dev/populate-transactions.sql
+            - file: tutorial-steps/dev/set-properties.sql
               render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/populate-transactions.adoc
+                file: tutorials/anomaly-detection/ksql/markup/dev/set-properties.adoc
 
             - file: tutorial-steps/dev/populate-suspicious-names.sql
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/populate-suspicious-names.adoc
 
-            - file: tutorial-steps/dev/set-properties.sql
+            - file: tutorial-steps/dev/populate-transactions.sql
               render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/set-properties.adoc
+                file: tutorials/anomaly-detection/ksql/markup/dev/populate-transactions.adoc
 
             - file: tutorial-steps/dev/create-suspicious-transactions-stream.sql
               render:

@@ -1,5 +1,15 @@
-Using the list of suspicious destination names for transactions, create a new stream of events containing transactions that were sent to an account name contained in the SUSPICIOUS_NAMES list:
+Using the table of suspicious names and stream of transactions, create a new stream of events containing transactions that were sent to an account name contained in the 'suspicious_names' table. We can do this by performing an `INNER JOIN`. In this case the `INNER JOIN` will couple events in the transaction stream where the "recipient" is the same as "company_name" in the suspicious_names table. The stream created below will continuously be populated by the coupled events created by the query.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/create-suspicious-transactions-stream.sql %}</code></pre>
 +++++
+
+[NOTE]
+.Stream-Table Joins
+====
+*Things to note:* +
+- ksqlDB only supports INNER and LEFT joins between a stream and a table. See link:https://kafka-tutorials.confluent.io/join-a-stream-to-a-table/ksql.html[*Join a stream and a table together*] for a `LEFT JOIN` example. +
+- Stream-table joins cause data re-partitioning of the stream only if the stream was marked for re-partitioning. +
+- It is important for the table data to be loaded _before_ the stream event is received. +
+- See more detailed link:https://docs.ksqldb.io/en/latest/developer-guide/joins/join-streams-and-tables/#stream-table-joins[*ksqlDB `JOIN` documentation*].
+====

@@ -1,10 +1,10 @@
-Inspect the new stream, and note that all the transactions are to one of the companies present in the SUSPICIOIUS_ACCOUNTS table:
+Inspect the new stream.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/find-suspicious-transactions.sql %}</code></pre>
 +++++
 
-TODO fill this in about the output that was expected
+Note that some of the transactions we inserted earlier were to companies that we flagged as possibly suspicious.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/find-suspicious-transactions-output.log %}</code></pre>

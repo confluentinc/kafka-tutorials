@@ -1,4 +1,4 @@
-TODO PUT STUFF HERE
+Let's add some suspicious names data.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/populate-suspicious-names.sql %}</code></pre>

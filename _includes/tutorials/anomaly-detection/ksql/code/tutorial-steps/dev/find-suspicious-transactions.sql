@@ -1,4 +1,4 @@
 SELECT TXN_ID, USERNAME, RECIPIENT, AMOUNT
-     FROM suspicious_transactions
-     EMIT CHANGES
-     LIMIT 5;
+FROM suspicious_transactions
+EMIT CHANGES
+LIMIT 6;
