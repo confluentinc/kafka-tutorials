@@ -12,8 +12,8 @@ plugins {
   id "java"
   id "application"
   id "idea"
-  id "com.google.cloud.tools.jib" version "2.5.1"
-  id "com.github.johnrengelman.shadow" version "6.0.0"
+  id "com.google.cloud.tools.jib" version "2.6.0"
+  id "com.github.johnrengelman.shadow" version "6.1.0"
   id "com.google.protobuf" version "0.8.13"
 }
 
@@ -42,7 +42,7 @@ dependencies {
   implementation 'com.google.code.gson:gson:2.8.6'
 
   testImplementation "org.apache.kafka:kafka-streams-test-utils:2.5.0"
-  testImplementation 'junit:junit:4.13'
+  testImplementation 'junit:junit:4.13.1'
   testImplementation 'org.assertj:assertj-core:3.17.2'
 }
 

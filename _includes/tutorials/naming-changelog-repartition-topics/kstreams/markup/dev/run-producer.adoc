@@ -13,7 +13,7 @@ Open a new terminal and start the console-producer
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/console-producer.sh %}</code></pre>
 +++++
 
-Then copy-paste the following records to send.  The data is formatted this way becuase the Kafka Streams application will create a key from the first character.
+Then copy-paste the following records to send.  The data is formatted this way because the Kafka Streams application will create a key from the first character.
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/input.txt %}</code></pre>

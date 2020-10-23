@@ -2,14 +2,14 @@
 version: '2'
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:5.5.1
+    image: confluentinc/cp-zookeeper:6.0.0
     container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 
   broker:
-    image: confluentinc/cp-kafka:5.5.1
+    image: confluentinc/cp-kafka:6.0.0
     container_name: broker
     depends_on:
       - zookeeper
@@ -91,7 +91,7 @@ services:
         # mkdir -p /usr/share/confluent-hub-components/
         # confluent-hub install --no-prompt --component-dir /usr/share/confluent-hub-components/ confluentinc/kafka-connect-datagen:0.3.3
         # ------ hack to workaround absence of confluent-hub client
-        curl https://d1i4a15mxbxib1.cloudfront.net/api/plugins/confluentinc/kafka-connect-datagen/versions/0.3.3/confluentinc-kafka-connect-datagen-0.3.3.zip -o /tmp/kafka-connect-datagen.zip
+        curl https://d1i4a15mxbxib1.cloudfront.net/api/plugins/confluentinc/kafka-connect-datagen/versions/0.4.0/confluentinc-kafka-connect-datagen-0.4.0.zip -o /tmp/kafka-connect-datagen.zip
         yum install -y unzip
         unzip /tmp/kafka-connect-datagen.zip -d /usr/share/java/kafka-connect-datagen
         # ----------------------------------------------------------

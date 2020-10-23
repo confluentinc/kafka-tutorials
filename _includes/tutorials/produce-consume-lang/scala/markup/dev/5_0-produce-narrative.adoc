@@ -9,7 +9,7 @@ Add the following class in the file
 %}</code></pre>
 +++++
 
-Lets's describe the key sections of the producer code.
+Let's describe the key sections of the producer code.
 
 NOTE: The producer application loads its configuration from the _producer_ block of the `application.conf`
 
@@ -46,7 +46,7 @@ In order to utilize the `Producer#produce` function, we construct an instance of
 - The `KafkaProducer` has types parameter corresponding to its key and value types. Its constructor takes
 serializer / deserializers with the same types.
 
-- As described above, we utilze the `reflectionSerializer4S[T]` for our `Serializer[Book]` which is configured to
+- As described above, we utilize the `reflectionSerializer4S[T]` for our `Serializer[Book]` which is configured to
 connect to the Schema Registry.
 
 - Our Kafka records do not have keys and will always be null, so we choose an arbitrary type such `Bytes`

@@ -96,6 +96,12 @@
         </div>
       </div>
 
+      <div class="tutorial-markup">
+        {% unless page.help_wanted %}
+        {% include tutorial-content-answer.html %}
+        {% endunless %}
+      </div>
+
       {% if site.data.harnesses[page.static_data][page.stack].dev %}
       <div class="columns">
         <div class="column is-5">

@@ -20,6 +20,11 @@ promotions:
         branch:
           - ^master$
 
+  - name: Stage PRs for review
+    pipeline_file: pr-staging-deploy.yml
+    auto_promote:
+      when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot\.'"
+
 blocks:
   - name: Build the website
     task:
@@ -34,7 +39,7 @@ blocks:
       jobs:
         - name: Compile with Jekyll
           commands:
-            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH/$SEMAPHORE_GIT_SHA"
+            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH"
             - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
@@ -58,11 +63,13 @@ blocks:
     task:
       secrets:
         - name: aws_credentials
+        - name: dockerhub-semaphore-cred
       prologue:
         commands:
           - checkout
           - >
             aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
+          - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
           - sudo pip3 install -e harness_runner/
           - >
             find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
@@ -171,18 +178,20 @@ blocks:
         - name: Kafka produce and consume in Scala
           commands:
             - make -C _includes/tutorials/produce-consume-lang/scala/code tutorial
-  
+
   - name: Run second block of tests
     execution_time_limit:
       minutes: 10
     task:
       secrets:
         - name: aws_credentials
+        - name: dockerhub-semaphore-cred
       prologue:
         commands:
           - checkout
           - >
             aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
+          - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
           - sudo pip3 install -e harness_runner/
           - >
             find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
@@ -308,3 +317,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
 
+        - name: KSQL masking data tests
+          commands:
+            - make -C _includes/tutorials/masking-data/ksql/code tutorial

@@ -1,8 +1,8 @@
 plugins {
     id "java"
     id "application"
-    id "com.google.cloud.tools.jib" version "2.5.1"
-    id "com.github.johnrengelman.shadow" version "6.0.0"
+    id "com.google.cloud.tools.jib" version "2.6.0"
+    id "com.github.johnrengelman.shadow" version "6.1.0"
     id "com.commercehub.gradle.plugin.avro" version "0.17.0"
 }
 
@@ -30,7 +30,7 @@ dependencies {
     implementation group: 'org.apache.kafka', name: 'kafka-streams', version: '2.5.0'
     implementation group: 'io.confluent', name: 'kafka-streams-avro-serde', version: '5.5.1'
 
-    testImplementation "junit:junit:4.13"
+    testImplementation "junit:junit:4.13.1"
     testImplementation "org.apache.kafka:kafka-streams-test-utils:2.5.0"
     testImplementation "com.github.grantwest.eventually:hamcrest-eventually-matchers:0.0.3"
 
