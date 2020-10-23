@@ -1,5 +1,4 @@
-First, you'll need to create a Kafka topic and table to represent the suspicious names reference data. TODO: talk about why we are using a table for this
-The following creates both in one shot:
+First, you will need to create a ksqlDB table and Kafka topic to represent the suspicious names data. A table is more fitting for this suspicious names data because it is a mutable collection that changes over time. We may want to add company names to this table or remove them in the future.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/create-suspicious-names-table.sql %}</code></pre>
