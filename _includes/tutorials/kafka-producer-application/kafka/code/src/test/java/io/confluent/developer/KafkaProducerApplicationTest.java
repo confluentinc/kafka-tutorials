@@ -32,7 +32,7 @@ public class KafkaProducerApplicationTest {
         final List<KeyValue<String, String>> expectedList = Arrays.asList(KeyValue.pair("foo", "bar"),
             KeyValue.pair("bar", "foo"),
             KeyValue.pair("baz", "bar"),
-            KeyValue.pair("NO-KEY","great:weather"));
+            KeyValue.pair(null,"great:weather"));
 
         final List<KeyValue<String, String>> actualList = mockProducer.history().stream().map(this::toKeyValue).collect(Collectors.toList());
 

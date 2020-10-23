@@ -1,8 +1,8 @@
 You're all down now!
 
-Go back to your open windows and stop any console consumers with a `CTRL+C` then close the containter shells with a `CTRL+D` command.
+Go back to your open windows and stop any console consumers with a `CTRL+C` then close the container shells with a `CTRL+D` command.
 
-Then you can shut down the docker containter by running:
+Then you can shut down the docker container by running:
 
 +++++
 <pre class="snippet"><code class="groovy">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/kafka/code/tutorial-steps/dev/clean-up.sh %}</code></pre>

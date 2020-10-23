@@ -18,7 +18,7 @@ The heart of this tutorial is a simple one liner. You'll take an existing `KStre
 </pre>
 ++++
 
-The rest of this Kafka Streams appliction simply writes the incoming records back out to a topic.  In the subsequent tutorial steps you'll use a console consumer to observe the differences between a record stream and a changelog stream.
+The rest of this Kafka Streams application simply writes the incoming records back out to a topic.  In the subsequent tutorial steps you'll use a console consumer to observe the differences between a record stream and a changelog stream.
 
 Now go ahead and create the following file at `src/main/java/io/confluent/developer/StreamsToTable.java`.
 +++++
