@@ -6,6 +6,7 @@ import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
+import org.apache.kafka.clients.producer.Callback;
 import org.apache.kafka.common.serialization.StringSerializer;
 
 import java.io.FileInputStream;
@@ -30,7 +31,7 @@ public class KafkaProducerApplication {
         outTopic = topic;
     }
 
-    public Future<RecordMetadata> produce(final String message) {
+    public void produce(final String message) {
         final String[] parts = message.split("-");
         final String key, value;
         if (parts.length > 1) {
@@ -41,7 +42,16 @@ public class KafkaProducerApplication {
             value = parts[0];
         }
         final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(outTopic, key, value);
-        return producer.send(producerRecord);
+        producer.send(producerRecord,
+            new Callback() {
+                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                    if(e != null) {
+                       e.printStackTrace();
+                    } else {
+                      System.out.println("Record written to topic " + recordMetadata.topic() + " partition " + recordMetadata.partition() + " offset " + recordMetadata.offset());
+                    }
+                }
+            });
     }
 
     public void shutdown() {
@@ -55,21 +65,6 @@ public class KafkaProducerApplication {
         input.close();
 
         return envProps;
-    }
-
-    public void printMetadata(final Collection<Future<RecordMetadata>> metadata,
-                              final String fileName) {
-        System.out.println("Offsets and timestamps committed in batch from " + fileName);
-        metadata.forEach(m -> {
-            try {
-                final RecordMetadata recordMetadata = m.get();
-                System.out.println("Record written to offset " + recordMetadata.offset() + " timestamp " + recordMetadata.timestamp() + " partition " + recordMetadata.partition());
-            } catch (InterruptedException | ExecutionException e) {
-                if (e instanceof InterruptedException) {
-                    Thread.currentThread().interrupt();
-                }
-            }
-        });
     }
 
     public static void main(String[] args) throws Exception {
@@ -95,12 +90,10 @@ public class KafkaProducerApplication {
         String filePath = args[1];
         try {
             List<String> linesToProduce = Files.readAllLines(Paths.get(filePath));
-            List<Future<RecordMetadata>> metadata = linesToProduce.stream()
-                    .filter(l -> !l.trim().isEmpty())
-                    .map(producerApp::produce)
-                    .collect(Collectors.toList());
-            producerApp.printMetadata(metadata, filePath);
-
+            linesToProduce.stream()
+                          .filter(l -> !l.trim().isEmpty())
+                          .forEach(producerApp::produce);
+            System.out.println("Offsets and timestamps committed in batch from " + filePath);
         } catch (IOException e) {
             System.err.printf("Error reading file %s due to %s %n", filePath, e);
         } finally {
