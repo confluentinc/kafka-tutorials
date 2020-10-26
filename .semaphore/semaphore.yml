@@ -317,6 +317,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/masking-data/ksql/code tutorial
             
-        - name: KSQL detecting abnormal transactions tests
+        - name: KSQL anomaly detection tests
           commands:
             - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial

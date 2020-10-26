@@ -1,5 +1,7 @@
-First, you will need to create a ksqlDB table and Kafka topic to represent the suspicious names data. A table is more fitting for this suspicious names data because it is a mutable collection that changes over time. We may want to add company names to this table or remove them in the future.
+First, you will need to create a ksqlDB table and Kafka topic to represent the suspicious names data. You can create a table from a Kafka topic or derive one from an existing stream or table. In both cases, a table's underlying data is durably stored in a topic on the Kafka brokers. In this tutorial we are creating a new Kafka topic for our table. If `kafka_topic` was not specified in the query, a new Kafka topic would be created for us.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/create-suspicious-names-table.sql %}</code></pre>
 +++++
+
+A table is more fitting for this suspicious names data because it is a mutable collection that changes over time. We may want to add company names to this table or remove them in the future.

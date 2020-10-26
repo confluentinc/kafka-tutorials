@@ -12,6 +12,10 @@ CREATE TABLE accounts_to_monitor
     GROUP BY USERNAME
     HAVING COUNT(*) > 3; // <3>
 ----
-<1> The timestamps here are important, they tell us what interval of time suspicious activity occurred.
-<2> The `WINDOW TUMBLING` part of the query allows us to do an aggregation with distinct time boundaries. In this case our window is fixed at a length of 24 hours, does not allow gaps, and does not allow overlapping. Other types of windows are explained in the "Collect data over time" section of Kafka-Tutorials. If further explanation is need, checkout the link:https://docs.ksqldb.io/en/latest/concepts/time-and-windows-in-ksqldb-queries/#windows-in-sql-queries[*ksqlDB documentation about windows*]. It contains in depth descriptions and visualizations.
-<3> The last two lines of the query address how you would determine if a user had multiple suspicious transactions. This aspect of the query says, in essence, if any user has greater than 3 suspicious transactions during the window, emit an event to the accounts_to_monitor table.
++++++
+<div class="colist arabic">
+<p><i class="conum" data-value="1"></i><b>1</b> The timestamps here are important, they tell us what interval of time suspicious activity occurred.</p>
+<p><i class="conum" data-value="2"></i><b>2</b> The <code>WINDOW TUMBLING</code> part of the query allows us to do an aggregation with distinct time boundaries. In this case our window is fixed at a length of 24 hours, does not allow gaps, and does not allow overlapping. Other types of windows are explained in the "Collect data over time" section of Kafka-Tutorials. If further explanation is need, checkout the <a href="https://docs.ksqldb.io/en/latest/concepts/time-and-windows-in-ksqldb-queries/#windows-in-sql-queries"><strong>ksqlDB documentation about windows</strong></a>. It contains in depth descriptions and visualizations.</p>
+<p><i class="conum" data-value="3"></i><b>3</b> The last two lines of the query address how you would determine if a user had multiple suspicious transactions. This aspect of the query says, in essence, if any user has greater than 3 suspicious transactions during the window, emit an event to the accounts_to_monitor table. </p>
+</div>
++++++

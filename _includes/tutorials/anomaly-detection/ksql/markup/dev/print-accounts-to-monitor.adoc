@@ -13,5 +13,5 @@ The output should look like the following:
 Note that if you were to alter the `LIMIT` of results to something greater than 1, you would not see any other accounts flagged even though Victor von Frankenstein had a transaction that was flagged as suspicious. If you decided to rerun the query with a new limit, use `CTRL+D` to terminate the query. +
 
 
-This Kafka topic can be used to drive monitoring and alerting applications that could take action such as placing a hold on the account, notifying the card holder, etc. +
+Events within the Kafka topic accounts_to_monitor can be used to drive monitoring and alerting applications that could take action such as placing a hold on the account, notifying the card holder, etc. +
 Type 'exit' and hit enter to shutdown the ksqlDB cli.
