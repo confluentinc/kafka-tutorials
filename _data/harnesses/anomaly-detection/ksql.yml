@@ -40,10 +40,7 @@ dev:
 
     - title: Write the program interactively using the CLI
       content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 25
+        - action: skip
           render:
             file: tutorials/anomaly-detection/ksql/markup/dev/start-cli.adoc
 
@@ -73,10 +70,6 @@ dev:
             - file: tutorial-steps/dev/populate-transactions.sql
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/populate-transactions.adoc
-
-            - file: tutorial-steps/dev/set-properties.sql
-              render:
-                file: tutorials/anomaly-detection/ksql/markup/dev/set-properties.adoc
 
     - title: Join ksqlDB stream and table
       content:
