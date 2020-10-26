@@ -1,3 +1,9 @@
+Create a file at `src/statements.sql` with the following content that represents the statements we tested above without the test data.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/src/statements.sql %}</code></pre>
++++++
+
 Launch your statements into production by sending them to the REST API with the following command:
 
 +++++
