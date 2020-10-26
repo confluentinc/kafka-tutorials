@@ -71,6 +71,10 @@ dev:
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/populate-transactions.adoc
 
+            - file: tutorial-steps/dev/set-properties.sql
+              render:
+                file: tutorials/anomaly-detection/ksql/markup/dev/set-properties.adoc
+
     - title: Join ksqlDB stream and table
       content:
         - action: docker_ksql_cli_session
