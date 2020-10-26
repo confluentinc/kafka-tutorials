@@ -1,4 +1,4 @@
-Lastly, invoke the tests using the test runner and the statements file that you created earlier:
+Invoke the tests using the ksqlDB test runner and the statements file that you created earlier:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/test/run-tests.sh %}</code></pre>

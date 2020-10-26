@@ -489,7 +489,7 @@ anomaly-detection:
   meta-description: "Detecting abnormal events"
   slug: "/anomaly-detection"
   question: "How do I find abnormal events?"
-  introduction: "Consider a topic with events containing information about financial transactions and a table with known suspicious names. A common pattern for fraudsters is to disguise transactions under the name of a popular company, the idea being that the chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, USPS, etc., are likely to look similar and blend in.
+  introduction: "A common pattern for fraudsters is to disguise transactions under the name of a popular company, the idea being that the chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, USPS, etc., are likely to look similar and blend in.  This tutorial shows you how to identify this pattern of behavior by detecting 'abnormal' transactions that occur within a window of time
 
                  There will normally be a group of such transactions that occur within a 24-hour period. When it comes to fraud detection, financial institutions will categorize this behavior as unusual and alert their fraud team to investigate immediately."
   status:
