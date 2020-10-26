@@ -1,4 +1,4 @@
-The ksqlDB table and thus Kafka topic contain a list of accounts against which more than three suspicious transactions have taken place in a 24-hour window.
+The ksqlDB table, and the underlying Kafka topic backing this table, contain a list of accounts against which more than three suspicious transactions have taken place in a 24-hour window.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/print-accounts-to-monitor.sql %}</code></pre>
@@ -14,4 +14,5 @@ Note that if you were to alter the `LIMIT` of results to something greater than 
 
 
 Events within the Kafka topic accounts_to_monitor can be used to drive monitoring and alerting applications that could take action such as placing a hold on the account, notifying the card holder, etc. +
+
 Type 'exit' and hit enter to shutdown the ksqlDB cli.

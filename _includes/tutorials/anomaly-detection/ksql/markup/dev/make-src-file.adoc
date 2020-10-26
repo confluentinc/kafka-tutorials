@@ -1,4 +1,4 @@
-Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at `src/statements.sql` with the following content:
+Now that you have a series of statements that's doing the right thing, the last step is to put them into a file so that they can be used outside the CLI session. Create a file at `src/statements.sql` with the following content that represents the suspicious names (In production, you would likely use Kafka Connect to read the suspicious names from a database into a Kafka topic, and then create a ksqlDB stream for it).
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/src/statements.sql %}</code></pre>
