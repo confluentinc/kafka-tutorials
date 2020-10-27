@@ -116,7 +116,7 @@ dev:
     - title: Write your statements to a file
       content:
         - action: make_file
-          file: src/statements.sql
+          file: src/test-statements.sql
           render:
             file: tutorials/anomaly-detection/ksql/markup/dev/make-src-file.adoc
 
