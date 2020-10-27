@@ -16,21 +16,21 @@ After you run the previous command, the application will process the file and yo
 
 <2> This app has been assigned `ProducerId=0` (If you were to run the app again, then it would increase to `ProducerId=1`)
 
-And then you should see the output from the Producer application, which displays confirmation at which offset each record was written to:
+And then you should see the output from the Producer application, which displays confirmation at which offset each record was written to via a `Callback` lambda expression:
 
 [source, text]
 ----
 Offsets and timestamps committed in batch from input.txt
-Record written to topic myTopic partition 0 offset 0
-Record written to topic myTopic partition 0 offset 1
-Record written to topic myTopic partition 0 offset 2
-Record written to topic myTopic partition 0 offset 3
-Record written to topic myTopic partition 0 offset 4
-Record written to topic myTopic partition 0 offset 5
-Record written to topic myTopic partition 0 offset 6
-Record written to topic myTopic partition 0 offset 7
-Record written to topic myTopic partition 0 offset 8
-Record written to topic myTopic partition 1 offset 0
-Record written to topic myTopic partition 1 offset 1
-Record written to topic myTopic partition 1 offset 2
+key/value a/1   written to topic[partition] myTopic[0] at offset 0
+key/value b/2   written to topic[partition] myTopic[0] at offset 1
+key/value c/3   written to topic[partition] myTopic[0] at offset 2
+key/value a/5   written to topic[partition] myTopic[0] at offset 3
+key/value b/6   written to topic[partition] myTopic[0] at offset 4
+key/value c/7   written to topic[partition] myTopic[0] at offset 5
+key/value a/9   written to topic[partition] myTopic[0] at offset 6
+key/value b/10  written to topic[partition] myTopic[0] at offset 7
+key/value c/11  written to topic[partition] myTopic[0] at offset 8
+key/value d/4   written to topic[partition] myTopic[1] at offset 0
+key/value d/8   written to topic[partition] myTopic[1] at offset 1
+key/value d/12  written to topic[partition] myTopic[1] at offset 2
 ----

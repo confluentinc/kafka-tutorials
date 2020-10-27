@@ -43,15 +43,14 @@ public class KafkaProducerApplication {
         }
         final ProducerRecord<String, String> producerRecord = new ProducerRecord<>(outTopic, key, value);
         producer.send(producerRecord,
-            new Callback() {
-                public void onCompletion(RecordMetadata recordMetadata, Exception e) {
+                (recordMetadata, e) -> {
                     if(e != null) {
                        e.printStackTrace();
                     } else {
-                      System.out.println("Record written to topic " + recordMetadata.topic() + " partition " + recordMetadata.partition() + " offset " + recordMetadata.offset());
+                      System.out.println("key/value " + key + "/" + value + "\twritten to topic[partition] " + recordMetadata.topic() + "[" + recordMetadata.partition() + "] at offset " + recordMetadata.offset());
                     }
                 }
-            });
+            );
     }
 
     public void shutdown() {
