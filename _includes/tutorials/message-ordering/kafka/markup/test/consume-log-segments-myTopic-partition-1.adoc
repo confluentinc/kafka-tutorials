@@ -11,4 +11,4 @@ You should see:
 +++++
 
 The `producerId` is the same as shown in the log output from the previous partition, because it is the same producer application with the same producer ID.
-The sequence numbers are unique to this partition, starting with `sequence: 0` through `sequence: 2`.
+The sequence numbers in this partition are unique and unrelated to the other partition, so these records have `sequence: 0` through `sequence: 2`.
