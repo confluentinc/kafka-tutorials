@@ -465,6 +465,16 @@ kafka-streams-schedule-operations:
     scala: disabled
     swift: disabled
 
+message-ordering:
+  title: "How to maintain message ordering and no message duplication"
+  meta-description: "How to maintain message ordering and no message duplication"
+  slug: "/message-ordering"
+  question: "How can I maintain the order of messages and prevent message duplication in a Kafka topic partition?"
+  introduction: "If your application needs to maintain ordering of messages with no duplication, you can enable your Apache Kafka producer for idempotency. An idempotent producer has a unique producer ID and uses sequence IDs for each message, which allows the broker to ensure it is committing ordered messages with no duplication, on a per partition basis."
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
 
 masking-data:
   title: "Masking data"
