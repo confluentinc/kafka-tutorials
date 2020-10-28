@@ -312,6 +312,10 @@ blocks:
         - name: KStreams Test Streams schedule operations tests
           commands:
             - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
+        
+        - name: Kafka Message Ordering tests
+          commands:
+            - make -C _includes/tutorials/message-ordering/kafka/code tutorial
 
         - name: KSQL masking data tests
           commands:
@@ -320,3 +324,4 @@ blocks:
         - name: KSQL anomaly detection tests
           commands:
             - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
+            
