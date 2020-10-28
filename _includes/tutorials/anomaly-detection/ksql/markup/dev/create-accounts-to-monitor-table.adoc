@@ -1,4 +1,4 @@
-For this use case, let's say that a single transaction to one of the companies in the suspicious_names table is probably okay, but multiple transactions to one or more of those companies in a 24-hour period is an anomaly. ksqlDB gives us the ability to see if any anomalies are present for a particular user with the following query.
+For this use case, let's say that a single transaction to one of the companies in the suspicious_names table is probably okay, but multiple transactions to one or more of those companies in a 24-hour period is an anomaly. ksqlDB gives us the ability to see if any anomalies are present for a particular user with the following query. Create the accounts_to_monitor table by copying and pasting the content below into the ksqlDB CLI.
 
 [source,sql]
 ----
