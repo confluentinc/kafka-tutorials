@@ -1,0 +1,11 @@
+Inspect the new stream.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/ksql-nested-json/ksql/code/tutorial-steps/dev/find-suspicious-transactions.sql %}</code></pre>
++++++
+
+Note that some of the transactions we inserted earlier were to companies that are in the suspicious names table.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/ksql-nested-json/ksql/code/tutorial-steps/dev/find-suspicious-transactions-output.log %}</code></pre>
++++++

@@ -525,3 +525,22 @@ anomaly-detection:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+ksql-nested-json:
+  title: "Working with nested JSON in ksqlDB"
+  meta-description: "Working with nested JSON in ksqlDB"
+  slug: "/ksqldb-working-with-nested-json"
+  question: "How can I access nested JSON in my ksqlDB query?"
+  introduction: "Suppose you use JSON format in your topics.  You have some nested JSON structures and you'd like to access from your ksqlDB query without having to update or otherwise change the JSON"
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled

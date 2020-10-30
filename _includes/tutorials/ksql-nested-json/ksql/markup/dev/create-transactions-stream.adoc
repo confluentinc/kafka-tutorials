@@ -1,0 +1,5 @@
+Likewise, you'll need a ksqlDB stream and Kafka topic to represent transaction events. The transaction information includes the identifier, the user sending the money, the name of the recipient, the amount of money sent, and the time of the transaction. Since this data represents a historical sequence of events, a stream is most appropriate.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/ksql-nested-json/ksql/code/tutorial-steps/dev/create-transactions-stream.sql %}</code></pre>
++++++
