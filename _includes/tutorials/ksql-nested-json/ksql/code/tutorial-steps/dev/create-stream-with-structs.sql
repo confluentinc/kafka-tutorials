@@ -11,7 +11,7 @@ CREATE STREAM financial_report (
                                                   ticker VARCHAR, 
                                                   id VARCHAR, 
                                                   address VARCHAR>>)     
- WITH (KAFKA_TOPIC='fin_txns',
+ WITH (KAFKA_TOPIC='financial_txns',
        VALUE_FORMAT='JSON',
        TIMESTAMP='txn_ts',
        TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ssX',
