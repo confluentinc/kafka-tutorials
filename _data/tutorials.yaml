@@ -465,3 +465,53 @@ kafka-streams-schedule-operations:
     scala: disabled
     swift: disabled
 
+message-ordering:
+  title: "How to maintain message ordering and no message duplication"
+  meta-description: "How to maintain message ordering and no message duplication"
+  slug: "/message-ordering"
+  question: "How can I maintain the order of messages and prevent message duplication in a Kafka topic partition?"
+  introduction: "If your application needs to maintain ordering of messages with no duplication, you can enable your Apache Kafka producer for idempotency. An idempotent producer has a unique producer ID and uses sequence IDs for each message, which allows the broker to ensure it is committing ordered messages with no duplication, on a per partition basis."
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+
+masking-data:
+  title: "Masking data"
+  meta-description: "Masking data"
+  slug: "/masking-data"
+  question: "How can I mask fields in my Kafka topic?"
+  introduction: "Suppose you have a topic that contains personally identifiable information (PII), we'll write a program to persist the events in the original topic to a new Kafka topic with the PII removed or obfuscated."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
+anomaly-detection:
+  title: "Anomaly detection"
+  meta-description: "Anomaly detection"
+  slug: "/anomaly-detection"
+  question: "If I have time-series events in a Kafka topic, how do I find anomalous events?"
+  introduction: "A common pattern for fraudsters is to disguise transactions under the name of a popular company, the idea being that the chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, USPS, etc., are likely to look similar and blend in.  This tutorial shows you how to identify this pattern of behavior by detecting 'abnormal' transactions that occur within a window of time
+
+                 There will normally be a group of such transactions that occur within a 24-hour period. When it comes to fraud detection, financial institutions will categorize this behavior as unusual and alert their fraud team to investigate immediately. Other example use cases include detecting atm fraud or unusual credit card activity."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled

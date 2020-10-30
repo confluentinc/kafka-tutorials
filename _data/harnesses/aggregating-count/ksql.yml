@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title: Persistent query using COUNT
+      content:
+        - action: skip
+          render:
+            file: tutorials/aggregating-count/ksql/markup/answer/count-persistent.adoc
+
 dev:
   steps:
     - title: Initialize the project

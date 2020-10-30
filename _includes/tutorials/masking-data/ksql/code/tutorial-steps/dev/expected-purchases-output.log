@@ -1,0 +1,11 @@
++--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+|ORDER_ID            |CUSTOMER_NAME       |DATE_OF_BIRTH       |PRODUCT             |ORDER_TOTAL_USD     |TOWN                |COUNTRY             |
++--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+|1                   |Britney             |02/29/2000          |Heart Rate Monitor  |119.93              |Denver              |USA                 |
+|2                   |Michael             |06/08/1981          |Foam Roller         |34.95               |Los Angeles         |USA                 |
+|3                   |Kimmy               |05/19/1978          |Hydration Belt      |50.0                |Tuscan              |USA                 |
+|4                   |Samantha            |08/05/1983          |Wireless Headphones |175.93              |Tulsa               |USA                 |
+|5                   |Jonathon            |01/31/1981          |Comfort Insoles     |49.95               |Portland            |USA                 |
+|6                   |Raymond             |07/29/2001          |Running Beanie      |13.73               |Omaha               |USA                 |
+Limit Reached
+Query terminated

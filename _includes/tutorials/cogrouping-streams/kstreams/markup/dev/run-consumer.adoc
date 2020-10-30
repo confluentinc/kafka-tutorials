@@ -4,7 +4,7 @@
 
 ////
 
-Now that you have sent the login events, let's run a conusmer to read the cogrouped output from your streams application
+Now that you have sent the login events, let's run a consumer to read the cogrouped output from your streams application
 
 
 +++++
