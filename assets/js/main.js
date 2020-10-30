@@ -49,5 +49,12 @@ $(function() {
         $('#show a').text($('#show a').text() == 'More' ? 'Less' : 'More');
         $('.more').toggleClass('is-hidden');
         return false;
-    });         
+    }); 
+
+    $('#show-101 a').on('click', function(e) {
+        e.preventDefault();
+        $('#show-101 a').text($('#show-101 a').text() == 'More' ? 'Less' : 'More');
+        $('.more-101').toggleClass('is-hidden');
+        return false;
+    });             
 });
