@@ -1,21 +1,21 @@
-package io.confluent.developer
+package io.confluent.developer.produce
 
 import java.util.concurrent.Future
 
+import io.confluent.developer.Configuration
 import io.confluent.developer.Configuration.ProducerConf
 import io.confluent.developer.schema.ScalaReflectionSerde.reflectionSerializer4S
 import io.confluent.developer.schema.{Book, ScalaReflectionSerde}
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG
-
 import org.apache.kafka.clients.producer.{Callback, KafkaProducer, ProducerRecord, RecordMetadata}
 import org.apache.kafka.common.serialization.{Serdes, Serializer}
 import org.apache.kafka.common.utils.Bytes
 import org.slf4j.{Logger, LoggerFactory}
 import pureconfig.ConfigSource
 import pureconfig.generic.auto._
-
 import kantan.csv._
 import kantan.csv.ops._
+
 import scala.concurrent.duration._
 import scala.jdk.CollectionConverters._
 

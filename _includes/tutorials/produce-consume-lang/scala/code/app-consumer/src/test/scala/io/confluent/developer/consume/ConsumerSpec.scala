@@ -1,8 +1,9 @@
-package io.confluent.developer
+package io.confluent.developer.consume
 
 import java.time.LocalDate
 
 import io.confluent.developer.Configuration.{ProducerConf, TopicConf}
+import io.confluent.developer.KafkaFlatSpec
 import io.confluent.developer.schema.BookType.{Novel, Other, Tech}
 import io.confluent.developer.schema.{Book, ScalaReflectionSerde}
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG
@@ -70,7 +71,7 @@ class ConsumerSpec extends KafkaFlatSpec with ScalaReflectionSerde {
       val records: List[Book] = consumer.poll((1 second) toJava).asScala.map(_.value()).toList
 
       records should have length 3
-      records should contain only (newBook1, newBook2, newBook3)
+      records should contain theSameElementsAs(newBook1 :: newBook2 :: newBook3 :: Nil)
     }
   }
 }

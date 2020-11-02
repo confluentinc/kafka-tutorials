@@ -1,9 +1,11 @@
 The following Scala class will be the entry point of the producer application.
-Add the following class in the file `src/main/scala/io/confluent/developer/Producer.scala`
+Add the following class in the file
+
+`app-producer/src/main/scala/io/confluent/developer/produce/Producer.scala`
 
 +++++
 <pre class="snippet"><code class="java">{%
-    include_raw tutorials/produce-consume-lang/scala/code/src/main/scala/io/confluent/developer/Producer.scala
+    include_raw tutorials/produce-consume-lang/scala/code/app-producer/src/main/scala/io/confluent/developer/produce/Producer.scala
 %}</code></pre>
 +++++
 

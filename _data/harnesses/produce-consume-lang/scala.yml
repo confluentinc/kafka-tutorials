@@ -26,54 +26,49 @@ dev:
     - title: Initialize the project
       content:
         - action: make_file
-          file: build.sbt
+          file: build.gradle
           render:
             file: tutorials/produce-consume-lang/scala/markup/dev/2_0-create-build-file.adoc
 
         - action: make_file
-          file: project/build.properties
+          file: settings.gradle
           render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_1-create-properties-file.adoc
-
-        - action: make_file
-          file: project/Dependencies.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_2-create-deps-file.adoc
-
-        - action: make_file
-          file: project/plugins.sbt
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_3-create-plugins-file.adoc
+            file: tutorials/produce-consume-lang/scala/markup/dev/2_1-settings-file.adoc
 
         - action: execute
-          file: tutorial-steps/dev/sbt-extras.sh
+          file: tutorial-steps/dev/gradle-wrapper.sh
           render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_4-sbt-extras.adoc
+            file: tutorials/produce-consume-lang/scala/markup/dev/2_2-gradle-wrapper.adoc
 
         - action: execute
           file: tutorial-steps/dev/make-resources-dir.sh
           render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_5-resources-dir.adoc
+            file: tutorials/produce-consume-lang/scala/markup/dev/2_3-resources-dir.adoc
 
         - action: make_file
           file: src/main/resources/application.conf
           render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_6-add-config-file.adoc
+            file: tutorials/produce-consume-lang/scala/markup/dev/2_4-add-config-file.adoc
+
+        - action: make_file
+          file: src/main/resources/logback.xml
+          render:
+            file: tutorials/produce-consume-lang/scala/markup/dev/2_5-add-logging-conf.adoc
 
         - action: execute
           file: tutorial-steps/dev/make-sources-dir.sh
           render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_5-sources-dir.adoc
+            file: tutorials/produce-consume-lang/scala/markup/dev/2_6-sources-dir.adoc
 
         - action: make_file
           file: src/main/scala/io/confluent/developer/Configuration.scala
           render:
             file: tutorials/produce-consume-lang/scala/markup/dev/2_7-add-config-parser.adoc
 
-        - action: make_file
-          file: src/main/resources/logback.xml
+        - action: execute
+          file: tutorial-steps/dev/make-subprojects-sources-dir.sh
           render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_8-add-logging-conf.adoc
+            file: tutorials/produce-consume-lang/scala/markup/dev/2_8-subprojects-sources-dir.adoc
 
     - title: Create a schema for the events
       content:
@@ -104,7 +99,7 @@ dev:
           render:
             file: tutorials/produce-consume-lang/scala/markup/dev/3_5-utils-implicits.adoc
 
-    - title: Add the sbt helper tasks
+    - title: Add the Gradle helper tasks
       content:
         - action: execute
           file: tutorial-steps/dev/make-helper-package.sh
@@ -124,12 +119,12 @@ dev:
         - action: execute
           file: tutorial-steps/dev/run-helpers.sh
           render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/4_3-sbt-execution.adoc
+            file: tutorials/produce-consume-lang/scala/markup/dev/4_3-gradle-executions.adoc
 
     - title: Write the producer
       content:
         - action: make_file
-          file: src/main/scala/io/confluent/developer/Producer.scala
+          file: app-producer/src/main/scala/io/confluent/developer/produce/Producer.scala
           render:
             file: tutorials/produce-consume-lang/scala/markup/dev/5_0-produce-narrative.adoc
 
@@ -152,7 +147,7 @@ dev:
     - title: Write the consumer
       content:
         - action: make_file
-          file: src/main/scala/io/confluent/developer/Consumer.scala
+          file: app-consumer/src/main/scala/io/confluent/developer/consume/Consumer.scala
           render:
             file: tutorials/produce-consume-lang/scala/markup/dev/6_0-consume-narrative.adoc
 
@@ -192,20 +187,25 @@ test:
           render:
             file: tutorials/produce-consume-lang/scala/markup/test/2_0-make-test-sources-dir.adoc
 
-        - action: execute
-          file: tutorial-steps/test/make-test-sources-dir.sh
+        - action: make_file
+          file: src/test/scala/io/confluent/developer/KafkaFlatSpec.scala
           render:
             file: tutorials/produce-consume-lang/scala/markup/test/2_1-write-test-trait.adoc
 
         - action: execute
-          file: tutorial-steps/test/make-test-sources-dir.sh
+          file: tutorial-steps/test/make-subprojects-test-sources-dir.sh
           render:
-            file: tutorials/produce-consume-lang/scala/markup/test/2_2-write-produce-func-test.adoc
+            file: tutorials/produce-consume-lang/scala/markup/test/2_2-make-subprojects-test-sources-dir.adoc
 
-        - action: execute
-          file: tutorial-steps/test/make-test-sources-dir.sh
+        - action: make_file
+          file: app-producer/src/test/scala/io/confluent/developer/produce/ProducerSpec.scala
           render:
-            file: tutorials/produce-consume-lang/scala/markup/test/2_3-write-consume-func-test.adoc
+            file: tutorials/produce-consume-lang/scala/markup/test/2_3-write-produce-func-test.adoc
+
+        - action: make_file
+          file: app-consumer/src/test/scala/io/confluent/developer/consume/ConsumerSpec.scala
+          render:
+            file: tutorials/produce-consume-lang/scala/markup/test/2_4-write-consume-func-test.adoc
 
     - title: Run the tests
       content:

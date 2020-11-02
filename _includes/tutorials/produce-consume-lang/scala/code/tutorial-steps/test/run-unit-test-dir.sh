@@ -1,1 +1,1 @@
-./sbtx "-Djline.terminal=none" --error test
+./gradlew test

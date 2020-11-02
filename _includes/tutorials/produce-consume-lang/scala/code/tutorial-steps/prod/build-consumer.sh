@@ -1,1 +1,1 @@
-./sbtx "-Djline.terminal=none" --error packageConsumer
+./gradlew -p app-consumer jibDockerBuild

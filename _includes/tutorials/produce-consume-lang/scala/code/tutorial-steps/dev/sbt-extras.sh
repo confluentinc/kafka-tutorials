@@ -1,1 +1,0 @@
-curl -Ls https://git.io/sbt > ./sbtx && chmod 0755 ./sbtx
