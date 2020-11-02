@@ -20,7 +20,7 @@ promotions:
         branch:
           - ^master$
 
-  - name: Stage PRs for review
+  - name: Stage PRs for review 
     pipeline_file: pr-staging-deploy.yml
     auto_promote:
       when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot\.'"
@@ -317,6 +317,15 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
 
+        - name: Kafka Message Ordering tests
+          commands:
+            - make -C _includes/tutorials/message-ordering/kafka/code tutorial
+
         - name: KSQL masking data tests
           commands:
             - make -C _includes/tutorials/masking-data/ksql/code tutorial
+
+        - name: KSQL anomaly detection tests
+          commands:
+            - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
+
