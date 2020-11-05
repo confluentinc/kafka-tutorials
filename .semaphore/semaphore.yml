@@ -261,7 +261,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
 
-        - name: Kafka Console Consumer Produer Basics tests
+        - name: Kafka Console Consumer Producer Basics tests
           commands:
             - make -C _includes/tutorials/console-consumer-producer-basic/kafka/code tutorial
             
