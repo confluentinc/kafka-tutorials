@@ -4,12 +4,12 @@ answer:
       content:
         - action: skip
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/answer/produce.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/answer/produce.adoc
     - title: Console consumer
       content:
         - action: skip
           render:
-            file: tutorials/console-consumer-produer-basic/kafka/markup/answer/consume.adoc
+            file: tutorials/console-consumer-producer-basic/kafka/markup/answer/consume.adoc
 
 dev:
   steps:
