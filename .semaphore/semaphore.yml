@@ -261,9 +261,9 @@ blocks:
           commands:
             - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
 
-        - name: Kafka Console Consumer Produer Basics tests
+        - name: Kafka Console Consumer Producer Basics tests
           commands:
-            - make -C _includes/tutorials/console-consumer-produer-basic/kafka/code tutorial
+            - make -C _includes/tutorials/console-consumer-producer-basic/kafka/code tutorial
             
         - name: Kafka Test Kafka Console Consumer with Primitive Keys and Values tests
           commands:
@@ -297,7 +297,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
 
-        - name: Kafka Test Kafka Produer with Callbacks tests
+        - name: Kafka Test Kafka Producer with Callbacks tests
           commands:
             - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
 
