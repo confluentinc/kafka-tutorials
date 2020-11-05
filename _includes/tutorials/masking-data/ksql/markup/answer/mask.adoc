@@ -1,0 +1,5 @@
+ksqlDB has a `MASK` function that can obfuscate fields.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/masking-data/ksql/code/tutorial-steps/dev/create-purchases-pii-obfuscated.sql %}</code></pre>
++++++
