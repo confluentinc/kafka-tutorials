@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title: Use the MASK ksqlDB function
+      content:
+        - action: skip
+          render:
+            file: tutorials/masking-data/ksql/markup/answer/mask.adoc
+
 dev:
   steps:
     - title: Initialize the project
