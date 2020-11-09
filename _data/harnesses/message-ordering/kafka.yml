@@ -1,6 +1,6 @@
 answer:
   steps:
-    - title: Configure the producer for idempotency
+    - title:
       content:
         - action: skip
           render:
