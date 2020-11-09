@@ -33,7 +33,7 @@ blocks:
           - checkout
           - cache restore
           - npm install
-          - gem install bundler -​-no-document
+          - gem install bundler
           - bundle install
           - cache store
       jobs:
