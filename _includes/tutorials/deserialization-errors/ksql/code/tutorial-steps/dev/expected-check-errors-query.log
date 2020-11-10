@@ -2,9 +2,9 @@
 |ERRORMESSAGE                               |MSG                                        |CAUSE                                      |
 +-------------------------------------------+-------------------------------------------+-------------------------------------------+
 |Failed to deserialize value from topic: SEN|{"id": "1a076a64-4a84-40cb-a2e8-2190f3b3746|[Can't convert type. sourceType: TextNode, |
-|SORS_RAW                                   |5", "timestamp": "2020-01-15 02:30:30", "en|requiredType: BOOLEAN, path: $.ENABLED, Can|
-|                                           |abled": "true"}                            |'t convert type. sourceType: TextNode, requ|
-|                                           |                                           |iredType: BOOLEAN, path: .ENABLED, Can't co|
+|SORS_RAW. Can't convert type. sourceType: T |5", "timestamp": "2020-01-15 02:30:30", "en|requiredType: BOOLEAN, path: $.ENABLED, Can|
+|extNode, requiredType: BOOLEAN, path: $.ENA|abled": "true"}                            |'t convert type. sourceType: TextNode, requ|
+|BLED                                       |                                           |iredType: BOOLEAN, path: .ENABLED, Can't co|
 |                                           |                                           |nvert type. sourceType: TextNode, requiredT|
 |                                           |                                           |ype: BOOLEAN]                              |
 Limit Reached
