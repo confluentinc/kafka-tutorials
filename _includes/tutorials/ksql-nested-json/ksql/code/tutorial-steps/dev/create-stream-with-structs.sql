@@ -1,4 +1,4 @@
-CREATE STREAM financial_report (
+CREATE STREAM TRANSACTION_STREAM (
 	      id VARCHAR,
               transaction STRUCT<num_shares INT,
              	                  amount DOUBLE,
@@ -13,6 +13,4 @@ CREATE STREAM financial_report (
                                                   address VARCHAR>>)     
  WITH (KAFKA_TOPIC='financial_txns',
        VALUE_FORMAT='JSON',
-       TIMESTAMP='txn_ts',
-       TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ssX',
        PARTITIONS=1);

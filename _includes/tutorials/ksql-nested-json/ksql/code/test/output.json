@@ -1,137 +1,36 @@
 {
   "outputs": [
     {
-      "topic": "suspicious_transactions",
-      "key": "Verizon",
+      "topic": "FINANCIAL_REPORTS",
       "value": {
-        "TXN_ID": 9900,
-        "USERNAME": "Abby Normal",
-        "AMOUNT": 22.0,
-        "TIMESTAMP": "2020-10-20 13:05:36"
+        "SHARES" : 50000,
+        "CUST_ID": 1234567,
+        "SYMBOL" : "ACMC"
       }
     },
     {
-      "topic": "suspicious_transactions",
-      "key": "Verizon",
+      "topic": "FINANCIAL_REPORTS",
       "value": {
-        "TXN_ID": 9903,
-        "USERNAME": "Abby Normal",
-        "AMOUNT": 61.0,
-        "TIMESTAMP": "2020-10-20 13:31:02"
+         "SHARES" : 30000 ,
+         "CUST_ID": 8976612,
+         "SYMBOL" : "IMPC"
       }
     },
     {
-      "topic": "suspicious_transactions",
-      "key": "Spirit Halloween",
+      "topic": "FINANCIAL_REPORTS",
       "value": {
-        "TXN_ID": 9901,
-        "USERNAME": "Abby Normal",
-        "AMOUNT": 83.0,
-        "TIMESTAMP": "2020-10-20 13:44:41"
+         "SHARES" : 3000000 ,
+         "CUST_ID": 456321,
+         "SYMBOL" : "HECH" 
       }
     },
     {
-      "topic": "suspicious_transactions",
-      "key": "Spirit Halloween",
+      "topic": "FINANCIAL_REPORTS",
       "value": {
-        "TXN_ID": 9902,
-        "USERNAME": "Abby Normal",
-        "AMOUNT": 46.0,
-        "TIMESTAMP": "2020-10-20 13:44:43"
+         "SHARES" : 10000 ,
+        "CUST_ID": 333567,
+        "SYMBOL" : "PYMT" 
       }
-    },
-    {
-      "topic": "suspicious_transactions",
-      "key": "Spirit Halloween",
-      "value": {
-        "TXN_ID": 9904,
-        "USERNAME": "Abby Normal",
-        "AMOUNT": 59.0,
-        "TIMESTAMP": "2020-10-20 13:44:44"
-      }
-    },
-    {
-      "topic": "suspicious_transactions",
-      "key": "Verizon",
-      "value": {
-        "TXN_ID": 7,
-        "USERNAME": "Victor von Frankenstein",
-        "AMOUNT": 100.0,
-        "TIMESTAMP": "2020-10-20 13:55:06"
-      }
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Abby Normal",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": null,
-      "timestamp": 1603199136000
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Abby Normal",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": null,
-      "timestamp": 1603200662000
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Abby Normal",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": null,
-      "timestamp": 1603201481000
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Abby Normal",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": {
-        "WINDOW_START": "2020-10-20 00:00:00 +0000",
-        "WINDOW_END": "2020-10-21 00:00:00 +0000"
-      },
-      "timestamp": 1603201483000
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Abby Normal",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": {
-        "WINDOW_START": "2020-10-20 00:00:00 +0000",
-        "WINDOW_END": "2020-10-21 00:00:00 +0000"
-      },
-      "timestamp": 1603201484000
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Victor von Frankenstein",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": null,
-      "timestamp": 1603202106000
     }
-
   ]
 }

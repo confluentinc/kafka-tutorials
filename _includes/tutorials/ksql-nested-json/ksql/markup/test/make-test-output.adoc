@@ -1,4 +1,4 @@
-Create a file at `test/output.json` with the expected outputs. ksqlDB joins its grouping key with the window boundaries, we need to use a bit of extra expression to describe what to expect. We leverage the window key to describe the start and end boundaries that the key represents. Checkout our tutorial on link:https://kafka-tutorials.confluent.io/create-tumbling-windows/ksql.html[*tumbling windows*] for a more comprehensive explanation.
+Create a file at `test/output.json` with the expected outputs:
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/ksql-nested-json/ksql/code/test/output.json %}</code></pre>

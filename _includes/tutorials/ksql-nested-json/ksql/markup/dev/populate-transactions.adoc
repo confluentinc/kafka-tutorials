@@ -1,5 +1,0 @@
-Let's add some transaction data into our event stream.
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/ksql-nested-json/ksql/code/tutorial-steps/dev/populate-transactions.sql %}</code></pre>
-+++++

@@ -1,11 +1,10 @@
-The first thing we do is to create a stream `financial_report` based off stock purchase transactions topic `financial_txns`.  But there is an important point about the data going into the `financial_txns` topic not only in JSON format, but it's *_nested_*.  There's an `id` field but the entire transacion is a nested object which contains to nested objects `customer` and `company`.
-
+The first thing we do is to create a stream `TRANSACTION_STREAM` based off stock purchase transactions topic `financial_txns`. Within the create `STREAM` statement, you'll use a `STRUCT` keyword to define each nested object.  The `STRUCT` keyword provides a mechanism to navigate to the desired fields in your query.
 
 
 
 [source, sql]
 ----
-CREATE STREAM financial_report (
+CREATE STREAM TRANSACTION_STREAM (
 	      id VARCHAR,
               transaction STRUCT<num_shares INT,     <1>
              	                  amount DOUBLE,
@@ -20,8 +19,6 @@ CREATE STREAM financial_report (
                                                   address VARCHAR>>)
  WITH (KAFKA_TOPIC='financial_txns',
        VALUE_FORMAT='JSON',
-       TIMESTAMP='txn_ts',
-       TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ssX',
        PARTITIONS=1);
 
 ----
@@ -30,4 +27,4 @@ CREATE STREAM financial_report (
 <2> The nested customer fields
 <3> The nested company fields
 
-A table is more fitting for this suspicious names data because it is a mutable collection that changes over time. We may want to add company names to this table or remove them in the future.
+Go ahead and create the stream now by pasting this statement into the ksqlDB window you opened at the beginning of this step.  After you've created the stream, quit the ksqlDB CLI for now by typing `exit`.
