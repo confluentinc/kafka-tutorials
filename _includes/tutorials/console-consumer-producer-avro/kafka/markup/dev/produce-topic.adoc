@@ -14,7 +14,7 @@ From inside the second terminal on the schema-registry container, run the follow
 
 The producer will start and wait for you to enter input. Each line represents one Avro record and to send it you’ll hit the enter key.
 
-Try typing one line at a time, hit enter and go back to the Avro console consumer window and look for the output.
+Try copying and pasting one line at a time, hit enter and go back to the Avro console consumer window and look for the output.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/input-step-one.txt %}</code></pre>
