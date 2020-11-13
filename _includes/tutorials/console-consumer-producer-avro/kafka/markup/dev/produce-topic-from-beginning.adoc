@@ -4,7 +4,7 @@ But what if the records were produced before you started your consumer?  In that
 
 But what about reading previously sent records?  In that case, you'll add one property `--from-beginning` to the start command for the console consumer.
 
-To demonstrate reading from the beginning, close the current console consumer.
+To demonstrate reading from the beginning, close the current console consumer in the consumer terminal by typing Ctrl-C
 
 Now go back to your producer console and send the following records:
 
