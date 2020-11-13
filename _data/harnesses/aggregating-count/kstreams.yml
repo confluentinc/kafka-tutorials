@@ -1,6 +1,6 @@
 answer:
   steps:
-    - title: count() method
+    - title:
       content:
         - action: skip
           render:

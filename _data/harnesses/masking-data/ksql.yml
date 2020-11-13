@@ -1,6 +1,6 @@
 answer:
   steps:
-    - title: Use the MASK ksqlDB function
+    - title:
       content:
         - action: skip
           render:
