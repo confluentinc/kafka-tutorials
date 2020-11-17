@@ -332,4 +332,8 @@ blocks:
         - name: Kafka Consuming and Producing AVRO messages with console tools tests
           commands:
             - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
-    
+        
+        - name: KSQL Test ksqlDB nested JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
+        
