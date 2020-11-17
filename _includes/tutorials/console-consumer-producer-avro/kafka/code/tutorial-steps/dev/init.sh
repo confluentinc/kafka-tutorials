@@ -1,1 +1,1 @@
-mkdir -p console-consumer-producer-avro/schema && cd console-consumer-producer-avro
+mkdir console-consumer-producer-avro && cd console-consumer-producer-avro

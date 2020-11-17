@@ -1,0 +1,5 @@
+Before you create a schema, let's make a directory to put it in:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/make-schema-dir.sh %}</code></pre>
++++++
