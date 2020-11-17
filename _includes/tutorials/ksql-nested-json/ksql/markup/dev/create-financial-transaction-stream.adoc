@@ -1,4 +1,8 @@
-The first thing we do is to create a stream `TRANSACTION_STREAM` based off stock purchase transactions topic `financial_txns`. Within the create `STREAM` statement, you'll use a `STRUCT` keyword to define each nested object.  The `STRUCT` keyword provides a mechanism to navigate to the desired fields in your query.
+The first thing we do is to create a stream `TRANSACTION_STREAM` based off stock purchase transactions topic `financial_txns`. Within the `CREATE STREAM` statement, you'll use a `STRUCT` keyword to define each nested object.
+
+To quote the https://docs.ksqldb.io/en/latest/developer-guide/syntax-reference/#struct[ksqlDB documentation] "A struct represents strongly typed structured, or nested, data. A struct is an ordered collection of named fields that have a specific type."
+
+Please note that the example in this tutorial, the nested JSON structures have the same number fields for every transaction. If you have a situation where the nested objects contain a variable number of fields then you'll need to use the https://docs.ksqldb.io/en/latest/developer-guide/syntax-reference/#map[ksqlDB MAP function] as https://rmoff.net/2020/10/07/ksqldb-how-to-model-a-variable-number-of-fields-in-a-nested-value-struct/[described in this blog post].
 
 
 
