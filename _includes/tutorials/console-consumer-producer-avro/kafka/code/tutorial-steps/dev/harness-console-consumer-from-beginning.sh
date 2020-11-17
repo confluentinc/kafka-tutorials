@@ -1,1 +1,1 @@
-docker-compose exec broker kafka-console-consumer --topic example-topic --bootstrap-server broker:9092  --from-beginning --max-messages 8
+docker-compose exec schema-registry kafka-avro-console-consumer --topic example-topic-avro --bootstrap-server broker:9092  --from-beginning --max-messages 8

@@ -33,8 +33,14 @@ dev:
 
     - title: Create a schema
       content:
-          - action: execute
-            file:
+          - change_directory: console-consumer-producer-avro
+            action: execute
+            file: tutorial-steps/dev/make-schema-dir.sh
+            render:
+              file: tutorials/console-consumer-producer-avro/kafka/markup/dev/make-schema-dir.adoc
+
+          - action: make_file
+            file: schema/order_detail.avsc
             render:
               file: tutorials/console-consumer-producer-avro/kafka/markup/dev/create-schema.adoc
 
@@ -56,7 +62,7 @@ dev:
 
         - name: wait for consumer to read records
           action: sleep
-          ms: 5000
+          ms: 10000
           render:
             skip: true
 
@@ -73,7 +79,7 @@ dev:
       content:
         - action: execute_async
           file: tutorial-steps/dev/harness-console-consumer-from-beginning.sh
-          stdout: tutorial-steps/dev/outputs/input-step-two.txt
+          stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
           render:
             file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic-from-beginning.adoc
 
@@ -103,7 +109,7 @@ dev:
 
         - name: wait for consumer to read records
           action: sleep
-          ms: 5000
+          ms: 10000
           render:
             skip: true
 
