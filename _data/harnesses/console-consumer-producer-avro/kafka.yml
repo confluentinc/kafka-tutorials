@@ -33,7 +33,8 @@ dev:
 
     - title: Create a schema
       content:
-          - action: execute
+          - change_directory: console-consumer-producer-avro
+            action: execute
             file: tutorial-steps/dev/make-schema-dir.sh
             render:
               file: tutorials/console-consumer-producer-avro/kafka/markup/dev/make-schema-dir.adoc

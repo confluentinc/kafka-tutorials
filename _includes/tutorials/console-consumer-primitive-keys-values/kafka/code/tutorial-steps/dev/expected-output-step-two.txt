@@ -8,3 +8,4 @@
 4 : -80.832911
 4 : -2.2259418
 7 : 30.838015
+Processed a total of 10 messages
