@@ -1,1 +1,1 @@
-mkdir schema
+mkdir schemas
