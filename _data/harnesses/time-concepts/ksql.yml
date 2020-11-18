@@ -38,6 +38,35 @@ dev:
           render:
             skip: true
 
+    - title: Configure the project
+      content:
+        - action: make_file
+          file: build.gradle
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/make-build-file.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/gradle-wrapper.sh
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/make-gradle-wrapper.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/make-config-dir.adoc
+
+    - title: Create the Kafka Producer application
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-src-dir.sh
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/make-src-dir.adoc
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/KafkaProducerApplication.java
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/make-application.adoc
+
     - title: Write the program interactively using the CLI
       content:
         - action: docker_ksql_cli_session
