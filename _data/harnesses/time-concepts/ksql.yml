@@ -55,7 +55,7 @@ dev:
           render:
             file: tutorials/time-concepts/ksql/markup/dev/make-config-dir.adoc
 
-    - title: Create the Kafka Producer application
+    - title: Producer Kafka data with event time
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
@@ -66,6 +66,28 @@ dev:
           file: src/main/java/io/confluent/developer/KafkaProducerApplication.java
           render:
             file: tutorials/time-concepts/ksql/markup/dev/make-application.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/build-uberjar.sh
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/build-uberjar.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/run-dev-app.sh
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/run-dev-app.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/harness-console-consumer.sh
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/run-consumer.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
 
     - title: Write the program interactively using the CLI
       content:
