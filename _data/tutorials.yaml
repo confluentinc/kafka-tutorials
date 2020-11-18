@@ -525,3 +525,22 @@ anomaly-detection:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+time-concepts:
+  title: "Ingestion time and event time"
+  meta-description: "Ingestion time and event time"
+  slug: "/time-concepts"
+  question: "I NEED TO BE UPDATED"
+  introduction: "I NEED TO BE UPDATED"
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled

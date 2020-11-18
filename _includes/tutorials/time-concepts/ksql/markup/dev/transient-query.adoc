@@ -1,0 +1,15 @@
+With our test data and configuration parameters in place, let’s try a query to compute our ticket totals. A `SELECT` statement with an `EMIT CHANGES` in ksqlDB is called a transient push query. 
+
+Unlike a traditional database query, which returns a single result set, the query continuously streams back results. Once we stop it, it is gone and will not keep processing the input stream. That's what we're doing in this step. The counterpart to a transient query is a _persistent_ query, which we'll create a few steps from now.
+
+If you’re familiar with SQL, the text of the query itself is fairly self-explanatory. We are calculating the total number of records in each group, grouped by movie title. Note that `COUNT(TICKET_TOTAL_VALUE)` is still just counting the number of rows in the group, and is not doing any calculation based on ticket value itself. This is a standard SQL idiom that applies in ksqlDB as well.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/expected-transient-query.log %}</code></pre>
++++++

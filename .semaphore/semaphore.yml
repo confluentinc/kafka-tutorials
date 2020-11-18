@@ -333,3 +333,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
     
+        - name: KSQL Time Concepts Tutorial tests
+          commands:
+            - make -C _includes/tutorials/time-concepts/ksql/code tutorial
