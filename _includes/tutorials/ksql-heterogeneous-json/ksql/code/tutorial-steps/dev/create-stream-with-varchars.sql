@@ -1,0 +1,9 @@
+CREATE STREAM DATA_STREAM ( 
+  JSONTypeOne VARCHAR, 
+  JSONTypeTwo VARCHAR, 
+  JSONTypeThree VARCHAR
+  )   
+
+ WITH (KAFKA_TOPIC='source_data',
+       VALUE_FORMAT='JSON',
+       PARTITIONS=1);

@@ -1,0 +1,31 @@
+Let's say you have a topic `source_data`, that gets inputs from different producers, each using JSON in a different format. They each have one field in common that you want to pull out in a query and you don't care about the structure of the individual JSON objects
+
+[source, json]
+----
+{
+  "JSONTypeOne": {
+    "fieldA": "some data",
+    "numberField": 1.001,  <1>
+    "oneOnlyField": "more data",
+    "randomField": "random data"
+  },
+
+  "JSONTypeTwo": {
+    "fieldA": "data",
+    "fieldB": "b-data",
+    "numberField": 98.6.   <2>
+  },
+
+  "JSONTypeThree": {
+    "fieldA": "data",
+    "fieldB": "b-data",
+    "numberField": 98.6,  <3>
+    "fieldC": "data",
+    "fieldD": "b-data"
+  }
+----
+<1> The field you want from JSONTypeOne
+<2> The field you want from JSONTypeTwo
+<3> The field you want form JSONTypeThree
+
+The key to approaching this problem is having some way to generically model each structure, without having to know details beyond the name of the field you want to extract.

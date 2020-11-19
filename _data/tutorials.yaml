@@ -544,3 +544,23 @@ ksql-nested-json:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+ksql-heterogeneous-json:
+  title: "Working with heterogenous JSON records in ksqlDB"
+  meta-description: "Working with heterogenous JSON records in ksqlDB"
+  slug: "/ksqldb-working-with-json-different-structure"
+  question: "How do I select fields from records with different structures?"
+  introduction: "Suppose you have a topic with JSON and not all the records have the same structure.  You want to write a query that can handle the different structures and pull out specific fields "
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+    
