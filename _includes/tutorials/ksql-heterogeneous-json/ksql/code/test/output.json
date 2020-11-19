@@ -1,35 +1,35 @@
 {
   "outputs": [
     {
-      "topic": "FINANCIAL_REPORTS",
+      "topic": "SUMMARY_REPORTS",
       "value": {
-        "SHARES" : 50000,
-        "CUST_ID": 1234567,
-        "SYMBOL" : "ACMC"
+        "SPECIAL_INFO" : "more data",
+        "RUNFLD": 98.6,
+        "DESCRIPTION" : "D-data"
       }
     },
     {
-      "topic": "FINANCIAL_REPORTS",
+      "topic": "SUMMARY_REPORTS",
       "value": {
-         "SHARES" : 30000 ,
-         "CUST_ID": 8976612,
-         "SYMBOL" : "IMPC"
+         "SPECIAL_INFO" : "more data" ,
+         "RUNFLD": 99.6,
+         "DESCRIPTION" : "D-data-2"
       }
     },
     {
-      "topic": "FINANCIAL_REPORTS",
+      "topic": "SUMMARY_REPORTS",
       "value": {
-         "SHARES" : 3000000 ,
-         "CUST_ID": 456321,
-         "SYMBOL" : "HECH" 
+         "SPECIAL_INFO" : "more data" ,
+         "RUNFLD": 100.6,
+         "DESCRIPTION" : "D-data-3" 
       }
     },
     {
-      "topic": "FINANCIAL_REPORTS",
+      "topic": "SUMMARY_REPORTS",
       "value": {
-         "SHARES" : 10000 ,
-        "CUST_ID": 333567,
-        "SYMBOL" : "PYMT" 
+        "SPECIAL_INFO" : "more data" ,
+        "RUNFLD": 101.6,
+        "DESCRIPTION" : "D-data-4" 
       }
     }
   ]

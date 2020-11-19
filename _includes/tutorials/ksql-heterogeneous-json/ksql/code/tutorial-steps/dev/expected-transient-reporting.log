@@ -1,9 +1,9 @@
-+----------+----------+----------+
-|SHARES    |CUST_ID   |SYMBOL    |
-+----------+----------+----------+
-|50000     |1234567   |ACMC      |
-|30000     |8976612   |IMPC      |
-|3000000   |456321    |HECH      |
-|10000     |333567    |PYMT      |
++---------------+---------------+---------------+
+|SPECIAL_INFO   |RUNFLD         |DESCRIPTION    |
++---------------+---------------+---------------+
+|more data      |98.6           |D-data         |
+|more data      |99.6           |D-data-2       |
+|more data      |100.6          |D-data-3       |
+|more data      |101.6          |D-data-4       |
 Limit Reached
 Query terminated

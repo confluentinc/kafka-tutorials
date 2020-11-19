@@ -55,7 +55,7 @@ dev:
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
           stdout:
             directory: tutorial-steps/dev/outputs
-          column_width: 10
+          column_width: 15
           render:
             skip: true
           stdin:
@@ -82,7 +82,7 @@ dev:
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
           stdout:
             directory: tutorial-steps/dev/outputs
-          column_width: 10
+          column_width: 15
           render:
             skip: true
           stdin:

@@ -5,7 +5,7 @@ The first thing we do is to create a stream `DATA_STREAM` based off stock purcha
 CREATE STREAM DATA_STREAM (
   JSONTypeOne VARCHAR,          <1>
   JSONTypeTwo VARCHAR,          <2>
-  JSONTypeThree VARCHAR.        <3>
+  JSONTypeThree VARCHAR         <3>
   )
 
  WITH (KAFKA_TOPIC='source_data',

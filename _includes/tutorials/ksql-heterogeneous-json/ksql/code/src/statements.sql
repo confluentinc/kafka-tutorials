@@ -1,25 +1,18 @@
-CREATE STREAM TRANSACTION_STREAM (
-        id VARCHAR,
-              transaction STRUCT<num_shares INT,
-                                amount DOUBLE,
-                                txn_ts VARCHAR,
-                                customer STRUCT<first_name VARCHAR, 
-                                                last_name VARCHAR, 
-                                                id INT, 
-                                                email VARCHAR>,
-                                   company STRUCT<name VARCHAR, 
-                                                  ticker VARCHAR, 
-                                                  id VARCHAR, 
-                                                  address VARCHAR>>)     
- WITH (KAFKA_TOPIC='financial_txns',
+CREATE STREAM DATA_STREAM ( 
+  JSONTypeOne VARCHAR, 
+  JSONTypeTwo VARCHAR, 
+  JSONTypeThree VARCHAR
+  )   
+
+ WITH (KAFKA_TOPIC='source_data',
        VALUE_FORMAT='JSON',
        PARTITIONS=1);
 
 
-CREATE STREAM FINANCIAL_REPORTS AS
-    SELECT
-    TRANSACTION->num_shares AS SHARES,
-    TRANSACTION->CUSTOMER->ID as CUST_ID,
-    TRANSACTION->COMPANY->TICKER as SYMBOL
+CREATE STREAM SUMMARY_REPORTS AS
+   SELECT
+    EXTRACTJSONFIELD (JSONTypeOne, '$.oneOnlyField') AS SPECIAL_INFO,
+    CAST(EXTRACTJSONFIELD (JSONTypeTwo, '$.numberField') AS DOUBLE) AS RUNFLD,
+    EXTRACTJSONFIELD (JSONTypeThree, '$.fieldD') AS DESCRIPTION
 FROM
-    TRANSACTION_STREAM;
+    DATA_STREAM;

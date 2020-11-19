@@ -549,8 +549,8 @@ ksql-heterogeneous-json:
   title: "Working with heterogenous JSON records in ksqlDB"
   meta-description: "Working with heterogenous JSON records in ksqlDB"
   slug: "/ksqldb-working-with-json-different-structure"
-  question: "How do I select fields from records with different structures?"
-  introduction: "Suppose you have a topic with JSON and not all the records have the same structure.  You want to write a query that can handle the different structures and pull out specific fields "
+  question: "How do I select fields from records with different structures and possibly different values?"
+  introduction: "Suppose you have a topic with JSON and not all the records have the same structure and value types.  You want to write a query that can handle the different structures and pull out specific fields "
   status:
     ksql: enabled
     kstreams: disabled
