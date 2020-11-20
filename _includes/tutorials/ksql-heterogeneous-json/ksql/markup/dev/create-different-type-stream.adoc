@@ -1,4 +1,4 @@
-The first thing we do is to create a stream `DATA_STREAM` based off stock purchase transactions topic `source_data`. Within the `CREATE STREAM` statement, you'll use a `VARCHAR` keyword to define each of outer most element of the JSON types.
+The first thing we do is to create a stream `DATA_STREAM` based off the topic `source_data`. Within the `CREATE STREAM` statement, you'll use a `VARCHAR` keyword to define each of outer most element of the JSON types.
 
 [source, sql]
 ----
