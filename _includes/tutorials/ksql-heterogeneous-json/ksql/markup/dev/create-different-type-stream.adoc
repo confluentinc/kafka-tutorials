@@ -3,9 +3,9 @@ The first thing we do is to create a stream `DATA_STREAM` based off the topic `s
 [source, sql]
 ----
 CREATE STREAM DATA_STREAM (
-  JSONTypeOne VARCHAR,          <1>
-  JSONTypeTwo VARCHAR,          <2>
-  JSONTypeThree VARCHAR         <3>
+  JSONType1 VARCHAR,          <1>
+  JSONType2 VARCHAR,          <2>
+  JSONType3 VARCHAR         <3>
   )
 
  WITH (KAFKA_TOPIC='source_data',

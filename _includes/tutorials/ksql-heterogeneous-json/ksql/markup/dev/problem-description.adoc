@@ -4,7 +4,7 @@ They each have a field that you want to pull out in a query and you don't care a
 
 [source, json]
 ----
-  "JSONTypeOne": {
+  "JSONType1": {
     "fieldA": "some data",
     "numberField": 1.001,
     "oneOnlyField": "more data", <1>
@@ -15,7 +15,7 @@ They each have a field that you want to pull out in a query and you don't care a
 [source, json]
 ----
 
-  "JSONTypeTwo": {
+  "JSONType2": {
     "fieldA": "data",
     "fieldB": "b-data",
     "numberField": 98.6   <2>
@@ -25,7 +25,7 @@ They each have a field that you want to pull out in a query and you don't care a
 [source, json]
 ----
 
-  "JSONTypeThree": {
+  "JSONType3": {
     "fieldA": "data",
     "fieldB": "b-data",
     "numberField": 98.6,
@@ -33,9 +33,9 @@ They each have a field that you want to pull out in a query and you don't care a
     "fieldD": "D-data"    <3>
   }
 ----
-<1> The field you want from JSONTypeOne
-<2> The field you want from JSONTypeTwo
-<3> The field you want from JSONTypeThree
+<1> The field you want from JSONType1
+<2> The field you want from JSONType2
+<3> The field you want from JSONType3
 
 The key to approaching this problem is having some way to generically model each structure, without having to know details beyond the name of the field you want to extract.
 Since there is varying number of fields you can't use https://docs.ksqldb.io/en/latest/developer-guide/syntax-reference/#struct[the ksqlDB STRUCT] and because there is a mix of types in the values https://docs.ksqldb.io/en/latest/developer-guide/syntax-reference/#map[using the ksqlDB map function] isn't an option either.
