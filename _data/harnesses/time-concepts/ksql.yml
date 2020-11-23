@@ -80,7 +80,7 @@ dev:
             file: tutorials/time-concepts/ksql/markup/dev/make-src-dir.adoc
 
         - action: make_file
-          file: src/main/java/io/confluent/developer/KafkaProducerApplication.java
+          file: src/main/java/io/confluent/developer/KafkaProducerDevice.java
           render:
             file: tutorials/time-concepts/ksql/markup/dev/make-application.adoc
 
