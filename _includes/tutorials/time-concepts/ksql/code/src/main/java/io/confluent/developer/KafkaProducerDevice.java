@@ -86,7 +86,7 @@ public class KafkaProducerDevice {
                     if(e != null) {
                        e.printStackTrace();
                     } else {
-                      System.out.println("Record written to topic " + recordMetadata.topic() + ": payload eventTime " + record.getEventTime() + ", Kafka timestamp " + recordMetadata.timestamp());
+                      System.out.println("Record written to topic " + recordMetadata.topic() + ": payload eventTime " + record.getEventTime() + ", log timestamp " + recordMetadata.timestamp());
                     }
                   }
                 );

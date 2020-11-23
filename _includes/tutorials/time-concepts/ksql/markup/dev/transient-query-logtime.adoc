@@ -1,0 +1,18 @@
+With our test data and configuration parameters in place, let’s try a query to compute our ticket totals. A `SELECT` statement with an `EMIT CHANGES` in ksqlDB is called a transient push query. 
+
+Unlike a traditional database query, which returns a single result set, the query continuously streams back results. Once we stop it, it is gone and will not keep processing the input stream. That's what we're doing in this step. The counterpart to a transient query is a _persistent_ query, which we'll create a few steps from now.
+
+What this query does is select all the fields from the `TEMPERATURE_READINGS_LOGTIME` stream you created above, which includes `TEMPERATURE` and `EVENTTIME`, plus the `ROWTIME`.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/transient-query-logtime.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/expected-transient-query-logtime.log %}</code></pre>
++++++
+
+Notice that for each row, the `ROWTIME` value in ksqlDB corresponds exactly to the `EVENTTIME`, which is the `payload eventTime` set by the producer (i.e., wall-clock time, when the event occurred)
+

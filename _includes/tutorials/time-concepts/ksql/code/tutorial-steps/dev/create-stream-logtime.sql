@@ -1,0 +1,3 @@
+CREATE STREAM TEMPERATURE_READINGS_LOGTIME (temperature BIGINT, eventTime BIGINT)
+    WITH (KAFKA_TOPIC='deviceEvents',
+          VALUE_FORMAT='avro');

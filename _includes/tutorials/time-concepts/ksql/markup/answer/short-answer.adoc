@@ -1,0 +1,13 @@
+Do all stream processing operations on...
+
+...*ingestion time*, also known as *log time*
+
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/create-stream-logtime.sql  %}</code></pre>
++++++
+
+...*event time*, also known as *wall-clock time*. Notice the addition of the `TIMESTAMP` parameter.
+
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/create-stream-eventtime.sql  %}</code></pre>
++++++

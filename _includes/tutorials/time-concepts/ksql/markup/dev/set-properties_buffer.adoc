@@ -1,5 +1,0 @@
-For the purposes of this tutorial only, we are also going to configure ksqlDB to buffer the aggregates as it builds them. This makes the query feel like it responds more slowly, but means that you get just one row per movie from which it is simpler to understand the concept:
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/set-properties_buffer.sql %}</code></pre>
-+++++

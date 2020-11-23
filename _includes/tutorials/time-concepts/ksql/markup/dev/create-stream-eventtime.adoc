@@ -1,0 +1,7 @@
+Now create a new stream, but force ksqlDB to use the `eventTime` field in the payload of each record as the timestamp.
+
+Unlike the previous case, now the `ROWTIME` equals the `EVENTTIME`.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/create-stream-eventtime.sql %}</code></pre>
++++++
