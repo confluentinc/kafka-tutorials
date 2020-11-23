@@ -1,0 +1,5 @@
+Then create the following Avro schema file at `src/main/avro/DataRecord.avsc` for the event:
+
++++++
+<pre class="snippet"><code class="avro">{% include_raw tutorials/time-concepts/ksql/code/src/main/avro/DataRecord.avsc %}</code></pre>
++++++

@@ -15,7 +15,7 @@ dev:
           render:
             file: tutorials/time-concepts/ksql/markup/dev/init.adoc
 
-        - change_directory: aggregate-count
+        - change_directory: time-concepts
           action: execute
           file: tutorial-steps/dev/make-dirs.sh
           render:
@@ -55,7 +55,24 @@ dev:
           render:
             file: tutorials/time-concepts/ksql/markup/dev/make-config-dir.adoc
 
-    - title: Producer Kafka data with event time
+    - title: Create a schema for the events
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-avro-dir.sh
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/make-avro-dir.adoc
+
+        - action: make_file
+          file: src/main/avro/DataRecord.avsc
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/make-event-schema.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/build-project.sh
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/build-project.adoc
+
+    - title: Produce Kafka data with event time in the payload
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
