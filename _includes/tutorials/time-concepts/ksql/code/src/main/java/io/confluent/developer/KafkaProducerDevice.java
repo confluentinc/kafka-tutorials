@@ -92,6 +92,7 @@ public class KafkaProducerDevice {
                 );
 
             count++;
+            temperature++;
 
         }
 
