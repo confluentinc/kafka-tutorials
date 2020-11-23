@@ -527,11 +527,11 @@ anomaly-detection:
     swift: disabled
 
 ksql-nested-json:
-  title: "Working with nested JSON in ksqlDB"
-  meta-description: "Working with nested JSON in ksqlDB"
-  slug: "/ksqldb-working-with-nested-json"
-  question: "How can I access nested JSON in my ksqlDB query?"
-  introduction: "Suppose you use JSON format in your topics.  You have some nested JSON structures and you'd like to access from your ksqlDB query without having to update or otherwise change the JSON"
+  title: "Working with nested JSON"
+  meta-description: "Working with nested JSON"
+  slug: "/working-with-nested-json"
+  question: "How can I select fields from a stream of records that are contained in deeply nested JSON?"
+  introduction: "Suppose you have a topic with JSON-formatted records, but it contains nested objects.  You want to write a query that can access fields in those nested objects"
   status:
     ksql: enabled
     kstreams: disabled
