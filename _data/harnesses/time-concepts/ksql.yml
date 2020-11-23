@@ -55,6 +55,11 @@ dev:
           render:
             file: tutorials/time-concepts/ksql/markup/dev/make-config-dir.adoc
 
+        - action: make_file
+          file: configuration/dev.properties
+          render:
+            file: tutorials/time-concepts/ksql/markup/dev/make-dev-file.adoc
+
     - title: Create a schema for the events
       content:
         - action: execute

@@ -56,7 +56,7 @@ public class KafkaProducerDevice {
 
         props.put(ProducerConfig.ACKS_CONFIG, "all");
 
-        props.put(ProducerConfig.CLIENT_ID_CONFIG, "myApp");
+        props.put(ProducerConfig.CLIENT_ID_CONFIG, "myEventApp");
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class);
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
 
@@ -68,11 +68,17 @@ public class KafkaProducerDevice {
         final Long temperature = 100L;
         Long eventTime;
 
-        while(true) {
+        int count = 0;
+
+        while(count < 10) {
             Thread.sleep(1000);
 
             eventTime = System.currentTimeMillis();
             DataRecord record = new DataRecord(temperature, eventTime);
+
+            // Inject artificial delay before record is produced to Kafka
+            // to force differing timestamps in payload and Kafka
+            Thread.sleep(5);
 
             final ProducerRecord<Long, DataRecord> producerRecord = new ProducerRecord<>(topic, deviceId, record);
             producer.send(producerRecord,
@@ -80,11 +86,16 @@ public class KafkaProducerDevice {
                     if(e != null) {
                        e.printStackTrace();
                     } else {
-                      System.out.println("key/value " + deviceId + "/" + record.toString() + "\twritten to topic[partition] " + recordMetadata.topic() + "[" + recordMetadata.partition() + "] at offset " + recordMetadata.offset() + "\twith timestamp " + recordMetadata.timestamp());
+                      System.out.println("Record written to topic " + recordMetadata.topic() + ": payload eventTime " + record.getEventTime() + ", Kafka timestamp " + recordMetadata.timestamp());
                     }
                   }
                 );
+
+            count++;
+
         }
+
+        producerApp.shutdown();
 
     }
 }

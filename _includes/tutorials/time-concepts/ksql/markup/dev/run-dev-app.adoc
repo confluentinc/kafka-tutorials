@@ -3,25 +3,18 @@ Now that you have an uberjar for the KafkaProducerApplication, you can launch it
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
 +++++
 
-After you run the previous command, the application will process the file and you should something like this on the console:
+After you run the previous command, the application will write some messages to Kafka and you should something like this on the console:
 
 [source, text]
 ----
-Offsets and timestamps committed in batch from input.txt
-Record written to offset 0 timestamp 1597352120029
-Record written to offset 1 timestamp 1597352120037
-Record written to offset 2 timestamp 1597352120037
-Record written to offset 3 timestamp 1597352120037
-Record written to offset 4 timestamp 1597352120037
-Record written to offset 5 timestamp 1597352120037
-Record written to offset 6 timestamp 1597352120037
-Record written to offset 7 timestamp 1597352120037
-Record written to offset 8 timestamp 1597352120037
-Record written to offset 9 timestamp 1597352120037
-Record written to offset 10 timestamp 1597352120038
+Record written to topic deviceEvents: payload eventTime 1606152393805, Kafka timestamp 1606152393859
+Record written to topic deviceEvents: payload eventTime 1606152395299, Kafka timestamp 1606152395306
+Record written to topic deviceEvents: payload eventTime 1606152396306, Kafka timestamp 1606152396311
+Record written to topic deviceEvents: payload eventTime 1606152397316, Kafka timestamp 1606152397322
+Record written to topic deviceEvents: payload eventTime 1606152398327, Kafka timestamp 1606152398333
+Record written to topic deviceEvents: payload eventTime 1606152399336, Kafka timestamp 1606152399343
+Record written to topic deviceEvents: payload eventTime 1606152400344, Kafka timestamp 1606152400349
+Record written to topic deviceEvents: payload eventTime 1606152401354, Kafka timestamp 1606152401359
+Record written to topic deviceEvents: payload eventTime 1606152402364, Kafka timestamp 1606152402369
+Record written to topic deviceEvents: payload eventTime 1606152403375, Kafka timestamp 1606152403381
 ----
-
-Now you can experiment some by creating your own file in base directory and re-run the above command and substitute your file name for `input.txt`
-
-Remember any data before the `-` is the key and data after is the value.
-
