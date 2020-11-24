@@ -47,7 +47,7 @@ include '_includes:tutorials:cogrouping-streams:kstreams:code'
 include '_includes:tutorials:connect-add-key-to-source:kafka:code'
 include '_includes:tutorials:connect-add-key-to-source:kstreams:code'
 include '_includes:tutorials:console-consumer-primitive-keys-values:kafka:code'
-include '_includes:tutorials:console-consumer-produer-basic:kafka:code'
+include '_includes:tutorials:console-consumer-producer-basic:kafka:code'
 include '_includes:tutorials:console-consumer-read-specific-offsets-partition:kafka:code'
 include '_includes:tutorials:dynamic-output-topic:kstreams:code'
 include '_includes:tutorials:filtering:kstreams:code'
@@ -72,11 +72,18 @@ include '_includes:tutorials:tumbling-windows:kstreams:code'
 include '_includes:tutorials:udf:ksql:code'
 include '_includes:tutorials:window-final-result:kstreams:code'
 include '_includes:tutorials:produce-consume-lang:scala:code'
+include '_includes:tutorials:produce-consume-lang:scala:code:app-producer'
+include '_includes:tutorials:produce-consume-lang:scala:code:app-consumer'
+project(':_includes:tutorials:produce-consume-lang:scala:code:app-producer').name =
+        'produce-consume-scala-producer-app'
+project(':_includes:tutorials:produce-consume-lang:scala:code:app-consumer').name =
+        'produce-consume-scala-consumer-app'
 include '_includes:tutorials:kafka-connect-datagen-ccloud:kafka:code'
 include '_includes:tutorials:generate-test-data-streams:kafka:code'
 include '_includes:tutorials:count-messages:kafka:code'
 include '_includes:tutorials:kafka-streams-schedule-operations:kstreams:code'
 include '_includes:tutorials:ccloud-produce-consume:kafka:code'
+include '_includes:tutorials:console-consumer-producer-avro:kafka:code'
 // <end>
 
 // if new tutorial wasn't included in `settings.gradle` build will fail

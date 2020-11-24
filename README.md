@@ -186,7 +186,7 @@ As the name implies, this script creates a clone of an existing tutorial.  The c
 ORIG_TUTORIAL=connect-add-key-to-source
 
 # to only clone a kafka tutorial
-ORIG_TUTORIAL=console-consumer-produer-basic/kafka
+ORIG_TUTORIAL=console-consumer-producer-basic/kafka
 
 # to clone just the ksql part
 ORIG_TUTORIAL=connect-add-key-to-source/ksql
@@ -412,7 +412,7 @@ Three top-level sections make up the harness file:
 * test - test setup and execution of tests, if any (optional)
 * prod - steps to build and deploy a docker image of the tutorial code (optional)
 
-In some cases, having a test and/or prod section doesn't make sense, so you can omit those portions of the harness file.  The Apache Kafka [console producer and consumer basic operations](_data/harnesses/console-consumer-produer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are an excellent example of tutorials that don't need a test or prod section.
+In some cases, having a test and/or prod section doesn't make sense, so you can omit those portions of the harness file.  The Apache Kafka [console producer and consumer basic operations](_data/harnesses/console-consumer-producer-basic/kafka.yml) and the Apache Kafka [console consumer with primitive keys and values](_data/harnesses/console-consumer-primitive-keys-values/kafka.yml) tutorials are an excellent example of tutorials that don't need a test or prod section.
 
 The `dev`, `test`, and `prod` sections contain a top-level element `steps`.  The `steps` contains any number of well, steps for the user to walk through.  Additionally, the `harness_runner` script follows the same steps for executing the tutorial automatically during builds.  All sections contain the same step structure, so we'll only discuss the make-up of a single section.
 

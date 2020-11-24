@@ -1,7 +1,6 @@
 package io.confluent.developer
 
 import io.confluent.developer.Configuration.TopicConf.TopicSpec
-import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient
 import org.apache.kafka.clients.admin.{Admin, NewTopic}
 import org.junit.Rule
 import org.scalatest.concurrent.Eventually

@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/answer-configs.adoc
+
 dev:
   steps:
     - title: Initialize the project

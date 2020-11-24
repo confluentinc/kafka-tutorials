@@ -1,1 +1,1 @@
-./sbtx "-Djline.terminal=none" --error packageProducer
+./gradlew -p app-producer jibDockerBuild

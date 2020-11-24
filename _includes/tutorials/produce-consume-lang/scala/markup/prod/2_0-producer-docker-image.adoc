@@ -6,4 +6,4 @@ In your terminal, execute the following command to invoke the Jib plugin and bui
 %}</code></pre>
 +++++
 
-Reference the sbt task configuration of `packageProducer` in the _build.sbt_ file for details.
+Reference the gradle task configuration of `packageProducer` in the _build.gradle_ file for details.

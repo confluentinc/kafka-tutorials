@@ -253,7 +253,7 @@ dynamic-output-topic:
   meta-description: "How to dynamically choose the output topic"
   slug: "/dynamic-output-topic"
   question: "How can I dynamically route records to different Kafka topics?"
-  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topic.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
+  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topics.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
   status:
     ksql: disabled
     kstreams: enabled
@@ -281,7 +281,7 @@ cogrouping-streams:
     kstreams: enabled
     kafka: disabled
 
-console-consumer-produer-basic:
+console-consumer-producer-basic:
   title: "Console Producer and Consumer Basics, no (de)serializers"
   meta-description: "Produce and consume your first message with Kafka"
   slug: "/kafka-console-consumer-producer-basics"
@@ -417,6 +417,16 @@ kafka-producer-application-callback:
     scala: disabled
     swift: disabled
 
+console-consumer-producer-avro:
+  title: "Console Producer and Consumer for Avro messages"
+  meta-description: "Produce and consume your first message with Kafka in Avro format"
+  slug: "/kafka-console-consumer-producer-avro"
+  question: "What is the simplest way to write and read messages encoded in Avro to and from Kafka?"
+  introduction: "So you are excited to get started with Kafka and you would like to produce and consume some messages in Avro format.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
 
 count-messages:
   title: "How to count messages in a Kafka topic"
@@ -503,6 +513,25 @@ anomaly-detection:
   introduction: "A common pattern for fraudsters is to disguise transactions under the name of a popular company, the idea being that the chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, USPS, etc., are likely to look similar and blend in.  This tutorial shows you how to identify this pattern of behavior by detecting 'abnormal' transactions that occur within a window of time
 
                  There will normally be a group of such transactions that occur within a 24-hour period. When it comes to fraud detection, financial institutions will categorize this behavior as unusual and alert their fraud team to investigate immediately. Other example use cases include detecting atm fraud or unusual credit card activity."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
+ksql-nested-json:
+  title: "Working with nested JSON"
+  meta-description: "Working with nested JSON"
+  slug: "/working-with-nested-json"
+  question: "How can I select fields from a stream of records that are contained in deeply nested JSON?"
+  introduction: "Suppose you have a topic with JSON-formatted records, but it contains nested objects.  You want to write a query that can access fields in those nested objects"
   status:
     ksql: enabled
     kstreams: disabled

@@ -38,7 +38,7 @@ object TopicCreation extends App with Configuration {
     kFuture.whenComplete {
 
       case (_, throwable: Throwable) if Option(throwable).isDefined =>
-        logger warn("Topic creation didn't complete:", throwable)
+        logger.warn("Topic creation didn't complete:", throwable)
 
       case _ =>
         newTopics.find(_.name() == topicName).map { topic =>

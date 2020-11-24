@@ -1,6 +1,6 @@
 answer:
   steps:
-    - title: Persistent query using COUNT
+    - title:
       content:
         - action: skip
           render:

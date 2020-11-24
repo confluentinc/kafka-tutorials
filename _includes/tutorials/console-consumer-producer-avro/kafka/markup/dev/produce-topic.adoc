@@ -1,0 +1,24 @@
+:experimental:
+
+To produce your first Avro record into Kafka, open another terminal window and run the following command to open a second shell on the broker container:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/open-docker-shell.sh %}</code></pre>
++++++
+
+From inside the second terminal on the schema-registry container, run the following command to start a console producer with the schema you created previously:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/console-producer.sh %}</code></pre>
++++++
+
+The producer will start and wait for you to enter input. Each line represents one Avro record and to send it you’ll hit the enter key.
+
+Try copying and pasting one line at a time, hit enter and go back to the Avro console consumer window and look for the output.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/input-step-one.txt %}</code></pre>
++++++
+
+Once you’ve sent all the records you should see the same output in your Avro console consumer window. 
+After you’ve confirmed receiving all records go ahead and close the consumer by entering kbd:[CTRL+C].

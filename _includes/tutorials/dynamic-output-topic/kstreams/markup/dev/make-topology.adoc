@@ -12,21 +12,9 @@ The `TopicNameExtractor.extract()` method accepts three parameters: the key, val
 
 Now take a detailed look at the `TopicNameExtractor` you'll use in this tutorial (found on line 67 in `DynamicOutputTopic.java`)
 
-++++
-<pre class="snippet"><code class="java">
-final TopicNameExtractor&lt;Long, CompletedOrder&gt; orderTopicNameExtractor = (key, completedOrder, recordContext) -> {
-      final String compositeId = completedOrder.getId();
-      final String skuPart = compositeId.substring(compositeId.indexOf('-') + 1, 5);
-      final String outTopic;
-      if (skuPart.equals("QUA")) {
-           outTopic = specialOrderOutput;
-      } else {
-           outTopic = orderOutputTopic;
-      }
-      return outTopic;
-};
-</code></pre>
-++++
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/dynamic-output-topic/kstreams/code/tutorial-steps/dev/answer-short.java %}</code></pre>
++++++
 
 In the code above, the `TopicNameExtractor` takes the `CompletedOrder.id` field. Based on the extracted substring, it returns the name of the topic to use.  You should also note that the topics need to be created ahead of time as with any of the topics used by Kafka Streams.
 

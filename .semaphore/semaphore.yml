@@ -33,7 +33,7 @@ blocks:
           - checkout
           - cache restore
           - npm install
-          - gem install bundler --no-ri --no-rdoc
+          - gem install bundler
           - bundle install
           - cache store
       jobs:
@@ -174,7 +174,11 @@ blocks:
         - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
-  
+
+        - name: Kafka produce and consume in Scala
+          commands:
+            - make -C _includes/tutorials/produce-consume-lang/scala/code tutorial
+
   - name: Run second block of tests
     execution_time_limit:
       minutes: 10
@@ -257,9 +261,9 @@ blocks:
           commands:
             - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
 
-        - name: Kafka Console Consumer Produer Basics tests
+        - name: Kafka Console Consumer Producer Basics tests
           commands:
-            - make -C _includes/tutorials/console-consumer-produer-basic/kafka/code tutorial
+            - make -C _includes/tutorials/console-consumer-producer-basic/kafka/code tutorial
             
         - name: Kafka Test Kafka Console Consumer with Primitive Keys and Values tests
           commands:
@@ -293,7 +297,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
 
-        - name: Kafka Test Kafka Produer with Callbacks tests
+        - name: Kafka Test Kafka Producer with Callbacks tests
           commands:
             - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
 
@@ -312,7 +316,7 @@ blocks:
         - name: KStreams Test Streams schedule operations tests
           commands:
             - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
-        
+
         - name: Kafka Message Ordering tests
           commands:
             - make -C _includes/tutorials/message-ordering/kafka/code tutorial
@@ -320,8 +324,16 @@ blocks:
         - name: KSQL masking data tests
           commands:
             - make -C _includes/tutorials/masking-data/ksql/code tutorial
-            
+
         - name: KSQL anomaly detection tests
           commands:
             - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
-            
+
+        - name: Kafka Consuming and Producing AVRO messages with console tools tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
+        
+        - name: KSQL Test ksqlDB nested JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
+        
