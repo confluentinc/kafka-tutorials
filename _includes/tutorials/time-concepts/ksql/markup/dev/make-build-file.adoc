@@ -1,3 +1,6 @@
+This example uses a Kafka Producer application to write events to Kafka with an artificial delay between the event time and producing the event to Kafka, to exaggerate the difference between event time and ingestion time.
+Because this example runs a Kafka application, the next few steps will pull in requirements to build out your application.
+
 Create the following Gradle build file for the project, named `build.gradle`:
 
 +++++
