@@ -1,7 +1,6 @@
 Achieving event-time semantics typically requires embedding timestamps into the data record at the time it is produced.
 Write a Kafka Producer application that generates simulated device events and embeds a timestamp into the payload of every message.
-The timestamp is written in an arbitrary field, in this case called `eventTime`, whose value is the current time or "event time".
-This "event time" represents the point at which the event occurred at the source and is also sometimes called "wall-clock" time.
+The timestamp is written in an arbitrary field, in this case called `eventTime`, whose value represents the time at which the event occurred at the source.
 
 [source, java]
 ----

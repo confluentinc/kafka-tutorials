@@ -20,4 +20,4 @@ Record written to topic deviceEvents: payload eventTime 1606158075643, log times
 ----
 
 Note that the `payload eventTime` value is not the same as the `log timestamp` value—this is working as expected.
-It demonstrates how the "event time" (or "wall-clock" time) in the payload, which is set by the application or end system, intentionally may differ from the "log timestamp" (or "ingestion" time), set by the Kafka broker when it writes the record to its log file.
+It demonstrates how the "event time", which is set by the application or end system in the payload, intentionally may differ from the "log timestamp" (or "ingestion" time), set by the Kafka broker when it writes the record to its log file.

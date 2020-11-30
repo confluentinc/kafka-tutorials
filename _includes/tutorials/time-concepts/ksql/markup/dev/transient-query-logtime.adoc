@@ -13,7 +13,7 @@ This should yield the following output:
 
 Notice that for each row:
 
-- The `EVENTTIME` value in ksqlDB corresponds exactly to the `payload eventTime` set by the producer (i.e., wall-clock time, when the event occurred)
+- The `EVENTTIME` value in ksqlDB corresponds exactly to the `payload eventTime` set by the producer
 - The `ROWTIME` value in ksqlDB corresponds exactly to the `log timestamp` printed by the producer's callback (i.e., ingestion time, when the record was written into the broker's log file)
 
 All processing on this stream is based on `ROWTIME`, consequently this results in processing based on ingestion time.
