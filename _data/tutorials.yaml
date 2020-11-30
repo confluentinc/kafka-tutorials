@@ -253,7 +253,7 @@ dynamic-output-topic:
   meta-description: "How to dynamically choose the output topic"
   slug: "/dynamic-output-topic"
   question: "How can I dynamically route records to different Kafka topics?"
-  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topic.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
+  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topics.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
   status:
     ksql: disabled
     kstreams: enabled
@@ -532,6 +532,16 @@ time-concepts:
   slug: "/time-concepts"
   question: "What is the difference between ingestion time and event time, and how can I choose which one to use for stream processing?"
   introduction: "Ingestion time is the point in time at which the record is appended to the target topic by the Kafka broker versus event time which is the point in time at which the record is created at the source. By default, time-based aggregations in Kafka Streams and ksqlDB operate on the ingestion timestamp, but there may be use cases where they need to operate on the actual time at which the event occurred, in which case the event time should be carried in the message payload . This tutorial will show you how to extract and use the ingestion timestamp and the event timestamp."
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    
+ksql-nested-json:
+  title: "Working with nested JSON"
+  meta-description: "Working with nested JSON"
+  slug: "/working-with-nested-json"
+  question: "How can I select fields from a stream of records that are contained in deeply nested JSON?"
+  introduction: "Suppose you have a topic with JSON-formatted records, but it contains nested objects.  You want to write a query that can access fields in those nested objects"
   status:
     ksql: enabled
     kstreams: disabled

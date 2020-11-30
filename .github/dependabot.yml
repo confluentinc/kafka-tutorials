@@ -9,7 +9,6 @@ updates:
     # Add reviewers
     reviewers:
       - "bbejeck"
-      - "rspurgeon"
       - "gamussa"
     # Allow up to 10 open pull requests for gradle dependencies
     open-pull-requests-limit: 10

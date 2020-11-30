@@ -336,3 +336,7 @@ blocks:
         - name: KSQL Time Concepts Tutorial tests
           commands:
             - make -C _includes/tutorials/time-concepts/ksql/code tutorial
+        
+        - name: KSQL Test ksqlDB nested JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
