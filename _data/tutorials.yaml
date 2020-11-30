@@ -531,7 +531,7 @@ time-concepts:
   meta-description: "Ingestion time and event time"
   slug: "/time-concepts"
   question: "What is the difference between ingestion time and event time, and how can I choose which one to use for stream processing?"
-  introduction: "Ingestion time is the point in time at which the record is appended to the target topic by the Kafka broker versus event time which is the point in time at which the record is created at the source. By default, time-based aggregations in Kafka Streams and ksqlDB operate on the ingestion timestamp, but there may be use cases where they need to operate on the actual time at which the event occurred, in which case the event time should be carried in the message payload . This tutorial will show you how to extract and use the ingestion timestamp and the event timestamp."
+  introduction: "Ingestion time is the time at which the Kafka broker appends the record to its log file, versus event time which is the time at which the source creates the record. By default, time-based aggregations in Kafka Streams and ksqlDB operate on the ingestion timestamp, but there may be use cases where they need to operate on the actual time at which the event occurred, in which case the event time should be carried in the message payload . This tutorial will show you how to extract and use the ingestion timestamp and the event timestamp."
     ksql: enabled
     kstreams: disabled
     kafka: disabled
