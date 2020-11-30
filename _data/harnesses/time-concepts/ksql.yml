@@ -106,7 +106,7 @@ dev:
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
           stdout:
             directory: tutorial-steps/dev/outputs
-          column_width: 20
+          column_width: 75
           render:
             file: tutorials/time-concepts/ksql/markup/dev/start-cli.adoc
           stdin:
@@ -121,7 +121,7 @@ dev:
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
           stdout:
             directory: tutorial-steps/dev/outputs
-          column_width: 20
+          column_width: 75
           render:
             skip: true
           stdin:
@@ -140,7 +140,7 @@ dev:
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
           stdout:
             directory: tutorial-steps/dev/outputs
-          column_width: 20
+          column_width: 75
           render:
             skip: true
           stdin:

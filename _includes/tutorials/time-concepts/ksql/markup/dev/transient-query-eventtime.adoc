@@ -12,6 +12,6 @@ This should yield the following output:
 
 Notice that for each row:
 
-. The `ROWTIME` value in ksqlDB corresponds exactly to the `EVENTTIME`, which is the `payload eventTime` set by the producer (i.e., wall-clock time, when the event occurred)
+- The `ROWTIME` value in ksqlDB corresponds exactly to the `EVENTTIME`, which is the `payload eventTime` set by the producer (i.e., wall-clock time, when the event occurred)
 
 All processing on this stream is based on `ROWTIME`, consequently this results in processing based on event time.
