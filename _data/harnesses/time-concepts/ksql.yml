@@ -96,6 +96,7 @@ dev:
 
         - action: execute
           file: tutorial-steps/dev/run-dev-app.sh
+          stdout: tutorial-steps/dev/outputs/producer-output.log
           render:
             file: tutorials/time-concepts/ksql/markup/dev/run-dev-app.adoc
 
