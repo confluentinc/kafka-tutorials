@@ -66,7 +66,19 @@ dev:
             - file: tutorial-steps/dev/populate-suspicious-names.sql
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/populate-suspicious-names.adoc
-
+        - action: sleep
+          ms: 3000
+          render:
+            skip: true
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 25
+          render:
+            skip: true
+          stdin:
             - file: tutorial-steps/dev/populate-transactions.sql
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/populate-transactions.adoc
