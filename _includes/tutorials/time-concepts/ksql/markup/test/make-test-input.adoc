@@ -1,5 +1,0 @@
-The Confluent ksqlDB CLI Docker image contains a program called the `ksql-test-runner`. We can pass this program a JSON file describing our desired input data, a JSON file containing the intended output results, and a file of ksqlDB queries to run, and it will tell us whether our queries successfully turn the input into the output. To get started, create a file at `test/input.json` with the inputs for testing
-
-+++++
-<pre class="snippet"><code class="json">{% include_raw tutorials/time-concepts/ksql/code/test/input.json %}</code></pre>
-+++++
