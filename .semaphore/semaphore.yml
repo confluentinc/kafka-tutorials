@@ -340,3 +340,7 @@ blocks:
         - name: KSQL Test ksqlDB nested JSON tests
           commands:
             - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
+                
+        - name: KSQL Test ksqlDB heterogeneous JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-heterogeneous-json/ksql/code tutorial
