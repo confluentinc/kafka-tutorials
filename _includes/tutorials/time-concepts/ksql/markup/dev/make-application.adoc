@@ -1,13 +1,13 @@
-Create the following file at `src/main/java/io/confluent/developer/KafkaProducerDevice.java`.
-This is a Kafka Producer that writes messages to Kafka, and the payload of every message includes a field called `eventTime` which is dynamically calculated for each record.
+Achieving event-time semantics typically requires embedding timestamps in the data records at the time it is produced.
+So now write a Kafka Producer application that generates simulated device events, and embeds timestamps into the data record itself.
+It writes messages to Kafka, and the payload of every message includes a field called `eventTime` whose value is the current time, or "event time", the point at which an event or data record was originally created by the source or end system.
 
 [source, java]
 ----
 eventTime = System.currentTimeMillis();
 ----
 
-This `eventTime` is the event time, the point in time when an event or data record was originally created by the source or end system.
-Achieving event-time semantics typically requires embedding timestamps in the data records at the time a data record is being produced.
+Create the full application file at `src/main/java/io/confluent/developer/KafkaProducerDevice.java`.
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/time-concepts/ksql/code/src/main/java/io/confluent/developer/KafkaProducerDevice.java %}</code></pre>

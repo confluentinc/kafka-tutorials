@@ -20,14 +20,14 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
 
-import io.confluent.developer.avro.DataRecord;
+import io.confluent.developer.avro.DeviceEvent;
 
 public class KafkaProducerDevice {
 
-    private final Producer<Long, DataRecord> producer;
+    private final Producer<Long, DeviceEvent> producer;
     final String outTopic;
 
-    public KafkaProducerDevice(final Producer<Long, DataRecord> producer,
+    public KafkaProducerDevice(final Producer<Long, DeviceEvent> producer,
                                     final String topic) {
         this.producer = producer;
         outTopic = topic;
@@ -61,11 +61,11 @@ public class KafkaProducerDevice {
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
 
         final String topic = props.getProperty("output.topic.name");
-        final Producer<Long, DataRecord> producer = new KafkaProducer<Long, DataRecord>(props);
+        final Producer<Long, DeviceEvent> producer = new KafkaProducer<Long, DeviceEvent>(props);
         final KafkaProducerDevice producerApp = new KafkaProducerDevice(producer, topic);
 
         final Long deviceId = 1L;
-        final Long temperature = 100L;
+        Long temperature = 100L;
         Long eventTime;
 
         int count = 0;
@@ -74,13 +74,13 @@ public class KafkaProducerDevice {
             Thread.sleep(1000);
 
             eventTime = System.currentTimeMillis();
-            DataRecord record = new DataRecord(temperature, eventTime);
+            DeviceEvent record = new DeviceEvent(temperature, eventTime);
 
             // Inject artificial delay before record is produced to Kafka
             // to force differing timestamps in payload and Kafka
             Thread.sleep(5);
 
-            final ProducerRecord<Long, DataRecord> producerRecord = new ProducerRecord<>(topic, deviceId, record);
+            final ProducerRecord<Long, DeviceEvent> producerRecord = new ProducerRecord<>(topic, deviceId, record);
             producer.send(producerRecord,
                 (recordMetadata, e) -> {
                     if(e != null) {

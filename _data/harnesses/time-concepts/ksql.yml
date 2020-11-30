@@ -68,7 +68,7 @@ dev:
             file: tutorials/time-concepts/ksql/markup/dev/make-avro-dir.adoc
 
         - action: make_file
-          file: src/main/avro/DataRecord.avsc
+          file: src/main/avro/DeviceEvent.avsc
           render:
             file: tutorials/time-concepts/ksql/markup/dev/make-event-schema.adoc
 
@@ -104,32 +104,53 @@ dev:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
           column_width: 20
           render:
             file: tutorials/time-concepts/ksql/markup/dev/start-cli.adoc
           stdin:
-            - file: tutorial-steps/dev/create-movie-ticket-sales.sql
-              render:
-                file: tutorials/time-concepts/ksql/markup/dev/create-stream-logtime.adoc
-
             - file: tutorial-steps/dev/set-properties_offset.sql
               render:
                 file: tutorials/time-concepts/ksql/markup/dev/set-properties_offset.adoc
+
+    - title: Processing based on log time
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 20
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/create-stream-logtime.sql
+              render:
+                file: tutorials/time-concepts/ksql/markup/dev/create-stream-logtime.adoc
 
             - file: tutorial-steps/dev/transient-query-logtime.sql
               render:
                 file: tutorials/time-concepts/ksql/markup/dev/transient-query-logtime.adoc
 
-            - file: tutorial-steps/dev/create-movie-ticket-sales.sql
+    - title: Processing based on event time
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 20
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/create-stream-eventtime.sql
               render:
                 file: tutorials/time-concepts/ksql/markup/dev/create-stream-eventtime.adoc
 
             - file: tutorial-steps/dev/transient-query-eventtime.sql
               render:
                 file: tutorials/time-concepts/ksql/markup/dev/transient-query-eventtime.adoc
-
-          stdout:
-            directory: tutorial-steps/dev/outputs
 
 ccloud:
   steps:

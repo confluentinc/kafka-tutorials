@@ -1,3 +1,5 @@
+Inspect the events in this newly created `TEMPERATURE_READINGS_EVENTTIME` stream by running:
+
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/transient-query-eventtime.sql %}</code></pre>
 +++++
@@ -10,5 +12,6 @@ This should yield the following output:
 
 Notice that for each row:
 
-. The `EVENTTIME` value in ksqlDB corresponds exactly to the `payload eventTime` set by the producer (i.e., wall-clock time, when the event occurred)
-. The `ROWTIME` value in ksqlDB corresponds exactly to the `log timestamp` printed by the producer's callback (i.e., ingestion time, when the record was written into the broker's log file)
+. The `ROWTIME` value in ksqlDB corresponds exactly to the `EVENTTIME`, which is the `payload eventTime` set by the producer (i.e., wall-clock time, when the event occurred)
+
+All processing on this stream is based on `ROWTIME`, consequently this results in processing based on event time.

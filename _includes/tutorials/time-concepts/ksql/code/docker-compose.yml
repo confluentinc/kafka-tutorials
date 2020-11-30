@@ -72,4 +72,3 @@ services:
     tty: true
     volumes:
       - ./src:/opt/app/src
-      - ./test:/opt/app/test
