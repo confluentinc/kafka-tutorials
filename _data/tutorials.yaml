@@ -527,11 +527,11 @@ anomaly-detection:
     swift: disabled
 
 time-concepts:
-  title: "Ingestion time and event time"
-  meta-description: "Ingestion time and event time"
+  title: "Event-time semantics"
+  meta-description: "Event-time semantics"
   slug: "/time-concepts"
-  question: "What is the difference between ingestion time and event time, and how can I choose which one to use for stream processing?"
-  introduction: "Ingestion time is the time at which the Kafka broker appends the record to its log file, versus event time which is the time at which the source creates the record. By default, time-based aggregations in Kafka Streams and ksqlDB operate on the ingestion timestamp, but there may be use cases where they need to operate on the actual time at which the event occurred, in which case the event time should be carried in the message payload . This tutorial will show you how to extract and use the ingestion timestamp and the event timestamp."
+  question: "What is the difference between using the timestamp from the record metadata and using the timestamp within the record payload?" 
+  introduction: "By default, time-based aggregations in Kafka Streams and ksqlDB operate on the timestamp in the record metadata, which could be either 'CreateTime' (producer system time) or 'LogAppendTime' (broker system time), depending on the <a href=\"https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#message.timestamp.type\">message.timestamp.type</a> configuration value. 'CreateTime' helps with event-time semantics, but there may be use cases where the event time on which you need to operate is a timestamp contained inside the record payload. This tutorial shows you how to extract and use the timestamp either from the record metadata or from a field in the record payload."
   status:
     ksql: enabled
     kstreams: disabled
