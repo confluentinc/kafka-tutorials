@@ -67,7 +67,7 @@ dev:
               render:
                 file: tutorials/anomaly-detection/ksql/markup/dev/populate-suspicious-names.adoc
         - action: sleep
-          ms: 3000
+          ms: 5000
           render:
             skip: true
         - action: docker_ksql_cli_session
