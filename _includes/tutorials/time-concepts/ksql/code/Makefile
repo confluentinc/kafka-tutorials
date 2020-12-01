@@ -8,8 +8,8 @@ SEQUENCE := "dev, test, prod, ccloud"
 tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	rm -r $(TEST_OUTPUTS_DIR) || true
-	mkdir $(DEV_OUTPUTS_DIR)
-	mkdir $(TEST_OUTPUTS_DIR)
+	mkdir -p $(DEV_OUTPUTS_DIR)
+	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/time-concepts/ksql.yml $(TEMP_DIR) $(SEQUENCE)
 	$(eval producer_eventTime=$(shell grep "Record written" $(DEV_OUTPUTS_DIR)/producer-output.log | awk -F"[, ]" 'NR==1{print $$8;}'))
 	$(eval producer_logTime=$(shell grep "Record written" $(DEV_OUTPUTS_DIR)/producer-output.log | awk -F"[, ]" 'NR==1{print $$12;}'))
