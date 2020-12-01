@@ -71,15 +71,13 @@ public class KafkaProducerDevice {
         int count = 0;
 
         while(count < 10) {
-            Thread.sleep(1000);
 
             eventTime = System.currentTimeMillis();
-            DeviceEvent record = new DeviceEvent(temperature, eventTime);
-
             // Inject artificial delay before record is produced to Kafka
-            // to force differing timestamps in payload and Kafka
-            Thread.sleep(5);
+            // to force differing timestamps in payload and metadata
+            Thread.sleep(1005);
 
+            DeviceEvent record = new DeviceEvent(temperature, eventTime);
             final ProducerRecord<Long, DeviceEvent> producerRecord = new ProducerRecord<>(topic, deviceId, record);
             producer.send(producerRecord,
                 (recordMetadata, e) -> {
