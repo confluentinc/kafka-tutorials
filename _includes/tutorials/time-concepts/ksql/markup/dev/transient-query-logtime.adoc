@@ -1,5 +1,5 @@
 Let’s inspect the events in this newly created `TEMPERATURE_READINGS_LOGTIME` stream by running a `SELECT` statement with an `EMIT CHANGES` clause, limited to 10.
-It shows the payload fields `TEMPERATURE` and `EVENTTIME`, plus the `ROWTIME` which is a pseudo-column in ksqlDB that is used for time-based aggregations.
+It shows the payload fields `TEMPERATURE` and `EVENTTIME`, plus the `ROWTIME` which is a system-column in ksqlDB that is used for time-based aggregations.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/transient-query-logtime.sql %}</code></pre>
