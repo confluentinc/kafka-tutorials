@@ -1,4 +1,4 @@
-Now that you have an uberjar for the KafkaProducerApplication, you can launch it locally.
+Now that you have an uberjar for the `KafkaProducerDevice` application, you can launch it locally.
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
 +++++
@@ -7,17 +7,17 @@ After you run the previous command, the application will write some messages to 
 
 [source, text]
 ----
-Record written to topic deviceEvents: payload eventTime 1606158066122, log timestamp 1606158066184
-Record written to topic deviceEvents: payload eventTime 1606158067577, log timestamp 1606158067582
-Record written to topic deviceEvents: payload eventTime 1606158068588, log timestamp 1606158068594
-Record written to topic deviceEvents: payload eventTime 1606158069595, log timestamp 1606158069601
-Record written to topic deviceEvents: payload eventTime 1606158070605, log timestamp 1606158070610
-Record written to topic deviceEvents: payload eventTime 1606158071611, log timestamp 1606158071617
-Record written to topic deviceEvents: payload eventTime 1606158072623, log timestamp 1606158072628
-Record written to topic deviceEvents: payload eventTime 1606158073629, log timestamp 1606158073634
-Record written to topic deviceEvents: payload eventTime 1606158074635, log timestamp 1606158074640
-Record written to topic deviceEvents: payload eventTime 1606158075643, log timestamp 1606158075648
+Record written to topic deviceEvents: payload eventTime 1606158066122, Kafka timestamp 1606158066184
+Record written to topic deviceEvents: payload eventTime 1606158067577, Kafka timestamp 1606158067582
+Record written to topic deviceEvents: payload eventTime 1606158068588, Kafka timestamp 1606158068594
+Record written to topic deviceEvents: payload eventTime 1606158069595, Kafka timestamp 1606158069601
+Record written to topic deviceEvents: payload eventTime 1606158070605, Kafka timestamp 1606158070610
+Record written to topic deviceEvents: payload eventTime 1606158071611, Kafka timestamp 1606158071617
+Record written to topic deviceEvents: payload eventTime 1606158072623, Kafka timestamp 1606158072628
+Record written to topic deviceEvents: payload eventTime 1606158073629, Kafka timestamp 1606158073634
+Record written to topic deviceEvents: payload eventTime 1606158074635, Kafka timestamp 1606158074640
+Record written to topic deviceEvents: payload eventTime 1606158075643, Kafka timestamp 1606158075648
 ----
 
-Note that the `payload eventTime` value is not the same as the `log timestamp` value—this is working as expected.
-It demonstrates how the "event time", which is set by the application or end system in the payload, intentionally may differ from the "log timestamp" (or "ingestion" time), set by the Kafka broker when it writes the record to its log file.
+Note that the `payload eventTime` value is not the same as the `Kafka timestamp` value—this is working as expected.
+It demonstrates how the end system may intentionally set an event time in the payload, and it will differ from the Kafka record metadata timestamp.
