@@ -1,5 +1,5 @@
 Let’s inspect the events in this newly created `TEMPERATURE_READINGS_LOGTIME` stream by running a `SELECT` statement with an `EMIT CHANGES` clause, limited to 10.
-It shows the payload fields `TEMPERATURE` and `EVENTTIME`, plus the `ROWTIME`.
+It shows the payload fields `TEMPERATURE` and `EVENTTIME`, plus the `ROWTIME` which is a pseudo-column in ksqlDB that is used for time-based aggregations.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/transient-query-logtime.sql %}</code></pre>
@@ -16,4 +16,4 @@ Notice that for each row:
 - The `EVENTTIME` value in ksqlDB corresponds exactly to the `payload eventTime` set by the producer
 - The `ROWTIME` value in ksqlDB corresponds exactly to the `log timestamp` printed by the producer's callback (i.e., ingestion time, when the record was written into the broker's log file)
 
-All processing on this stream is based on `ROWTIME`, consequently this results in processing based on ingestion time.
+Any time-based aggregations on this stream is based on `ROWTIME`, consequently this results in processing based on the timestamp in the Kafka record metadata (either `CreateTime` or `LogAppendTime`).
