@@ -1,10 +1,10 @@
-To process data based on *ingestion time*, also known as *log time*, which uses the Kafka record timestamp:
+To do time-based aggregations using the timestamp in the record metadata, which is accessible in ksqlDB as a pseudo-column called `ROWTIME`:
 
 +++++
 <pre class="snippet"><code class="groovy">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/create-stream-logtime.sql  %}</code></pre>
 +++++
 
-To process data based on *event time*, which uses a timestamp set within the record payload:
+To do time-based aggregations using the timestamp from a field in the record payload, configure the `TIMESTAMP` option:
 
 +++++
 <pre class="snippet"><code class="groovy">{% include_raw tutorials/time-concepts/ksql/code/tutorial-steps/dev/create-stream-eventtime.sql  %}</code></pre>
