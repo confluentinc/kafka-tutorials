@@ -13,7 +13,7 @@ This should yield the following output:
 
 Notice that for each row:
 
-- The `EVENTTIME` value in ksqlDB corresponds exactly to the `payload eventTime` set by the producer
-- The `ROWTIME` value in ksqlDB corresponds exactly to the `Kafka timestamp` printed by the producer's callback
+- The `EVENTTIME` value in ksqlDB corresponds exactly to the `payload eventTime`, a field within the record payload
+- The `ROWTIME` value in ksqlDB corresponds exactly to the `Kafka timestamp` printed by the producer's callback, corresponding to the record metadata timestamp
 
 Any time-based aggregations on this stream is based on `ROWTIME`, consequently this results in processing based on the timestamp in the Kafka record metadata (either `CreateTime` or `LogAppendTime`).
