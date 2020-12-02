@@ -3,3 +3,15 @@ In a similar manner, populate the ratings stream:
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-table/ksql/code/tutorial-steps/dev/populate-ratings.sql %}</code></pre>
 +++++
+
+[NOTE]
+.Populating Data
+====
+One fundamental operation for working with tables is populating them with data. There are a number of ways to do this:
+
+ * Use ksqlDB's `INSERT INTO VALUES` syntax.
+ * Use the Apache Kafka® clients to write data to the underlying topics.
+ * Use connectors to source data from external systems.
+
+This tutorial uses ksqlDB `INSERT INTO VALUES` syntax. For an example on how to use the Apache Kafka® clients to write data to the underlying topics, see link:https://kafka-tutorials.confluent.io/kafka-console-consumer-producer-basics/kafka.html[*Kafka console producer basics*] and for an example on how to use connectors to source data from external systems, see link:https://kafka-tutorials.confluent.io/connect-add-key-to-source/ksql.html[*creating a ksqlDB table from PostgresSQL data using Kafka Connect*].
+====
