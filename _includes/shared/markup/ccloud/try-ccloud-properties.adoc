@@ -10,4 +10,4 @@ In the case of this tutorial, add the following properties to the client applica
 <pre class="snippet"><code class="text">{% include_raw shared/code/ccloud/properties.txt %}</code></pre>
 +++++
 
-Now you're all set to your run streaming application locally backed by a Kafka cluster fully managed by Confluent Cloud.
+Now you're all set to run your streaming application locally backed by a Kafka cluster fully managed by Confluent Cloud.
