@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    implementation "org.apache.avro:avro:1.10.0"
+    implementation "org.apache.avro:avro:1.10.1"
 
     implementation group: 'com.typesafe', name: 'config', version: '1.4.1'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
