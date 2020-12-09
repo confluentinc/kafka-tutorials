@@ -4,10 +4,10 @@ Finally, let's see what's available on the underlying Kafka topic for the new st
 <pre class="snippet"><code class="sql">{% include_raw tutorials/multi-joins/ksql/code/tutorial-steps/dev/print-topic.sql %}</code></pre>
 +++++
 
-Notice that the key for each message includes not just the enriched order data, but also the rowtime of the records. It should look something like this:
-
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/multi-joins/ksql/code/tutorial-steps/dev/expected-print-topic.log %}</code></pre>
 +++++
+
+Notice that the key for each message is the Item ID of the order.  This is the result of the join with the items table being the last join for our `CREATE STREAM` command. The key of the last join will become the key of the records in the underlying topic.
 
 Exit the ksqlDB CLI with `Ctrl-d`.
