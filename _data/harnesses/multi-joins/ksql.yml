@@ -1,3 +1,10 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/multi-joins/ksql/markup/answer/multi-way-join.adoc
 dev:
   steps:
     - title: Initialize the project
