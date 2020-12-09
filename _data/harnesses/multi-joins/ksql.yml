@@ -35,29 +35,41 @@ dev:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 20
+          column_width: 17
           render:
             file: tutorials/multi-joins/ksql/markup/dev/start-cli.adoc
           stdin:
-            - file: tutorial-steps/dev/create-inputs.sql
+            - file: tutorial-steps/dev/create-inputs-customers.sql
               render:
-                file: tutorials/multi-joins/ksql/markup/dev/create-inputs.adoc
+                file: tutorials/multi-joins/ksql/markup/dev/create-inputs-customers.adoc
 
-            - file: tutorial-steps/dev/populate-stream.sql
+            - file: tutorial-steps/dev/create-inputs-items.sql
               render:
-                file: tutorials/multi-joins/ksql/markup/dev/populate-stream.adoc
+                file: tutorials/multi-joins/ksql/markup/dev/create-inputs-items.adoc
+
+            - file: tutorial-steps/dev/create-inputs-orders.sql
+              render:
+                file: tutorials/multi-joins/ksql/markup/dev/create-inputs-orders.adoc
+
+            - file: tutorial-steps/dev/populate-table-customers.sql
+              render:
+                file: tutorials/multi-joins/ksql/markup/dev/populate-table-customers.adoc
+
+            - file: tutorial-steps/dev/populate-table-items.sql
+              render:
+                file: tutorials/multi-joins/ksql/markup/dev/populate-table-items.adoc
+
+            - file: tutorial-steps/dev/populate-stream-orders.sql
+              render:
+                file: tutorials/multi-joins/ksql/markup/dev/populate-stream-orders.adoc
 
             - file: tutorial-steps/dev/set-properties.sql
               render:
                 file: tutorials/multi-joins/ksql/markup/dev/set-properties.adoc
 
-            - file: tutorial-steps/dev/transient-window.sql
+            - file: tutorial-steps/dev/multi-way-join.sql
               render:
-                file: tutorials/multi-joins/ksql/markup/dev/transient-window.adoc
-
-            - file: tutorial-steps/dev/create-table.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/create-table.adoc
+                file: tutorials/multi-joins/ksql/markup/dev/multi-way-join.adoc
 
             - file: tutorial-steps/dev/transient-query.sql
               render:

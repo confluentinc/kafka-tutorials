@@ -1,16 +1,22 @@
-CREATE STREAM ratings (title VARCHAR, release_year INT, rating DOUBLE, timestamp VARCHAR)
-    WITH (kafka_topic='ratings',
-          timestamp='timestamp',
-          timestamp_format='yyyy-MM-dd HH:mm:ss',
-          partitions=1,
-          value_format='avro');
+CREATE TABLE customers (customerid STRING PRIMARY KEY, customername STRING)
+    WITH (KAFKA_TOPIC='customers',
+          VALUE_FORMAT='json',
+          PARTITIONS=1);
 
-CREATE TABLE rating_count
-    WITH (kafka_topic='rating_count') AS
-    SELECT title,
-           COUNT(*) AS rating_count,
-           WINDOWSTART AS window_start,
-           WINDOWEND AS window_end
-    FROM ratings
-    WINDOW TUMBLING (SIZE 6 HOURS)
-    GROUP BY title;
+CREATE TABLE items (itemid STRING PRIMARY KEY, itemname STRING)
+    WITH (KAFKA_TOPIC='items',
+          VALUE_FORMAT='json',
+          PARTITIONS=1);
+
+CREATE STREAM orders (orderid STRING KEY, customerid STRING, itemid STRING, purchasedate STRING)
+    WITH (KAFKA_TOPIC='orders',
+          VALUE_FORMAT='json',
+          PARTITIONS=1);
+
+CREATE STREAM orders_enriched AS 
+  SELECT customers.customerid AS customerid, customers.customername AS customername, 
+         orders.orderid, orders.purchasedate,
+         items.itemid, items.itemname
+  FROM orders 
+  LEFT JOIN customers on orders.customerid = customers.customerid 
+  LEFT JOIN items on orders.itemid = items.itemid;

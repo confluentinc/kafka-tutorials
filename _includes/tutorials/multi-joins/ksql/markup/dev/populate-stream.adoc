@@ -1,5 +1,0 @@
-Produce events that represent ratings about each movie over time. Note how the timestamps are varying across different hours of the day.
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/multi-joins/ksql/code/tutorial-steps/dev/populate-stream.sql %}</code></pre>
-+++++

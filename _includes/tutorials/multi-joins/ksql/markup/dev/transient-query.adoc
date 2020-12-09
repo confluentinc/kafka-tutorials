@@ -1,4 +1,4 @@
-As a bonus, we can prove to ourselves that the window boundaries are in fact 6-hour intervals. Run the following transient push query, which uses the `TIMESTAMPTOSTRING` function to convert the UNIX timestamps into something that we can read:
+Let's view the result by selecting the values from our new enriched orders stream:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/multi-joins/ksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>

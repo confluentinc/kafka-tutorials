@@ -1,102 +1,111 @@
 {
   "inputs": [
     {
-      "topic": "ratings",
+      "topic": "customers",
+      "key": "1",
       "value": {
-        "title": "Die Hard",
-        "release_year": 1998,
-        "rating": 8.2,
-        "timestamp": "2019-07-09 01:00:00"
+        "customerid": "1", 
+        "customername": "Adrian Garcia"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "customers",
+      "key": "2",
       "value": {
-        "title": "Die Hard",
-        "release_year": 1998,
-        "rating": 4.5,
-        "timestamp": "2019-07-09 05:00:00"
+        "customerid": "2", 
+        "customername": "Robert Miller"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "customers",
+      "key": "3",
       "value": {
-        "title": "Die Hard",
-        "release_year": 1998,
-        "rating": 5.1,
-        "timestamp": "2019-07-09 07:00:00"
+        "customerid": "3", 
+        "customername": "Brian Smith"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "items",
+      "key": "1",
       "value": {
-        "title": "Tree of Life",
-        "release_year": 2011,
-        "rating": 4.9,
-        "timestamp": "2019-07-09 09:00:00"
+        "itemid": "1", 
+        "itemname": "Television 60-in"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "items",
+      "key": "2",
       "value": {
-        "title": "Tree of Life",
-        "release_year": 2011,
-        "rating": 5.6,
-        "timestamp": "2019-07-09 08:00:00"
+        "itemid": "2", 
+        "itemname": "Laptop 15-in"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "items",
+      "key": "3",
       "value": {
-        "title": "A Walk in the Clouds",
-        "release_year": 1995,
-        "rating": 3.6,
-        "timestamp": "2019-07-09 12:00:00"
+        "itemid": "3", 
+        "itemname": "Speakers"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "orders",
+      "key": "abc123",
       "value": {
-        "title": "A Walk in the Clouds",
-        "release_year": 1995,
-        "rating": 6.0,
-        "timestamp": "2019-07-09 15:00:00"
+        "orderid": "abc123", 
+        "customerid": "1", 
+        "itemid": "1", 
+        "purchasedate": "2020-05-01"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "orders",
+      "key": "abc345",
       "value": {
-        "title": "A Walk in the Clouds",
-        "release_year": 1995,
-        "rating": 4.6,
-        "timestamp": "2019-07-09 22:00:00"
+        "orderid": "abc345", 
+        "customerid": "1", 
+        "itemid": "2", 
+        "purchasedate": "2020-05-01"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "orders",
+      "key": "abc678",
       "value": {
-        "title": "The Big Lebowski",
-        "release_year": 1998,
-        "rating": 9.9,
-        "timestamp": "2019-07-09 05:00:00"
+        "orderid": "abc678", 
+        "customerid": "2",  
+        "itemid": "1", 
+        "purchasedate": "2020-05-01"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "orders",
+      "key": "abc987",
       "value": {
-        "title": "The Big Lebowski",
-        "release_year": 1998,
-        "rating": 4.2,
-        "timestamp": "2019-07-09 02:00:00"
+        "orderid": "abc987", 
+        "customerid": "3", 
+        "itemid": "1", 
+        "purchasedate": "2020-05-03"
       }
     },
     {
-      "topic": "ratings",
+      "topic": "orders",
+      "key": "xyz123",
       "value": {
-        "title": "Super Mario Bros.",
-        "release_year": 1993,
-        "rating": 3.5,
-        "timestamp": "2019-07-09 18:00:00"
+        "orderid": "xyz123", 
+        "customerid": "2", 
+        "itemid": "3", 
+        "purchasedate": "2020-05-03"
+      }
+    },
+    {
+      "topic": "orders",
+      "key": "xyz987",
+      "value": {
+        "orderid": "xyz987", 
+        "customerid": "2", 
+        "itemid": "2", 
+        "purchasedate": "2020-05-05"
       }
     }
   ]
