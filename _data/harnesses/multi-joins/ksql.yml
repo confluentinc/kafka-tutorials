@@ -37,11 +37,13 @@ dev:
           render:
             skip: true
 
-    - title: Write the program interactively using the CLI
+    - title: Create input tables and streams 
       content:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
           column_width: 17
           render:
             file: tutorials/multi-joins/ksql/markup/dev/start-cli.adoc
@@ -73,11 +75,17 @@ dev:
       content:
        - action: docker_ksql_cli_session
          container: ksqldb-cli
-         docker_bootup_file: tutorial-steps/dev/set-properties.sql
+         docker_bootup_file: tutorial-steps/dev/start-cli.sh
+         stdout:
+           directory: tutorial-steps/dev/outputs
          column_width: 17
          render:
-           file: tutorials/multi-joins/ksql/markup/dev/set-properties.adoc
+           skip: true
          stdin:
+           - file: tutorial-steps/dev/set-properties.sql
+             render:
+               file: tutorials/multi-joins/ksql/markup/dev/set-properties.adoc
+
            - file: tutorial-steps/dev/multi-way-join.sql
              render:
                file: tutorials/multi-joins/ksql/markup/dev/multi-way-join.adoc
