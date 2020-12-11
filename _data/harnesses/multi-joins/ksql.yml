@@ -49,7 +49,6 @@ dev:
             - file: tutorial-steps/dev/create-inputs-customers.sql
               render:
                 file: tutorials/multi-joins/ksql/markup/dev/create-inputs-customers.adoc
-
             - file: tutorial-steps/dev/create-inputs-items.sql
               render:
                 file: tutorials/multi-joins/ksql/markup/dev/create-inputs-items.adoc
@@ -70,23 +69,28 @@ dev:
               render:
                 file: tutorials/multi-joins/ksql/markup/dev/populate-stream-orders.adoc
 
-            - file: tutorial-steps/dev/set-properties.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/set-properties.adoc
+    - title: Create the multi-way join stream
+      content:
+       - action: docker_ksql_cli_session
+         container: ksqldb-cli
+         docker_bootup_file: tutorial-steps/dev/set-properties.sql
+         column_width: 17
+         render:
+           file: tutorials/multi-joins/ksql/markup/dev/set-properties.adoc
+         stdin:
+           - file: tutorial-steps/dev/multi-way-join.sql
+             render:
+               file: tutorials/multi-joins/ksql/markup/dev/multi-way-join.adoc
 
-            - file: tutorial-steps/dev/multi-way-join.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/multi-way-join.adoc
+           - file: tutorial-steps/dev/transient-query.sql
+             render:
+               file: tutorials/multi-joins/ksql/markup/dev/transient-query.adoc
 
-            - file: tutorial-steps/dev/transient-query.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/transient-query.adoc
-
-            - file: tutorial-steps/dev/print-topic.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/print-topic.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
+           - file: tutorial-steps/dev/print-topic.sql
+             render:
+               file: tutorials/multi-joins/ksql/markup/dev/print-topic.adoc
+         stdout:
+           directory: tutorial-steps/dev/outputs
 
     - title: Write your statements to a file
       content:
