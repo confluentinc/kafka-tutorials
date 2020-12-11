@@ -208,4 +208,4 @@ ccloud:
       content:
         - action: skip
           render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+            file: shared/markup/ccloud/try-ccloud-properties.adoc

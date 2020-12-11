@@ -5,4 +5,4 @@ Use the promo code `CC100KTS` to receive an additional $100 free usage (https://
 
 Next, from the Confluent Cloud UI, click on `Tools & client config` to get the cluster-specific configurations, e.g. Kafka cluster bootstrap servers and credentials, Confluent Cloud Schema Registry and credentials, etc., and set the appropriate parameters in your client application.
 
-Now you're all set to your run application locally while your Kafka topics and stream processing is backed to your Confluent Cloud instance.
+Now you're all set to run your streaming application locally, backed by a Kafka cluster fully managed by Confluent Cloud.

@@ -179,6 +179,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/produce-consume-lang/scala/code tutorial
 
+        - name: KSQL anomaly detection tests
+          commands:
+            - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
+
   - name: Run second block of tests
     execution_time_limit:
       minutes: 10
@@ -325,10 +329,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/masking-data/ksql/code tutorial
 
-        - name: KSQL anomaly detection tests
-          commands:
-            - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
-
         - name: Kafka Consuming and Producing AVRO messages with console tools tests
           commands:
             - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
@@ -336,4 +336,11 @@ blocks:
         - name: KSQL Test ksqlDB nested JSON tests
           commands:
             - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
-        
+                
+        - name: KSQL Test ksqlDB heterogeneous JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-heterogeneous-json/ksql/code tutorial
+
+        - name: KSQL Time Concepts Tutorial tests
+          commands:
+            - make -C _includes/tutorials/time-concepts/ksql/code tutorial

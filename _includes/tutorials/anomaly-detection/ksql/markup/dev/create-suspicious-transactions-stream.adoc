@@ -8,7 +8,7 @@ Using the table of suspicious names and stream of transactions, create a new str
 .Stream-Table Joins
 ====
 *Things to note:* +
-- ksqlDB only supports inner and left joins between a stream and a table. See link:https://kafka-tutorials.confluent.io/join-a-stream-to-a-table/ksql.html[*Join a stream and a table together*] for a `LEFT JOIN` example. +
+- ksqlDB only supports inner and left joins between a stream and a table. See link:https://kafka-tutorials.confluent.io/join-a-stream-to-a-table/ksql.html[*Join a stream and a table*] for a `LEFT JOIN` example. +
 - It is important for the table data to be loaded _before_ the stream event is received. `INNER JOIN` does not result in any output if the table-side does not already contain a value for the key, even if the table-side is later populated. +
 - See more detailed link:https://docs.ksqldb.io/en/latest/developer-guide/joins/join-streams-and-tables/#stream-table-joins[*ksqlDB `JOIN` documentation*].
 ====
