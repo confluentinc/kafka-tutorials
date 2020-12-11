@@ -4,7 +4,7 @@ answer:
       content:
         - action: skip
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/answer/concatenation-answer.adoc
+            file: tutorials/concatenation/ksql/markup/answer/concatenation-answer.adoc
 
 dev:
   steps:
@@ -13,25 +13,25 @@ dev:
         - action: execute
           file: tutorial-steps/dev/init.sh
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/dev/init.adoc
+            file: tutorials/concatenation/ksql/markup/dev/init.adoc
 
-        - change_directory: ksql-concatenation-columns
+        - change_directory: concatenation
           action: execute
           file: tutorial-steps/dev/make-dirs.sh
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/dev/make-dirs.adoc
+            file: tutorials/concatenation/ksql/markup/dev/make-dirs.adoc
 
     - title: Get Confluent Platform
       content:
         - action: make_file
           file: docker-compose.yml
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/dev/make-docker-compose.adoc
+            file: tutorials/concatenation/ksql/markup/dev/make-docker-compose.adoc
 
         - action: execute_async
           file: tutorial-steps/dev/docker-compose-up.sh
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/dev/start-compose.adoc
+            file: tutorials/concatenation/ksql/markup/dev/start-compose.adoc
 
         - action: execute
           file: tutorial-steps/dev/wait-for-containers.sh
@@ -42,7 +42,7 @@ dev:
       content:
         - action: skip
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/dev/start-cli.adoc
+            file: tutorials/concatenation/ksql/markup/dev/start-cli.adoc
 
         - action: docker_ksql_cli_session
           container: ksqldb-cli
@@ -55,7 +55,7 @@ dev:
           stdin:
             - file: tutorial-steps/dev/create-activity-stream.sql
               render:
-                file: tutorials/ksql-concatenation-columns/ksql/markup/dev/create-financial-transaction-stream.adoc
+                file: tutorials/concatenation/ksql/markup/dev/create-financial-transaction-stream.adoc
 
         - name: wait for creating the stream
           action: sleep
@@ -69,13 +69,13 @@ dev:
           file: tutorial-steps/dev/console-producer.sh
           stdin: tutorial-steps/dev/input-events.json
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/dev/run-producer.adoc 
+            file: tutorials/concatenation/ksql/markup/dev/run-producer.adoc 
 
     - title: Run the streaming report interactively with the ksqldb-cli
       content:
         - action: skip
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/dev/start-cli.adoc
+            file: tutorials/concatenation/ksql/markup/dev/start-cli.adoc
 
         - action: docker_ksql_cli_session
           container: ksqldb-cli
@@ -88,11 +88,11 @@ dev:
           stdin:
             - file: tutorial-steps/dev/set-properties.sql
               render:
-                file: tutorials/ksql-concatenation-columns/ksql/markup/dev/set-properties.adoc
+                file: tutorials/concatenation/ksql/markup/dev/set-properties.adoc
 
             - file: tutorial-steps/dev/transient-reporting.sql
               render:
-                file: tutorials/ksql-concatenation-columns/ksql/markup/dev/transient-reporting.adoc     
+                file: tutorials/concatenation/ksql/markup/dev/transient-reporting.adoc     
           stdout:
             directory: tutorial-steps/dev/outputs
 
@@ -101,7 +101,7 @@ dev:
         - action: make_file
           file: src/statements.sql
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/dev/make-src-file.adoc
+            file: tutorials/concatenation/ksql/markup/dev/make-src-file.adoc
 
 test:
   steps:
@@ -110,12 +110,12 @@ test:
         - action: make_file
           file: test/input.json
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/test/make-test-input.adoc
+            file: tutorials/concatenation/ksql/markup/test/make-test-input.adoc
 
         - action: make_file
           file: test/output.json
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/test/make-test-output.adoc
+            file: tutorials/concatenation/ksql/markup/test/make-test-output.adoc
 
     - title: Invoke the tests
       content:
@@ -123,7 +123,7 @@ test:
           file: tutorial-steps/test/run-tests.sh
           stdout: tutorial-steps/test/outputs/test-results.log
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/test/run-tests.adoc
+            file: tutorials/concatenation/ksql/markup/test/run-tests.adoc
 
 prod:
   steps:
@@ -131,7 +131,7 @@ prod:
       content:
         - action: skip
           render:
-            file: tutorials/ksql-concatenation-columns/ksql/markup/prod/submit-to-api.adoc
+            file: tutorials/concatenation/ksql/markup/prod/submit-to-api.adoc
 
         - action: execute
           file: tutorial-steps/dev/clean-up.sh

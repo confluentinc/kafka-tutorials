@@ -577,6 +577,7 @@ ksql-heterogeneous-json:
     
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 multi-joins:
   title: "Multi-join expressions"
   meta-description: "Learn how to collapse multiple joins into a single statement with ksqlDB"
@@ -602,6 +603,14 @@ ksql-concatenation-columns:
   slug: "/concatenate-columns"
   question: "How do I concatenate values in multiple columns into a single one?"
   introduction: "Suppose you have a table and you need to combine 2 or more columns into a single value.  In this tutorial we'll show how to use the ksqlDB concatenation operator to create a single value from multiple coolumns"
+=======
+concatenation:
+  title: "Concatenation"
+  meta-description: "Concatenation"
+  slug: "/concatenation"
+  question: "How do I concatenate values from multiple columns into a single one?"
+  introduction: "Suppose you have a table and you need to combine 2 or more columns into a single value.  In this tutorial we'll show how to use the concatenation operator to create a single value from multiple columns"
+>>>>>>> d3ffae6c (Updates per comments)
   status:
     ksql: enabled
     kstreams: disabled

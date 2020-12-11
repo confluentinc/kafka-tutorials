@@ -1,8 +1,0 @@
-The first thing we do is to create a stream `ACTIVITY_STREAM` based off the topic `stock_purchases`.  The data contained in the topic is just plain JSON, with no special structure.
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/ksql-concatenation-columns/ksql/code/tutorial-steps/dev/create-activity-stream.sql %}</code></pre>
-+++++
-
-
-Go ahead and create the stream now by pasting this statement into the ksqlDB window you opened at the beginning of this step.  After you've created the stream, quit the ksqlDB CLI for now by typing `exit`.

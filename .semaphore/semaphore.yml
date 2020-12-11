@@ -351,5 +351,5 @@ blocks:
 
         - name: KSQL Test ksqlDB concatenate columns tests
           commands:
-            - make -C _includes/tutorials/ksql-concatenation-columns/ksql/code tutorial
+            - make -C _includes/tutorials/concatenation/ksql/code tutorial
 
