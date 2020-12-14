@@ -344,7 +344,12 @@ blocks:
         - name: KSQL Time Concepts Tutorial tests
           commands:
             - make -C _includes/tutorials/time-concepts/ksql/code tutorial
-        
+    
         - name: KSQL Multi-joins Test tests
           commands:
             - make -C _includes/tutorials/multi-joins/ksql/code tutorial
+
+        - name: KSQL Test ksqlDB concatenate columns tests
+          commands:
+            - make -C _includes/tutorials/concatenation/ksql/code tutorial
+
