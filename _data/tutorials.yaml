@@ -575,3 +575,22 @@ ksql-heterogeneous-json:
     scala: disabled
     swift: disabled
     
+
+multi-joins:
+  title: "Multi-join expressions"
+  meta-description: "Learn how to collapse multiple joins into a single statement with ksqlDB"
+  slug: "/multi-joins"
+  question: "How can I join multiple streams or tables together using a single expression in ksqlDB?"
+  introduction: "Suppose you have two tables (customers and items) and one stream (orders) that have purchases from an online store. You want to build a stream of all orders and customers who made purchases including item details."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
