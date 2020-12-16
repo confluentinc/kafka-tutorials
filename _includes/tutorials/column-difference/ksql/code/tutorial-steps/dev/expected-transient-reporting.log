@@ -1,0 +1,9 @@
++--------------------+--------------------+--------------------+
+|FIRST_NAME          |LAST_NAME           |PURCHASE_DIFF       |
++--------------------+--------------------+--------------------+
+|Art                 |Vandeley            |-2995.6499999999996 |
+|Nick                |Fury                |500.56              |
+|Natasha             |Romanov             |471.71              |
+|Wanda               |Maximoff            |-12807.220000000001 |
+Limit Reached
+Query terminated
