@@ -1,7 +1,7 @@
 plugins {
     id "java"
     id "application"
-    id "com.google.cloud.tools.jib" version "2.6.0"
+    id "com.google.cloud.tools.jib" version "2.7.0"
     id "com.github.johnrengelman.shadow" version "6.1.0"
     id "com.commercehub.gradle.plugin.avro" version "0.17.0"
 }
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    implementation "org.apache.avro:avro:1.10.0"
+    implementation "org.apache.avro:avro:1.10.1"
 
     implementation group: 'com.typesafe', name: 'config', version: '1.4.1'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
