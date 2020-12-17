@@ -352,4 +352,7 @@ blocks:
         - name: KSQL Test ksqlDB concatenate columns tests
           commands:
             - make -C _includes/tutorials/concatenation/ksql/code tutorial
-
+         
+        - name: KSQL Test ksqlDB column difference tests
+          commands:
+            - make -C _includes/tutorials/column-difference/ksql/code tutorial

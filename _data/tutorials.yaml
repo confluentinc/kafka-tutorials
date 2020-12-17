@@ -612,3 +612,22 @@ concatenation:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+column-difference:
+  title: "Column Difference"
+  meta-description: "Column Difference"
+  slug: "/column-difference"
+  question: "How do I calculate the difference between two columns?"
+  introduction: "Suppose you have a table or stream and you need to calculate the difference between two columns.  In this tutorial we'll show how to calculate the difference between two columns"
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
