@@ -236,7 +236,7 @@ generate-test-data-streams:
     ksql: enabled
     kstreams: disabled
     kafka: enabled
-    
+
 aggregating-average:
   title: "Compute an average aggregation"
   meta-description: "Learn how to compute an average aggregation like count or sum"
@@ -293,11 +293,11 @@ console-consumer-producer-basic:
     kafka: enabled
 
 console-consumer-primitive-keys-values:
-  title: "How to use the console consumer to read non-string primitive keys values"
+  title: "How to use the console consumer to read non-string primitive keys and values"
   meta-description: "How to use the console consumer to read non-string primitive keys and values"
   slug: "/console-consumer-primitive-values"
   question: "How do I specify key and value deserializers when running the Kafka console consumer?"
-  introduction: "You want to inspect/debug records written to a topic.  The keys and values are long and doubles, repsectively.  In this tutorial you'll learn how to specify key and value deserializers with the console consumer"
+  introduction: "You want to inspect/debug records written to a topic.  The keys and values are longs and doubles, respectively.  In this tutorial you'll learn how to specify key and value deserializers with the console consumer."
   status:
     ksql: disabled
     kstreams: disabled
@@ -352,7 +352,7 @@ kafka-consumer-application:
   meta-description: "How build your first Apache Kafka consumer application"
   slug: "/creating-first-apache-kafka-consumer-application"
   question: "How do I get started in building my first Kafka consumer application?"
-  introduction: "You'd like to integrate an Apache KafkaConsumer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application reading records from Kafka with a KafkaConsumer.  You can use the code in this tutorial as an example of how to use an Apache Kafka consumer"
+  introduction: "You'd like to integrate an Apache KafkaConsumer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application reading records from Kafka with a KafkaConsumer.  You can use the code in this tutorial as an example of how to use an Apache Kafka consumer."
   status:
     ksql: disabled
     kstreams: disabled
@@ -362,7 +362,7 @@ produce-consume-lang:
   title: "Produce and Consume Records in multiple languages"
   meta-description: "Produce and Consume events from Apache Kafka in multiple languages"
   slug: "/produce-and-consume-lang/"
-  question: "you want to produce and consume events from Kafka using a programming language other than Java"
+  question: "How can I produce and consume events from Kafka using a programming language other than Java?"
   introduction: "You want to enrich and expose a list of books from a library. You have to produce an event for each book acquisition (title, editor, release ...), and consume back the same events to serve the book collection over HTTP."
   status:
     ksql: disabled
@@ -402,8 +402,8 @@ kafka-producer-application-callback:
   title: "How build an Apache KafkaProducer application using callbacks"
   meta-description: "How build an Apache Kafka producer application and handle responses using the Callback interface"
   slug: "/kafka-producer-callback-application"
-  question: "How do I use callbacks with a KafkaProducer to handle produce responses"
-  introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handing the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle responses from producing records"
+  question: "How do I use callbacks with a KafkaProducer to handle produce responses?"
+  introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handing the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle responses from producing records."
   status:
     ksql: disabled
     kstreams: disabled
@@ -441,7 +441,7 @@ ccloud-produce-consume:
   title: "How to produce and consume records from Confluent Cloud using ccloud CLI"
   meta-description: "Learn how to produce and consume records from Confluent Cloud using ccloud CLI"
   slug: "/ccloud-produce-consume"
-  question: "How do I use the ccloud CLI to produce and consume records from a Confluent Cloud topic"
+  question: "How do I use the ccloud CLI to produce and consume records from a Confluent Cloud topic?"
   introduction: "In this tutorial you learn how to use the ccloud CLI to produce and consume records from a Kafka topic in <a href=\"https://confluent.cloud\">Confluent Cloud</a>. This can help you build and debug your Confluent Cloud based event streaming applications."
   status:
     ksql: disabled
@@ -530,13 +530,13 @@ time-concepts:
   title: "Event-time semantics"
   meta-description: "Learn how to extract the timestamp within the Kafka record payload to achieve event-time semantics"
   slug: "/time-concepts"
-  question: "What is the difference between using the timestamp from the record metadata and using the timestamp within the record payload?" 
+  question: "What is the difference between using the timestamp from the record metadata and using the timestamp within the record payload?"
   introduction: "By default, time-based aggregations in Kafka Streams and ksqlDB (<a href=\"https://kafka-tutorials.confluent.io/create-tumbling-windows/ksql.html\">tumbling windows</a>, <a href=\"https://kafka-tutorials.confluent.io/create-hopping-windows/ksql.html\">hopping windows</a>, etc.) operate on the timestamp in the record metadata, which could be either 'CreateTime' (producer system time) or 'LogAppendTime' (broker system time), depending on the <a href=\"https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#message.timestamp.type\">message.timestamp.type</a> configuration value. 'CreateTime' helps with event-time semantics, but there may be use cases where the desired event time is a timestamp embedded inside the record payload. This tutorial shows you how to use the timestamp either from the record metadata or from a field in the record payload."
   status:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
-    
+
 ksql-nested-json:
   title: "Working with nested JSON"
   meta-description: "Learn how to select fields from a stream of Kafka records that are contained in nested JSON"
@@ -574,7 +574,7 @@ ksql-heterogeneous-json:
     ruby: disabled
     scala: disabled
     swift: disabled
-    
+
 multi-joins:
   title: "Multi-join expressions"
   meta-description: "Learn how to collapse multiple joins into a single statement with ksqlDB"
