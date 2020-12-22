@@ -15,7 +15,7 @@ https://kafka.apache.org/documentation/#acks[acks] - The `KafkaProducer` uses th
 
 - `acks=0`: "fire and forget", once the producer sends the record batch it is considered successful
 - `acks=1`: leader broker added the records to its local log but didn't wait for any acknowledgment from the followers
-- `acks=all`: highest data durability guarantee, the leader broker persisted the record to its log and received acknowledgment of replication from all in-sync replicas. When using `aks=all`, it's strongly recommended to update https://kafka.apache.org/documentation/#min.insync.replicas[min.insync.replicas] as well.
+- `acks=all`: highest data durability guarantee, the leader broker persisted the record to its log and received acknowledgment of replication from all in-sync replicas. When using `acks=all`, it's strongly recommended to update https://kafka.apache.org/documentation/#min.insync.replicas[min.insync.replicas] as well.
 
 
 This is only a small sub-set of producer configuration parameters. The full list of producer configuration parameters can be found in the https://kafka.apache.org/documentation/#producerconfigs[Apache Kafka documentation].
