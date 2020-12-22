@@ -36,7 +36,7 @@ The `FileWritingRecordsHandler` is a simple class that writes values of consumed
     }
   }
 ----
-<1> Iterate over all of the records and store the `value`s in a `List`
+<1> Iterate over all of the records and store each record's `value` in a `List`
 <2> If the `List` isn't empty let's do something!
 <3> Pass the `List&lt;String&gt;` of records to the `Files.write()` method
 
