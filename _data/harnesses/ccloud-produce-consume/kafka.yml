@@ -31,13 +31,13 @@ dev:
           render:
             file: tutorials/ccloud-produce-consume/kafka/markup/dev/create-topic.adoc
 
-    - title: Create a schema for your records 
+    - title: Create a schema for your records
       content:
       - action: skip
         render:
           file: tutorials/ccloud-produce-consume/kafka/markup/dev/create-schema.adoc
-    
-    - title: Start a console consumer 
+
+    - title: Start a console consumer
       content:
       - action: skip
         render:
@@ -50,7 +50,7 @@ dev:
           file: tutorials/ccloud-produce-consume/kafka/markup/dev/produce-topic-key-value.adoc
 
 
-    - title: Cleanup your environment
+    - title: Clean up your environment
       content:
       - action: skip
         render:

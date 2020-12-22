@@ -14,6 +14,4 @@ Setting `enable.auto.commit` configuration to `true` enables the Kafka consumer 
 
 `auto.offset.reset` - If a consumer instance can't locate any offsets for its topic-partition assignment(s), it will resume processing from the _**earliest**_ available offset.
 
-`group.id` - Kafka uses the concept of a consumer-group which is used to represent a logical single group.  A consumer-group can be made up of multiple members all sharing the same `group.id` configuration.  As members leave or join the consumer-group, the group-coordinator triggres a rebalance which causes topic-partition reassignment among active members of the group.
-
-
+`group.id` - Kafka uses the concept of a consumer-group which is used to represent a logical single group.  A consumer-group can be made up of multiple members all sharing the same `group.id` configuration.  As members leave or join the consumer-group, the group-coordinator triggers a rebalance which causes topic-partition reassignment among active members of the group.

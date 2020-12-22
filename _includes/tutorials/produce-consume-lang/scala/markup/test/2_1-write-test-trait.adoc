@@ -1,5 +1,5 @@
 First we create a `trait` that will extend `AnyFlatSpec`, `Matchers` and other tests traits.
-Because theses tests might be asynchronous, we will use the scalatest functions from `Eventually`.
+Because these tests might be asynchronous, we will use the scalatest functions from `Eventually`.
 
 All Kafka Clients related tests will extends this trait, so let's call it:
 `src/test/scala/io/confluent/developer/KafkaFlatSpec.scala`
