@@ -297,7 +297,7 @@ console-consumer-primitive-keys-values:
   meta-description: "How to use the console consumer to read non-string primitive keys and values"
   slug: "/console-consumer-primitive-values"
   question: "How do I specify key and value deserializers when running the Kafka console consumer?"
-  introduction: "You want to inspect/debug records written to a topic.  The keys and values are longs and doubles, respectively.  In this tutorial you'll learn how to specify key and value deserializers with the console consumer."
+  introduction: "You want to inspect/debug records written to a topic.  Each record key and value is a long and double, respectively.  In this tutorial you'll learn how to specify key and value deserializers with the console consumer."
   status:
     ksql: disabled
     kstreams: disabled
