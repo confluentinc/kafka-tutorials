@@ -631,3 +631,22 @@ column-difference:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+geo-distance:
+  title: "Geo-distance"
+  meta-description: "Geo-distance"
+  slug: "/geo-distance"
+  question: "How do I calculate the distance between two geological points?"
+  introduction: "Suppose you have lat-long points specified in decimal degrees and you need to calculate the kilometers or miles between two of those points. "
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
