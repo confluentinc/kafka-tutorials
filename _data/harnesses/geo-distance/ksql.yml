@@ -39,45 +39,45 @@ dev:
           render:
             file: tutorials/geo-distance/ksql/markup/dev/start-cli.adoc
           stdin:
-            - file: tutorial-steps/dev/create_insurance_event_stream.sql
+            - file: tutorial-steps/dev/create-insurance-event-stream.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/create_insurance_event_stream.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/create-insurance-event-stream.adoc
 
-            - file: tutorial-steps/dev/populate_insurance_event_stream.sql
+            - file: tutorial-steps/dev/populate-insurance-event-stream.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/populate_insurance_event_stream.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/populate-insurance-event-stream.adoc
 
-            - file: tutorial-steps/dev/create_post_code_ref_table.sql
+            - file: tutorial-steps/dev/create-post-code-ref-table.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/create_post_code_ref_table.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/create-post-code-ref-table.adoc
 
-            - file: tutorial-steps/dev/populate_post_code_ref_table.sql
+            - file: tutorial-steps/dev/populate-post-code-ref-table.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/populate_post_code_ref_table.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/populate-post-code-ref-table.adoc
 
-            - file: tutorial-steps/dev/create_insurance_location_stream.sql
+            - file: tutorial-steps/dev/create-insurance-location-stream.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/create_insurance_location_stream.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/create-insurance-location-stream.adoc
 
-            - file: tutorial-steps/dev/view_insurance_location_stream.sql
+            - file: tutorial-steps/dev/view-insurance-location-stream.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/view_insurance_location_stream.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/view-insurance-location-stream.adoc
 
-            - file: tutorial-steps/dev/create_repair_ref_table.sql
+            - file: tutorial-steps/dev/create-repair-ref-table.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/create_repair_ref_table.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/create-repair-ref-table.adoc
 
-            - file: tutorial-steps/dev/populate_repair_ref_table.sql
+            - file: tutorial-steps/dev/populate-repair-ref-table.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/populate_repair_ref_table.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/populate-repair-ref-table.adoc
 
-            - file: tutorial-steps/dev/geo_distance_query.sql
+            - file: tutorial-steps/dev/geo-distance-query.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/geo_distance_query.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/geo-distance-query.adoc
 
-            - file: tutorial-steps/dev/persistent_geo_distance_query.sql
+            - file: tutorial-steps/dev/persistent-geo-distance-query.sql
               render:
-                file: tutorials/geo-distance/ksql/markup/dev/persistent_geo_distance_query.adoc
+                file: tutorials/geo-distance/ksql/markup/dev/persistent-geo-distance-query.adoc
           stdout:
             directory: tutorial-steps/dev/outputs
 
