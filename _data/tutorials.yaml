@@ -637,7 +637,7 @@ geo-distance:
   meta-description: "Calculating lat-long distance"
   slug: "/geo-distance"
   question: "How do I calculate the distance between two lat-long points?"
-  introduction: "Suppose you have lat-long points specified in decimal degrees and you need to calculate the kilometers or miles between two of those points. "
+  introduction: "Suppose you work for a company that insures cellphones. The company records events that would result in an insurance claim, such as a customer dropping their phone in water. The company has metadata about where the event occurred, postal code lat-long data, and repair shop lat-long data. It's your job to recommend the closest repair shop to the customers in kilometers."
   status:
     ksql: enabled
     kstreams: disabled

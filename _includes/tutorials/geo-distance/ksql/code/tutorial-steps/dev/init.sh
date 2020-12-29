@@ -1,1 +1,1 @@
-mkdir join-table-and-table && cd join-table-and-table
+mkdir geo-distance && cd geo-distance

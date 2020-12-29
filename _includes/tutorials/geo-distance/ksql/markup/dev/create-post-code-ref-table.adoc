@@ -1,3 +1,4 @@
+Next let's create a postal code reference table. This table will contain postal codes, some extra metadata, and the longitude and latitude of the postal office.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/geo-distance/ksql/code/tutorial-steps/dev/create-post-code-ref-table.sql %}</code></pre>
