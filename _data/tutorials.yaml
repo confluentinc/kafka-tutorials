@@ -633,10 +633,10 @@ column-difference:
     swift: disabled
 
 geo-distance:
-  title: "Geo-distance"
-  meta-description: "Geo-distance"
+  title: "Calculating lat-long distance"
+  meta-description: "Calculating lat-long distance"
   slug: "/geo-distance"
-  question: "How do I calculate the distance between two geological points?"
+  question: "How do I calculate the distance between two lat-long points?"
   introduction: "Suppose you have lat-long points specified in decimal degrees and you need to calculate the kilometers or miles between two of those points. "
   status:
     ksql: enabled
