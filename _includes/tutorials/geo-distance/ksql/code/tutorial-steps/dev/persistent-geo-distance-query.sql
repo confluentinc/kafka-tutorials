@@ -1,4 +1,4 @@
-SELECT TIMESTAMPTOSTRING(rowtime, 'dd/MM HH:mm'),
-iel_iev_customer_name + ' lost ' +  iel_iev_phone_model + ' due to ' + iel_iev_event + ' in ' +  iel_pc_locality
-+ ' (' + iel_pc_state + '), and is ' +  CAST(round(dist_to_repairer_km) AS VARCHAR) + ' km from a service center'
-FROM insurance_event_with_repairer EMIT CHANGES LIMIT 2;
+CREATE STREAM insurance_event_dist AS
+SELECT iev_customer_name, iev_state,
+              geo_distance(iev_lat, iev_long, rct_lat, rct_long, 'km') AS dist_to_repairer_km
+FROM insurance_event_with_repair_info;

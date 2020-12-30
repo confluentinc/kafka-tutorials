@@ -1,3 +1,3 @@
-CREATE STREAM insurance_event_with_location AS
-SELECT * FROM insurance_event_stream iev
-INNER JOIN post_code_tab pc ON iev.post_code = pc.post_code;
+CREATE STREAM insurance_event_with_repair_info AS
+       SELECT * FROM insurance_event_stream iev
+       INNER JOIN repair_center_tab rct ON iev.state = rct.repair_state;
