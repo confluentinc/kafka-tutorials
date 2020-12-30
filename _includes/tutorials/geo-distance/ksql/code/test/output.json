@@ -1,39 +1,47 @@
 {
   "outputs": [
     {
-      "topic": "MOVIES_ENRICHED",
-      "key": "Aliens",
+      "topic": "INSURANCE_EVENT_WITH_REPAIR_INFO",
+      "key": "NSW",
       "value": {
-        "ID": 48,
-        "RELEASE_YEAR": 1986,
-        "ACTOR_NAME": "Sigourney Weaver"
+        "IEV_CUSTOMER_NAME": "Lindsey",
+        "IEV_PHONE_MODEL": "iPhone 11 Pro",
+        "IEV_EVENT": "dropped",
+        "IEV_LONG": 151.25664,
+        "IEV_LAT": -33.85995,
+        "RCT_REPAIR_STATE": "NSW",
+        "RCT_LONG": 151.1169,
+        "RCT_LAT": -33.863
       }
     },
     {
-      "topic": "MOVIES_ENRICHED",
-      "key": "Die Hard",
+      "topic": "INSURANCE_EVENT_WITH_REPAIR_INFO",
+      "key": "NSW",
       "value": {
-        "ID": 294,
-        "RELEASE_YEAR": 1998,
-        "ACTOR_NAME": "Bruce Willis"
+        "IEV_CUSTOMER_NAME": "Debbie",
+        "IEV_PHONE_MODEL": "Samsung Note 20",
+        "IEV_EVENT": "water",
+        "IEV_LONG": 151.24504,
+        "IEV_LAT": -33.8964,
+        "RCT_REPAIR_STATE": "NSW",
+        "RCT_LONG": 151.1169,
+        "RCT_LAT": -33.863
       }
     },
     {
-      "topic": "MOVIES_ENRICHED",
-      "key": "The Big Lebowski",
+      "topic": "INSURANCE_EVENT_DIST",
+      "key": "NSW",
       "value": {
-        "ID": 128,
-        "RELEASE_YEAR": 1998,
-        "ACTOR_NAME": "Jeff Bridges"
+        "IEV_CUSTOMER_NAME": "Lindsey",
+        "DIST_TO_REPAIRER_KM": 12.907325150628191
       }
     },
     {
-      "topic": "MOVIES_ENRICHED",
-      "key": "The Godfather",
+      "topic": "INSURANCE_EVENT_DIST",
+      "key": "NSW",
       "value": {
-        "ID": 128,
-        "RELEASE_YEAR": 1998,
-        "ACTOR_NAME": "Al Pacino"
+        "IEV_CUSTOMER_NAME": "Debbie",
+        "DIST_TO_REPAIRER_KM": 12.398568134716221
       }
     }
   ]

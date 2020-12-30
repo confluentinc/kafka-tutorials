@@ -1,63 +1,41 @@
 {
   "inputs": [
     {
-      "topic": "movies",
-      "key": "Aliens",
+      "topic": "repair_center",
+      "key": "NSW",
       "value": {
-        "ID": 48,
-        "RELEASE_YEAR": 1986
+        "LONG": 151.1169,
+        "LAT": -33.863
       }
     },
     {
-      "topic": "movies",
-      "key": "Die Hard",
+      "topic": "repair_center",
+      "key": "VIC",
       "value": {
-        "ID": 294,
-        "RELEASE_YEAR": 1998
+        "LONG": 145.1549,
+        "LAT": -37.9389
       }
     },
     {
-      "topic": "movies",
-      "key": "The Big Lebowski",
+      "topic": "phone_event_raw",
       "value": {
-        "ID": 128,
-        "RELEASE_YEAR": 1998
+        "CUSTOMER_NAME": "Lindsey",
+        "PHONE_MODEL": "iPhone 11 Pro",
+        "EVENT": "dropped",
+        "STATE": "NSW",
+        "LONG": 151.25664,
+        "LAT": -33.85995
       }
     },
     {
-      "topic": "movies",
-      "key": "The Godfather",
+      "topic": "phone_event_raw",
       "value": {
-        "ID": 128,
-        "RELEASE_YEAR": 1998
-      }
-    },
-    {
-      "topic": "lead_actors",
-      "key": "Aliens",
-      "value": {
-        "ACTOR_NAME": "Sigourney Weaver"
-      }
-    },
-    {
-      "topic": "lead_actors",
-      "key": "Die Hard",
-      "value": {
-        "ACTOR_NAME": "Bruce Willis"
-      }
-    },
-    {
-      "topic": "lead_actors",
-      "key": "The Big Lebowski",
-      "value": {
-        "ACTOR_NAME": "Jeff Bridges"
-      }
-    },
-    {
-      "topic": "lead_actors",
-      "key": "The Godfather",
-      "value": {
-        "ACTOR_NAME": "Al Pacino"
+        "CUSTOMER_NAME": "Debbie",
+        "PHONE_MODEL": "Samsung Note 20",
+        "EVENT": "water",
+        "STATE": "NSW",
+        "LONG": 151.24504,
+        "LAT": -33.89640
       }
     }
   ]
