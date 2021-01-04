@@ -1,4 +1,4 @@
-In addiciton, the producer application and the consumer application will both have their own submodule.
+In addition, the producer application and the consumer application will both have their own submodule.
 
 Create the following directories:
 

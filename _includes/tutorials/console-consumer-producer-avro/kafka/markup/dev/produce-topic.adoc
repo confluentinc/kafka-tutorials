@@ -20,5 +20,5 @@ Try copying and pasting one line at a time, hit enter and go back to the Avro co
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/input-step-one.txt %}</code></pre>
 +++++
 
-Once you’ve sent all the records you should see the same output in your Avro console consumer window. 
-After you’ve confirmed receiving all records go ahead and close the consumer by entering kbd:[CTRL+C].
+Once you’ve sent all the records you should see the same output in your Avro console consumer window.
+After you’ve confirmed receiving all records go ahead and close the consumer by entering `CTRL+C`.

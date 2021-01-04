@@ -9,7 +9,7 @@ Add the following class to the file
 %}</code></pre>
 +++++
 
-Lets’s describe the keys pieces of this program.
+Let’s describe the key pieces of this program.
 
 NOTE: The Consumer application loads its configuration from the _consumer_ bloc of the `application.conf`
 
