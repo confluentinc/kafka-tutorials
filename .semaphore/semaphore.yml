@@ -356,3 +356,7 @@ blocks:
         - name: KSQL Test ksqlDB column difference tests
           commands:
             - make -C _includes/tutorials/column-difference/ksql/code tutorial
+        
+        - name: KSQL geo-distance tests
+          commands:
+            - make -C _includes/tutorials/geo-distance/ksql/code tutorial

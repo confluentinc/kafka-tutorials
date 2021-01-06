@@ -631,3 +631,22 @@ column-difference:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+geo-distance:
+  title: "Calculating lat-long distance"
+  meta-description: "Calculating lat-long distance"
+  slug: "/geo-distance"
+  question: "How do I calculate the distance between two lat-long points?"
+  introduction: "Suppose you work for a company that insures cellphones. The company records events that would result in an insurance claim, such as a customer dropping their phone in water. The company has data about where the event occurred and repair shop lat-long data. It's your job to recommend the closest repair shop to the customers in kilometers."
+  status:
+    ksql: enabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
