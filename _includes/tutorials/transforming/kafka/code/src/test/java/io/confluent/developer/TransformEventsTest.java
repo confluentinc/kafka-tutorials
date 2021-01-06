@@ -1,7 +1,6 @@
 package io.confluent.developer;
 
 import io.confluent.developer.avro.Movie;
-
 import io.confluent.developer.avro.RawMovie;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
@@ -11,17 +10,15 @@ import org.apache.kafka.clients.producer.ProducerRecord;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.ClassRule;
-import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.rules.ExternalResource;
+import org.junit.Test;
 import org.testcontainers.containers.KafkaContainer;
+import org.testcontainers.utility.DockerImageName;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
 
@@ -34,14 +31,9 @@ public class TransformEventsTest {
 
     @ClassRule
     public static KafkaContainer kafkaContainer = new KafkaContainer(
-        ENVIRONMENT_PROPERTIES.getProperty("confluent.version"));
-
-    @Rule
-    public SchemaRegistryContainer schemaRegistryContainer =
-        new SchemaRegistryContainer(ENVIRONMENT_PROPERTIES
-            .getProperty("confluent.version"))
-            .withKafka(kafkaContainer);
-
+            DockerImageName.parse("confluentinc/cp-kafka:" +
+                    ENVIRONMENT_PROPERTIES.getProperty("confluent.version")));
+    
     private String inputTopic, outputTopic;
     private TransformationEngine transEngine;
     private KafkaProducer<String, Movie> movieProducer;
@@ -54,7 +46,6 @@ public class TransformEventsTest {
 
         TransformEvents transformEvents = new TransformEvents();
         ENVIRONMENT_PROPERTIES.put("bootstrap.servers", kafkaContainer.getBootstrapServers());
-        ENVIRONMENT_PROPERTIES.put("schema.registry.url", schemaRegistryContainer.getTarget());
         transformEvents.createTopics(ENVIRONMENT_PROPERTIES);
 
         inputTopic = ENVIRONMENT_PROPERTIES.getProperty("input.topic.name");
