@@ -37,7 +37,7 @@ dev:
           action: execute
           file: tutorial-steps/dev/make-schema-dir.sh
           render:
-            file: tutorials/console-consumer-producer-avro/kafka/markup/dev/make-schema-dir.adoc
+            skip: true
 
         - action: make_file
           file: schema/order_detail.avsc
