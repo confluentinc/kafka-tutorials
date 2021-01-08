@@ -12,7 +12,7 @@ buildscript {
 plugins {
   id "java"
   id "application"
-  id "com.google.cloud.tools.jib" version "2.7.0"
+  id "com.google.cloud.tools.jib" version "2.7.1"
   id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
