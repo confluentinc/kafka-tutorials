@@ -55,7 +55,7 @@
         <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
-            <div>Apply a function to data.</div>
+            <div>Apply a function to data ksqlDB</div>
           </div>
           <ul>
             <li><a href="geo-distance/ksql.html">Calculating lat-long distance</a></li>
@@ -64,24 +64,49 @@
             <li><a href="working-with-json-different-structure/ksql.html">Working with heterogenous JSON</a></li>
             <li><a href="concatenation/ksql.html">Concatenation</a></li>
             <li class="more is-hidden"><a href="changing-serialization-format/ksql.html">Convert a stream's serialization format</a></li>
-            <li class="more is-hidden"><a href="kafka-streams-schedule-operations/kstreams.html">Scheduling operations in Kafka Streams</a></li>
             <li class="more is-hidden"><a href="transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
             <li class="more is-hidden"><a href="flatten-nested-data/ksql.html">Flatten deeply nested events</a></li>
-            <li class="more is-hidden"><a href="filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
-            <li class="more is-hidden"><a href="rekey-a-stream/ksql.html">Rekey a stream with a value</a></li>
-            <li class="more is-hidden"><a href="rekey-with-function/ksql.html">Rekey a stream with a function</a></li>
-            <li class="more is-hidden"><a href="split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
-            <li class="more is-hidden"><a href="merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
+          </ul>
+          <div id="show"><a class="button is-small is-fullwidth">More</a></div>
+        </div>
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
+            <div>Advanced ksqlDB</div>
+          </div>
+          <ul>
+            <li><a href="filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
+            <li><a href="rekey-a-stream/ksql.html">Rekey a stream with a value</a></li>
+            <li><a href="rekey-with-function/ksql.html">Rekey a stream with a function</a></li>
+            <li><a href="split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
+            <li><a href="merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
             <li class="more is-hidden"><a href="finding-distinct-events/ksql.html">Find distinct events</a></li>
             <li class="more is-hidden"><a href="udf/ksql.html">Apply a custom, user-defined function</a></li>
             <li class="more is-hidden"><a href="handling-deserialization-errors/ksql.html">Handle deserialization errors</a></li>
-            <li class="more is-hidden"><a href="dynamic-output-topic/kstreams.html">Choose the output topic dynamically</a></li>
-            <li class="more is-hidden"><a href="naming-stateful-operations/kstreams.html">Name stateful operations</a></li>
-            <li class="more is-hidden"><a href="kafka-streams-convert-to-ktable/kstreams.html">Convert a KStream to a KTable</a></li>
             <li class="more is-hidden"><a href="column-difference/ksql.html">Calculate the difference between two columns</a></li>
           </ul>
           <div id="show"><a class="button is-small is-fullwidth">More</a></div>
         </div>
+
+       <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
+            <div>Apply a function to data Kafka Streams</div>
+          </div>
+          <ul>
+            <li><a href="kafka-streams-schedule-operations/kstreams.html">Scheduling operations in Kafka Streams</a></li>
+            <li><a href="dynamic-output-topic/kstreams.html">Choose the output topic dynamically</a></li>
+            <li><a href="naming-stateful-operations/kstreams.html">Name stateful operations</a></li>
+            <li><a href="kafka-streams-convert-to-ktable/kstreams.html">Convert a KStream to a KTable</a></li>  
+          </ul>
+          <!--div id="show"><a class="button is-small is-fullwidth">More</a></div-->
+        </div>
+        
+      </div>
+
+      <div class="cards secondary-card-row">
+
         <div class="card">
           <div class="title">
             <img class="icon-aggregate" src="{{ "/assets/img/icon-aggregate.svg" | relative_url }}" />
@@ -95,9 +120,7 @@
             <li><a href="cogrouping-streams/kstreams.html">Cogroup multiple streams of aggregates</a></li>
           </ul>
         </div>
-      </div>
 
-      <div class="cards secondary-card-row">
         <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-join.svg" | relative_url }}" />
