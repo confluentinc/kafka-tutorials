@@ -1,6 +1,6 @@
 Since the output looks right, the next step is to make the query persistent. We do this with the `CREATE TABLE AS` statement. This statement creates a stream processor that runs continuously, always consuming events from the source stream (`MOVIE_TICKET_SALES`) and creating and updating entries in the resulting table (`MOVIE_REVENUE`).
 
-It should not escape your notice that we are turning a stream into a table. A table is always the result of using https://docs.confluent.io/current/ksql/docs/developer-guide/create-a-table.html#create-a-ksql-table-from-a-ksql-stream[the GROUP BY clause] on a stream. As we noted in the previous step, we are also computing an aggregate over the grouped values with `SUM(TICKET_TOTAL_VALUE)`. This function creates a new column in the resulting table, which we give a readable name using the `AS TOTAL_VALUE` clause.
+It should not escape your notice that we are turning a stream into a table. A table is always the result of the GROUP BY clause on a stream. As we noted in the previous step, we are also computing an aggregate over the grouped values with `SUM(TICKET_TOTAL_VALUE)`. This function creates a new column in the resulting table, which we give a readable name using the `AS TOTAL_VALUE` clause.
 
 Issue the following to create the new table:
 

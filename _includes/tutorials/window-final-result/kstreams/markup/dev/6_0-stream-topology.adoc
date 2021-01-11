@@ -1,6 +1,6 @@
-In the main function we create https://docs.confluent.io/current/streams/developer-guide/dsl-api.html#windowing[time-based windows]
+In the main function we create https://docs.confluent.io/platform/current/streams/developer-guide/dsl-api.html#windowing[time-based windows]
 with a given size and the same step size. This results in non-overlapping windows called
-https://docs.confluent.io/current/ksql/docs/concepts/time-and-windows-in-ksql-queries.html#tumbling-window[Tumbling Windows].
+https://docs.confluent.io/platform/current/streams/developer-guide/dsl-api.html#tumbling-time-windows[Tumbling Windows].
 Also we add a extra period were even if messages come late, if their datetime key correspond to a window they may join
 the window. Finally we pass this window, to a function that takes also `StreamsBuilder` and return a `Topology`.
 Add the next class at `src/main/java/io/confluent/developer/WindowFinalResult.java` package.
@@ -23,5 +23,5 @@ The suppress operator will delete every intermediate change once the grace perio
 emit the final result
 
 *Note*: even after suppress operator applied, you will need the next event to advance the
-https://docs.confluent.io/current/streams/concepts.html#time[stream time]
+https://docs.confluent.io/platform/current/streams/concepts.html#time[stream time]
 and get your result.
