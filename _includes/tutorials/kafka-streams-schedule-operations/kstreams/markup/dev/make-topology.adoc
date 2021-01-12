@@ -56,7 +56,7 @@ public KeyValue<String, Long> transform(String key, LoginTime value) { //<6>
 
 From the above code section, you are adding a `transform` operation to the stream reading from the input topic. The key parts of this section are points four and five where you schedule the punctuations.  There are two schedule operations one using `STREAM_TIME` and another using `WALL_CLOCK_TIME`.  These two are from the https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/processor/PunctuationType.html[PunctuationType enum].
 
-The stream-time punctution fires based on timestamps on the incoming records, stream-time only advances as records arrive.  The wall-clock-time punctuation fires based on system time advanced at the polling interval and is independent of the rate incoming messages.  Read https://docs.confluent.io/current/streams/concepts.html#time[how Kafka Streams supports notions of time] for more information.
+The stream-time punctution fires based on timestamps on the incoming records, stream-time only advances as records arrive.  The wall-clock-time punctuation fires based on system time advanced at the polling interval and is independent of the rate incoming messages.  Read https://docs.confluent.io/platform/current/streams/concepts.html#time[how Kafka Streams supports notions of time] for more information.
 
 Next let's talk discuss the scheduling in a little more detail.
 

@@ -1,4 +1,4 @@
-We are going to use the https://docs.confluent.io/current/quickstart/cloud-quickstart/schema-registry.html#cloud-sr-config[Confluent Cloud managed Schema Registry] to control our record format. The first step is creating a schema definition which we will use when producing new records.
+We are going to use the https://docs.confluent.io/platform/current/schema-registry/schema_registry_ccloud_tutorial.html#sr-ccloud-tutorial[Confluent Cloud managed Schema Registry] to control our record format. The first step is creating a schema definition which we will use when producing new records.
 
 Create the following `order-detail-schema.json` file: 
 
