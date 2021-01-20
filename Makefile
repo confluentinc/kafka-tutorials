@@ -7,6 +7,8 @@ INIT_CI_TARGETS += vault-bash-functions
 VAULT_INSTALLED_VERSION := $(shell $(BIN_PATH)/vault -version 2>/dev/null | head -n 1 | awk '{ print $$2 }')
 VAULT_DL_LOC := https://vault-zipfile-public-cache.s3-us-west-2.amazonaws.com/vault_$(VAULT_VERSION_NO_V)_$(HOST_OS)_amd64.zip
 
+TEMP_DIR := tmp
+
 .PHONY: show-vault
 show-vault:
 	@echo "BIN_PATH: $(BIN_PATH)"
@@ -18,10 +20,12 @@ show-vault:
 .PHONY: install-vault
 install-vault:
 ifneq ($(VAULT_VERSION),$(VAULT_INSTALLED_VERSION))
+	@echo "Creating the tmp dir"
+	@mkdir $(TEMP_DIR)
 	@echo "Installing Hashicorp Vault $(VAULT_VERSION) from $(VAULT_DL_LOC)"
-	@wget --timeout=20 --tries=15 --retry-connrefused -q -O /tmp/vault.zip $(VAULT_DL_LOC)
-	@echo "Unzipping received /tmp/vault.zip" && cd /tmp && unzip vault.zip
-	@mv -f /tmp/vault $(BIN_PATH)/vault
+	@wget --timeout=20 --tries=15 --retry-connrefused -q -O $(TEMP_DIR)/vault.zip $(VAULT_DL_LOC)
+	@echo "Unzipping received /tmp/vault.zip" && cd $(TEMP_DIR) && unzip vault.zip
+	@mv -f $(TEMP_DIR)/vault $(BIN_PATH)/vault
 	@chmod +x $(BIN_PATH)/vault
 	@echo "Placed vault in $(BIN_PATH)/vault"
 endif
