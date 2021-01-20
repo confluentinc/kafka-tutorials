@@ -8,7 +8,7 @@ agent:
 blocks:
   - task:
       secrets:
-        - name: aws_credentials
+        - name: vault_sem2_approle_prod
       jobs:
         - name: Compile and deploy site
           commands:
