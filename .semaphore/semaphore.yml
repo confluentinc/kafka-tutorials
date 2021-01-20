@@ -25,6 +25,10 @@ promotions:
     auto_promote:
       when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot\.'"
 
+global_job_config:
+  secrets:
+    - name: vault_sem2_approle_prod      
+
 blocks:
   - name: Build the website
     task:
@@ -65,7 +69,7 @@ blocks:
         commands:
           - checkout
           - make install-vault
-          - . vault-bin/vault-setup
+          - . vaultbin/vault-setup
           - . vault-sem-get-secret aws_credentials
           - . vault-sem-get-secret dockerhub-semaphore-cred
           - >
