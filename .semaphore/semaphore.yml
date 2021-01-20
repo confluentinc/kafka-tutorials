@@ -352,4 +352,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/geo-distance/ksql/code tutorial
 
- 
+        - name: KStreams Test Kafka Streams sliding windows tests
+          commands:
+            - make -C _includes/tutorials/sliding-windows/kstreams/code tutorial
+
