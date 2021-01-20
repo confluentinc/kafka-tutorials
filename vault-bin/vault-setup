@@ -2,7 +2,7 @@
 
 # must be run directly after `checkout` on CI - in general, while in the
 # source directory of the checkout of the current project
-export PATH=$PATH:$PWD/ci-bin:$PWD/mk-include/bin
+export PATH=$PATH:$PWD/ci-bin:$PWD/vault-bin
 echo "Logging into Vault with VAULT_ROLE_ID=$VAULT_ROLE_ID"
 vault write -format=yaml auth/app/prod/login role_id="${VAULT_ROLE_ID}" secret_id="${VAULT_SECRET_ID}" \
 	| grep client_token: \

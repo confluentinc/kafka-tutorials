@@ -65,7 +65,7 @@ blocks:
         commands:
           - checkout
           - make install-vault
-          - . bin/vault-setup
+          - . vault-bin/vault-setup
           - . vault-sem-get-secret aws_credentials
           - . vault-sem-get-secret dockerhub-semaphore-cred
           - >
