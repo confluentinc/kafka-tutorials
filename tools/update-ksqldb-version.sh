@@ -24,5 +24,10 @@ fi
 cd "$(dirname $0)/.."
 
 # both the xargs and sed incanations may need to be changed for non-macOS contexts
-find _includes/tutorials/**/ksql -name docker-compose.yml \
-    | xargs -I {} sed -i '' -E "s/image:.*confluentinc\/(ksqldb.+):.+/image: $repo_prefix\1:$version/g" {}
+if [ "$(uname)" == "Darwin" ]; then
+  find _includes/tutorials/**/ksql -name docker-compose.yml \
+      | xargs -I {} sed -i '' -E "s/image:.*confluentinc\/(ksqldb.+):.+/image: $repo_prefix\1:$version/g" {}
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  find _includes/tutorials/**/ksql -name docker-compose.yml \
+      | xargs -I {} sed -i -E "s/image:.*confluentinc\/(ksqldb.+):.+/image: $repo_prefix\1:$version/g" {}
+fi
