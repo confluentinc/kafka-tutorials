@@ -7,7 +7,8 @@
         "TITLE": "Die Hard",
         "YEAR": 1988,
         "GENRE": "action"
-      }
+      },
+      "partition": 0
     },
     {
       "topic": "parsed_movies",
@@ -16,7 +17,8 @@
         "TITLE": "Tree of Life",
         "YEAR": 2011,
         "GENRE": "drama"
-      }
+      },
+      "partition": 0
     },
     {
       "topic": "parsed_movies",
@@ -25,7 +27,8 @@
         "TITLE": "A Walk in the Clouds",
         "YEAR": 1995,
         "GENRE": "romance"
-      }
+      },
+      "partition": 0
     },
     {
       "topic": "parsed_movies",
@@ -34,7 +37,8 @@
         "TITLE": "The Big Lebowski",
         "YEAR": 1998,
         "GENRE": "comedy"
-      }
+      },
+      "partition": 0
     }
   ]
 }
