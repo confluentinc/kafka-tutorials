@@ -577,3 +577,4 @@ Confluent manages the processes of merging changes from this branch.
 A pull request into the `release` branch denotes a request to update the live site. The PR description should summarize the content changes and link to the staging site with the updates. In general, releases are timed, so target dates should also be noted.
 
 Release artifacts are automatically promoted to the live site by CI, as part of successful `release` branch builds.
+
