@@ -6,8 +6,7 @@
       "value": {
         "TITLE": "Lethal Weapon",
         "RELEASE_YEAR": 1992
-      },
-      "partition": 0
+      }
     },
     {
       "topic": "avro-movies",
@@ -15,8 +14,7 @@
       "value": {
         "TITLE": "Die Hard",
         "RELEASE_YEAR": 1988
-      },
-      "partition": 0
+      }
     },
     {
       "topic": "avro-movies",
@@ -24,8 +22,7 @@
       "value": {
         "TITLE": "Predator",
         "RELEASE_YEAR": 1997
-      },
-      "partition": 0
+      }
     }
   ]
 }
