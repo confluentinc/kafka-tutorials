@@ -27,85 +27,108 @@
         </div>
       </div>
     </section>
+
     <div class="cards-container">
+
       <div class="cards">
 
         <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-kafka-blue.svg" | relative_url }}" />
-            <div>Kafka 101</div>
+            <div>Producing and Consuming messages</div>
           </div>
-          <ul>
-            <li><a href="kafka-console-consumer-producer-basics/kafka.html">Console producer and consumer basics</a></li>
-            <li><a href="ccloud-produce-consume/kafka.html">Console producer and consumer basics with Confluent Cloud</a></li>
-            <li><a href="kafka-console-consumer-primitive-keys-values/kafka.html">Console consumer with primitive keys and values</a></li>
-            <li><a href="message-ordering/kafka.html">Idempotent producer for message ordering and no duplication</a></li>
-            <li><a class="more-101 is-hidden" href="kafka-console-consumer-producer/kafka.html">Avro console producer and consumer</a></li>
-            <li><a class="more-101 is-hidden" href="change-topic-partitions-replicas/ksql.html">Change the number of partitions and replicas of a Kafka topic</a></li>
-            <li><a class="more-101 is-hidden" href="kafka-console-consumer-read-specific-offsets-partitions/kafka.html">Console consumer reads from a specific offset and partition</a></li>
-            <li><a class="more-101 is-hidden" href="produce-consume-lang/scala.html">Produce and consume messages with clients in multiple languages</a></li>
-            <li><a class="more-101 is-hidden" href="creating-first-apache-kafka-producer-application/kafka.html">Build your first Kafka producer application</a></li>
-            <li><a class="more-101 is-hidden" href="kafka-producer-callback-application/kafka.html">Using Callbacks to handle Kafka producer responses</a></li>
-            <li><a class="more-101 is-hidden" href="creating-first-apache-kafka-consumer-application/kafka.html">Build your first Kafka consumer application</a></li>
-            <li><a class="more-101 is-hidden" href="how-to-count-messages-on-a-kafka-topic/ksql.html">Count the number of messages in a Kafka topic</a></li>
+           <ul>
+            <li><a href="kafka-console-consumer-producer-basics/kafka.html">The basics</a></li>
+            <li><a href="ccloud-produce-consume/kafka.html">Using Confluent Cloud</a></li>
+            <li><a href="kafka-console-consumer-primitive-keys-values/kafka.html">Primitive keys and values</a></li>
+            <li><a href="kafka-console-consumer-read-specific-offsets-partitions/kafka.html">Read from a specific offset and partition</a></li>
+            <li><a href="kafka-producer-callback-application/kafka.html">Using Callbacks</a></li>
           </ul>
-           <div id="show-101"><a class="button is-small is-fullwidth">More</a></div>
         </div>
 
         <div class="card">
           <div class="title">
-            <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
-            <div>Apply a function to data ksqlDB</div>
+            <img src="{{ "/assets/img/icon-kafka-blue.svg" | relative_url }}" />
+            <div>Building Applications</div>
           </div>
           <ul>
-            <li><a href="geo-distance/ksql.html">Calculating lat-long distance</a></li>
-            <li><a href="masking-data/ksql.html">Masking data</a></li>
-            <li><a href="working-with-nested-json/ksql.html">Working with nested JSON</a></li>
-            <li><a href="working-with-json-different-structure/ksql.html">Working with heterogenous JSON</a></li>
-            <li><a href="concatenation/ksql.html">Concatenation</a></li>
-            <li class="more is-hidden"><a href="changing-serialization-format/ksql.html">Convert a stream's serialization format</a></li>
-            <li class="more is-hidden"><a href="transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
-            <li class="more is-hidden"><a href="flatten-nested-data/ksql.html">Flatten deeply nested events</a></li>
+            <li><a href="produce-consume-lang/scala.html">Clients in multiple languages</a></li>
+            <li><a href="creating-first-apache-kafka-producer-application/kafka.html">Your first Kafka producer application</a></li>
+            <li><a href="creating-first-apache-kafka-consumer-application/kafka.html">Your first Kafka consumer application</a></li>
           </ul>
-          <div id="show"><a class="button is-small is-fullwidth">More</a></div>
         </div>
 
         <div class="card">
           <div class="title">
-            <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
-            <div>Advanced ksqlDB</div>
+            <img src="{{ "/assets/img/icon-kafka-blue.svg" | relative_url }}" />
+            <div>Kafka topics</div>
           </div>
           <ul>
-            <li><a href="filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
-            <li><a href="rekey-a-stream/ksql.html">Rekey a stream with a value</a></li>
-            <li><a href="rekey-with-function/ksql.html">Rekey a stream with a function</a></li>
+            <li><a href="change-topic-partitions-replicas/ksql.html">Change the number of partitions and replicas</a></li>
+            <li><a href="how-to-count-messages-on-a-kafka-topic/ksql.html">Count the number of messages in a Kafka topic</a></li>
+          </ul>
+        </div> 
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
+            <div>Routing Events</div>
+          </div>
+          <ul>
             <li><a href="split-a-stream-of-events-into-substreams/ksql.html">Split a stream of events into substreams</a></li>
             <li><a href="merge-many-streams-into-one-stream/ksql.html">Merge many streams into one stream</a></li>
-            <li class="more is-hidden"><a href="finding-distinct-events/ksql.html">Find distinct events</a></li>
-            <li class="more is-hidden"><a href="udf/ksql.html">Apply a custom, user-defined function</a></li>
-            <li class="more is-hidden"><a href="handling-deserialization-errors/ksql.html">Handle deserialization errors</a></li>
-            <li class="more is-hidden"><a href="column-difference/ksql.html">Calculate the difference between two columns</a></li>
+            <li><a href="dynamic-output-topic/kstreams.html">Choose the output topic dynamically</a></li>
+            <li><a href="filter-a-stream-of-events/ksql.html">Filter a stream of events</a></li>
+            <li><a href="finding-distinct-events/ksql.html">Find distinct events</a></li>
           </ul>
-          <div id="show"><a class="button is-small is-fullwidth">More</a></div>
+          <!--div id="show"><a class="button is-small is-fullwidth">More</a></div-->
+        </div>
+      </div>
+
+      <!-- END cards -->
+      <div class="cards secondary-card-row"> 
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
+            <div>Manipulating Streams</div>
+          </div>
+          <ul>
+            <li><a href="rekey-a-stream/ksql.html">Rekey a stream with a value</a></li>
+            <li><a href="rekey-with-function/ksql.html">Rekey a stream with a function</a></li>
+            <li><a href="naming-stateful-operations/kstreams.html">Name stateful operations</a></li>
+            <li><a href="kafka-streams-convert-to-ktable/kstreams.html">Convert a KStream to a KTable</a></li>  
+            <li><a href="handling-deserialization-errors/ksql.html">Handle deserialization errors</a></li>
+            <li><a href="changing-serialization-format/ksql.html">Convert a stream's serialization format</a></li>
+            <li><a href="kafka-streams-schedule-operations/kstreams.html">Scheduling operations in Kafka Streams</a></li>
+          </ul>
         </div>
 
        <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
-            <div>Apply a function to data Kafka Streams</div>
+            <div>Accessing Fields</div>
           </div>
           <ul>
-            <li><a href="kafka-streams-schedule-operations/kstreams.html">Scheduling operations in Kafka Streams</a></li>
-            <li><a href="dynamic-output-topic/kstreams.html">Choose the output topic dynamically</a></li>
-            <li><a href="naming-stateful-operations/kstreams.html">Name stateful operations</a></li>
-            <li><a href="kafka-streams-convert-to-ktable/kstreams.html">Convert a KStream to a KTable</a></li>  
+            <li><a href="working-with-nested-json/ksql.html">Working with nested JSON</a></li>
+            <li><a href="working-with-json-different-structure/ksql.html">Working with heterogenous JSON</a></li>
+            <li><a href="transform-a-stream-of-events/ksql.html">Transform a stream of events</a></li>
+            <li><a href="flatten-nested-data/ksql.html">Flatten deeply nested events</a></li>
+            <li><a href="geo-distance/ksql.html">Calculating lat-long distance</a></li>
           </ul>
-          <!--div id="show"><a class="button is-small is-fullwidth">More</a></div-->
         </div>
-        
-      </div>
 
-      <div class="cards secondary-card-row">
+         <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
+            <div>Manipulating Values</div>
+          </div>
+          <ul>
+            <li><a href="udf/ksql.html">Apply a custom, user-defined function</a></li>
+            <li><a href="concatenation/ksql.html">Concatenation</a></li>
+            <li><a href="masking-data/ksql.html">Masking data</a></li>
+            <li><a href="column-difference/ksql.html">Calculate the difference between two columns</a></li>
+          </ul>
+        </div>
 
         <div class="card">
           <div class="title">
@@ -120,6 +143,10 @@
             <li><a href="cogrouping-streams/kstreams.html">Cogroup multiple streams of aggregates</a></li>
           </ul>
         </div>
+      </div>
+      <!--END 2nd card row -->
+
+      <div class="cards third-card-row">
 
         <div class="card">
           <div class="title">
@@ -138,7 +165,7 @@
         <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-time.svg" | relative_url }}" />
-            <div>Collect data over time.</div>
+            <div>Windowing Operations.</div>
           </div>
           <ul>
             <li><a href="create-tumbling-windows/ksql.html">Create tumbling windows</a></li>
@@ -163,8 +190,10 @@
           </ul>
         </div>
        </div>
+       <!-- END Third card row-->
 
-       <div class="cards third-card-row">
+       <div class="cards fourth-card-row">
+
         <div class="card card-cta">
           <div class="content">
             <div>Be the first to be notified about new tutorials</div>
@@ -188,7 +217,9 @@
         </div>
       </div>
     </div>
+      <!-- END fourth-card row-->
     </div>
+
 
     {% include footer.html %}
     <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
