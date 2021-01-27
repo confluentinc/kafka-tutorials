@@ -11,36 +11,35 @@ Testing a Kafka streams application requires a bit of test harness code, but hap
              You'll want to update the name of the test method from "exampleTest" to something more meaningful for your tutorial
 ////
 
-There is only one method in `KafkaStreamsPunctuationTest` annotated with `@Test`, and that is `punctuationTest()`. This method actually runs our Streams topology using the `TopologyTestDriver` and some mocked data that is set up inside the test method.
+There is only one method in `SlidingWindowTest` annotated with `@Test`, and that is `slidingWindowTest()`. This method actually runs our Streams topology using the `TopologyTestDriver` and some mocked data that is set up inside the test method.
 
 
-This test is fairly vanilla, but there is one section we should look into a little more
+This test is straightforward, but there is one section we should look into a little more
 
 [source, java]
 ----
-final List<LoginTime> loggedOnTimes = new ArrayList<>();
-loggedOnTimes.add(LoginTime.newBuilder().setLogintime(5L).setAppid("test-page").setUserid("user-1").build());
-loggedOnTimes.add(LoginTime.newBuilder().setLogintime(5L).setAppid("test-page").setUserid("user-2").build());
-loggedOnTimes.add(LoginTime.newBuilder().setLogintime(10L).setAppid("test-page").setUserid("user-1").build());
-loggedOnTimes.add(LoginTime.newBuilder().setLogintime(25L).setAppid("test-page").setUserid("user-3").build());
-loggedOnTimes.add(LoginTime.newBuilder().setLogintime(10L).setAppid("test-page").setUserid("user-2").build());
+final String key = "device-1";
+final List<TemperatureReading> temperatureReadings = new ArrayList<>();
+Instant instant = Instant.now().truncatedTo(ChronoUnit.MINUTES);
 
-List<KeyValue<String, LoginTime>> keyValues = loggedOnTimes.stream().map(o -> KeyValue.pair(o.getUserid(),o)).collect(Collectors.toList());
-inputTopic.pipeKeyValueList(keyValues,      //<1>
-                            Instant.now(),  //<2>
-                            Duration.ofSeconds(2)); //<3>
+temperatureReadings.add(TemperatureReading.newBuilder().setDeviceId(key).setTemp(80.0).setTimestamp(instant.getEpochSecond()).build());    <1>
+temperatureReadings.add(TemperatureReading.newBuilder().setDeviceId(key).setTemp(90.0).setTimestamp(instant.plusMillis(200).getEpochSecond()).build());
+temperatureReadings.add(TemperatureReading.newBuilder().setDeviceId(key).setTemp(95.0).setTimestamp(instant.plusMillis(400).getEpochSecond()).build());
+temperatureReadings.add(TemperatureReading.newBuilder().setDeviceId(key).setTemp(100.0).setTimestamp(instant.plusMillis(500).getEpochSecond()).build());
+
+List<KeyValue<String, TemperatureReading>> keyValues = temperatureReadings.stream().map(o -> KeyValue.pair(o.getDeviceId(),o)).collect(Collectors.toList()); <2>
+inputTopic.pipeKeyValueList(keyValues);
 
 ----
 
-<1> Piping through all the records.
-<2> Setting the initial timestamp.
-<3> How much to increase each subsequent timestamp.
-
-The https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/TestInputTopic.html#pipeKeyValueList-java.util.List-java.time.Instant-java.time.Duration-[TestInputTopic] provides useful methods when testing your topology and you need timestamps to drive behavior.  In this case, you expect the streams application to fire a punctuation every 5 seconds. The `TestInputTopic.pipeKeyValueList` gives you the ability to achieve the desired behavior.
+<1> Creating the input records for the test
+<2> Mapping the list of test records to `KeyValue` pairs
 
 
+The https://kafka.apache.org/27/javadoc/org/apache/kafka/streams/TestInputTopic.html#pipeKeyValueList-java.util.List-java.time.Instant-java.time.Duration-[TestInputTopic] provides useful methods when testing your topology. Here you're using the `pipeKeyValueList` to provide the records to the steams application.  Here you're not specifying any timestamp activity as the streams application pulls the timestamps embedded in the `TemperatureReading` objects you created above.
 
-Now create the following file at `src/test/java/io/confluent/developer/KafkaStreamsPunctuationTest.java`.
+
+Now create the following file at `src/test/java/io/confluent/developer/SlidingWindowTest.java`.
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/sliding-windows/kstreams/code/src/test/java/io/confluent/developer/KafkaStreamsPunctuationTest.java %}</code></pre>
+<pre class="snippet"><code class="java">{% include_raw tutorials/sliding-windows/kstreams/code/src/test/java/io/confluent/developer/SlidingWindowTest.java %}</code></pre>
 +++++

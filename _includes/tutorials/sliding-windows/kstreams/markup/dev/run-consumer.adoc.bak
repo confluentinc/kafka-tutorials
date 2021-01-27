@@ -4,7 +4,7 @@
 
 ////
 
-Now that your Kafka Streams application is running, open a new terminal window, CD into the `sliding-windows` directory and start a console-consumer to confirm the output:
+Now that your Kafka Streams application is running, open a new terminal window, cd into the `sliding-windows` directory and start a console-consumer to confirm the output:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/sliding-windows/kstreams/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>

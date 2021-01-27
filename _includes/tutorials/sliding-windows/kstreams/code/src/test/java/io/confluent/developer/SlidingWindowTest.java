@@ -1,20 +1,24 @@
 package io.confluent.developer;
 
 
+import io.confluent.common.utils.TestUtils;
 import io.confluent.developer.avro.TemperatureReading;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.streams.KeyValue;
+import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
+import org.junit.After;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -66,7 +70,6 @@ public class SlidingWindowTest {
 
             final List<KeyValue<String, Double>> actualResults = outputTopic.readKeyValuesToList();
             assertEquals(expectedValues, actualResults);
-
         }
     }
 }

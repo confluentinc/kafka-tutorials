@@ -12,7 +12,7 @@ public class TemperatureReadingTimestampExtractorTest {
     public void testTimestampExtraction() {
         TemperatureReadingTimestampExtractor rte = new TemperatureReadingTimestampExtractor();
 
-        TemperatureReading tempReading = TemperatureReading.newBuilder().setTemp(98.6).setTimestamp(5L).build();
+        TemperatureReading tempReading = TemperatureReading.newBuilder().setTemp(98.6).setTimestamp(5L).setDeviceId("device_1").build();
         ConsumerRecord<Object, Object> record = new ConsumerRecord<>("xxx", 0, 1, "device_1", tempReading);
 
         long timestamp = rte.extract(record, 0);

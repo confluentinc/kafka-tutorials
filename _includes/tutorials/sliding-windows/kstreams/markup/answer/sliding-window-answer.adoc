@@ -1,0 +1,7 @@
+To use `SlidingWindows` use the `SlidingWindows.withTimeDifferenceAndGrace` method inside a `windowedBy` call.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/sliding-windows/kstreams/markup/answer/sliding-window-code.adoc %}</code></pre>
++++++
+
+The first parameter determinines the maximum time difference between records in the same window, and the second parameter sets the grace period for allowing out-of-order events into the window.

@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/sliding-windows/kstreams/markup/answer/sliding-window-answer.adoc
+
 dev:
   steps:
     - title: Initialize the project
@@ -59,31 +67,44 @@ dev:
             file: tutorials/sliding-windows/kstreams/markup/dev/make-avro-dir.adoc
 
         - action: make_file
-          file: src/main/avro/logintime.avsc
+          file: src/main/avro/temperatue_reading.avsc
           render:
             file: tutorials/sliding-windows/kstreams/markup/dev/make-avro-schema.adoc
+
+        - action: make_file
+          file: src/main/avro/temp_average.avsc
+          render:
+            skip: true  
 
         - action: execute
           file: tutorial-steps/dev/build-project.sh
           render:
             file: tutorials/sliding-windows/kstreams/markup/dev/build-project.adoc
 
-    - title: Create the Kafka Streams topology
+    - title: Create a timestamp extractor
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
           render:
             file: tutorials/sliding-windows/kstreams/markup/dev/make-src-dir.adoc
-            
+
         - action: make_file
-          file: src/main/java/io/confluent/developer/KafkaStreamsPunctuation.java
+          file: src/main/java/io/confluent/developer/TemperatureReadingTimestampExtractor.java
+          render:
+            file: tutorials/sliding-windows/kstreams/markup/dev/make-timestamp-extractor.adoc 
+         
+
+    - title: Create the Kafka Streams topology
+      content:
+        - action: make_file
+          file: src/main/java/io/confluent/developer/SlidingWindow.java
           render:
             file: tutorials/sliding-windows/kstreams/markup/dev/make-topology.adoc 
 
     - title: Start data generation for the Kafka Streams application
       content:
         - action: make_file
-          file: datagen-logintime.avsc
+          file: datagen-temperature-reading.avsc
           render:
             skip: true
 
@@ -141,7 +162,7 @@ test:
             file: tutorials/sliding-windows/kstreams/markup/test/make-test-dir.adoc
 
         - action: make_file
-          file: src/test/java/io/confluent/developer/KafkaStreamsPunctuationTest.java
+          file: src/test/java/io/confluent/developer/SlidingWindowTest.java
           render:
             file: tutorials/sliding-windows/kstreams/markup/test/make-topology-test.adoc
 

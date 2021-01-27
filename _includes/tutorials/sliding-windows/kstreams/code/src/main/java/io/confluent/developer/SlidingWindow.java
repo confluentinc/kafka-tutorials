@@ -42,6 +42,8 @@ public class SlidingWindow {
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
         props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, TemperatureReadingTimestampExtractor.class.getName());
+        // Setting this to a low value on purpose to flush the cache quickly during the demo
+        // Normally you'll want to keep this setting at the default value of 30 seconds
         props.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 1000);
 
         return props;
@@ -56,7 +58,7 @@ public class SlidingWindow {
 
         builder.stream(tempReadingTopic, Consumed.with(Serdes.String(), temReadingSerde))
                 .groupByKey()
-                .windowedBy(SlidingWindows.withTimeDifferenceAndGrace(Duration.ofSeconds(1), Duration.ofSeconds(1)))
+                .windowedBy(SlidingWindows.withTimeDifferenceAndGrace(Duration.ofMillis(500), Duration.ofMillis(100)))
                 .aggregate(TempAverage::new, (k, tr, ave) -> {
                     ave.setNumReadings(ave.getNumReadings() +1);
                     ave.setTotal(ave.getTotal() + tr.getTemp());
@@ -139,6 +141,7 @@ public class SlidingWindow {
         });
 
         try {
+            streams.cleanUp();
             streams.start();
             latch.await();
         } catch (Throwable e) {
