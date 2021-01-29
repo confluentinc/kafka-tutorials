@@ -25,6 +25,8 @@ Before you create the Kafka Streams application let's go over the key points.  I
 
 As the window "slides" over the record stream, a new window is created each time a record enters or exits the window.  Records that arrive after grace period are dropped. A window closes when `stream-time` exceeds the `window-end` + `grace-period`
 
+You can get similar behavior in hopping windows by defining a short advance time. But this will result in poor performance because hopping windows will create many overlapping, possibly redundant windows.  Performing aggregation operations over redundant windows costs CPU time, which can be expensive.  Sliding windows only create windows containing distinct items, and perform calculations on these is more efficient. Additionally, sliding windows are inclusive on both the start and end time vs. hopping windows being inclusive only on the start time.
+
 NOTE: The concept of `stream-time` is the largest timestamp processed by Kafka Streams at a given point in time.  A grace-period is the amount of time you're allowing out-of-order records to be included in a window.
 
 That wraps up our discussion for the finer points of the code for this tutorial.  Now create the following file at `src/main/java/io/confluent/developer/SlidingWindow.java`

@@ -67,7 +67,7 @@ dev:
             file: tutorials/sliding-windows/kstreams/markup/dev/make-avro-dir.adoc
 
         - action: make_file
-          file: src/main/avro/temperatue_reading.avsc
+          file: src/main/avro/temperature_reading.avsc
           render:
             file: tutorials/sliding-windows/kstreams/markup/dev/make-avro-schema.adoc
 
@@ -170,6 +170,7 @@ test:
       content:
         - action: execute
           file: tutorial-steps/test/invoke-tests.sh
+          stdout: tutorial-steps/dev/outputs/unit-test-output.txt
           render:
             file: tutorials/sliding-windows/kstreams/markup/test/invoke-tests.adoc
 

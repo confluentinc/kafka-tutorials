@@ -9,10 +9,10 @@
   If you are'nt using Avro, delete this file from the folder.
 ////
 
-Then create the following Avro schema file at `src/main/avro/temperatue_reading.avsc` for our `TemperatureReading` object:
+Then create the following Avro schema file at `src/main/avro/temperature_reading.avsc` for our `TemperatureReading` object:
 
 +++++
-<pre class="snippet"><code class="avro">{% include_raw tutorials/sliding-windows/kstreams/code/src/main/avro/temperatue_reading.avsc %}</code></pre>
+<pre class="snippet"><code class="avro">{% include_raw tutorials/sliding-windows/kstreams/code/src/main/avro/temperature_reading.avsc %}</code></pre>
 +++++
 
 You'll also need to create another schema `src/main/avro/temp_average.avsc` for the `TempAverage` object that Kafka Streams will use for holding the data needed to perform the aggregation.
