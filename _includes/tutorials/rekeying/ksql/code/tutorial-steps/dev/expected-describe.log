@@ -1,5 +1,6 @@
 Name                 : RATINGS_REKEYED
  Field  | Type                   
+
  OLD    | INTEGER
  ID     | INTEGER          (key) 
  RATING | DOUBLE                 
