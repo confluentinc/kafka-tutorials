@@ -3,8 +3,8 @@ CREATE STREAM ratings (old INT KEY, id INT, rating DOUBLE)
           partitions=2,
           value_format='avro');
 
-CREATE STREAM RATINGS_REKEYED 
+CREATE STREAM RATINGS_REKEYED
   WITH (KAFKA_TOPIC='ratings_keyed_by_id') AS
-    SELECT * 
+    SELECT *
     FROM RATINGS
     PARTITION BY ID;
