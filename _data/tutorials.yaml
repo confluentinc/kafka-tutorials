@@ -650,3 +650,22 @@ geo-distance:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+sliding-windows:
+  title: "How to create sliding windows"
+  meta-description: "How to create sliding windows"
+  slug: "/sliding-windows"
+  question: "How do I create windowed calculations on time-series data with small advances in time?"
+  introduction: "You have time-series records and you want to create windowed aggregations with small increments in time.  You could use hopping-windows, but with small time increments, hopping windows aren't the best solution with small increments in time.  In this tutorial we'll cover how you can achieve efficient windowed aggregations with small advances in time"
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
