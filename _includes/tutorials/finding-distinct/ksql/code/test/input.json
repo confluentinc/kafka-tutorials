@@ -2,7 +2,6 @@
   "inputs": [
     {
       "topic": "CLICKS",
-      "key": "\"10.0.0.1\"",
       "value": {
         "IP_ADDRESS": "10.0.0.1",
         "URL": "https://docs.confluent.io/current/tutorials/examples/kubernetes/gke-base/docs/index.html",
@@ -11,7 +10,6 @@
     },
     {
       "topic": "CLICKS",
-      "key": "\"10.0.0.2\"",
       "value": {
         "IP_ADDRESS": "10.0.0.12",
         "URL": "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
@@ -20,7 +18,6 @@
     },
     {
       "topic": "CLICKS",
-      "key": "\"10.0.0.3\"",
       "value": {
         "IP_ADDRESS": "10.0.0.13",
         "URL": "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
@@ -29,7 +26,6 @@
     },
     {
       "topic": "CLICKS",
-      "key": "\"10.0.0.1\"",
       "value": {
         "IP_ADDRESS": "10.0.0.1",
         "URL": "https://docs.confluent.io/current/tutorials/examples/kubernetes/gke-base/docs/index.html",
@@ -38,7 +34,6 @@
     },
     {
       "topic": "CLICKS",
-      "key": "\"10.0.0.2\"",
       "value": {
         "IP_ADDRESS": "10.0.0.12",
         "URL": "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
@@ -47,7 +42,6 @@
     },
     {
       "topic": "CLICKS",
-      "key": "\"10.0.0.3\"",
       "value": {
         "IP_ADDRESS": "10.0.0.13",
         "URL": "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
