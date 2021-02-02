@@ -35,7 +35,6 @@ services:
       CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
       CONFLUENT_METRICS_ENABLE: 'true'
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
-      KAFKA_LOG_RETENTION_MS: -1
 
   schema-registry:
     image: confluentinc/cp-schema-registry:6.0.0
