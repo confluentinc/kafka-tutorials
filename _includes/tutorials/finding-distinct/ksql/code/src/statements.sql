@@ -1,3 +1,6 @@
+SET 'auto.offset.reset' = 'earliest';
+SET 'cache.max.bytes.buffering' = '0';
+
 CREATE STREAM CLICKS (IP_ADDRESS STRING, URL STRING, TIMESTAMP STRING)
     WITH (KAFKA_TOPIC = 'CLICKS',
           KEY_FORMAT='JSON',
