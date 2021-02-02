@@ -66,6 +66,8 @@ services:
       KSQL_LISTENERS: "http://0.0.0.0:8088"
       KSQL_CACHE_MAX_BYTES_BUFFERING: 0
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      KSQL_KSQL_STREAMS_AUTO_OFFSET_RESET: "earliest"
+      KSQL_KSQL_STREAMS_CACHE_MAX_BYTES_BUFFERING: "0"
 
   ksql-cli:
     image: 368821881613.dkr.ecr.us-west-2.amazonaws.com/confluentinc/cp-ksqldb-cli:master-latest
