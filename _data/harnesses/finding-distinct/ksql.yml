@@ -76,4 +76,37 @@ dev:
           render:
             file: tutorials/finding-distinct/ksql/markup/dev/make-src-file.adoc
 
+test:
+  steps:
+    - title: Create the test data
+      content:
+        - action: make_file
+          file: test/input.json
+          render:
+            file: tutorials/finding-distinct/ksql/markup/test/make-test-input.adoc
 
+        - action: make_file
+          file: test/output.json
+          render:
+            file: tutorials/finding-distinct/ksql/markup/test/make-test-output.adoc
+
+    - title: Invoke the tests
+      content:
+        - action: execute
+          file: tutorial-steps/test/run-tests.sh
+          stdout: tutorial-steps/test/outputs/test-results.log
+          render:
+            file: tutorials/finding-distinct/ksql/markup/test/run-tests.adoc
+
+prod:
+  steps:
+    - title: Send the statements to the REST API
+      content:
+        - action: skip
+          render:
+            file: tutorials/finding-distinct/ksql/markup/prod/submit-to-api.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            skip: true
