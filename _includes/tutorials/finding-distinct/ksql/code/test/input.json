@@ -1,31 +1,58 @@
 {
-  "outputs": [
+  "inputs": [
     {
-      "topic": "DISTINCT_CLICKS",
+      "topic": "CLICKS",
       "key": "10.0.0.1",
       "value": {
+        "IP_ADDRESS": "10.0.0.1",
         "URL": "https://docs.confluent.io/current/tutorials/examples/kubernetes/gke-base/docs/index.html",
         "TIMESTAMP": "2020-01-17T14:50:43+00:00"
-      },
-      "timestamp": 1579272643000
+      }
     },
     {
-      "topic": "DISTINCT_CLICKS",
-      "key": "10.0.0.12",
+      "topic": "CLICKS",
+      "key": "10.0.0.2",
       "value": {
+        "IP_ADDRESS": "10.0.0.12",
         "URL": "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
         "TIMESTAMP": "2020-01-17T14:53:44+00:01"
-      },
-      "timestamp": 1579272764000
+      }
     },
     {
-      "topic": "DISTINCT_CLICKS",
-      "key": "10.0.0.13",
+      "topic": "CLICKS",
+      "key": "10.0.0.3",
       "value": {
+        "IP_ADDRESS": "10.0.0.13",
         "URL": "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
         "TIMESTAMP": "2020-01-17T14:56:45+00:03"
-      },
-      "timestamp": 1579272825000
+      }
+    },
+    {
+      "topic": "CLICKS",
+      "key": "10.0.0.1",
+      "value": {
+        "IP_ADDRESS": "10.0.0.1",
+        "URL": "https://docs.confluent.io/current/tutorials/examples/kubernetes/gke-base/docs/index.html",
+        "TIMESTAMP": "2020-01-17T14:50:43+00:00"
+      }
+    },
+    {
+      "topic": "CLICKS",
+      "key": "10.0.0.2",
+      "value": {
+        "IP_ADDRESS": "10.0.0.12",
+        "URL": "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
+        "TIMESTAMP": "2020-01-17T14:53:44+00:01"
+      }
+    },
+    {
+      "topic": "CLICKS",
+      "key": "10.0.0.3",
+      "value": {
+        "IP_ADDRESS": "10.0.0.13",
+        "URL": "https://www.confluent.io/hub/confluentinc/kafka-connect-datagen",
+        "TIMESTAMP": "2020-01-17T14:56:45+00:03"
+      }
     }
   ]
 }
