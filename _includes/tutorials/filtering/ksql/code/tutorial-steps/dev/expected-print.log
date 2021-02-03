@@ -1,7 +1,7 @@
 Key format: KAFKA_BIGINT or KAFKA_DOUBLE or KAFKA_STRING
 Value format: AVRO or KAFKA_STRING
-rowtime: 2020/06/02 14:36:36.846 Z, key: 2, value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Song of Ice and Fire"}
-rowtime: 2020/06/02 14:36:37.057 Z, key: 4, value: {"AUTHOR": "George R. R. Martin", "TITLE": "Fire & Blood"}
-rowtime: 2020/06/02 14:36:37.350 Z, key: 7, value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Dream of Spring"}
-rowtime: 2020/06/02 14:36:37.541 Z, key: 9, value: {"AUTHOR": "George R. R. Martin", "TITLE": "The Ice Dragon"}
+rowtime: 2020/06/02 14:36:36.846 Z, key: 2, value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Song of Ice and Fire"}, partition: 0
+rowtime: 2020/06/02 14:36:37.057 Z, key: 4, value: {"AUTHOR": "George R. R. Martin", "TITLE": "Fire & Blood"}, partition: 0
+rowtime: 2020/06/02 14:36:37.350 Z, key: 7, value: {"AUTHOR": "George R. R. Martin", "TITLE": "A Dream of Spring"}, partition: 0
+rowtime: 2020/06/02 14:36:37.541 Z, key: 9, value: {"AUTHOR": "George R. R. Martin", "TITLE": "The Ice Dragon"}, partition: 0
 Topic printing ceased

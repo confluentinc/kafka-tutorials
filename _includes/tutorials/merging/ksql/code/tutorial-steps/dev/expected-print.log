@@ -1,12 +1,12 @@
 Key format: ¯\_(ツ)_/¯ - no data processed
 Value format: AVRO or KAFKA_STRING
-rowtime: 2020/05/04 22:36:27.150 Z, key: <null>, value: {"ARTIST": "Metallica", "TITLE": "Fade to Black", "GENRE": "rock"}
-rowtime: 2020/05/04 22:36:27.705 Z, key: <null>, value: {"ARTIST": "Wolfgang Amadeus Mozart", "TITLE": "The Magic Flute", "GENRE": "classical"}
-rowtime: 2020/05/04 22:36:27.789 Z, key: <null>, value: {"ARTIST": "Johann Pachelbel", "TITLE": "Canon", "GENRE": "classical"}
-rowtime: 2020/05/04 22:36:27.912 Z, key: <null>, value: {"ARTIST": "Ludwig van Beethoven", "TITLE": "Symphony No. 5", "GENRE": "classical"}
-rowtime: 2020/05/04 22:36:28.139 Z, key: <null>, value: {"ARTIST": "Edward Elgar", "TITLE": "Pomp and Circumstance", "GENRE": "classical"}
-rowtime: 2020/05/04 22:36:27.263 Z, key: <null>, value: {"ARTIST": "Smashing Pumpkins", "TITLE": "Today", "GENRE": "rock"}
-rowtime: 2020/05/04 22:36:27.370 Z, key: <null>, value: {"ARTIST": "Pink Floyd", "TITLE": "Another Brick in the Wall", "GENRE": "rock"}
-rowtime: 2020/05/04 22:36:27.488 Z, key: <null>, value: {"ARTIST": "Van Halen", "TITLE": "Jump", "GENRE": "rock"}
-rowtime: 2020/05/04 22:36:27.601 Z, key: <null>, value: {"ARTIST": "Led Zeppelin", "TITLE": "Kashmir", "GENRE": "rock"}
+rowtime: 2020/05/04 22:36:27.150 Z, key: <null>, value: {"ARTIST": "Metallica", "TITLE": "Fade to Black", "GENRE": "rock"}, partition: 0
+rowtime: 2020/05/04 22:36:27.705 Z, key: <null>, value: {"ARTIST": "Wolfgang Amadeus Mozart", "TITLE": "The Magic Flute", "GENRE": "classical"}, partition: 0
+rowtime: 2020/05/04 22:36:27.789 Z, key: <null>, value: {"ARTIST": "Johann Pachelbel", "TITLE": "Canon", "GENRE": "classical"}, partition: 0
+rowtime: 2020/05/04 22:36:27.912 Z, key: <null>, value: {"ARTIST": "Ludwig van Beethoven", "TITLE": "Symphony No. 5", "GENRE": "classical"}, partition: 0
+rowtime: 2020/05/04 22:36:28.139 Z, key: <null>, value: {"ARTIST": "Edward Elgar", "TITLE": "Pomp and Circumstance", "GENRE": "classical"}, partition: 0
+rowtime: 2020/05/04 22:36:27.263 Z, key: <null>, value: {"ARTIST": "Smashing Pumpkins", "TITLE": "Today", "GENRE": "rock"}, partition: 0
+rowtime: 2020/05/04 22:36:27.370 Z, key: <null>, value: {"ARTIST": "Pink Floyd", "TITLE": "Another Brick in the Wall", "GENRE": "rock"}, partition: 0
+rowtime: 2020/05/04 22:36:27.488 Z, key: <null>, value: {"ARTIST": "Van Halen", "TITLE": "Jump", "GENRE": "rock"}, partition: 0
+rowtime: 2020/05/04 22:36:27.601 Z, key: <null>, value: {"ARTIST": "Led Zeppelin", "TITLE": "Kashmir", "GENRE": "rock"}, partition: 0
 Topic printing ceased

@@ -1,7 +1,8 @@
 Name                 : RATINGS_REKEYED
- Field  | Type                   
+ Field  | Type
 
- ID     | INTEGER          (key) 
- RATING | DOUBLE                 
+ ID     | INTEGER          (key)
+ RATING | DOUBLE
+ OLD    | INTEGER
 
 For runtime statistics and query details run: DESCRIBE EXTENDED <Stream,Table>;
