@@ -188,7 +188,7 @@ public class SessionWindow {
                 sessionClicks.add(Clicks.newBuilder().setIp(keyTwo).setUrl("/nec/euismod/scelerisque/quam.xml").setTimestamp(instant.plusMillis(44000).toEpochMilli()).build());
                 sessionClicks.add(Clicks.newBuilder().setIp(keyTwo).setUrl("/nullam/orci/pede/venenatis.json").setTimestamp(instant.plusMillis(58000).toEpochMilli()).build());
 
-                Instant newSessionInstant = instant.plus(2,ChronoUnit.HOURS);
+                Instant newSessionInstant = instant.plus(2, ChronoUnit.HOURS);
 
                 sessionClicks.add(Clicks.newBuilder().setIp(keyOne).setUrl("/etiam/justo/etiam/pretium/iaculis.xml").setTimestamp(newSessionInstant.toEpochMilli()).build());
                 sessionClicks.add(Clicks.newBuilder().setIp(keyOne).setUrl("vestibulum/vestibulum/ante/ipsum/primis/in.json").setTimestamp(newSessionInstant.plusMillis(2000).toEpochMilli()).build());
