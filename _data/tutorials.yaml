@@ -127,6 +127,7 @@ session-windows:
   introduction: "Given a topic of click events on a website, there are various ways that we can process it. As well as simply counting the number of clicks in a regular time frame (using hopping or tumbling windows), we can also perform sessionization on the data. Here the length of the time window is based on the concept of a session, which is defined based on a period of inactivity. A given user might visit a website multiple times a day, but in distinct visits. Using session windows, we can analyze the number of clicks and duration per visit."
   status:
     ksql: enabled
+    kstreams: enabled
 
 aggregating-count:
   title: "How to count a stream of events"
