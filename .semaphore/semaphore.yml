@@ -21,7 +21,7 @@ global_job_config:
 blocks:
 - execution_time_limit:
     minutes: 20
-  name: Run the tests
+  name: Run the tests part 1
   task:
     jobs:
     - commands:
@@ -57,6 +57,12 @@ blocks:
     - commands:
       - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
       name: KSQL aggregation MIN/MAX tests
+
+- execution_time_limit:
+    minutes: 20
+  name: Run the tests part 2
+  task:
+    jobs:
     - commands:
       - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
       name: KSQL aggregation sum tests
