@@ -4,6 +4,22 @@ agent:
   machine:
     type: e1-standard-2
     os_image: ubuntu1804
+global_job_config:
+  secrets:
+    - name: vault_sem2_approle_prod
+  prologue:
+    commands:
+      - checkout
+      - make install-vault
+      - . vault-bin/vault-setup
+      - . vault-sem-get-secret aws_credentials
+      - . vault-sem-get-secret dockerhub-semaphore-cred
+      - >
+        aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
+      - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
+      - sudo pip3 install -e harness_runner/
+      - >
+        find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
 
 promotions:
   - name: Deploy to live site
@@ -61,18 +77,6 @@ blocks:
     execution_time_limit:
       minutes: 10
     task:
-      secrets:
-        - name: aws_credentials
-        - name: dockerhub-semaphore-cred
-      prologue:
-        commands:
-          - checkout
-          - >
-            aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
-          - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
-          - sudo pip3 install -e harness_runner/
-          - >
-            find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
       jobs:
         - name: KSQL transforming tests
           commands:
@@ -183,24 +187,15 @@ blocks:
           commands:
             - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
 
+        - name: KStreams Test Kafka Streams session windows tests
+          commands:
+            - make -C _includes/tutorials/session-windows/kstreams/code tutorial
+
   - name: Run second block of tests
     execution_time_limit:
       minutes: 10
     task:
-      secrets:
-        - name: aws_credentials
-        - name: dockerhub-semaphore-cred
-      prologue:
-        commands:
-          - checkout
-          - >
-            aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
-          - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
-          - sudo pip3 install -e harness_runner/
-          - >
-            find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
       jobs:
-
         - name: KStreams finding distinct events tests
           commands:
             - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
@@ -356,3 +351,12 @@ blocks:
         - name: KSQL Test ksqlDB column difference tests
           commands:
             - make -C _includes/tutorials/column-difference/ksql/code tutorial
+        
+        - name: KSQL geo-distance tests
+          commands:
+            - make -C _includes/tutorials/geo-distance/ksql/code tutorial
+
+        - name: KStreams Test Kafka Streams sliding windows tests
+          commands:
+            - make -C _includes/tutorials/sliding-windows/kstreams/code tutorial
+

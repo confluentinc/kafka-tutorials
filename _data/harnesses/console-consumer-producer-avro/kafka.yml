@@ -33,16 +33,16 @@ dev:
 
     - title: Create a schema
       content:
-          - change_directory: console-consumer-producer-avro
-            action: execute
-            file: tutorial-steps/dev/make-schema-dir.sh
-            render:
-              file: tutorials/console-consumer-producer-avro/kafka/markup/dev/make-schema-dir.adoc
+        - change_directory: console-consumer-producer-avro
+          action: execute
+          file: tutorial-steps/dev/make-schema-dir.sh
+          render:
+            skip: true
 
-          - action: make_file
-            file: schema/order_detail.avsc
-            render:
-              file: tutorials/console-consumer-producer-avro/kafka/markup/dev/create-schema.adoc
+        - action: make_file
+          file: schema/order_detail.avsc
+          render:
+            file: tutorials/console-consumer-producer-avro/kafka/markup/dev/create-schema.adoc
 
     - title: Start an Avro console consumer
       content:

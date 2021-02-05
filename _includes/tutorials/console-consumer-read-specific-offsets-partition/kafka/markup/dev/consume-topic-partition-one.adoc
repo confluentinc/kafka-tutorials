@@ -14,6 +14,6 @@ After a few seconds you should see something like this
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/kafka/code/tutorial-steps/dev/expected-output-step-two.txt %}</code></pre>
 +++++
 
-As you'd expect the remaining 9 records are on the second partition.
+As you'd expect, the remaining 9 records are on the second partition.
 
 Go ahead and shut down the current consumer with a `CTRL+C`

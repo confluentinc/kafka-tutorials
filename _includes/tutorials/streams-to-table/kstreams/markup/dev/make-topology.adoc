@@ -5,7 +5,7 @@ The text assumes a method buildTopology exists and constructs the Kafka Streams 
 
 
 
-The heart of this tutorial is a simple one liner. You'll take an existing `KStream` object and use the `toTable()` method to covert it into a `KTable`.  This new method (as of Apache Kafka 2.5) allows you to simply convert a https://docs.confluent.io/current/streams/concepts.html#duality-of-streams-and-tables[**record stream** to a **changelog stream**].  In this case you've materialized the `KTable`, so it's available for you to use https://docs.confluent.io/current/streams/developer-guide/interactive-queries.html[Interactive Queries].
+The heart of this tutorial is a simple one liner. You'll take an existing `KStream` object and use the `toTable()` method to covert it into a `KTable`.  This new method (as of Apache Kafka 2.5) allows you to simply convert a https://docs.confluent.io/platform/current/streams/concepts.html#duality-of-streams-and-tables[**record stream** to a **changelog stream**].  In this case you've materialized the `KTable`, so it's available for you to use https://docs.confluent.io/platform/current/streams/developer-guide/interactive-queries.html[Interactive Queries].
 
 
 ++++

@@ -3,7 +3,7 @@ buildscript {
     jcenter()
   }
   dependencies {
-    classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.21.0"
+    classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.22.0"
     classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.14"
   }
 }
@@ -12,7 +12,7 @@ plugins {
   id "java"
   id "application"
   id "idea"
-  id "com.google.cloud.tools.jib" version "2.7.0"
+  id "com.google.cloud.tools.jib" version "2.7.1"
   id "com.github.johnrengelman.shadow" version "6.1.0"
   id "com.google.protobuf" version "0.8.14"
 }
@@ -43,7 +43,7 @@ dependencies {
 
   testImplementation "org.apache.kafka:kafka-streams-test-utils:2.5.0"
   testImplementation 'junit:junit:4.13.1'
-  testImplementation 'org.assertj:assertj-core:3.18.1'
+  testImplementation 'org.assertj:assertj-core:3.19.0'
 }
 
 test {

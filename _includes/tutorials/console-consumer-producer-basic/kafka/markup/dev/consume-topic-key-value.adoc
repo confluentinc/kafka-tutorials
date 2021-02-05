@@ -12,4 +12,4 @@ After the consumer starts you should see the following output in a few seconds:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/kafka/code/tutorial-steps/dev/expected-output-step-three.txt %}</code></pre>
 +++++
 
-Since we kept the `--from-beginning` property, you'll see all the records sent to the topic.  You'll notice the results before you sent keys `null-<value>`.
+Since we kept the `--from-beginning` property, you'll see all the records sent to the topic.  You'll notice the results before you sent keys are formatted as `null-<value>`.

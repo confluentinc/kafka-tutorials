@@ -1,4 +1,4 @@
-You're all down now!
+You're all done now!
 
 Go back to your open windows and stop any console producers and consumers with a `CTRL+C` then close the container shells with a `CTRL+D` command.
 
