@@ -20,8 +20,8 @@ global_job_config:
         find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
 blocks:
 - execution_time_limit:
-    minutes: 20
-  name: Run the tests
+    minutes: 10
+  name: Run the tests part 1
   task:
     jobs:
     - commands:
@@ -57,6 +57,12 @@ blocks:
     - commands:
       - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
       name: KSQL aggregation MIN/MAX tests
+
+- execution_time_limit:
+    minutes: 10
+  name: Run the tests part 2
+  task:
+    jobs:
     - commands:
       - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
       name: KSQL aggregation sum tests
