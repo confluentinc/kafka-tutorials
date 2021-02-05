@@ -8,7 +8,7 @@ set -e -u -o pipefail
 # - awscli
 #
 # usage
-# ./tools/update-ksqldb-version.sh 0.9.0-rc287 "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
+# ./tools/update-ksqldb-version.sh 0.9.0-rc287 "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com/"
 # ./tools/update-ksqldb-version.sh 0.8.1
 
 version=$1
