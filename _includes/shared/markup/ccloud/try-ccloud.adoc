@@ -1,4 +1,4 @@
-Instead of running a local Kafka cluster, you may use https://confluent.cloud[Confluent Cloud], a fully-managed Apache Kafka service.
+Instead of running a local Kafka cluster, you may use https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud], a fully-managed Apache Kafka service.
 
 First, create your Kafka cluster in Confluent Cloud.
 Use the promo code `CC100KTS` to receive an additional $100 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
