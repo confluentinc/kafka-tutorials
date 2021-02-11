@@ -362,7 +362,7 @@ kafka-consumer-application:
 produce-consume-lang:
   title: "Produce and Consume Records in multiple languages"
   meta-description: "Produce and Consume events from Apache Kafka in multiple languages"
-  slug: "/produce-and-consume-lang/"
+  slug: "/produce-consume-lang"
   question: "How can I produce and consume events from Kafka using a programming language other than Java?"
   introduction: "You want to enrich and expose a list of books from a library. You have to produce an event for each book acquisition (title, editor, release ...), and consume back the same events to serve the book collection over HTTP."
   status:
