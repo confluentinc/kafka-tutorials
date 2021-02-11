@@ -1,0 +1,177 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/answer-configs.adoc
+
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/init.adoc
+
+        - change_directory: message-ordering
+          action: execute
+          file: tutorial-steps/dev/make-dirs.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-dirs.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Create the Kafka topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/create-topic.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/create-topic.adoc
+
+    - title: Describe the topic
+      content:
+        - action: execute
+          file: tutorial-steps/dev/describe-original-topic.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/describe-original-topic.adoc
+
+    - title: Configure the project application
+      content:
+        - action: make_file
+          file: build.gradle
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-build-file.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/gradle-wrapper.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-gradle-wrapper.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-config-dir.adoc
+
+    - title: Set the application properties
+      content:
+        - action: make_file
+          file: configuration/dev.properties
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-dev-file.adoc
+
+    - title: Create the Kafka Producer application
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-src-dir.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-src-dir.adoc
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/KafkaProducerApplication.java
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/make-application.adoc
+
+    - title: Create data to produce to Kafka
+      content:
+        - action: make_file
+          file: input.txt
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/create-data-file.adoc
+
+    - title: Compile and run the Kafka Producer application
+      content:
+        - action: execute
+          file: tutorial-steps/dev/build-uberjar.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/build-uberjar.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/run-dev-app.sh
+          render:
+            file: tutorials/message-ordering/kafka/markup/dev/run-dev-app.adoc
+
+test:
+  steps:
+    - title: View all records in the topic
+      content:
+        - action: execute_async
+          file: tutorial-steps/test/console-consumer.sh
+          stdout: tutorial-steps/test/outputs/actual-output.txt
+          render:
+            file: tutorials/message-ordering/kafka/markup/test/run-consumer.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 8000
+          render:
+            skip: true
+
+    - title: Consume the data in partition 0
+      content:
+        - action: execute_async
+          file: tutorial-steps/test/harness-console-consumer-myTopic-partition-0.sh
+          stdout: tutorial-steps/test/outputs/actual-output-myTopic-partition-0.txt
+          render:
+            file: tutorials/message-ordering/kafka/markup/test/consume-data-myTopic-partition-0.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 8000
+          render:
+            skip: true
+
+    - title: View the broker log segment file for partition 0
+      content:
+        - action: execute
+          file: tutorial-steps/test/dump-log-segments-0.sh
+          stdout: tutorial-steps/test/outputs/actual-output-log-segments-myTopic-partition-0.txt
+          render:
+            file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-myTopic-partition-0.adoc
+
+    - title: Consume the data in partition 1
+      content:
+        - action: execute_async
+          file: tutorial-steps/test/harness-console-consumer-myTopic-partition-1.sh
+          stdout: tutorial-steps/test/outputs/actual-output-myTopic-partition-1.txt
+          render:
+            file: tutorials/message-ordering/kafka/markup/test/consume-data-myTopic-partition-1.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 8000
+          render:
+            skip: true
+
+    - title: View the broker log segment file for partition 1
+      content:
+        - action: execute
+          file: tutorial-steps/test/dump-log-segments-1.sh
+          stdout: tutorial-steps/test/outputs/actual-output-log-segments-myTopic-partition-1.txt
+          render:
+            file: tutorials/message-ordering/kafka/markup/test/consume-log-segments-myTopic-partition-1.adoc
+
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud-properties.adoc

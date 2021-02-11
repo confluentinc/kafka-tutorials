@@ -8,14 +8,17 @@ agent:
 blocks:
   - task:
       secrets:
-        - name: aws_credentials
+        - name: vault_sem2_approle_prod
       jobs:
         - name: Compile and deploy site
           commands:
             - checkout
+            - make install-vault
+            - . vault-bin/vault-setup
+            - . vault-sem-get-secret aws_credentials
             - cache restore
             - npm install
-            - gem install bundler --no-ri --no-rdoc
-            - bundle install            
+            - gem install bundler
+            - bundle install
             - JEKYLL_ENV=production bundle exec jekyll build
             - aws s3 cp --recursive ./_site s3://kafka-tutorials.confluent.io/

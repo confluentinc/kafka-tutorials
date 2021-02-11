@@ -9,4 +9,3 @@ vault write -format=yaml auth/app/prod/login role_id="${VAULT_ROLE_ID}" secret_i
 	| awk '{print $2}' \
 	> ~/.vault-token
 vault login token="$(cat ~/.vault-token)" >/dev/null 2>&1 && echo "Successfully Logged Into Vault"
-vault login token="$(cat ~/.vault-token)" >/dev/null 2>&1 && echo "Successfully Logged Into Vault"

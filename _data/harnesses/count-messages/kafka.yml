@@ -1,0 +1,55 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/01a-init.sh
+          render:
+            file: tutorials/count-messages/kafka/markup/dev/01a-init.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/count-messages/kafka/markup/dev/02a-make-docker-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/02b-docker-compose-up.sh
+          render:
+            file: tutorials/count-messages/kafka/markup/dev/02b-start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/02c-wait-for-containers.sh
+          render:
+            file: tutorials/count-messages/kafka/markup/dev/02c-wait-for-containers.adoc
+
+    - title: Run kafkacat to count the messages
+      content:
+        - action: execute
+          file: tutorial-steps/dev/03a-count-messages.sh
+          render:
+            file: tutorials/count-messages/kafka/markup/dev/03a-count-messages.adoc
+          stdout: tutorial-steps/dev/outputs/03a-count-messages.log
+
+
+    - title: Clean up
+      content:
+        - action: execute
+          file: tutorial-steps/dev/05-clean-up.sh
+          render:
+            file: tutorials/count-messages/kafka/markup/dev/05-clean-up.adoc
+
+
+    - title: Use kafkacat with Confluent Cloud
+      content:
+        - action: execute
+        # There's nothing to run here because we're not testing against CCloud yet
+          file: tutorial-steps/dev/noop.sh
+          render:
+            file: tutorials/count-messages/kafka/markup/dev/04a-set-env.adoc
+        - action: execute
+        # There's nothing to run here because we're not testing against CCloud yet
+          file: tutorial-steps/dev/noop.sh
+          render:
+            file: tutorials/count-messages/kafka/markup/dev/04b-count-messages-ccloud.adoc

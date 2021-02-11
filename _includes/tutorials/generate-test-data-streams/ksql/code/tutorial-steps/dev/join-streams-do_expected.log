@@ -1,0 +1,15 @@
++--------------------+------------------+------------+----------+----------------------------------------------------+
+|EVENT_TS            |MAC               |BYTES_SENT  |NAME      |LOCATION                                            |
++--------------------+------------------+------------+----------+----------------------------------------------------+
+|2020-04-02 12:34:32 |07:71:11:20:14:d3 |143         |Drogon    |{CITY=Charmainehaven, COUNTRY=Anguilla}             |
+|2020-04-02 12:34:33 |e6:ee:92:de:bb:08 |2352        |Ghiscar   |{CITY=Gibsonbury, COUNTRY=Uzbekistan}               |
+|2020-04-02 12:34:33 |ce:d8:35:2c:ea:28 |398         |Valryon   |{CITY=Moenmouth, COUNTRY=Saint Pierre and Miquelon} |
+|2020-04-02 12:34:34 |e6:ee:92:de:bb:08 |3785        |Ghiscar   |{CITY=Gibsonbury, COUNTRY=Uzbekistan}               |
+|2020-04-02 12:34:34 |ba:0f:84:52:54:95 |1670        |Vhagar    |{CITY=Lake Takakobury, COUNTRY=Ecuador}             |
+|2020-04-02 12:34:35 |53:c8:f3:5d:ff:29 |1162        |Rhaegal   |{CITY=Graigtown, COUNTRY=Netherlands Antilles}      |
+|2020-04-02 12:34:35 |e6:ee:92:de:bb:08 |749         |Ghiscar   |{CITY=Gibsonbury, COUNTRY=Uzbekistan}               |
+|2020-04-02 12:34:36 |e5:b2:77:11:74:81 |182         |Vhagar    |{CITY=Reillyshire, COUNTRY=Armenia}                 |
+|2020-04-02 12:34:36 |ba:0f:84:52:54:95 |974         |Vhagar    |{CITY=Lake Takakobury, COUNTRY=Ecuador}             |
+|2020-04-02 12:34:37 |07:71:11:20:14:d3 |1878        |Drogon    |{CITY=Charmainehaven, COUNTRY=Anguilla}             |
+Limit Reached
+Query terminated

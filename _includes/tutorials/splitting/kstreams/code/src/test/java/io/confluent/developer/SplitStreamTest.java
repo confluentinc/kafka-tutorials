@@ -1,26 +1,32 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.ActingEvent;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.common.header.internals.RecordHeaders;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
-import org.apache.kafka.streams.test.ConsumerRecordFactory;
+import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.stream.Collectors;
+
+import io.confluent.developer.avro.ActingEvent;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
 
 public class SplitStreamTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
+    private TopologyTestDriver testDriver;
 
     public SpecificAvroSerializer<ActingEvent> makeSerializer(Properties envProps) {
         SpecificAvroSerializer<ActingEvent> serializer = new SpecificAvroSerializer<>();
@@ -46,19 +52,14 @@ public class SplitStreamTest {
                                               String topic,
                                               Deserializer<String> keyDeserializer,
                                               SpecificAvroDeserializer<ActingEvent> valueDeserializer) {
-        List<ActingEvent> results = new ArrayList<>();
 
-        while (true) {
-            ProducerRecord<String, ActingEvent> record = testDriver.readOutput(topic, keyDeserializer, valueDeserializer);
-
-            if (record != null) {
-                results.add(record.value());
-            } else {
-                break;
-            }
-        }
-
-        return results;
+        return testDriver
+            .createOutputTopic(topic, keyDeserializer, valueDeserializer)
+            .readKeyValuesToList()
+            .stream()
+            .filter(Objects::nonNull)
+            .map(record -> record.value)
+            .collect(Collectors.toList());
     }
 
     @Test
@@ -73,15 +74,13 @@ public class SplitStreamTest {
         String outputOtherTopic = envProps.getProperty("output.other.topic.name");
 
         Topology topology = ss.buildTopology(envProps);
-        TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps);
+        testDriver = new TopologyTestDriver(topology, streamProps);
 
         Serializer<String> keySerializer = Serdes.String().serializer();
         SpecificAvroSerializer<ActingEvent> valueSerializer = makeSerializer(envProps);
 
         Deserializer<String> keyDeserializer = Serdes.String().deserializer();
         SpecificAvroDeserializer<ActingEvent> valueDeserializer = makeDeserializer(envProps);
-
-        ConsumerRecordFactory<String, ActingEvent> inputFactory = new ConsumerRecordFactory<>(keySerializer, valueSerializer);
 
         ActingEvent streep = ActingEvent.newBuilder()
                 .setName("Meryl Streep").setTitle("The Iron Lady").setGenre("drama").build();
@@ -136,8 +135,11 @@ public class SplitStreamTest {
         expectedOther.add(bale);
         expectedOther.add(keaton);
 
+        final TestInputTopic<String, ActingEvent>
+            actingEventTestInputTopic =
+            testDriver.createInputTopic(inputTopic, keySerializer, valueSerializer);
         for (ActingEvent event : input) {
-            testDriver.pipeInput(inputFactory.create(inputTopic, event.getName(), event));
+            actingEventTestInputTopic.pipeInput(event.getName(), event);
         }
 
         List<ActingEvent> actualDrama = readOutputTopic(testDriver, outputDramaTopic, keyDeserializer, valueDeserializer);
@@ -149,4 +151,8 @@ public class SplitStreamTest {
         Assert.assertEquals(expectedOther, actualOther);
     }
 
+    @After
+    public void cleanup() {
+        testDriver.close();
+    }
 }

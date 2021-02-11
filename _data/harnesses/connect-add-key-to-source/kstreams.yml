@@ -197,3 +197,11 @@ prod:
         - action: skip
           render:
             file: tutorials/connect-add-key-to-source/kstreams/markup/prod/launch-container.adoc
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud-properties.adoc

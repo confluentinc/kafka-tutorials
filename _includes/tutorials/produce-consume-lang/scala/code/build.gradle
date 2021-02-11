@@ -1,0 +1,100 @@
+plugins {
+    id "com.google.cloud.tools.jib" version "2.7.1"
+    id "com.github.johnrengelman.shadow" version "4.0.4"
+}
+
+allprojects {
+    version = "0.1.0-SNAPSHOT"
+    group = "io.confluent.developer"
+
+    apply plugin: 'java'
+    apply plugin: 'scala'
+
+    repositories {
+        mavenCentral()
+
+        maven {
+            url "https://packages.confluent.io/maven"
+        }
+    }
+
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
+
+    tasks.withType(ScalaCompile) {
+        scalaCompileOptions.additionalParameters = [
+                '-deprecation',
+                '-encoding', 'utf-8',
+                '-language:postfixOps'
+        ]
+    }
+
+    dependencies {
+        implementation "org.scala-lang:scala-library:2.13.4"
+
+        implementation "org.apache.kafka:kafka-clients:2.5.0"
+        implementation "io.confluent:kafka-streams-avro-serde:5.5.0"
+        implementation "com.sksamuel.avro4s:avro4s-core_2.13:4.0.4"
+        testImplementation "org.scalatest:scalatest_2.13:3.3.0-SNAP3"
+        testImplementation "org.testcontainers:kafka:1.15.1"
+
+        // presentation boiler plate
+        implementation "com.lihaoyi:cask_2.13:0.7.8"
+        implementation "ch.qos.logback:logback-classic:1.2.3"
+        implementation "com.github.pureconfig:pureconfig_2.13:0.12.3"
+        implementation "com.nrinaudo:kantan.csv-generic_2.13:0.6.1"
+        implementation "com.nrinaudo:kantan.csv-java8_2.13:0.6.1"
+        implementation "com.nrinaudo:kantan.csv-enumeratum_2.13:0.6.1"
+    }
+
+    test {
+        testLogging {
+            events "passed", "skipped", "failed"
+            exceptionFormat "full"
+        }
+    }
+}
+
+configure(subprojects) {
+    apply plugin: 'application'
+    apply plugin: 'com.google.cloud.tools.jib'
+    apply plugin: 'com.github.johnrengelman.shadow'
+
+    dependencies {
+        implementation parent
+        testImplementation parent.sourceSets.test.output
+    }
+
+    task spec(dependsOn: ['compileTestScala'], type: JavaExec) {
+        group = 'verification'
+        description = 'Runs the scala tests.'
+        main = 'org.scalatest.tools.Runner'
+        args = ['-R', 'build/classes/scala/test', '-o']
+        classpath = sourceSets.test.runtimeClasspath
+    }
+
+    test.dependsOn spec
+    tasks.jib.dependsOn build
+}
+
+configure(project('produce-consume-scala-producer-app')) {
+    shadowJar.archiveBaseName = "app-producer"
+    mainClassName = 'io.confluent.developer.produce.Producer'
+    jib.to.image = "io.confluent.developer/scala-producer:${version}"
+}
+
+configure(project('produce-consume-scala-consumer-app')) {
+    shadowJar.archiveBaseName = "app-consumer"
+    mainClassName = 'io.confluent.developer.consume.Consumer'
+    jib.to.image = "io.confluent.developer/scala-consumer:${version}"
+}
+
+task topicCreation(type: JavaExec) {
+    main = 'io.confluent.developer.helper.TopicCreation'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task schemaPublication(type: JavaExec) {
+    main = 'io.confluent.developer.helper.SchemaPublication'
+    classpath = sourceSets.main.runtimeClasspath
+}

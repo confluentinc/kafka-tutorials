@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/session-windows/ksql/markup/answer/answer.adoc
+
 dev:
   steps:
     - title: Initialize the project
@@ -117,3 +125,11 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc

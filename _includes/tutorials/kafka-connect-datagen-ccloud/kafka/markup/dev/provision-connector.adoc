@@ -1,0 +1,6 @@
+Provision the Kafka Connect Datagen source connector with the following command.
+Notice that it references the connector configuration file `datagen-source-config.json` that you created in the previous step.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/create-connector.sh %}</code></pre>
++++++

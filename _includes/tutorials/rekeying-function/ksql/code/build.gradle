@@ -17,13 +17,13 @@ repositories {
     jcenter()
 
     maven {
-        url 'http://packages.confluent.io/maven'
+        url 'https://packages.confluent.io/maven'
     }
 }
 
 dependencies {
-    compile 'io.confluent.ksql:ksql-udf:5.4.0'
-    testCompile 'junit:junit:4.12'
+    implementation 'io.confluent.ksql:ksql-udf:5.4.0'
+    testImplementation 'junit:junit:4.12'
 }
 
 task copyJar(type: Copy) {

@@ -1,22 +1,32 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.Movie;
-import io.confluent.developer.avro.RatedMovie;
-import io.confluent.developer.avro.Rating;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.streams.*;
+import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
+import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.StreamsConfig;
+import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.KTable;
 import org.apache.kafka.streams.kstream.Produced;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
+
+import io.confluent.developer.avro.Movie;
+import io.confluent.developer.avro.RatedMovie;
+import io.confluent.developer.avro.Rating;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 
 public class JoinStreamToTable {
 
@@ -27,7 +37,7 @@ public class JoinStreamToTable {
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
     }
@@ -41,14 +51,14 @@ public class JoinStreamToTable {
         final MovieRatingJoiner joiner = new MovieRatingJoiner();
 
         KStream<String, Movie> movieStream = builder.<String, Movie>stream(movieTopic)
-                .map((key, movie) -> new KeyValue<>(movie.getId().toString(), movie));
+                .map((key, movie) -> new KeyValue<>(String.valueOf(movie.getId()), movie));
 
         movieStream.to(rekeyedMovieTopic);
 
         KTable<String, Movie> movies = builder.table(rekeyedMovieTopic);
 
         KStream<String, Rating> ratings = builder.<String, Rating>stream(ratingTopic)
-                .map((key, rating) -> new KeyValue<>(rating.getId().toString(), rating));
+                .map((key, rating) -> new KeyValue<>(String.valueOf(rating.getId()), rating));
 
         KStream<String, RatedMovie> ratedMovie = ratings.join(movies, joiner);
 
@@ -61,8 +71,8 @@ public class JoinStreamToTable {
         SpecificAvroSerde<RatedMovie> movieAvroSerde = new SpecificAvroSerde<>();
 
         final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
+        serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
+                        envProps.getProperty("schema.registry.url"));
 
         movieAvroSerde.configure(serdeConfig, false);
         return movieAvroSerde;

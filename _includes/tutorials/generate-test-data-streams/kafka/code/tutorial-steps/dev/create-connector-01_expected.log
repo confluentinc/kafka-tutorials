@@ -1,0 +1,8 @@
+HTTP/1.1 201 Created
+Date: Thu, 02 Apr 2020 20:28:32 GMT
+Location: http://localhost:8083/connectors/clicks
+Content-Type: application/json
+Content-Length: 507
+Server: Jetty(9.4.20.v20190813)
+
+{"name":"clicks","config":{"connector.class":"io.mdrogalis.voluble.VolubleSourceConnector","key.converter":"org.apache.kafka.connect.storage.StringConverter","genkp.clicks.with":"#{Number.randomDigit}","attrkp.clicks.null.rate":"1","genv.clicks.source_ip.with":"#{Internet.ipV4Address}","genv.clicks.host.with":"#{Internet.url}","genv.clicks.path.with":"#{File.fileName}","genv.clicks.user_agent.with":"#{Internet.userAgentAny}","topic.clicks.throttle.ms":"1000","name":"clicks"},"tasks":[],"type":"source"}

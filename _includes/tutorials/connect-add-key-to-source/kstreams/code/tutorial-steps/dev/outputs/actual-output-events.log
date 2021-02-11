@@ -1,5 +1,5 @@
-[2019-12-20 20:48:58,381] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
-[2019-12-20 20:48:59,321] INFO ConsumerConfig values: 
+[2020-08-01 04:38:42,957] INFO Registered kafka:type=kafka.Log4jController MBean (kafka.utils.Log4jControllerRegistration$)
+[2020-08-01 04:38:43,885] INFO ConsumerConfig values: 
 	allow.auto.create.topics = true
 	auto.commit.interval.ms = 5000
 	auto.offset.reset = earliest
@@ -15,7 +15,7 @@
 	fetch.max.bytes = 52428800
 	fetch.max.wait.ms = 500
 	fetch.min.bytes = 1
-	group.id = console-consumer-96232
+	group.id = console-consumer-17790
 	group.instance.id = null
 	heartbeat.interval.ms = 3000
 	interceptor.classes = []
@@ -51,6 +51,7 @@
 	sasl.login.refresh.window.jitter = 0.05
 	sasl.mechanism = GSSAPI
 	security.protocol = PLAINTEXT
+	security.providers = null
 	send.buffer.bytes = 131072
 	session.timeout.ms = 10000
 	ssl.cipher.suites = null
@@ -70,19 +71,20 @@
 	ssl.truststore.type = JKS
 	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
  (org.apache.kafka.clients.consumer.ConsumerConfig)
-[2019-12-20 20:48:59,495] INFO Kafka version: 5.3.0-ce (org.apache.kafka.common.utils.AppInfoParser)
-[2019-12-20 20:48:59,495] INFO Kafka commitId: 95f8b33033d95860 (org.apache.kafka.common.utils.AppInfoParser)
-[2019-12-20 20:48:59,499] INFO Kafka startTimeMs: 1576874939481 (org.apache.kafka.common.utils.AppInfoParser)
-[2019-12-20 20:48:59,509] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] Subscribed to topic(s): cities_keyed (org.apache.kafka.clients.consumer.KafkaConsumer)
-[2019-12-20 20:49:00,024] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] Cluster ID: TL_DQW-ORnaqnQHBs8xFqg (org.apache.kafka.clients.Metadata)
-[2019-12-20 20:49:00,026] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] Discovered group coordinator broker:9092 (id: 2147483646 rack: null) (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
-[2019-12-20 20:49:00,032] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] Revoking previously assigned partitions [] (org.apache.kafka.clients.consumer.internals.ConsumerCoordinator)
-[2019-12-20 20:49:00,032] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] (Re-)joining group (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
-[2019-12-20 20:49:00,050] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] (Re-)joining group (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
-[2019-12-20 20:49:00,088] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] Successfully joined group with generation 1 (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
-[2019-12-20 20:49:00,097] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] Setting newly assigned partitions: cities_keyed-0 (org.apache.kafka.clients.consumer.internals.ConsumerCoordinator)
-[2019-12-20 20:49:00,149] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] Found no committed offset for partition cities_keyed-0 (org.apache.kafka.clients.consumer.internals.ConsumerCoordinator)
-[2019-12-20 20:49:00,205] INFO [Consumer clientId=consumer-1, groupId=console-consumer-96232] Resetting offset for partition cities_keyed-0 to offset 0. (org.apache.kafka.clients.consumer.internals.SubscriptionState)
+[2020-08-01 04:38:44,098] INFO Kafka version: 5.5.0-ce (org.apache.kafka.common.utils.AppInfoParser)
+[2020-08-01 04:38:44,098] INFO Kafka commitId: 6068e5d52c5e294e (org.apache.kafka.common.utils.AppInfoParser)
+[2020-08-01 04:38:44,099] INFO Kafka startTimeMs: 1596256724090 (org.apache.kafka.common.utils.AppInfoParser)
+[2020-08-01 04:38:44,110] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Subscribed to topic(s): cities_keyed (org.apache.kafka.clients.consumer.KafkaConsumer)
+[2020-08-01 04:38:44,811] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Cluster ID: XjoJQaAzSUODnNqG3Em5xQ (org.apache.kafka.clients.Metadata)
+[2020-08-01 04:38:44,813] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Discovered group coordinator broker:9092 (id: 2147483646 rack: null) (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2020-08-01 04:38:44,815] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] (Re-)joining group (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2020-08-01 04:38:44,825] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Join group failed with org.apache.kafka.common.errors.MemberIdRequiredException: The group member needs to have a valid member id before actually entering a consumer group (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2020-08-01 04:38:44,825] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] (Re-)joining group (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2020-08-01 04:38:44,829] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Finished assignment for group at generation 1: {consumer-console-consumer-17790-1-22123073-3736-48f5-8f45-99d0d68a916a=Assignment(partitions=[cities_keyed-0])} (org.apache.kafka.clients.consumer.internals.ConsumerCoordinator)
+[2020-08-01 04:38:44,833] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Successfully joined group with generation 1 (org.apache.kafka.clients.consumer.internals.AbstractCoordinator)
+[2020-08-01 04:38:44,837] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Adding newly assigned partitions: cities_keyed-0 (org.apache.kafka.clients.consumer.internals.ConsumerCoordinator)
+[2020-08-01 04:38:44,848] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Found no committed offset for partition cities_keyed-0 (org.apache.kafka.clients.consumer.internals.ConsumerCoordinator)
+[2020-08-01 04:38:44,869] INFO [Consumer clientId=consumer-console-consumer-17790-1, groupId=console-consumer-17790] Resetting offset for partition cities_keyed-0 to offset 0. (org.apache.kafka.clients.consumer.internals.SubscriptionState)
 1	{"city_id":1,"name":"Raleigh","state":"NC"}
 2	{"city_id":2,"name":"Mountain View","state":"CA"}
 3	{"city_id":3,"name":"Knoxville","state":"TN"}

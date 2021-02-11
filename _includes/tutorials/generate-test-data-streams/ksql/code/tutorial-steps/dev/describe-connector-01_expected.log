@@ -1,0 +1,10 @@
+Name                 : CLICKS
+Class                : io.mdrogalis.voluble.VolubleSourceConnector
+Type                 : source
+State                : RUNNING
+WorkerId             : ksqldb:8083
+
+ Task ID | State   | Error Trace
+---------------------------------
+ 0       | RUNNING |
+---------------------------------

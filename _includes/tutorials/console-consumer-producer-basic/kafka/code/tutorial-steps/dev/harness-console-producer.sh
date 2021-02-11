@@ -1,0 +1,1 @@
+docker-compose exec -T broker kafka-console-producer --topic example-topic --broker-list broker:9092
