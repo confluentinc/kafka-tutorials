@@ -1,1 +1,1 @@
-docker exec -i broker /usr/bin/kafka-console-producer --broker-list broker:9092 --topic financial_txns
+docker exec -i broker /usr/bin/kafka-console-producer --bootstrap-server broker:9092 --topic financial_txns

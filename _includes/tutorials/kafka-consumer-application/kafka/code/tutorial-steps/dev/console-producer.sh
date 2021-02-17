@@ -1,1 +1,1 @@
-kafka-console-producer --topic input-topic --broker-list broker:9092
+kafka-console-producer --topic input-topic --bootstrap-server broker:9092
