@@ -14,7 +14,7 @@ plugins {
   id "idea"
   id "com.google.cloud.tools.jib" version "2.7.1"
   id "com.github.johnrengelman.shadow" version "6.1.0"
-  id "com.google.protobuf" version "0.8.14"
+  id "com.google.protobuf" version "0.8.15"
 }
 
 sourceCompatibility = "1.8"
