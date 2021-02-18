@@ -3,7 +3,7 @@ plugins {
     id "application"
     id "com.google.cloud.tools.jib" version "2.7.1"
     id "com.github.johnrengelman.shadow" version "6.1.0"
-    id "com.commercehub.gradle.plugin.avro" version "0.17.0"
+    id "com.commercehub.gradle.plugin.avro" version "0.99.99"
 }
 
 sourceCompatibility = "1.8"
