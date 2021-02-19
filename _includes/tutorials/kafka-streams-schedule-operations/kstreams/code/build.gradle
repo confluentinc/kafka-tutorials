@@ -43,7 +43,7 @@ dependencies {
     }
     implementation "org.apache.kafka:kafka-clients:2.6.0"
     testImplementation "org.apache.kafka:kafka-streams-test-utils:2.6.0"
-    testImplementation "junit:junit:4.13.1"
+    testImplementation "junit:junit:4.13.2"
     testImplementation 'org.hamcrest:hamcrest:2.2'
 }
 
