@@ -23,3 +23,5 @@ After running the `ccloud::create_ccloud_stack` function, you should see output 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/ccloud-produce-consume/kafka/code/tutorial-steps/dev/expected-ccloud-create.log %}</code></pre>
 +++++
+
+NOTE: If you need to re-run the `ccloud::create_ccloud_stack` command, you'll need to open a new terminal window and source the `cloud_library.sh` script again
