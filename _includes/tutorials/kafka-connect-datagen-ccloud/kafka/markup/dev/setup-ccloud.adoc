@@ -18,3 +18,7 @@ NOTE: To avoid unexpected charges, carefully evaluate the cost of resources befo
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/run-ccloud-stack.sh %}</code></pre>
 +++++
 
+
+NOTE: If you need to re-run the `ccloud::create_ccloud_stack` command, you'll need to open a new terminal window and source the `cloud_library.sh` script again
+
+
