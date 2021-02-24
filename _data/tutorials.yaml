@@ -679,3 +679,22 @@ schedule-ktable-ttl:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+error-handling:
+  title: "Handling uncaught exceptions"
+  meta-description: "Handling uncaught exceptions"
+  slug: "/error-handling"
+  question: "How do I handle uncaught exceptions in my streams application?"
+  introduction: "You have an event streaming application and you want to make sure its robust in the face of unexpected errors.  Depending on the situation you'll either want the application to continue running or shut down.  In this tutorial you'll learn how to use the StreamsUncaughtException handler to provide this functionality."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled

@@ -359,3 +359,8 @@ blocks:
         - name: KStreams How to implement TTLs with KTable data tests
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl/kstreams/code tutorial
+
+        - name: KStreams Test Kafka Streams uncaught exception handling tests
+          commands:
+            - make -C _includes/tutorials/error-handling/kstreams/code tutorial
+
