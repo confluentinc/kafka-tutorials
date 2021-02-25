@@ -1,0 +1,14 @@
+To handle uncaught exceptions, use the  https://kafka.apache.org/28/javadoc/org/apache/kafka/streams/KafkaStreams.html#setUncaughtExceptionHandler-org.apache.kafka.streams.errors.StreamsUncaughtExceptionHandler-[KafkaStreams.setUncaughtExceptionHandler] method.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/error-handling/kstreams/markup/answer/error-handling-code.adoc %}</code></pre>
++++++
+
+The `StreamsUncaughtExceptionHandler` interface gives you an opportunity to respond to exceptions not handled by Kafka Streams.  The `StreamsUncaughtExceptionHandler` has one method `handle` and it returns an `enum` of type https://kafka.apache.org/28/javadoc/org/apache/kafka/streams/errors/StreamsUncaughtExceptionHandler.StreamThreadExceptionResponse.html[StreamThreadExceptionResponse] which provides you the opportunity to instruct Kafka Streams how to respond to the exception.  The possible return values are:
+
+
+* REPLACE_THREAD - Replaces the thread receiving the exception and processing continues with the same number of configured threads.
+* SHUTDOWN_CLIENT - Shut down the individual instance of the Kafka Streams application experiencing the exception
+* SHUTDOWN_APPLICATION - Shut down all instances of a Kafka Streams application *_with the same application-id_*
+
+NOTE: There is an older, deprected version of https://kafka.apache.org/28/javadoc/org/apache/kafka/streams/KafkaStreams.html#setUncaughtExceptionHandler-java.lang.Thread.UncaughtExceptionHandler-[KafkaStreams.setUncaughtExceptionHandler] that takes an instance of a `java.lang.Thread.UncaughtExceptionHandler`.  It is advised for users to migrate to use the newer method.

@@ -4,7 +4,7 @@ answer:
       content:
         - action: skip
           render:
-            file: tutorials/error-handling/kstreams/markup/answer/session-window-answer.adoc
+            file: tutorials/error-handling/kstreams/markup/answer/error-handling-answer.adoc
 
 dev:
   steps:
@@ -54,23 +54,6 @@ dev:
           render:
             file: tutorials/error-handling/kstreams/markup/dev/make-dev-file.adoc
             
-    - title: Create a schema for the model obect
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-avro-dir.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-avro-dir.adoc
-
-        - action: make_file
-          file: src/main/avro/clicks.avsc
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-avro-schema.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/build-project.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/build-project.adoc
-
     - title: Create an exception handler implementation
       content:
         - action: execute
@@ -81,7 +64,7 @@ dev:
         - action: make_file
           file: src/main/java/io/confluent/developer/MaxFailuresUncaughtExceptionHandler.java
           render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-timestamp-extractor.adoc         
+            file: tutorials/error-handling/kstreams/markup/dev/make-exception-handler.adoc      
          
     - title: Create the Kafka Streams topology
       content:

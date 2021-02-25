@@ -3,40 +3,30 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-In this tutorial you'll learn about using https://docs.confluent.io/platform/current/streams/developer-guide/dsl-api.html#error-handling[StreamsUncaughtExceptionHandlings with Kafka Streams].  Session windows are driven by user behavior, as opposed to time.
-
+Here is the code we'll use to drive our tutorial
 
 [source, java]
 ----
 
-   builder.stream(inputTopic, Consumed.with(Serdes.String(), clicksSerde))
-                .groupByKey() <1>
-                .windowedBy(StreamsUncaughtExceptionHandlings.with(Duration.ofMinutes(5)).grace(Duration.ofSeconds(30))) <2>
-                .count() <3>
-                .toStream()
-                .map((windowedKey, count) ->  { <4>
-                    String start = timeFormatter.format(windowedKey.window().startTime());
-                    String end = timeFormatter.format(windowedKey.window().endTime());
-                    String sessionInfo = String.format("Session info started: %s ended: %s with count %s", start, end, count);
-                    return KeyValue.pair(windowedKey.key(), sessionInfo);
-                })
+    builder.stream(inputTopic, Consumed.with(Serdes.String(), Serdes.String()))
+                .mapValues(value -> value.substring(0, value.indexOf('X'))) <1>
+                .to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
+
+    KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), envProps);
+    final MaxFailuresUncaughtExceptionHandler exceptionHandler = new MaxFailuresUncaughtExceptionHandler(maxFailures, maxTimeInterval);  <2>
+    kafkaStreams.setUncaughtExceptionHandler(exceptionHandler); <3>
 
 
 ----
 
-<1> Grouping by key, a prerequisite for aggregation operations
-<2> Specifying a session window for the windowing operation
-<3> Counting the number of clicks by key per session
-<4> Formatting the results.  You probably won't do this in practice, but it's done in this tutorial to make the concept of a session more clear.
+<1> Here's some suspicious code, if there's no 'X' in the value we'll get an exception!
+<2> Instantiating the exception handler, the maxFailures (3) and maxTimeInterval (5000 ms) variables get their values from the configuration files
+<3> Adding the handler to Kafka Streams
 
-For this session window, once there is a period of inactivity of 5 minutes or more for a given key the current session is closed and any new records arriving after that time start a new session.
-
-Session windows aggregate events (by key) into sessions.  A session represents a period of activity followed by inactivity period.  Once the defined time for inactivity elapses, the session is considered closed.  Session windows are a bit different from other window types (hopping, tumbling) because they don't have a fixed window size.  As long as new records arrive for a key within the inactivity gap, the window continues to grow in size, meaning the amount of time the window spans, not the total number of records in the window.  Another way to view session windows is that they are driven by behavior while other window types are solely time based.
-
-_**NOTE:**_ This in this example the incoming records have keys.  If your input topic is not keyed, you'll need to use the https://javadoc.io/static/org.apache.kafka/kafka-streams/2.7.0/org/apache/kafka/streams/kstream/KStream.html#groupBy-org.apache.kafka.streams.kstream.KeyValueMapper-[KStream.groupBy] method and provide a https://javadoc.io/static/org.apache.kafka/kafka-streams/2.7.0/org/apache/kafka/streams/kstream/KeyValueMapper.html[KeyValueMapper] instance to select to key to use for grouping.
+From looking at the code above, you can see it assumes there's always an 'X' character contained in the value.  But if there isn't, the `value.indexOf` method throws an exception, and the `StreamsUncaughtException` handler comes into play.  If there more than 3 errors within 5 seconds, the application will shut down.  But for the first two execeptions, we'll replace the thread and keep running.
 
 
-That wraps up our discussion for the finer points of the code for this tutorial.  Now create the following file at `src/main/java/io/confluent/developer/StreamsUncaughtExceptionHandling.java`
+Now create the following file at `src/main/java/io/confluent/developer/StreamsUncaughtExceptionHandling.java`
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/error-handling/kstreams/code/src/main/java/io/confluent/developer/StreamsUncaughtExceptionHandling.java %}</code></pre>

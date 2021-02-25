@@ -1,0 +1,7 @@
+KafkaStreams kafkaStreams = new KafkaStreams(topologyBuilder.build(), properties);
+
+// Using a lambda, take constant approach regardless or exception or conditions
+kafkaStreams.setUncaughtExceptionHander((exception) -> StreamsUncaughtExceptionHandler.StreamThreadExceptionResponse.REPLACE_THREAD);
+
+// Using a concrete implementation
+kafkaStreams.setUncaughtExceptionHander(new MyExceptionHandler());
