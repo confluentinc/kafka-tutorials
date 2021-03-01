@@ -18,14 +18,14 @@ import org.apache.kafka.streams.kstream.Produced;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
 
 public class StreamsUncaughtExceptionHandling {
+
+    int counter = 0;
 
     public Properties buildStreamsProperties(Properties envProps) {
         Properties props = new Properties();
@@ -42,16 +42,16 @@ public class StreamsUncaughtExceptionHandling {
         final String inputTopic = envProps.getProperty("input.topic.name");
         final String outputTopic = envProps.getProperty("output.topic.name");
 
-        final int maxFailures = Integer.parseInt(envProps.getProperty("max.failures"));
-        final long maxTimeInterval = Long.parseLong(envProps.getProperty("max.time.millis"));
-
         builder.stream(inputTopic, Consumed.with(Serdes.String(), Serdes.String()))
-                .mapValues(value -> value.substring(0, value.indexOf('X')))
+                .mapValues(value -> {
+                    counter++;
+                    if (counter == 2 || counter == 8 || counter == 15) {
+                        throw new IllegalStateException("It works on my box!!!");
+                    }
+                    return value.toUpperCase();
+                })
                 .to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
-
-        KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), envProps);
-        final MaxFailuresUncaughtExceptionHandler exceptionHandler = new MaxFailuresUncaughtExceptionHandler(maxFailures, maxTimeInterval);
-        kafkaStreams.setUncaughtExceptionHandler(exceptionHandler);
+        
         return builder.build();
     }
 
@@ -99,26 +99,26 @@ public class StreamsUncaughtExceptionHandling {
         TutorialDataGenerator dataGenerator = new TutorialDataGenerator(envProps);
         dataGenerator.generate();
 
+        final int maxFailures = Integer.parseInt(envProps.getProperty("max.failures"));
+        final long maxTimeInterval = Long.parseLong(envProps.getProperty("max.time.millis"));
         final KafkaStreams streams = new KafkaStreams(topology, streamProps);
-        final CountDownLatch latch = new CountDownLatch(1);
+        final MaxFailuresUncaughtExceptionHandler exceptionHandler = new MaxFailuresUncaughtExceptionHandler(maxFailures, maxTimeInterval);
+        streams.setUncaughtExceptionHandler(exceptionHandler);
 
         // Attach shutdown handler to catch Control-C.
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
                 streams.close();
-                latch.countDown();
             }
         });
 
         try {
             streams.cleanUp();
             streams.start();
-            latch.await();
         } catch (Throwable e) {
             System.exit(1);
         }
-        System.exit(0);
     }
 
     static class TutorialDataGenerator {
@@ -135,7 +135,7 @@ public class StreamsUncaughtExceptionHandling {
 
             try (Producer<String, String> producer = new KafkaProducer<>(properties)) {
                 String topic = properties.getProperty("input.topic.name");
-                List<String> messages = Arrays.asList("comeX", "backX", "and fightX", "badValue", "it'sX", "justX", "aX","badValue", "fleshX", "woundX", "badValue");
+                List<String> messages = List.of("All", "streams", "lead", "to", "Confluent", "Go", "to", "Kafka", "Summit");
 
 
                 messages.forEach(message -> producer.send(new ProducerRecord<>(topic, message), (metadata, exception) -> {

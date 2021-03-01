@@ -8,6 +8,8 @@ import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -25,8 +27,13 @@ public class StreamsUncaughtExceptionHandlingTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
-    @Test
-    public void errorHandlingTest() throws IOException {
+    private TestInputTopic<String, String> inputTopic;
+    private TestOutputTopic<String, String> outputTopic;
+    private TopologyTestDriver testDriver;
+
+
+    @Before
+    public void setUp() throws IOException {
         final StreamsUncaughtExceptionHandling instance = new StreamsUncaughtExceptionHandling();
         final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
 
@@ -35,27 +42,33 @@ public class StreamsUncaughtExceptionHandlingTest {
         final String outputTopicName = envProps.getProperty("output.topic.name");
 
         final Topology topology = instance.buildTopology(envProps);
-        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
-            final Serializer<String> keySerializer = Serdes.String().serializer();
-            final Serializer<String> exampleSerializer = Serdes.String().serializer();
-            final Deserializer<String> valueDeserializer = Serdes.String().deserializer();
-            final Deserializer<String> keyDeserializer = Serdes.String().deserializer();
+        testDriver = new TopologyTestDriver(topology, streamProps);
+        final Serializer<String> keySerializer = Serdes.String().serializer();
+        final Serializer<String> exampleSerializer = Serdes.String().serializer();
+        final Deserializer<String> valueDeserializer = Serdes.String().deserializer();
+        final Deserializer<String> keyDeserializer = Serdes.String().deserializer();
 
-            final TestInputTopic<String, String>  inputTopic = testDriver.createInputTopic(sessionDataInputTopic,
-                                                                                              keySerializer,
-                                                                                              exampleSerializer);
-
-
-            final TestOutputTopic<String, String> outputTopic = testDriver.createOutputTopic(outputTopicName, keyDeserializer, valueDeserializer);
-
-            final List<String> validMessages = Arrays.asList("fooX", "barX", "bazX");
-            final List<String> expectedMessages = validMessages.stream().map(v -> v.substring(0, v.indexOf('X'))).collect(Collectors.toList());
-
-            assertThrows(org.apache.kafka.streams.errors.StreamsException.class, () -> inputTopic.pipeValueList(Collections.singletonList("badValue")));
-           
-            inputTopic.pipeValueList(validMessages);
-            final List<String> actualResults = outputTopic.readValuesToList();
-            assertEquals(expectedMessages, actualResults);
-        }
+        inputTopic = testDriver.createInputTopic(sessionDataInputTopic, keySerializer, exampleSerializer);
+        outputTopic = testDriver.createOutputTopic(outputTopicName, keyDeserializer, valueDeserializer);
     }
+
+    @After
+    public void tearDown() {
+        testDriver.close();
+    }
+
+    @Test
+    public void shouldThrowException() {
+        assertThrows(org.apache.kafka.streams.errors.StreamsException.class, () -> inputTopic.pipeValueList(List.of("foo", "bar")));
+    }
+
+    @Test
+    public void shouldProcessValues() {
+        var validMessages =  Collections.singletonList("foo");
+        var expectedMessages = validMessages.stream().map(String::toUpperCase).collect(Collectors.toList());
+        inputTopic.pipeValueList(validMessages);
+        var actualResults = outputTopic.readValuesToList();
+        assertEquals(expectedMessages, actualResults);
+    }
+
 }

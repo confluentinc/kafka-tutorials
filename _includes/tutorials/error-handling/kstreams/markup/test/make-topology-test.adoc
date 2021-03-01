@@ -7,37 +7,63 @@
 
 Testing a Kafka streams application requires a bit of test harness code, but happily the `org.apache.kafka.streams.TopologyTestDriver` class makes this much more pleasant that it would otherwise be.
 
-////
-             You'll want to update the name of the test method from "exampleTest" to something more meaningful for your tutorial
-////
 
-There is only one method in `StreamsUncaughtExceptionHandlingTest` annotated with `@Test`, and that is `sessionWindowTest()`. This method actually runs our Streams topology using the `TopologyTestDriver` and some mocked data that is set up inside the test method.
-
-
-This test is straightforward, but there is one section we should look into a little more
+The test for our streams application is simple, but we have two scenarios to cover.  The first is when the data is not in the expected format, so we expect that the topology will throw an exception.  The second case is the happy path where the data is as we expect:
 
 [source, java]
 ----
-final int expectedNumberOfSessions = 2;
-final String key = "51.56.119.117";
-final List<Clicks> sessionClicks = new ArrayList<>();
-Instant instant = Instant.now();
+@Test
+public void shouldThrowException() {
+    assertThrows(org.apache.kafka.streams.errors.StreamsException.class, () -> inputTopic.pipeValueList(List.of("foo", "bar"))); <1>
+}
 
-sessionClicks.add(Clicks.newBuilder().setIp(key).setUrl("/etiam/justo/etiam/pretium/iaculis.xml").setTimestamp(instant.toEpochMilli()).build()); <1>
-
-Instant newSessionInstant = instant.plus(6,ChronoUnit.MINUTES); <2>
-
-sessionClicks.add(Clicks.newBuilder().setIp(key).setUrl("/mauris/morbi/non.jpg").setTimestamp(newSessionInstant.toEpochMilli()).build());<3>
+@Test
+public void shouldProcessValues() {  <2>
+    var validMessages =  Collections.singletonList("foo");
+    var expectedMessages = validMessages.stream().map(String::toUpperCase).collect(Collectors.toList());
+    inputTopic.pipeValueList(validMessages);
+    var actualResults = outputTopic.readValuesToList();
+    assertEquals(expectedMessages, actualResults);
+}
 ----
 
-<1> Creating a record for the first "session"
-<2> Increasing the time to beyond inactivity period, the test should yield 2 sessions in the results
-<3> Adding record for second "session"
-
-The https://kafka.apache.org/27/javadoc/org/apache/kafka/streams/TestInputTopic.html#pipeKeyValueList-java.util.List-java.time.Instant-java.time.Duration-[TestInputTopic] provides useful methods when testing your topology. Here you're using the `pipeKeyValueList` to provide the records to the steams application.  Here you're not specifying any timestamp activity as the streams application pulls the timestamps embedded in the `TemperatureReading` objects you created above.
+<1> Test verifying unexpected format throws exception
+<2> Test validating the expected processing
 
 
-Now create the following file at `src/test/java/io/confluent/developer/StreamsUncaughtExceptionHandlingTest.java`.
+We also have logic in the `MaxFailuresUncaughtExceptionHandler` that needs testing as well.  Just like the streams application test, we have two scenarios to verify.
+
+* The case when errors are spread out so the exception handler should return `REPLACE_THREAD`
+* The case when the errors occur within our window and we expect the handler to return a `SHUTDOWN_APPLICATION`
+
+[source, java]
+----
+@Test
+public void shouldReplaceThreadWhenErrorsNotWithinMaxTime() throws Exception {  <1>
+    for (int i = 0; i < 10; i++) {
+        assertEquals(REPLACE_THREAD, exceptionHandler.handle(worksOnMyBoxException));
+        Thread.sleep(200);
+    }
+}
+@Test
+public void shouldShutdownApplicationWhenErrorsOccurWithinMaxTime() throws Exception { <2>
+    assertEquals(REPLACE_THREAD, exceptionHandler.handle(worksOnMyBoxException));
+    Thread.sleep(50);
+    assertEquals(SHUTDOWN_APPLICATION, exceptionHandler.handle(worksOnMyBoxException));
+}
+----
+
+<1> Test validating errors spread out result in replacing the thread
+<2> This test validates that a bunch of errors in a small timeframe result in a shutdown
+
+With the brief testing discussion done, let's create our two test files.
+
+First create the topology test file at `src/test/java/io/confluent/developer/StreamsUncaughtExceptionHandlingTest.java`.
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/error-handling/kstreams/code/src/test/java/io/confluent/developer/StreamsUncaughtExceptionHandlingTest.java %}</code></pre>
++++++
+
+Then create the handler test file at `src/test/java/io/confluent/developer/MaxFailuresUncaughtExceptionHandlerTest.java`.
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/error-handling/kstreams/code/src/test/java/io/confluent/developer/MaxFailuresUncaughtExceptionHandlerTest.java %}</code></pre>
 +++++

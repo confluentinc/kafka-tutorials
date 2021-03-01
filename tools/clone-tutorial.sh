@@ -140,9 +140,6 @@ if [ ! -z "${OLD_MAIN_CLASS}" ] && [ ! -z "${NEW_MAIN_CLASS}" ]; then
 
 	bash -c "find $TEST_HARNESS_DIR/$NEW_TUTORIAL -type f -print0 | xargs -0  perl -pi -e 's/${OLD_MAIN_CLASS}/${NEW_MAIN_CLASS}/g'"
 
-	find . -type f -name "${OLD_MAIN_CLASS}.java" -exec mv {} $(dirname {})/"${NEW_MAIN_CLASS}.java" \;
-
-	find . -type f -name "${OLD_MAIN_CLASS}Test.java" -exec mv {} $(dirname {})/"${NEW_MAIN_CLASS}Test.java" \;
 else
     echo "An old Java class name wasn't provided and/or a new class name isn't provided so no Java class name replacements done"
 fi	

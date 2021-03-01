@@ -8,23 +8,34 @@ Here is the code we'll use to drive our tutorial
 [source, java]
 ----
 
-    builder.stream(inputTopic, Consumed.with(Serdes.String(), Serdes.String()))
-                .mapValues(value -> value.substring(0, value.indexOf('X'))) <1>
+   builder.stream(inputTopic, Consumed.with(Serdes.String(), Serdes.String()))
+                .mapValues(value -> {
+                    counter++;
+                    if (counter == 2 || counter == 5 || counter == 7) {  <1>
+                        throw new IllegalStateException("It works on my box!!!");
+                    }
+                    return value.toUpperCase();
+                })
                 .to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
 
-    KafkaStreams kafkaStreams = new KafkaStreams(builder.build(), envProps);
-    final MaxFailuresUncaughtExceptionHandler exceptionHandler = new MaxFailuresUncaughtExceptionHandler(maxFailures, maxTimeInterval);  <2>
-    kafkaStreams.setUncaughtExceptionHandler(exceptionHandler); <3>
+    // Details left out for clarity
+    .......
+
+    // In the main method
+
+    final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+    final MaxFailuresUncaughtExceptionHandler exceptionHandler = new MaxFailuresUncaughtExceptionHandler(maxFailures, maxTimeInterval); <2>
+    streams.setUncaughtExceptionHandler(exceptionHandler); <3>
+
 
 
 ----
 
-<1> Here's some suspicious code, if there's no 'X' in the value we'll get an exception!
-<2> Instantiating the exception handler, the maxFailures (3) and maxTimeInterval (5000 ms) variables get their values from the configuration files
+<1> Simulating an error depending on the value of the counter
+<2> Instantiating the exception handler, the maxFailures (3) and maxTimeInterval (3600000 ms == 1 hour) variables get their values from the configuration files
 <3> Adding the handler to Kafka Streams
 
-From looking at the code above, you can see it assumes there's always an 'X' character contained in the value.  But if there isn't, the `value.indexOf` method throws an exception, and the `StreamsUncaughtException` handler comes into play.  If there more than 3 errors within 5 seconds, the application will shut down.  But for the first two execeptions, we'll replace the thread and keep running.
-
+From looking at the code here, we're injecting errors that occur based on the value of the counter.  We've also ensured that the number of errors meets the criteria for shutting down the application.
 
 Now create the following file at `src/main/java/io/confluent/developer/StreamsUncaughtExceptionHandling.java`
 
