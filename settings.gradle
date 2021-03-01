@@ -92,6 +92,7 @@ include '_includes:tutorials:console-consumer-producer-avro:kafka:code'
 include '_includes:tutorials:sliding-windows:kstreams:code'
 include '_includes:tutorials:session-windows:kstreams:code'
 include '_includes:tutorials:schedule-ktable-ttl:kstreams:code'
+include '_includes:tutorials:error-handling:kstreams:code'
 
 // <end>
 
