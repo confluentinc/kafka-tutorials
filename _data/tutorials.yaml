@@ -250,11 +250,11 @@ aggregating-average:
     kafka: disabled
 
 dynamic-output-topic:
-  title: "How to dynamically choose the output topic"
+  title: "How to dynamically choose the output topic at runtime"
   meta-description: "Learn how to dynamically route records to different Kafka topics at runtime"
   slug: "/dynamic-output-topic"
-  question: "How can I dynamically route records to different Kafka topics?"
-  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topics.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
+  question: "How can I dynamically route records to different Kafka topics, like a \"topic exchange\"?"
+  introduction: "Consider a situation where you want to direct output of different records to different topics, like a \"topic exchange\". In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value."
   status:
     ksql: disabled
     kstreams: enabled
