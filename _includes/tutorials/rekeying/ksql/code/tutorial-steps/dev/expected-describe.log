@@ -4,4 +4,4 @@ Name                 : RATINGS_REKEYED
  ID     | INTEGER          (key) 
  RATING | DOUBLE                 
 
-For runtime statistics and query details run: DESCRIBE EXTENDED <Stream,Table>;
+For runtime statistics and query details run: DESCRIBE <Stream,Table> EXTENDED;
