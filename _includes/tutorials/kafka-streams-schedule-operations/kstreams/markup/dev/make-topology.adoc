@@ -3,7 +3,7 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-Before you create the Kafka Streams application file let's go over the key points of the application.  In this tutorial, instead of performing an operation on each key-value pair, you want to store the results in a state store and execute your buisiness logic at regular intervals.  In other words, you want to schedule an operation and Kafka Streams will run your code at regular intervals.  In this case you'll use the https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/processor/ProcessorContext.html#schedule-java.time.Duration-org.apache.kafka.streams.processor.PunctuationType-org.apache.kafka.streams.processor.Punctuator-[ProcessorContext.schedule] method.
+Before you create the Kafka Streams application file let's go over the key points of the application.  In this tutorial, instead of performing an operation on each key-value pair, you want to store the results in a state store and execute your business logic at regular intervals.  In other words, you want to schedule an operation and Kafka Streams will run your code at regular intervals.  In this case you'll use the https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/processor/ProcessorContext.html#schedule-java.time.Duration-org.apache.kafka.streams.processor.PunctuationType-org.apache.kafka.streams.processor.Punctuator-[ProcessorContext.schedule] method.
 
 To use the `ProcessorContext` you need to build your Kafka Streams application using the https://kafka.apache.org/26/documentation/streams/developer-guide/processor-api.html[Processor API] or use one of the DSL methods that provide https://kafka.apache.org/documentation/streams/developer-guide/dsl-api.html#applying-processors-and-transformers-processor-api-integration[Processor API integration].  In this tutorial you'll go for the latter option and use https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/kstream/KStream.html#transform-org.apache.kafka.streams.kstream.TransformerSupplier-org.apache.kafka.streams.kstream.Named-java.lang.String...-[KStreams.transform]
 
@@ -19,7 +19,7 @@ NOTE: The following detailed sections are already included in the application fi
 .Using the Transformer in the Kafka Streams application
 ----
 final KStream<String, LoginTime> loginTimeStream = builder.stream(loginTimeInputTopic, Consumed.with(Serdes.String(), loginTimeSerde));
-loginTimeStream.transform(getTransformerSupplier(loginTimeStore), Named.as("max-login-time-transformer"),loginTimeStor/e) //<1>
+loginTimeStream.transform(getTransformerSupplier(loginTimeStore), Named.as("max-login-time-transformer"),loginTimeStore) //<1>
                .to(outputTopic, Produced.with(Serdes.String(), Serdes.Long()));
 
 
@@ -50,13 +50,13 @@ public KeyValue<String, Long> transform(String key, LoginTime value) { //<6>
 <1> Adding a transform operation to the KStream
 <2> Using a lambda since the TransformerSupplier interface only has one method, get().  Calling `get()` should always return a new instance of a `Transformer`
 <3> The `init` method used to configure the transformer.  It's in the init method you schedule any punctuations.  Kafka Streams calls the init method for all processors/transformers.
-<4> Scheduling a punctation to occur based on `STREAM_TIME` every five seconds.  The third parameter is a method handle used for the `Punctuator` interface.
-<5> Scheduling a punction to fire based on `WALL_CLOCK_TIME` every twenty seconds.  The third parameter is a method handle used for the `Punctuator` interface.
+<4> Scheduling a punctuation to occur based on `STREAM_TIME` every five seconds.  The third parameter is a method handle used for the `Punctuator` interface.
+<5> Scheduling a punctuation to fire based on `WALL_CLOCK_TIME` every twenty seconds.  The third parameter is a method handle used for the `Punctuator` interface.
 <6> The transform method.  All you are doing here is incrementing the total time a user is logged in and storing it in a state store.
 
 From the above code section, you are adding a `transform` operation to the stream reading from the input topic. The key parts of this section are points four and five where you schedule the punctuations.  There are two schedule operations one using `STREAM_TIME` and another using `WALL_CLOCK_TIME`.  These two are from the https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/processor/PunctuationType.html[PunctuationType enum].
 
-The stream-time punctution fires based on timestamps on the incoming records, stream-time only advances as records arrive.  The wall-clock-time punctuation fires based on system time advanced at the polling interval and is independent of the rate incoming messages.  Read https://docs.confluent.io/platform/current/streams/concepts.html#time[how Kafka Streams supports notions of time] for more information.
+The stream-time punctuation fires based on timestamps on the incoming records, stream-time only advances as records arrive.  The wall-clock-time punctuation fires based on system time advanced at the polling interval and is independent of the rate incoming messages.  Read https://docs.confluent.io/platform/current/streams/concepts.html#time[how Kafka Streams supports notions of time] for more information.
 
 Next let's talk discuss the scheduling in a little more detail.
 
@@ -69,7 +69,7 @@ When you schedule a punctuation, you provide three parameters:
 Now let's take a look at these methods.
 
 [source, java]
-.Method references used for puntuations
+.Method references used for punctuations
 ----
  void wallClockTimePunctuator(Long timestamp){ <1>
                 try (KeyValueIterator<String, Long> iterator = store.all()) {
