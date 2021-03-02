@@ -18,6 +18,7 @@ import org.apache.kafka.streams.kstream.Produced;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -135,7 +136,7 @@ public class StreamsUncaughtExceptionHandling {
 
             try (Producer<String, String> producer = new KafkaProducer<>(properties)) {
                 String topic = properties.getProperty("input.topic.name");
-                List<String> messages = List.of("All", "streams", "lead", "to", "Confluent", "Go", "to", "Kafka", "Summit");
+                List<String> messages = Arrays.asList("All", "streams", "lead", "to", "Confluent", "Go", "to", "Kafka", "Summit");
 
 
                 messages.forEach(message -> producer.send(new ProducerRecord<>(topic, message), (metadata, exception) -> {
