@@ -64,10 +64,10 @@ public class StreamsUncaughtExceptionHandlingTest {
 
     @Test
     public void shouldProcessValues() {
-        var validMessages =  Collections.singletonList("foo");
-        var expectedMessages = validMessages.stream().map(String::toUpperCase).collect(Collectors.toList());
+        List<String> validMessages =  Collections.singletonList("foo");
+        List<String> expectedMessages = validMessages.stream().map(String::toUpperCase).collect(Collectors.toList());
         inputTopic.pipeValueList(validMessages);
-        var actualResults = outputTopic.readValuesToList();
+        List<String> actualResults = outputTopic.readValuesToList();
         assertEquals(expectedMessages, actualResults);
     }
 

@@ -2,7 +2,7 @@ Now that you have an uberjar for the Kafka Streams application, you can launch i
 
 The application for this tutorial includes a record generator to populate the topic data.  Here is the list of records produced:
 
-`List<String> messages = List.of("All", "streams", "lead", "to", "Confluent", "Go", "to", "Kafka", "Summit");`
+`"All", "streams", "lead", "to", "Confluent", "Go", "to", "Kafka", "Summit"`
 
 
 Since we force some exceptions at different intervals while the streams application runs, you should see some stack traces in the console indicating an error, but the application will continue running.  However, when the application encounters an error that meets the threshold for max errors, it will shut down.
