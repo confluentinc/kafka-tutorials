@@ -14,6 +14,8 @@ Rerun this command to get the updated Status, it will change from `PROVISIONING`
 
 *Option 2.* The Confluent Cloud REST API provides a `connector_name/status` endpoint you can use to verify the status of a provisioned connector. Note the `connector.state` field in the returned JSON.
 
+As described in Step 7 above, an API Key is required for all REST API calls to succeed.
+
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/check-connector-rest.sh %}</code></pre>
 +++++
