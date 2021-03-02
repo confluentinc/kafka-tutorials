@@ -59,7 +59,7 @@ public class StreamsUncaughtExceptionHandlingTest {
 
     @Test
     public void shouldThrowException() {
-        assertThrows(org.apache.kafka.streams.errors.StreamsException.class, () -> inputTopic.pipeValueList(List.of("foo", "bar")));
+        assertThrows(org.apache.kafka.streams.errors.StreamsException.class, () -> inputTopic.pipeValueList(Arrays.asList("foo", "bar")));
     }
 
     @Test
