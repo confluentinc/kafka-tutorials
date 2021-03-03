@@ -1,4 +1,4 @@
-You can provision the Kafka Connect Datagen connector through the Confluent Cloud UI, but this tutorial uses the Confluent Cloud CLI.
+You can provision the Kafka Connect Datagen connector through the Confluent Cloud UI, but in this tutorial you can choose to use the Confluent Cloud CLI or the link:https://docs.confluent.io/cloud/current/api.html[Confluent Cloud REST API].
 
 First, create a file called `datagen-source-config.json` with the below connector configuration for the Kafka Connect Datagen source connector for Confluent Cloud.
 Substitute `<API KEY>` and `<API SECRET>` with the credentials created by `ccloud-stack`.
