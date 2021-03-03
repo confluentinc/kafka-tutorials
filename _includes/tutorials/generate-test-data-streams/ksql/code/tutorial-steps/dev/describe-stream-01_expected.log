@@ -8,4 +8,4 @@ Name                 : CLICKS
  PATH       | VARCHAR(STRING)
  HOST       | VARCHAR(STRING)
 ----------------------------------------
-For runtime statistics and query details run: DESCRIBE EXTENDED <Stream,Table>;
+For runtime statistics and query details run: DESCRIBE <Stream,Table> EXTENDED;
