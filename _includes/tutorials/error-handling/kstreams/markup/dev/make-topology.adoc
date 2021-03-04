@@ -11,7 +11,7 @@ Here is the code we'll use to drive our tutorial
    builder.stream(inputTopic, Consumed.with(Serdes.String(), Serdes.String()))
                 .mapValues(value -> {
                     counter++;
-                    if (counter == 2 || counter == 5 || counter == 7) {  <1>
+                    if (counter == 2 || counter == 8 || counter == 15) { <1>
                         throw new IllegalStateException("It works on my box!!!");
                     }
                     return value.toUpperCase();
