@@ -1,4 +1,4 @@
-docker exec -i schema-registry /usr/bin/kafka-avro-console-producer --topic app-one-topic --broker-list broker:9092\
+docker exec -i schema-registry /usr/bin/kafka-avro-console-producer --topic app-one-topic --bootstrap-server broker:9092\
   --property "parse.key=true"\
   --property 'key.schema={"type":"string"}'\
   --property "key.separator=:"\

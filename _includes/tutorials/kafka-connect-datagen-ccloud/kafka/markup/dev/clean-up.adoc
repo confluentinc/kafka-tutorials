@@ -5,3 +5,5 @@ Pass in the `SERVICE_ACCOUNT_ID` that was generated when the `ccloud-stack` was 
 +++++
 <pre class="snippet"><code class="groovy">{% include_raw tutorials/kafka-connect-datagen-ccloud/kafka/code/tutorial-steps/dev/clean-up.sh %}</code></pre>
 +++++
+
+See the Confluent Cloud link:https://docs.confluent.io/ccloud-cli/current/index.html[CLI] and link:https://docs.confluent.io/cloud/current/api.html[REST API] documentation for full details on operating managed connectors.

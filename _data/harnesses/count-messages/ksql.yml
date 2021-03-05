@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/count-messages/ksql/markup/dev/answer-short.adoc
+
 dev:
   steps:
     - title: Initialize the project

@@ -4,7 +4,7 @@ buildscript {
   }
   dependencies {
     classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.22.0"
-    classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.14"
+    classpath "com.google.protobuf:protobuf-gradle-plugin:0.8.15"
   }
 }
 
@@ -12,9 +12,9 @@ plugins {
   id "java"
   id "application"
   id "idea"
-  id "com.google.cloud.tools.jib" version "2.7.1"
+  id "com.google.cloud.tools.jib" version "2.8.0"
   id "com.github.johnrengelman.shadow" version "6.1.0"
-  id "com.google.protobuf" version "0.8.14"
+  id "com.google.protobuf" version "0.8.15"
 }
 
 sourceCompatibility = "1.8"
@@ -34,7 +34,7 @@ apply plugin: "com.github.johnrengelman.shadow"
 
 dependencies {
   implementation "org.apache.avro:avro:1.10.1"
-  implementation "com.google.protobuf:protobuf-java:3.14.0"
+  implementation "com.google.protobuf:protobuf-java:3.15.3"
   implementation "org.slf4j:slf4j-simple:1.7.30"
   implementation "org.apache.kafka:kafka-streams:2.5.0"
   implementation "io.confluent:kafka-streams-avro-serde:5.5.1"
@@ -42,7 +42,7 @@ dependencies {
   implementation 'com.google.code.gson:gson:2.8.6'
 
   testImplementation "org.apache.kafka:kafka-streams-test-utils:2.5.0"
-  testImplementation 'junit:junit:4.13.1'
+  testImplementation 'junit:junit:4.13.2'
   testImplementation 'org.assertj:assertj-core:3.19.0'
 }
 
@@ -76,7 +76,7 @@ protobuf {
   generatedFilesBaseDir = "$buildDir/generated-main-proto-java/"
 
   protoc {
-    artifact = "com.google.protobuf:protoc:3.14.0"
+    artifact = "com.google.protobuf:protoc:3.15.2"
   }
 
 }

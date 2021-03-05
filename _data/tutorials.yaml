@@ -250,11 +250,11 @@ aggregating-average:
     kafka: disabled
 
 dynamic-output-topic:
-  title: "How to dynamically choose the output topic"
+  title: "How to dynamically choose the output topic at runtime"
   meta-description: "Learn how to dynamically route records to different Kafka topics at runtime"
   slug: "/dynamic-output-topic"
-  question: "How can I dynamically route records to different Kafka topics?"
-  introduction: "Consider a situation where, depending on data in your records, you need to direct output to different topics.  In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime."
+  question: "How can I dynamically route records to different Kafka topics, like a \"topic exchange\"?"
+  introduction: "Consider a situation where you want to direct output of different records to different topics, like a \"topic exchange\". In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value."
   status:
     ksql: disabled
     kstreams: enabled
@@ -331,7 +331,7 @@ kafka-connect-datagen-ccloud:
   meta-description: "How to generate mock data to a Kafka topic in Confluent Cloud using the fully-managed Kafka Connect Datagen"
   slug: "/kafka-connect-datagen-ccloud"
   question: "How can I produce mock data to Kafka topics in Confluent Cloud to test my Kafka applications?"
-  introduction: "You will run a fully-managed instance of the <a href=\"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen\">Kafka Connect Datagen</a> connector to produce mock data to a Kafka topic in <a href=\"https://confluent.cloud\">Confluent Cloud</a>. This helps you test your applications in the cloud."
+  introduction: "You will run a fully-managed instance of the <a href=\"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen\">Kafka Connect Datagen</a> connector to produce mock data to a Kafka topic in <a href=\"https://www.confluent.io/confluent-cloud/tryfree/\">Confluent Cloud</a>. This helps you test your applications in the cloud."
   status:
     ksql: disabled
     kstreams: disabled
@@ -362,7 +362,7 @@ kafka-consumer-application:
 produce-consume-lang:
   title: "Produce and Consume Records in multiple languages"
   meta-description: "Produce and Consume events from Apache Kafka in multiple languages"
-  slug: "/produce-and-consume-lang/"
+  slug: "/produce-consume-lang"
   question: "How can I produce and consume events from Kafka using a programming language other than Java?"
   introduction: "You want to enrich and expose a list of books from a library. You have to produce an event for each book acquisition (title, editor, release ...), and consume back the same events to serve the book collection over HTTP."
   status:
@@ -434,16 +434,17 @@ count-messages:
   meta-description: "Learn how to count the number of messages in a Kafka topic"
   slug: "/how-to-count-messages-on-a-kafka-topic"
   question: "How can I count the number of messages in a Kafka topic?"
-  introduction: "Messages are stored in Kafka topics until they are removed by Kafka. It can be useful to know how many messages there are currently in a topic. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic."
+  introduction: "It can be useful to know how many messages there are currently in a topic. However, you cannot calculate this straight from the offsets, because you need to take into account the topic's retention policy, log compaction, and potential duplicate messages. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic."
   status:
     ksql: enabled
+    kafka: enabled
 
 ccloud-produce-consume:
   title: "How to produce and consume records from Confluent Cloud using ccloud CLI"
   meta-description: "Learn how to produce and consume records from Confluent Cloud using ccloud CLI"
   slug: "/ccloud-produce-consume"
   question: "How do I use the ccloud CLI to produce and consume records from a Confluent Cloud topic?"
-  introduction: "In this tutorial you learn how to use the ccloud CLI to produce and consume records from a Kafka topic in <a href=\"https://confluent.cloud\">Confluent Cloud</a>. This can help you build and debug your Confluent Cloud based event streaming applications."
+  introduction: "In this tutorial you learn how to use the ccloud CLI to produce and consume records from a Kafka topic in <a href=\"https://www.confluent.io/confluent-cloud/tryfree/\">Confluent Cloud</a>. This can help you build and debug your Confluent Cloud based event streaming applications."
   status:
     ksql: disabled
     kstreams: disabled
