@@ -5,4 +5,4 @@ Name                 : RATINGS_REKEYED
  RATING | DOUBLE
  OLD    | INTEGER
 
-For runtime statistics and query details run: DESCRIBE EXTENDED <Stream,Table>;
+For runtime statistics and query details run: DESCRIBE <Stream,Table> EXTENDED;
