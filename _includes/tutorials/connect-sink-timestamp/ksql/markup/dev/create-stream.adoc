@@ -1,0 +1,5 @@
+Now let's create a ksqlDB stream with the following code.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/create-stream.sql %}</code></pre>
++++++

@@ -1,0 +1,5 @@
+Check out the contents of the stream. We pull out the ROWTIME.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/select-from-stream.sql %}</code></pre>
++++++

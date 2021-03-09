@@ -360,3 +360,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/sliding-windows/kstreams/code tutorial
 
+        
+        - name: KSQL connect-sink-timestamp tests
+          commands:
+            - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial

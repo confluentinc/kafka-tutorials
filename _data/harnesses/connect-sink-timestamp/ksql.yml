@@ -1,0 +1,140 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/answer/short-answer.adoc
+
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/init.adoc
+
+        - change_directory: connect-sink-timestamp
+          action: execute
+          file: tutorial-steps/dev/make-dirs.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-dirs.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Configure the project
+      content:
+        - action: make_file
+          file: build.gradle
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-build-file.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/gradle-wrapper.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-gradle-wrapper.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-config-dir.adoc
+
+        - action: make_file
+          file: configuration/dev.properties
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-dev-file.adoc
+
+    - title: Create a schema for the events
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-avro-dir.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-avro-dir.adoc
+
+        - action: make_file
+          file: src/main/avro/DeviceEvent.avsc
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-event-schema.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/build-project.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/build-project.adoc
+
+    - title: Produce Kafka data with event time in the payload
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-src-dir.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-src-dir.adoc
+
+        - action: make_file
+          file: src/main/java/io/confluent/developer/KafkaProducerDevice.java
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-application.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/build-uberjar.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/build-uberjar.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/run-dev-app.sh
+          stdout: tutorial-steps/dev/outputs/producer-output.log
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/run-dev-app.adoc
+
+    - title: Write the program interactively using the CLI
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 75
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/start-cli.adoc
+          stdin:
+            - file: tutorial-steps/dev/set-properties_offset.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/set-properties_offset.adoc
+
+            - file: tutorial-steps/dev/create-stream.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-stream.adoc
+
+            - file: tutorial-steps/dev/select-from-stream.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/select-from-stream.adoc
+
+            - file: tutorial-steps/dev/create-sink-connector.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-sink-connector.adoc
+
+            - file: tutorial-steps/dev/query-sink.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/query-sink.adoc
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc

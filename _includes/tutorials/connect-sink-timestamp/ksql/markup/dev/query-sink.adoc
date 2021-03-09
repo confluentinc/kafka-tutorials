@@ -1,0 +1,4 @@
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/query-sink.sql %}</code></pre>
++++++
