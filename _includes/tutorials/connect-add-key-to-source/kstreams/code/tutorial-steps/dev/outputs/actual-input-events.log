@@ -71,7 +71,7 @@
 	ssl.truststore.type = JKS
 	value.deserializer = class org.apache.kafka.common.serialization.ByteArrayDeserializer
  (org.apache.kafka.clients.consumer.ConsumerConfig)
-[2020-08-01 04:38:43,635] INFO Kafka version: 5.5.0-ce (org.apache.kafka.common.utils.AppInfoParser)
+[2020-08-01 04:38:43,635] INFO Kafka version: 6.1.0-ce (org.apache.kafka.common.utils.AppInfoParser)
 [2020-08-01 04:38:43,635] INFO Kafka commitId: 6068e5d52c5e294e (org.apache.kafka.common.utils.AppInfoParser)
 [2020-08-01 04:38:43,635] INFO Kafka startTimeMs: 1596256723631 (org.apache.kafka.common.utils.AppInfoParser)
 [2020-08-01 04:38:43,639] INFO [Consumer clientId=consumer-console-consumer-18006-1, groupId=console-consumer-18006] Subscribed to topic(s): cities (org.apache.kafka.clients.consumer.KafkaConsumer)
