@@ -10,9 +10,9 @@ dev:
     - title: Get Confluent Platform
       content:
         - action: make_file
-          file: Dockerfile
+          file: Dockerfile-connect
           render:
-            skip: true
+            file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/make-dockerfile-connect.adoc
 
         - action: make_file
           file: docker-compose.yml

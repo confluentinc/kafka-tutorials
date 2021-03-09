@@ -44,7 +44,7 @@ services:
     image: localimage/kafka-connect-datagen:latest
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-connect
     container_name: connect
     depends_on:
       - broker
