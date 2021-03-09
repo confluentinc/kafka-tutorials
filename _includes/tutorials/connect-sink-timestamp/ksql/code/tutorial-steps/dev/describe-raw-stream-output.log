@@ -1,0 +1,9 @@
+
+Name                 : TEMPERATURE_READINGS_RAW
+Field       | Type
+----------------------
+ TEMPERATURE | BIGINT
+ EVENTTIME   | BIGINT
+----------------------
+For runtime statistics and query details run: DESCRIBE EXTENDED <Stream,Table>;
+   

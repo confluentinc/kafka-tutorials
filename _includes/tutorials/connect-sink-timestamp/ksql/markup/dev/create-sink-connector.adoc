@@ -1,4 +1,4 @@
-Create a JDBC sink connector with the code below. Notice no transforms will be necessary to the timestamp field.
+Now create a JDBC sink connector with the code below. Notice no transforms will be necessary to the timestamp field because it is already a supported `TIMESTAMP` type.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/create-sink-connector.sql %}</code></pre>

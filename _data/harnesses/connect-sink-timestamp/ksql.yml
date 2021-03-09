@@ -119,6 +119,10 @@ dev:
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-stream.adoc
 
+            - file: tutorial-steps/dev/describe-raw-stream.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/describe-raw-stream.adoc
+
             - file: tutorial-steps/dev/select-from-stream.sql
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/select-from-stream.adoc
