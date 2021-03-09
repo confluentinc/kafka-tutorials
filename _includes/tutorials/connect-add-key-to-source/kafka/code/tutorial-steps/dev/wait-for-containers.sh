@@ -4,8 +4,10 @@
 while : 
   do curl_status=$(curl -s -o /dev/null -w %{http_code} http://localhost:8083)
   echo -e $(date) " Kafka Connect HTTP state: " $curl_status " (waiting for 200)" 
-  if [ $curl_status -eq 200 ] 
-    then  break
+  if [ $curl_status -eq 200 ]; then
+    # Wait an extra 5 seconds for the herder to be ready
+    sleep 5
+    break
   fi
   sleep 5 
 done
