@@ -78,6 +78,10 @@ blocks:
       minutes: 10
     task:
       jobs:
+        - name: KStreams Test Streams schedule operations tests
+          commands:
+            - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
+
         - name: KSQL transforming tests
           commands:
             - make -C _includes/tutorials/transforming/ksql/code tutorial
@@ -355,8 +359,4 @@ blocks:
         - name: KSQL anomaly detection tests
           commands:
             - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
-
-        - name: KStreams Test Streams schedule operations tests
-          commands:
-            - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
 
