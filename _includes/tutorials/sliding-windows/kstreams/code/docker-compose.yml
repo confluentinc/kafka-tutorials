@@ -52,7 +52,7 @@ services:
     ports:
       - 8083:8083
     volumes:
-      - ./:/schemas
+      - ./datagen-temperature-reading.avsc:/tmp/datagen-temperature-reading.avsc
     environment:
       CONNECT_BOOTSTRAP_SERVERS: "broker:9092"
       CONNECT_REST_ADVERTISED_HOST_NAME: "connect"
