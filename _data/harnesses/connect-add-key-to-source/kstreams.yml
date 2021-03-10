@@ -14,8 +14,7 @@ dev:
           render:
             file: tutorials/connect-add-key-to-source/kstreams/markup/dev/make-dockerfile-connect.adoc
 
-        - change_directory: connect-add-key-to-source
-          action: make_file
+        - action: make_file
           file: docker-compose.yml
           render:
             file: tutorials/connect-add-key-to-source/kstreams/markup/dev/make-docker-compose.adoc
