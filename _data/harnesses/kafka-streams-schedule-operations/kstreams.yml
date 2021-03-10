@@ -92,11 +92,10 @@ dev:
           render:
             file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/generate-data.adoc
 
-        - name: wait for the datagen to start
-          action: sleep
-          ms: 30000
+        - action: execute
+          file: tutorial-steps/dev/wait-for-datagen-topic.sh
           render:
-            skip: true 
+            skip: true
 
     - title: Compile and run the Kafka Streams program
       content:
