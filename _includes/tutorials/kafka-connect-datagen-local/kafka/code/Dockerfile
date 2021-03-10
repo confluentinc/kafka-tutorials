@@ -1,4 +1,4 @@
-FROM confluentinc/cp-kafka-connect-base:6.0.0
+FROM confluentinc/cp-kafka-connect-base:6.1.0
 
 ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
 

@@ -9,8 +9,12 @@ dev:
             
     - title: Get Confluent Platform
       content:
-        - change_directory: connect-add-key-to-source
-          action: make_file
+        - action: make_file
+          file: Dockerfile-connect
+          render:
+            file: tutorials/connect-add-key-to-source/kstreams/markup/dev/make-dockerfile-connect.adoc
+
+        - action: make_file
           file: docker-compose.yml
           render:
             file: tutorials/connect-add-key-to-source/kstreams/markup/dev/make-docker-compose.adoc

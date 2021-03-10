@@ -78,6 +78,10 @@ blocks:
       minutes: 10
     task:
       jobs:
+        - name: KStreams Test Streams schedule operations tests
+          commands:
+            - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
+
         - name: KSQL transforming tests
           commands:
             - make -C _includes/tutorials/transforming/ksql/code tutorial
@@ -183,23 +187,27 @@ blocks:
           commands:
             - make -C _includes/tutorials/produce-consume-lang/scala/code tutorial
 
-        - name: KSQL anomaly detection tests
+        - name: Kafka Consumer Application tests
           commands:
-            - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
+            - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
+        
+        - name: KStreams Test Converting a KStream to a KTable tests
+          commands:
+            - make -C _includes/tutorials/streams-to-table/kstreams/code tutorial
+            
+        - name: Kafka Producer Application tests
+          commands:
+            - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
 
-        - name: KStreams Test Kafka Streams session windows tests
+        - name: Kafka Test Kafka Producer with Callbacks tests
           commands:
-            - make -C _includes/tutorials/session-windows/kstreams/code tutorial
+            - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
 
   - name: Run second block of tests
     execution_time_limit:
       minutes: 10
     task:
       jobs:
-        - name: KStreams finding distinct events tests
-          commands:
-            - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
-            
         - name: KStreams Connect key tests
           commands:
             - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
@@ -284,22 +292,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
         
-        - name: Kafka Consumer Application tests
-          commands:
-            - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
-        
-        - name: KStreams Test Converting a KStream to a KTable tests
-          commands:
-            - make -C _includes/tutorials/streams-to-table/kstreams/code tutorial
-            
-        - name: Kafka Producer Application tests
-          commands:
-            - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
-
-        - name: Kafka Test Kafka Producer with Callbacks tests
-          commands:
-            - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
-
         - name: KSQL Count messages on a topic tutorial tests
           commands:
             - make -C _includes/tutorials/count-messages/ksql/code tutorial
@@ -311,10 +303,6 @@ blocks:
         - name: Kafka Test ccloud produce and consume
           commands:
             - make -C _includes/tutorials/ccloud-produce-consume/kafka/code tutorial
-
-        - name: KStreams Test Streams schedule operations tests
-          commands:
-            - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
 
         - name: Kafka Message Ordering tests
           commands:
@@ -356,7 +344,19 @@ blocks:
           commands:
             - make -C _includes/tutorials/geo-distance/ksql/code tutorial
 
+        - name: KStreams Test Kafka Streams session windows tests
+          commands:
+            - make -C _includes/tutorials/session-windows/kstreams/code tutorial
+
         - name: KStreams Test Kafka Streams sliding windows tests
           commands:
             - make -C _includes/tutorials/sliding-windows/kstreams/code tutorial
 
+        - name: KSQL anomaly detection tests
+          commands:
+            - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
+
+        - name: KStreams finding distinct events tests
+          commands:
+            - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
+            
