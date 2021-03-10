@@ -14,14 +14,14 @@
 #done
 
 
+echo " test docker container /tmp/:"
+docker-compose exec connect ls /tmp/
+
+echo " test docker container /tmp/datagen-logintime.avsc:"
+docker-compose exec connect ls /tmp/datagen-logintime.avsc
+
 # Wait for the datagen topic to be created
 sleep 20
-
-echo " test docker container /:"
-docker-compose exec connect ls /
-
-echo " test docker container /schemas/:"
-docker-compose exec connect ls /schemas/
 
 echo "connect logs:"
 docker-compose logs connect
