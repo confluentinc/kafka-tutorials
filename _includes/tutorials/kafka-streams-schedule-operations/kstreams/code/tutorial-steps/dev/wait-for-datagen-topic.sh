@@ -17,7 +17,10 @@
 # Wait for the datagen topic to be created
 sleep 20
 
-echo "avsc:"
+echo " test docker container /:"
+docker-compose exec connect ls /
+
+echo " test docker container /schemas/:"
 docker-compose exec connect ls /schemas/
 
 echo "connect logs:"
