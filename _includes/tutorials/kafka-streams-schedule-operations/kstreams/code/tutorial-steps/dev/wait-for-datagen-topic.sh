@@ -6,6 +6,9 @@ while :
   if [[ "$output" =~ "Topic: login-events" ]]; then
     echo "Topic login-events exists"
     break
+  else
+    echo "Connect logs: "
+    docker-compose logs connect
   fi
   sleep 5 
 done
