@@ -360,3 +360,8 @@ blocks:
           commands:
             - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
             
+
+        - name: Kafka ESP tests
+          commands:
+            - make -C _includes/tutorials/esp/kafka/code tutorial
+            
