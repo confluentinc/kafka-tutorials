@@ -363,7 +363,7 @@ produce-consume-lang:
   title: "Produce and Consume Records in multiple languages"
   meta-description: "Produce and Consume events from Apache Kafka in multiple languages"
   slug: "/produce-consume-lang"
-  question: "How can I produce and consume events from Kafka using various programming language? (There are many programming languages that provide Kafka client libraries—some are shown below, other language examples are available in <a href=\"https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/clients-all-examples.html\">documentation</a>)"
+  question: "How can I produce and consume events from Kafka using various programming languages? (There are many languages with Kafka client bindings—some are shown below, other language examples are available in <a href=\"https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/clients-all-examples.html\">documentation</a>)"
   introduction: "You want to enrich and expose a list of books from a library. You have to produce an event for each book acquisition (title, editor, release ...), and consume back the same events to serve the book collection over HTTP."
   status:
     c: disabled
