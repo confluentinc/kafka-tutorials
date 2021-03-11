@@ -69,11 +69,6 @@
           Scala
           </option>
           {% endif %}
-          {% if site.data.tutorials[page.static_data].status.java == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/java.html" {% if page.stack == 'java' %} selected {% endif %}>
-          Java
-          </option>
-          {% endif %}
           {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html" {% if page.stack == 'python' %} selected {% endif %}>
           Python
@@ -121,11 +116,6 @@
           {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
           <a class="button {% if page.stack == 'scala' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html">
             Scala
-          </a>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.java == 'enabled' %}
-          <a class="button {% if page.stack == 'java' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/java.html">
-            Java
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
