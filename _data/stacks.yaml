@@ -10,13 +10,29 @@ kafka:
 # use for the produce-consume-lang tutorial only
 c:
   pretty: C
+clojure:
+  pretty: Clojure
+csharp:
+  pretty: C-Sharp/.NET
 go:
   pretty: Go
-python:
-  pretty: Python
+groovy:
+  pretty: Groovy
+java:
+  pretty: Java
+javaspring:
+  pretty: Java Spring
+kotlin:
+  pretty: Kotlin
 nodejs:
   pretty: Node.js
-swift:
-  pretty: Apple Swift
+python:
+  pretty: Python
+ruby:
+  pretty: Ruby
+rust:
+  pretty: Rust
 scala:
   pretty: Scala Lang
+swift:
+  pretty: Apple Swift
