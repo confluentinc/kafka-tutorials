@@ -4,6 +4,12 @@ Since `EVENTTIME` is a `BIGINT` we will use the `FROM_UNIXTIME` ksqlDB function 
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/select-from-stream.sql %}</code></pre>
 +++++
 
+The query will result in the following output.
+
++++++
+<pre class="snippet"><code class="log">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/select-from-stream-output.log %}</code></pre>
++++++
+
 Things look good, so let's create a persistent query to continuously convert that `BIGINT` to a `TIMESTAMP` so that these records can easily be consumed by a sink connector.
 
 +++++

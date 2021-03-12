@@ -43,21 +43,20 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.15.0
-    hostname: ksqldb-server
-    container_name: ksqldb-server
+    image: placeholder/confluentinc/ksqldb-docker:local.build
+    hostname: ksqldb
+    container_name: ksqldb
     depends_on:
       - broker
-      - schema-registry
     ports:
       - "8088:8088"
     environment:
       KSQL_LISTENERS: http://0.0.0.0:8088
-      KSQL_BOOTSTRAP_SERVERS: "broker:9092"
+      KSQL_BOOTSTRAP_SERVERS: broker:9092
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
       KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      KSQL_KSQL_SERVICE_ID: confluent_devx_01
+      KSQL_KSQL_SERVICE_ID: confluent_rmoff_01
       KSQL_KSQL_HIDDEN_TOPICS: '^_.*'
       # Setting KSQL_KSQL_CONNECT_WORKER_CONFIG enables embedded Kafka Connect
       KSQL_KSQL_CONNECT_WORKER_CONFIG: "/connect/connect.properties"
@@ -79,39 +78,39 @@ services:
       KSQL_CONNECT_LOG4J_APPENDER_STDOUT_LAYOUT_CONVERSIONPATTERN: "[%d] %p %X{connector.context}%m (%c:%L)%n"
       KSQL_CONNECT_PLUGIN_PATH: '/home/appuser/share/java,/home/appuser/confluent-hub-components/,/data/connect-jars'
     command:
-        # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
-        - bash
-        - -c
-        - |
-          echo "Installing connector plugins"
-          mkdir -p ~/confluent-hub-components/
-          /home/appuser/bin/confluent-hub install --no-prompt --component-dir confluent-hub-components/ confluentinc/kafka-connect-jdbc:5.4.1
-          #
-          echo "Launching ksqlDB"
-          /usr/bin/docker/run &
-          #
-          sleep infinity
+      # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
+      - bash
+      - -c
+      - |
+        echo "Installing connector plugins"
+        mkdir -p ~/confluent-hub-components/
+        /home/appuser/bin/confluent-hub install --no-prompt --component-dir confluent-hub-components/ confluentinc/kafka-connect-jdbc:10.0.2
+        #
+        echo "Launching ksqlDB"
+        /usr/bin/docker/run &
+        #
+        sleep infinity
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.15.0
+    image: confluentinc/ksqldb-cli:0.11.0
     container_name: ksqldb-cli
     depends_on:
       - broker
       - ksqldb-server
     entrypoint: /bin/sh
+    tty: true
     environment:
       KSQL_CONFIG_DIR: "/etc/ksqldb"
-    tty: true
     volumes:
       - ./src:/opt/app/src
 
   postgres:
     # *-----------------------------*
-    # To connect to the DB:
+    # To connect to the DB: 
     #   docker exec -it postgres bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
     # *-----------------------------*
     image: postgres:11
     container_name: postgres
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=postgres

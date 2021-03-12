@@ -3,3 +3,5 @@ Now create a JDBC sink connector with the code below. Notice no transforms will 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/create-sink-connector.sql %}</code></pre>
 +++++
+
+Prior to ksqlDB 0.16.0, the only way to convert a `BIGINT` or `VARCHAR` to a `TIMESTAMP` was with https://docs.confluent.io/platform/current/connect/transforms/overview.html[Single Message Transforms (SMTs)].

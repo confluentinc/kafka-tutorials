@@ -131,6 +131,10 @@ dev:
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-sink-connector.adoc
 
+            - file: tutorial-steps/dev/show-connector.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/show-connector.adoc
+
             - file: tutorial-steps/dev/query-sink.sql
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/query-sink.adoc

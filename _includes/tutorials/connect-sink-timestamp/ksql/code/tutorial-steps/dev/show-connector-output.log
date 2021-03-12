@@ -1,0 +1,6 @@
+
+Name                 : JDBC_SINK_POSTGRES_01
+Class                : io.confluent.connect.jdbc.JdbcSourceConnector
+Type                 : source
+State                : RUNNING
+WorkerId             : ksqldb:8083
