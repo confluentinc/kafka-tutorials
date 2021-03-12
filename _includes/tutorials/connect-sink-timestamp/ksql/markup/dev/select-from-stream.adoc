@@ -1,4 +1,4 @@
-Since `EVENTTIME` is a `BIGINT` we will use the `FROM_UNIXTIME` ksqlDB function to convert the field into the `TIMESTAMP` data type.
+Since `EVENTTIME` is a `BIGINT` we will use the `FROM_UNIXTIME` ksqlDB function to convert the field into the `TIMESTAMP` data type. We can then use `CONVERT_TZ` to convert the column from `UTC` to `America/Denver` time.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/select-from-stream.sql %}</code></pre>
@@ -10,8 +10,9 @@ The query will result in the following output.
 <pre class="snippet"><code class="log">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/select-from-stream-output.log %}</code></pre>
 +++++
 
-Things look good, so let's create a persistent query to continuously convert that `BIGINT` to a `TIMESTAMP` so that these records can easily be consumed by a sink connector.
+Things look good, so let's create a persistent query to continuously convert that column into a human readable `American/Denver` timestamp.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/create-from-stream.sql %}</code></pre>
 +++++
+

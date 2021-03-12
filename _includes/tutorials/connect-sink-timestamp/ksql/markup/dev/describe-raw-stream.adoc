@@ -10,4 +10,4 @@ After entering the command above, you should see the following:
 <pre class="snippet"><code class="log">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/describe-raw-stream-output.log %}</code></pre>
 +++++
 
-Notice that `EVENTIME` is of type `BIGINT`, this is important to note because our next step will convert this value to a ksqlDB `TIMESTAMP` data type. In order to do this conversion, the column needs to be either a `BIGINT` (time in ms) or string representation of a formatted timestamp ('yyyy-MM-dd HH:mm:ss.SSS').
+Notice that `EVENTIME` is of type `BIGINT`, this is important to note. In order to convert this column's from `UTC` to `America/Denver`, the column needs to be a `TIMESTAMP` data type. Both `BIGINT` (time in ms) or string representation of a formatted timestamp ('yyyy-MM-dd HH:mm:ss.SSS') can be converted to `TIMESTAMP`s.
