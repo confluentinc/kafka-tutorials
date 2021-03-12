@@ -1,6 +1,10 @@
-
 Name                 : JDBC_SINK_POSTGRES_01
-Class                : io.confluent.connect.jdbc.JdbcSourceConnector
-Type                 : source
+Class                : io.confluent.connect.jdbc.JdbcSinkConnector
+Type                 : sink
 State                : RUNNING
 WorkerId             : ksqldb:8083
+
+ Task ID | State   | Error Trace 
+---------------------------------
+ 0       | RUNNING |             
+---------------------------------

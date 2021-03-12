@@ -38,68 +38,6 @@ dev:
           render:
             skip: true
 
-    - title: Configure the project
-      content:
-        - action: make_file
-          file: build.gradle
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-build-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/gradle-wrapper.sh
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-gradle-wrapper.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-config-dir.adoc
-
-        - action: make_file
-          file: configuration/dev.properties
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-dev-file.adoc
-
-    - title: Create a schema for the events
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-avro-dir.sh
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-avro-dir.adoc
-
-        - action: make_file
-          file: src/main/avro/DeviceEvent.avsc
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-event-schema.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/build-project.sh
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/build-project.adoc
-
-    - title: Produce Kafka data with event time in the payload
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-src-dir.sh
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-src-dir.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/KafkaProducerDevice.java
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-application.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/build-uberjar.sh
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/build-uberjar.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/run-dev-app.sh
-          stdout: tutorial-steps/dev/outputs/producer-output.log
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/run-dev-app.adoc
-
     - title: Write the program interactively using the CLI
       content:
         - action: docker_ksql_cli_session
@@ -118,6 +56,10 @@ dev:
             - file: tutorial-steps/dev/create-stream.sql
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-stream.adoc
+
+            - file: tutorial-steps/dev/insert-data.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/insert-data.adoc
 
             - file: tutorial-steps/dev/describe-raw-stream.sql
               render:
