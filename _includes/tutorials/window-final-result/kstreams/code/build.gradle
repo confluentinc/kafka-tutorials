@@ -36,7 +36,7 @@ dependencies {
 
     // helpers
     implementation group: 'com.jason-goodwin', name: 'better-monads', version: '0.4.1'
-    implementation group: 'com.typesafe.akka', name: 'akka-stream-kafka_2.13', version: '1.0.5'
+    implementation group: 'com.typesafe.akka', name: 'akka-stream-kafka_2.13', version: '2.0.7'
 }
 
 shadowJar {
