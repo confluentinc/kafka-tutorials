@@ -31,11 +31,11 @@ Here is the code we'll use to drive our tutorial
 
 ----
 
-<1> Simulating an error depending on the value of the counter
+<1> Simulating an error depending on the value of a counter (which gets incremented with every record)
 <2> Instantiating the exception handler, the maxFailures (3) and maxTimeInterval (3600000 ms == 1 hour) variables get their values from the configuration files
 <3> Adding the handler to Kafka Streams
 
-From looking at the code here, we're injecting errors that occur based on the value of the counter.  We've also ensured that the number of errors meets the criteria for shutting down the application.
+This code ensures that the rate of errors (3 within a 1 hour window) meets the criteria for shutting down the application.
 
 Now create the following file at `src/main/java/io/confluent/developer/StreamsUncaughtExceptionHandling.java`
 

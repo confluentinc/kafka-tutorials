@@ -94,6 +94,9 @@ public class StreamsUncaughtExceptionHandling {
         StreamsUncaughtExceptionHandling tw = new StreamsUncaughtExceptionHandling();
         Properties envProps = tw.loadEnvProperties(args[0]);
         Properties streamProps = tw.buildStreamsProperties(envProps);
+
+        // Change this to StreamsConfig.EXACTLY_ONCE to eliminate duplicates
+        streamProps.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.AT_LEAST_ONCE);
         Topology topology = tw.buildTopology(envProps);
 
         tw.createTopics(envProps);
