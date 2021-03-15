@@ -6,13 +6,13 @@
 
 Now that you've ran the Kafka Streams application, it should have shut it self down due to reaching the max-error threshold.
 
-Let't now run the console-consumer to confirm the output:
+Let's now run the `kafka-console-consumer` to confirm the output:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/error-handling/kstreams/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>
 +++++
 
-Your results should look someting like this:
+Your results should look something like this:
 ++++
 <pre class="snippet"><code class="shell">
 ALL
