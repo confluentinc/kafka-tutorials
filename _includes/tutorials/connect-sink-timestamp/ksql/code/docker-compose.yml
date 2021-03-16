@@ -58,6 +58,7 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
       KSQL_KSQL_SERVICE_ID: confluent_01
       KSQL_KSQL_HIDDEN_TOPICS: '^_.*'
+      KSQL_KSQL_STREAMS_AUTO_OFFSET_RESET: "earliest"
       # Setting KSQL_KSQL_CONNECT_WORKER_CONFIG enables embedded Kafka Connect
       KSQL_KSQL_CONNECT_WORKER_CONFIG: "/connect/connect.properties"
       # Kafka Connect config below

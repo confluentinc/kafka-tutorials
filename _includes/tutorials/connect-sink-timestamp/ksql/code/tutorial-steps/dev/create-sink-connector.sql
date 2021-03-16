@@ -3,7 +3,7 @@ CREATE SINK CONNECTOR JDBC_SINK_POSTGRES_01 WITH (
     'connection.url'      = 'jdbc:postgresql://postgres:5432/',
     'connection.user'     = 'postgres',
     'connection.password' = 'postgres',
-    'topics'              = 'TEMPERATURE_READINGS_TIMESTAMP',
+    'topics'              = 'TEMPERATURE_READINGS_TIMESTAMP_MT',
     'auto.create'         = 'true',
     'auto.evolve'         = 'true'
   );

@@ -32,7 +32,7 @@ dev:
           render:
             skip: true
 
-    - title: Write the program interactively using the CLI
+    - title: Convert column to TIMESTAMP data type
       content:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
@@ -59,14 +59,44 @@ dev:
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/describe-raw-stream.adoc
 
-            - file: tutorial-steps/dev/select-from-stream.sql
+            - file: tutorial-steps/dev/select-from-stream-unix.sql
               render:
-                file: tutorials/connect-sink-timestamp/ksql/markup/dev/select-from-stream.adoc
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/select-from-stream-unix.adoc
+
+            - file: tutorial-steps/dev/create-stream-ts.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-stream-ts.adoc
+
+    - title: Convert column to different timezone
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 25
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/select-from-ts.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/select-from-ts.adoc
 
             - file: tutorial-steps/dev/create-from-stream.sql
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-from-stream.adoc
 
+    - title: Create Postgres sink connector
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 25
+          render:
+            skip: true
+          stdin:
             - file: tutorial-steps/dev/create-sink-connector.sql
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-sink-connector.adoc
@@ -74,10 +104,6 @@ dev:
             - file: tutorial-steps/dev/show-connector.sql
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/show-connector.adoc
-        - action: sleep
-          ms: 5000
-          render:
-            skip: true
 
     - title: Query the data in Postgres
       content:
