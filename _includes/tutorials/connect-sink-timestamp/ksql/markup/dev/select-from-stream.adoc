@@ -1,4 +1,4 @@
-Since `EVENTTIME` is a `BIGINT` we will use the `FROM_UNIXTIME` ksqlDB function to convert the field into the `TIMESTAMP` data type. We can then use `CONVERT_TZ` to convert the column from `UTC` to `America/Denver` time.
+Since `EVENTTIME` is a `BIGINT` we will use the `FROM_UNIXTIME` ksqlDB function to convert the field into the `TIMESTAMP` data type. Then, we can use the `CONVERT_TZ` function to convert the column from `UTC` to `America/Denver` time.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/select-from-stream.sql %}</code></pre>

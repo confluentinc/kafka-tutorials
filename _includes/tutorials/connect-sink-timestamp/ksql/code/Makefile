@@ -11,14 +11,7 @@ tutorial:
 	mkdir -p $(DEV_OUTPUTS_DIR)
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/connect-sink-timestamp/ksql.yml $(TEMP_DIR) $(SEQUENCE)
-	$(eval producer_eventTime=$(shell grep "Record written" $(DEV_OUTPUTS_DIR)/producer-output.log | awk -F"[, ]" 'NR==1{print $$8;}'))
-	$(eval producer_logTime=$(shell grep "Record written" $(DEV_OUTPUTS_DIR)/producer-output.log | awk -F"[, ]" 'NR==1{print $$12;}'))
-	$(eval ksqlDB_logTimeQ_eventTime=$(shell grep 100 $(DEV_OUTPUTS_DIR)/transient-query-logtime/output-0.log | awk 'NR==1{print substr($$2,2);}')) 
-	$(eval ksqlDB_logTimeQ_rowTime=$(shell grep 100 $(DEV_OUTPUTS_DIR)/transient-query-logtime/output-0.log | awk 'NR==1{print substr($$3,2);}')) 
-	$(eval ksqlDB_eventTimeQ_eventTime=$(shell grep 100 $(DEV_OUTPUTS_DIR)/transient-query-eventtime/output-0.log | awk 'NR==1{print substr($$2,2);}')) 
-	$(eval ksqlDB_eventTimeQ_rowTime=$(shell grep 100 $(DEV_OUTPUTS_DIR)/transient-query-eventtime/output-0.log | awk 'NR==1{print substr($$3,2);}')) 
-	test "$(producer_eventTime)" = "$(ksqlDB_logTimeQ_eventTime)"
-	test "$(producer_logTime)"   = "$(ksqlDB_logTimeQ_rowTime)"
-	test "$(producer_eventTime)" = "$(ksqlDB_eventTimeQ_eventTime)"
-	test "$(producer_eventTime)" = "$(ksqlDB_eventTimeQ_rowTime)"
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/describe-raw-stream-output.log $(DEV_OUTPUTS_DIR)/describe-raw-stream/output-0.log
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/select-from-stream-output.log $(DEV_OUTPUTS_DIR)/select-from-stream/output-0.log
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/query-sink-output.log $(TEST_OUTPUTS_DIR)/query-sink-output.log
 	reset

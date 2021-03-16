@@ -674,10 +674,10 @@ sliding-windows:
 
 connect-sink-timestamp:
   title: "Time zone conversion and Kafka Connect JDBC sink"
-  meta-description: "How can I convert timestamp into a different timezone and sync that data to Postgres?"
+  meta-description: "How can I convert a timestamp into a different timezone and sync that data to Postgres?"
   slug: "/connect-sink-timestamp"
-  question: "How can I convert timestamp into a different timezone and sync that data to Postgres?"
-  introduction: "Suppose I have timestamp data that I want to sync to a database but need to convert that timestamp to a different timezone."
+  question: "How can I convert a timestamp into a different timezone and sync that data to Postgres?"
+  introduction: "Suppose I create reports from a Postgres DB, all of the timestamp data must be in America/Denver time. This examples covers how you would convert timestamp data into another timezone and use a Kafka Connector to send that data to Postgres DB."
   status:
     ksql: enabled
     kstreams: disabled

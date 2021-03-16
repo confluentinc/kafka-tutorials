@@ -43,7 +43,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksqldb-server:
-    image: placeholder/confluentinc/ksqldb-docker:local.build
+    image: confluentinc/ksqldb-server:0.16.0-rc891
     hostname: ksqldb
     container_name: ksqldb
     depends_on:

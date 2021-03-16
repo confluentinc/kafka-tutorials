@@ -77,9 +77,13 @@ dev:
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/show-connector.adoc
 
-            - file: tutorial-steps/dev/query-sink.sql
-              render:
-                file: tutorials/connect-sink-timestamp/ksql/markup/dev/query-sink.adoc
+    - title: Query the data in Postgres
+      content:
+        - action: execute
+          file: tutorial-steps/dev/query-sink.sh
+          stdout: tutorial-steps/dev/outputs/query-sink-output.log
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/query-sink.adoc
 
 ccloud:
   steps:
