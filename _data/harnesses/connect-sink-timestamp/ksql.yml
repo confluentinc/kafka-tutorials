@@ -15,12 +15,6 @@ dev:
           render:
             file: tutorials/connect-sink-timestamp/ksql/markup/dev/init.adoc
 
-        - change_directory: connect-sink-timestamp
-          action: execute
-          file: tutorial-steps/dev/make-dirs.sh
-          render:
-            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-dirs.adoc
-
     - title: Get Confluent Platform
       content:
         - action: make_file
@@ -76,6 +70,10 @@ dev:
             - file: tutorial-steps/dev/show-connector.sql
               render:
                 file: tutorials/connect-sink-timestamp/ksql/markup/dev/show-connector.adoc
+        - action: sleep
+          ms: 5000
+          render:
+            skip: true
 
     - title: Query the data in Postgres
       content:
