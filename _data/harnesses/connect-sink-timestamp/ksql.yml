@@ -15,7 +15,7 @@ dev:
           render:
             file: tutorials/connect-sink-timestamp/ksql/markup/dev/init.adoc
 
-    - title: Setup environment
+    - title: Set up environment
       content:
         - action: make_file
           file: docker-compose.yml
