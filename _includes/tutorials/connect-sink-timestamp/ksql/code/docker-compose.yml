@@ -45,7 +45,7 @@ services:
   ksqldb-server:
     image: placeholder/confluentinc/ksqldb-docker:local.build
     hostname: ksqldb
-    container_name: ksqldb
+    container_name: ksqldb-server
     depends_on:
       - broker
     ports:
