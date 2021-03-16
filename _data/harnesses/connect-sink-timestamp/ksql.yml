@@ -15,7 +15,7 @@ dev:
           render:
             file: tutorials/connect-sink-timestamp/ksql/markup/dev/init.adoc
 
-    - title: Get Confluent Platform
+    - title: Setup environment
       content:
         - action: make_file
           file: docker-compose.yml

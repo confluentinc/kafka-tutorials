@@ -11,6 +11,7 @@ tutorial:
 	mkdir -p $(DEV_OUTPUTS_DIR)
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/connect-sink-timestamp/ksql.yml $(TEMP_DIR) $(SEQUENCE)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/select-from-stream-output.log $(DEV_OUTPUTS_DIR)/select-from-stream/output-0.log
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/query-sink-output.log $(TEST_OUTPUTS_DIR)/query-sink-output.log
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/select-from-stream-unix-output.log $(DEV_OUTPUTS_DIR)/select-from-stream-unix/output-0.log
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/select-from-ts-output.log $(DEV_OUTPUTS_DIR)/select-from-ts/output-0.log
+	grep "(6 rows)" $(DEV_OUTPUTS_DIR)/query-sink-output.log
 	reset
