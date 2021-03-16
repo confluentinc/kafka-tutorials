@@ -1,10 +1,10 @@
-First convert the column to a `TIMESTAMP`, then use `CONVERT_TZ` to convert the timestamp to a different timezone.
+First use the ksqlDB function `FROM_UNIXTIME` to convert a data field type from `BIGINT` to `TIMESTAMP`, and use the ksqlDB function `CONVERT_TZ` to change the timestamp to the desired timezone.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/create-from-stream.sql  %}</code></pre>
 +++++
 
-Then create a sink connector that uses the Kafka topic with the converted timezone data.
+Then create a sink connector that reads from the ksqlDB output topic with the converted timezone data.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/create-sink-connector.sql  %}</code></pre>
