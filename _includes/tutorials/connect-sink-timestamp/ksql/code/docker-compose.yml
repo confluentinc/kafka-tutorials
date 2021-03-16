@@ -43,7 +43,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.16.0-rc891
+    image: placeholder/confluentinc/ksqldb-docker:local.build
     hostname: ksqldb
     container_name: ksqldb
     depends_on:
@@ -56,7 +56,7 @@ services:
       KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE: "true"
       KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE: "true"
       KSQL_KSQL_SCHEMA_REGISTRY_URL: http://schema-registry:8081
-      KSQL_KSQL_SERVICE_ID: confluent_rmoff_01
+      KSQL_KSQL_SERVICE_ID: confluent_01
       KSQL_KSQL_HIDDEN_TOPICS: '^_.*'
       # Setting KSQL_KSQL_CONNECT_WORKER_CONFIG enables embedded Kafka Connect
       KSQL_KSQL_CONNECT_WORKER_CONFIG: "/connect/connect.properties"
@@ -92,7 +92,7 @@ services:
         sleep infinity
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.11.0
+    image: confluentinc/ksqldb-cli:0.15.0
     container_name: ksqldb-cli
     depends_on:
       - broker
@@ -109,7 +109,7 @@ services:
     # To connect to the DB: 
     #   docker exec -it postgres bash -c 'psql -U $POSTGRES_USER $POSTGRES_DB'
     # *-----------------------------*
-    image: postgres:11
+    image: postgres:13
     container_name: postgres
     environment:
      - POSTGRES_USER=postgres

@@ -10,9 +10,4 @@ The query will result in the following output.
 <pre class="snippet"><code class="log">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/select-from-stream-output.log %}</code></pre>
 +++++
 
-Things look good, so let's create a persistent query to continuously convert that column into a human readable `American/Denver` timestamp.
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/create-from-stream.sql %}</code></pre>
-+++++
 
