@@ -109,6 +109,7 @@ dev:
           render:
             file: tutorials/kafka-streams-schedule-operations/kstreams/markup/dev/run-dev-app.adoc
 
+
     - title: Consume data from the output topic
       content:
         - action: execute_async

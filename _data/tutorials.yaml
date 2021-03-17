@@ -673,3 +673,22 @@ sliding-windows:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+schedule-ktable-ttl:
+  title: "How to implement TTLs with KTable data"
+  meta-description: "How to implement TTLs with KTable data"
+  slug: "/schedule-ktable-ttl"
+  question: "Do you have a requirement to clean up KTable data (in the topic and in the state store) based on TTL"
+  introduction: "You have a KStreams application or ksqlDB application which uses KTables from a topic in Kafka and often you want to manage the size of the topic as well as the state store by purging old data by a TTL. The Kafka Streams API does not include any idea of a TTL on KTables. In this tutorial we implement this by making clever use of tombstones and writing them out to KTable topics using a state store containing TTLs"
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
