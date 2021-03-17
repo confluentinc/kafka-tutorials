@@ -6,8 +6,9 @@ Now deploy a JDBC sink connector with the code below. Notice no transforms will 
 
 [NOTE]
 ====
-For ksqlDB prior to 0.16.0, the only way to convert `BIGINT` to a `TIMESTAMP` was with https://docs.confluent.io/platform/current/connect/transforms/overview.html[Single Message Transforms (SMTs)]; ksqlDB did not have a `TIMESTAMP` data type.
-If you were going this route, you would add something similar to the following to the connector config instead of performing the steps above where we convert the `EVENTTIME` column data type and convert the column to a new timezone.
+Prior to version 0.16.0, ksqlDB did not have a `TIMESTAMP` data type so the only way to convert `BIGINT` to a `TIMESTAMP` was with Kafka Connect's Single Message Transforms (SMT), specifically the  https://docs.confluent.io/platform/current/connect/transforms/timestampconverter.html[TimestampConverter]; .
+Using this SMT is simple but it does not provide a way to convert timestamp data to other timezones, and it needs to be configured a per connector basis.
+If you were going this route of using `TimestampConverter`, you would add the SMT into the connector configuration, something similar to the following:
 
 ```
 "transforms": "TimestampConverter",
@@ -20,4 +21,3 @@ Using a SMTs is simple but it has its drawbacks. First, the `TimestampConverter`
 Second, the converted timestamp data is not easily consumable by other ksqlDB applications.
 Using the ksqlDB functions `FROM_UNIX` and `CONVERT_TZ` allows multiple connectors to use the same transformed data without needing to configure an SMT in each connector.
 ====
-
