@@ -4,7 +4,7 @@ First use the ksqlDB function `FROM_UNIXTIME` to convert a data field type from 
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/answer/create-stream-all.sql  %}</code></pre>
 +++++
 
-Afterward create a sink connector that reads from the ksqlDB output topic with the converted timezone data.
+Afterward, deploy a sink connector that reads from the ksqlDB output topic with the converted timezone data and writes to the target database.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/create-sink-connector.sql  %}</code></pre>
