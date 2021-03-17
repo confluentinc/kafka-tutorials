@@ -16,8 +16,4 @@ If you were going this route of using `TimestampConverter`, you would add the SM
 "transforms.TimestampConverter.format": "yyyy-MM-ddTHH:mm:ss.SSS"
 "transforms.TimestampConverter.target.type": "Timestamp"
 ```
-
-Using a SMTs is simple but it has its drawbacks. First, the `TimestampConverter` SMT does not provide users a way to convert timestamp data to other timezones.
-Second, the converted timestamp data is not easily consumable by other ksqlDB applications.
-Using the ksqlDB functions `FROM_UNIX` and `CONVERT_TZ` allows multiple connectors to use the same transformed data without needing to configure an SMT in each connector.
 ====
