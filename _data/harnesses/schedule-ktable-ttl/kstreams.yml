@@ -10,11 +10,6 @@ dev:
     - title: Get Confluent Platform
       content:
         - action: make_file
-          file: Dockerfile
-          render:
-            skip: true
-
-        - action: make_file
           file: docker-compose.yml
           render:
             file: tutorials/schedule-ktable-ttl/kstreams/markup/dev/make-docker-compose.adoc
