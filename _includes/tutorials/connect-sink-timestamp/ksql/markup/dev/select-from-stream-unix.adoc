@@ -1,4 +1,4 @@
-To convert the `BIGINT` `UTC` time into a `TIMESTAMP` `American/Denver` time, we need to use the `CONVERT_TZ` ksqlDB function. This function takes three arguments: a `TIMESTAMP` column, a string of the original timezone, and a string of the target conversion timezone. As it stands right now, we do no have a column that is a `TIMESTAMP` data type. Prior to using the `CONVERT_TZ` ksqlDB function, we need to convert the `EVENTTIME` column from a `BIGINT` to a `TIMESTAMP`. We can do that with the `FROM_UNIX` ksqlDB function. Run the command below to see what the `EVENTTIME` column will look like when converted to a `TIMESTAMP`.
+To convert the `BIGINT` `UTC` time into a `TIMESTAMP` `American/Denver` time, we need to use a combination of two ksqlDB functions: `FROM_UNIX` and `CONVERT_TZ`. Our first step is to convert the `BIGINT` into a `TIMESTAMP` using the `FROM_UNIX` ksqlDB function. Run the command below to convert the `EVENTTIME` column to a `TIMESTAMP`.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/connect-sink-timestamp/ksql/code/tutorial-steps/dev/select-from-stream-unix.sql %}</code></pre>
