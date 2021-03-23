@@ -146,7 +146,7 @@ public class StreamsUncaughtExceptionHandling {
                         if (exception != null) {
                             exception.printStackTrace(System.out);
                         } else {
-                            System.out.printf("Produced record at offset %d to topic %s \n", metadata.offset(), metadata.topic());
+                            System.out.printf("Produced record at offset %d to topic %s %n", metadata.offset(), metadata.topic());
                         }
                 }));
             }
