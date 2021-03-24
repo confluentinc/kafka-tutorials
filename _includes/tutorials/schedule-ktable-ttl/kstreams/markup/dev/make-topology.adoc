@@ -27,27 +27,6 @@ Next we attach a transformer to the original table in order to do the work of em
 [source, java]
 .Attaching a transformer to the KTable and writing back to the KTable's input topic
 ----
-    // TTL part of the topology
-    // This could be in a separate application
-    // Setting tombstones for records seen past a TTL of MAX_AGE
-    final Duration MAX_AGE = Duration.ofMinutes(Integer.parseInt(envProp.getProperty("table.topic.ttl.minutes"))); <1>
-    final Duration SCAN_FREQUENCY = Duration.ofSeconds(Integer.parseInt(envProp.getProperty("table.topic.ttl.scan.seconds")));
-    final String STATE_STORE_NAME = envProp.getProperty("table.topic.ttl.store.name");
-
-
-
-    // adding a custom state store for the TTL transformer which has a key of type string, and a
-    // value of type long
-    // which represents the timestamp
-    final StoreBuilder<KeyValueStore<String, Long>> storeBuilder = Stores.keyValueStoreBuilder( <2>
-        Stores.persistentKeyValueStore(STATE_STORE_NAME),
-        Serdes.String(),
-        Serdes.Long()
-    );
-
-
-    builder.addStateStore(storeBuilder); <3>
-
     // tap the table topic in order to insert a tombstone after MAX_AGE based on event time
     //builder.stream(inputTopicForTable, Consumed.with(Serdes.String(), Serdes.String()))
     table.toStream()  //we just have to do this part for doing in the same topology but in another app, you can do as above 

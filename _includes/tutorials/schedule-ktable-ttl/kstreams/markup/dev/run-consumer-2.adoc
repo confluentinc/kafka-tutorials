@@ -7,7 +7,7 @@
 Start a console-consumer to confirm the output (no join happened in the final 3 lines so only the KStream side data should appear in those lines):
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/schedule-ktable-ttl/kstreams/code/tutorial-steps/dev/console-consumer-1.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/schedule-ktable-ttl/kstreams/code/tutorial-steps/dev/console-consumer-2.sh %}</code></pre>
 +++++
 
 Your results should look someting like this:

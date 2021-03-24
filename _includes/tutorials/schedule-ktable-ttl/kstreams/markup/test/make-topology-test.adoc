@@ -18,37 +18,6 @@ This test is fairly vanilla, but there is one section we should look into a litt
 
 [source, java]
 ----
-    final KafkaStreamsKTableTTLExample instance = new KafkaStreamsKTableTTLExample();
-    final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
-
-    final Properties streamProps = instance.getStreamProps(envProps);
-    final String inputTopicName = envProps.getProperty("input.topic.name");
-    final String outputTopicName = envProps.getProperty("output.topic.name");
-    final String tableTopicName = envProps.getProperty("table.topic.name");
-
-    final Topology topology = instance.buildTopology(envProps);
-    System.out.println(topology);
-    try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
-
-
-      final Serializer<String> keySerializer = Serdes.String().serializer();
-      final Serializer<String> valueSerializer = Serdes.String().serializer();
-      
-      final Deserializer<String> keyDeserializer = Serdes.String().deserializer();
-      final Deserializer<String> valueDeserializer = Serdes.String().deserializer();
-
-      
-      final TestInputTopic<String, String>  inputTopic = testDriver.createInputTopic(inputTopicName,
-                                                                                        keySerializer,
-                                                                                        valueSerializer);
-      final TestInputTopic<String, String>  tableTopic = testDriver.createInputTopic(tableTopicName,
-          keySerializer,
-          valueSerializer);
-
-      final TestOutputTopic<String, String> outputTopic = testDriver.createOutputTopic(outputTopicName, keyDeserializer, valueDeserializer);
-      final TestOutputTopic<String, String> outputTableTopic = testDriver.createOutputTopic(tableTopicName, keyDeserializer, valueDeserializer);
-
-      
       tableTopic.pipeInput("alice", "a", 5);  <1>
       tableTopic.pipeInput("bobby", "b", 10);
       
