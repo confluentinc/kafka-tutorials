@@ -675,11 +675,11 @@ sliding-windows:
     swift: disabled
 
 schedule-ktable-ttl:
-  title: "How to implement TTL-based cleanup on a KTable"
-  meta-description: "How to implement TTLs with KTable data"
+  title: "How to implement TTL-based cleanup to expire data in a KTable"
+  meta-description: "How to implement TTLs to expire data in a KTable"
   slug: "/schedule-ktable-ttl"
-  question: "Do you have a requirement to clean up KTable data (in the topic and in the state store) based on TTL?"
-  introduction: "You have a KStreams application or ksqlDB application which uses KTables from a topic in Kafka and often you want to manage the size of the topic as well as the state store by purging old data by a TTL. The Kafka Streams API does not include any idea of a TTL on KTables. In this tutorial we implement this by making clever use of tombstones and writing them out to KTable topics using a state store containing TTLs"
+  question: "Do you have a requirement to delete KTable data (in the topic and in the state store) based on TTL?"
+  introduction: "You have a KStreams application or ksqlDB application which uses KTables from a topic in Kafka. You may want to purge older data if it is considered to be too old or to manage the size of the topic and the state store. Although the Kafka Streams API does not natively include any notion of a TTL (Time To Live) for KTables, this tutorial shows you how to expire message by making clever use of tombstones and writing them out to topics underlying the KTable, using a state store containing TTLs"
   status:
     ksql: disabled
     kstreams: enabled
