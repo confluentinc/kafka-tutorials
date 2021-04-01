@@ -94,6 +94,11 @@
           Groovy
           </option>
           {% endif %}
+          {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html" {% if page.stack == 'confluent' %} selected {% endif %}>
+          Confluent
+          </option>
+          {% endif %}
         </select>
       </div>
       <div class="cflt-tabs">
@@ -141,6 +146,11 @@
           {% if site.data.tutorials[page.static_data].status.groovy == 'enabled' %}
           <a class="button {% if page.stack == 'groovy' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/groovy.html">
             Groovy
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
+          <a class="button {% if page.stack == 'confluent' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html">
+            Confluent
           </a>
           {% endif %}
         </div>
