@@ -7,6 +7,9 @@ kstreams:
 kafka:
   pretty: Kafka
 
+confluent:
+  pretty: Confluent
+
 # use for the produce-consume-lang tutorial only
 c:
   pretty: C
