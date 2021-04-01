@@ -378,6 +378,7 @@ produce-consume-lang:
     ruby: enabled
     rust: enabled
     scala: enabled
+    confluent: enabled
 
 streams-to-table:
   title: "How to convert a Kafka Streams KStream to a KTable"
