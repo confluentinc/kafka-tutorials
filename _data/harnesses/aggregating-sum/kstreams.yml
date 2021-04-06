@@ -6,7 +6,7 @@ dev:
           render:
             file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/get-ccloud.adoc
 
-    - title: Provision resources
+    - title: Provision Cloud resources
       content:
         - action: skip
           render:
