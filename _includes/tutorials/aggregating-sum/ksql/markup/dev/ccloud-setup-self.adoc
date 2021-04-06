@@ -1,0 +1,1 @@
+Follow the in-product instructions to launch Kafka and Schema Registry, within the Confluent Cloud user interface or Confluent Cloud CLI.

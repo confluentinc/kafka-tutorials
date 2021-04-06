@@ -13,6 +13,24 @@ dev:
           render:
             file: tutorials/aggregating-sum/ksql/markup/dev/make-dirs.adoc
 
+    - title: Get Confluent Cloud and the CLI
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/get-ccloud.adoc
+
+    - title: Provision resources in Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/aggregating-sum/ksql/markup/dev/ccloud-setup-self.adoc
+
+    - title: Create properties file
+      content:
+        - action: skip
+          render:
+            file: tutorials/aggregating-sum/kstreams/markup/dev/create-config-file.adoc
+
     - title: Get Confluent Platform
       content:
         - action: make_file
