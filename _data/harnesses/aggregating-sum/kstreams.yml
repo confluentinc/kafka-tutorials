@@ -1,12 +1,12 @@
 dev:
   steps:
-    - title: Sign up for Confluent Cloud
+    - title: Get Confluent Cloud and the CLI
       content:
         - action: skip
           render:
             file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/get-ccloud.adoc
 
-    - title: Provision Cloud resources
+    - title: Provision resources in Confluent Cloud
       content:
         - action: skip
           render:
