@@ -1,5 +1,23 @@
 dev:
   steps:
+    - title: Sign up for Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/get-ccloud.adoc
+
+    - title: Provision resources
+      content:
+        - action: skip
+          render:
+            file: tutorials/aggregating-sum/kstreams/markup/dev/ccloud-setup.adoc
+
+    - title: Create properties file
+      content:
+        - action: skip
+          render:
+            file: tutorials/aggregating-sum/kstreams/markup/dev/create-config-file.adoc
+
     - title: Initialize the project
       content:
         - action: execute

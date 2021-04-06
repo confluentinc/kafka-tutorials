@@ -1,0 +1,47 @@
+Create a new Confluent Cloud environment.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/kstreams/code/tutorial-steps/dev/ccloud-env.sh %}</code></pre>
++++++
+
+Use the new Confluent Cloud environment.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/kstreams/code/tutorial-steps/dev/ccloud-env-use.sh %}</code></pre>
++++++
+
+Create a new Kafka cluster.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/kstreams/code/tutorial-steps/dev/ccloud-cluster.sh %}</code></pre>
++++++
+
+Get the Kafka cluster endpoint.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/kstreams/code/tutorial-steps/dev/ccloud-cluster-endpoint.sh %}</code></pre>
++++++
+
+Create new credentials for the Kafka cluster, and be sure to save the key and secret. (This is using the user account which as super user privileges, in production you'd want to use a service account and configure ACLs).
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/kstreams/code/tutorial-steps/dev/ccloud-cluster-creds.sh %}</code></pre>
++++++
+
+Enable Schema Registry.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/kstreams/code/tutorial-steps/dev/ccloud-sr.sh %}</code></pre>
++++++
+
+Get the Schema Registry endpoint.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/kstreams/code/tutorial-steps/dev/ccloud-sr-endpoint.sh %}</code></pre>
++++++
+
+Create new credentials for Schema Registry, and be sure to save the key and secret.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-sum/kstreams/code/tutorial-steps/dev/ccloud-sr-creds.sh %}</code></pre>
++++++
