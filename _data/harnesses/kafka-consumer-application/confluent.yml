@@ -97,6 +97,11 @@ dev:
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/print-consumer-file-results.adoc
 
+    - title: Teardown Confluent Cloud resources
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-destroy.adoc
 
 test:
   steps:
