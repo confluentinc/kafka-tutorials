@@ -1,1 +1,1 @@
-From within the Confluent Cloud UI, click on `Learn` and follow the in-product instructions to launch Kafka and Schema Registry [and ksqlDB] or use the Confluent Cloud CLI.
+From within the https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud UI], click on `Learn` and follow the in-product instructions to launch Kafka and Schema Registry.

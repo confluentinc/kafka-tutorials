@@ -1,0 +1,1 @@
+ccloud login --save
