@@ -137,10 +137,6 @@ blocks:
         - name: KSQL masking data tests
           commands:
             - make -C _includes/tutorials/masking-data/ksql/code tutorial
-
-        - name: Kafka Consuming and Producing AVRO messages with console tools tests
-          commands:
-            - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
         
         - name: KSQL Test ksqlDB nested JSON tests
           commands:
@@ -174,6 +170,3 @@ blocks:
           commands:
             - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
 
-        - name: KStreams finding distinct events tests
-          commands:
-            - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
