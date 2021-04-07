@@ -19,6 +19,12 @@ dev:
           render:
             file: shared/markup/ccloud/ccloud-setup-self.adoc
 
+    - title: Create a config file with Confluent Cloud resource information
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/config-create.adoc
+
     - title: Create a topic
       content:
         - action: skip
@@ -44,12 +50,13 @@ dev:
 
         - action: skip
           render:
-            file: shared/markup/ccloud/config-create.adoc
+            file: tutorials/kafka-consumer-application/confluent/markup/dev/make-config-file.adoc
 
+    - title: Update the client config file with Confluent Cloud information
+      content:
         - action: skip
           render:
-            file: tutorials/kafka-consumer-application/confluent/markup/dev/make-config-file.adoc
-            
+            file: shared/markup/ccloud/append-ccloud-config.adoc
 
     - title: Create the Kafka Consumer Application
       content:
