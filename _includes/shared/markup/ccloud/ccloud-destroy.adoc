@@ -1,1 +1,1 @@
-Now that we are done running this tutorial on Confluent Cloud, you may delete the Confluent Cloud resources created. This can be done in the Confluent Cloud UI, verify that all Confluent Cloud resources are destroyed to avoid unexpected charges.
+Go try another tutorial with your Confluent Cloud cluster. If you created new resources for the purposes of this tutorial and don't plan on doing other tutorials, you may want to destroy those resources. This can be done in the Confluent Cloud UI, verify that all Confluent Cloud resources are destroyed to avoid unexpected charges.
