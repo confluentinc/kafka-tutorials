@@ -7,7 +7,7 @@ dev:
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/init.adoc
 
-    - title: Get Confluent Cloud and the CLI
+    - title: Sign up for Confluent Cloud and Get the CLI
       content:
         - action: skip
           render:
