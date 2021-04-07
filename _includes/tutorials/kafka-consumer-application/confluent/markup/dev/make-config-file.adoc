@@ -1,15 +1,6 @@
-Then create a development configuration file at `configuration/dev.properties` with your Confluent Cloud information (specifically fill in the `bootstrap.servers`, `sasl.jaas.config`, `basic.auth.user.info`, and `schema.registry.url` configs):
+Append the following to your `configuration/dev.properties` made above.
 
 ```
-# General cluster connection information
-security.protocol=SASL_SSL
-sasl.mechanism=PLAIN
-bootstrap.servers=<BROKER ENDPOINT>
-sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username='<API KEY>' password='<API SECRET>';
-basic.auth.credentials.source=USER_INFO
-basic.auth.user.info=<SR API KEY>:<SR API SECRET>
-schema.registry.url=https://<SR ENDPOINT>
-
 # Consumer properties
 key.deserializer=org.apache.kafka.common.serialization.StringDeserializer
 value.deserializer=org.apache.kafka.common.serialization.StringDeserializer
