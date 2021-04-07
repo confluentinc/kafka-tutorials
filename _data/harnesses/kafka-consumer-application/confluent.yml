@@ -11,7 +11,7 @@ dev:
       content:
         - action: skip
           render:
-            file: _includes/shared/markup/ccloud/get-ccloud.adoc
+            file: shared/markup/ccloud/get-ccloud.adoc
 
     - title: Provision resources in Confluent Cloud
       content:
