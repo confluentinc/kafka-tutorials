@@ -44,6 +44,10 @@ dev:
 
         - action: skip
           render:
+            file: shared/markup/ccloud/config-create.adoc
+
+        - action: skip
+          render:
             file: tutorials/kafka-consumer-application/confluent/markup/dev/make-config-file.adoc
             
 
