@@ -1,4 +1,4 @@
-Append the following to your `configuration/dev.properties` made above.
+Then create a development configuration file at `configuration/dev.properties`:
 
 ```
 # Consumer properties
