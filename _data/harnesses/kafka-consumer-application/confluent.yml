@@ -12,7 +12,7 @@ dev:
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/make-config-dir.adoc
 
-    - title: Provision resources in Confluent Cloud
+    - title: Sign up for Confluent Cloud and provision resources
       content:
         - action: skip
           render:
