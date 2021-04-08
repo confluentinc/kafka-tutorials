@@ -1,8 +1,9 @@
-Create a development configuration file at `configuration/dev.properties` with your Confluent Cloud information.
+Create a development configuration file at `configuration/ccloud.properties` with your Confluent Cloud information.
 This file and the secrets it contains can be easily created using the Confluent Cloud UI. To do so, navigate to the
 ``Clients`` section in your cluster, click ``Create Kafka cluster API key & secret`` and ``Create Schema Registry API key & secret``,
-lastly select ``Java`` as the client. You should see something similar to below in the UI. Copy the contents of the configuration file and paste them into a
-`configuration/ccloud.properties` file on your local machine.
+lastly select ``Java`` as the client. Lastly make sure ``Show API keys`` is checked.
+You should see something similar to below in the UI. Copy the contents of the configuration file and paste them into a
+`cconfiguration/cloud.properties` file on your local machine.
 
 +++++
 <pre class="snippet"><code class="text">{% include_raw shared/code/ccloud/config.properties %}</code></pre>

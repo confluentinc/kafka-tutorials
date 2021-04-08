@@ -7,6 +7,11 @@ dev:
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/init.adoc
 
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-config-dir.adoc
+
     - title: Sign up for Confluent Cloud and Get the CLI
       content:
         - action: skip
@@ -42,11 +47,6 @@ dev:
           file: tutorial-steps/dev/gradle-wrapper.sh
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/make-gradle-wrapper.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-config-dir.adoc
 
         - action: skip
           render:
