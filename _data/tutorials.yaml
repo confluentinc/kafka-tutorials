@@ -358,6 +358,7 @@ kafka-consumer-application:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+    confluent: enabled
 
 produce-consume-lang:
   title: "Produce and Consume Records in non-Java languages"

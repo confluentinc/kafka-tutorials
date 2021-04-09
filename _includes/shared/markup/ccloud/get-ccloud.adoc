@@ -1,0 +1,2 @@
+Download and setup the Confluent Cloud CLI. Instructions for this can be found within the Confluent Cloud UI,
+by navigating to your cluster, clicking on the `CLI and tools` section, and running through the steps in the `CCloud CLI` tab.

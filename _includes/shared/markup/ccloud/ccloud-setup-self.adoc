@@ -1,0 +1,6 @@
+From within the https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud UI], click on `Add cloud environment` and name it `kafka-learning`.
+This will keep your learning separate from other Confluent Cloud environments.
+
+Next click on `Learn` and follow the in-product instructions to launch Kafka and Schema Registry.
+Use the promo code `CC100KTS` to receive an additional $100 free usage on Confluent Cloud (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+
