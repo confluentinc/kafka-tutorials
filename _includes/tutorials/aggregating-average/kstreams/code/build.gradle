@@ -22,7 +22,7 @@ version = "0.0.1"
 mainClassName = "io.confluent.developer.RunningAverage"
 
 repositories {
-  
+  mavenCentral()
   maven { url 'https://packages.confluent.io/maven/' }
 }
 
