@@ -18,7 +18,7 @@ dev:
           render:
             file: shared/markup/ccloud/ccloud-setup-self.adoc
 
-    - title: Create a config file with Confluent Cloud information
+    - title: Create a properties file with Confluent Cloud information
       content:
         - action: skip
           render:
@@ -58,7 +58,7 @@ dev:
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/explain-properties.adoc
 
-    - title: Update the client config file with Confluent Cloud information
+    - title: Update the properties file with Confluent Cloud information
       content:
         - action: skip
           render:
