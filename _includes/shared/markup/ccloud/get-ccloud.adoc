@@ -1,2 +1,2 @@
 Instructions for setting up Confluent Cloud CLI is available from within the Confluent Cloud UI.
-Navigate to your Kafka cluster, click on the `CLI and tools` section, and run through all the steps in the `CCloud CLI` tab.
+Navigate to your Kafka cluster, click on the `CLI and tools` section, and run through the steps in the `CCloud CLI` tab.

@@ -13,4 +13,4 @@ Copy and paste this configuration into a local `configuration/ccloud.properties`
 <pre class="snippet"><code class="text">{% include_raw shared/code/ccloud/config.properties %}</code></pre>
 +++++
 
-NOTE: do not directly copy and paste the above configuration. It must include your Confluent Cloud information and credentials.
+NOTE: Do not directly copy and paste the above configuration. You must copy it from the UI so that it includes your Confluent Cloud information and credentials.
