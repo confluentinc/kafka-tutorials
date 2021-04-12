@@ -48,15 +48,25 @@ dev:
           render:
             file: tutorials/kafka-consumer-application/kafka/markup/dev/make-gradle-wrapper.adoc
 
+    - title: Add application and consumer properties
+      content:
         - action: skip
           render:
             file: tutorials/kafka-consumer-application/confluent/markup/dev/make-config-file.adoc
+
+        - action: skip
+          render:
+            file: tutorials/kafka-consumer-application/kafka/markup/dev/explain-properties.adoc
 
     - title: Update the client config file with Confluent Cloud information
       content:
         - action: skip
           render:
             file: shared/markup/ccloud/append-ccloud-config.adoc
+
+        - action: skip
+          render:
+            file: tutorials/kafka-consumer-application/kafka/markup/dev/explain-properties.adoc
 
     - title: Create the Kafka Consumer Application
       content:
