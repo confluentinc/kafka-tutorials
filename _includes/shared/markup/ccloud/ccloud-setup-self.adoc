@@ -4,3 +4,7 @@ Using a new environment keeps the resources separate from your other Confluent C
 Next, click on `LEARN` and follow the instructions from within Confluent Cloud to launch a Kafka cluster and to enable Schema Registry.
 
 Use the promo code `CC100KTS` (see the `Billing & payment` section) to receive an additional $100 free usage on Confluent Cloud (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+
++++++
+<img src="/assets/img/ccloud-home.png" alt="Confluent Cloud" width=800>
++++++
