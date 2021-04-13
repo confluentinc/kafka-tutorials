@@ -4,7 +4,7 @@ answer:
       content:
         - action: skip
           render:
-            file: tutorials/ccloud-produce-consume/kafka/markup/dev/answer-short.adoc
+            file: tutorials/console-consumer-producer-basic/confluent/markup/dev/answer-short.adoc
 
 dev:
   steps:
@@ -13,7 +13,7 @@ dev:
         - action: execute
           file: tutorial-steps/dev/init.sh
           render:
-            file: tutorials/ccloud-produce-consume/kafka/markup/dev/init.adoc
+            file: tutorials/console-consumer-producer-basic/confluent/markup/dev/init.adoc
 
     - title: Sign up for Confluent Cloud and provision resources
       content:
@@ -31,25 +31,25 @@ dev:
       content:
         - action: skip
           render:
-            file: tutorials/ccloud-produce-consume/kafka/markup/dev/create-topic.adoc
+            file: tutorials/console-consumer-producer-basic/confluent/markup/dev/create-topic.adoc
 
     - title: Create a schema for your records
       content:
       - action: skip
         render:
-          file: tutorials/ccloud-produce-consume/kafka/markup/dev/create-schema.adoc
+          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/create-schema.adoc
 
     - title: Start a console consumer
       content:
       - action: skip
         render:
-          file: tutorials/ccloud-produce-consume/kafka/markup/dev/consume-topic-key-value.adoc
+          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/consume-topic-key-value.adoc
 
     - title: Produce events to the Kafka topic
       content:
       - action: skip
         render:
-          file: tutorials/ccloud-produce-consume/kafka/markup/dev/produce-topic-key-value.adoc
+          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/produce-topic-key-value.adoc
 
     - title: Teardown Confluent Cloud resources
       content:
