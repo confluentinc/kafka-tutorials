@@ -9,9 +9,11 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
+import io.confluent.common.utils.TestUtils;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
@@ -32,6 +34,9 @@ public class StreamsToTableTest {
      try (InputStream inputStream = new FileInputStream(TEST_CONFIG_FILE)) {
          allProps.load(inputStream);
      }
+     allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+     allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+     allProps.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
 
     final String inputTopic = allProps.getProperty("input.topic.name");
     final String streamsOutputTopicName = allProps.getProperty("streams.output.topic.name");
