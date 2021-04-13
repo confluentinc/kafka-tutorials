@@ -2,6 +2,7 @@ package io.confluent.developer;
 
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serde;
+import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
@@ -9,6 +10,8 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
 import org.junit.Test;
 
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,22 +32,24 @@ public class DynamicOutputTopicTest {
   @Test
   public void shouldChooseCorrectOutputTopic() throws IOException {
     final DynamicOutputTopic instance = new DynamicOutputTopic();
-    final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
 
-    final Properties streamProps = instance.buildStreamsProperties(envProps);
+    final Properties allProps = new Properties();
+    try (InputStream inputStream = new FileInputStream(TEST_CONFIG_FILE)) {
+        allProps.load(inputStream);
+    }
 
-    final String orderInputTopic = envProps.getProperty("input.topic.name");
-    final String orderOutputTopic = envProps.getProperty("output.topic.name");
-    final String specialOrderOutputTopic = envProps.getProperty("special.order.topic.name");
+    final String orderInputTopic = allProps.getProperty("input.topic.name");
+    final String orderOutputTopic = allProps.getProperty("output.topic.name");
+    final String specialOrderOutputTopic = allProps.getProperty("special.order.topic.name");
 
-    final Topology topology = instance.buildTopology(envProps);
-    try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
+    final Topology topology = instance.buildTopology(allProps);
+    try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps)) {
 
       final Serde<String> stringSerde = Serdes.String();
-      final SpecificAvroSerde<Order> orderAvroSerde = DynamicOutputTopic.getSpecificAvroSerde(envProps);
+      final SpecificAvroSerde<Order> orderAvroSerde = DynamicOutputTopic.getSpecificAvroSerde(allProps);
       final SpecificAvroSerde<CompletedOrder>
           completedOrderAvroSerde =
-          DynamicOutputTopic.getSpecificAvroSerde(envProps);
+          DynamicOutputTopic.getSpecificAvroSerde(allProps);
 
       final Serializer<String> keySerializer = stringSerde.serializer();
       final Deserializer<String> keyDeserializer = stringSerde.deserializer();
