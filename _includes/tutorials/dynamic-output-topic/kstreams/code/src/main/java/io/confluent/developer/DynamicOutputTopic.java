@@ -78,10 +78,6 @@ public class DynamicOutputTopic {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
 
         final Map<String, String> serdeConfig = (Map)allProps;
-        //final HashMap<String, String> serdeConfig = new HashMap<>();
-        //serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
-        //                allProps.getProperty("schema.registry.url"));
-
         specificAvroSerde.configure(serdeConfig, false);
         return specificAvroSerde;
     }
