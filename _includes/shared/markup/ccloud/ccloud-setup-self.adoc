@@ -8,5 +8,5 @@ Then provision Confluent Cloud:
 3. Click on `LEARN` and follow the instructions to launch a Kafka cluster and to enable Schema Registry.
 
 +++++
-<img src="/assets/img/ccloud-home.png" alt="Confluent Cloud" width=800>
+<img src="{{ "/assets/img/ccloud-home.png" | relative_url }}" alt="Confluent Cloud" width=800 />
 +++++
