@@ -391,6 +391,7 @@ streams-to-table:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 kafka-producer-application:
   title: "How build your first Apache KafkaProducer application"

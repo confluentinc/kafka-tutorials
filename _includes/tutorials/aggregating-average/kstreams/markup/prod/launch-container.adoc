@@ -1,5 +1,0 @@
-Finally, launch the container using your preferred container orchestration service. If you want to run it locally, you can execute the following:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-average/kstreams/code/tutorial-steps/prod/launch-container.sh %}</code></pre>
-+++++

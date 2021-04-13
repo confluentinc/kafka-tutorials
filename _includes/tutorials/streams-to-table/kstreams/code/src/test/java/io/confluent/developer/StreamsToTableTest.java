@@ -4,6 +4,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
 import java.io.IOException;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
@@ -25,16 +27,18 @@ public class StreamsToTableTest {
   @Test
   public void testToTable() throws IOException {
      final StreamsToTable streamsToTable = new StreamsToTable();
-    final Properties envProps = streamsToTable.loadEnvProperties(TEST_CONFIG_FILE);
 
-    final Properties streamProps = streamsToTable.buildStreamsProperties(envProps);
+     final Properties allProps = new Properties();
+     try (InputStream inputStream = new FileInputStream(TEST_CONFIG_FILE)) {
+         allProps.load(inputStream);
+     }
 
-    final String inputTopic = envProps.getProperty("input.topic.name");
-    final String streamsOutputTopicName = envProps.getProperty("streams.output.topic.name");
-    final String tableOutputTopicName = envProps.getProperty("table.output.topic.name");
+    final String inputTopic = allProps.getProperty("input.topic.name");
+    final String streamsOutputTopicName = allProps.getProperty("streams.output.topic.name");
+    final String tableOutputTopicName = allProps.getProperty("table.output.topic.name");
 
-    final Topology topology = streamsToTable.buildTopology(envProps);
-    try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
+    final Topology topology = streamsToTable.buildTopology(allProps);
+    try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps)) {
 
       final Serializer<String> stringSerializer = Serdes.String().serializer();
       final Deserializer<String> stringDeserializer = Serdes.String().deserializer();

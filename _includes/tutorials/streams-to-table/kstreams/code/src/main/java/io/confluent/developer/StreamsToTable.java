@@ -3,6 +3,7 @@ package io.confluent.developer;
 
 import io.confluent.common.utils.TestUtils;
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -28,22 +29,11 @@ import org.apache.kafka.streams.kstream.Produced;
 public class StreamsToTable {
 
 
-	public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-
-        return props;
-    }
-
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String inputTopic = envProps.getProperty("input.topic.name");
-        final String streamsOutputTopic = envProps.getProperty("streams.output.topic.name");
-        final String tableOutputTopic = envProps.getProperty("table.output.topic.name");
+        final String inputTopic = allProps.getProperty("input.topic.name");
+        final String streamsOutputTopic = allProps.getProperty("streams.output.topic.name");
+        final String tableOutputTopic = allProps.getProperty("table.output.topic.name");
 
         final Serde<String> stringSerde = Serdes.String();
 
@@ -59,39 +49,37 @@ public class StreamsToTable {
     }
 
 
-    public void createTopics(final Properties envProps) {
-        final Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        try (final AdminClient client = AdminClient.create(config)) {
+    public void createTopics(final Properties allProps) {
+        try (final AdminClient client = AdminClient.create(allProps)) {
 
         final List<NewTopic> topics = new ArrayList<>();
 
             topics.add(new NewTopic(
-                    envProps.getProperty("input.topic.name"),
-                    Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
+                    allProps.getProperty("input.topic.name"),
+                    Integer.parseInt(allProps.getProperty("input.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("input.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                    envProps.getProperty("streams.output.topic.name"),
-                    Integer.parseInt(envProps.getProperty("streams.output.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("streams.output.topic.replication.factor"))));
+                    allProps.getProperty("streams.output.topic.name"),
+                    Integer.parseInt(allProps.getProperty("streams.output.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("streams.output.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                envProps.getProperty("table.output.topic.name"),
-                Integer.parseInt(envProps.getProperty("table.output.topic.partitions")),
-                Short.parseShort(envProps.getProperty("table.output.topic.replication.factor"))));
+                allProps.getProperty("table.output.topic.name"),
+                Integer.parseInt(allProps.getProperty("table.output.topic.partitions")),
+                Short.parseShort(allProps.getProperty("table.output.topic.replication.factor"))));
 
             client.createTopics(topics);
         }
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        final Properties envProps = new Properties();
+        final Properties allProps = new Properties();
         final FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
@@ -101,13 +89,20 @@ public class StreamsToTable {
         }
 
         final StreamsToTable instance = new StreamsToTable();
-        final Properties envProps = instance.loadEnvProperties(args[0]);
-        final Properties streamProps = instance.buildStreamsProperties(envProps);
-        final Topology topology = instance.buildTopology(envProps);
 
-        instance.createTopics(envProps);
+        final Properties allProps = new Properties();
+        try (InputStream inputStream = new FileInputStream(args[0])) {
+            allProps.load(inputStream);
+        }
+        allProps.put(StreamsConfig.APPLICATION_ID_CONFIG, allProps.getProperty("application.id"));
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        final Topology topology = instance.buildTopology(allProps);
+
+        instance.createTopics(allProps);
+
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.
