@@ -14,7 +14,7 @@ version = "0.0.1-SNAPSHOT"
 mainClassName = "io.confluent.developer.WindowFinalResult"
 
 repositories {
-    jcenter()
+    mavenCentral()
 
     maven {
         url "https://packages.confluent.io/maven"
