@@ -73,15 +73,6 @@ public class StreamsToTable {
         }
     }
 
-    public Properties loadEnvProperties(String fileName) throws IOException {
-        final Properties allProps = new Properties();
-        final FileInputStream input = new FileInputStream(fileName);
-        allProps.load(input);
-        input.close();
-
-        return allProps;
-    }
-
     public static void main(String[] args) throws Exception {
 
         if (args.length < 1) {
