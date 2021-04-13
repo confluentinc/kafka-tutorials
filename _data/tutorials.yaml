@@ -292,6 +292,7 @@ console-consumer-producer-basic:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+    confluent: enabled
 
 console-consumer-primitive-keys-values:
   title: "How to use the console consumer to read non-string primitive keys and values"
@@ -442,25 +443,6 @@ count-messages:
   status:
     ksql: enabled
     kafka: enabled
-
-ccloud-produce-consume:
-  title: "How to produce and consume records from Confluent Cloud using ccloud CLI"
-  meta-description: "Learn how to produce and consume records from Confluent Cloud using ccloud CLI"
-  slug: "/ccloud-produce-consume"
-  question: "How do I use the ccloud CLI to produce and consume records from a Confluent Cloud topic?"
-  introduction: "In this tutorial you learn how to use the ccloud CLI to produce and consume records from a Kafka topic in <a href=\"https://www.confluent.io/confluent-cloud/tryfree/\">Confluent Cloud</a>. This can help you build and debug your Confluent Cloud based event streaming applications."
-  status:
-    ksql: disabled
-    kstreams: disabled
-    kafka: enabled
-    c : disabled
-    go: disabled
-    groovy: disabled
-    nodejs: disabled
-    python: disabled
-    ruby: disabled
-    scala: disabled
-    swift: disabled
 
 kafka-streams-schedule-operations:
   title: "How to schedule operations in Kafka Streams"

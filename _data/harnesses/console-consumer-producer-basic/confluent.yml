@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/ccloud-produce-consume/kafka/markup/dev/answer-short.adoc
+
 dev:
   steps:
     - title: Initialize the project
@@ -7,23 +15,17 @@ dev:
           render:
             file: tutorials/ccloud-produce-consume/kafka/markup/dev/init.adoc
 
-    - title: Get Confluent Cloud and the CLI
+    - title: Sign up for Confluent Cloud and provision resources
       content:
         - action: skip
           render:
-            file: tutorials/ccloud-produce-consume/kafka/markup/dev/get-ccloud.adoc
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
 
-    - title: Provision a new ccloud-stack on Confluent Cloud
+    - title: Download and setup the Confluent Cloud CLI
       content:
         - action: skip
           render:
-            file: tutorials/ccloud-produce-consume/kafka/markup/dev/setup-ccloud.adoc
-
-    - title: View cluster connection info
-      content:
-        - action: skip
-          render:
-            file: tutorials/ccloud-produce-consume/kafka/markup/dev/set-ccloud-config.adoc
+            file: shared/markup/ccloud/get-ccloud.adoc
 
     - title: Create the Kafka topic
       content:
@@ -49,9 +51,8 @@ dev:
         render:
           file: tutorials/ccloud-produce-consume/kafka/markup/dev/produce-topic-key-value.adoc
 
-
-    - title: Clean up your environment
+    - title: Teardown Confluent Cloud resources
       content:
-      - action: skip
-        render:
-          file: tutorials/ccloud-produce-consume/kafka/markup/dev/clean-up.adoc
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-destroy.adoc
