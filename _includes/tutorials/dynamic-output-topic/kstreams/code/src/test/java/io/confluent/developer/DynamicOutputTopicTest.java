@@ -40,14 +40,14 @@ public class DynamicOutputTopicTest {
     final Topology topology = instance.buildTopology(envProps);
     try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
 
-      final Serde<String> stringAvroSerde = DynamicOutputTopic.getPrimitiveAvroSerde(envProps, true);
+      final Serde<String> stringSerde = Serdes.String();
       final SpecificAvroSerde<Order> orderAvroSerde = DynamicOutputTopic.getSpecificAvroSerde(envProps);
       final SpecificAvroSerde<CompletedOrder>
           completedOrderAvroSerde =
           DynamicOutputTopic.getSpecificAvroSerde(envProps);
 
-      final Serializer<String> keySerializer = stringAvroSerde.serializer();
-      final Deserializer<String> keyDeserializer = stringAvroSerde.deserializer();
+      final Serializer<String> keySerializer = stringSerde.serializer();
+      final Deserializer<String> keyDeserializer = stringSerde.deserializer();
       final Serializer<Order> orderSerializer = orderAvroSerde.serializer();
       final Deserializer<CompletedOrder> completedOrderDeserializer = completedOrderAvroSerde.deserializer();
 
