@@ -1,0 +1,35 @@
+Then create the following file at `src/main/java/io/confluent/developer/RunningAverage.java`.
+Let's take a close look at the `buildTopology()` method, which uses the Kafka Streams DSL.
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/aggregating-average/kstreams/code/src/main/java/io/confluent/developer/RunningAverage.java %}</code></pre>
++++++
+
+Please note the code snippet around line 134.
+To calculate the running average, we need to capture the sum of ratings and counts as part of the same aggregating operation.
+
+
+[source,java]
+.Compute count and sum in a single aggregation step and emit `<count,sum>` tuple as aggregation result values.
+----
+final KTable<Long, CountAndSum> ratingCountAndSum =
+        ratingsById.aggregate(() -> new CountAndSum(0L, 0.0),
+                              (key, value, aggregate) -> {
+                                aggregate.setCount(aggregate.getCount() + 1);
+                                aggregate.setSum(aggregate.getSum() + value);
+                                return aggregate;
+                              },
+                              Materialized.with(Long(), countAndSumSerde));
+----
+
+
+[source,java]
+.Compute average for each tuple.
+----
+final KTable<Long, Double> ratingAverage =
+        ratingCountAndSum.mapValues(value -> value.getSum() / value.getCount(),
+                                    Materialized.as("average-ratings"));
+
+----
+
+This pattern can also be applied to compute a windowed average or to compose other functions.

@@ -1,0 +1,8 @@
+Next, create an Avro schema file at `src/main/avro/countsum.avsc` for the pair of counts and sums:
+
++++++
+<pre class="snippet"><code class="avro">{% include_raw tutorials/aggregating-average/kstreams/code/src/main/avro/countsum.avsc %}</code></pre>
++++++
+
+Note: We're going to use this record to store intermediate results. 
+The reason why we're using avro schema for this is that we can use `SpecificAvroSerde` to handle all our serialization needs. 
