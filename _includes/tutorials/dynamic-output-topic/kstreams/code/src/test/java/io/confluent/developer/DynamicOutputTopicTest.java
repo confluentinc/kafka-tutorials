@@ -40,24 +40,24 @@ public class DynamicOutputTopicTest {
     final Topology topology = instance.buildTopology(envProps);
     try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
 
-      final Serde<Long> longAvroSerde = DynamicOutputTopic.getPrimitiveAvroSerde(envProps, true);
+      final Serde<String> stringAvroSerde = DynamicOutputTopic.getPrimitiveAvroSerde(envProps, true);
       final SpecificAvroSerde<Order> orderAvroSerde = DynamicOutputTopic.getSpecificAvroSerde(envProps);
       final SpecificAvroSerde<CompletedOrder>
           completedOrderAvroSerde =
           DynamicOutputTopic.getSpecificAvroSerde(envProps);
 
-      final Serializer<Long> keySerializer = longAvroSerde.serializer();
-      final Deserializer<Long> keyDeserializer = longAvroSerde.deserializer();
+      final Serializer<String> keySerializer = stringAvroSerde.serializer();
+      final Deserializer<String> keyDeserializer = stringAvroSerde.deserializer();
       final Serializer<Order> orderSerializer = orderAvroSerde.serializer();
       final Deserializer<CompletedOrder> completedOrderDeserializer = completedOrderAvroSerde.deserializer();
 
-      final TestInputTopic<Long, Order>
+      final TestInputTopic<String, Order>
           inputTopic =
           testDriver.createInputTopic(orderInputTopic, keySerializer, orderSerializer);
-      final TestOutputTopic<Long, CompletedOrder>
+      final TestOutputTopic<String, CompletedOrder>
           orderTopic =
           testDriver.createOutputTopic(orderOutputTopic, keyDeserializer, completedOrderDeserializer);
-      final TestOutputTopic<Long, CompletedOrder>
+      final TestOutputTopic<String, CompletedOrder>
           specialOrderTopic =
           testDriver.createOutputTopic(specialOrderOutputTopic, keyDeserializer, completedOrderDeserializer);
 
@@ -81,7 +81,7 @@ public class DynamicOutputTopicTest {
                                     .setAmount(6_000L * DynamicOutputTopic.FAKE_PRICE).build());
 
       for (final Order order : orders) {
-        inputTopic.pipeInput(order.getId(), order);
+        inputTopic.pipeInput(String.valueOf(order.getId()), order);
       }
 
       final List<CompletedOrder> actualRegularOrderResults = orderTopic.readValuesToList();

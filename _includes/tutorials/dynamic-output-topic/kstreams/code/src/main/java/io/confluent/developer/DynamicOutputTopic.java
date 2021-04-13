@@ -56,7 +56,7 @@ public class DynamicOutputTopic {
         final String orderOutputTopic = envProps.getProperty("output.topic.name");
         final String specialOrderOutput = envProps.getProperty("special.order.topic.name");
 
-        final Serde<Long> longSerde = getPrimitiveAvroSerde(envProps, true);
+        final Serde<String> stringSerde = getPrimitiveAvroSerde(envProps, true);
         final Serde<Order> orderSerde = getSpecificAvroSerde(envProps);
         final Serde<CompletedOrder> completedOrderSerde = getSpecificAvroSerde(envProps);
 
@@ -65,7 +65,7 @@ public class DynamicOutputTopic {
            return CompletedOrder.newBuilder().setAmount(amount).setId(v.getId() + "-" + v.getSku()).setName(v.getName()).build();
         };
 
-        final TopicNameExtractor<Long, CompletedOrder> orderTopicNameExtractor = (key, completedOrder, recordContext) -> {
+        final TopicNameExtractor<String, CompletedOrder> orderTopicNameExtractor = (key, completedOrder, recordContext) -> {
               final String compositeId = completedOrder.getId();
               final String skuPart = compositeId.substring(compositeId.indexOf('-') + 1, 5);
               final String outTopic;
@@ -77,9 +77,9 @@ public class DynamicOutputTopic {
               return outTopic;
         };
 
-        final KStream<Long, Order> exampleStream = builder.stream(orderInputTopic, Consumed.with(longSerde, orderSerde));
+        final KStream<String, Order> exampleStream = builder.stream(orderInputTopic, Consumed.with(stringSerde, orderSerde));
 
-        exampleStream.mapValues(orderProcessingSimulator).to(orderTopicNameExtractor, Produced.with(longSerde, completedOrderSerde));
+        exampleStream.mapValues(orderProcessingSimulator).to(orderTopicNameExtractor, Produced.with(stringSerde, completedOrderSerde));
 
         return builder.build();
     }
