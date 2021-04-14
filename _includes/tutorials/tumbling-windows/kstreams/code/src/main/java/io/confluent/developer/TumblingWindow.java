@@ -32,18 +32,14 @@ import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHE
 
 public class TumblingWindow {
 
-    public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-        props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName());
-        props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+    public Properties buildStreamsProperties(Properties allProps) {
+        allProps.put(StreamsConfig.APPLICATION_ID_CONFIG, allProps.getProperty("application.id"));
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
+        allProps.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName());
+        allProps.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
         try {
-            props.put(StreamsConfig.STATE_DIR_CONFIG,
+            allProps.put(StreamsConfig.STATE_DIR_CONFIG,
                       Files.createTempDirectory("tumbling-windows").toAbsolutePath().toString());
         }
         catch(IOException e) {
@@ -51,13 +47,13 @@ public class TumblingWindow {
             // one because running the app outside of Docker multiple times in quick succession will find the
             // previous state still hanging around in /tmp somewhere, which is not the expected result.
         }
-        return props;
+        return allProps;
     }
 
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String ratingTopic = envProps.getProperty("rating.topic.name");
-        final String ratingCountTopic = envProps.getProperty("rating.count.topic.name");
+        final String ratingTopic = allProps.getProperty("rating.topic.name");
+        final String ratingCountTopic = allProps.getProperty("rating.count.topic.name");
 
         builder.<String, Rating>stream(ratingTopic)
             .map((key, rating) -> new KeyValue<>(rating.getTitle(), rating))
@@ -82,35 +78,30 @@ public class TumblingWindow {
     }
 
 
-    private SpecificAvroSerde<Rating> ratedMovieAvroSerde(Properties envProps) {
-        SpecificAvroSerde<Rating> movieAvroSerde = new SpecificAvroSerde<>();
+    private SpecificAvroSerde<Rating> ratedMovieAvroSerde(final Properties allProps) {
+        final SpecificAvroSerde<Rating> movieAvroSerde = new SpecificAvroSerde<>();
 
-        final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
-                        envProps.getProperty("schema.registry.url"));
-
+        final Map<String, String> serdeConfig = (Map)allProps;
         movieAvroSerde.configure(serdeConfig, false);
         return movieAvroSerde;
     }
 
-    public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        AdminClient client = AdminClient.create(config);
+    public void createTopics(Properties allProps) {
+        AdminClient client = AdminClient.create(allProps);
 
         List<NewTopic> topics = new ArrayList<>();
         Map<String, String> topicConfigs = new HashMap<>();
         topicConfigs.put("retention.ms", Long.toString(Long.MAX_VALUE));
 
-        NewTopic ratings = new NewTopic(envProps.getProperty("rating.topic.name"),
-                                        Integer.parseInt(envProps.getProperty("rating.topic.partitions")),
-                                        Short.parseShort(envProps.getProperty("rating.topic.replication.factor")));
+        NewTopic ratings = new NewTopic(allProps.getProperty("rating.topic.name"),
+                                        Integer.parseInt(allProps.getProperty("rating.topic.partitions")),
+                                        Short.parseShort(allProps.getProperty("rating.topic.replication.factor")));
         ratings.configs(topicConfigs);
         topics.add(ratings);
 
-        NewTopic counts = new NewTopic(envProps.getProperty("rating.count.topic.name"),
-                                       Integer.parseInt(envProps.getProperty("rating.count.topic.partitions")),
-                                       Short.parseShort(envProps.getProperty("rating.count.topic.replication.factor")));
+        NewTopic counts = new NewTopic(allProps.getProperty("rating.count.topic.name"),
+                                       Integer.parseInt(allProps.getProperty("rating.count.topic.partitions")),
+                                       Short.parseShort(allProps.getProperty("rating.count.topic.replication.factor")));
         counts.configs(topicConfigs);
         topics.add(counts);
 
@@ -120,12 +111,12 @@ public class TumblingWindow {
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        Properties envProps = new Properties();
+        Properties allProps = new Properties();
         FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
@@ -135,13 +126,12 @@ public class TumblingWindow {
         }
 
         TumblingWindow tw = new TumblingWindow();
-        Properties envProps = tw.loadEnvProperties(args[0]);
-        Properties streamProps = tw.buildStreamsProperties(envProps);
-        Topology topology = tw.buildTopology(envProps);
+        Properties allProps = tw.buildStreamsProperties(tw.loadEnvProperties(args[0]));
+        Topology topology = tw.buildTopology(allProps);
 
-        tw.createTopics(envProps);
+        tw.createTopics(allProps);
 
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.

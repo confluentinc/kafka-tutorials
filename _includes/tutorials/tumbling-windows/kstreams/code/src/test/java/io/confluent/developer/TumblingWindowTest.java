@@ -28,11 +28,10 @@ public class TumblingWindowTest {
     private TopologyTestDriver testDriver;
 
 
-    private SpecificAvroSerializer<Rating> makeRatingSerializer(Properties envProps) {
+    private SpecificAvroSerializer<Rating> makeRatingSerializer(Properties allProps) {
         SpecificAvroSerializer<Rating> serializer = new SpecificAvroSerializer<>();
 
-        Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        final Map<String, String> config = (Map)allProps;
         serializer.configure(config, false);
 
         return serializer;
@@ -54,17 +53,16 @@ public class TumblingWindowTest {
     @Test
     public void testWindows() throws IOException {
         TumblingWindow tw = new TumblingWindow();
-        Properties envProps = tw.loadEnvProperties(TEST_CONFIG_FILE);
-        Properties streamProps = tw.buildStreamsProperties(envProps);
+        Properties allProps = tw.buildStreamsProperties(tw.loadEnvProperties(TEST_CONFIG_FILE));
 
-        String inputTopic = envProps.getProperty("rating.topic.name");
-        String outputTopic = envProps.getProperty("rating.count.topic.name");
+        String inputTopic = allProps.getProperty("rating.topic.name");
+        String outputTopic = allProps.getProperty("rating.count.topic.name");
 
-        Topology topology = tw.buildTopology(envProps);
-        testDriver = new TopologyTestDriver(topology, streamProps);
+        Topology topology = tw.buildTopology(allProps);
+        testDriver = new TopologyTestDriver(topology, allProps);
 
         Serializer<String> stringSerializer = Serdes.String().serializer();
-        SpecificAvroSerializer<Rating> ratingSerializer = makeRatingSerializer(envProps);
+        SpecificAvroSerializer<Rating> ratingSerializer = makeRatingSerializer(allProps);
         Deserializer<String> stringDeserializer = Serdes.String().deserializer();
 
         List<Rating> ratings = new ArrayList<>();
