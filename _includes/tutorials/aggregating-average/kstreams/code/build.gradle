@@ -1,6 +1,6 @@
 buildscript {
   repositories {
-    mavenCentral()
+    jcenter()
   }
   dependencies {
     classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.22.0"
@@ -22,7 +22,7 @@ version = "0.0.1"
 mainClassName = "io.confluent.developer.RunningAverage"
 
 repositories {
-  mavenCentral()
+  jcenter()
   maven { url 'https://packages.confluent.io/maven/' }
 }
 
