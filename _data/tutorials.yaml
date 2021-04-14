@@ -379,7 +379,6 @@ produce-consume-lang:
     ruby: enabled
     rust: enabled
     scala: enabled
-    confluent: enabled
 
 streams-to-table:
   title: "How to convert a Kafka Streams KStream to a KTable"
@@ -393,8 +392,8 @@ streams-to-table:
     kafka: disabled
 
 kafka-producer-application:
-  title: "How build your first Apache KafkaProducer application"
-  meta-description: "How build your first Apache Kafka producer application"
+  title: "How to build your first Apache KafkaProducer application"
+  meta-description: "How to build your first Apache Kafka producer application"
   slug: "/creating-first-apache-kafka-producer-application"
   question: "How do I get started in building my first Kafka producer application?"
   introduction: "You'd like to integrate an Apache KafkaProducer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application writing records to Kafka with a KafkaProducer.  You can use the code in this tutorial as an example of how to use an Apache Kafka producer"
@@ -402,6 +401,7 @@ kafka-producer-application:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+    confluent: enabled
 
 kafka-producer-application-callback:
   title: "How build an Apache KafkaProducer application using callbacks"
