@@ -31,7 +31,9 @@ public class TumblingWindowTest {
     private SpecificAvroSerializer<Rating> makeRatingSerializer(Properties allProps) {
         SpecificAvroSerializer<Rating> serializer = new SpecificAvroSerializer<>();
 
-        final Map<String, String> config = (Map)allProps;
+        Map<String, String> config = new HashMap<>();
+        for (final String name: allProps.stringPropertyNames())
+                    config.put(name, allProps.getProperty(name));
         serializer.configure(config, false);
 
         return serializer;

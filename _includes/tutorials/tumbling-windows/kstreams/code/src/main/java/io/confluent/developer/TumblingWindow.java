@@ -81,8 +81,10 @@ public class TumblingWindow {
     private SpecificAvroSerde<Rating> ratedMovieAvroSerde(final Properties allProps) {
         final SpecificAvroSerde<Rating> movieAvroSerde = new SpecificAvroSerde<>();
 
-        final Map<String, String> serdeConfig = (Map)allProps;
-        movieAvroSerde.configure(serdeConfig, false);
+        Map<String, String> config = new HashMap<>();
+        for (final String name: allProps.stringPropertyNames())
+                    config.put(name, allProps.getProperty(name));
+        movieAvroSerde.configure(config, false);
         return movieAvroSerde;
     }
 
