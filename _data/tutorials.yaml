@@ -288,11 +288,12 @@ console-consumer-producer-basic:
   meta-description: "Produce and consume your first message with Kafka"
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
-  introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Note this tutorial doesn't cover using (de)serializers. Using (de)serializers with the console consumer and producer are covered in separate tutorials."
+  introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+    confluent: enabled
 
 console-consumer-primitive-keys-values:
   title: "How to use the console consumer to read non-string primitive keys and values"
@@ -443,25 +444,6 @@ count-messages:
   status:
     ksql: enabled
     kafka: enabled
-
-ccloud-produce-consume:
-  title: "How to produce and consume records from Confluent Cloud using ccloud CLI"
-  meta-description: "Learn how to produce and consume records from Confluent Cloud using ccloud CLI"
-  slug: "/ccloud-produce-consume"
-  question: "How do I use the ccloud CLI to produce and consume records from a Confluent Cloud topic?"
-  introduction: "In this tutorial you learn how to use the ccloud CLI to produce and consume records from a Kafka topic in <a href=\"https://www.confluent.io/confluent-cloud/tryfree/\">Confluent Cloud</a>. This can help you build and debug your Confluent Cloud based event streaming applications."
-  status:
-    ksql: disabled
-    kstreams: disabled
-    kafka: enabled
-    c : disabled
-    go: disabled
-    groovy: disabled
-    nodejs: disabled
-    python: disabled
-    ruby: disabled
-    scala: disabled
-    swift: disabled
 
 kafka-streams-schedule-operations:
   title: "How to schedule operations in Kafka Streams"

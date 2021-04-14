@@ -127,3 +127,9 @@ ccloud:
         - action: skip
           render:
             file: shared/markup/ccloud/try-ccloud.adoc
+
+    - title: See other documentation
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-producer-basic/kafka/markup/ccloud/doc-out.adoc
