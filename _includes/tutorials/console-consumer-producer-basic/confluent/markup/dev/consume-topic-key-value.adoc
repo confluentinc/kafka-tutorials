@@ -3,7 +3,7 @@ Next, let's open up a consumer to read records from the new topic.
 From the same terminal you used to create the topic above, run the following command to start a console consumer with the `ccloud` CLI:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/ccloud-produce-consume/kafka/code/tutorial-steps/dev/harness-console-consumer-keys.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/confluent/code/tutorial-steps/dev/harness-console-consumer-keys.sh %}</code></pre>
 +++++
 
 The ccloud CLI will prompt you for your Confluent Cloud Schema Registry API Key and Secret.  Enter the values noted from the newly provisioned `ccloud-stack` above.
