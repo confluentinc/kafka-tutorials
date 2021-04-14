@@ -110,6 +110,7 @@ tumbling-windows:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 hopping-windows:
   title: "How to create hopping windows"
