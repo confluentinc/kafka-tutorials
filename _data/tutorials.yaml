@@ -259,6 +259,7 @@ dynamic-output-topic:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 naming-changelog-repartition-topics:
   title: "How to name stateful operations in Kafka Streams"
