@@ -6,7 +6,13 @@ From the same terminal you used to create the topic above, run the following com
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/confluent/code/tutorial-steps/dev/harness-console-consumer-keys.sh %}</code></pre>
 +++++
 
-The ccloud CLI will prompt you for your Confluent Cloud Schema Registry API Key and Secret.  Enter the values noted from the newly provisioned `ccloud-stack` above.
+You will be prompted for the Confluent Cloud Schema Registry credentials as shown below.
+Enter the values you got from when you enabled Schema Registry in the Confluent Cloud UI.
 
-Once the Schema Registry values are entered, the consumer will start up and block waiting for records, you won't see any output until after the next step.
+```
+Enter your Schema Registry API key:
+Enter your Schema Registry API secret:
+```
+
+The consumer will start up and block waiting for records, you won't see any output until after the next step.
 
