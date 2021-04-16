@@ -46,7 +46,7 @@ dev:
           render:
             file: tutorials/aggregating-average/kstreams/markup/dev/make-dev-file.adoc
             
-    - title: Create a schema for the model obect
+    - title: Create a schema for the model object
       content:
         - action: execute
           file: tutorial-steps/dev/make-avro-dir.sh
