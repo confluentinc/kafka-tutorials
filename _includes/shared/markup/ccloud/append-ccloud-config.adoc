@@ -1,5 +1,4 @@
-Append the contents of the `configuration/ccloud.properties` to `configuration/dev.properties`
-so that the application is able to connect to the Confluent Cloud cluster with the command below.
+Using the command below, append the contents of `configuration/ccloud.properties` (with your Confluent Cloud configuration) to `configuration/dev.properties` (with the application properties).
 
 +++++
 <pre class="snippet"><code class="bash">{% include_raw shared/code/ccloud/cat-config.sh %}</code></pre>
