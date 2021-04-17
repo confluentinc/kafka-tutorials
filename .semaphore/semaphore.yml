@@ -4,7 +4,7 @@ agent:
     type: e1-standard-2
 global_job_config:
   secrets:
-    - name: vault_sem2_approle_prod
+    - name: vault_sem2_approle
   prologue:
     commands:
       - checkout
