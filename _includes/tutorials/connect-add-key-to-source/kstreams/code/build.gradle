@@ -2,7 +2,7 @@ import java.beans.EventSetDescriptor
 
 buildscript {
   repositories {
-    jcenter()
+    mavenCentral()
   }
   dependencies {
     classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.22.0"
@@ -21,7 +21,7 @@ targetCompatibility = "1.8"
 version = "0.0.1"
 
 repositories {
-  jcenter()
+  mavenCentral()
 
   maven {
     url "https://packages.confluent.io/maven"

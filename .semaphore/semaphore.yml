@@ -300,10 +300,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/count-messages/kafka/code tutorial
 
-        - name: Kafka Test ccloud produce and consume
-          commands:
-            - make -C _includes/tutorials/ccloud-produce-consume/kafka/code tutorial
-
         - name: Kafka Message Ordering tests
           commands:
             - make -C _includes/tutorials/message-ordering/kafka/code tutorial
@@ -363,3 +359,8 @@ blocks:
         - name: KStreams finding distinct events tests
           commands:
             - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
+
+        - name: KStreams How to implement TTLs with KTable data tests
+          commands:
+            - make -C _includes/tutorials/schedule-ktable-ttl/kstreams/code tutorial
+
