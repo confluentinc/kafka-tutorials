@@ -1,14 +1,5 @@
 Now that we have data generation working, let's build your application by running:
 
-```
-NOTE You need to run following commands to copy the SNAPSHOT Jars to the correct location since AK 2.8 is not in Maven Central yet
-
-mkdir temp_local_28_repo
-cp <KAFKA-TUTORIALS-REPO-DIRECTORY>/_includes/tutorials/error-handling/kstreams/code/temp_local_28_repo/* temp_local_28_repo
-
-DELETE This section before the relase of this tutorial!!!
-```
-
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/error-handling/kstreams/code/tutorial-steps/dev/build-uberjar.sh %}</code></pre>
 +++++
