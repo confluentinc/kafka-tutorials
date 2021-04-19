@@ -1,4 +1,4 @@
-final TopicNameExtractor <Long, CompletedOrder> orderTopicNameExtractor = (key, completedOrder, recordContext) -> {
+final TopicNameExtractor <String, CompletedOrder> orderTopicNameExtractor = (key, completedOrder, recordContext) -> {
       final String compositeId = completedOrder.getId();
       final String skuPart = compositeId.substring(compositeId.indexOf('-') + 1, 5);
       final String outTopic;

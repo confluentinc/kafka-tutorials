@@ -110,6 +110,7 @@ tumbling-windows:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 hopping-windows:
   title: "How to create hopping windows"
@@ -259,6 +260,7 @@ dynamic-output-topic:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 naming-changelog-repartition-topics:
   title: "How to name stateful operations in Kafka Streams"
@@ -287,11 +289,12 @@ console-consumer-producer-basic:
   meta-description: "Produce and consume your first message with Kafka"
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
-  introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Note this tutorial doesn't cover using (de)serializers. Using (de)serializers with the console consumer and producer are covered in separate tutorials."
+  introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+    confluent: enabled
 
 console-consumer-primitive-keys-values:
   title: "How to use the console consumer to read non-string primitive keys and values"
@@ -358,6 +361,7 @@ kafka-consumer-application:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+    confluent: enabled
 
 produce-consume-lang:
   title: "Produce and Consume Records in non-Java languages"
@@ -389,10 +393,11 @@ streams-to-table:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 kafka-producer-application:
-  title: "How build your first Apache KafkaProducer application"
-  meta-description: "How build your first Apache Kafka producer application"
+  title: "How to build your first Apache KafkaProducer application"
+  meta-description: "How to build your first Apache Kafka producer application"
   slug: "/creating-first-apache-kafka-producer-application"
   question: "How do I get started in building my first Kafka producer application?"
   introduction: "You'd like to integrate an Apache KafkaProducer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application writing records to Kafka with a KafkaProducer.  You can use the code in this tutorial as an example of how to use an Apache Kafka producer"
@@ -400,6 +405,7 @@ kafka-producer-application:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+    confluent: enabled
 
 kafka-producer-application-callback:
   title: "How build an Apache KafkaProducer application using callbacks"
@@ -440,25 +446,6 @@ count-messages:
   status:
     ksql: enabled
     kafka: enabled
-
-ccloud-produce-consume:
-  title: "How to produce and consume records from Confluent Cloud using ccloud CLI"
-  meta-description: "Learn how to produce and consume records from Confluent Cloud using ccloud CLI"
-  slug: "/ccloud-produce-consume"
-  question: "How do I use the ccloud CLI to produce and consume records from a Confluent Cloud topic?"
-  introduction: "In this tutorial you learn how to use the ccloud CLI to produce and consume records from a Kafka topic in <a href=\"https://www.confluent.io/confluent-cloud/tryfree/\">Confluent Cloud</a>. This can help you build and debug your Confluent Cloud based event streaming applications."
-  status:
-    ksql: disabled
-    kstreams: disabled
-    kafka: enabled
-    c : disabled
-    go: disabled
-    groovy: disabled
-    nodejs: disabled
-    python: disabled
-    ruby: disabled
-    scala: disabled
-    swift: disabled
 
 kafka-streams-schedule-operations:
   title: "How to schedule operations in Kafka Streams"
