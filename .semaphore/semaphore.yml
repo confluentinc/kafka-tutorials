@@ -203,6 +203,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
 
+        - name: KSQL connect-sink-timestamp tests
+          commands:
+            - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial
+
   - name: Run second block of tests
     execution_time_limit:
       minutes: 10
@@ -347,10 +351,6 @@ blocks:
         - name: KStreams Test Kafka Streams sliding windows tests
           commands:
             - make -C _includes/tutorials/sliding-windows/kstreams/code tutorial
-
-        - name: KSQL connect-sink-timestamp tests
-          commands:
-            - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial
 
         - name: KSQL anomaly detection tests
           commands:
