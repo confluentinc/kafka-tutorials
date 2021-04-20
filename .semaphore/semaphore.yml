@@ -6,7 +6,7 @@ agent:
     os_image: ubuntu1804
 global_job_config:
   secrets:
-    - name: vault_sem2_approle_prod
+    - name: vault_sem2_approle
   prologue:
     commands:
       - checkout
