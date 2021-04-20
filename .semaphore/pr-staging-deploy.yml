@@ -8,7 +8,7 @@ agent:
 blocks:
   - task:
       secrets:
-        - name: vault_sem2_approle_prod
+        - name: vault_sem2_approle
       jobs:
         - name: Compile and deploy site
           commands:
