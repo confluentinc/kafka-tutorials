@@ -134,19 +134,19 @@ public class FindDistinctEvents {
 
     }
 
-    private SpecificAvroSerde<Click> buildClicksSerde(final Properties envProps) {
+    private SpecificAvroSerde<Click> buildClicksSerde(final Properties allProps) {
         final SpecificAvroSerde<Click> serde = new SpecificAvroSerde<>();
-        final Map<String, String> config = (Map)envProps;
+        final Map<String, String> config = (Map)allProps;
         serde.configure(config, false);
         return serde;
     }
 
-    public Topology buildTopology(Properties envProps,
+    public Topology buildTopology(Properties allProps,
                                   final SpecificAvroSerde<Click> clicksSerde) {
         final StreamsBuilder builder = new StreamsBuilder();
 
-        final String inputTopic = envProps.getProperty("input.topic.name");
-        final String outputTopic = envProps.getProperty("output.topic.name");
+        final String inputTopic = allProps.getProperty("input.topic.name");
+        final String outputTopic = allProps.getProperty("output.topic.name");
 
         // How long we "remember" an event.  During this time, any incoming duplicates of the event
         // will be, well, dropped, thereby de-duplicating the input data.
@@ -180,18 +180,18 @@ public class FindDistinctEvents {
         return builder.build();
     }
 
-    public void createTopics(Properties envProps) {
-        AdminClient client = AdminClient.create(envProps);
+    public void createTopics(Properties allProps) {
+        AdminClient client = AdminClient.create(allProps);
 
         List<NewTopic> topics = new ArrayList<>();
         topics.add(new NewTopic(
-                envProps.getProperty("input.topic.name"),
-                Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-                Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
+                allProps.getProperty("input.topic.name"),
+                Integer.parseInt(allProps.getProperty("input.topic.partitions")),
+                Short.parseShort(allProps.getProperty("input.topic.replication.factor"))));
         topics.add(new NewTopic(
-                envProps.getProperty("output.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+                allProps.getProperty("output.topic.name"),
+                Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+                Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();
