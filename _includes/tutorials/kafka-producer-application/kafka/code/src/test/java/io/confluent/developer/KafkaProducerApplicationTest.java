@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
 import org.apache.kafka.clients.producer.MockProducer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.streams.KeyValue;
 import org.junit.Test;
@@ -21,7 +22,8 @@ public class KafkaProducerApplicationTest {
 
     @Test
     public void testProduce() throws IOException {
-        final MockProducer<String, String> mockProducer = new MockProducer<>();
+        final StringSerializer stringSerializer = new StringSerializer();
+        final MockProducer<String, String> mockProducer = new MockProducer<>(true, stringSerializer, stringSerializer);
         final Properties props = KafkaProducerApplication.loadProperties(TEST_CONFIG_FILE);
         final String topic = props.getProperty("output.topic.name");
         final KafkaProducerApplication producerApp = new KafkaProducerApplication(mockProducer, topic);

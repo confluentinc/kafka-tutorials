@@ -1,6 +1,6 @@
 buildscript {
   repositories {
-    jcenter()
+    mavenCentral()
   }
   dependencies {
     classpath 'com.commercehub.gradle.plugin:gradle-avro-plugin:0.22.0'
@@ -20,7 +20,7 @@ version = '0.0.1'
 
 repositories {
   mavenCentral()
-  jcenter()
+  
 
   maven {
     url 'https://packages.confluent.io/maven'
@@ -33,7 +33,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 dependencies {
   implementation 'org.apache.avro:avro:1.10.1'
   implementation 'org.slf4j:slf4j-simple:1.7.30'
-  implementation 'io.confluent:kafka-streams-avro-serde:5.5.1'
+  implementation 'io.confluent:kafka-streams-avro-serde:6.1.0'
   testImplementation 'junit:junit:4.13.2'
   testImplementation "org.testcontainers:kafka:1.15.2"
 }
