@@ -130,7 +130,7 @@ test:
         - action: make_file
           file: src/test/java/io/confluent/developer/KafkaConsumerApplicationTest.java
           render:
-            file: tutorials/kafka-consumer-application/kafka/markup/test/make-consumer-applicaion-test.adoc
+            file: tutorials/kafka-consumer-application/kafka/markup/test/make-consumer-application-test.adoc
 
     - title: Write a test for the records ConsumerRecordsHandler
       content:
