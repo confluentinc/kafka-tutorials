@@ -18,6 +18,7 @@ import org.apache.kafka.streams.state.WindowStore;
 import org.apache.kafka.streams.state.WindowStoreIterator;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
+import io.confluent.common.utils.TestUtils;
 import io.confluent.developer.avro.Click;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
@@ -134,8 +136,7 @@ public class FindDistinctEvents {
 
     private SpecificAvroSerde<Click> buildClicksSerde(final Properties envProps) {
         final SpecificAvroSerde<Click> serde = new SpecificAvroSerde<>();
-        Map<String, String> config = new HashMap<>();
-        config.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        final Map<String, String> config = (Map)envProps;
         serde.configure(config, false);
         return serde;
     }
@@ -180,9 +181,7 @@ public class FindDistinctEvents {
     }
 
     public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        AdminClient client = AdminClient.create(config);
+        AdminClient client = AdminClient.create(envProps);
 
         List<NewTopic> topics = new ArrayList<>();
         topics.add(new NewTopic(
@@ -198,26 +197,13 @@ public class FindDistinctEvents {
         client.close();
     }
 
-    public static Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-        props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
-
-        return props;
-    }
-
     public static Properties loadEnvProperties(String fileName) throws IOException {
-        Properties envProps = new Properties();
+        Properties allProps = new Properties();
         FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws IOException {
@@ -230,13 +216,18 @@ public class FindDistinctEvents {
     }
 
     private void runRecipe(final String configPath) throws IOException {
-        Properties envProps = loadEnvProperties(configPath);
-        Properties streamProps = buildStreamsProperties(envProps);
+        final Properties allProps = new Properties();
+        try (InputStream inputStream = new FileInputStream(configPath)) {
+            allProps.load(inputStream);
+        }
+        allProps.put(StreamsConfig.APPLICATION_ID_CONFIG, allProps.getProperty("application.id"));
+        allProps.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
 
-        Topology topology = this.buildTopology(envProps, this.buildClicksSerde(envProps));
-        this.createTopics(envProps);
+        final Topology topology = this.buildTopology(allProps, this.buildClicksSerde(allProps));
 
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        this.createTopics(allProps);
+
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.
