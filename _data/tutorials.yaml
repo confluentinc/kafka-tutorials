@@ -19,6 +19,7 @@ filtering:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
+    confluent: enabled
 
 splitting:
   title: "How to split a stream of events into substreams"
