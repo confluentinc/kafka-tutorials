@@ -140,6 +140,7 @@ aggregating-count:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 aggregating-minmax:
   title: "How to find the min/max in a stream of events"
@@ -190,6 +191,7 @@ finding-distinct:
     ksql: enabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 window-final-result:
   title: "Emit a final result from a time window"
