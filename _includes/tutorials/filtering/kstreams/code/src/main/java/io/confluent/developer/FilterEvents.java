@@ -102,7 +102,7 @@ public class FilterEvents {
     Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
       @Override
       public void run() {
-        streams.close();
+        streams.close(Duration.ofSeconds(5));
         latch.countDown();
       }
     });
