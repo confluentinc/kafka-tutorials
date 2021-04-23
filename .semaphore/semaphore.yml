@@ -157,6 +157,10 @@ blocks:
         - name: KSQL aggregation count tests
           commands:
             - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
+        
+        - name: KStreams aggregation count tests
+          commands:
+            - make -C _includes/tutorials/aggregating-count/kstreams/code tutorial
 
         - name: KSQL aggregation MIN/MAX tests
           commands:
