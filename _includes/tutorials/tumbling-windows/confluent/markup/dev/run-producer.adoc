@@ -6,15 +6,7 @@ Start the console producer with this command in a terminal window of its own:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/tumbling-windows/confluent/code/tutorial-steps/dev/console-producer-ratings.sh %}</code></pre>
 +++++
 
-You will be prompted for the Confluent Cloud Schema Registry credentials as shown below, which you can find in the `configuration/ccloud.properties` configuration file.
-Look for the configuration parameter `basic.auth.user.info`, whereby the ":" is the delimiter between the key and secret.
-
-```
-Enter your Schema Registry API key:
-Enter your Schema Registry API secret:
-```
-
-When the producer starts up, copy and paste these lines into the terminal:
+include::_includes/shared/markup/ccloud/ccloud-sr-produce.adoc[]
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/tumbling-windows/kstreams/code/tutorial-steps/dev/ratings.json %}</code></pre>
