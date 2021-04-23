@@ -189,6 +189,7 @@ finding-distinct:
     ksql: enabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 window-final-result:
   title: "Emit a final result from a time window"

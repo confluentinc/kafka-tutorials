@@ -31,20 +31,18 @@ public class FindDistinctEventsTest {
   private final static Path STATE_DIR =
       Paths.get(System.getProperty("user.dir"), "build");
 
-  private final Properties envProps;
-  private final Properties streamProps;
+  private final Properties allProps;
 
   public FindDistinctEventsTest() throws IOException {
-    envProps = FindDistinctEvents.loadEnvProperties(TEST_CONFIG_FILE);
-    streamProps = FindDistinctEvents.buildStreamsProperties(envProps);
-    streamProps.put(StreamsConfig.STATE_DIR_CONFIG, STATE_DIR.toString());
+    allProps = FindDistinctEvents.loadEnvProperties(TEST_CONFIG_FILE);
+    allProps.put(StreamsConfig.STATE_DIR_CONFIG, STATE_DIR.toString());
   }
 
-  private static SpecificAvroSerde<Click> makeSerializer(Properties envProps) {
+  private static SpecificAvroSerde<Click> makeSerializer(Properties allProps) {
     SpecificAvroSerde<Click> serde = new SpecificAvroSerde<>();
     
     Map<String, String> config = new HashMap<>();
-    config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+    config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
     serde.configure(config, false);
 
     return serde;
@@ -55,15 +53,15 @@ public class FindDistinctEventsTest {
 
     final FindDistinctEvents distinctifier = new FindDistinctEvents();
 
-    String inputTopic = envProps.getProperty("input.topic.name");
-    String outputTopic = envProps.getProperty("output.topic.name");
+    String inputTopic = allProps.getProperty("input.topic.name");
+    String outputTopic = allProps.getProperty("output.topic.name");
 
-    final SpecificAvroSerde<Click> clickSerde = makeSerializer(envProps);
+    final SpecificAvroSerde<Click> clickSerde = makeSerializer(allProps);
 
-    Topology topology = distinctifier.buildTopology(envProps, clickSerde);
+    Topology topology = distinctifier.buildTopology(allProps, clickSerde);
     final List<Click> expectedOutput;
     List<Click> actualOutput;
-    try (TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
+    try (TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps)) {
 
       Serializer<String> keySerializer = Serdes.String().serializer();
 
