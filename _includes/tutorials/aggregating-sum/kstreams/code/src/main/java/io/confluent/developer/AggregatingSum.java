@@ -13,6 +13,7 @@ import org.apache.kafka.streams.kstream.Grouped;
 import org.apache.kafka.streams.kstream.Produced;
 
 import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +21,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
+import java.time.Duration;
 
+import io.confluent.common.utils.TestUtils;
 import io.confluent.developer.avro.TicketSale;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
@@ -28,33 +31,19 @@ import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHE
 
 public class AggregatingSum {
 
-  public Properties buildStreamsProperties(Properties envProps) {
-    Properties props = new Properties();
-
-    props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-    props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-    props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-    props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-    props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-    props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
-
-    return props;
-  }
-
-  private SpecificAvroSerde<TicketSale> ticketSaleSerde(final Properties envProps) {
+  private SpecificAvroSerde<TicketSale> ticketSaleSerde(final Properties allProps) {
     final SpecificAvroSerde<TicketSale> serde = new SpecificAvroSerde<>();
-    Map<String, String> config = new HashMap<>();
-    config.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+    Map<String, String> config = (Map)allProps;
     serde.configure(config, false);
     return serde;
   }
 
-  public Topology buildTopology(Properties envProps,
+  public Topology buildTopology(Properties allProps,
                                 final SpecificAvroSerde<TicketSale> ticketSaleSerde) {
     final StreamsBuilder builder = new StreamsBuilder();
 
-    final String inputTopic = envProps.getProperty("input.topic.name");
-    final String outputTopic = envProps.getProperty("output.topic.name");
+    final String inputTopic = allProps.getProperty("input.topic.name");
+    final String outputTopic = allProps.getProperty("output.topic.name");
 
     builder.stream(inputTopic, Consumed.with(Serdes.String(), ticketSaleSerde))
         // Set key to title and value to ticket value
@@ -64,37 +53,35 @@ public class AggregatingSum {
         // Apply SUM aggregation
         .reduce(Integer::sum)
         // Write to stream specified by outputTopic
-        .toStream().to(outputTopic, Produced.with(Serdes.String(), Serdes.Integer()));
+        .toStream().mapValues(v -> v.toString()).to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
 
     return builder.build();
   }
 
-  public void createTopics(Properties envProps) {
-    Map<String, Object> config = new HashMap<>();
-    config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-    AdminClient client = AdminClient.create(config);
+  public void createTopics(Properties allProps) {
+    AdminClient client = AdminClient.create(allProps);
 
     List<NewTopic> topics = new ArrayList<>();
     topics.add(new NewTopic(
-        envProps.getProperty("input.topic.name"),
-        Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-        Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
+        allProps.getProperty("input.topic.name"),
+        Integer.parseInt(allProps.getProperty("input.topic.partitions")),
+        Short.parseShort(allProps.getProperty("input.topic.replication.factor"))));
     topics.add(new NewTopic(
-        envProps.getProperty("output.topic.name"),
-        Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-        Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+        allProps.getProperty("output.topic.name"),
+        Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+        Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
 
     client.createTopics(topics);
     client.close();
   }
 
   public Properties loadEnvProperties(String fileName) throws IOException {
-    Properties envProps = new Properties();
+    Properties allProps = new Properties();
     FileInputStream input = new FileInputStream(fileName);
-    envProps.load(input);
+    allProps.load(input);
     input.close();
 
-    return envProps;
+    return allProps;
   }
 
   public static void main(String[] args) throws IOException {
@@ -107,20 +94,25 @@ public class AggregatingSum {
   }
 
   private void runRecipe(final String configPath) throws IOException {
-    Properties envProps = this.loadEnvProperties(configPath);
-    Properties streamProps = this.buildStreamsProperties(envProps);
+    final Properties allProps = new Properties();
+    try (InputStream inputStream = new FileInputStream(configPath)) {
+      allProps.load(inputStream);
+    }
+    allProps.put(StreamsConfig.APPLICATION_ID_CONFIG, allProps.getProperty("application.id"));
+    allProps.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
+    allProps.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
 
-    Topology topology = this.buildTopology(envProps, this.ticketSaleSerde(envProps));
-    this.createTopics(envProps);
+    Topology topology = this.buildTopology(allProps, this.ticketSaleSerde(allProps));
+    this.createTopics(allProps);
 
-    final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+    final KafkaStreams streams = new KafkaStreams(topology, allProps);
     final CountDownLatch latch = new CountDownLatch(1);
 
     // Attach shutdown handler to catch Control-C.
     Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
       @Override
       public void run() {
-        streams.close();
+        streams.close(Duration.ofSeconds(5));
         latch.countDown();
       }
     });
