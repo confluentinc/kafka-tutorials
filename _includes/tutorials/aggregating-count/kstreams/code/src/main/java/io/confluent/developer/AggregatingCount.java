@@ -53,7 +53,7 @@ public class AggregatingCount {
         // Apply COUNT method
         .count()
         // Write to stream specified by outputTopic
-        .toStream().mapValues(v -> v.toString()).to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
+        .toStream().mapValues(v -> v.toString() + " tickets sold").to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
 
     return builder.build();
   }
