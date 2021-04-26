@@ -211,6 +211,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
 
+        - name: KSQL connect-sink-timestamp tests
+          commands:
+            - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial
+
   - name: Run second block of tests
     execution_time_limit:
       minutes: 10
@@ -367,7 +371,7 @@ blocks:
         - name: KStreams finding distinct events tests
           commands:
             - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
-            
+
         - name: KStreams How to implement TTLs with KTable data tests
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl/kstreams/code tutorial
@@ -375,4 +379,3 @@ blocks:
         - name: KStreams Test Kafka Streams uncaught exception handling tests
           commands:
             - make -C _includes/tutorials/error-handling/kstreams/code tutorial
-
