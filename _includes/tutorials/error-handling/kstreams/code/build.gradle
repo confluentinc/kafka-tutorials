@@ -1,0 +1,64 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.22.0"
+        classpath "com.github.jengelman.gradle.plugins:shadow:6.0.0"
+    }
+}
+
+plugins {
+    id "java"
+    id "com.google.cloud.tools.jib" version "2.8.0"
+    id "idea"
+    id "eclipse"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+version = "0.0.1"
+
+repositories {
+    mavenCentral()
+
+    maven {
+        url "https://packages.confluent.io/maven"
+    }
+}
+
+apply plugin: "com.commercehub.gradle.plugin.avro"
+apply plugin: "com.github.johnrengelman.shadow"
+
+dependencies {
+    implementation "org.apache.avro:avro:1.10.2"
+    implementation "org.slf4j:slf4j-simple:1.7.30"
+    implementation "org.apache.kafka:kafka-streams:2.8.0"
+    implementation "org.apache.kafka:kafka-clients:2.8.0"
+    
+    testImplementation "org.apache.kafka:kafka-streams-test-utils:2.8.0"
+    testImplementation "junit:junit:4.13.2"
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+}
+
+test {
+    testLogging {
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+        exceptionFormat = "full"
+    }
+}
+
+jar {
+  manifest {
+    attributes(
+      "Class-Path": configurations.compileClasspath.collect { it.getName() }.join(" "),
+      "Main-Class": "io.confluent.developer.StreamsUncaughtExceptionHandling"
+    )
+  }
+}
+
+shadowJar {
+    archiveBaseName = "error-handling-standalone"
+    archiveClassifier = ''
+}

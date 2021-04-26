@@ -60,6 +60,7 @@ TEST_HARNESS_DIR=$KT_HOME/_data/harnesses
 ORIG_TUTORIAL_BASE_DIR_NAME=$(echo ${ORIG_TUTORIAL} | cut -d '/' -f 1)
 SINGLE_TYPE_CLONE=$(echo ${ORIG_TUTORIAL} | cut -d '/' -s  -f 2)
 
+
 if [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/ksql" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kstreams" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kafka" ]; then
 	echo "An existing tutorial for ksql, kstreams, and kafka  exists for ${KT_HOME}/${NEW_TUTORIAL}, so quitting now"
 	exit 1
@@ -131,6 +132,17 @@ echo "Completed with the name replacements"
 echo "Doing name replacements on test harness files"
 
 bash -c "find $TEST_HARNESS_DIR/$NEW_TUTORIAL -type f -print0 | xargs -0  perl -pi -e 's/${ORIG_TUTORIAL_BASE_DIR_NAME}/${NEW_TUTORIAL}/g'"
+
+if [ ! -z "${OLD_MAIN_CLASS}" ] && [ ! -z "${NEW_MAIN_CLASS}" ]; then
+	echo "Replacing ${OLD_MAIN_CLASS} with ${NEW_MAIN_CLASS}"
+
+	bash -c "find $TUTORIALS_DIR/$NEW_TUTORIAL -type f -print0 | xargs -0  perl -pi -e 's/${OLD_MAIN_CLASS}/${NEW_MAIN_CLASS}/g'"
+
+	bash -c "find $TEST_HARNESS_DIR/$NEW_TUTORIAL -type f -print0 | xargs -0  perl -pi -e 's/${OLD_MAIN_CLASS}/${NEW_MAIN_CLASS}/g'"
+
+else
+    echo "An old Java class name wasn't provided and/or a new class name isn't provided so no Java class name replacements done"
+fi	
 
 echo "Completed with the name test harness replacements"
 

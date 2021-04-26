@@ -81,7 +81,7 @@ dev:
             file: tutorials/aggregating-count/kstreams/markup/dev/make-src-dir.adoc
 
         - action: make_file
-          file: src/main/java/io/confluent/developer/AggregatingSum.java
+          file: src/main/java/io/confluent/developer/AggregatingCount.java
           render:
             file: tutorials/aggregating-count/kstreams/markup/dev/make-topology.adoc
 
@@ -136,7 +136,7 @@ test:
             file: tutorials/aggregating-count/kstreams/markup/test/make-test-dir.adoc
 
         - action: make_file
-          file: src/test/java/io/confluent/developer/AggregatingSumTest.java
+          file: src/test/java/io/confluent/developer/AggregatingCountTest.java
           render:
             file: tutorials/aggregating-count/kstreams/markup/test/make-test.adoc
 

@@ -139,6 +139,7 @@ aggregating-count:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 aggregating-minmax:
   title: "How to find the min/max in a stream of events"
@@ -189,6 +190,7 @@ finding-distinct:
     ksql: enabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 window-final-result:
   title: "Emit a final result from a time window"
@@ -678,6 +680,25 @@ schedule-ktable-ttl:
   slug: "/schedule-ktable-ttl"
   question: "Do you have a requirement to delete KTable data (in the topic and in the state store) based on TTL?"
   introduction: "You have a KStreams application or ksqlDB application which uses KTables from a topic in Kafka. You may want to purge older data if it is considered to be too old or to manage the size of the topic and the state store. Although the Kafka Streams API does not natively include any notion of a TTL (Time To Live) for KTables, this tutorial shows you how to expire message by making clever use of tombstones and writing them out to topics underlying the KTable, using a state store containing TTLs"
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
+error-handling:
+  title: "Handling uncaught exceptions"
+  meta-description: "Handling uncaught exceptions"
+  slug: "/error-handling"
+  question: "How do I handle uncaught exceptions?"
+  introduction: "You have an event streaming application and you want to make sure it's robust in the face of unexpected errors.  Depending on the situation, you'll either want the application to either continue running or shut down.  In this tutorial you'll learn how to use the `StreamsUncaughtExceptionHandler` to provide this functionality."
   status:
     ksql: disabled
     kstreams: enabled
