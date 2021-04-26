@@ -3,7 +3,7 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-Before you create the Kafka Streams application file let's go over the key points of the application.  In this tutotorial we want to 
+Before you create the Kafka Streams application file let's go over the key points of the application.  In this tutorial we want to
 show how a KTable loaded from an input topic can have its data periodically purged via use of a transformer. The example shows a fixed
 TTL per key based on the last update for that key. This may or may not serve all needs but it is sufficient to illustrate the 
 mechanism via which we can purge data from a KTable. The transformer use a state store to store the last updated time seen for a key 

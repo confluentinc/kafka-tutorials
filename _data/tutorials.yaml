@@ -139,6 +139,7 @@ aggregating-count:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 aggregating-minmax:
   title: "How to find the min/max in a stream of events"
@@ -189,6 +190,7 @@ finding-distinct:
     ksql: enabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 window-final-result:
   title: "Emit a final result from a time window"
@@ -660,6 +662,17 @@ sliding-windows:
     ruby: disabled
     scala: disabled
     swift: disabled
+
+
+connect-sink-timestamp:
+  title: "Timezone conversion and Kafka Connect JDBC sink"
+  meta-description: "How can I convert a timestamp into a different timezone and sync that data to Postgres?"
+  slug: "/connect-sink-timestamp"
+  question: "How can I convert a timestamp into a different timezone and sync that data to Postgres?"
+  introduction: "Consider the requirement to create reports from a database, for which all of the timestamps must be in a timezone which happens to be different from the timezone of the Kafka data source. This examples shows how you can convert timestamp data into another timezone and use a Kafka connector to send that data to Postgres database."
+  status:
+    ksql: enabled
+    kstreams: disabled
 
 schedule-ktable-ttl:
   title: "How to implement TTL-based cleanup to expire data in a KTable"

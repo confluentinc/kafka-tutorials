@@ -157,6 +157,10 @@ blocks:
         - name: KSQL aggregation count tests
           commands:
             - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
+        
+        - name: KStreams aggregation count tests
+          commands:
+            - make -C _includes/tutorials/aggregating-count/kstreams/code tutorial
 
         - name: KSQL aggregation MIN/MAX tests
           commands:
@@ -206,6 +210,10 @@ blocks:
         - name: Kafka Test Kafka Producer with Callbacks tests
           commands:
             - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
+
+        - name: KSQL connect-sink-timestamp tests
+          commands:
+            - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial
 
   - name: Run second block of tests
     execution_time_limit:
@@ -363,7 +371,7 @@ blocks:
         - name: KStreams finding distinct events tests
           commands:
             - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
-            
+
         - name: KStreams How to implement TTLs with KTable data tests
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl/kstreams/code tutorial
@@ -371,4 +379,3 @@ blocks:
         - name: KStreams Test Kafka Streams uncaught exception handling tests
           commands:
             - make -C _includes/tutorials/error-handling/kstreams/code tutorial
-
