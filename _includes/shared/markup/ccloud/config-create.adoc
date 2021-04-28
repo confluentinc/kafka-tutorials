@@ -1,12 +1,6 @@
-From the Confluent Cloud UI, navigate to your Kafka cluster and click on ``Clients``.
-Create credentials for the Kafka cluster and Schema Registry:
+From the Confluent Cloud UI, navigate to your Kafka cluster and click on ``Clients`` and then select ``Java``.
 
-- ``Create Kafka cluster API key & secret``
-
-- ``Create Schema Registry API key & secret``
-
-Select ``Java`` as the client.
-Confluent Cloud will show a configuration similar to below, but with your credentials populated (make sure ``show API keys`` is checked).
+Create new credentials for your Kafka cluster and Schema Registry, and then Confluent Cloud will show a configuration similar to below with your new credentials automatically populated (make sure ``show API keys`` is checked).
 Copy and paste it into a `configuration/ccloud.properties` file on your machine.
 
 +++++
