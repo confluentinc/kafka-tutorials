@@ -1,0 +1,13 @@
+Using the same window, now run the following command to produce records to the second topic
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/cogrouping-streams/confluent/code/tutorial-steps/dev/ccloud-produce-two.sh %}</code></pre>
++++++
+
+To send all of the events below, paste the following into the prompt and press enter:
+
++++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/cogrouping-streams/kstreams/code/tutorial-steps/dev/input-app-two.json %}</code></pre>
++++++
+
+After you've sent the records you can use `CTRL+C` to close this producer.

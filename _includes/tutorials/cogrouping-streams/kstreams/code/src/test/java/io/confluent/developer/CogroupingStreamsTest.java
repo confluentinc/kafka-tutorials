@@ -31,32 +31,25 @@ public class CogroupingStreamsTest {
     @Test
     public void cogroupingTest() throws IOException {
         final CogroupingStreams instance = new CogroupingStreams();
-        final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
+        final Properties allProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
 
-        final Properties streamProps = instance.buildStreamsProperties(envProps);
-
-        final String appOneInputTopicName = envProps.getProperty("app-one.topic.name");
-        final String appTwoInputTopicName = envProps.getProperty("app-two.topic.name");
-        final String appThreeInputTopicName = envProps.getProperty("app-three.topic.name");
-        final String totalResultOutputTopicName = envProps.getProperty("output.topic.name");
+        final String appOneInputTopicName = allProps.getProperty("app-one.topic.name");
+        final String appTwoInputTopicName = allProps.getProperty("app-two.topic.name");
+        final String appThreeInputTopicName = allProps.getProperty("app-three.topic.name");
+        final String totalResultOutputTopicName = allProps.getProperty("output.topic.name");
       
-        final Topology topology = instance.buildTopology(envProps);
-        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
+        final Topology topology = instance.buildTopology(allProps);
+        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps)) {
 
-            final Serde<String> stringAvroSerde = CogroupingStreams.getPrimitiveAvroSerde(envProps, true);
-            final SpecificAvroSerde<LoginEvent> loginEventSerde = CogroupingStreams.getSpecificAvroSerde(envProps);
-            final SpecificAvroSerde<LoginRollup> rollupSerde = CogroupingStreams.getSpecificAvroSerde(envProps);
-
-            final Serializer<String> keySerializer = stringAvroSerde.serializer();
-            final Deserializer<String> keyDeserializer = stringAvroSerde.deserializer();
+            final SpecificAvroSerde<LoginEvent> loginEventSerde = CogroupingStreams.getSpecificAvroSerde(allProps);
+            final SpecificAvroSerde<LoginRollup> rollupSerde = CogroupingStreams.getSpecificAvroSerde(allProps);
             final Serializer<LoginEvent> loginEventSerializer = loginEventSerde.serializer();
 
+            final TestInputTopic<String, LoginEvent>  appOneInputTopic = testDriver.createInputTopic(appOneInputTopicName, Serdes.String(), loginEventSerializer);
+            final TestInputTopic<String, LoginEvent>  appTwoInputTopic = testDriver.createInputTopic(appTwoInputTopicName, Serdes.String(), loginEventSerializer);
+            final TestInputTopic<String, LoginEvent>  appThreeInputTopic = testDriver.createInputTopic(appThreeInputTopicName, Serdes.String(), loginEventSerializer);
 
-            final TestInputTopic<String, LoginEvent>  appOneInputTopic = testDriver.createInputTopic(appOneInputTopicName, keySerializer, loginEventSerializer);
-            final TestInputTopic<String, LoginEvent>  appTwoInputTopic = testDriver.createInputTopic(appTwoInputTopicName, keySerializer, loginEventSerializer);
-            final TestInputTopic<String, LoginEvent>  appThreeInputTopic = testDriver.createInputTopic(appThreeInputTopicName, keySerializer, loginEventSerializer);
-
-            final TestOutputTopic<String, LoginRollup> outputTopic = testDriver.createOutputTopic(totalResultOutputTopicName, keyDeserializer, rollupSerde.deserializer());
+            final TestOutputTopic<String, LoginRollup> outputTopic = testDriver.createOutputTopic(totalResultOutputTopicName, Serdes.String(), rollupSerde.deserializer());
 
 
             final List<LoginEvent> appOneEvents = new ArrayList<>();

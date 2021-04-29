@@ -115,32 +115,24 @@ dev:
 
     - title: Produce sample data to the input topics
       content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/input.json
+        - action: skip
           render:
-            file: tutorials/cogrouping-streams/kstreams/markup/dev/run-producer.adoc
+            file: tutorials/cogrouping-streams/confluent/markup/dev/run-producer.adoc
 
-        - action: execute
-          file: tutorial-steps/dev/console-producer-app-two.sh
-          stdin: tutorial-steps/dev/input-app-two.json
+        - action: skip
           render:
-            file: tutorials/cogrouping-streams/kstreams/markup/dev/run-producer-app-two.adoc
+            file: tutorials/cogrouping-streams/confluent/markup/dev/run-producer-app-two.adoc
 
-        - action: execute
-          file: tutorial-steps/dev/console-producer-app-three.sh
-          stdin: tutorial-steps/dev/input-app-three.json
+        - action: skip
           render:
-            file: tutorials/cogrouping-streams/kstreams/markup/dev/run-producer-app-three.adoc
+            file: tutorials/cogrouping-streams/confluent/markup/dev/run-producer-app-three.adoc
 
 
     - title: Consume data from the output topic
       content:
-        - action: execute_async
-          file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.json
+        - action: skip
           render:
-            file: tutorials/cogrouping-streams/kstreams/markup/dev/run-consumer.adoc
+            file: tutorials/cogrouping-streams/confluent/markup/dev/run-consumer.adoc
 
     - title: Teardown Confluent Cloud resources
       content:
