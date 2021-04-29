@@ -1,0 +1,129 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/answer/short-answer.adoc
+
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/init.adoc
+
+    - title: Set up environment
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Convert column to TIMESTAMP data type
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 25
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/start-cli.adoc
+          stdin:
+            - file: tutorial-steps/dev/set-properties_offset.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/set-properties_offset.adoc
+
+            - file: tutorial-steps/dev/create-stream.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-stream.adoc
+
+            - file: tutorial-steps/dev/insert-data.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/insert-data.adoc
+
+            - file: tutorial-steps/dev/describe-raw-stream.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/describe-raw-stream.adoc
+
+            - file: tutorial-steps/dev/select-from-stream-unix.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/select-from-stream-unix.adoc
+
+            - file: tutorial-steps/dev/create-stream-ts.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-stream-ts.adoc
+
+    - title: Convert column to different timezone
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 25
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/select-from-ts.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/select-from-ts.adoc
+
+            - file: tutorial-steps/dev/create-from-stream.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-from-stream.adoc
+
+    - title: Create Postgres sink connector
+      content:
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 25
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/create-sink-connector.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/create-sink-connector.adoc
+
+            - file: tutorial-steps/dev/show-connector.sql
+              render:
+                file: tutorials/connect-sink-timestamp/ksql/markup/dev/show-connector.adoc
+
+    - title: Query the data in Postgres
+      content:
+        - action: execute
+          file: tutorial-steps/dev/query-sink.sh
+          stdout: tutorial-steps/dev/outputs/query-sink-output.log
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/query-sink.adoc
+
+    - title: Clean up
+      content:
+        - action: execute
+          file: tutorial-steps/dev/clean-up.sh
+          render:
+            file: tutorials/connect-sink-timestamp/ksql/markup/dev/clean-up.adoc
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc

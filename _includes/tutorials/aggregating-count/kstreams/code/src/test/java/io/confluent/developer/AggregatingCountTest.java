@@ -69,8 +69,11 @@ public class AggregatingCountTest {
     testDriver
         .createInputTopic(inputTopic, keySerializer, ticketSaleSpecificAvroSerde.serializer())
         .pipeValueList(input);
+
+    final String outputLabel = " tickets sold";    
     
-    List<String> expectedOutput = new ArrayList<String>(Arrays.asList("1", "2", "1", "3", "2", "1", "2", "3", "4"));
+    List<String> originalCounts = new ArrayList<String>(Arrays.asList("1", "2", "1", "3", "2", "1", "2", "3", "4"));
+    List<String> expectedOutput = originalCounts.stream().map(v -> v + outputLabel).collect(Collectors.toList());
 
     final List<KeyValue<String, String>> keyValues =
         testDriver
@@ -81,7 +84,7 @@ public class AggregatingCountTest {
     actualOutput = keyValues
         .stream()
         .filter(record -> record.value != null)
-        .map(record -> record.value.toString())
+        .map(record -> record.value)
         .collect(Collectors.toList());
     
 //    System.out.println(actualOutput);
