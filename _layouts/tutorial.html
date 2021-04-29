@@ -49,6 +49,11 @@
       <h3 class="title">Code example:</h3>
       <div class="cflt-options">
         <select>
+          {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html" {% if page.stack == 'confluent' %} selected {% endif %}>
+          Confluent
+          </option>
+          {% endif %}
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html" {% if page.stack == 'ksql' %} selected {% endif %}>
             ksqlDB
@@ -94,15 +99,15 @@
           Groovy
           </option>
           {% endif %}
-          {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html" {% if page.stack == 'confluent' %} selected {% endif %}>
-          Confluent
-          </option>
-          {% endif %}
         </select>
       </div>
       <div class="cflt-tabs">
         <div class="buttons">
+          {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
+          <a class="button {% if page.stack == 'confluent' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html">
+            Confluent
+          </a>
+          {% endif %}
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html">
             ksqlDB
@@ -146,11 +151,6 @@
           {% if site.data.tutorials[page.static_data].status.groovy == 'enabled' %}
           <a class="button {% if page.stack == 'groovy' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/groovy.html">
             Groovy
-          </a>
-          {% endif %}
-          {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
-          <a class="button {% if page.stack == 'confluent' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html">
-            Confluent
           </a>
           {% endif %}
         </div>
