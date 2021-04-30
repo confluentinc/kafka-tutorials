@@ -15,7 +15,6 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.TreeMap;
 import org.apache.kafka.common.serialization.Deserializer;
-import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.streams.TestInputTopic;
@@ -44,13 +43,17 @@ public class CogroupingStreamsTest {
 
             final SpecificAvroSerde<LoginEvent> loginEventSerde = CogroupingStreams.getSpecificAvroSerde(allProps);
             final SpecificAvroSerde<LoginRollup> rollupSerde = CogroupingStreams.getSpecificAvroSerde(allProps);
+
+            final Serializer<String> keySerializer = Serdes.String().serializer();
+            final Deserializer<String> keyDeserializer = Serdes.String().deserializer();
             final Serializer<LoginEvent> loginEventSerializer = loginEventSerde.serializer();
 
-            final TestInputTopic<String, LoginEvent>  appOneInputTopic = testDriver.createInputTopic(appOneInputTopicName, Serdes.String(), loginEventSerializer);
-            final TestInputTopic<String, LoginEvent>  appTwoInputTopic = testDriver.createInputTopic(appTwoInputTopicName, Serdes.String(), loginEventSerializer);
-            final TestInputTopic<String, LoginEvent>  appThreeInputTopic = testDriver.createInputTopic(appThreeInputTopicName, Serdes.String(), loginEventSerializer);
 
-            final TestOutputTopic<String, LoginRollup> outputTopic = testDriver.createOutputTopic(totalResultOutputTopicName, Serdes.String(), rollupSerde.deserializer());
+            final TestInputTopic<String, LoginEvent>  appOneInputTopic = testDriver.createInputTopic(appOneInputTopicName, keySerializer, loginEventSerializer);
+            final TestInputTopic<String, LoginEvent>  appTwoInputTopic = testDriver.createInputTopic(appTwoInputTopicName, keySerializer, loginEventSerializer);
+            final TestInputTopic<String, LoginEvent>  appThreeInputTopic = testDriver.createInputTopic(appThreeInputTopicName, keySerializer, loginEventSerializer);
+
+            final TestOutputTopic<String, LoginRollup> outputTopic = testDriver.createOutputTopic(totalResultOutputTopicName, keyDeserializer, rollupSerde.deserializer());
 
 
             final List<LoginEvent> appOneEvents = new ArrayList<>();
