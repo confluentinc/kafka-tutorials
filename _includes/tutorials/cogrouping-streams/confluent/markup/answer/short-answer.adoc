@@ -1,1 +1,19 @@
-blah
+Use a combination of `cogroup` and and `aggregate` functions as seen below.
+
+++++
+<pre class="snippet">
+    <code class="java">
+        final Aggregator&lt;String, LoginEvent, LoginRollup&gt; loginAggregator = new LoginAggregator();
+
+        final KGroupedStream&lt;String, LoginEvent&gt; appOneGrouped = appOneStream.groupByKey();
+        final KGroupedStream&lt;String, LoginEvent&gt; appTwoGrouped = appTwoStream.groupByKey();
+        final KGroupedStream&lt;String, LoginEvent&gt; appThreeGrouped = appThreeStream.groupByKey();
+
+        appOneGrouped.cogroup(loginAggregator)
+            .cogroup(appTwoGrouped, loginAggregator)
+            .cogroup(appThreeGrouped, loginAggregator)
+            .aggregate(() -&gt; new LoginRollup(new HashMap&lt;>()), Materialized.with(Serdes.String(), loginRollupSerde))
+            .toStream().to(totalResultOutputTopic, Produced.with(stringSerde, loginRollupSerde));
+    </code>
+</pre>
+++++
