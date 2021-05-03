@@ -1,4 +1,4 @@
-Use a combination of `cogroup` and and `aggregate` functions as seen below.
+Use a combination of `cogroup` and and `aggregate` methods as shown below.
 
 ++++
 <pre class="snippet">
