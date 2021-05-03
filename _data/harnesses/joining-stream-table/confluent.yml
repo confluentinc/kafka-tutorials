@@ -116,27 +116,21 @@ dev:
 
     - title: Load in some movie reference data
       content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer-movies.sh
-          stdin: tutorial-steps/dev/movies.json
+        - action: skip
           render:
-            file: tutorials/joining-stream-table/kstreams/markup/dev/run-movies-producer.adoc
+            file: tutorials/joining-stream-table/confluent/markup/dev/ccloud-produce-movies.adoc
 
     - title: Get ready to observe the rated movies in the output topic
       content:
-        - action: execute_async
-          file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/rated-movies.json
+        - action: skip
           render:
-            file: tutorials/joining-stream-table/kstreams/markup/dev/run-consumer.adoc
+            file: tutorials/joining-stream-table/confluent/markup/dev/ccloud-consume-rated-movies.adoc
 
     - title: Produce some ratings to the input topic
       content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer-ratings.sh
-          stdin: tutorial-steps/dev/ratings.json
+        - action: skip
           render:
-            file: tutorials/joining-stream-table/kstreams/markup/dev/run-ratings-producer.adoc
+            file: tutorials/joining-stream-table/confluent/markup/dev/ccloud-produce-ratings.adoc
 
     - title: Teardown Confluent Cloud resources
       content:
