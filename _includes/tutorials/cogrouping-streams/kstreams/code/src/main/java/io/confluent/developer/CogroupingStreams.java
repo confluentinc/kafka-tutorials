@@ -171,7 +171,6 @@ public class CogroupingStreams {
             this.properties = properties;
         }
 
-        @SuppressWarnings("unchecked")
         public void generate() {
             properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
             properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
@@ -205,7 +204,7 @@ public class CogroupingStreams {
 
                 entryData.forEach((topic, list) ->
                     list.forEach(message ->
-                        producer.send(new ProducerRecord<String, LoginEvent>(topic, message.app_id, message), (metadata, exception) -> {
+                        producer.send(new ProducerRecord<String, LoginEvent>(topic, message.getAppId(), message), (metadata, exception) -> {
                             if (exception != null) {
                                 exception.printStackTrace(System.out);
                             } else {
