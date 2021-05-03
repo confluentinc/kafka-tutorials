@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,14 @@ import java.util.concurrent.CountDownLatch;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.producer.Producer;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
@@ -35,6 +42,7 @@ import org.apache.kafka.streams.kstream.Produced;
 
 public class CogroupingStreams {
 
+
     public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
         final String appOneInputTopic = allProps.getProperty("app-one.topic.name");
@@ -42,13 +50,14 @@ public class CogroupingStreams {
         final String appThreeInputTopic = allProps.getProperty("app-three.topic.name");
         final String totalResultOutputTopic = allProps.getProperty("output.topic.name");
 
+        final Serde<String> stringSerde = getPrimitiveAvroSerde(allProps, true);
         final Serde<LoginEvent> loginEventSerde = getSpecificAvroSerde(allProps);
         final Serde<LoginRollup> loginRollupSerde = getSpecificAvroSerde(allProps);
 
 
-        final KStream<String, LoginEvent> appOneStream = builder.stream(appOneInputTopic, Consumed.with(Serdes.String(), loginEventSerde));
-        final KStream<String, LoginEvent> appTwoStream = builder.stream(appTwoInputTopic, Consumed.with(Serdes.String(), loginEventSerde));
-        final KStream<String, LoginEvent> appThreeStream = builder.stream(appThreeInputTopic, Consumed.with(Serdes.String(), loginEventSerde));
+        final KStream<String, LoginEvent> appOneStream = builder.stream(appOneInputTopic, Consumed.with(stringSerde, loginEventSerde));
+        final KStream<String, LoginEvent> appTwoStream = builder.stream(appTwoInputTopic, Consumed.with(stringSerde, loginEventSerde));
+        final KStream<String, LoginEvent> appThreeStream = builder.stream(appThreeInputTopic, Consumed.with(stringSerde, loginEventSerde));
 
         final Aggregator<String, LoginEvent, LoginRollup> loginAggregator = new LoginAggregator();
 
@@ -60,42 +69,50 @@ public class CogroupingStreams {
             .cogroup(appTwoGrouped, loginAggregator)
             .cogroup(appThreeGrouped, loginAggregator)
             .aggregate(() -> new LoginRollup(new HashMap<>()), Materialized.with(Serdes.String(), loginRollupSerde))
-            .toStream().to(totalResultOutputTopic, Produced.with(Serdes.String(), loginRollupSerde));
+            .toStream().to(totalResultOutputTopic, Produced.with(stringSerde, loginRollupSerde));
 
         return builder.build();
     }
 
+    @SuppressWarnings("unchecked")
+    static <T> Serde<T> getPrimitiveAvroSerde(final Properties allProps, boolean isKey) {
+        final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
+        final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
+        deserializer.configure((Map)allProps, isKey);
+        serializer.configure((Map)allProps, isKey);
+        return (Serde<T>)Serdes.serdeFrom(serializer, deserializer);
+    }
+
     static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties allProps) {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
-        final Map<String, String> serdeConfig = (Map)allProps;
-        specificAvroSerde.configure(serdeConfig, false);
+        specificAvroSerde.configure((Map)allProps, false);
         return specificAvroSerde;
     }
 
     public void createTopics(final Properties allProps) {
         try (final AdminClient client = AdminClient.create(allProps)) {
 
-        final List<NewTopic> topics = new ArrayList<>();
+            final List<NewTopic> topics = new ArrayList<>();
 
             topics.add(new NewTopic(
-                    allProps.getProperty("app-one.topic.name"),
-                    Integer.parseInt(allProps.getProperty("app-one.topic.partitions")),
-                    Short.parseShort(allProps.getProperty("app-one.topic.replication.factor"))));
+                allProps.getProperty("app-one.topic.name"),
+                Integer.parseInt(allProps.getProperty("app-one.topic.partitions")),
+                Short.parseShort(allProps.getProperty("app-one.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                    allProps.getProperty("app-two.topic.name"),
-                    Integer.parseInt(allProps.getProperty("app-two.topic.partitions")),
-                    Short.parseShort(allProps.getProperty("app-two.topic.replication.factor"))));
+                allProps.getProperty("app-two.topic.name"),
+                Integer.parseInt(allProps.getProperty("app-two.topic.partitions")),
+                Short.parseShort(allProps.getProperty("app-two.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                    allProps.getProperty("app-three.topic.name"),
-                    Integer.parseInt(allProps.getProperty("app-three.topic.partitions")),
-                    Short.parseShort(allProps.getProperty("app-three.topic.replication.factor"))));
+                allProps.getProperty("app-three.topic.name"),
+                Integer.parseInt(allProps.getProperty("app-three.topic.partitions")),
+                Short.parseShort(allProps.getProperty("app-three.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                    allProps.getProperty("output.topic.name"),
-                    Integer.parseInt(allProps.getProperty("output.topic.partitions")),
-                    Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
+                allProps.getProperty("output.topic.name"),
+                Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+                Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
 
             client.createTopics(topics);
         }
@@ -118,11 +135,12 @@ public class CogroupingStreams {
 
         final CogroupingStreams instance = new CogroupingStreams();
         final Properties allProps = instance.loadEnvProperties(args[0]);
-        allProps.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
-        allProps.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 10 * 1024 * 1024);
         final Topology topology = instance.buildTopology(allProps);
 
         instance.createTopics(allProps);
+
+        TutorialDataGenerator dataGenerator = new TutorialDataGenerator(allProps);
+        dataGenerator.generate();
 
         final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
@@ -143,6 +161,60 @@ public class CogroupingStreams {
             System.exit(1);
         }
         System.exit(0);
+    }
+
+    static class TutorialDataGenerator {
+        final Properties properties;
+
+
+        public TutorialDataGenerator(final Properties properties) {
+            this.properties = properties;
+        }
+
+        public void generate() {
+            properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+            properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+
+            try (Producer<String, LoginEvent> producer = new KafkaProducer<String, LoginEvent>(properties)) {
+                HashMap<String, List<LoginEvent>> entryData = new HashMap<>();
+
+                List<LoginEvent> messages1 = Arrays.asList(new LoginEvent("one", "Ted", 12456L),
+                    new LoginEvent("one", "Ted", 12457L),
+                    new LoginEvent("one", "Carol", 12458L),
+                    new LoginEvent("one", "Carol", 12458L),
+                    new LoginEvent("one", "Alice", 12458L),
+                    new LoginEvent("one", "Carol", 12458L));
+                final String topic1 = properties.getProperty("app-one.topic.name");
+                entryData.put(topic1, messages1);
+
+                List<LoginEvent> messages2 = Arrays.asList(new LoginEvent("two", "Bob", 12456L),
+                    new LoginEvent("two", "Carol", 12457L),
+                    new LoginEvent("two", "Ted", 12458L),
+                    new LoginEvent("two", "Carol", 12459L));
+                final String topic2 = properties.getProperty("app-two.topic.name");
+                entryData.put(topic2, messages2);
+
+                List<LoginEvent> messages3 = Arrays.asList(new LoginEvent("three", "Bob", 12456L),
+                    new LoginEvent("three", "Alice", 12457L),
+                    new LoginEvent("three", "Alice", 12458L),
+                    new LoginEvent("three", "Carol", 12459L));
+                final String topic3 = properties.getProperty("app-three.topic.name");
+                entryData.put(topic3, messages3);
+
+
+                entryData.forEach((topic, list) ->
+                    list.forEach(message ->
+                        producer.send(new ProducerRecord<String, LoginEvent>(topic, message.app_id, message), (metadata, exception) -> {
+                            if (exception != null) {
+                                exception.printStackTrace(System.out);
+                            } else {
+                                System.out.printf("Produced record at offset %d to topic %s %n", metadata.offset(), metadata.topic());
+                            }
+                        })
+                    )
+                );
+            }
+        }
     }
 
 }

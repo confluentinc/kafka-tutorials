@@ -113,21 +113,6 @@ dev:
           render:
             file: tutorials/cogrouping-streams/kstreams/markup/dev/run-dev-app.adoc
 
-    - title: Produce sample data to the input topics
-      content:
-        - action: skip
-          render:
-            file: tutorials/cogrouping-streams/confluent/markup/dev/run-producer.adoc
-
-        - action: skip
-          render:
-            file: tutorials/cogrouping-streams/confluent/markup/dev/run-producer-app-two.adoc
-
-        - action: skip
-          render:
-            file: tutorials/cogrouping-streams/confluent/markup/dev/run-producer-app-three.adoc
-
-
     - title: Consume data from the output topic
       content:
         - action: skip
