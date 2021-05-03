@@ -171,6 +171,7 @@ public class CogroupingStreams {
             this.properties = properties;
         }
 
+        @SuppressWarnings("unchecked")
         public void generate() {
             properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
             properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
