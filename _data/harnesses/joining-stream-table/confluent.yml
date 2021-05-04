@@ -1,4 +1,10 @@
-
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/joining-stream-table/kstreams/markup/answer/short-answer.adoc
 
 dev:
   steps:
