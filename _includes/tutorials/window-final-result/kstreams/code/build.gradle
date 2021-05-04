@@ -42,7 +42,7 @@ dependencies {
     implementation group: 'io.confluent', name: 'kafka-streams-avro-serde', version: '6.1.1'
 
     testImplementation "junit:junit:4.13.2"
-    testImplementation "org.apache.kafka:kafka-streams-test-utils:2.7.0"
+    testImplementation "org.apache.kafka:kafka-streams-test-utils:6.1.1-ce"
     testImplementation "com.github.grantwest.eventually:hamcrest-eventually-matchers:0.0.3"
 
     // helpers

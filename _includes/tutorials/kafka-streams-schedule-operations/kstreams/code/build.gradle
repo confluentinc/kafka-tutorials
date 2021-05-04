@@ -42,7 +42,7 @@ dependencies {
         exclude group:'org.apache.kafka', module: 'kafka-clients'
     }
     implementation "org.apache.kafka:kafka-clients:2.7.0"
-    testImplementation "org.apache.kafka:kafka-streams-test-utils:2.7.0"
+    testImplementation "org.apache.kafka:kafka-streams-test-utils:6.1.1-ce"
     testImplementation "junit:junit:4.13.2"
     testImplementation 'org.hamcrest:hamcrest:2.2'
 }

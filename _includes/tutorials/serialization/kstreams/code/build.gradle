@@ -41,7 +41,7 @@ dependencies {
   implementation "io.confluent:kafka-streams-protobuf-serde:6.1.0"
   implementation 'com.google.code.gson:gson:2.8.6'
 
-  testImplementation "org.apache.kafka:kafka-streams-test-utils:2.7.0"
+  testImplementation "org.apache.kafka:kafka-streams-test-utils:6.1.1-ce"
   testImplementation 'junit:junit:4.13.2'
   testImplementation 'org.assertj:assertj-core:3.19.0'
 }
