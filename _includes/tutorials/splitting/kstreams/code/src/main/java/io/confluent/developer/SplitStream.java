@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
@@ -25,72 +26,58 @@ import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHE
 
 public class SplitStream {
 
-    public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-
-        return props;
-    }
-
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String inputTopic = envProps.getProperty("input.topic.name");
+        final String inputTopic = allProps.getProperty("input.topic.name");
 
         KStream<String, ActingEvent>[] branches = builder.<String, ActingEvent>stream(inputTopic)
                 .branch((key, appearance) -> "drama".equals(appearance.getGenre()),
                         (key, appearance) -> "fantasy".equals(appearance.getGenre()),
                         (key, appearance) -> true);
 
-        branches[0].to(envProps.getProperty("output.drama.topic.name"));
-        branches[1].to(envProps.getProperty("output.fantasy.topic.name"));
-        branches[2].to(envProps.getProperty("output.other.topic.name"));
+        branches[0].to(allProps.getProperty("output.drama.topic.name"));
+        branches[1].to(allProps.getProperty("output.fantasy.topic.name"));
+        branches[2].to(allProps.getProperty("output.other.topic.name"));
 
         return builder.build();
     }
 
-    public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        AdminClient client = AdminClient.create(config);
+    public void createTopics(Properties allProps) {
+        AdminClient client = AdminClient.create(allProps);
 
         List<NewTopic> topics = new ArrayList<>();
 
         topics.add(new NewTopic(
-                envProps.getProperty("input.topic.name"),
-                Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-                Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
+                allProps.getProperty("input.topic.name"),
+                Integer.parseInt(allProps.getProperty("input.topic.partitions")),
+                Short.parseShort(allProps.getProperty("input.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("output.drama.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.drama.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.drama.topic.replication.factor"))));
+                allProps.getProperty("output.drama.topic.name"),
+                Integer.parseInt(allProps.getProperty("output.drama.topic.partitions")),
+                Short.parseShort(allProps.getProperty("output.drama.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("output.fantasy.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.fantasy.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.fantasy.topic.replication.factor"))));
+                allProps.getProperty("output.fantasy.topic.name"),
+                Integer.parseInt(allProps.getProperty("output.fantasy.topic.partitions")),
+                Short.parseShort(allProps.getProperty("output.fantasy.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("output.other.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.other.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.other.topic.replication.factor"))));
+                allProps.getProperty("output.other.topic.name"),
+                Integer.parseInt(allProps.getProperty("output.other.topic.partitions")),
+                Short.parseShort(allProps.getProperty("output.other.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        Properties envProps = new Properties();
+        Properties allProps = new Properties();
         FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
@@ -99,20 +86,21 @@ public class SplitStream {
         }
 
         SplitStream ss = new SplitStream();
-        Properties envProps = ss.loadEnvProperties(args[0]);
-        Properties streamProps = ss.buildStreamsProperties(envProps);
+        Properties allProps = ss.loadEnvProperties(args[0]);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
+
         Topology topology = ss.buildTopology(envProps);
+        ss.createTopics(allProps);
 
-        ss.createTopics(envProps);
-
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close();
+                streams.close(Duration.ofSeconds(5));
                 latch.countDown();
             }
         });
