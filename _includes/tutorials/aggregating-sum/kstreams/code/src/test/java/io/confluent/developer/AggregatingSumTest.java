@@ -73,7 +73,7 @@ public class AggregatingSumTest {
                   new TicketSale("The Godfather", "2019-07-18T11:40:09Z", 18)
                 );
 
-    List<String> expectedOutput = new ArrayList<>(Arrays.asList("12", "24", "12", "48", "30", "12", "24", "66", "84"));
+    List<String> expectedOutput = new ArrayList<>(Arrays.asList("12 total sales", "24 total sales", "12 total sales", "48 total sales", "30 total sales", "12 total sales", "24 total sales", "66 total sales", "84 total sales"));
 
     for (TicketSale ticketSale : input) {
       testDriverInputTopic.pipeInput("", ticketSale);

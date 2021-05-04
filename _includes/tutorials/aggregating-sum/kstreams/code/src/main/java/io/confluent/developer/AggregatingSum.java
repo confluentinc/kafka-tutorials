@@ -53,7 +53,7 @@ public class AggregatingSum {
         // Apply SUM aggregation
         .reduce(Integer::sum)
         // Write to stream specified by outputTopic
-        .toStream().mapValues(v -> v.toString()).to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
+        .toStream().mapValues(v -> v.toString() + " total sales").to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
 
     return builder.build();
   }
