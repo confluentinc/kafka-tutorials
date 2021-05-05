@@ -90,7 +90,7 @@ public class SplitStream {
         allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
 
-        Topology topology = ss.buildTopology(envProps);
+        Topology topology = ss.buildTopology(allProps);
         ss.createTopics(allProps);
 
         final KafkaStreams streams = new KafkaStreams(topology, allProps);

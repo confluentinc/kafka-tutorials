@@ -13,10 +13,10 @@ dev:
             file: tutorials/splitting/kstreams/markup/dev/make-config-dir.adoc
 
     - title: Sign up for Confluent Cloud and provision resources
-        content:
-            - action: skip
-              render:
-                file: shared/markup/ccloud/ccloud-setup-self.adoc
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
 
     - title: Create a properties file with Confluent Cloud information
       content:
@@ -96,31 +96,15 @@ dev:
 
     - title: Produce events to the input topic
       content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/input-events.json
+        - action: skip
           render:
-            file: tutorials/splitting/kstreams/markup/dev/run-producer.adoc
+            file: tutorials/splitting/confluent/markup/dev/ccloud-run-producer.adoc
 
     - title: Consume the event subsets from the output topics
       content:
-        - action: execute_async
-          file: tutorial-steps/dev/console-consumer-drama.sh
-          stdout: tutorial-steps/dev/outputs/actual-drama-events.json
+        - action: skip
           render:
-            file: tutorials/splitting/kstreams/markup/dev/run-drama-consumer.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/console-consumer-fantasy.sh
-          stdout: tutorial-steps/dev/outputs/actual-fantasy-events.json
-          render:
-            file: tutorials/splitting/kstreams/markup/dev/run-fantasy-consumer.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/console-consumer-other.sh
-          stdout: tutorial-steps/dev/outputs/actual-other-events.json
-          render:
-            file: tutorials/splitting/kstreams/markup/dev/run-other-consumer.adoc
+            file: tutorials/splitting/confluent/markup/dev/ccloud-run-consumer.adoc
 
     - title: Teardown Confluent Cloud resources
       content:
