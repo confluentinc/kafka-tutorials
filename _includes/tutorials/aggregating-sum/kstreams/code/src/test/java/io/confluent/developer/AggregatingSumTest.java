@@ -30,11 +30,11 @@ public class AggregatingSumTest {
   private final static String TEST_CONFIG_FILE = "configuration/test.properties";
   private TopologyTestDriver testDriver;
 
-  private SpecificAvroSerde<TicketSale> makeSerializer(Properties envProps) {
+  private SpecificAvroSerde<TicketSale> makeSerializer(Properties allProps) {
     SpecificAvroSerde<TicketSale> serde = new SpecificAvroSerde<>();
 
     Map<String, String> config = new HashMap<>();
-    config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+    config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
     serde.configure(config, false);
 
     return serde;
@@ -43,16 +43,15 @@ public class AggregatingSumTest {
   @Test
   public void shouldSumTicketSales() throws IOException {
     AggregatingSum aggSum = new AggregatingSum();
-    Properties envProps = aggSum.loadEnvProperties(TEST_CONFIG_FILE);
-    Properties streamProps = aggSum.buildStreamsProperties(envProps);
+    Properties allProps = aggSum.loadEnvProperties(TEST_CONFIG_FILE);
 
-    String inputTopic = envProps.getProperty("input.topic.name");
-    String outputTopic = envProps.getProperty("output.topic.name");
+    String inputTopic = allProps.getProperty("input.topic.name");
+    String outputTopic = allProps.getProperty("output.topic.name");
 
-    final SpecificAvroSerde<TicketSale> ticketSaleSpecificAvroSerde = makeSerializer(envProps);
+    final SpecificAvroSerde<TicketSale> ticketSaleSpecificAvroSerde = makeSerializer(allProps);
 
-    Topology topology = aggSum.buildTopology(envProps, ticketSaleSpecificAvroSerde);
-    testDriver = new TopologyTestDriver(topology, streamProps);
+    Topology topology = aggSum.buildTopology(allProps, ticketSaleSpecificAvroSerde);
+    testDriver = new TopologyTestDriver(topology, allProps);
 
     Serializer<String> keySerializer = Serdes.String().serializer();
     Deserializer<String> keyDeserializer = Serdes.String().deserializer();
@@ -74,19 +73,19 @@ public class AggregatingSumTest {
                   new TicketSale("The Godfather", "2019-07-18T11:40:09Z", 18)
                 );
 
-    List<Integer> expectedOutput = new ArrayList<>(Arrays.asList(12, 24, 12, 48, 30, 12, 24, 66, 84));
+    List<String> expectedOutput = new ArrayList<>(Arrays.asList("12 total sales", "24 total sales", "12 total sales", "48 total sales", "30 total sales", "12 total sales", "24 total sales", "66 total sales", "84 total sales"));
 
     for (TicketSale ticketSale : input) {
       testDriverInputTopic.pipeInput("", ticketSale);
     }
 
-    List<Integer> actualOutput =
+    List<String> actualOutput =
         testDriver
-            .createOutputTopic(outputTopic, keyDeserializer, Serdes.Integer().deserializer())
+            .createOutputTopic(outputTopic, keyDeserializer, Serdes.String().deserializer())
             .readKeyValuesToList()
             .stream()
             .filter(Objects::nonNull)
-            .map(record -> record.value)
+            .map(record -> record.value.toString())
             .collect(Collectors.toList());
     
     System.out.println(actualOutput);

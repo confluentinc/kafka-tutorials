@@ -5,7 +5,6 @@ answer:
         - action: skip
           render:
             file: tutorials/aggregating-sum/kstreams/markup/answer/short-answer.adoc
-
 dev:
   steps:
     - title: Initialize the project
@@ -15,23 +14,28 @@ dev:
           render:
             file: tutorials/aggregating-sum/kstreams/markup/dev/init.adoc
 
-    - title: Get Confluent Platform
-      content:
-        - change_directory: aggregate-sum
-          action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/aggregating-sum/kstreams/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/aggregating-sum/kstreams/markup/dev/start-compose.adoc
-
         - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
+          file: tutorial-steps/dev/make-configuration-dir.sh
           render:
-            skip: true
+            file: tutorials/aggregating-sum/kstreams/markup/dev/make-config-dir.adoc
+
+    - title: Sign up for Confluent Cloud and provision resources
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
+    - title: Create a properties file with Confluent Cloud information
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/config-create.adoc
+
+    - title: Download and setup the Confluent Cloud CLI
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/get-ccloud.adoc
 
     - title: Configure the project
       content:
@@ -45,16 +49,16 @@ dev:
           render:
             file: tutorials/aggregating-sum/kstreams/markup/dev/make-gradle-wrapper.adoc
 
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/aggregating-sum/kstreams/markup/dev/make-config-dir.adoc
-
         - action: make_file
           file: configuration/dev.properties
           render:
-            file: tutorials/aggregating-sum/kstreams/markup/dev/make-dev-file.adoc
+            file: tutorials/aggregating-sum/confluent/markup/dev/make-dev-file.adoc
 
+    - title: Update the properties file with Confluent Cloud information
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/append-ccloud-config.adoc
 
     - title: Create a schema for the events
       content:
@@ -99,26 +103,21 @@ dev:
 
     - title: Produce events to the input topic
       content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/input-events.json
+        - action: skip
           render:
-            file: tutorials/aggregating-sum/kstreams/markup/dev/run-producer.adoc
+            file: tutorials/aggregating-sum/confluent/markup/dev/run-producer.adoc
 
     - title: Consume aggregated sum from the output topic
       content:
-        - action: execute_async
-          file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-events.json
+        - action: skip
           render:
-            file: tutorials/aggregating-sum/kstreams/markup/dev/run-consumer.adoc
+            file: tutorials/aggregating-sum/confluent/markup/dev/run-consumer.adoc
 
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 5000
+    - title: Teardown Confluent Cloud resources
+      content:
+        - action: skip
           render:
-            skip: true
-
+            file: shared/markup/ccloud/ccloud-destroy.adoc
 test:
   steps:
     - title: Create a test configuration file
@@ -173,11 +172,3 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
-
-ccloud:
-  steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud-properties.adoc
