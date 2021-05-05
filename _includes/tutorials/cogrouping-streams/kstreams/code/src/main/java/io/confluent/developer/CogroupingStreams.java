@@ -21,7 +21,6 @@ import java.util.concurrent.CountDownLatch;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
-import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -50,7 +49,7 @@ public class CogroupingStreams {
         final String appThreeInputTopic = allProps.getProperty("app-three.topic.name");
         final String totalResultOutputTopic = allProps.getProperty("output.topic.name");
 
-        final Serde<String> stringSerde = getPrimitiveAvroSerde(allProps, true);
+        final Serde<String> stringSerde = Serdes.String();
         final Serde<LoginEvent> loginEventSerde = getSpecificAvroSerde(allProps);
         final Serde<LoginRollup> loginRollupSerde = getSpecificAvroSerde(allProps);
 
@@ -172,8 +171,8 @@ public class CogroupingStreams {
         }
 
         public void generate() {
+            properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
             properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
-            properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
 
             try (Producer<String, LoginEvent> producer = new KafkaProducer<String, LoginEvent>(properties)) {
                 HashMap<String, List<LoginEvent>> entryData = new HashMap<>();

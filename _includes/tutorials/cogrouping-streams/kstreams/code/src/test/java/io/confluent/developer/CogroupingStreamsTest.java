@@ -16,6 +16,7 @@ import java.util.Properties;
 import java.util.TreeMap;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serde;
+import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
@@ -41,7 +42,7 @@ public class CogroupingStreamsTest {
         final Topology topology = instance.buildTopology(allProps);
         try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps)) {
 
-            final Serde<String> stringAvroSerde = CogroupingStreams.getPrimitiveAvroSerde(allProps, true);
+            final Serde<String> stringAvroSerde = Serdes.String();
             final SpecificAvroSerde<LoginEvent> loginEventSerde = CogroupingStreams.getSpecificAvroSerde(allProps);
             final SpecificAvroSerde<LoginRollup> rollupSerde = CogroupingStreams.getSpecificAvroSerde(allProps);
 
