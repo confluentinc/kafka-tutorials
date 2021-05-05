@@ -73,15 +73,6 @@ public class CogroupingStreams {
         return builder.build();
     }
 
-    @SuppressWarnings("unchecked")
-    static <T> Serde<T> getPrimitiveAvroSerde(final Properties allProps, boolean isKey) {
-        final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
-        final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
-        deserializer.configure((Map)allProps, isKey);
-        serializer.configure((Map)allProps, isKey);
-        return (Serde<T>)Serdes.serdeFrom(serializer, deserializer);
-    }
-
     static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties allProps) {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
         specificAvroSerde.configure((Map)allProps, false);
