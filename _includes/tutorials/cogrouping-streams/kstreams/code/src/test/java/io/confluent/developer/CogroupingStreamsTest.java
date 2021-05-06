@@ -16,6 +16,7 @@ import java.util.Properties;
 import java.util.TreeMap;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serde;
+import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
@@ -31,21 +32,19 @@ public class CogroupingStreamsTest {
     @Test
     public void cogroupingTest() throws IOException {
         final CogroupingStreams instance = new CogroupingStreams();
-        final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
+        final Properties allProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
 
-        final Properties streamProps = instance.buildStreamsProperties(envProps);
-
-        final String appOneInputTopicName = envProps.getProperty("app-one.topic.name");
-        final String appTwoInputTopicName = envProps.getProperty("app-two.topic.name");
-        final String appThreeInputTopicName = envProps.getProperty("app-three.topic.name");
-        final String totalResultOutputTopicName = envProps.getProperty("output.topic.name");
+        final String appOneInputTopicName = allProps.getProperty("app-one.topic.name");
+        final String appTwoInputTopicName = allProps.getProperty("app-two.topic.name");
+        final String appThreeInputTopicName = allProps.getProperty("app-three.topic.name");
+        final String totalResultOutputTopicName = allProps.getProperty("output.topic.name");
       
-        final Topology topology = instance.buildTopology(envProps);
-        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
+        final Topology topology = instance.buildTopology(allProps);
+        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps)) {
 
-            final Serde<String> stringAvroSerde = CogroupingStreams.getPrimitiveAvroSerde(envProps, true);
-            final SpecificAvroSerde<LoginEvent> loginEventSerde = CogroupingStreams.getSpecificAvroSerde(envProps);
-            final SpecificAvroSerde<LoginRollup> rollupSerde = CogroupingStreams.getSpecificAvroSerde(envProps);
+            final Serde<String> stringAvroSerde = Serdes.String();
+            final SpecificAvroSerde<LoginEvent> loginEventSerde = CogroupingStreams.getSpecificAvroSerde(allProps);
+            final SpecificAvroSerde<LoginRollup> rollupSerde = CogroupingStreams.getSpecificAvroSerde(allProps);
 
             final Serializer<String> keySerializer = stringAvroSerde.serializer();
             final Deserializer<String> keyDeserializer = stringAvroSerde.deserializer();

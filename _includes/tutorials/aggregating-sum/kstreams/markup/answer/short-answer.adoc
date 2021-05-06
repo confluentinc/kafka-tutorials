@@ -1,0 +1,13 @@
+Use the `reduce()` method to apply the sum aggregation, see below.
+
+```
+    builder.stream(inputTopic, Consumed.with(Serdes.String(), ticketSaleSerde))
+        // Set key to title and value to ticket value
+        .map((k, v) -> new KeyValue<>((String) v.getTitle(), v.getTicketTotalValue()))
+        // Group by title
+        .groupByKey(Grouped.with(Serdes.String(), Serdes.Integer()))
+        // Apply SUM aggregation
+        .reduce(Integer::sum)
+        // Write to stream specified by outputTopic
+        .toStream().mapValues(v -> v.toString() + " total sales").to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
+```

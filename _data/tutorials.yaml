@@ -19,6 +19,7 @@ filtering:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
+    confluent: enabled
 
 splitting:
   title: "How to split a stream of events into substreams"
@@ -160,6 +161,7 @@ aggregating-sum:
    status:
      ksql: enabled
      kstreams: enabled
+     confluent: enabled
 
 serialization:
   title: "How to convert a stream's serialization format"
@@ -285,6 +287,7 @@ cogrouping-streams:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 console-consumer-producer-basic:
   title: "Console Producer and Consumer Basics, no (de)serializers"

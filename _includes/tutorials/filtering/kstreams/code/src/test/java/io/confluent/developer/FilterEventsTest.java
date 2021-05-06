@@ -28,12 +28,12 @@ public class FilterEventsTest {
 
   private TopologyTestDriver testDriver;
 
-  private SpecificAvroSerde<Publication> makeSerializer(Properties envProps) {
+  private SpecificAvroSerde<Publication> makeSerializer(Properties allProps) {
 
     SpecificAvroSerde<Publication> serde = new SpecificAvroSerde<>();
 
     Map<String, String> config = new HashMap<>();
-    config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+    config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
     serde.configure(config, false);
 
     return serde;
@@ -42,16 +42,15 @@ public class FilterEventsTest {
   @Test
   public void shouldFilterGRRMartinsBooks() throws IOException {
     FilterEvents fe = new FilterEvents();
-    Properties envProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
-    Properties streamProps = fe.buildStreamsProperties(envProps);
+    Properties allProps = fe.loadEnvProperties(TEST_CONFIG_FILE);
 
-    String inputTopic = envProps.getProperty("input.topic.name");
-    String outputTopic = envProps.getProperty("output.topic.name");
+    String inputTopic = allProps.getProperty("input.topic.name");
+    String outputTopic = allProps.getProperty("output.topic.name");
 
-    final SpecificAvroSerde<Publication> publicationSpecificAvroSerde = makeSerializer(envProps);
+    final SpecificAvroSerde<Publication> publicationSpecificAvroSerde = makeSerializer(allProps);
 
-    Topology topology = fe.buildTopology(envProps, publicationSpecificAvroSerde);
-    testDriver = new TopologyTestDriver(topology, streamProps);
+    Topology topology = fe.buildTopology(allProps, publicationSpecificAvroSerde);
+    testDriver = new TopologyTestDriver(topology, allProps);
 
     Serializer<String> keySerializer = Serdes.String().serializer();
     Deserializer<String> keyDeserializer = Serdes.String().deserializer();
