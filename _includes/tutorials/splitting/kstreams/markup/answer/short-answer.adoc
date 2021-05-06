@@ -1,0 +1,11 @@
+Use the `branch` method, see below.
+```
+        KStream<String, ActingEvent>[] branches = builder.<String, ActingEvent>stream(inputTopic)
+                .branch((key, appearance) -> "drama".equals(appearance.getGenre()),
+                        (key, appearance) -> "fantasy".equals(appearance.getGenre()),
+                        (key, appearance) -> true);
+
+        branches[0].to(allProps.getProperty("output.drama.topic.name"));
+        branches[1].to(allProps.getProperty("output.fantasy.topic.name"));
+        branches[2].to(allProps.getProperty("output.other.topic.name"));
+```
