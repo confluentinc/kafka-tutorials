@@ -3,6 +3,7 @@ package io.confluent.developer;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
 import io.confluent.developer.avro.ActingEvent;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
 public class SplitStreamTest {
 
@@ -66,6 +68,8 @@ public class SplitStreamTest {
     public void testSplitStream() throws IOException {
         SplitStream ss = new SplitStream();
         Properties allProps = ss.loadEnvProperties(TEST_CONFIG_FILE);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
 
         String inputTopic = allProps.getProperty("input.topic.name");
         String outputDramaTopic = allProps.getProperty("output.drama.topic.name");
