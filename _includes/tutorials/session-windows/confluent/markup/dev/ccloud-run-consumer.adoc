@@ -4,7 +4,7 @@ Now that your Kafka Streams application is running, open a new terminal window, 
 ccloud kafka topic consume output-topic --from-beginning --print-key
 ```
 
-Your results should look someting like this:
+Your results should look something like this:
 ++++
 <pre class="snippet"><code class="shell">
 51.56.119.117 : Session info started: 1:13:45 PM EST ended: 1:14:23 PM EST with count 4
