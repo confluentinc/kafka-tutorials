@@ -9,7 +9,7 @@
 
 ### New tutorial checklist
 
-- [ ] Add a `Short Answer`
-- [ ] Implement good test cases
-- [ ] Validate hyperlinks
-- [ ] Spell check (e.g. using `aspell`)
+<!-- - [ ] Add a `Short Answer` -->
+<!-- - [ ] Implement good test cases -->
+<!-- - [ ] Validate hyperlinks -->
+<!-- - [ ] Spell check (e.g. using `aspell`) -->
