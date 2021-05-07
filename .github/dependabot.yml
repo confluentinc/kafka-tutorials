@@ -5,10 +5,9 @@ updates:
   - package-ecosystem: "gradle"
     directory: "/" 
     schedule:
-      interval: "daily"
+      interval: "weekly"
     # Add reviewers
     reviewers:
       - "bbejeck"
-      - "gamussa"
     # Allow up to 10 open pull requests for gradle dependencies
     open-pull-requests-limit: 10
