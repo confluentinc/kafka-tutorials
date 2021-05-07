@@ -52,7 +52,6 @@ public class SessionWindow {
         final String outputTopic = allProps.getProperty("output.topic.name");
         final SpecificAvroSerde<Clicks> clicksSerde = getSpecificAvroSerde(allProps);
 
-
         builder.stream(inputTopic, Consumed.with(Serdes.String(), clicksSerde))
                 .groupByKey()
                 .windowedBy(SessionWindows.with(Duration.ofMinutes(5)).grace(Duration.ofSeconds(30)))
@@ -72,11 +71,9 @@ public class SessionWindow {
 
     static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties allProps) {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
-
-        final HashMap<String, String> serdeConfig = new HashMap<>();
+        final Map<String, String> serdeConfig = (Map)allProps;
         serdeConfig.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
                 allProps.getProperty("schema.registry.url"));
-
         specificAvroSerde.configure(serdeConfig, false);
         return specificAvroSerde;
     }
