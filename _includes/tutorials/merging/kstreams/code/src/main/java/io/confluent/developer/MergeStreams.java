@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
@@ -94,7 +95,7 @@ public class MergeStreams {
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close();
+                streams.close(Duration.ofSeconds(5));
                 latch.countDown();
             }
         });
