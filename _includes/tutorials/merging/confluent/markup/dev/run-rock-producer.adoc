@@ -1,7 +1,9 @@
 To produce the input events to their respective topics, you'll want two terminals running. To send the rock songs to their topic, open up a terminal and run the following:
 
 ```
-ccloud kafka topic produce rock-song-events --value-format avro --schema src/main/avro/song_event.avsc
+ccloud kafka topic produce rock-song-events  \
+    --value-format avro  \
+    --schema src/main/avro/song_event.avsc
 ```
 
 When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an event. To send all of the events below, paste the following into the prompt and press enter:

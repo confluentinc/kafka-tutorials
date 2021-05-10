@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/merging/kstreams/markup/answer/short-answer.adoc
+
 dev:
   steps:
     - title: Initialize the project
