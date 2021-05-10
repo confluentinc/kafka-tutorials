@@ -42,6 +42,7 @@ merging:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
+    confluent: enabled
 
 joining-stream-table:
   title: "How to join a stream and a lookup table"
