@@ -64,7 +64,7 @@ When you schedule a punctuation, you provide three parameters:
 
 1. How often the punctuation should execute defined as a type of `Duration`
 2. The `PunctuationType` either stream-time or wall-clock tome
-3. An instance of the https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/processor/Punctuator.html[Punctuator interface].  Since the `Punctuator` interface has only one , `puncutate`, typically you'll use either a https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html[lambda expression] or a https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html[method reference].  In this case we've used a method reference.
+3. An instance of the https://kafka.apache.org/26/javadoc/org/apache/kafka/streams/processor/Punctuator.html[Punctuator interface].  Since the `Punctuator` interface has only one , `punctuate`, typically you'll use either a https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html[lambda expression] or a https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html[method reference].  In this case we've used a method reference.
 
 Now let's take a look at these methods.
 
