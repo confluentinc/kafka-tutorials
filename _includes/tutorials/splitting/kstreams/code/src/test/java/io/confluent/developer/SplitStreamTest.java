@@ -3,6 +3,7 @@ package io.confluent.developer;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
@@ -22,27 +23,28 @@ import java.util.stream.Collectors;
 import io.confluent.developer.avro.ActingEvent;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
 public class SplitStreamTest {
 
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
     private TopologyTestDriver testDriver;
 
-    public SpecificAvroSerializer<ActingEvent> makeSerializer(Properties envProps) {
+    public SpecificAvroSerializer<ActingEvent> makeSerializer(Properties allProps) {
         SpecificAvroSerializer<ActingEvent> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         serializer.configure(config, false);
 
         return serializer;
     }
 
-    public SpecificAvroDeserializer<ActingEvent> makeDeserializer(Properties envProps) {
+    public SpecificAvroDeserializer<ActingEvent> makeDeserializer(Properties allProps) {
         SpecificAvroDeserializer<ActingEvent> deserializer = new SpecificAvroDeserializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         deserializer.configure(config, false);
 
         return deserializer;
@@ -65,22 +67,23 @@ public class SplitStreamTest {
     @Test
     public void testSplitStream() throws IOException {
         SplitStream ss = new SplitStream();
-        Properties envProps = ss.loadEnvProperties(TEST_CONFIG_FILE);
-        Properties streamProps = ss.buildStreamsProperties(envProps);
+        Properties allProps = ss.loadEnvProperties(TEST_CONFIG_FILE);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
 
-        String inputTopic = envProps.getProperty("input.topic.name");
-        String outputDramaTopic = envProps.getProperty("output.drama.topic.name");
-        String outputFantasyTopic = envProps.getProperty("output.fantasy.topic.name");
-        String outputOtherTopic = envProps.getProperty("output.other.topic.name");
+        String inputTopic = allProps.getProperty("input.topic.name");
+        String outputDramaTopic = allProps.getProperty("output.drama.topic.name");
+        String outputFantasyTopic = allProps.getProperty("output.fantasy.topic.name");
+        String outputOtherTopic = allProps.getProperty("output.other.topic.name");
 
-        Topology topology = ss.buildTopology(envProps);
-        testDriver = new TopologyTestDriver(topology, streamProps);
+        Topology topology = ss.buildTopology(allProps);
+        testDriver = new TopologyTestDriver(topology, allProps);
 
         Serializer<String> keySerializer = Serdes.String().serializer();
-        SpecificAvroSerializer<ActingEvent> valueSerializer = makeSerializer(envProps);
+        SpecificAvroSerializer<ActingEvent> valueSerializer = makeSerializer(allProps);
 
         Deserializer<String> keyDeserializer = Serdes.String().deserializer();
-        SpecificAvroDeserializer<ActingEvent> valueDeserializer = makeDeserializer(envProps);
+        SpecificAvroDeserializer<ActingEvent> valueDeserializer = makeDeserializer(allProps);
 
         ActingEvent streep = ActingEvent.newBuilder()
                 .setName("Meryl Streep").setTitle("The Iron Lady").setGenre("drama").build();
