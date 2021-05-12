@@ -1,0 +1,13 @@
+In a new terminal, run:
+
+```
+ccloud kafka topic produce raw-movies \
+      --value-format avro \
+      --schema src/main/avro/input_movie_event.avsc
+```
+
+include::_includes/shared/markup/ccloud/ccloud-sr-produce.adoc[]
+
++++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/transforming/kstreams/code/tutorial-steps/dev/input-events.json %}</code></pre>
++++++

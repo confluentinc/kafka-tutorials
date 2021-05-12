@@ -8,6 +8,7 @@ transforming:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
+    confluent: enabled
 
 filtering:
   title: "How to filter a stream of events"
