@@ -46,25 +46,11 @@ public class SessionWindow {
             .withLocale(Locale.US)
             .withZone(ZoneId.systemDefault());
 
-    public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-        props.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, ClickEventTimestampExtractor.class);
-
-        return props;
-    }
-
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String inputTopic = envProps.getProperty("input.topic.name");
-        final String outputTopic = envProps.getProperty("output.topic.name");
-        final SpecificAvroSerde<Clicks> clicksSerde = getSpecificAvroSerde(envProps);
-
+        final String inputTopic = allProps.getProperty("input.topic.name");
+        final String outputTopic = allProps.getProperty("output.topic.name");
+        final SpecificAvroSerde<Clicks> clicksSerde = getSpecificAvroSerde(allProps);
 
         builder.stream(inputTopic, Consumed.with(Serdes.String(), clicksSerde))
                 .groupByKey()
@@ -83,30 +69,24 @@ public class SessionWindow {
     }
 
 
-    static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties envProps) {
+    static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties allProps) {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
-
-        final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
-
+        final Map<String, String> serdeConfig = (Map)allProps;
         specificAvroSerde.configure(serdeConfig, false);
         return specificAvroSerde;
     }
-    public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        try (AdminClient client = AdminClient.create(config)) {
+    public void createTopics(Properties allProps) {
+        try (AdminClient client = AdminClient.create(allProps)) {
             List<NewTopic> topicList = new ArrayList<>();
 
-            NewTopic sessionInput = new NewTopic(envProps.getProperty("input.topic.name"),
-                    Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("input.topic.replication.factor")));
+            NewTopic sessionInput = new NewTopic(allProps.getProperty("input.topic.name"),
+                    Integer.parseInt(allProps.getProperty("input.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("input.topic.replication.factor")));
             topicList.add(sessionInput);
 
-            NewTopic counts = new NewTopic(envProps.getProperty("output.topic.name"),
-                    Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("output.topic.replication.factor")));
+            NewTopic counts = new NewTopic(allProps.getProperty("output.topic.name"),
+                    Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("output.topic.replication.factor")));
 
             topicList.add(counts);
             client.createTopics(topicList);
@@ -114,12 +94,12 @@ public class SessionWindow {
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        Properties envProps = new Properties();
+        Properties allProps = new Properties();
         FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
@@ -129,22 +109,24 @@ public class SessionWindow {
         }
 
         SessionWindow tw = new SessionWindow();
-        Properties envProps = tw.loadEnvProperties(args[0]);
-        Properties streamProps = tw.buildStreamsProperties(envProps);
-        Topology topology = tw.buildTopology(envProps);
+        Properties allProps = tw.loadEnvProperties(args[0]);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
+        allProps.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, ClickEventTimestampExtractor.class);
+        Topology topology = tw.buildTopology(allProps);
 
-        tw.createTopics(envProps);
-        ClicksDataGenerator dataGenerator = new ClicksDataGenerator(envProps);
+        tw.createTopics(allProps);
+        ClicksDataGenerator dataGenerator = new ClicksDataGenerator(allProps);
         dataGenerator.generate();
 
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close();
+                streams.close(Duration.ofSeconds(5));
                 latch.countDown();
             }
         });

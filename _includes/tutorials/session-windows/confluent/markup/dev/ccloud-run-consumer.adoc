@@ -1,14 +1,10 @@
-////
-  This is a sample content file for how to include a console consumer to the tutorial, probably a good idea so the end user can watch the results
-  of the tutorial.  Change the text as needed.
-
-////
-
 Now that your Kafka Streams application is running, open a new terminal window, change directories (`cd`) into the `session-windows` directory and start a console-consumer to confirm the output:
 
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/session-windows/kstreams/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>
-+++++
+```
+ccloud kafka topic consume output-topic --from-beginning --print-key
+```
+
+include::_includes/shared/markup/ccloud/ccloud-sr-consume.adoc[]
 
 Your results should look something like this:
 ++++
@@ -20,6 +16,3 @@ Your results should look something like this:
 Processed a total of 4 messages
 </code></pre>
 ++++
-
-
-Go ahead and shut down your streams application now with a `CNTR+C` command.

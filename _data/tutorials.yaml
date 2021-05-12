@@ -133,6 +133,7 @@ session-windows:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 aggregating-count:
   title: "How to count a stream of events"
