@@ -155,15 +155,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
 
-  - name: Run second block of tests
-    execution_time_limit:
-      minutes: 10
-    task:
-      prologue:
-        commands:
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
-      jobs:
         - name: Kafka Connect SMT key tests
           commands:
             - make -C _includes/tutorials/connect-add-key-to-source/kafka/code tutorial
@@ -240,7 +231,7 @@ blocks:
           commands:
             - make -C _includes/tutorials/error-handling/kstreams/code tutorial
 
-  - name: Run third block of tests (all ksqlDB)
+  - name: Run second block of tests (mostly ksqlDB)
     execution_time_limit:
       minutes: 10
     task:
