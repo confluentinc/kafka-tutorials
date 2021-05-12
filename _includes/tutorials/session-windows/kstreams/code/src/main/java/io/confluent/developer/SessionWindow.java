@@ -72,8 +72,6 @@ public class SessionWindow {
     static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties allProps) {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
         final Map<String, String> serdeConfig = (Map)allProps;
-        serdeConfig.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                allProps.getProperty("schema.registry.url"));
         specificAvroSerde.configure(serdeConfig, false);
         return specificAvroSerde;
     }
