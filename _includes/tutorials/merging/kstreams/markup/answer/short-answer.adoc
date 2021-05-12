@@ -1,5 +1,5 @@
 The input streams are combined using the `merge` function, which creates a new stream that represents all of the events of its inputs.
-The merged stream is then connected to the `to` method, which the name of a Kafka topic to send the events to.
+The merged stream is forwarded to a combined topic via the `to` method, which accepts the topic as a parameter.
 
 ```
 KStream<String, SongEvent> rockSongs = builder.stream(rockTopic);
