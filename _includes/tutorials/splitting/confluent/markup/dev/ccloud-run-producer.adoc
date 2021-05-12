@@ -4,7 +4,7 @@ In a new terminal, run:
 ccloud kafka topic produce acting-events --value-format avro --schema src/main/avro/acting_event.avsc
 ```
 
-When the console producer starts, it will log some messages and hang, waiting for your input. Type in one line at a time and press enter to send it. Each line represents an event. To send all of the events below, paste the following into the prompt and press enter:
+include::_includes/shared/markup/ccloud/ccloud-sr-produce.adoc[]
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/splitting/kstreams/code/tutorial-steps/dev/input-events.json %}</code></pre>
