@@ -43,6 +43,7 @@ merging:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
+    confluent: enabled
 
 joining-stream-table:
   title: "How to join a stream and a lookup table"
@@ -162,6 +163,7 @@ aggregating-sum:
    status:
      ksql: enabled
      kstreams: enabled
+     confluent: enabled
 
 serialization:
   title: "How to convert a stream's serialization format"
@@ -287,6 +289,7 @@ cogrouping-streams:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
+    confluent: enabled
 
 console-consumer-producer-basic:
   title: "Console Producer and Consumer Basics, no (de)serializers"

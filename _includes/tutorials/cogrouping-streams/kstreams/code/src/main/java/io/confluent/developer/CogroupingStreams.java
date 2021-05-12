@@ -12,6 +12,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,8 +21,13 @@ import java.util.concurrent.CountDownLatch;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.KafkaStreams;
 import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
@@ -36,27 +42,16 @@ import org.apache.kafka.streams.kstream.Produced;
 public class CogroupingStreams {
 
 
-	public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
-        props.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-        props.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 10 * 1024 * 1024);
-        return props;
-    }
-
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-            final String appOneInputTopic = envProps.getProperty("app-one.topic.name");
-            final String appTwoInputTopic = envProps.getProperty("app-two.topic.name");
-            final String appThreeInputTopic = envProps.getProperty("app-three.topic.name");
-            final String totalResultOutputTopic = envProps.getProperty("output.topic.name");
+        final String appOneInputTopic = allProps.getProperty("app-one.topic.name");
+        final String appTwoInputTopic = allProps.getProperty("app-two.topic.name");
+        final String appThreeInputTopic = allProps.getProperty("app-three.topic.name");
+        final String totalResultOutputTopic = allProps.getProperty("output.topic.name");
 
-        final Serde<String> stringSerde = getPrimitiveAvroSerde(envProps, true);
-        final Serde<LoginEvent> loginEventSerde = getSpecificAvroSerde(envProps);
-        final Serde<LoginRollup> loginRollupSerde = getSpecificAvroSerde(envProps);
+        final Serde<String> stringSerde = Serdes.String();
+        final Serde<LoginEvent> loginEventSerde = getSpecificAvroSerde(allProps);
+        final Serde<LoginRollup> loginRollupSerde = getSpecificAvroSerde(allProps);
 
 
         final KStream<String, LoginEvent> appOneStream = builder.stream(appOneInputTopic, Consumed.with(stringSerde, loginEventSerde));
@@ -78,67 +73,48 @@ public class CogroupingStreams {
         return builder.build();
     }
 
-    @SuppressWarnings("unchecked")
-    static <T> Serde<T> getPrimitiveAvroSerde(final Properties envProps, boolean isKey) {
-        final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
-        final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
-        final Map<String, String> config = new HashMap<>();
-        config.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
-        deserializer.configure(config, isKey);
-        serializer.configure(config, isKey);
-        return (Serde<T>)Serdes.serdeFrom(serializer, deserializer);
-    }
-
-    static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties envProps) {
+    static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties allProps) {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
-
-        final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
-
-        specificAvroSerde.configure(serdeConfig, false);
+        specificAvroSerde.configure((Map)allProps, false);
         return specificAvroSerde;
     }
 
-    public void createTopics(final Properties envProps) {
-        final Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        try (final AdminClient client = AdminClient.create(config)) {
+    public void createTopics(final Properties allProps) {
+        try (final AdminClient client = AdminClient.create(allProps)) {
 
-        final List<NewTopic> topics = new ArrayList<>();
+            final List<NewTopic> topics = new ArrayList<>();
 
             topics.add(new NewTopic(
-                    envProps.getProperty("app-one.topic.name"),
-                    Integer.parseInt(envProps.getProperty("app-one.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("app-one.topic.replication.factor"))));
+                allProps.getProperty("app-one.topic.name"),
+                Integer.parseInt(allProps.getProperty("app-one.topic.partitions")),
+                Short.parseShort(allProps.getProperty("app-one.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                    envProps.getProperty("app-two.topic.name"),
-                    Integer.parseInt(envProps.getProperty("app-two.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("app-two.topic.replication.factor"))));
+                allProps.getProperty("app-two.topic.name"),
+                Integer.parseInt(allProps.getProperty("app-two.topic.partitions")),
+                Short.parseShort(allProps.getProperty("app-two.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                    envProps.getProperty("app-three.topic.name"),
-                    Integer.parseInt(envProps.getProperty("app-three.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("app-three.topic.replication.factor"))));
+                allProps.getProperty("app-three.topic.name"),
+                Integer.parseInt(allProps.getProperty("app-three.topic.partitions")),
+                Short.parseShort(allProps.getProperty("app-three.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                    envProps.getProperty("output.topic.name"),
-                    Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+                allProps.getProperty("output.topic.name"),
+                Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+                Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
 
             client.createTopics(topics);
         }
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        final Properties envProps = new Properties();
+        final Properties allProps = new Properties();
         final FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
@@ -148,13 +124,15 @@ public class CogroupingStreams {
         }
 
         final CogroupingStreams instance = new CogroupingStreams();
-        final Properties envProps = instance.loadEnvProperties(args[0]);
-        final Properties streamProps = instance.buildStreamsProperties(envProps);
-        final Topology topology = instance.buildTopology(envProps);
+        final Properties allProps = instance.loadEnvProperties(args[0]);
+        final Topology topology = instance.buildTopology(allProps);
 
-        instance.createTopics(envProps);
+        instance.createTopics(allProps);
 
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        TutorialDataGenerator dataGenerator = new TutorialDataGenerator(allProps);
+        dataGenerator.generate();
+
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.
@@ -173,6 +151,60 @@ public class CogroupingStreams {
             System.exit(1);
         }
         System.exit(0);
+    }
+
+    static class TutorialDataGenerator {
+        final Properties properties;
+
+
+        public TutorialDataGenerator(final Properties properties) {
+            this.properties = properties;
+        }
+
+        public void generate() {
+            properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+            properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+
+            try (Producer<String, LoginEvent> producer = new KafkaProducer<String, LoginEvent>(properties)) {
+                HashMap<String, List<LoginEvent>> entryData = new HashMap<>();
+
+                List<LoginEvent> messages1 = Arrays.asList(new LoginEvent("one", "Ted", 12456L),
+                    new LoginEvent("one", "Ted", 12457L),
+                    new LoginEvent("one", "Carol", 12458L),
+                    new LoginEvent("one", "Carol", 12458L),
+                    new LoginEvent("one", "Alice", 12458L),
+                    new LoginEvent("one", "Carol", 12458L));
+                final String topic1 = properties.getProperty("app-one.topic.name");
+                entryData.put(topic1, messages1);
+
+                List<LoginEvent> messages2 = Arrays.asList(new LoginEvent("two", "Bob", 12456L),
+                    new LoginEvent("two", "Carol", 12457L),
+                    new LoginEvent("two", "Ted", 12458L),
+                    new LoginEvent("two", "Carol", 12459L));
+                final String topic2 = properties.getProperty("app-two.topic.name");
+                entryData.put(topic2, messages2);
+
+                List<LoginEvent> messages3 = Arrays.asList(new LoginEvent("three", "Bob", 12456L),
+                    new LoginEvent("three", "Alice", 12457L),
+                    new LoginEvent("three", "Alice", 12458L),
+                    new LoginEvent("three", "Carol", 12459L));
+                final String topic3 = properties.getProperty("app-three.topic.name");
+                entryData.put(topic3, messages3);
+
+
+                entryData.forEach((topic, list) ->
+                    list.forEach(message ->
+                        producer.send(new ProducerRecord<String, LoginEvent>(topic, message.getAppId(), message), (metadata, exception) -> {
+                            if (exception != null) {
+                                exception.printStackTrace(System.out);
+                            } else {
+                                System.out.printf("Produced record at offset %d to topic %s %n", metadata.offset(), metadata.topic());
+                            }
+                        })
+                    )
+                );
+            }
+        }
     }
 
 }
