@@ -384,7 +384,7 @@ blocks:
         - name: KSQL transforming tests
           commands:
             - make -C _includes/tutorials/transforming/ksql/code tutorial
-            -
+
         - name: KStreams Connect key tests
           commands:
             - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
