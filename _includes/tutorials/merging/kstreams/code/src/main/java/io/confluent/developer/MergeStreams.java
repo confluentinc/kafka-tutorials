@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
 
@@ -25,24 +26,12 @@ import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHE
 
 public class MergeStreams {
 
-    public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-
-        return props;
-    }
-
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
 
-        final String rockTopic = envProps.getProperty("input.rock.topic.name");
-        final String classicalTopic = envProps.getProperty("input.classical.topic.name");
-        final String allGenresTopic = envProps.getProperty("output.topic.name");
+        final String rockTopic = allProps.getProperty("input.rock.topic.name");
+        final String classicalTopic = allProps.getProperty("input.classical.topic.name");
+        final String allGenresTopic = allProps.getProperty("output.topic.name");
 
         KStream<String, SongEvent> rockSongs = builder.stream(rockTopic);
         KStream<String, SongEvent> classicalSongs = builder.stream(classicalTopic);
@@ -52,39 +41,37 @@ public class MergeStreams {
         return builder.build();
     }
 
-    public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        AdminClient client = AdminClient.create(config);
+    public void createTopics(Properties allProps) {
+        AdminClient client = AdminClient.create(allProps);
 
         List<NewTopic> topics = new ArrayList<>();
 
         topics.add(new NewTopic(
-                envProps.getProperty("input.rock.topic.name"),
-                Integer.parseInt(envProps.getProperty("input.rock.topic.partitions")),
-                Short.parseShort(envProps.getProperty("input.rock.topic.replication.factor"))));
+                allProps.getProperty("input.rock.topic.name"),
+                Integer.parseInt(allProps.getProperty("input.rock.topic.partitions")),
+                Short.parseShort(allProps.getProperty("input.rock.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("input.classical.topic.name"),
-                Integer.parseInt(envProps.getProperty("input.classical.topic.partitions")),
-                Short.parseShort(envProps.getProperty("input.classical.topic.replication.factor"))));
+                allProps.getProperty("input.classical.topic.name"),
+                Integer.parseInt(allProps.getProperty("input.classical.topic.partitions")),
+                Short.parseShort(allProps.getProperty("input.classical.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("output.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+                allProps.getProperty("output.topic.name"),
+                Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+                Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        Properties envProps = new Properties();
+        Properties allProps = new Properties();
         FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
@@ -93,20 +80,22 @@ public class MergeStreams {
         }
 
         MergeStreams ms = new MergeStreams();
-        Properties envProps = ms.loadEnvProperties(args[0]);
-        Properties streamProps = ms.buildStreamsProperties(envProps);
-        Topology topology = ms.buildTopology(envProps);
+        Properties allProps = ms.loadEnvProperties(args[0]);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
+        allProps.put(SCHEMA_REGISTRY_URL_CONFIG, allProps.getProperty("schema.registry.url"));
+        Topology topology = ms.buildTopology(allProps);
 
-        ms.createTopics(envProps);
+        ms.createTopics(allProps);
 
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close();
+                streams.close(Duration.ofSeconds(5));
                 latch.countDown();
             }
         });
