@@ -3,9 +3,8 @@ In a new terminal, run:
 ```
 ccloud kafka topic produce movies --value-format avro --schema src/main/avro/movie.avsc
 ```
-When the console producer starts, it will log some messages and hang, waiting for your input. Copy and paste one line at a time and press enter to send it. Note that these lines contain hard tabs between the key and the value, so retyping them without the tab will not work.
 
-Each line represents a movie we will be able to rate. To send all of the events below, paste the following into the prompt and press enter:
+include::_includes/shared/markup/ccloud/ccloud-sr-produce.adoc[]
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/joining-stream-table/kstreams/code/tutorial-steps/dev/movies.json %}</code></pre>
