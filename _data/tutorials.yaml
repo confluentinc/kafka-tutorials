@@ -54,6 +54,7 @@ joining-stream-table:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 joining-table-table:
   title: "How to join a table and a table"
