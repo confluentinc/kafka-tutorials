@@ -342,8 +342,8 @@ blocks:
             - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
 
         - name: ksqlDB Test Change number of partitions and replicas
-            commands:
-              - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
+          commands:
+            - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
 
         - name: KSQL masking data tests
           commands:
