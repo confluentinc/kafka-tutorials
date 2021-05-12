@@ -4,6 +4,8 @@ Now that your Kafka Streams application is running, open a new terminal window, 
 ccloud kafka topic consume output-topic --from-beginning --print-key
 ```
 
+include::_includes/shared/markup/ccloud/ccloud-sr-consume.adoc[]
+
 Your results should look something like this:
 ++++
 <pre class="snippet"><code class="shell">
