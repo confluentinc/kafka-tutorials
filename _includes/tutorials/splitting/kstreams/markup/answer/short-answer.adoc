@@ -1,4 +1,5 @@
-Use the `branch` method, see below.
+Use the `branch()` method, see below.  Notice the last predicate which simply returns true, which acts as an "else" statement to catch all events that don’t match the other predicates.
+
 ```
         KStream<String, ActingEvent>[] branches = builder.<String, ActingEvent>stream(inputTopic)
                 .branch((key, appearance) -> "drama".equals(appearance.getGenre()),
