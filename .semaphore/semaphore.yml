@@ -55,10 +55,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
 
-        - name: KStreams tumbling windows tests
-          commands:
-            - make -C _includes/tutorials/tumbling-windows/kstreams/code tutorial
-
         - name: KSQL tumbling windows tests
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
