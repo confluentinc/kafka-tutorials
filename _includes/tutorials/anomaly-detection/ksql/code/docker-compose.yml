@@ -43,6 +43,8 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksqldb-server:
+    # In ksqlDB 0.14+, ksql-test-runner can experience a flaky timing issue with joins.
+    # This test case is temporarily left at an earlier version.
     image: confluentinc/ksqldb-server:0.13.0
     hostname: ksqldb-server
     container_name: ksqldb-server
