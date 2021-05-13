@@ -1,8 +1,6 @@
 Name                 : CLICKS
  Field      | Type
 ----------------------------------------
- ROWTIME    | BIGINT           (system)
- ROWKEY     | VARCHAR(STRING)  (system)
  USER_AGENT | VARCHAR(STRING)
  SOURCE_IP  | VARCHAR(STRING)
  PATH       | VARCHAR(STRING)
