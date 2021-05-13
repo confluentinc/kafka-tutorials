@@ -2,7 +2,7 @@ Next let’s create the schema to use when formatting the messages to produce to
 
 Note that when you executed the `docker-compose up` command, it created a directory named `schema` on your local machine.
 
-From the same terminal you used to create the topic, create the following `order_detail.avsc` file insde the `schema` directory
+From the same terminal you used to create the topic, create the following `order_detail.avsc` file inside the `schema` directory
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/schema/order_detail.avsc %}</code></pre>

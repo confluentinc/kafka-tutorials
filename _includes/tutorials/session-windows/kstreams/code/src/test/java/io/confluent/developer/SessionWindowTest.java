@@ -31,16 +31,15 @@ public class SessionWindowTest {
     @Test
     public void sessionWindowTest() throws IOException {
         final SessionWindow instance = new SessionWindow();
-        final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
+        final Properties allProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
 
-        final Properties streamProps = instance.buildStreamsProperties(envProps);
-        final String sessionDataInputTopic = envProps.getProperty("input.topic.name");
-        final String outputTopicName = envProps.getProperty("output.topic.name");
+        final String sessionDataInputTopic = allProps.getProperty("input.topic.name");
+        final String outputTopicName = allProps.getProperty("output.topic.name");
 
-        final Topology topology = instance.buildTopology(envProps);
-        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamProps)) {
+        final Topology topology = instance.buildTopology(allProps);
+        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps)) {
 
-            final SpecificAvroSerde<Clicks> exampleAvroSerde = SessionWindow.getSpecificAvroSerde(envProps);
+            final SpecificAvroSerde<Clicks> exampleAvroSerde = SessionWindow.getSpecificAvroSerde(allProps);
 
             final Serializer<String> keySerializer = Serdes.String().serializer();
             final Serializer<Clicks> exampleSerializer = exampleAvroSerde.serializer();

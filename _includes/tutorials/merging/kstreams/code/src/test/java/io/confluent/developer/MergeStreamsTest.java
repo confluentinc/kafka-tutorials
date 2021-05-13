@@ -27,21 +27,21 @@ public class MergeStreamsTest {
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
     private TopologyTestDriver testDriver;
 
-    public SpecificAvroSerializer<SongEvent> makeSerializer(Properties envProps) {
+    public SpecificAvroSerializer<SongEvent> makeSerializer(Properties allProps) {
         SpecificAvroSerializer<SongEvent> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         serializer.configure(config, false);
 
         return serializer;
     }
 
-    public SpecificAvroDeserializer<SongEvent> makeDeserializer(Properties envProps) {
+    public SpecificAvroDeserializer<SongEvent> makeDeserializer(Properties allProps) {
         SpecificAvroDeserializer<SongEvent> deserializer = new SpecificAvroDeserializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         deserializer.configure(config, false);
 
         return deserializer;
@@ -50,21 +50,20 @@ public class MergeStreamsTest {
     @Test
     public void testMergeStreams() throws IOException {
         MergeStreams ms = new MergeStreams();
-        Properties envProps = ms.loadEnvProperties(TEST_CONFIG_FILE);
-        Properties streamProps = ms.buildStreamsProperties(envProps);
+        Properties allProps = ms.loadEnvProperties(TEST_CONFIG_FILE);
 
-        String rockTopic = envProps.getProperty("input.rock.topic.name");
-        String classicalTopic = envProps.getProperty("input.classical.topic.name");
-        String allGenresTopic = envProps.getProperty("output.topic.name");
+        String rockTopic = allProps.getProperty("input.rock.topic.name");
+        String classicalTopic = allProps.getProperty("input.classical.topic.name");
+        String allGenresTopic = allProps.getProperty("output.topic.name");
 
-        Topology topology = ms.buildTopology(envProps);
-        testDriver = new TopologyTestDriver(topology, streamProps);
+        Topology topology = ms.buildTopology(allProps);
+        testDriver = new TopologyTestDriver(topology, allProps);
 
         Serializer<String> keySerializer = Serdes.String().serializer();
-        SpecificAvroSerializer<SongEvent> valueSerializer = makeSerializer(envProps);
+        SpecificAvroSerializer<SongEvent> valueSerializer = makeSerializer(allProps);
 
         Deserializer<String> keyDeserializer = Serdes.String().deserializer();
-        SpecificAvroDeserializer<SongEvent> valueDeserializer = makeDeserializer(envProps);
+        SpecificAvroDeserializer<SongEvent> valueDeserializer = makeDeserializer(allProps);
 
         List<SongEvent> rockSongs = new ArrayList<>();
         List<SongEvent> classicalSongs = new ArrayList<>();

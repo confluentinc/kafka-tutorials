@@ -65,4 +65,4 @@ Now create the following file at `src/main/java/io/confluent/developer/MaxFailur
 
 You'll add the `StreamsUncaughtExceptionHandler` to your Kafka Streams application in the next step.
 
-NOTE: There is an older, deprected version of https://kafka.apache.org/28/javadoc/org/apache/kafka/streams/KafkaStreams.html#setUncaughtExceptionHandler-java.lang.Thread.UncaughtExceptionHandler-[KafkaStreams.setUncaughtExceptionHandler] that takes an instance of a `java.lang.Thread.UncaughtExceptionHandler`.  It is advised for users to migrate to use the newer method.
+NOTE: There is an older, deprecated version of https://kafka.apache.org/28/javadoc/org/apache/kafka/streams/KafkaStreams.html#setUncaughtExceptionHandler-java.lang.Thread.UncaughtExceptionHandler-[KafkaStreams.setUncaughtExceptionHandler] that takes an instance of a `java.lang.Thread.UncaughtExceptionHandler`.  It is advised for users to migrate to use the newer method.
