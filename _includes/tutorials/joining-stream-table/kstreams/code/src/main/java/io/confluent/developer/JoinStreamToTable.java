@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
+import java.time.Duration;
 
 import io.confluent.developer.avro.Movie;
 import io.confluent.developer.avro.RatedMovie;
@@ -30,24 +31,12 @@ import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHE
 
 public class JoinStreamToTable {
 
-    public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-
-        return props;
-    }
-
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String movieTopic = envProps.getProperty("movie.topic.name");
-        final String rekeyedMovieTopic = envProps.getProperty("rekeyed.movie.topic.name");
-        final String ratingTopic = envProps.getProperty("rating.topic.name");
-        final String ratedMoviesTopic = envProps.getProperty("rated.movies.topic.name");
+        final String movieTopic = allProps.getProperty("movie.topic.name");
+        final String rekeyedMovieTopic = allProps.getProperty("rekeyed.movie.topic.name");
+        final String ratingTopic = allProps.getProperty("rating.topic.name");
+        final String ratedMoviesTopic = allProps.getProperty("rated.movies.topic.name");
         final MovieRatingJoiner joiner = new MovieRatingJoiner();
 
         KStream<String, Movie> movieStream = builder.<String, Movie>stream(movieTopic)
@@ -62,83 +51,74 @@ public class JoinStreamToTable {
 
         KStream<String, RatedMovie> ratedMovie = ratings.join(movies, joiner);
 
-        ratedMovie.to(ratedMoviesTopic, Produced.with(Serdes.String(), ratedMovieAvroSerde(envProps)));
+        ratedMovie.to(ratedMoviesTopic, Produced.with(Serdes.String(), ratedMovieAvroSerde(allProps)));
 
         return builder.build();
     }
 
-    private SpecificAvroSerde<RatedMovie> ratedMovieAvroSerde(Properties envProps) {
+    private SpecificAvroSerde<RatedMovie> ratedMovieAvroSerde(Properties allProps) {
         SpecificAvroSerde<RatedMovie> movieAvroSerde = new SpecificAvroSerde<>();
-
-        final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
-                        envProps.getProperty("schema.registry.url"));
-
-        movieAvroSerde.configure(serdeConfig, false);
+        movieAvroSerde.configure((Map)allProps, false);
         return movieAvroSerde;
     }
 
-    public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        AdminClient client = AdminClient.create(config);
-
+    public void createTopics(Properties allProps) {
+        AdminClient client = AdminClient.create(allProps);
         List<NewTopic> topics = new ArrayList<>();
+        topics.add(new NewTopic(
+                allProps.getProperty("movie.topic.name"),
+                Integer.parseInt(allProps.getProperty("movie.topic.partitions")),
+                Short.parseShort(allProps.getProperty("movie.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("movie.topic.name"),
-                Integer.parseInt(envProps.getProperty("movie.topic.partitions")),
-                Short.parseShort(envProps.getProperty("movie.topic.replication.factor"))));
+                allProps.getProperty("rekeyed.movie.topic.name"),
+                Integer.parseInt(allProps.getProperty("rekeyed.movie.topic.partitions")),
+                Short.parseShort(allProps.getProperty("rekeyed.movie.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("rekeyed.movie.topic.name"),
-                Integer.parseInt(envProps.getProperty("rekeyed.movie.topic.partitions")),
-                Short.parseShort(envProps.getProperty("rekeyed.movie.topic.replication.factor"))));
+                allProps.getProperty("rating.topic.name"),
+                Integer.parseInt(allProps.getProperty("rating.topic.partitions")),
+                Short.parseShort(allProps.getProperty("rating.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("rating.topic.name"),
-                Integer.parseInt(envProps.getProperty("rating.topic.partitions")),
-                Short.parseShort(envProps.getProperty("rating.topic.replication.factor"))));
-
-        topics.add(new NewTopic(
-                envProps.getProperty("rated.movies.topic.name"),
-                Integer.parseInt(envProps.getProperty("rated.movies.topic.partitions")),
-                Short.parseShort(envProps.getProperty("rated.movies.topic.replication.factor"))));
+                allProps.getProperty("rated.movies.topic.name"),
+                Integer.parseInt(allProps.getProperty("rated.movies.topic.partitions")),
+                Short.parseShort(allProps.getProperty("rated.movies.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        Properties envProps = new Properties();
+        Properties allProps = new Properties();
         FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
-
         if (args.length < 1) {
             throw new IllegalArgumentException("This program takes one argument: the path to an environment configuration file.");
         }
 
         JoinStreamToTable ts = new JoinStreamToTable();
-        Properties envProps = ts.loadEnvProperties(args[0]);
-        Properties streamProps = ts.buildStreamsProperties(envProps);
-        Topology topology = ts.buildTopology(envProps);
+        Properties allProps = ts.loadEnvProperties(args[0]);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
+        Topology topology = ts.buildTopology(allProps);
 
-        ts.createTopics(envProps);
+        ts.createTopics(allProps);
 
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close();
+                streams.close(Duration.ofSeconds(5));
                 latch.countDown();
             }
         });

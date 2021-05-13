@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/cogrouping-streams/confluent/markup/answer/short-answer.adoc
+
 dev:
   steps:
     - title: Initialize the project
@@ -46,7 +54,7 @@ dev:
           render:
             file: tutorials/cogrouping-streams/kstreams/markup/dev/make-dev-file.adoc
             
-    - title: Create a schema for the model obect
+    - title: Create a schema for the model object
       content:
         - action: execute
           file: tutorial-steps/dev/make-avro-dir.sh
@@ -104,27 +112,6 @@ dev:
           ms: 10000
           render:
             skip: true
-
-    - title: Produce sample data to the input topics
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/input.json
-          render:
-            file: tutorials/cogrouping-streams/kstreams/markup/dev/run-producer.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/console-producer-app-two.sh
-          stdin: tutorial-steps/dev/input-app-two.json
-          render:
-            file: tutorials/cogrouping-streams/kstreams/markup/dev/run-producer-app-two.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/console-producer-app-three.sh
-          stdin: tutorial-steps/dev/input-app-three.json
-          render:
-            file: tutorials/cogrouping-streams/kstreams/markup/dev/run-producer-app-three.adoc
-
 
     - title: Consume data from the output topic
       content:

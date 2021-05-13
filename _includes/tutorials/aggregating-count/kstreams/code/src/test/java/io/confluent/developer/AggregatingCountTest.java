@@ -29,10 +29,10 @@ public class AggregatingCountTest {
   private final static String TEST_CONFIG_FILE = "configuration/test.properties";
   private TopologyTestDriver testDriver;
 
-  private SpecificAvroSerde<TicketSale> makeSerializer(Properties envProps) {
+  private SpecificAvroSerde<TicketSale> makeSerializer(Properties allProps) {
     SpecificAvroSerde<TicketSale> serde = new SpecificAvroSerde<>();
     Map<String, String> config = new HashMap<>();
-    config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+    config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
     serde.configure(config, false);
     return serde;
   }
@@ -40,16 +40,15 @@ public class AggregatingCountTest {
   @Test
   public void shouldCountTicketSales() throws IOException {
     AggregatingCount aggCount = new AggregatingCount();
-    Properties envProps = aggCount.loadEnvProperties(TEST_CONFIG_FILE);
-    Properties streamProps = aggCount.buildStreamsProperties(envProps);
+    Properties allProps = aggCount.loadEnvProperties(TEST_CONFIG_FILE);
 
-    String inputTopic = envProps.getProperty("input.topic.name");
-    String outputTopic = envProps.getProperty("output.topic.name");
+    String inputTopic = allProps.getProperty("input.topic.name");
+    String outputTopic = allProps.getProperty("output.topic.name");
 
-    final SpecificAvroSerde<TicketSale> ticketSaleSpecificAvroSerde = makeSerializer(envProps);
+    final SpecificAvroSerde<TicketSale> ticketSaleSpecificAvroSerde = makeSerializer(allProps);
 
-    Topology topology = aggCount.buildTopology(envProps, ticketSaleSpecificAvroSerde);
-    testDriver = new TopologyTestDriver(topology, streamProps);
+    Topology topology = aggCount.buildTopology(allProps, ticketSaleSpecificAvroSerde);
+    testDriver = new TopologyTestDriver(topology, allProps);
 
     Serializer<String> keySerializer = Serdes.String().serializer();
     Deserializer<String> keyDeserializer = Serdes.String().deserializer();
@@ -70,15 +69,18 @@ public class AggregatingCountTest {
     testDriver
         .createInputTopic(inputTopic, keySerializer, ticketSaleSpecificAvroSerde.serializer())
         .pipeValueList(input);
-    
-    List<Long> expectedOutput = new ArrayList<Long>(Arrays.asList(1L, 2L, 1L, 3L, 2L, 1L, 2L, 3L, 4L));
 
-    final List<KeyValue<String, Long>> keyValues = 
+    final String outputLabel = " tickets sold";    
+    
+    List<String> originalCounts = new ArrayList<String>(Arrays.asList("1", "2", "1", "3", "2", "1", "2", "3", "4"));
+    List<String> expectedOutput = originalCounts.stream().map(v -> v + outputLabel).collect(Collectors.toList());
+
+    final List<KeyValue<String, String>> keyValues =
         testDriver
-            .createOutputTopic(outputTopic, keyDeserializer, Serdes.Long().deserializer())
+            .createOutputTopic(outputTopic, keyDeserializer, Serdes.String().deserializer())
             .readKeyValuesToList();
 
-    List<Long> actualOutput;
+    List<String> actualOutput;
     actualOutput = keyValues
         .stream()
         .filter(record -> record.value != null)

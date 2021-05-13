@@ -8,6 +8,7 @@ import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
 import org.apache.kafka.streams.test.TestRecord;
+import org.apache.kafka.streams.StreamsConfig;
 import org.junit.After;
 import org.junit.Test;
 
@@ -23,6 +24,7 @@ import io.confluent.developer.avro.RatedMovie;
 import io.confluent.developer.avro.Rating;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroDeserializer;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
 import static org.junit.Assert.assertEquals;
 
@@ -31,31 +33,31 @@ public class JoinStreamToTableTest {
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
     private TopologyTestDriver testDriver;
 
-    private SpecificAvroSerializer<Movie> makeMovieSerializer(Properties envProps) {
+    private SpecificAvroSerializer<Movie> makeMovieSerializer(Properties allProps) {
         SpecificAvroSerializer<Movie> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         serializer.configure(config, false);
 
         return serializer;
     }
 
-    private SpecificAvroSerializer<Rating> makeRatingSerializer(Properties envProps) {
+    private SpecificAvroSerializer<Rating> makeRatingSerializer(Properties allProps) {
         SpecificAvroSerializer<Rating> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         serializer.configure(config, false);
 
         return serializer;
     }
 
-    private SpecificAvroDeserializer<RatedMovie> makeRatedMovieDeserializer(Properties envProps) {
+    private SpecificAvroDeserializer<RatedMovie> makeRatedMovieDeserializer(Properties allProps) {
         SpecificAvroDeserializer<RatedMovie> deserializer = new SpecificAvroDeserializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         deserializer.configure(config, false);
 
         return deserializer;
@@ -83,22 +85,23 @@ public class JoinStreamToTableTest {
     @Test
     public void testJoin() throws IOException {
         JoinStreamToTable jst = new JoinStreamToTable();
-        Properties envProps = jst.loadEnvProperties(TEST_CONFIG_FILE);
-        Properties streamProps = jst.buildStreamsProperties(envProps);
+        Properties allProps = jst.loadEnvProperties(TEST_CONFIG_FILE);
 
-        String tableTopic = envProps.getProperty("movie.topic.name");
-        String streamTopic = envProps.getProperty("rating.topic.name");
-        String outputTopic = envProps.getProperty("rated.movies.topic.name");
+        String tableTopic = allProps.getProperty("movie.topic.name");
+        String streamTopic = allProps.getProperty("rating.topic.name");
+        String outputTopic = allProps.getProperty("rated.movies.topic.name");
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
 
-        Topology topology = jst.buildTopology(envProps);
-        testDriver = new TopologyTestDriver(topology, streamProps);
+        Topology topology = jst.buildTopology(allProps);
+        testDriver = new TopologyTestDriver(topology, allProps);
 
         Serializer<String> keySerializer = Serdes.String().serializer();
-        SpecificAvroSerializer<Movie> movieSerializer = makeMovieSerializer(envProps);
-        SpecificAvroSerializer<Rating> ratingSerializer = makeRatingSerializer(envProps);
+        SpecificAvroSerializer<Movie> movieSerializer = makeMovieSerializer(allProps);
+        SpecificAvroSerializer<Rating> ratingSerializer = makeRatingSerializer(allProps);
 
         Deserializer<String> stringDeserializer = Serdes.String().deserializer();
-        SpecificAvroDeserializer<RatedMovie> valueDeserializer = makeRatedMovieDeserializer(envProps);
+        SpecificAvroDeserializer<RatedMovie> valueDeserializer = makeRatedMovieDeserializer(allProps);
 
         List<Movie> movies = new ArrayList<>();
         movies.add(Movie.newBuilder().setId(294).setTitle("Die Hard").setReleaseYear(1988).build());

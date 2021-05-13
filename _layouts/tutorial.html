@@ -39,7 +39,7 @@
 
   <section class="section">
     <div class="container">
-      <a href="{{ site.github_url }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
+      <a href="{{ site.github_url }}/tree/master/_includes/tutorials/{{ page.static_data }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
       {% unless page.help_wanted %}
         <div class="example">
           <h3 class="title">Example use case:</h3>
@@ -49,6 +49,11 @@
       <h3 class="title">Code example:</h3>
       <div class="cflt-options">
         <select>
+          {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html" {% if page.stack == 'confluent' %} selected {% endif %}>
+          Confluent
+          </option>
+          {% endif %}
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html" {% if page.stack == 'ksql' %} selected {% endif %}>
             ksqlDB
@@ -69,10 +74,40 @@
           Scala
           </option>
           {% endif %}
+          {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html" {% if page.stack == 'python' %} selected {% endif %}>
+          Python
+          </option>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.csharp == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/csharp.html" {% if page.stack == 'csharp' %} selected {% endif %}>
+          C-sharp/.NET
+          </option>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.go == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/go.html" {% if page.stack == 'go' %} selected {% endif %}>
+          Go
+          </option>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.c == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/c.html" {% if page.stack == 'c' %} selected {% endif %}>
+          C
+          </option>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.groovy == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/groovy.html" {% if page.stack == 'groovy' %} selected {% endif %}>
+          Groovy
+          </option>
+          {% endif %}
         </select>
       </div>
       <div class="cflt-tabs">
         <div class="buttons">
+          {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
+          <a class="button {% if page.stack == 'confluent' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html">
+            Confluent
+          </a>
+          {% endif %}
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html">
             ksqlDB
@@ -91,6 +126,31 @@
           {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
           <a class="button {% if page.stack == 'scala' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html">
             Scala
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
+          <a class="button {% if page.stack == 'python' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html">
+            Python
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.csharp == 'enabled' %}
+          <a class="button {% if page.stack == 'csharp' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/csharp.html">
+            C-sharp/.NET
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.go == 'enabled' %}
+          <a class="button {% if page.stack == 'go' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/go.html">
+            Go
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.c == 'enabled' %}
+          <a class="button {% if page.stack == 'c' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/c.html">
+            C
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.groovy == 'enabled' %}
+          <a class="button {% if page.stack == 'groovy' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/groovy.html">
+            Groovy
           </a>
           {% endif %}
         </div>
@@ -155,7 +215,11 @@
     {% if page.help_wanted %}
     {% include contribute-tutorial.html %}
     {% else %}
-    {% include tutorial-content.html %}
+      {% if page.help_wanted_lang %}
+      {% include contribute-tutorial-lang.html %}
+      {% else %}
+      {% include tutorial-content.html %}
+      {% endif %}
     {% endif %}
   </div>
 

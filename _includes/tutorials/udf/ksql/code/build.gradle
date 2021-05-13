@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -14,7 +14,7 @@ version = "0.0.1"
 
 repositories {
     mavenCentral()
-    jcenter()
+    
 
     maven {
         url "https://packages.confluent.io/maven"
@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     implementation 'io.confluent.ksql:ksql-udf:5.4.3'
-    testImplementation 'junit:junit:4.13.1'
+    testImplementation 'junit:junit:4.13.2'
 }
 
 task copyJar(type: Copy) {

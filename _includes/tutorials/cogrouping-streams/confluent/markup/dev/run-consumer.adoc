@@ -1,0 +1,12 @@
+Now that you have sent the login events, let's run a consumer to read the cogrouped output from your streams application
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/cogrouping-streams/confluent/code/tutorial-steps/dev/ccloud-consume-output.sh %}</code></pre>
++++++
+
+
+You should see something like this
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/cogrouping-streams/kstreams/code/tutorial-steps/dev/expected-output.json %}</code></pre>
++++++

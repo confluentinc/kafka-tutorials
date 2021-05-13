@@ -1,0 +1,17 @@
+{
+  "name": "datagen_ccloud_01",
+  "connector": {
+    "state": "RUNNING",
+    "worker_id": "datagen_ccloud_01",
+    "trace": ""
+  },
+  "tasks": [
+    {
+      "id": 0,
+      "state": "RUNNING",
+      "worker_id": "datagen_ccloud_01",
+      "msg": ""
+    }
+  ],
+  "type": "source"
+}

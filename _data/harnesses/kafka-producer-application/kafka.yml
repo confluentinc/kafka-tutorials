@@ -55,6 +55,10 @@ dev:
           render:
             file: tutorials/kafka-producer-application/kafka/markup/dev/make-dev-file.adoc
 
+        - action: skip
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/dev/explain-properties.adoc
+
     - title: Create the KafkaProducer application
       content:
         - action: execute

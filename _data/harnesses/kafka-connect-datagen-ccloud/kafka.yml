@@ -43,6 +43,8 @@ dev:
           render:
             file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/provision-connector.adoc
 
+    - title: Verify the status of the connector in Confluent Cloud
+      content:
         - action: skip
           render:
             file: tutorials/kafka-connect-datagen-ccloud/kafka/markup/dev/check-connector.adoc

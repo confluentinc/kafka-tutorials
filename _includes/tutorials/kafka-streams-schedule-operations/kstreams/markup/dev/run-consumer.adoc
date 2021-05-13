@@ -27,4 +27,4 @@ User_9 @Thu Aug 20 16:31:15 EDT 2020 : 58108
 ++++
 
 
-The timestamp after the user-id is there to help see the time when Kafka Streams executed the puntuation.  In practice you most likely wouldn't append a timestamp to your key.
+The timestamp after the user-id is there to help see the time when Kafka Streams executed the punctuation.  In practice you most likely wouldn't append a timestamp to your key.

@@ -18,9 +18,9 @@ dev:
     - title: Get Confluent Platform
       content:
         - action: make_file
-          file: Dockerfile
+          file: Dockerfile-connect
           render:
-            skip: true
+            file: tutorials/sliding-windows/kstreams/markup/dev/make-dockerfile-connect.adoc
 
         - action: make_file
           file: docker-compose.yml
@@ -59,7 +59,7 @@ dev:
           render:
             file: tutorials/sliding-windows/kstreams/markup/dev/make-dev-file.adoc
             
-    - title: Create a schema for the model obect
+    - title: Create a schema for the model object
       content:
         - action: execute
           file: tutorial-steps/dev/make-avro-dir.sh
@@ -113,11 +113,10 @@ dev:
           render:
             file: tutorials/sliding-windows/kstreams/markup/dev/generate-data.adoc
 
-        - name: wait for the datagen to start
-          action: sleep
-          ms: 5000
+        - action: execute
+          file: tutorial-steps/dev/wait-for-datagen-topic.sh
           render:
-            skip: true 
+            skip: true
 
     - title: Compile and run the Kafka Streams program
       content:
