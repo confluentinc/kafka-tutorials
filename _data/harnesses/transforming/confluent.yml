@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/transforming/kstreams/markup/answer/short-answer.adoc
+
 dev:
   steps:
     - title: Initialize the project
@@ -111,6 +119,11 @@ dev:
           render:
             file: tutorials/transforming/confluent/markup/dev/run-consumer.adoc
 
+    - title: Teardown Confluent Cloud resources
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-destroy.adoc
 
 test:
   steps:
