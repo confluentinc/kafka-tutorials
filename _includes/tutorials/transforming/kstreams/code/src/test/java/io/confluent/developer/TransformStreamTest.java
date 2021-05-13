@@ -1,8 +1,10 @@
 package io.confluent.developer;
 
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
@@ -31,21 +33,21 @@ public class TransformStreamTest {
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
     private TopologyTestDriver testDriver;
 
-    public SpecificAvroSerializer<RawMovie> makeSerializer(Properties envProps) {
+    public SpecificAvroSerializer<RawMovie> makeSerializer(Properties allProps) {
         SpecificAvroSerializer<RawMovie> serializer = new SpecificAvroSerializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         serializer.configure(config, false);
 
         return serializer;
     }
 
-    public SpecificAvroDeserializer<Movie> makeDeserializer(Properties envProps) {
+    public SpecificAvroDeserializer<Movie> makeDeserializer(Properties allProps) {
         SpecificAvroDeserializer<Movie> deserializer = new SpecificAvroDeserializer<>();
 
         Map<String, String> config = new HashMap<>();
-        config.put("schema.registry.url", envProps.getProperty("schema.registry.url"));
+        config.put("schema.registry.url", allProps.getProperty("schema.registry.url"));
         deserializer.configure(config, false);
 
         return deserializer;
@@ -81,20 +83,21 @@ public class TransformStreamTest {
     @Test
     public void testTransformStream() throws IOException {
         TransformStream ts = new TransformStream();
-        Properties envProps = ts.loadEnvProperties(TEST_CONFIG_FILE);
-        Properties streamProps = ts.buildStreamsProperties(envProps);
+        Properties allProps = ts.loadEnvProperties(TEST_CONFIG_FILE);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
 
-        String inputTopic = envProps.getProperty("input.topic.name");
-        String outputTopic = envProps.getProperty("output.topic.name");
+        String inputTopic = allProps.getProperty("input.topic.name");
+        String outputTopic = allProps.getProperty("output.topic.name");
 
-        Topology topology = ts.buildTopology(envProps);
-        testDriver = new TopologyTestDriver(topology, streamProps);
+        Topology topology = ts.buildTopology(allProps);
+        testDriver = new TopologyTestDriver(topology, allProps);
 
         Serializer<String> keySerializer = Serdes.String().serializer();
-        SpecificAvroSerializer<RawMovie> valueSerializer = makeSerializer(envProps);
+        SpecificAvroSerializer<RawMovie> valueSerializer = makeSerializer(allProps);
 
         Deserializer<String> keyDeserializer = Serdes.String().deserializer();
-        SpecificAvroDeserializer<Movie> valueDeserializer = makeDeserializer(envProps);
+        SpecificAvroDeserializer<Movie> valueDeserializer = makeDeserializer(allProps);
 
         List<RawMovie> input = new ArrayList<>();
         input.add(RawMovie.newBuilder().setId(294).setTitle("Die Hard::1988").setGenre("action").build());

@@ -49,15 +49,12 @@ public class TransformStream {
 
     private SpecificAvroSerde<Movie> movieAvroSerde(Properties allProps) {
         SpecificAvroSerde<Movie> movieAvroSerde = new SpecificAvroSerde<>();
-        final HashMap<String, String> serdeConfig = (Map)allProps;
-        movieAvroSerde.configure(serdeConfig, false);
+        movieAvroSerde.configure((Map)allProps, false);
         return movieAvroSerde;
     }
 
     public void createTopics(Properties allProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", allProps.getProperty("bootstrap.servers"));
-        AdminClient client = AdminClient.create(config);
+        AdminClient client = AdminClient.create(allProps);
 
         List<NewTopic> topics = new ArrayList<>();
 
@@ -92,7 +89,7 @@ public class TransformStream {
         TransformStream ts = new TransformStream();
         Properties allProps = ts.loadEnvProperties(args[0]);
         allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);\
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         Topology topology = ts.buildTopology(allProps);
 
         ts.createTopics(allProps);
