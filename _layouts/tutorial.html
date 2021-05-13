@@ -214,10 +214,12 @@
   <div class="tutorial-markup">
     {% if page.help_wanted %}
     {% include contribute-tutorial.html %}
-    {% else if page.help_wanted_lang %}
-    {% include contribute-tutorial-lang.html %}
     {% else %}
-    {% include tutorial-content.html %}
+      {% if page.help_wanted_lang %}
+      {% include contribute-tutorial-lang.html %}
+      {% else %}
+      {% include tutorial-content.html %}
+      {% endif %}
     {% endif %}
   </div>
 
