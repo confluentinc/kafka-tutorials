@@ -1,0 +1,12 @@
+Use the `branch()` method, see below.  Notice the last predicate which simply returns true, which acts as an "else" statement to catch all events that don’t match the other predicates.
+
+```
+        KStream<String, ActingEvent>[] branches = builder.<String, ActingEvent>stream(inputTopic)
+                .branch((key, appearance) -> "drama".equals(appearance.getGenre()),
+                        (key, appearance) -> "fantasy".equals(appearance.getGenre()),
+                        (key, appearance) -> true);
+
+        branches[0].to(allProps.getProperty("output.drama.topic.name"));
+        branches[1].to(allProps.getProperty("output.fantasy.topic.name"));
+        branches[2].to(allProps.getProperty("output.other.topic.name"));
+```

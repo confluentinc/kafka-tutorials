@@ -43,7 +43,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.8.1
+    image: confluentinc/ksqldb-server:0.17.0
     hostname: ksqldb
     container_name: ksqldb
     depends_on:
@@ -77,15 +77,14 @@ services:
       KSQL_CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: '1'
       KSQL_CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: '1'
       KSQL_CONNECT_LOG4J_APPENDER_STDOUT_LAYOUT_CONVERSIONPATTERN: "[%d] %p %X{connector.context}%m (%c:%L)%n"
-      KSQL_CONNECT_PLUGIN_PATH: '/usr/share/java,/usr/share/confluent-hub-components/,/data/connect-jars'
+      KSQL_CONNECT_PLUGIN_PATH: '/usr/share/java,/data/connect-jars'
     command: 
       # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
       - bash 
-      - -c 
+      - -lc
       - |
         echo "Installing connector plugins"
-        mkdir -p /usr/share/confluent-hub-components/
-        confluent-hub install --no-prompt --component-dir /usr/share/confluent-hub-components/ mdrogalis/voluble:0.2.1
+        confluent-hub install --no-prompt --component-dir /usr/share/java/ mdrogalis/voluble:0.2.1
         #
         echo "Launching ksqlDB"
         /usr/bin/docker/run & 
@@ -93,7 +92,7 @@ services:
         sleep infinity
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.8.1
+    image: confluentinc/ksqldb-cli:0.17.0
     container_name: ksqldb-cli
     depends_on:
       - broker

@@ -6,5 +6,5 @@ SELECT TIMESTAMPTOSTRING(T.ROWTIME,'yyyy-MM-dd HH:mm:ss','Europe/London') AS EVE
   FROM TRAFFIC T 
          LEFT JOIN 
        DEVICES D 
-         ON T.MAC=D.ROWKEY 
+         ON T.MAC=D.ID
 EMIT CHANGES LIMIT 10;

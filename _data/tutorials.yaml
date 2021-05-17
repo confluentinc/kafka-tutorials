@@ -31,6 +31,7 @@ splitting:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
+    confluent: enabled
 
 merging:
   title: "How to merge many streams into one stream"
@@ -42,6 +43,7 @@ merging:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
+    confluent: enabled
 
 joining-stream-table:
   title: "How to join a stream and a lookup table"
@@ -52,6 +54,7 @@ joining-stream-table:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 joining-table-table:
   title: "How to join a table and a table"
@@ -130,6 +133,7 @@ session-windows:
   status:
     ksql: enabled
     kstreams: enabled
+    confluent: enabled
 
 aggregating-count:
   title: "How to count a stream of events"
