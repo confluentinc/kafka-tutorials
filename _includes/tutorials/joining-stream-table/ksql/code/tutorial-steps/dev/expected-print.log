@@ -1,12 +1,12 @@
 Key format: KAFKA_INT
 Value format: AVRO
-rowtime: 2020/05/04 21:49:12.099 Z, key: 294, value: {"TITLE": "Die Hard", "RATING": 8.2}
-rowtime: 2020/05/04 21:49:12.174 Z, key: 294, value: {"TITLE": "Die Hard", "RATING": 8.5}
-rowtime: 2020/05/04 21:49:12.245 Z, key: 354, value: {"TITLE": "Tree of Life", "RATING": 9.9}
-rowtime: 2020/05/04 21:49:12.307 Z, key: 354, value: {"TITLE": "Tree of Life", "RATING": 9.7}
-rowtime: 2020/05/04 21:49:12.371 Z, key: 782, value: {"TITLE": "A Walk in the Clouds", "RATING": 7.8}
-rowtime: 2020/05/04 21:49:12.446 Z, key: 782, value: {"TITLE": "A Walk in the Clouds", "RATING": 7.7}
-rowtime: 2020/05/04 21:49:12.503 Z, key: 128, value: {"TITLE": "The Big Lebowski", "RATING": 8.7}
-rowtime: 2020/05/04 21:49:12.576 Z, key: 128, value: {"TITLE": "The Big Lebowski", "RATING": 8.4}
-rowtime: 2020/05/04 21:49:12.634 Z, key: 780, value: {"TITLE": "Super Mario Bros.", "RATING": 2.1}
+rowtime: 2020/05/04 21:49:12.099 Z, key: 294, value: {"TITLE": "Die Hard", "RATING": 8.2}, partition: 0
+rowtime: 2020/05/04 21:49:12.174 Z, key: 294, value: {"TITLE": "Die Hard", "RATING": 8.5}, partition: 0
+rowtime: 2020/05/04 21:49:12.245 Z, key: 354, value: {"TITLE": "Tree of Life", "RATING": 9.9}, partition: 0
+rowtime: 2020/05/04 21:49:12.307 Z, key: 354, value: {"TITLE": "Tree of Life", "RATING": 9.7}, partition: 0
+rowtime: 2020/05/04 21:49:12.371 Z, key: 782, value: {"TITLE": "A Walk in the Clouds", "RATING": 7.8}, partition: 0
+rowtime: 2020/05/04 21:49:12.446 Z, key: 782, value: {"TITLE": "A Walk in the Clouds", "RATING": 7.7}, partition: 0
+rowtime: 2020/05/04 21:49:12.503 Z, key: 128, value: {"TITLE": "The Big Lebowski", "RATING": 8.7}, partition: 0
+rowtime: 2020/05/04 21:49:12.576 Z, key: 128, value: {"TITLE": "The Big Lebowski", "RATING": 8.4}, partition: 0
+rowtime: 2020/05/04 21:49:12.634 Z, key: 780, value: {"TITLE": "Super Mario Bros.", "RATING": 2.1}, partition: 0
 Topic printing ceased
