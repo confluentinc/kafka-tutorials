@@ -434,6 +434,7 @@ kafka-producer-application-callback:
     ruby: disabled
     scala: disabled
     swift: disabled
+    confluent: enabled
 
 console-consumer-producer-avro:
   title: "Console Producer and Consumer for Avro messages"
