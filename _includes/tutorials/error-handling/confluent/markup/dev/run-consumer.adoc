@@ -27,7 +27,6 @@ LEAD
 TO
 CONFLUENT
 GO
-Processed a total of 12 messages
 </code></pre>
 ++++
 
