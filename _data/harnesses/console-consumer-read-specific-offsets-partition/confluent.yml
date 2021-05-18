@@ -15,6 +15,11 @@ dev:
           render:
             file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/init.adoc
 
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/confluent/markup/dev/make-config-dir.adoc
+
     - title: Sign up for Confluent Cloud and provision resources
       content:
         - action: skip
