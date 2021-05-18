@@ -1,0 +1,56 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/kafka-connect-datagen/confluent/markup/dev/init.adoc
+
+    - title: Sign up for Confluent Cloud and provision resources
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
+    - title: Create a properties file with Confluent Cloud information
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/config-create.adoc
+
+    - title: Download and setup the Confluent Cloud CLI
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/get-ccloud.adoc
+
+    - title: Create the Kafka topic
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen/confluent/markup/dev/create-topic.adoc
+
+    - title: Create the connector configuration file
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen/confluent/markup/dev/create-connector-config.adoc
+
+    - title: Provision the connector in Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen/confluent/markup/dev/provision-connector.adoc
+
+    - title: Verify the status of the connector in Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-connect-datagen/confluent/markup/dev/check-connector.adoc
+
+    - title: Consume events from the Kafka topic
+      content:
+      - action: skip
+        render:
+          file: tutorials/kafka-connect-datagen/confluent/markup/dev/consume-topic-key-value.adoc
