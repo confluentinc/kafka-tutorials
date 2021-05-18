@@ -1,0 +1,56 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/kafka/markup/dev/init.adoc
+
+    - title: Sign up for Confluent Cloud and provision resources
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
+    - title: Create a properties file with Confluent Cloud information
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/config-create.adoc
+
+    - title: Download and setup the Confluent Cloud CLI
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/get-ccloud.adoc
+
+    - title: Create a topic with multiple partitions
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/confluent/markup/dev/create-topic.adoc
+
+    - title: Produce records with keys and values
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/confluent/markup/dev/produce-topic-keys-values.adoc  
+            
+    - title: Start a console consumer to read from the first partition
+      content:
+        - action: execute_async
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/confluent/markup/dev/consume-topic-partition-zero.adoc
+
+    - title: Start a console consumer to read from the second partition
+      content:
+        - action: execute_async
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/confluent/markup/dev/consume-topic-partition-one.adoc
+
+    - title: Read records starting from a specific offset
+      content:
+        - action: execute_async
+          render:
+            file: tutorials/console-consumer-read-specific-offsets-partition/confluent/markup/dev/consume-topic-partition-offsets.adoc

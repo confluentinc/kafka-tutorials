@@ -326,6 +326,7 @@ console-consumer-read-specific-offsets-partition:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
+    confluent: enabled
 
 kafka-connect-datagen-local:
   title: "How to generate mock data to a local Kafka topic using the Kafka Connect Datagen"
