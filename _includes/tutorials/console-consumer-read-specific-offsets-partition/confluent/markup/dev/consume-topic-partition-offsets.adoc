@@ -2,7 +2,7 @@ So far you've learned how to consume records from a specific partition. When you
 
 If you haven't done so already, close the previous console consumer with a `CTRL+C`.
 
-From the previous step you know there are 9 records in the second partition.  In this step you'll only consume records starting from offset 6, so you should only see the last 3 records on the screen. The changes in this command include removing the `--from-beginning` property and adding an `--offset` flag
+From the previous step you know there are 6 records in the second partition.  In this step you'll only consume records starting from offset 3, so you should only see the last 3 records on the screen. The changes in this command include removing the `--from-beginning` property and adding an `--offset` flag
 
 
 Here's the command to read records from the second partition starting at offset 6:
@@ -14,9 +14,9 @@ Here's the command to read records from the second partition starting at offset 
 After a few seconds you should see something like this
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/kafka/code/tutorial-steps/dev/expected-output-step-three.txt %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/confluent/code/tutorial-steps/dev/expected-output-step-three.txt %}</code></pre>
 +++++
 
-So you can see here, you've consumed records starting from offset 6 to the end, which includes record with offsets of `6, 7, and 8` the last three records.
+So you can see here, you've consumed records starting from offset 3 to the end, which includes record with offsets of `3, 4, and 5` the last three records.
 
 Go ahead and shut down the current consumer with a `CTRL+C`

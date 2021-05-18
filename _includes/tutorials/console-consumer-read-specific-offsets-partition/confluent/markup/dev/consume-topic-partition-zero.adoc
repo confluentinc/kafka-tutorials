@@ -2,7 +2,7 @@ Next let's open up a console consumer to read records sent to the topic in the p
 are zero based so your two partitions are numbered `0`, and `1` respectively.
 
 Confluent Cloud CLI currently does not have the ability to specify reading from a particular partition, so for the next few steps you'll be using the console consumer built into a Docker image.
-Notice that you are passing in the path to the `ccloud.properties` file that you created earlier.
+Notice that you are passing in the path to the `configuration/ccloud.properties` file that you created earlier.
 
 Lets start a console consumer to read only records from the first partition, `0`
 

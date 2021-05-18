@@ -1,4 +1,4 @@
-docker run -v $PWD/ccloud.properties:/tmp/ccloud.properties confluentinc/cp-kafka:6.1.1 \
+docker run -v $PWD/configuration/ccloud.properties:/tmp/ccloud.properties confluentinc/cp-kafka:6.1.1 \
   bash -c 'kafka-console-consumer \
     --topic example-topic \
     --bootstrap-server `grep "^\s*bootstrap.server" /tmp/ccloud.properties | tail -1` \
