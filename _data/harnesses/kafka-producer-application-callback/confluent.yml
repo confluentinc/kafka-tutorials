@@ -15,29 +15,34 @@ dev:
           render:
             file: tutorials/kafka-producer-application-callback/kafka/markup/dev/init.adoc
 
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/start-compose.adoc
-
         - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
+          file: tutorial-steps/dev/make-configuration-dir.sh
           render:
-            skip: true
+            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/make-config-dir.adoc
+
+    - title: Sign up for Confluent Cloud and provision resources
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
+    - title: Create a properties file with Confluent Cloud information
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/config-create.adoc
+
+    - title: Download and setup the Confluent Cloud CLI
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/get-ccloud.adoc
 
     - title: Create a topic
       content:
-        - action: execute
-          file: tutorial-steps/dev/harness-create-topic.sh
+        - action: skip
           render:
-            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/create-topic.adoc
+            file: tutorials/kafka-producer-application-callback/confluent/markup/dev/create-topic.adoc
 
     - title: Configure the project
       content:
@@ -51,17 +56,18 @@ dev:
           render:
             file: tutorials/kafka-producer-application-callback/kafka/markup/dev/make-gradle-wrapper.adoc
 
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/make-config-dir.adoc
-
     - title: Add application and producer properties
       content:
         - action: make_file
           file: configuration/dev.properties
           render:
-            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/make-dev-file.adoc
+            file: tutorials/kafka-producer-application-callback/confluent/markup/dev/make-dev-file.adoc
+
+    - title: Update the properties file with Confluent Cloud information
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/append-ccloud-config.adoc
 
     - title: Create the KafkaProducer application
       content:
@@ -69,18 +75,18 @@ dev:
           file: tutorial-steps/dev/make-src-dir.sh
           render:
             file: tutorials/kafka-producer-application-callback/kafka/markup/dev/make-src-dir.adoc
-            
+
         - action: make_file
           file: src/main/java/io/confluent/developer/KafkaProducerCallbackApplication.java
           render:
-            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/make-application.adoc 
+            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/make-application.adoc
 
     - title: Create data to produce to Kafka
       content:
         - action: make_file
           file: input.txt
           render:
-            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/create-data-file.adoc        
+            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/create-data-file.adoc
 
     - title: Compile and run the KafkaProducer application
       content:
@@ -100,13 +106,13 @@ dev:
           file: tutorial-steps/dev/harness-console-consumer.sh
           stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
-            file: tutorials/kafka-producer-application-callback/kafka/markup/dev/run-consumer.adoc
+            file: tutorials/kafka-producer-application-callback/confluent/markup/dev/run-consumer.adoc
 
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 5000
+    - title: Teardown Confluent Cloud resources
+      content:
+        - action: skip
           render:
-            skip: true
+            file: shared/markup/ccloud/ccloud-destroy.adoc
 
 test:
   steps:
@@ -158,16 +164,3 @@ prod:
           render:
             file: tutorials/kafka-producer-application-callback/kafka/markup/prod/launch-container.adoc
 
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
-
-ccloud:
-  steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud-properties.adoc
