@@ -718,3 +718,4 @@ error-handling:
     ruby: disabled
     scala: disabled
     swift: disabled
+    confluent: enabled
