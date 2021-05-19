@@ -1,10 +1,8 @@
 In a new terminal, run:
 
-```
-ccloud kafka topic produce raw-movies \
-      --value-format avro \
-      --schema src/main/avro/input_movie_event.avsc
-```
++++++
+<pre class="snippet"><code class="bash">{% include_raw tutorials/transforming/confluent/code/tutorial-steps/dev/run-producer.sh %}</code></pre>
++++++
 
 include::_includes/shared/markup/ccloud/ccloud-sr-produce.adoc[]
 
