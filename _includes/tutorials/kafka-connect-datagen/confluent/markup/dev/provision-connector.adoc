@@ -1,12 +1,12 @@
 You can choose one of two options for provisioning a fully managed Kafka Connect Datagen source connector in Confluent Cloud.  Either option will use the connector configuration file `datagen-source-config.json` that you created in the previous step.
 
-*Option 1.* You can use the Confluent Cloud CLI which provides the `ccloud connector create` command allowing you to pass in the configuration file from the previous step. The `ccloud` CLI is already logged in the `ccloud_library` configured it to use a newly created environment and Kafka cluster.
+*Option 1.* You can use the Confluent Cloud CLI which provides the `ccloud connector create` command allowing you to pass in the configuration file from the previous step.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen/confluent/code/tutorial-steps/dev/create-connector.sh %}</code></pre>
 +++++
 
-*Option 2.* The Confluent Cloud REST API can provision the connector using the configuration file you created from the previous step. This API requires we provide a Confluent Cloud resource ID for both the environment and Kafka cluster we wish to deploy the connector to. These values can be obtained by using the link:https://confluent.cloud/environments[Confluent Cloud UI] or using the `ccloud kafka cluster describe` link:https://docs.confluent.io/ccloud-cli/current/command-reference/kafka/cluster/ccloud_kafka_cluster_describe.html[command]. When using `ccloud_library.sh`, as we did above, the script sets two environment variables (`ENVIRONMENT` and `CLUSTER`) with these values.
+*Option 2.* The Confluent Cloud REST API can provision the connector using the configuration file you created from the previous step. This API requires we provide a Confluent Cloud resource ID for both the environment and Kafka cluster we wish to deploy the connector to. These values can be obtained by using the link:https://confluent.cloud/environments[Confluent Cloud UI] or using the `ccloud kafka cluster describe` link:https://docs.confluent.io/ccloud-cli/current/command-reference/kafka/cluster/ccloud_kafka_cluster_describe.html[command].
 
 Additionally, we must provide an API Key and Secret which authorizes us to control our cloud account. This API key is independent of the one you use to connect to Kafka or the Schema Registry, so we need to generate it before the HTTP command will succeed.
 
