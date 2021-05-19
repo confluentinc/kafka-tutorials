@@ -421,7 +421,7 @@ kafka-producer-application-callback:
   meta-description: "How build an Apache Kafka producer application and handle responses using the Callback interface"
   slug: "/kafka-producer-callback-application"
   question: "How do I use callbacks with a KafkaProducer to handle produce responses?"
-  introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handing the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle responses from producing records."
+  introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handling the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle responses from producing records."
   status:
     ksql: disabled
     kstreams: disabled
