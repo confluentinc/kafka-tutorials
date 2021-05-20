@@ -7,7 +7,7 @@ Using the broker container shell, lets start a console consumer to read only rec
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/kafka/code/tutorial-steps/dev/console-consumer-keys-partition-zero.sh %}</code></pre>
 +++++
 
-After a few seconds you should see something like this
+After a few seconds you should see something like this (your output will vary depending on the hashing algorithm):
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/kafka/code/tutorial-steps/dev/expected-output-step-one.txt %}</code></pre>
