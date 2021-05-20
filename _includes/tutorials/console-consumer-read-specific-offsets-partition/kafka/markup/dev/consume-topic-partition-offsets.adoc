@@ -17,6 +17,6 @@ After a few seconds you should see something like this
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-read-specific-offsets-partition/kafka/code/tutorial-steps/dev/expected-output-step-three.txt %}</code></pre>
 +++++
 
-So you can see here, you've consumed records starting from offset 6 to the end, which includes record with offsets of `6, 7, and 8` the last three records.
+As you can see, you've consumed records starting from offset `6` to the end of the log.
 
 Go ahead and shut down the current consumer with a `CTRL+C`

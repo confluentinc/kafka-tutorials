@@ -4,6 +4,7 @@ package io.confluent.developer;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
+import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.Topology;
@@ -35,14 +36,15 @@ public class StreamsUncaughtExceptionHandlingTest {
     @Before
     public void setUp() throws IOException {
         final StreamsUncaughtExceptionHandling instance = new StreamsUncaughtExceptionHandling();
-        final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
+        final Properties allProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
-        final Properties streamProps = instance.buildStreamsProperties(envProps);
-        final String sessionDataInputTopic = envProps.getProperty("input.topic.name");
-        final String outputTopicName = envProps.getProperty("output.topic.name");
+        final String sessionDataInputTopic = allProps.getProperty("input.topic.name");
+        final String outputTopicName = allProps.getProperty("output.topic.name");
 
-        final Topology topology = instance.buildTopology(envProps);
-        testDriver = new TopologyTestDriver(topology, streamProps);
+        final Topology topology = instance.buildTopology(allProps);
+        testDriver = new TopologyTestDriver(topology, allProps);
         final Serializer<String> keySerializer = Serdes.String().serializer();
         final Serializer<String> exampleSerializer = Serdes.String().serializer();
         final Deserializer<String> valueDeserializer = Serdes.String().deserializer();

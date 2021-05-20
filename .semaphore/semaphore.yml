@@ -193,12 +193,12 @@ blocks:
 
         - name: Kafka Test Connect Datagen Local
           commands:
-            - make -C _includes/tutorials/kafka-connect-datagen-local/kafka/code tutorial
+            - make -C _includes/tutorials/kafka-connect-datagen/kafka/code tutorial
             
         - name: Kafka Test Connect Datagen CCloud
           commands:
-            - make -C _includes/tutorials/kafka-connect-datagen-ccloud/kafka/code tutorial
-
+            - make -C _includes/tutorials/kafka-connect-datagen/confluent/code tutorial
+            
         - name: Kafka Count messages on a topic tutorial tests
           commands:
             - make -C _includes/tutorials/count-messages/kafka/code tutorial
@@ -378,3 +378,4 @@ blocks:
         - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+
