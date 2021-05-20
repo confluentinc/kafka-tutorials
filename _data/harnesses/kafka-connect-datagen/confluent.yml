@@ -59,3 +59,9 @@ dev:
       - action: skip
         render:
           file: tutorials/kafka-connect-datagen/confluent/markup/dev/consume-topic-key-value.adoc
+
+    - title: Delete the connector
+      content:
+      - action: skip
+        render:
+          file: tutorials/kafka-connect-datagen/confluent/markup/dev/delete-connector.adoc

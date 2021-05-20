@@ -16,7 +16,13 @@ Additionally, we must provide an API Key and Secret which authorizes us to contr
 
 The `cloud-api-key.json` file now contains an API key and secret authorized to control your cloud account. Protect this file as you would any secret value. 
 
-The following `curl` command will read the API key and secret from the `cloud-api-key.json` file (using the link:https://stedolan.github.io/jq/[jq dev tool]) and `PUT` the new connector config to the REST API in the appropriate environment and Kafka cluster.
+You will also need to set:
+
+- Confluent Cloud environment id into the configuration parameter `ENVIRONMENT` (use the command `ccloud environment list` to view the active environment).
+
+- Kafka cluster id into the configuration parameter `CLUSTER` (use the command `ccloud kafka cluster list` to view the active cluster).
+
+Run the following `curl` command to provision the connector.  The command will read the API key and secret from the `cloud-api-key.json` file (using the link:https://stedolan.github.io/jq/[jq dev tool]) and `PUT` the new connector config to the REST API in the appropriate environment and Kafka cluster.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen/confluent/code/tutorial-steps/dev/create-connector-rest.sh %}</code></pre>
