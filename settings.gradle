@@ -83,6 +83,7 @@ include '_includes:tutorials:streams-to-table:kstreams:code'
 include '_includes:tutorials:streams-to-table:confluent:code'
 include '_includes:tutorials:transforming:kafka:code'
 include '_includes:tutorials:transforming:kstreams:code'
+include '_includes:tutorials:transforming:confluent:code'
 include '_includes:tutorials:tumbling-windows:kstreams:code'
 include '_includes:tutorials:tumbling-windows:confluent:code'
 // udf is an exception
