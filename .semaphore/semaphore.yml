@@ -298,11 +298,11 @@ blocks:
 
         - name: Kafka Test Connect Datagen Local
           commands:
-            - make -C _includes/tutorials/kafka-connect-datagen-local/kafka/code tutorial
+            - make -C _includes/tutorials/kafka-connect-datagen/kafka/code tutorial
             
         - name: Kafka Test Connect Datagen CCloud
           commands:
-            - make -C _includes/tutorials/kafka-connect-datagen-ccloud/kafka/code tutorial
+            - make -C _includes/tutorials/kafka-connect-datagen/confluent/code tutorial
             
         - name: ksqlDB Test Change number of partitions and replicas
           commands:
