@@ -43,7 +43,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.11.0
+    image: confluentinc/ksqldb-server:0.17.0
     hostname: ksqldb-server
     container_name: ksqldb-server
     depends_on:
@@ -62,7 +62,7 @@ services:
       KSQL_KSQL_STREAMS_AUTO_OFFSET_RESET: "earliest"
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.11.0
+    image: confluentinc/ksqldb-cli:0.17.0
     container_name: ksqldb-cli
     depends_on:
       - broker

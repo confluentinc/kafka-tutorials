@@ -1,5 +1,6 @@
 package io.confluent.developer;
 
+import java.time.Duration;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serdes;
@@ -24,31 +25,17 @@ import io.confluent.developer.avro.Movie;
 import io.confluent.developer.avro.RawMovie;
 import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 
-import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
-
 public class TransformStream {
 
-    public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
-        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
-
-        return props;
-    }
-
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String inputTopic = envProps.getProperty("input.topic.name");
+        final String inputTopic = allProps.getProperty("input.topic.name");
 
         KStream<String, RawMovie> rawMovies = builder.stream(inputTopic);
         KStream<Long, Movie> movies = rawMovies.map((key, rawMovie) ->
                                                         new KeyValue<>(rawMovie.getId(), convertRawMovie(rawMovie)));
 
-        movies.to("movies", Produced.with(Serdes.Long(), movieAvroSerde(envProps)));
+        movies.to("movies", Produced.with(Serdes.Long(), movieAvroSerde(allProps)));
 
         return builder.build();
     }
@@ -60,45 +47,38 @@ public class TransformStream {
         return new Movie(rawMovie.getId(), title, releaseYear, rawMovie.getGenre());
     }
 
-    private SpecificAvroSerde<Movie> movieAvroSerde(Properties envProps) {
+    private SpecificAvroSerde<Movie> movieAvroSerde(Properties allProps) {
         SpecificAvroSerde<Movie> movieAvroSerde = new SpecificAvroSerde<>();
-
-        final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
-                        envProps.getProperty("schema.registry.url"));
-
-        movieAvroSerde.configure(serdeConfig, false);
+        movieAvroSerde.configure((Map)allProps, false);
         return movieAvroSerde;
     }
 
-    public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        AdminClient client = AdminClient.create(config);
+    public void createTopics(Properties allProps) {
+        AdminClient client = AdminClient.create(allProps);
 
         List<NewTopic> topics = new ArrayList<>();
 
         topics.add(new NewTopic(
-                envProps.getProperty("input.topic.name"),
-                Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-                Short.parseShort(envProps.getProperty("input.topic.replication.factor"))));
+                allProps.getProperty("input.topic.name"),
+                Integer.parseInt(allProps.getProperty("input.topic.partitions")),
+                Short.parseShort(allProps.getProperty("input.topic.replication.factor"))));
 
         topics.add(new NewTopic(
-                envProps.getProperty("output.topic.name"),
-                Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                Short.parseShort(envProps.getProperty("output.topic.replication.factor"))));
+                allProps.getProperty("output.topic.name"),
+                Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+                Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
 
         client.createTopics(topics);
         client.close();
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        Properties envProps = new Properties();
+        Properties allProps = new Properties();
         FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
@@ -107,20 +87,21 @@ public class TransformStream {
         }
 
         TransformStream ts = new TransformStream();
-        Properties envProps = ts.loadEnvProperties(args[0]);
-        Properties streamProps = ts.buildStreamsProperties(envProps);
-        Topology topology = ts.buildTopology(envProps);
+        Properties allProps = ts.loadEnvProperties(args[0]);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
+        Topology topology = ts.buildTopology(allProps);
 
-        ts.createTopics(envProps);
+        ts.createTopics(allProps);
 
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final CountDownLatch latch = new CountDownLatch(1);
 
         // Attach shutdown handler to catch Control-C.
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close();
+                streams.close(Duration.ofSeconds(5));
                 latch.countDown();
             }
         });

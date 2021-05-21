@@ -86,10 +86,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
 
-        - name: KSQL transforming tests
-          commands:
-            - make -C _includes/tutorials/transforming/ksql/code tutorial
-
         - name: KStreams transforming tests
           commands:
             - make -C _includes/tutorials/transforming/kstreams/code tutorial
@@ -98,37 +94,17 @@ blocks:
           commands:
             - make -C _includes/tutorials/transforming/kafka/code tutorial
 
-        - name: KSQL filtering tests
-          commands:
-            - make -C _includes/tutorials/filtering/ksql/code tutorial
-
         - name: KStreams filtering tests
           commands:
             - make -C _includes/tutorials/filtering/kstreams/code tutorial
-
-        - name: KSQL splitting tests
-          commands:
-            - make -C _includes/tutorials/splitting/ksql/code tutorial
 
         - name: KStreams splitting tests
           commands:
             - make -C _includes/tutorials/splitting/kstreams/code tutorial
 
-        - name: KSQL merging tests
-          commands:
-            - make -C _includes/tutorials/merging/ksql/code tutorial
-
         - name: KStreams merging tests
           commands:
             - make -C _includes/tutorials/merging/kstreams/code tutorial
-
-        - name: KSQL join stream to stream tests
-          commands:
-            - make -C _includes/tutorials/joining-stream-stream/ksql/code tutorial
-
-        - name: KSQL join stream to table tests
-          commands:
-            - make -C _includes/tutorials/joining-stream-table/ksql/code tutorial
 
         - name: KStreams join stream to table tests
           commands:
@@ -138,58 +114,22 @@ blocks:
           commands:
             - make -C _includes/tutorials/fk-joins/kstreams/code tutorial
 
-        - name: KSQL join table to table tests
-          commands:
-            - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
-
         - name: KStreams tumbling windows tests
           commands:
             - make -C _includes/tutorials/tumbling-windows/kstreams/code tutorial
 
-        - name: KSQL tumbling windows tests
-          commands:
-            - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
-
-        - name: KSQL session windows tests
-          commands:
-            - make -C _includes/tutorials/session-windows/ksql/code tutorial
-
-        - name: KSQL aggregation count tests
-          commands:
-            - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
-        
         - name: KStreams aggregation count tests
           commands:
             - make -C _includes/tutorials/aggregating-count/kstreams/code tutorial
-
-        - name: KSQL aggregation MIN/MAX tests
-          commands:
-            - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
-
-        - name: KSQL aggregation sum tests
-          commands:
-            - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
 
         - name: KStreams aggregation sum tests
           commands:
             - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
 
-        - name: KSQL serialization tests
-          commands:
-            - make -C _includes/tutorials/serialization/ksql/code tutorial
-
         - name: KStreams Serialization tests
           commands:
             - sem-version java 11
             - make -C _includes/tutorials/serialization/kstreams/code tutorial
-
-        - name: KSQL rekey stream tests
-          commands:
-            - make -C _includes/tutorials/rekeying/ksql/code tutorial
-
-        - name: KSQL rekey stream with function tests
-          commands:
-            - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
 
         - name: Kafka produce and consume in Scala
           commands:
@@ -211,66 +151,21 @@ blocks:
           commands:
             - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
 
-        - name: KSQL connect-sink-timestamp tests
-          commands:
-            - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial
-
         - name: KStreams Test Cogrouping Streams tests
           commands:
             - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
-
-  - name: Run second block of tests
-    execution_time_limit:
-      minutes: 10
-    task:
-      prologue:
-        commands:
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
-      jobs:
-        - name: KStreams Connect key tests
-          commands:
-            - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
 
         - name: Kafka Connect SMT key tests
           commands:
             - make -C _includes/tutorials/connect-add-key-to-source/kafka/code tutorial
 
-        - name: ksqlDB  Connect SMT key tests
-          commands:
-            - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
-
         - name: KStreams emit a final result from a time window
           commands:
             - make -C _includes/tutorials/window-final-result/kstreams/code tutorial
-
-        - name: KSQL UDF tests
-          commands:
-            - make -C _includes/tutorials/udf/ksql/code tutorial
-
-        - name: KSQL hopping windows tests
-          commands:
-            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
-  
-        - name: KSQL finding distinct events tests
-          commands:
-            - make -C _includes/tutorials/finding-distinct/ksql/code tutorial
-            
-        - name: KSQL flatten nested data
-          commands:
-            - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
-      
-        - name: KSQL deserialization errors tests
-          commands:
-            - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
             
         - name: KStreams aggregation MIN/MAX tests
           commands:
             - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
-        
-        - name: KSQL Generate streams of test data tests
-          commands:
-            - make -C _includes/tutorials/generate-test-data-streams/ksql/code tutorial
 
         - name: KStreams Running Average tests
           commands:
@@ -298,20 +193,12 @@ blocks:
 
         - name: Kafka Test Connect Datagen Local
           commands:
-            - make -C _includes/tutorials/kafka-connect-datagen-local/kafka/code tutorial
+            - make -C _includes/tutorials/kafka-connect-datagen/kafka/code tutorial
             
         - name: Kafka Test Connect Datagen CCloud
           commands:
-            - make -C _includes/tutorials/kafka-connect-datagen-ccloud/kafka/code tutorial
+            - make -C _includes/tutorials/kafka-connect-datagen/confluent/code tutorial
             
-        - name: ksqlDB Test Change number of partitions and replicas
-          commands:
-            - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
-        
-        - name: KSQL Count messages on a topic tutorial tests
-          commands:
-            - make -C _includes/tutorials/count-messages/ksql/code tutorial
-
         - name: Kafka Count messages on a topic tutorial tests
           commands:
             - make -C _includes/tutorials/count-messages/kafka/code tutorial
@@ -320,41 +207,9 @@ blocks:
           commands:
             - make -C _includes/tutorials/message-ordering/kafka/code tutorial
 
-        - name: KSQL masking data tests
-          commands:
-            - make -C _includes/tutorials/masking-data/ksql/code tutorial
-
         - name: Kafka Consuming and Producing AVRO messages with console tools tests
           commands:
             - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
-        
-        - name: KSQL Test ksqlDB nested JSON tests
-          commands:
-            - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
-                
-        - name: KSQL Test ksqlDB heterogeneous JSON tests
-          commands:
-            - make -C _includes/tutorials/ksql-heterogeneous-json/ksql/code tutorial
-
-        - name: KSQL Time Concepts Tutorial tests
-          commands:
-            - make -C _includes/tutorials/time-concepts/ksql/code tutorial
-    
-        - name: KSQL Multi-joins Test tests
-          commands:
-            - make -C _includes/tutorials/multi-joins/ksql/code tutorial
-
-        - name: KSQL Test ksqlDB concatenate columns tests
-          commands:
-            - make -C _includes/tutorials/concatenation/ksql/code tutorial
-         
-        - name: KSQL Test ksqlDB column difference tests
-          commands:
-            - make -C _includes/tutorials/column-difference/ksql/code tutorial
-        
-        - name: KSQL geo-distance tests
-          commands:
-            - make -C _includes/tutorials/geo-distance/ksql/code tutorial
 
         - name: KStreams Test Kafka Streams session windows tests
           commands:
@@ -363,10 +218,6 @@ blocks:
         - name: KStreams Test Kafka Streams sliding windows tests
           commands:
             - make -C _includes/tutorials/sliding-windows/kstreams/code tutorial
-
-        - name: KSQL anomaly detection tests
-          commands:
-            - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
 
         - name: KStreams finding distinct events tests
           commands:
@@ -379,3 +230,152 @@ blocks:
         - name: KStreams Test Kafka Streams uncaught exception handling tests
           commands:
             - make -C _includes/tutorials/error-handling/kstreams/code tutorial
+
+  - name: Run second block of tests (mostly ksqlDB)
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - sudo apt-get install gradle-6.8.3 -y
+          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
+      jobs:
+        - name: KStreams Connect key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
+
+        - name: KSQL Test ksqlDB nested JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
+
+        - name: KSQL Test ksqlDB heterogeneous JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-heterogeneous-json/ksql/code tutorial
+
+        - name: KSQL Time Concepts Tutorial tests
+          commands:
+            - make -C _includes/tutorials/time-concepts/ksql/code tutorial
+
+        - name: KSQL Multi-joins Test tests
+          commands:
+            - make -C _includes/tutorials/multi-joins/ksql/code tutorial
+
+        - name: KSQL Test ksqlDB concatenate columns tests
+          commands:
+            - make -C _includes/tutorials/concatenation/ksql/code tutorial
+
+        - name: KSQL Test ksqlDB column difference tests
+          commands:
+            - make -C _includes/tutorials/column-difference/ksql/code tutorial
+
+        - name: KSQL geo-distance tests
+          commands:
+            - make -C _includes/tutorials/geo-distance/ksql/code tutorial
+
+        - name: KSQL aggregation MIN/MAX tests
+          commands:
+            - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
+
+        - name: KSQL tumbling windows tests
+          commands:
+            - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
+
+        - name: KSQL session windows tests
+          commands:
+            - make -C _includes/tutorials/session-windows/ksql/code tutorial
+
+        - name: KSQL aggregation count tests
+          commands:
+            - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
+
+        - name: KSQL join table to table tests
+          commands:
+            - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
+
+        - name: KSQL join stream to stream tests
+          commands:
+            - make -C _includes/tutorials/joining-stream-stream/ksql/code tutorial
+
+        - name: KSQL join stream to table tests
+          commands:
+            - make -C _includes/tutorials/joining-stream-table/ksql/code tutorial
+
+        - name: KSQL merging tests
+          commands:
+            - make -C _includes/tutorials/merging/ksql/code tutorial
+
+        - name: KSQL filtering tests
+          commands:
+            - make -C _includes/tutorials/filtering/ksql/code tutorial
+
+        - name: KSQL splitting tests
+          commands:
+            - make -C _includes/tutorials/splitting/ksql/code tutorial
+        - name: KSQL aggregation sum tests
+          commands:
+            - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
+
+        - name: KSQL anomaly detection tests
+          commands:
+            - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
+
+        - name: KSQL flatten nested data
+          commands:
+            - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
+
+        - name: KSQL finding distinct events tests
+          commands:
+            - make -C _includes/tutorials/finding-distinct/ksql/code tutorial
+
+        - name: KSQL transforming tests
+          commands:
+            - make -C _includes/tutorials/transforming/ksql/code tutorial
+
+        - name: ksqlDB  Connect SMT key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
+
+        - name: ksqlDB Test Change number of partitions and replicas
+          commands:
+            - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
+
+        - name: KSQL masking data tests
+          commands:
+            - make -C _includes/tutorials/masking-data/ksql/code tutorial
+
+        - name: KSQL Count messages on a topic tutorial tests
+          commands:
+            - make -C _includes/tutorials/count-messages/ksql/code tutorial
+
+        - name: KSQL Generate streams of test data tests
+          commands:
+            - make -C _includes/tutorials/generate-test-data-streams/ksql/code tutorial
+
+        - name: KSQL UDF tests
+          commands:
+            - make -C _includes/tutorials/udf/ksql/code tutorial
+
+        - name: KSQL hopping windows tests
+          commands:
+            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
+
+        - name: KSQL deserialization errors tests
+          commands:
+            - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
+
+        - name: KSQL serialization tests
+          commands:
+            - make -C _includes/tutorials/serialization/ksql/code tutorial
+
+        - name: KSQL rekey stream tests
+          commands:
+            - make -C _includes/tutorials/rekeying/ksql/code tutorial
+
+        - name: KSQL connect-sink-timestamp tests
+          commands:
+            - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial
+
+        - name: KSQL rekey stream with function tests
+          commands:
+            - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+

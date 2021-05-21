@@ -1,9 +1,9 @@
 Key format: JSON or KAFKA_STRING
 Value format: JSON or KAFKA_STRING
-rowtime: 2020/12/08 21:05:41.271 Z, key: 101, value: {"CUSTOMERID":"1","CUSTOMERNAME":"Adrian Garcia","ORDERID":"abc123","PURCHASEDATE":"2020-05-01","ITEMNAME":"Television 60-in"}
-rowtime: 2020/12/08 21:05:41.300 Z, key: 102, value: {"CUSTOMERID":"1","CUSTOMERNAME":"Adrian Garcia","ORDERID":"abc345","PURCHASEDATE":"2020-05-01","ITEMNAME":"Laptop 15-in"}
-rowtime: 2020/12/08 21:05:41.329 Z, key: 101, value: {"CUSTOMERID":"2","CUSTOMERNAME":"Robert Miller","ORDERID":"abc678","PURCHASEDATE":"2020-05-01","ITEMNAME":"Television 60-in"}
-rowtime: 2020/12/08 21:05:41.357 Z, key: 101, value: {"CUSTOMERID":"3","CUSTOMERNAME":"Brian Smith","ORDERID":"abc987","PURCHASEDATE":"2020-05-03","ITEMNAME":"Television 60-in"}
-rowtime: 2020/12/08 21:05:41.386 Z, key: 103, value: {"CUSTOMERID":"2","CUSTOMERNAME":"Robert Miller","ORDERID":"xyz123","PURCHASEDATE":"2020-05-03","ITEMNAME":"Speakers"}
-rowtime: 2020/12/08 21:05:41.414 Z, key: 102, value: {"CUSTOMERID":"2","CUSTOMERNAME":"Robert Miller","ORDERID":"xyz987","PURCHASEDATE":"2020-05-05","ITEMNAME":"Laptop 15-in"}
+rowtime: 2020/12/08 21:05:41.271 Z, key: 101, value: {"CUSTOMERID":"1","CUSTOMERNAME":"Adrian Garcia","ORDERID":"abc123","PURCHASEDATE":"2020-05-01","ITEMNAME":"Television 60-in"}, partition: 0
+rowtime: 2020/12/08 21:05:41.300 Z, key: 102, value: {"CUSTOMERID":"1","CUSTOMERNAME":"Adrian Garcia","ORDERID":"abc345","PURCHASEDATE":"2020-05-01","ITEMNAME":"Laptop 15-in"}, partition: 0
+rowtime: 2020/12/08 21:05:41.329 Z, key: 101, value: {"CUSTOMERID":"2","CUSTOMERNAME":"Robert Miller","ORDERID":"abc678","PURCHASEDATE":"2020-05-01","ITEMNAME":"Television 60-in"}, partition: 0
+rowtime: 2020/12/08 21:05:41.357 Z, key: 101, value: {"CUSTOMERID":"3","CUSTOMERNAME":"Brian Smith","ORDERID":"abc987","PURCHASEDATE":"2020-05-03","ITEMNAME":"Television 60-in"}, partition: 0
+rowtime: 2020/12/08 21:05:41.386 Z, key: 103, value: {"CUSTOMERID":"2","CUSTOMERNAME":"Robert Miller","ORDERID":"xyz123","PURCHASEDATE":"2020-05-03","ITEMNAME":"Speakers"}, partition: 0
+rowtime: 2020/12/08 21:05:41.414 Z, key: 102, value: {"CUSTOMERID":"2","CUSTOMERNAME":"Robert Miller","ORDERID":"xyz987","PURCHASEDATE":"2020-05-05","ITEMNAME":"Laptop 15-in"}, partition: 0
 Topic printing ceased

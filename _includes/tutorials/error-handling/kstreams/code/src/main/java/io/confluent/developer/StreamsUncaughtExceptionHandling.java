@@ -28,20 +28,10 @@ public class StreamsUncaughtExceptionHandling {
 
     int counter = 0;
 
-    public Properties buildStreamsProperties(Properties envProps) {
-        Properties props = new Properties();
-
-        props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
-        props.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-        return props;
-    }
-
-    public Topology buildTopology(Properties envProps) {
+    public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String inputTopic = envProps.getProperty("input.topic.name");
-        final String outputTopic = envProps.getProperty("output.topic.name");
+        final String inputTopic = allProps.getProperty("input.topic.name");
+        final String outputTopic = allProps.getProperty("output.topic.name");
 
         builder.stream(inputTopic, Consumed.with(Serdes.String(), Serdes.String()))
                 .mapValues(value -> {
@@ -56,20 +46,18 @@ public class StreamsUncaughtExceptionHandling {
         return builder.build();
     }
 
-    public void createTopics(Properties envProps) {
-        Map<String, Object> config = new HashMap<>();
-        config.put("bootstrap.servers", envProps.getProperty("bootstrap.servers"));
-        try (AdminClient client = AdminClient.create(config)) {
+    public void createTopics(Properties allProps) {
+        try (AdminClient client = AdminClient.create(allProps)) {
             List<NewTopic> topicList = new ArrayList<>();
 
-            NewTopic sessionInput = new NewTopic(envProps.getProperty("input.topic.name"),
-                    Integer.parseInt(envProps.getProperty("input.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("input.topic.replication.factor")));
+            NewTopic sessionInput = new NewTopic(allProps.getProperty("input.topic.name"),
+                    Integer.parseInt(allProps.getProperty("input.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("input.topic.replication.factor")));
             topicList.add(sessionInput);
 
-            NewTopic counts = new NewTopic(envProps.getProperty("output.topic.name"),
-                    Integer.parseInt(envProps.getProperty("output.topic.partitions")),
-                    Short.parseShort(envProps.getProperty("output.topic.replication.factor")));
+            NewTopic counts = new NewTopic(allProps.getProperty("output.topic.name"),
+                    Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("output.topic.replication.factor")));
 
             topicList.add(counts);
             client.createTopics(topicList);
@@ -77,12 +65,12 @@ public class StreamsUncaughtExceptionHandling {
     }
 
     public Properties loadEnvProperties(String fileName) throws IOException {
-        Properties envProps = new Properties();
+        Properties allProps = new Properties();
         FileInputStream input = new FileInputStream(fileName);
-        envProps.load(input);
+        allProps.load(input);
         input.close();
 
-        return envProps;
+        return allProps;
     }
 
     public static void main(String[] args) throws Exception {
@@ -92,20 +80,21 @@ public class StreamsUncaughtExceptionHandling {
         }
 
         StreamsUncaughtExceptionHandling tw = new StreamsUncaughtExceptionHandling();
-        Properties envProps = tw.loadEnvProperties(args[0]);
-        Properties streamProps = tw.buildStreamsProperties(envProps);
+        Properties allProps = tw.loadEnvProperties(args[0]);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
         // Change this to StreamsConfig.EXACTLY_ONCE to eliminate duplicates
-        streamProps.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.AT_LEAST_ONCE);
-        Topology topology = tw.buildTopology(envProps);
+        allProps.put(StreamsConfig.PROCESSING_GUARANTEE_CONFIG, StreamsConfig.AT_LEAST_ONCE);
+        Topology topology = tw.buildTopology(allProps);
 
-        tw.createTopics(envProps);
-        TutorialDataGenerator dataGenerator = new TutorialDataGenerator(envProps);
+        tw.createTopics(allProps);
+        TutorialDataGenerator dataGenerator = new TutorialDataGenerator(allProps);
         dataGenerator.generate();
 
-        final int maxFailures = Integer.parseInt(envProps.getProperty("max.failures"));
-        final long maxTimeInterval = Long.parseLong(envProps.getProperty("max.time.millis"));
-        final KafkaStreams streams = new KafkaStreams(topology, streamProps);
+        final int maxFailures = Integer.parseInt(allProps.getProperty("max.failures"));
+        final long maxTimeInterval = Long.parseLong(allProps.getProperty("max.time.millis"));
+        final KafkaStreams streams = new KafkaStreams(topology, allProps);
         final MaxFailuresUncaughtExceptionHandler exceptionHandler = new MaxFailuresUncaughtExceptionHandler(maxFailures, maxTimeInterval);
         streams.setUncaughtExceptionHandler(exceptionHandler);
 
