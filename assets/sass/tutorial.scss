@@ -30,7 +30,7 @@
 
   .summary {
     @include text;
-    color: $baseColor;
+    color: #ffffff;
 
     h2 {
       font-size: 18px;
@@ -138,7 +138,7 @@
 
       a {
         @include text;
-        color: #003cc8;
+        color: #0074A2;
         line-height: 1.69;
         font-weight: 400;
       }

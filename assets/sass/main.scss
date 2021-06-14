@@ -17,7 +17,7 @@ button {
 }
 
 a {
-  color: #003cc8;
+  color: #0074A2;
   
   &:hover {
     color: #003cc8;
@@ -236,7 +236,7 @@ body {
     .subtitle {
         max-width: 800px;
         margin-top: 50px;
-        color: $baseColor;
+        color: #ffffff;
     }
   }
 
@@ -246,9 +246,9 @@ body {
 }
 
 .hero {
-  background: #b4e1e4;
+  background: #040531;
   padding-top: 100px;
-  color: $baseColor;
+  color: #ffffff;
   border-radius: 8px;
   margin: 0 25px;
 
@@ -366,7 +366,7 @@ body {
 
     a {
       font-size: 15px;
-      color: #2479f7;
+      color: #0074A2;
     }
   }
 }
