@@ -10,4 +10,4 @@ This should yield roughly the following output. `PRINT` pulls from all partition
 <pre class="snippet"><code class="shell">{% include_raw tutorials/rekeying/ksql/code/tutorial-steps/dev/expected-print-input.log %}</code></pre>
 +++++
 
-Note that the key is `null` for every message. This means that ratings data for the same movie could be spread across multiple partitions. This is generally not good for scalability when you care about having the same "kind" of data in a single partition.
+Note that the messages have keys ranging from `1` to `9`, but more importantly, the messages are not keyed by the movies' `ID`. This means that ratings data for the same movie could be spread across multiple partitions. This is generally not good for scalability when you care about having the same "kind" of data in a single partition.
