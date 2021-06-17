@@ -48,7 +48,7 @@ dev:
           render:
             file: tutorials/serialization/kstreams/markup/dev/make-dev-file.adoc
 
-    - title: Create an Avro schema for the output events
+    - title: Create an Avro schema for input events, and a Protobuf schema for the output 
       content:
         - action: execute
           file: tutorial-steps/dev/make-avro-dir.sh
@@ -59,6 +59,16 @@ dev:
           file: src/main/avro/movie.avsc
           render:
             file: tutorials/serialization/kstreams/markup/dev/make-movie-schema.adoc
+            
+        - action: execute
+          file: tutorial-steps/dev/make-proto-dir.sh
+          render:
+            file: tutorials/serialization/kstreams/markup/dev/make-proto-dir.adoc
+
+        - action: make_file
+          file: src/main/proto/movie.proto
+          render:
+            file: tutorials/serialization/kstreams/markup/dev/make-movie-proto.adoc
 
         - action: execute
           file: tutorial-steps/dev/build-project.sh
@@ -77,13 +87,6 @@ dev:
           render:
             file: tutorials/serialization/kstreams/markup/dev/make-topology.adoc
 
-    - title: Implement a MovieJsonSerde class
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/serialization/serde/MovieJsonSerde.java
-          render:
-            file: tutorials/serialization/kstreams/markup/dev/make-serde.adoc
-
     - title: Compile and run the Kafka Streams program
       content:
         - action: execute
@@ -96,15 +99,15 @@ dev:
           render:
             file: tutorials/serialization/kstreams/markup/dev/run-dev-app.adoc
 
-    - title: Get ready to observe the Avro-formatted movies in the output topic
+    - title: Get ready to observe the Protobuf movies in the output topic
       content:
         - action: execute_async
           file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/avro-movies-actual.txt
+          stdout: tutorial-steps/dev/outputs/proto-movies-actual.txt
           render:
             file: tutorials/serialization/kstreams/markup/dev/run-consumer.adoc
 
-    - title: Produce some JSON-formatted movies to the input topic
+    - title: Produce some Avro-formatted movies to the input topic
       content:
         - action: execute
           file: tutorial-steps/dev/console-producer-movies.sh
@@ -173,3 +176,11 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud-properties.adoc

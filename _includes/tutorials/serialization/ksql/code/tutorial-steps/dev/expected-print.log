@@ -1,6 +1,6 @@
 Key format: KAFKA_BIGINT or KAFKA_DOUBLE or KAFKA_STRING
-Value format: AVRO
-rowtime: 4/30/20 4:34:10 PM UTC, key: 1, value: {"TITLE": "Lethal Weapon", "RELEASE_YEAR": 1992}
-rowtime: 4/30/20 4:34:10 PM UTC, key: 2, value: {"TITLE": "Die Hard", "RELEASE_YEAR": 1988}
-rowtime: 4/30/20 4:34:11 PM UTC, key: 3, value: {"TITLE": "Predator", "RELEASE_YEAR": 1997}
+Value format: PROTOBUF
+rowtime: 4/30/20 4:34:10 PM UTC, key: 1, value: TITLE: "Lethal Weapon" RELEASE_YEAR: 1992, partition: 0
+rowtime: 4/30/20 4:34:10 PM UTC, key: 2, value: TITLE: "Die Hard" RELEASE_YEAR: 1988, partition: 0
+rowtime: 4/30/20 4:34:11 PM UTC, key: 3, value: TITLE: "Predator" RELEASE_YEAR: 1997, partition: 0
 Topic printing ceased

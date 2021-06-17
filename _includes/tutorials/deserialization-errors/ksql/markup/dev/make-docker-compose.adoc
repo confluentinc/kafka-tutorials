@@ -5,6 +5,6 @@ Next, create the following `docker-compose.yml` file to obtain Confluent Platfor
 +++++
 
 Note that there is some special configuration for the container `ksql-server`.
-We have enabled the support for the https://docs.confluent.io/current/ksql/docs/developer-guide/processing-log.html[KSQL Processing Log] feature by specifying that we want to have both the topic and the stream that will hold deserialization errors automatically.
+We have enabled the support for the https://docs.ksqldb.io/en/latest/reference/processing-log/[KSQL Processing Log] feature by specifying that we want to have both the topic and the stream that will hold deserialization errors automatically.
 We also specified that the topic name should be `ksql_processing_log` and that we want that each event produced to the topic also include a copy of the row that caused the deserialization error.
 This is very important if you want to have all the tools needed to figure out what went wrong.

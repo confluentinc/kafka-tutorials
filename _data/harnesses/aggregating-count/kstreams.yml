@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/aggregating-count/kstreams/markup/answer/count-method.adoc
+
 dev:
   steps:
     - title: Initialize the project
@@ -165,3 +173,11 @@ prod:
           file: tutorial-steps/dev/clean-up.sh
           render:
             skip: true
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud-properties.adoc

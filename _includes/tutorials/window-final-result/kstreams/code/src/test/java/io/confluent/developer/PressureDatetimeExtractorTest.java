@@ -2,106 +2,100 @@ package io.confluent.developer;
 
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
-import io.confluent.developer.avro.PressureAlert;
-import io.confluent.kafka.schemaregistry.client.MockSchemaRegistryClient;
-import io.confluent.kafka.schemaregistry.client.rest.exceptions.RestClientException;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-import org.apache.kafka.clients.producer.ProducerRecord;
+
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.StreamsBuilder;
+import org.apache.kafka.streams.TestInputTopic;
+import org.apache.kafka.streams.TestOutputTopic;
 import org.apache.kafka.streams.TopologyTestDriver;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.Produced;
-import org.apache.kafka.streams.test.ConsumerRecordFactory;
+import org.apache.kafka.streams.test.TestRecord;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.IOException;
 import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
-import static io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
+import io.confluent.developer.avro.PressureAlert;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
+import static java.util.Collections.singletonMap;
 
 public class PressureDatetimeExtractorTest {
 
-    private TopologyTestDriver topologyTestDriver;
+    private TopologyTestDriver testDriver;
     private SpecificAvroSerde<PressureAlert> pressureSerde;
 
-    private Config config = ConfigFactory.load("test.properties");
+    private final Config config = ConfigFactory.load("test.properties");
 
-    private String inputTopic = this.config.getString("input.topic.name");
-    private String outputTopic = this.config.getString("output.topic.name");
+    private final String inputTopic = this.config.getString("input.topic.name");
+    private final String outputTopic = this.config.getString("output.topic.name");
 
-    private DateTimeFormatter formatter = new DateTimeFormatterBuilder()
+    private final DateTimeFormatter formatter = new DateTimeFormatterBuilder()
             .appendPattern(this.config.getString("sensor.datetime.pattern"))
             .toFormatter();
 
     private final PressureDatetimeExtractor timestampExtractor = new PressureDatetimeExtractor(config);
+    private TestOutputTopic<String, PressureAlert> testDriverOutputTopic;
 
-    private SpecificAvroSerde<PressureAlert> makePressureAlertSerde() throws IOException, RestClientException {
+    private SpecificAvroSerde<PressureAlert> makePressureAlertSerde() {
 
-        final MockSchemaRegistryClient client = new MockSchemaRegistryClient();
-
-        String subject = String.format("%s-value", config.getString("input.topic.name"));
-
-        client.register(subject, PressureAlert.SCHEMA$);
-
-        Map<String, String> schemaRegistryConfigMap = Collections.singletonMap(
-                SCHEMA_REGISTRY_URL_CONFIG,
-                config.getString(SCHEMA_REGISTRY_URL_CONFIG)
+        Map<String, String> schemaRegistryConfigMap = singletonMap(
+            SCHEMA_REGISTRY_URL_CONFIG,
+            config.getString(SCHEMA_REGISTRY_URL_CONFIG)
         );
 
-        SpecificAvroSerde<PressureAlert> serde = new SpecificAvroSerde<>(client);
-
+        SpecificAvroSerde<PressureAlert> serde = new SpecificAvroSerde<>();
         serde.configure(schemaRegistryConfigMap, false);
-
         return serde;
     }
 
-    private List<ProducerRecord<String, PressureAlert>> readNOutputs(int size) {
-        return IntStream.range(1, size).mapToObj((notUsedInt) ->
-                topologyTestDriver.readOutput(
-                        this.outputTopic,
-                        Serdes.String().deserializer(),
-                        this.pressureSerde.deserializer()
-                )
-        ).collect(Collectors.toList());
+    private List<TestRecord<String, PressureAlert>> readNOutputs(int size) {
+        return testDriverOutputTopic.readRecordsToList();
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         this.pressureSerde = makePressureAlertSerde();
 
-        Consumed<String, PressureAlert> consumedPressure = Consumed
-                .with(Serdes.String(), pressureSerde)
+        Consumed<String, PressureAlert> consumedPressure =
+            Consumed.with(Serdes.String(), pressureSerde)
                 .withTimestampExtractor(timestampExtractor);
 
-        Produced<String, PressureAlert> producedPressure = Produced.with(Serdes.String(), pressureSerde);
+        Produced<String, PressureAlert> producedPressure =
+            Produced.with(Serdes.String(), pressureSerde);
 
         StreamsBuilder builder = new StreamsBuilder();
-
         builder.stream(this.inputTopic, consumedPressure).to(this.outputTopic, producedPressure);
 
-        this.topologyTestDriver = new TopologyTestDriver(builder.build(), WindowFinalResult.buildProperties(config));
+        this.testDriver = new TopologyTestDriver(builder.build(), WindowFinalResult.buildProperties(config));
+        this.testDriverOutputTopic =
+            testDriver
+                .createOutputTopic(this.outputTopic, Serdes.String().deserializer(), this.pressureSerde.deserializer());
     }
 
     @After
-    public void tearDown() throws Exception {
-        topologyTestDriver.close();
+    public void tearDown() {
+        testDriver.close();
     }
 
     @Test
     public void extract() {
-        ConsumerRecordFactory<Bytes, PressureAlert> inputFactory =
-                new ConsumerRecordFactory<>(Serdes.Bytes().serializer(), this.pressureSerde.serializer());
 
+        final TestInputTopic<Bytes, PressureAlert>
+            testDriverInputTopic =
+            testDriver.createInputTopic(this.inputTopic, Serdes.Bytes().serializer(), this.pressureSerde.serializer());
         List<PressureAlert> inputs = Arrays.asList(
                 new PressureAlert("101", "2019-09-21T05:25:01.+0200", Integer.MAX_VALUE),
                 new PressureAlert("102", "2019-09-21T05:30:02.+0200", Integer.MAX_VALUE),
@@ -111,20 +105,20 @@ public class PressureDatetimeExtractorTest {
         );
 
         inputs.forEach(pressureAlert ->
-                this.topologyTestDriver.pipeInput(inputFactory.create(this.inputTopic, null, pressureAlert))
+                           testDriverInputTopic.pipeInput(null, pressureAlert)
         );
 
-        List<ProducerRecord<String, PressureAlert>> result = readNOutputs(5);
+        List<TestRecord<String, PressureAlert>> result = readNOutputs(5);
 
-        Optional<ProducerRecord<String, PressureAlert>> resultOne =
+        Optional<TestRecord<String, PressureAlert>> resultOne =
                 result.stream().filter(Objects::nonNull).filter(r -> r.value().getId().equals("101")).findFirst();
-        Optional<ProducerRecord<String, PressureAlert>> resultTwo =
+        Optional<TestRecord<String, PressureAlert>> resultTwo =
                 result.stream().filter(Objects::nonNull).filter(r -> r.value().getId().equals("102")).findFirst();
-        Optional<ProducerRecord<String, PressureAlert>> resultThree =
+        Optional<TestRecord<String, PressureAlert>> resultThree =
                 result.stream().filter(Objects::nonNull).filter(r -> r.value().getId().equals("103")).findFirst();
-        Optional<ProducerRecord<String, PressureAlert>> resultFour =
+        Optional<TestRecord<String, PressureAlert>> resultFour =
                 result.stream().filter(Objects::nonNull).filter(r -> r.value().getId().equals("104")).findFirst();
-        Optional<ProducerRecord<String, PressureAlert>> resultFive =
+        Optional<TestRecord<String, PressureAlert>> resultFive =
                 result.stream().filter(Objects::nonNull).filter(r -> r.value().getId().equals("105")).findFirst();
 
         Assert.assertTrue(resultOne.isPresent());

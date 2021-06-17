@@ -1,0 +1,23 @@
+buildscript {
+  repositories {
+    jcenter()
+  }
+}
+
+// fail fast on usage of deprecated APIs
+subprojects {
+  tasks.withType(JavaCompile) {
+    options.compilerArgs = [
+        '-Xlint:deprecation',
+        '-Werror'
+    ]
+  }
+
+  tasks.withType(Test) {
+    testLogging {
+      outputs.upToDateWhen { false }
+      events 'standard_out'
+      exceptionFormat = "full"
+    }
+  }
+}

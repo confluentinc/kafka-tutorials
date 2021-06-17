@@ -2,10 +2,26 @@ agent:
   machine:
     os_image: ubuntu1804
     type: e1-standard-2
+global_job_config:
+  secrets:
+    - name: vault_sem2_approle
+  prologue:
+    commands:
+      - checkout
+      - make install-vault
+      - . vault-bin/vault-setup
+      - . vault-sem-get-secret aws_credentials
+      - . vault-sem-get-secret dockerhub-semaphore-cred
+      - >
+        aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
+      - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
+      - sudo pip3 install -e harness_runner/
+      - >
+        find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
 blocks:
 - execution_time_limit:
-    minutes: 15
-  name: Run the tests
+    minutes: 10
+  name: Run the tests part 1
   task:
     jobs:
     - commands:
@@ -41,6 +57,12 @@ blocks:
     - commands:
       - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
       name: KSQL aggregation MIN/MAX tests
+
+- execution_time_limit:
+    minutes: 10
+  name: Run the tests part 2
+  task:
+    jobs:
     - commands:
       - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
       name: KSQL aggregation sum tests
@@ -71,15 +93,5 @@ blocks:
     - commands:
       - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
       name: KSQL deserialization errors tests
-    prologue:
-      commands:
-      - checkout
-      - |
-        aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
-      - sudo pip3 install -e harness_runner/
-      - |
-        find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
-    secrets:
-    - name: aws_credentials
 name: Kafka Tutorials pipeline
 version: v1.0

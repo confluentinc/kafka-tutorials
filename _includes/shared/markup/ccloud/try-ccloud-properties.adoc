@@ -1,0 +1,13 @@
+Instead of running a local Kafka cluster, you may use https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud], a fully-managed Apache Kafka service.
+
+First, create your Kafka cluster in Confluent Cloud.
+Use the promo code `CC100KTS` to receive an additional $100 free usage (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+
+Next, from the Confluent Cloud UI, click on `Tools & client config` to get the cluster-specific configurations, e.g. Kafka cluster bootstrap servers and credentials, Confluent Cloud Schema Registry and credentials, etc., and set the appropriate parameters in your client application.
+In the case of this tutorial, add the following properties to the client application's input properties file, substituting all curly braces with your Confluent Cloud values.
+
++++++
+<pre class="snippet"><code class="text">{% include_raw shared/code/ccloud/properties.txt %}</code></pre>
++++++
+
+Now you're all set to run your streaming application locally, backed by a Kafka cluster fully managed by Confluent Cloud.

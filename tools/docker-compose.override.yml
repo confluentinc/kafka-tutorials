@@ -1,0 +1,35 @@
+# This overrides file can be used when [testing locally](https://github.com/confluentinc/kafka-tutorials/blob/master/README.md#run-a-tutorial).
+# It adds a Docker container for [Confluent Control Center](https://hub.docker.com/r/confluentinc/cp-enterprise-control-center)
+# and ensures the Kafka broker is running [Confluent Server](https://hub.docker.com/r/confluentinc/cp-server)
+# with [Confluent Metrics Reporter](https://docs.confluent.io/current/kafka/metrics-reporter.html) enabled.
+
+version: "2"
+
+services:
+
+  control-center:
+    image: confluentinc/cp-enterprise-control-center:6.0.0
+    hostname: control-center
+    container_name: control-center
+    ports:
+      - "9021:9021"
+    environment:
+      CONTROL_CENTER_BOOTSTRAP_SERVERS: 'broker:9092'
+      CONTROL_CENTER_CONNECT_CLUSTER: 'connect:8083'
+      CONTROL_CENTER_KSQL_KSQLDB1_URL: "http://ksqldb-server:8088"
+      CONTROL_CENTER_KSQL_KSQLDB1_ADVERTISED_URL: "http://localhost:8088"
+      CONTROL_CENTER_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+      CONTROL_CENTER_REPLICATION_FACTOR: 1
+      CONTROL_CENTER_INTERNAL_TOPICS_PARTITIONS: 1
+      CONTROL_CENTER_MONITORING_INTERCEPTOR_TOPIC_PARTITIONS: 1
+      CONFLUENT_METRICS_TOPIC_REPLICATION: 1
+      PORT: 9021
+
+  broker:
+    image: confluentinc/cp-server:6.0.0
+    environment:
+      KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
+      CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker:9092
+      CONFLUENT_METRICS_REPORTER_TOPIC_REPLICAS: 1
+      CONFLUENT_METRICS_ENABLE: 'true'
+      CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'

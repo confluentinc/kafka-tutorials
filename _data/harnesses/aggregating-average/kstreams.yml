@@ -169,3 +169,10 @@ prod:
           render:
             skip: true
 
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud-properties.adoc

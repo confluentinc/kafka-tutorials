@@ -1,14 +1,6 @@
 package io.confluent.developer;
 
 
-import io.confluent.common.utils.TestUtils;
-import io.confluent.developer.avro.Album;
-import io.confluent.developer.avro.MusicInterest;
-import io.confluent.developer.avro.TrackPurchase;
-import io.confluent.kafka.serializers.AbstractKafkaAvroSerDeConfig;
-import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
 import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
@@ -25,8 +17,22 @@ import org.apache.kafka.streams.kstream.Produced;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 import java.util.concurrent.CountDownLatch;
+
+import io.confluent.common.utils.TestUtils;
+import io.confluent.developer.avro.Album;
+import io.confluent.developer.avro.MusicInterest;
+import io.confluent.developer.avro.TrackPurchase;
+import io.confluent.kafka.serializers.KafkaAvroDeserializer;
+import io.confluent.kafka.serializers.KafkaAvroSerializer;
+import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
+
+import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 
 public class FkJoinTableToTable {
 
@@ -37,7 +43,7 @@ public class FkJoinTableToTable {
         props.put(StreamsConfig.APPLICATION_ID_CONFIG, envProps.getProperty("application.id"));
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, envProps.getProperty("bootstrap.servers"));
         props.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
-        props.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
+        props.put(SCHEMA_REGISTRY_URL_CONFIG, envProps.getProperty("schema.registry.url"));
 
         return props;
     }
@@ -72,8 +78,8 @@ public class FkJoinTableToTable {
         final KafkaAvroDeserializer deserializer = new KafkaAvroDeserializer();
         final KafkaAvroSerializer serializer = new KafkaAvroSerializer();
         final Map<String, String> config = new HashMap<>();
-        config.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
+        config.put(SCHEMA_REGISTRY_URL_CONFIG,
+                   envProps.getProperty("schema.registry.url"));
         deserializer.configure(config, isKey);
         serializer.configure(config, isKey);
         return (Serde<T>)Serdes.serdeFrom(serializer, deserializer);
@@ -83,8 +89,8 @@ public class FkJoinTableToTable {
         final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
 
         final HashMap<String, String> serdeConfig = new HashMap<>();
-        serdeConfig.put(AbstractKafkaAvroSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG,
-                envProps.getProperty("schema.registry.url"));
+        serdeConfig.put(SCHEMA_REGISTRY_URL_CONFIG,
+                        envProps.getProperty("schema.registry.url"));
 
         specificAvroSerde.configure(serdeConfig, false);
         return specificAvroSerde;

@@ -1,0 +1,1 @@
+Use the `count()` method to apply the count aggregation.
