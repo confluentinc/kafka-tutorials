@@ -11,7 +11,7 @@ buildscript {
 plugins {
     id "idea"
     id "java"
-    id "com.google.cloud.tools.jib" version "2.8.0"
+    id "com.google.cloud.tools.jib" version "3.1.1"
 }
 
 sourceCompatibility = "1.8"
@@ -34,7 +34,7 @@ dependencies {
     implementation "org.apache.avro:avro:1.10.2"
     implementation "org.slf4j:slf4j-simple:1.7.30"
     implementation "org.apache.kafka:kafka-streams:2.7.0"
-    implementation "io.confluent:kafka-streams-avro-serde:6.1.1"
+    implementation "io.confluent:kafka-streams-avro-serde:6.2.0"
     testImplementation "org.apache.kafka:kafka-streams-test-utils:2.7.0"
     testImplementation "junit:junit:4.13.2"
 }
