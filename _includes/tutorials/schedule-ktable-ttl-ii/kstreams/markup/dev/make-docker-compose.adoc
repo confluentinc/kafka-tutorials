@@ -1,0 +1,5 @@
+Next, create the following `docker-compose.yml` file to obtain Confluent Platform:
+
++++++
+<pre class="snippet"><code class="dockerfile">{% include_raw tutorials/schedule-ktable-ttl-ii/kstreams/code/docker-compose.yml %}</code></pre>
++++++
