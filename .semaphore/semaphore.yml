@@ -382,4 +382,4 @@ blocks:
 
         - name: KStreams How to implement TTLs with KTable with aggregate tests
           commands:
-            - make -C _includes/tutorials/schedule-ktable-ttl-ii/kstreams/code tutorial
+            - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial

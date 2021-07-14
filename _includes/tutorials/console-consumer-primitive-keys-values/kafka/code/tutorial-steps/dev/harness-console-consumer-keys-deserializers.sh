@@ -5,4 +5,3 @@ docker-compose exec broker kafka-console-consumer --topic example --bootstrap-se
  --key-deserializer "org.apache.kafka.common.serialization.LongDeserializer" \
  --value-deserializer "org.apache.kafka.common.serialization.DoubleDeserializer" \
  --max-messages 10
- 

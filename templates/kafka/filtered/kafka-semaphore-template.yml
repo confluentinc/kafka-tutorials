@@ -2,4 +2,3 @@
         - name: Kafka <SEMAPHORE-TEST-NAME> tests
           commands:
             - make -C _includes/tutorials/<TUTORIAL-SHORT-NAME>/kafka/code tutorial
-            
