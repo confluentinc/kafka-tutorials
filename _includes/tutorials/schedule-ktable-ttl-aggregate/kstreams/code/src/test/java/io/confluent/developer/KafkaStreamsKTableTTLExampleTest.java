@@ -25,7 +25,7 @@ public class KafkaStreamsKTableTTLExampleTest {
     final KafkaStreamsKTableTTLExample instance = new KafkaStreamsKTableTTLExample();
     final Properties envProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
 
-    final Properties streamProps = instance.getStreamProps(envProps);
+    final Properties streamProps = envProps;
     final String inputTopicName = envProps.getProperty("input.topic.name");
     final String outputTopicName = envProps.getProperty("output.topic.name");
     final String tableTopicName = envProps.getProperty("table.topic.name");

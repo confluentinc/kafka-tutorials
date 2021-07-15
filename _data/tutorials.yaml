@@ -717,8 +717,8 @@ schedule-ktable-ttl-aggregate:
   title: "How to implement TTL-based cleanup to expire data in a KTable created via aggregate"
   meta-description: "How to implement TTLs to expire data in the middle of a topology"
   slug: "/schedule-ktable-ttl-aggregate"
-  question: "Do you have a requirement to periodically expire KTable in the middle of a topology created using aggregate() or other stateful functions ?"
-  introduction: "You have a KStreams application which creates KTables in the middle of a topology using the aggregate() function and the state store grows withn time. You may want to purge older data or manage the size of the state store. Although the Kafka Stream API does not natively include a notion of a TTL (Time to Live) for KTables, this tutorial shows you a way to manage the size of your state stores underlying KTables from aggregate() steps."
+  question: "How can I periodically expire KTable records in the middle of a topology created using aggregate() or other stateful functions?"
+  introduction: "You have a KStreams application which creates KTables in the middle of a topology using the aggregate() function and the state store grows over time. You may want to purge older data or manage the size of the state store. Although the Kafka Stream API does not natively include a notion of a TTL (Time to Live) for KTables, this tutorial shows you a way to manage the size of your state stores underlying KTables from aggregate() steps."
   status:
     ksql: disabled
     kstreams: enabled

@@ -78,6 +78,7 @@ public class KafkaStreamsKTableTTLExample {
         .transform(() -> new TTLKTableTombstoneEmitter<String, String, KeyValue<String, ValueWrapper>>(MAX_AGE,
             SCAN_FREQUENCY, STATE_STORE_NAME), STATE_STORE_NAME)
         .groupByKey(Grouped.with(Serdes.String(), new JSONSerde<ValueWrapper>()))
+
         .aggregate(AggregateObject::new, (key, value, aggregate) -> {
           System.out.println("aggregate() - value=" + value);
           if (value.isDeleted())
@@ -102,27 +103,6 @@ public class KafkaStreamsKTableTTLExample {
     joined.to(outputTopic, Produced.with(Serdes.String(), Serdes.String()));
 
     return builder.build();
-  }
-
-
-
-  public Properties getStreamProps(Properties envProp) {
-    final Properties streamsConfiguration = new Properties();
-    streamsConfiguration.put(StreamsConfig.APPLICATION_ID_CONFIG, envProp.get("application.id"));
-    streamsConfiguration.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG,
-        envProp.get("bootstrap.servers"));
-    streamsConfiguration.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-    // Use a temporary directory for storing state, which will be automatically removed after the
-    // test.
-    streamsConfiguration.put(StreamsConfig.STATE_DIR_CONFIG,
-        TestUtils.tempDirectory().getAbsolutePath());
-    // streamsConfiguration.put(StreamsConfig.MAX_TASK_IDLE_MS_CONFIG, 20000);
-
-
-    // These two settings are only required in this contrived example so that the
-    // streamsConfiguration.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 0);
-    // streamsConfiguration.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
-    return streamsConfiguration;
   }
 
   public void createTopics(final Properties envProps) {
@@ -180,9 +160,9 @@ public class KafkaStreamsKTableTTLExample {
     // Normally these can be run in separate applications but for the purposes of the demo, we
     // just run both streams instances in the same application
     Topology topology = instance.buildTopology(envProps);
-    System.out.println(topology.describe());
+
     try (final KafkaStreams streams =
-        new KafkaStreams(topology, instance.getStreamProps(envProps))) {
+        new KafkaStreams(topology, envProps)) {
       final CountDownLatch startLatch = new CountDownLatch(1);
       // Attach shutdown handler to catch Control-C.
       Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {

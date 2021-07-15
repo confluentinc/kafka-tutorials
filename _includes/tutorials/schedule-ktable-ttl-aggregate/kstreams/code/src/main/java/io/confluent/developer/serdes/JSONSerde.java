@@ -30,10 +30,6 @@ public class JSONSerde<T> implements Serializer<T>, Deserializer<T>, Serde<T>  {
     try {
       result = (T) OBJECT_MAPPER.readValue(data, JSONSerdeCompatible.class);
       System.out.println("Serialized = "+result);
-    } catch (JsonParseException e) {
-      throw new SerializationException(e);
-    } catch (JsonMappingException e) {
-      throw new SerializationException(e);
     } catch (IOException e) {
       throw new SerializationException(e);
     }
