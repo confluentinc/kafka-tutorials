@@ -26,7 +26,8 @@ This test is fairly vanilla, but there is one section we should look into a litt
       inputTopic.pipeInput("bobby", "21", 15);
       inputTopic.pipeInput("alice", "12", 30);
 
-      testDriver.advanceWallClockTime(Duration.ofMinutes(1));  <3> // advance wallclock time to call punctuator
+      testDriver.advanceWallClockTime(Duration.ofMinutes(1));  <3> 
+// advance wallclock time to call punctuator
       tableTopic.pipeInput("freddy", "f", 65000);
 
       inputTopic.pipeInput("alice", "13", 70006);  <4>

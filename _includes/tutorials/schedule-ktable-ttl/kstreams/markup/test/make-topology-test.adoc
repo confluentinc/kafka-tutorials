@@ -27,7 +27,8 @@ This test is fairly vanilla, but there is one section we should look into a litt
       inputTopic.pipeInput("alice", "12", 30);
       
 
-      tableTopic.pipeInput("freddy", "f", 65000);  <3> // punctuate gets called now
+      tableTopic.pipeInput("freddy", "f", 65000);  <3> 
+      // punctuate gets called now
 
       inputTopic.pipeInput("alice", "13", 70006);  <4>
       inputTopic.pipeInput("bobby", "22", 70016);
