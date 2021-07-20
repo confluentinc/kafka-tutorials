@@ -72,8 +72,8 @@ Let's look at the TTL Emitter transformer that will schedule emitting tombstones
 <5> We still need to	 create a transform() method to handle incoming changes to the input topic upstream of the KTable
 <6> Handle tombstones coming from upstream or update the timestamp in the local purge state store
 
-Next we setup simple topology showing KTable created out of an aggregate function (this just keeps values in a list) and then join the
-generated KTable with the KStream. Here, we have to attach the TTLKTableTombstoneEmitter before the groupBy() and aggregate() steps.
+Next, we set up a simple topology showing the KTable created out of an aggregate function (this just keeps values in a list) and then join the generated KTable with the KStream. 
+Here, we have to attach the TTLKTableTombstoneEmitter before the groupBy() and aggregate() steps.
 
 [source, java]
 .Initializing two KStreams in Kafka Streams application and a state store to manage key-timestamp pairs.
