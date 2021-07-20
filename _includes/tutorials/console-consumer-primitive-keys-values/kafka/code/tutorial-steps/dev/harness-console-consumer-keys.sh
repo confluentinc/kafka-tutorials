@@ -3,3 +3,4 @@ docker-compose exec broker kafka-console-consumer --topic example --bootstrap-se
  --property print.key=true \
  --property key.separator=" : " \
  --max-messages 10
+ 

@@ -4,4 +4,4 @@ Create the JDBC source connector. Note the `transforms` stanza which is responsi
 <pre class="snippet"><code class="shell">{% include_raw tutorials/connect-add-key-to-source/kafka/code/tutorial-steps/dev/create-connector.sh %}</code></pre>
 +++++
 
-If you run this before Kafka Connect has finished starting up you'll get the error `curl: (52) Empty reply from server` - in which case, rerun the above command.
+If you run this before Kafka Connect has finished starting up you'll get the error `curl: (52) Empty reply from server` - in which case, rerun the above command. 

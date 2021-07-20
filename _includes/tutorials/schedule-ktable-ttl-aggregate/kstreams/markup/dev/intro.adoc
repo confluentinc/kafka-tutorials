@@ -1,8 +1,9 @@
 In a previous tutorial, we showed how to purge KTables which are created directly from an input topic. See https://kafka-tutorials.confluent.io/schedule-ktable-ttl/kstreams.html[Expire data in a KTable with TTLs]
 
-In this tutorial we want to show how a KTable created in the middle of a topology via aggregate() data periodically purged via use of a transformer. The example shows a fixed
+In this tutorial, we want to show how to periodically purge data from a KTable,  created in the middle of a topology via an aggregate() using a transformer. The example shows a fixed
 TTL per key based on the last update for that key. This may or may not serve all needs but it is sufficient to illustrate the
 mechanism via which we can purge data from a KTable. The transformer uses a state store to store the last updated time seen for a key
-and periodically (via a punctuator) scans its list of keys to see if any of them have exceeded a configured cutoff period (TTL). If they have met the condition for purging, then a signal (via a wrapper object) is forwarded onwards in the pipeline to signal to the downstream aggregate() function so that the key removed from the KTable's own internal store. This is due to the fact that the the groupBy() API will swallow a null key or null value.
+and periodically (via a punctuator) scans its list of keys to see if any of them have exceeded a configured cutoff period (TTL). If they have met the condition for purging, then a 
+signal (via a wrapper object) is forwarded onwards in the pipeline to signal to the downstream aggregate() function so that the key removed from the KTable's own internal store. This is due to the fact that the the groupBy() API will swallow a null key or null value.
 
 For a refresh on scheduling logic using a punctuator, have a look at the https://kafka-tutorials.confluent.io/kafka-streams-schedule-operations/kstreams.html[Scheduling Operations] tutorial.
