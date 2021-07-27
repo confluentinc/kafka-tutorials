@@ -11,7 +11,7 @@ buildscript {
 plugins {
   id "java"
   id "application"
-  id "com.google.cloud.tools.jib" version "2.8.0"
+  id "com.google.cloud.tools.jib" version "3.1.1"
   id "idea"
   id "eclipse"
 }
@@ -40,7 +40,7 @@ dependencies {
   testImplementation "junit:junit:4.13.2"
   testImplementation 'org.hamcrest:hamcrest:2.2'
 
-  testCompileOnly "org.projectlombok:lombok:1.18.18"
+  testCompileOnly "org.projectlombok:lombok:1.18.20"
   testAnnotationProcessor "org.projectlombok:lombok:1.18.18"
 }
 

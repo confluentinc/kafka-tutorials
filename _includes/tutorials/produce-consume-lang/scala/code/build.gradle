@@ -1,5 +1,5 @@
 plugins {
-    id "com.google.cloud.tools.jib" version "2.8.0"
+    id "com.google.cloud.tools.jib" version "3.1.1"
     id "com.github.johnrengelman.shadow" version "4.0.4"
 }
 
@@ -34,14 +34,14 @@ allprojects {
 
         implementation "org.apache.kafka:kafka-clients:2.7.0"
         implementation "io.confluent:kafka-streams-avro-serde:6.1.1"
-        implementation "com.sksamuel.avro4s:avro4s-core_2.13:4.0.5"
+        implementation "com.sksamuel.avro4s:avro4s-core_2.13:4.0.9"
         testImplementation "org.scalatest:scalatest_2.13:3.3.0-SNAP3"
-        testImplementation "org.testcontainers:kafka:1.15.2"
+        testImplementation "org.testcontainers:kafka:1.15.3"
 
         // presentation boiler plate
         implementation "com.lihaoyi:cask_2.13:0.7.10"
         implementation "ch.qos.logback:logback-classic:1.2.3"
-        implementation "com.github.pureconfig:pureconfig_2.13:0.12.3"
+        implementation "com.github.pureconfig:pureconfig_2.13:0.16.0"
         implementation "com.nrinaudo:kantan.csv-generic_2.13:0.6.1"
         implementation "com.nrinaudo:kantan.csv-java8_2.13:0.6.1"
         implementation "com.nrinaudo:kantan.csv-enumeratum_2.13:0.6.1"

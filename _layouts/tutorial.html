@@ -51,7 +51,7 @@
         <select>
           {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html" {% if page.stack == 'confluent' %} selected {% endif %}>
-          Confluent
+          Confluent Cloud
           </option>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
@@ -105,7 +105,7 @@
         <div class="buttons">
           {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
           <a class="button {% if page.stack == 'confluent' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html">
-            Confluent
+            Confluent Cloud
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
