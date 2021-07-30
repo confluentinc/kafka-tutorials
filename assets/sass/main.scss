@@ -222,7 +222,7 @@ body {
       }
 
       h1 {
-        font-size: 71px;
+        font-size: 62px;
         font-weight: bold;
         line-height: 1.2;
         max-width: 650px;
@@ -270,6 +270,11 @@ body {
       font-size: 42px;
       font-weight: bold;
     }
+
+    img {
+      vertical-align: middle;
+    }
+
   }
 }
 
