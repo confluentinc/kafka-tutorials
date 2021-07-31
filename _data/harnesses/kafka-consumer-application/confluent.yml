@@ -18,7 +18,7 @@ dev:
           render:
             file: shared/markup/ccloud/ccloud-setup-self.adoc
 
-    - title: Create a properties file with Confluent Cloud information
+    - title: Write the cluster information into a local file
       content:
         - action: skip
           render:
