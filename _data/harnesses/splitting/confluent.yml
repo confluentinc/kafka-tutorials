@@ -20,7 +20,7 @@ dev:
           render:
             file: tutorials/splitting/kstreams/markup/dev/make-config-dir.adoc
 
-    - title: Sign up for Confluent Cloud and provision resources
+    - title: Provision your fully managed Kafka cluster in Confluent Cloud
       content:
         - action: skip
           render:
