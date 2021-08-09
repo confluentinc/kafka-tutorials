@@ -20,13 +20,13 @@ dev:
           render:
             file: tutorials/transforming/kstreams/markup/dev/make-config-dir.adoc
 
-    - title: Sign up for Confluent Cloud and provision resources
+    - title: Provision your fully managed Kafka cluster in Confluent Cloud
       content:
         - action: skip
           render:
             file: shared/markup/ccloud/ccloud-setup-self.adoc
 
-    - title: Create a properties file with Confluent Cloud information
+    - title: Write the cluster information into a local file
       content:
         - action: skip
           render:
