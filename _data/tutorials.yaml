@@ -119,7 +119,7 @@ tumbling-windows:
 
 hopping-windows:
   title: "How to create hopping windows"
-  meta-description: "create hopping windows"
+  meta-description: "create hopping windows for time-series events"
   slug: "/create-hopping-windows"
   question: "If I have time-series events in a Kafka topic, how can I group them into fixed-size, possibly-overlapping, contiguous time intervals to identify a specific scenario?"
   introduction: "You want to build an alerting system that automatically detects if the temperature of a room consistently drops. In this tutorial, we'll write a program that monitors a stream of temperature readings and detects when the temperature consistently drops below 45 °F for a period of 10 minutes."
@@ -128,6 +128,7 @@ hopping-windows:
 
 session-windows:
   title: "Create session windows"
+  meta-description: "create session windows for time-series events"
   slug: "/create-session-windows"
   question: "If I have time-series events in a Kafka topic, how can I group them into variable-size, non-overlapping time intervals based on a configurable inactivity period?"
   introduction: "Given a topic of click events on a website, there are various ways that we can process it. As well as simply counting the number of clicks in a regular time frame (using hopping or tumbling windows), we can also perform sessionization on the data. Here the length of the time window is based on the concept of a session, which is defined based on a period of inactivity. A given user might visit a website multiple times a day, but in distinct visits. Using session windows, we can analyze the number of clicks and duration per visit."
@@ -158,15 +159,15 @@ aggregating-minmax:
     kstreams: enabled
 
 aggregating-sum:
-   title: "How to sum a stream of events"
-   meta-description: "calculate the sum of one or more fields in a stream of events"
-   slug: "/create-stateful-aggregation-sum"
-   question: "How can I calculate the sum of one or more fields from all records in a Kafka topic?"
-   introduction: "Suppose you have a topic with events that represent ticket sales for movies. Each event contains the movie that the ticket was purchased for as well as its price. In this tutorial, we'll write a program that calculates the sum of all ticket sales per movie."
-   status:
-     ksql: enabled
-     kstreams: enabled
-     confluent: enabled
+  title: "How to sum a stream of events"
+  meta-description: "calculate the sum of one or more fields in a stream of events"
+  slug: "/create-stateful-aggregation-sum"
+  question: "How can I calculate the sum of one or more fields from all records in a Kafka topic?"
+  introduction: "Suppose you have a topic with events that represent ticket sales for movies. Each event contains the movie that the ticket was purchased for as well as its price. In this tutorial, we'll write a program that calculates the sum of all ticket sales per movie."
+  status:
+    ksql: enabled
+    kstreams: enabled
+    confluent: enabled
 
 serialization:
   title: "How to convert a stream's serialization format"
@@ -180,6 +181,7 @@ serialization:
 
 connect-add-key-to-source:
   title: "Add key to data ingested through Kafka Connect"
+  meta-description: "add key to a stream of data ingested through Kafka Connect"
   slug: "/connect-add-key-to-source"
   question: "How can I stream data from a source system (such as a database) into Kafka using Kafka Connect, and add a key to the data as part of the ingest?"
   introduction: "Kafka Connect is the integration API for Apache Kafka. It enables you to stream data from source systems (such databases, message queues, SaaS platforms, and flat files) into Kafka, and from Kafka to target systems. When you stream data into Kafka you often need to set the key correctly for partitioning and application logic reasons. In this example there is data about cities in a database, and we want to key the resulting Kafka message by the city_id field. There are different ways to set the key correctly and these tutorials will show you how. It will also cover how to declare the schema and use Kafka Streams to process the data using SpecificAvro. "
@@ -190,6 +192,7 @@ connect-add-key-to-source:
 
 finding-distinct:
   title: "How to find distinct values in a stream of events"
+  meta-description: "filter out duplicate events"
   slug: "/finding-distinct-events"
   question: "How can I filter out duplicate events from a Kafka topic based on a field in the event, producing a new stream of unique events per time window?"
   introduction: "Consider a topic with events that represent clicks on a website.  Each event contains an IP address, a URL, and a timestamp.  In this tutorial, we'll write a program that filters click events by the IP address within a window of time."
@@ -201,6 +204,7 @@ finding-distinct:
 
 window-final-result:
   title: "Emit a final result from a time window"
+  meta-description: "emit a final result from a time window"
   slug: "/window-final-result"
   question: "How can I count the number of messages in a Kafka topic, per key over a time window, getting a final result that takes into account late arrivals?"
   introduction: "Consider a topic with events that represent sensor warnings (pressure on robotic arms). One warning per time slot is fine, but you don't want to have too much warnings at the same time. In this tutorial, we'll write a program that counts the messages of a same sensor and sends a result at the end of the window."
@@ -209,6 +213,7 @@ window-final-result:
 
 udf:
   title: "How to build a User-Defined Function (UDF) to transform events"
+  meta-description: "build a User-Defined Function (UDF) to transform events"
   slug: "/udf"
   question: "How can I transform the values of a Kafka topic using a stateless scalar function not already provided by ksqlDB?"
   introduction: "Consider a topic of stock price events that you want to calculate the <a href=\"https://en.wikipedia.org/wiki/Volume-weighted_average_price\">volume-weighted average price</a> (VWAP) for each event, publishing the result to a new topic.  There is no built-in function for VWAP, so we'll write a custom <a href=\"https://docs.confluent.io/current/ksql/docs/developer-guide/udf.html\">KSQL UDF</a> that performs the calculation."
