@@ -61,7 +61,7 @@ dev:
           render:
             file: shared/markup/ccloud/append-ccloud-config.adoc
             
-    - title: Create a schema for the model obect
+    - title: Create a schema for the model object
       content:
         - action: execute
           file: tutorial-steps/dev/make-avro-dir.sh
