@@ -11,6 +11,13 @@
     <title>{{ site.title }}</title>
     <link rel="stylesheet" href="{{ "/assets/sass/fonts.css" | relative_url }}" />
     <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
+    <script src="https://cdn.optimizely.com/js/15784060578.js"></script>
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6";analytics.SNIPPET_VERSION="4.13.2";
+      analytics.load("az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6");
+      analytics.page();
+      }}();
+    </script>
   </head>
   <body class="pg-main">
     {% include nav.html %}
@@ -22,8 +29,7 @@
             <h1>
               Say Hello World to Event Streaming.
             </h1>
-            <h2 class="subtitle">Apache Kafka is a powerful, scalable, fault-tolerant distributed streaming platform. This site features full code examples using Kafka, Kafka Streams, and ksqlDB to demonstrate real use cases.</h2>
-            <h4>All the tutorials can be run locally or with <a href="https://www.confluent.io/confluent-cloud/tryfree/">Confluent Cloud</a>, Apache Kafka® as a fully managed cloud service.</h4>
+            <h2 class="subtitle">This site features full code examples using Apache Kafka®, Kafka Streams, and ksqlDB to demonstrate real use cases. The examples can be run locally or with <a href="https://www.confluent.io/confluent-cloud/tryfree/">Confluent Cloud</a>, Apache Kafka as a fully managed cloud service,<br>deployable on <a href="https://www.confluent.io/confluent-cloud/tryfree/"><img src="{{ "/assets/img/providers.png" | relative_url }}" width="140" /></a></h2>
           </div>
         </div>
       </div>

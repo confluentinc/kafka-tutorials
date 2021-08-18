@@ -1,6 +1,6 @@
 transforming:
   title: "How to transform a stream of events"
-  meta-description: "Learn to transform a stream of events"
+  meta-description: "transform a field in a stream of events"
   slug: "/transform-a-stream-of-events"
   question: "How do I transform a field in a stream of events in a Kafka topic?"
   introduction: "Consider a topic with events that represent movies. Each event has a single attribute that combines its title and its release year into a string. In this tutorial, we'll write a program that creates a new topic with the title and release date turned into their own attributes."
@@ -12,7 +12,7 @@ transforming:
 
 filtering:
   title: "How to filter a stream of events"
-  meta-description: "Learn to filter a stream of events"
+  meta-description: "filter messages in a stream of events"
   slug: "/filter-a-stream-of-events"
   question: "How do I filter messages in a Kafka topic to contain only those that I'm interested in?"
   introduction: "Consider a topic with events that represent book publications. In this tutorial, we'll write a program that creates a new topic which only contains the events for a particular author."
@@ -24,7 +24,7 @@ filtering:
 
 splitting:
   title: "How to split a stream of events into substreams"
-  meta-description: "Learn to split a stream of events into substreams"
+  meta-description: "split a stream of events into substreams"
   slug: "/split-a-stream-of-events-into-substreams"
   question: "How do I split events in a Kafka topic so that the events are placed into subtopics?"
   introduction: "Suppose that you have a Kafka topic representing appearances of an actor or actress in a film, with each event denoting the genre. In this tutorial, we'll write a program that splits the stream into substreams based on the genre. We'll have a topic for drama films, a topic for fantasy films, and a topic for everything else."
@@ -36,7 +36,7 @@ splitting:
 
 merging:
   title: "How to merge many streams into one stream"
-  meta-description: "Learn to merge many streams into one stream"
+  meta-description: "merge many streams into one stream"
   slug: "/merge-many-streams-into-one-stream"
   question: "If I have many Kafka topics with events, how do I merge them all into a single topic?"
   introduction: "Suppose that you have a set of Kafka topics representing songs being played of a particular genre. You might have a topic for rock songs, another for classical songs, and so forth. In this tutorial, we'll write a program that merges all of the song play events into a single topic."
@@ -48,7 +48,7 @@ merging:
 
 joining-stream-table:
   title: "How to join a stream and a lookup table"
-  meta-description: "Learn to join a stream and a lookup table"
+  meta-description: "join a stream and a lookup table"
   slug: "/join-a-stream-to-a-table"
   question: "If I have events in a Kafka topic and a table of reference data (aka a lookup table), how can I join each event in the stream to a piece of data in the table based on a common key?"
   introduction: "Suppose you have a set of movies that have been released and a stream of ratings from movie-goers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie."
@@ -59,7 +59,7 @@ joining-stream-table:
 
 joining-table-table:
   title: "How to join a table and a table"
-  meta-description: "Learn to join a table and a table"
+  meta-description: "join a table and a table"
   slug: "/join-a-table-to-a-table"
   question: "If I have two tables of reference data in Kafka topics, how can I join the tables on a common key?"
   introduction: "Suppose you have a set of data about movies and want to add further details such as who the lead actor was. In this tutorial, we'll write a program that joins each movie to another set of data holding information about who the lead actor was for movies."
@@ -69,7 +69,7 @@ joining-table-table:
 
 joining-stream-stream:
   title: "How to join a stream and a stream"
-  meta-description: "Learn to join a stream and a stream"
+  meta-description: "join a stream and a stream"
   slug: "/join-a-stream-to-a-stream"
   question: "If I have event streams in two Kafka topics, how can I join them together and create a new topic based on a common identifying attribute, where the new events are enriched from the original topics?"
   introduction: "Suppose you have two streams containing events for orders and shipments. In this tutorial, we'll write a program that joins these two streams to create a new, enriched one. The new stream will tell us which orders have been successfully shipped, how long it took for them to ship, and which warehouse they shipped from."
@@ -79,7 +79,7 @@ joining-stream-stream:
 
 fk-joins:
   title: "How to join a table and a table with a foreign key"
-  meta-description: "Learn how to join two tables with different primary keys"
+  meta-description: "join two tables with different primary keys"
   slug: "/foreign-key-joins"
   question: "How can I join two tables with different primary keys?"
   introduction: "Suppose you are running an internet streaming music service where you offer albums or individual music tracks for sale.  You'd like to track trends in listener preference by joining the track purchases against the table of albums.  The issue is that the track purchase key doesn't align with the primary key for the album table.  However, since the value of the track purchase contains the id of the album, you can extract the album id from the track purchase and complete a foreign key join against the album table."
@@ -88,7 +88,7 @@ fk-joins:
 
 rekeying:
   title: "How to rekey a stream with a value"
-  meta-description: "Learn to rekey a stream with a value"
+  meta-description: "rekey a stream with a value"
   slug: "/rekey-a-stream"
   question: "How can I add a key or change the key to a Kafka topic?"
   introduction: "Suppose you have an unkeyed stream of movie ratings from movie-goers. Because the stream is not keyed, ratings for the same movie aren't guaranteed to be placed into the same partition. In this tutorial, we'll write a program that creates a new topic keyed by the movie's name. When the key is consistent, it becomes possible to process these ratings at scale and in parallel."
@@ -98,7 +98,7 @@ rekeying:
 
 rekeying-function:
   title: "How to rekey a stream with a function"
-  meta-description: "Learn to rekey a stream with a function"
+  meta-description: "rekey a stream with a function"
   slug: "/rekey-with-function"
   question: "How can I rekey records in a Kafka topic, whereby the new key is a variation of data currently in the payload?"
   introduction: "Consider a stream of customer information events keyed by id. Each event contains a few attributes, including the customer's phone number. In this tutorial, we'll write a program that rekeys the topic by the area code of the phone number. Customers of the same area code will be placed into the same partition in the new topic."
@@ -108,7 +108,7 @@ rekeying-function:
 
 tumbling-windows:
   title: "How to create tumbling windows"
-  meta-description: "Learn to create tumbling windows"
+  meta-description: "create tumbling windows"
   slug: "/create-tumbling-windows"
   question: "If I have time-series events in a Kafka topic, how can I group them into fixed-size, non-overlapping, contiguous time intervals?"
   introduction: "Suppose you have a topic with events that represent ratings of movies. In this tutorial, we'll write a program that maintains tumbling windows counting the total number of ratings that each movie has received."
@@ -119,7 +119,7 @@ tumbling-windows:
 
 hopping-windows:
   title: "How to create hopping windows"
-  meta-description: "Learn to create hopping windows"
+  meta-description: "create hopping windows for time-series events"
   slug: "/create-hopping-windows"
   question: "If I have time-series events in a Kafka topic, how can I group them into fixed-size, possibly-overlapping, contiguous time intervals to identify a specific scenario?"
   introduction: "You want to build an alerting system that automatically detects if the temperature of a room consistently drops. In this tutorial, we'll write a program that monitors a stream of temperature readings and detects when the temperature consistently drops below 45 °F for a period of 10 minutes."
@@ -128,6 +128,7 @@ hopping-windows:
 
 session-windows:
   title: "Create session windows"
+  meta-description: "create session windows for time-series events"
   slug: "/create-session-windows"
   question: "If I have time-series events in a Kafka topic, how can I group them into variable-size, non-overlapping time intervals based on a configurable inactivity period?"
   introduction: "Given a topic of click events on a website, there are various ways that we can process it. As well as simply counting the number of clicks in a regular time frame (using hopping or tumbling windows), we can also perform sessionization on the data. Here the length of the time window is based on the concept of a session, which is defined based on a period of inactivity. A given user might visit a website multiple times a day, but in distinct visits. Using session windows, we can analyze the number of clicks and duration per visit."
@@ -138,7 +139,7 @@ session-windows:
 
 aggregating-count:
   title: "How to count a stream of events"
-  meta-description: "Learn to count a stream of events"
+  meta-description: "count the number of events in a stream"
   slug: "/create-stateful-aggregation-count"
   question: "How can I count the number of events in a Kafka topic based on some criteria?"
   introduction: "Suppose you have a topic with events that represent ticket sales for movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams and ksqlDB.  We'll write a program that calculates the total number of tickets sold per movie."
@@ -149,7 +150,7 @@ aggregating-count:
 
 aggregating-minmax:
   title: "How to find the min/max in a stream of events"
-  meta-description: "Learn to find the min/max in a stream of events"
+  meta-description: "find the minimum or maximum value of a field in a stream of events"
   slug: "/create-stateful-aggregation-minmax"
   question: "How can I get the minimum or maximum value of a field from all records in a Kafka topic?"
   introduction: "Suppose you have a topic with events that represent ticket sales of movies. In this tutorial, we'll write a program that calculates the maximum and minimum revenue of movies by year."
@@ -158,19 +159,19 @@ aggregating-minmax:
     kstreams: enabled
 
 aggregating-sum:
-   title: "How to sum a stream of events"
-   meta-description: "Learn to sum a stream of events"
-   slug: "/create-stateful-aggregation-sum"
-   question: "How can I calculate the sum of one or more fields form all records in a Kafka topic?"
-   introduction: "Suppose you have a topic with events that represent ticket sales for movies. Each event contains the movie that the ticket was purchased for as well as its price. In this tutorial, we'll write a program that calculates the sum of all ticket sales per movie."
-   status:
-     ksql: enabled
-     kstreams: enabled
-     confluent: enabled
+  title: "How to sum a stream of events"
+  meta-description: "calculate the sum of one or more fields in a stream of events"
+  slug: "/create-stateful-aggregation-sum"
+  question: "How can I calculate the sum of one or more fields from all records in a Kafka topic?"
+  introduction: "Suppose you have a topic with events that represent ticket sales for movies. Each event contains the movie that the ticket was purchased for as well as its price. In this tutorial, we'll write a program that calculates the sum of all ticket sales per movie."
+  status:
+    ksql: enabled
+    kstreams: enabled
+    confluent: enabled
 
 serialization:
   title: "How to convert a stream's serialization format"
-  meta-description: "Learn to convert a stream's serialization format"
+  meta-description: "convert a stream's serialization format like Avro, Protobuf, or JSON,"
   slug: "/changing-serialization-format"
   question: "If I have a Kafka topic with the data serialized in a particular format, how can I change the format to something else?"
   introduction: "Consider a topic with events that represent movie releases. The events in the topic are formatted with Avro. In this tutorial, we'll write a program that creates a new topic with the same events, but formatted with Protobuf."
@@ -180,6 +181,7 @@ serialization:
 
 connect-add-key-to-source:
   title: "Add key to data ingested through Kafka Connect"
+  meta-description: "add key to a stream of data ingested through Kafka Connect"
   slug: "/connect-add-key-to-source"
   question: "How can I stream data from a source system (such as a database) into Kafka using Kafka Connect, and add a key to the data as part of the ingest?"
   introduction: "Kafka Connect is the integration API for Apache Kafka. It enables you to stream data from source systems (such databases, message queues, SaaS platforms, and flat files) into Kafka, and from Kafka to target systems. When you stream data into Kafka you often need to set the key correctly for partitioning and application logic reasons. In this example there is data about cities in a database, and we want to key the resulting Kafka message by the city_id field. There are different ways to set the key correctly and these tutorials will show you how. It will also cover how to declare the schema and use Kafka Streams to process the data using SpecificAvro. "
@@ -190,6 +192,7 @@ connect-add-key-to-source:
 
 finding-distinct:
   title: "How to find distinct values in a stream of events"
+  meta-description: "filter out duplicate events"
   slug: "/finding-distinct-events"
   question: "How can I filter out duplicate events from a Kafka topic based on a field in the event, producing a new stream of unique events per time window?"
   introduction: "Consider a topic with events that represent clicks on a website.  Each event contains an IP address, a URL, and a timestamp.  In this tutorial, we'll write a program that filters click events by the IP address within a window of time."
@@ -201,6 +204,7 @@ finding-distinct:
 
 window-final-result:
   title: "Emit a final result from a time window"
+  meta-description: "emit a final result from a time window"
   slug: "/window-final-result"
   question: "How can I count the number of messages in a Kafka topic, per key over a time window, getting a final result that takes into account late arrivals?"
   introduction: "Consider a topic with events that represent sensor warnings (pressure on robotic arms). One warning per time slot is fine, but you don't want to have too much warnings at the same time. In this tutorial, we'll write a program that counts the messages of a same sensor and sends a result at the end of the window."
@@ -209,6 +213,7 @@ window-final-result:
 
 udf:
   title: "How to build a User-Defined Function (UDF) to transform events"
+  meta-description: "build a User-Defined Function (UDF) to transform events"
   slug: "/udf"
   question: "How can I transform the values of a Kafka topic using a stateless scalar function not already provided by ksqlDB?"
   introduction: "Consider a topic of stock price events that you want to calculate the <a href=\"https://en.wikipedia.org/wiki/Volume-weighted_average_price\">volume-weighted average price</a> (VWAP) for each event, publishing the result to a new topic.  There is no built-in function for VWAP, so we'll write a custom <a href=\"https://docs.confluent.io/current/ksql/docs/developer-guide/udf.html\">KSQL UDF</a> that performs the calculation."
@@ -219,7 +224,7 @@ udf:
 
 deserialization-errors:
   title: "How to handle deserialization errors"
-  meta-description: "How to handle deserialization errors"
+  meta-description: "handle deserialization errors in a stream of events"
   slug: "/handling-deserialization-errors"
   question: "How can I identify and manage deserialization errors that cause some events from a Kafka topic to not be written into a stream or table?"
   introduction: "During the development of event streaming applications, it is very common to have situations where some streams or tables are not receiving some events that has been sent to it. Often this happens because there was an deserialization error due to the event not being in the right format, but that is not so trivial to figure out. In this tutorial, we'll write a program that monitors a stream of sensors. Any deserialization error that happens in this stream will be made available in another stream that can be queried to check errors."
@@ -228,7 +233,7 @@ deserialization-errors:
 
 flatten-nested-data:
   title: "How to flatten deeply nested events"
-  meta-description: "How to flatten deeply nested events"
+  meta-description: "flatten deeply nested events"
   slug: "/flatten-nested-data"
   question: "How can I transform a stream of events with nested data into a flattened dataset that is simpler to handle?"
   introduction: "Consider a topic containing product orders. Each order contains data about the customer and the product, specified as nested data. In this tutorial, we'll write a program that transforms each order into a new version of it that contains all the data as flat fields."
@@ -239,7 +244,7 @@ flatten-nested-data:
 
 generate-test-data-streams:
   title: "Generate complex streams of test data"
-  meta-description: "Generate complex and realistic streams of test data"
+  meta-description: "generate complex and realistic streams of test data"
   question: "How can I generate realistic test data in Kafka?"
   slug: "/generate-streams-of-test-data"
   introduction: "Perhaps you are building an application, or constructing a pipeline, and you would like some mock data to test it with. Using this connector it's possible to generate realistic test data that can also be made referentially consistent across topics."
@@ -250,7 +255,7 @@ generate-test-data-streams:
 
 aggregating-average:
   title: "Compute an average aggregation"
-  meta-description: "Learn how to compute an average aggregation like count or sum"
+  meta-description: "compute an average aggregation like count or sum"
   slug: "/aggregating-average"
   question: "How can I implement an average aggregation that implements incremental functions, namely count and sum?"
   introduction: "Kafka Streams natively supports \"incremental\" aggregation functions, in which the aggregation result is updated based on the values captured by each window. Incremental functions include count, sum, min, and max. An average aggregation cannot be computed incrementally. However, as this tutorial shows, it can be implemented by composing incremental functions, namely count and sum. Consider a topic with events that represent ratings of movies. In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie."
@@ -261,7 +266,7 @@ aggregating-average:
 
 dynamic-output-topic:
   title: "How to dynamically choose the output topic at runtime"
-  meta-description: "Learn how to dynamically route records to different Kafka topics at runtime"
+  meta-description: "dynamically route records to different Kafka topics at runtime"
   slug: "/dynamic-output-topic"
   question: "How can I dynamically route records to different Kafka topics, like a \"topic exchange\"?"
   introduction: "Consider a situation where you want to direct output of different records to different topics, like a \"topic exchange\". In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value."
@@ -273,7 +278,7 @@ dynamic-output-topic:
 
 naming-changelog-repartition-topics:
   title: "How to name stateful operations in Kafka Streams"
-  meta-description: "How to name stateful operations in Kafka Streams"
+  meta-description: "name stateful operations"
   slug: "/naming-stateful-operations"
   question: "How can I change the topology of an existing Kafka Streams application that is compatible with the existing one?"
   introduction: "You want to add or remove some operations in your Kafka Streams application.  In this tutorial we'll name the changelog and repartition topics so that the topology updates don't break compatibility."
@@ -284,7 +289,7 @@ naming-changelog-repartition-topics:
 
 cogrouping-streams:
   title: "How to combine stream aggregates together in a single larger object"
-  meta-description: "How to combine stream aggregates together in a single larger object"
+  meta-description: "combine stream aggregates together in a single larger object"
   slug: "/cogrouping-streams"
   question: "How do I combine aggregate values like `count` from multiple streams into a single result?"
   introduction: "You want to compute the count of user login events per application in your system, grouping the individual result from each source stream into one aggregated object.  In this tutorial we'll cover how to use the Kafka Streams Cogrouping functionality to accomplish this task with clear, performant code"
@@ -296,7 +301,7 @@ cogrouping-streams:
 
 console-consumer-producer-basic:
   title: "Console Producer and Consumer Basics, no (de)serializers"
-  meta-description: "Produce and consume your first message with Kafka"
+  meta-description: "produce and consume your first Kafka message with the commandline"
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
   introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
@@ -308,7 +313,7 @@ console-consumer-producer-basic:
 
 console-consumer-primitive-keys-values:
   title: "How to use the console consumer to read non-string primitive keys and values"
-  meta-description: "How to use the console consumer to read non-string primitive keys and values"
+  meta-description: "use the console consumer to read non-string primitive keys and values"
   slug: "/console-consumer-primitive-values"
   question: "How do I specify key and value deserializers when running the Kafka console consumer?"
   introduction: "You want to inspect/debug records written to a topic.  Each record key and value is a long and double, respectively.  In this tutorial you'll learn how to specify key and value deserializers with the console consumer."
@@ -319,7 +324,7 @@ console-consumer-primitive-keys-values:
 
 console-consumer-read-specific-offsets-partition:
   title: "How to read from a specific offset and partition with the Kafka Console Consumer"
-  meta-description: "How to read from a specific offset and partition with the Kafka Console Consumer"
+  meta-description: "read from a specific offset and partition with the commandline consumer"
   slug: "/kafka-console-consumer-read-specific-offsets-partitions"
   question: "How do I read from a specific offset and partition of a Kafka topic?"
   introduction: "You are confirming record arrivals and you'd like to read from a specific offset in a topic partition.   In this tutorial you'll learn how to use the Kafka console consumer to quickly debug issues by reading from a specific offset as well as control the number of records you read."
@@ -331,7 +336,7 @@ console-consumer-read-specific-offsets-partition:
 
 kafka-connect-datagen:
   title: "How to generate mock data to a Kafka topic using the Kafka Connect Datagen"
-  meta-description: "How to generate mock data to a Kafka topic using the Kafka Connect Datagen"
+  meta-description: "generate mock data to a Kafka topic using the Kafka Connect Datagen"
   slug: "/kafka-connect-datagen"
   question: "How can I produce mock data to Kafka topics to test my Kafka applications?"
   introduction: "You will run an instance of the <a href=\"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen\">Kafka Connect Datagen</a> connector to produce mock data to a Kafka cluster. This facilitates learning about Kafka and testing your applications."
@@ -343,7 +348,7 @@ kafka-connect-datagen:
 
 change-topic-partitions-replicas:
   title: "How to change the number of partitions and replicas of a Kafka topic"
-  meta-description: "How to change the number of partitions or replicas of a Kafka topic"
+  meta-description: "change the number of partitions or replicas of a Kafka topic"
   slug: "/change-topic-partitions-replicas"
   question: "How do I change the number of partitions or replicas of a Kafka topic?"
   introduction: "If you have a Kafka topic but want to change the number of partitions or replicas, you can use a streaming transformation to automatically stream all the messages from the original topic into a new Kafka topic which has the desired number of partitions or replicas."
@@ -354,7 +359,7 @@ change-topic-partitions-replicas:
 
 kafka-consumer-application:
   title: "How to build your first Apache KafkaConsumer application"
-  meta-description: "How build your first Apache Kafka consumer application"
+  meta-description: "build your first Kafka consumer application"
   slug: "/creating-first-apache-kafka-consumer-application"
   question: "How do I get started in building my first Kafka consumer application?"
   introduction: "You'd like to integrate an Apache KafkaConsumer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application reading records from Kafka with a KafkaConsumer.  You can use the code in this tutorial as an example of how to use an Apache Kafka consumer."
@@ -366,7 +371,7 @@ kafka-consumer-application:
 
 produce-consume-lang:
   title: "Produce and Consume Records in non-Java languages"
-  meta-description: "Produce and Consume events from Apache Kafka in non-Java languages"
+  meta-description: "produce and consume events from Kafka in non-Java languages"
   slug: "/produce-consume-lang"
   question: "How can I produce and consume events from Kafka using various programming languages, other than Java? (There are many languages with Kafka client bindings—some are shown below, other language examples are available in <a href=\"https://docs.confluent.io/platform/current/tutorials/examples/clients/docs/clients-all-examples.html\">documentation</a>)"
   introduction: "You want to enrich and expose a list of books from a library. You have to produce an event for each book acquisition (title, editor, release ...), and consume back the same events to serve the book collection over HTTP."
@@ -386,7 +391,7 @@ produce-consume-lang:
 
 streams-to-table:
   title: "How to convert a Kafka Streams KStream to a KTable"
-  meta-description: "How to convert a Kafka Streams KStream to a KTable"
+  meta-description: "convert a Kafka Streams KStream to a KTable"
   slug: "/kafka-streams-convert-to-ktable"
   question: "How do I convert a KStream to a KTable without having to perform a dummy aggregation operation?"
   introduction: "You have a KStream and you need to convert it to a KTable, but you don't need an aggregation operation. With the 2.5 release of Apache Kafka, Kafka Streams introduced a new method KStream.toTable allowing users to easily convert a KStream to a KTable without having to perform an aggregation operation."
@@ -398,7 +403,7 @@ streams-to-table:
 
 kafka-producer-application:
   title: "How to build your first Apache KafkaProducer application"
-  meta-description: "How to build your first Apache Kafka producer application"
+  meta-description: "build your first Kafka producer application"
   slug: "/creating-first-apache-kafka-producer-application"
   question: "How do I get started in building my first Kafka producer application?"
   introduction: "You'd like to integrate an Apache KafkaProducer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application writing records to Kafka with a KafkaProducer.  You can use the code in this tutorial as an example of how to use an Apache Kafka producer"
@@ -410,7 +415,7 @@ kafka-producer-application:
 
 kafka-producer-application-callback:
   title: "How build an Apache KafkaProducer application using callbacks"
-  meta-description: "How build an Apache Kafka producer application and handle responses using the Callback interface"
+  meta-description: "build an Kafka producer application and handle responses using the Callback interface"
   slug: "/kafka-producer-callback-application"
   question: "How do I use callbacks with a KafkaProducer to handle produce responses?"
   introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handling the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle responses from producing records."
@@ -430,7 +435,7 @@ kafka-producer-application-callback:
 
 console-consumer-producer-avro:
   title: "Console Producer and Consumer for Avro messages"
-  meta-description: "Produce and consume your first message with Kafka in Avro format using Schema Registry"
+  meta-description: "produce and consume your first message with Kafka in Avro format using Schema Registry"
   slug: "/kafka-console-consumer-producer-avro"
   question: "What is the simplest way to write and read messages encoded in Avro to and from Kafka?"
   introduction: "So you are excited to get started with Kafka and you would like to produce and consume some messages in Avro format.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
@@ -441,7 +446,7 @@ console-consumer-producer-avro:
 
 count-messages:
   title: "How to count messages in a Kafka topic"
-  meta-description: "Learn how to count the number of messages in a Kafka topic"
+  meta-description: "count the number of messages in a Kafka topic"
   slug: "/how-to-count-messages-on-a-kafka-topic"
   question: "How can I count the number of messages in a Kafka topic?"
   introduction: "It can be useful to know how many messages there are currently in a topic. However, you cannot calculate this straight from the offsets, because you need to take into account the topic's retention policy, log compaction, and potential duplicate messages. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic."
@@ -451,10 +456,10 @@ count-messages:
 
 kafka-streams-schedule-operations:
   title: "How to schedule operations in Kafka Streams"
-  meta-description: "Learn how to schedule operations in Kafka Streams that execute at regular intervals"
+  meta-description: "schedule operations in Kafka Streams that execute at regular intervals"
   slug: "/kafka-streams-schedule-operations"
   question: "How can I schedule recurring operations in Kafka Streams?"
-  introduction: "You'd like to have some periodic functionality execute in your Kafka Streams application.  In this tutorial you'll learn how to use puncuation in Kafka Streams for executing work at regular intervals."
+  introduction: "You'd like to have some periodic functionality execute in your Kafka Streams application.  In this tutorial you'll learn how to use punctuations in Kafka Streams for executing work at regular intervals."
   status:
     ksql: disabled
     kstreams: enabled
@@ -470,7 +475,7 @@ kafka-streams-schedule-operations:
 
 message-ordering:
   title: "How to maintain message ordering and no message duplication"
-  meta-description: "How to maintain message order and prevent duplication in a Kafka topic partition using the idempotent producer"
+  meta-description: "maintain message order and prevent duplication in a Kafka topic partition using the idempotent producer"
   slug: "/message-ordering"
   question: "How can I maintain the order of messages and prevent message duplication in a Kafka topic partition?"
   introduction: "If your application needs to maintain ordering of messages with no duplication, you can enable your Apache Kafka producer for idempotency. An idempotent producer has a unique producer ID and uses sequence IDs for each message, which allows the broker to ensure it is committing ordered messages with no duplication, on a per partition basis."
@@ -481,7 +486,7 @@ message-ordering:
 
 masking-data:
   title: "Masking data"
-  meta-description: "Learn how to remove or obfuscate fields in Kafka records by masking them"
+  meta-description: "remove or obfuscate fields in Kafka records by masking them"
   slug: "/masking-data"
   question: "How can I mask fields in my Kafka topic?"
   introduction: "Suppose you have a topic that contains personally identifiable information (PII), we'll write a program to persist the events in the original topic to a new Kafka topic with the PII removed or obfuscated."
@@ -500,7 +505,7 @@ masking-data:
 
 anomaly-detection:
   title: "Anomaly detection"
-  meta-description: "Learn how to detect anomalies in a stream of Kafka events"
+  meta-description: "detect anomalies in a stream of Kafka events"
   slug: "/anomaly-detection"
   question: "If I have time-series events in a Kafka topic, how do I find anomalous events?"
   introduction: "A common pattern for fraudsters is to disguise transactions under the name of a popular company, the idea being that the chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, USPS, etc., are likely to look similar and blend in.  This tutorial shows you how to identify this pattern of behavior by detecting 'abnormal' transactions that occur within a window of time
@@ -521,7 +526,7 @@ anomaly-detection:
 
 time-concepts:
   title: "Event-time semantics"
-  meta-description: "Learn how to extract the timestamp within the Kafka record payload to achieve event-time semantics"
+  meta-description: "extract the timestamp within the Kafka record payload to achieve event-time semantics"
   slug: "/time-concepts"
   question: "What is the difference between using the timestamp from the record metadata and using the timestamp within the record payload?"
   introduction: "By default, time-based aggregations in Kafka Streams and ksqlDB (<a href=\"https://kafka-tutorials.confluent.io/create-tumbling-windows/ksql.html\">tumbling windows</a>, <a href=\"https://kafka-tutorials.confluent.io/create-hopping-windows/ksql.html\">hopping windows</a>, etc.) operate on the timestamp in the record metadata, which could be either 'CreateTime' (producer system time) or 'LogAppendTime' (broker system time), depending on the <a href=\"https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#message.timestamp.type\">message.timestamp.type</a> configuration value. 'CreateTime' helps with event-time semantics, but there may be use cases where the desired event time is a timestamp embedded inside the record payload. This tutorial shows you how to use the timestamp either from the record metadata or from a field in the record payload."
@@ -532,7 +537,7 @@ time-concepts:
 
 ksql-nested-json:
   title: "Working with nested JSON"
-  meta-description: "Learn how to select fields from a stream of Kafka records that are contained in nested JSON"
+  meta-description: "select fields from a stream of Kafka records that are contained in nested JSON"
   slug: "/working-with-nested-json"
   question: "How can I select fields from a stream of records that are contained in deeply nested JSON?"
   introduction: "Suppose you have a topic with JSON-formatted records, but it contains nested objects.  You want to write a query that can access fields in those nested objects"
@@ -551,7 +556,7 @@ ksql-nested-json:
 
 ksql-heterogeneous-json:
   title: "Working with heterogenous JSON records"
-  meta-description: "Learn how to work with heterogenous JSON records that have different structures or different values"
+  meta-description: "work with heterogenous JSON records that have different structures or different values"
   slug: "/working-with-json-different-structure"
   question: "How do I select fields from a stream of records with different structures and possibly different values?"
   introduction: "Suppose you have a topic with JSON-formatted records, but not all the records have the same structure and value types.  You want to write a query that can handle the different structures and pull out specific fields "
@@ -570,7 +575,7 @@ ksql-heterogeneous-json:
 
 multi-joins:
   title: "Multi-join expressions"
-  meta-description: "Learn how to collapse multiple joins into a single statement with ksqlDB"
+  meta-description: "collapse multiple joins into a single statement"
   slug: "/multi-joins"
   question: "How can I join multiple streams or tables together using a single expression in ksqlDB?"
   introduction: "Suppose you have two tables (customers and items) and one stream (orders) that have purchases from an online store. You want to build a stream of all orders and customers who made purchases including item details."
@@ -589,7 +594,7 @@ multi-joins:
 
 concatenation:
   title: "Concatenation"
-  meta-description: "Concatenation"
+  meta-description: "concatenate values from multiple columns into a single one"
   slug: "/concatenation"
   question: "How do I concatenate values from multiple columns into a single one?"
   introduction: "Suppose you have a table and you need to combine 2 or more columns into a single value.  In this tutorial we'll show how to use the concatenation operator to create a single value from multiple columns"
@@ -608,7 +613,7 @@ concatenation:
 
 column-difference:
   title: "Column Difference"
-  meta-description: "Column Difference"
+  meta-description: "calculate the difference between two columns"
   slug: "/column-difference"
   question: "How do I calculate the difference between two columns?"
   introduction: "Suppose you have a table or stream and you need to calculate the difference between two columns.  In this tutorial we'll show how to calculate the difference between two columns"
@@ -627,7 +632,7 @@ column-difference:
 
 geo-distance:
   title: "Calculating lat-long distance"
-  meta-description: "Calculating lat-long distance"
+  meta-description: "calculate lat-long distance"
   slug: "/geo-distance"
   question: "How do I calculate the distance between two lat-long points?"
   introduction: "Suppose you work for a company that insures cellphones. The company records events that would result in an insurance claim, such as a customer dropping their phone in water. The company has data about where the event occurred and repair shop lat-long data. It's your job to recommend the closest repair shop to the customers in kilometers."
@@ -646,7 +651,7 @@ geo-distance:
 
 sliding-windows:
   title: "How to create sliding windows"
-  meta-description: "How to create sliding windows"
+  meta-description: "create sliding windows"
   slug: "/sliding-windows"
   question: "How do I create windowed calculations on time-series data with small advances in time?"
   introduction: "You have time-series records and you want to create windowed aggregations with small increments in time.  You could use hopping-windows, but with small time increments, hopping windows aren't the best solution with small increments in time.  In this tutorial we'll cover how you can achieve efficient windowed aggregations with small advances in time"
@@ -666,7 +671,7 @@ sliding-windows:
 
 connect-sink-timestamp:
   title: "Timezone conversion and Kafka Connect JDBC sink"
-  meta-description: "How can I convert a timestamp into a different timezone and sync that data to Postgres?"
+  meta-description: "convert a timestamp into a different timezone and sync that data to Postgres"
   slug: "/connect-sink-timestamp"
   question: "How can I convert a timestamp into a different timezone and sync that data to Postgres?"
   introduction: "Consider the requirement to create reports from a database, for which all of the timestamps must be in a timezone which happens to be different from the timezone of the Kafka data source. This examples shows how you can convert timestamp data into another timezone and use a Kafka connector to send that data to Postgres database."
@@ -676,7 +681,7 @@ connect-sink-timestamp:
 
 schedule-ktable-ttl:
   title: "How to implement TTL-based cleanup to expire data in a KTable"
-  meta-description: "How to implement TTLs to expire data in a KTable"
+  meta-description: "implement TTLs to expire data in a KTable"
   slug: "/schedule-ktable-ttl"
   question: "Do you have a requirement to delete KTable data (in the topic and in the state store) based on TTL?"
   introduction: "You have a KStreams application or ksqlDB application which uses KTables from a topic in Kafka. You may want to purge older data if it is considered to be too old or to manage the size of the topic and the state store. Although the Kafka Streams API does not natively include any notion of a TTL (Time To Live) for KTables, this tutorial shows you how to expire message by making clever use of tombstones and writing them out to topics underlying the KTable, using a state store containing TTLs"
@@ -695,7 +700,7 @@ schedule-ktable-ttl:
 
 error-handling:
   title: "Handling uncaught exceptions"
-  meta-description: "Handling uncaught exceptions"
+  meta-description: "handle uncaught exceptions"
   slug: "/error-handling"
   question: "How do I handle uncaught exceptions?"
   introduction: "You have an event streaming application and you want to make sure it's robust in the face of unexpected errors.  Depending on the situation, you'll either want the application to either continue running or shut down.  In this tutorial you'll learn how to use the `StreamsUncaughtExceptionHandler` to provide this functionality."

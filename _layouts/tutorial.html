@@ -8,7 +8,7 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="{{ site.data.tutorials[page.static_data].meta-description }} using {{ site.data.stacks[page.stack].pretty }} with full code examples. Find and contribute more Kafka tutorials with Confluent, the real-time event streaming experts.">
+  <meta name="description" content="Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to {{ site.data.tutorials[page.static_data].meta-description }} using {{ site.data.stacks[page.stack].pretty }}.">
 
   <title>{{ site.data.stacks[page.stack].pretty }} Tutorial: {{ site.data.tutorials[page.static_data].title }} using {{ site.data.stacks[page.stack].pretty }}</title>
 
@@ -16,6 +16,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ "/assets/sass/fonts.css" | relative_url }}" />
   <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
+  <script src="https://cdn.optimizely.com/js/15784060578.js"></script>
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6";analytics.SNIPPET_VERSION="4.13.2";
+    analytics.load("az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6");
+    analytics.page();
+    }}();
+  </script>
 </head>
 <body class="pg-tutorial">
   {% include nav.html %}
