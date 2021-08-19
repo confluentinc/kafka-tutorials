@@ -9,9 +9,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to {{ site.data.tutorials[page.static_data].meta-description }} using {{ site.data.stacks[page.stack].pretty }}.">
-  {% unless page.stack == site.data.tutorials[page.static_data].canonical or page.stack == 'ksql' %}
-     <link rel="canonical" href="{{ site.url }}{{ site.data.tutorials[page.static_data].slug | relative_url }}/{{ site.data.tutorials[page.static_data].canonical }}.html" />
-  {% endunless %}
+  {% if site.data.tutorials[page.static_data].canonical %}
+    {% unless page.stack == site.data.tutorials[page.static_data].canonical or page.stack == 'ksql' %}
+      <link rel="canonical" href="{{ site.url }}{{ site.data.tutorials[page.static_data].slug | relative_url }}/{{ site.data.tutorials[page.static_data].canonical }}.html" />
+    {% endunless %}
+  {% endif %}
 
   <title>{{ site.data.stacks[page.stack].pretty }} Tutorial: {{ site.data.tutorials[page.static_data].title }} using {{ site.data.stacks[page.stack].pretty }}</title>
 
