@@ -449,7 +449,7 @@ count-messages:
   meta-description: "count the number of messages in a Kafka topic"
   slug: "/how-to-count-messages-on-a-kafka-topic"
   question: "How can I count the number of messages in a Kafka topic?"
-  introduction: "It can be useful to know how many messages there are currently in a topic. However, you cannot calculate this straight from the offsets, because you need to take into account the topic's retention policy, log compaction, and potential duplicate messages. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic."
+  introduction: "It can be useful to know how many messages there are currently in a topic. However, you cannot calculate this straight from the offsets, because you need to take into account the topic's retention policy, log compaction, and potential duplicate messages. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic. Note that the processing time is linear to the number of messages in the topic, and so a topic with millions of messages can take a very long time to finish."
   status:
     ksql: enabled
     kafka: enabled
