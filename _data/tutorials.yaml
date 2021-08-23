@@ -59,7 +59,7 @@ joining-stream-table:
   slug: "/join-a-stream-to-a-table"
   question: "If I have events in a Kafka topic and a table of reference data (aka a lookup table), how can I join each event in the stream to a piece of data in the table based on a common key?"
   image: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-joiner.svg
-  introduction: "Suppose you have a set of movies that have been released and a stream of ratings from movie-goers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie."
+  introduction: "Suppose you have a table of movie information and a stream of ratings from movie-goers about how entertaining the movies are. In this tutorial, we'll write a program that joins each rating with content about the movie."
   status:
     ksql: enabled
     kstreams: enabled
