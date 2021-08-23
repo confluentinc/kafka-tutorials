@@ -1,6 +1,7 @@
 transforming:
   title: "How to transform a stream of events"
   meta-description: "transform a field in a stream of events"
+  canonical: confluent
   slug: "/transform-a-stream-of-events"
   question: "How do I transform a field in a stream of events in a Kafka topic?"
   introduction: "Consider a topic with events that represent movies. Each event has a single attribute that combines its title and its release year into a string. In this tutorial, we'll write a program that creates a new topic with the title and release date turned into their own attributes."
@@ -13,6 +14,7 @@ transforming:
 filtering:
   title: "How to filter a stream of events"
   meta-description: "filter messages in a stream of events"
+  canonical: confluent
   slug: "/filter-a-stream-of-events"
   question: "How do I filter messages in a Kafka topic to contain only those that I'm interested in?"
   introduction: "Consider a topic with events that represent book publications. In this tutorial, we'll write a program that creates a new topic which only contains the events for a particular author."
@@ -25,6 +27,7 @@ filtering:
 splitting:
   title: "How to split a stream of events into substreams"
   meta-description: "split a stream of events into substreams"
+  canonical: confluent
   slug: "/split-a-stream-of-events-into-substreams"
   question: "How do I split events in a Kafka topic so that the events are placed into subtopics?"
   introduction: "Suppose that you have a Kafka topic representing appearances of an actor or actress in a film, with each event denoting the genre. In this tutorial, we'll write a program that splits the stream into substreams based on the genre. We'll have a topic for drama films, a topic for fantasy films, and a topic for everything else."
@@ -37,6 +40,7 @@ splitting:
 merging:
   title: "How to merge many streams into one stream"
   meta-description: "merge many streams into one stream"
+  canonical: confluent
   slug: "/merge-many-streams-into-one-stream"
   question: "If I have many Kafka topics with events, how do I merge them all into a single topic?"
   introduction: "Suppose that you have a set of Kafka topics representing songs being played of a particular genre. You might have a topic for rock songs, another for classical songs, and so forth. In this tutorial, we'll write a program that merges all of the song play events into a single topic."
@@ -49,6 +53,7 @@ merging:
 joining-stream-table:
   title: "How to join a stream and a lookup table"
   meta-description: "join a stream and a lookup table"
+  canonical: confluent
   slug: "/join-a-stream-to-a-table"
   question: "If I have events in a Kafka topic and a table of reference data (aka a lookup table), how can I join each event in the stream to a piece of data in the table based on a common key?"
   introduction: "Suppose you have a set of movies that have been released and a stream of ratings from movie-goers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie."
@@ -109,6 +114,7 @@ rekeying-function:
 tumbling-windows:
   title: "How to create tumbling windows"
   meta-description: "create tumbling windows"
+  canonical: confluent
   slug: "/create-tumbling-windows"
   question: "If I have time-series events in a Kafka topic, how can I group them into fixed-size, non-overlapping, contiguous time intervals?"
   introduction: "Suppose you have a topic with events that represent ratings of movies. In this tutorial, we'll write a program that maintains tumbling windows counting the total number of ratings that each movie has received."
@@ -129,6 +135,7 @@ hopping-windows:
 session-windows:
   title: "Create session windows"
   meta-description: "create session windows for time-series events"
+  canonical: confluent
   slug: "/create-session-windows"
   question: "If I have time-series events in a Kafka topic, how can I group them into variable-size, non-overlapping time intervals based on a configurable inactivity period?"
   introduction: "Given a topic of click events on a website, there are various ways that we can process it. As well as simply counting the number of clicks in a regular time frame (using hopping or tumbling windows), we can also perform sessionization on the data. Here the length of the time window is based on the concept of a session, which is defined based on a period of inactivity. A given user might visit a website multiple times a day, but in distinct visits. Using session windows, we can analyze the number of clicks and duration per visit."
@@ -140,6 +147,7 @@ session-windows:
 aggregating-count:
   title: "How to count a stream of events"
   meta-description: "count the number of events in a stream"
+  canonical: confluent
   slug: "/create-stateful-aggregation-count"
   question: "How can I count the number of events in a Kafka topic based on some criteria?"
   introduction: "Suppose you have a topic with events that represent ticket sales for movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams and ksqlDB.  We'll write a program that calculates the total number of tickets sold per movie."
@@ -161,6 +169,7 @@ aggregating-minmax:
 aggregating-sum:
   title: "How to sum a stream of events"
   meta-description: "calculate the sum of one or more fields in a stream of events"
+  canonical: confluent
   slug: "/create-stateful-aggregation-sum"
   question: "How can I calculate the sum of one or more fields from all records in a Kafka topic?"
   introduction: "Suppose you have a topic with events that represent ticket sales for movies. Each event contains the movie that the ticket was purchased for as well as its price. In this tutorial, we'll write a program that calculates the sum of all ticket sales per movie."
@@ -193,6 +202,7 @@ connect-add-key-to-source:
 finding-distinct:
   title: "How to find distinct values in a stream of events"
   meta-description: "filter out duplicate events"
+  canonical: confluent
   slug: "/finding-distinct-events"
   question: "How can I filter out duplicate events from a Kafka topic based on a field in the event, producing a new stream of unique events per time window?"
   introduction: "Consider a topic with events that represent clicks on a website.  Each event contains an IP address, a URL, and a timestamp.  In this tutorial, we'll write a program that filters click events by the IP address within a window of time."
@@ -267,6 +277,7 @@ aggregating-average:
 dynamic-output-topic:
   title: "How to dynamically choose the output topic at runtime"
   meta-description: "dynamically route records to different Kafka topics at runtime"
+  canonical: confluent
   slug: "/dynamic-output-topic"
   question: "How can I dynamically route records to different Kafka topics, like a \"topic exchange\"?"
   introduction: "Consider a situation where you want to direct output of different records to different topics, like a \"topic exchange\". In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value."
@@ -290,6 +301,7 @@ naming-changelog-repartition-topics:
 cogrouping-streams:
   title: "How to combine stream aggregates together in a single larger object"
   meta-description: "combine stream aggregates together in a single larger object"
+  canonical: confluent
   slug: "/cogrouping-streams"
   question: "How do I combine aggregate values like `count` from multiple streams into a single result?"
   introduction: "You want to compute the count of user login events per application in your system, grouping the individual result from each source stream into one aggregated object.  In this tutorial we'll cover how to use the Kafka Streams Cogrouping functionality to accomplish this task with clear, performant code"
@@ -302,6 +314,7 @@ cogrouping-streams:
 console-consumer-producer-basic:
   title: "Console Producer and Consumer Basics, no (de)serializers"
   meta-description: "produce and consume your first Kafka message with the commandline"
+  canonical: confluent
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
   introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
@@ -325,6 +338,7 @@ console-consumer-primitive-keys-values:
 console-consumer-read-specific-offsets-partition:
   title: "How to read from a specific offset and partition with the Kafka Console Consumer"
   meta-description: "read from a specific offset and partition with the commandline consumer"
+  canonical: confluent
   slug: "/kafka-console-consumer-read-specific-offsets-partitions"
   question: "How do I read from a specific offset and partition of a Kafka topic?"
   introduction: "You are confirming record arrivals and you'd like to read from a specific offset in a topic partition.   In this tutorial you'll learn how to use the Kafka console consumer to quickly debug issues by reading from a specific offset as well as control the number of records you read."
@@ -337,6 +351,7 @@ console-consumer-read-specific-offsets-partition:
 kafka-connect-datagen:
   title: "How to generate mock data to a Kafka topic using the Kafka Connect Datagen"
   meta-description: "generate mock data to a Kafka topic using the Kafka Connect Datagen"
+  canonical: confluent
   slug: "/kafka-connect-datagen"
   question: "How can I produce mock data to Kafka topics to test my Kafka applications?"
   introduction: "You will run an instance of the <a href=\"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen\">Kafka Connect Datagen</a> connector to produce mock data to a Kafka cluster. This facilitates learning about Kafka and testing your applications."
@@ -360,6 +375,7 @@ change-topic-partitions-replicas:
 kafka-consumer-application:
   title: "How to build your first Apache KafkaConsumer application"
   meta-description: "build your first Kafka consumer application"
+  canonical: confluent
   slug: "/creating-first-apache-kafka-consumer-application"
   question: "How do I get started in building my first Kafka consumer application?"
   introduction: "You'd like to integrate an Apache KafkaConsumer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application reading records from Kafka with a KafkaConsumer.  You can use the code in this tutorial as an example of how to use an Apache Kafka consumer."
@@ -392,6 +408,7 @@ produce-consume-lang:
 streams-to-table:
   title: "How to convert a Kafka Streams KStream to a KTable"
   meta-description: "convert a Kafka Streams KStream to a KTable"
+  canonical: confluent
   slug: "/kafka-streams-convert-to-ktable"
   question: "How do I convert a KStream to a KTable without having to perform a dummy aggregation operation?"
   introduction: "You have a KStream and you need to convert it to a KTable, but you don't need an aggregation operation. With the 2.5 release of Apache Kafka, Kafka Streams introduced a new method KStream.toTable allowing users to easily convert a KStream to a KTable without having to perform an aggregation operation."
@@ -404,6 +421,7 @@ streams-to-table:
 kafka-producer-application:
   title: "How to build your first Apache KafkaProducer application"
   meta-description: "build your first Kafka producer application"
+  canonical: confluent
   slug: "/creating-first-apache-kafka-producer-application"
   question: "How do I get started in building my first Kafka producer application?"
   introduction: "You'd like to integrate an Apache KafkaProducer in your event-driven application, but you're not sure where to start.  In this tutorial you'll build a small application writing records to Kafka with a KafkaProducer.  You can use the code in this tutorial as an example of how to use an Apache Kafka producer"
@@ -416,6 +434,7 @@ kafka-producer-application:
 kafka-producer-application-callback:
   title: "How build an Apache KafkaProducer application using callbacks"
   meta-description: "build an Kafka producer application and handle responses using the Callback interface"
+  canonical: confluent
   slug: "/kafka-producer-callback-application"
   question: "How do I use callbacks with a KafkaProducer to handle produce responses?"
   introduction: "You have an application using a Apache KafkaProducer, but you want to have an automatic way of handling the responses after producing records.  In this tutorial you learn how to use the Callback interface to automatically handle responses from producing records."
@@ -701,6 +720,7 @@ schedule-ktable-ttl:
 error-handling:
   title: "Handling uncaught exceptions"
   meta-description: "handle uncaught exceptions"
+  canonical: confluent
   slug: "/error-handling"
   question: "How do I handle uncaught exceptions?"
   introduction: "You have an event streaming application and you want to make sure it's robust in the face of unexpected errors.  Depending on the situation, you'll either want the application to either continue running or shut down.  In this tutorial you'll learn how to use the `StreamsUncaughtExceptionHandler` to provide this functionality."
