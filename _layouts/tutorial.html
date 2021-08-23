@@ -56,6 +56,9 @@
         <div class="example">
           <h3 class="title">Example use case:</h3>
           <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
+          {% if site.data.tutorials[page.static_data].image %}
+          <p align="center"><img src="{{ site.data.tutorials[page.static_data].image }}" width=800></p>
+          {% endif %}
         </div>
       {% endunless %}
       <h3 class="title">Code example:</h3>

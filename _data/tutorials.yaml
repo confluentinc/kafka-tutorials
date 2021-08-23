@@ -30,6 +30,7 @@ splitting:
   canonical: confluent
   slug: "/split-a-stream-of-events-into-substreams"
   question: "How do I split events in a Kafka topic so that the events are placed into subtopics?"
+  image: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg
   introduction: "Suppose that you have a Kafka topic representing appearances of an actor or actress in a film, with each event denoting the genre. In this tutorial, we'll write a program that splits the stream into substreams based on the genre. We'll have a topic for drama films, a topic for fantasy films, and a topic for everything else."
   status:
     ksql: enabled
@@ -43,6 +44,7 @@ merging:
   canonical: confluent
   slug: "/merge-many-streams-into-one-stream"
   question: "If I have many Kafka topics with events, how do I merge them all into a single topic?"
+  image: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-stream-merger.svg
   introduction: "Suppose that you have a set of Kafka topics representing songs being played of a particular genre. You might have a topic for rock songs, another for classical songs, and so forth. In this tutorial, we'll write a program that merges all of the song play events into a single topic."
   status:
     ksql: enabled
@@ -56,6 +58,7 @@ joining-stream-table:
   canonical: confluent
   slug: "/join-a-stream-to-a-table"
   question: "If I have events in a Kafka topic and a table of reference data (aka a lookup table), how can I join each event in the stream to a piece of data in the table based on a common key?"
+  image: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-joiner.svg
   introduction: "Suppose you have a set of movies that have been released and a stream of ratings from movie-goers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie."
   status:
     ksql: enabled
@@ -280,6 +283,7 @@ dynamic-output-topic:
   canonical: confluent
   slug: "/dynamic-output-topic"
   question: "How can I dynamically route records to different Kafka topics, like a \"topic exchange\"?"
+  image: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg
   introduction: "Consider a situation where you want to direct output of different records to different topics, like a \"topic exchange\". In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value."
   status:
     ksql: disabled
