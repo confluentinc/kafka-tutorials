@@ -55,10 +55,12 @@
       {% unless page.help_wanted %}
         <div class="example">
           <h3 class="title">Example use case:</h3>
-          <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
+          <table><tr>
+          <td width=35%><p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p></td>
           {% if site.data.tutorials[page.static_data].image %}
-          <p align="left"><img src="{{ site.data.tutorials[page.static_data].image }}" width=800></p>
+          <td><p align="center"><img src="{{ site.data.tutorials[page.static_data].image }}" width=600 /></p></td>
           {% endif %}
+          </tr></table>
         </div>
       {% endunless %}
       <h3 class="title">Code example:</h3>
