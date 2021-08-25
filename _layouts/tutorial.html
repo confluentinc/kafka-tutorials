@@ -56,9 +56,9 @@
         <div class="example">
           <h3 class="title">Example use case:</h3>
           <table><tr>
-          <td width=35%><p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p></td>
+          <td><p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p></td>
           {% if site.data.tutorials[page.static_data].image %}
-          <td><p align="center"><img src="{{ site.data.tutorials[page.static_data].image }}" width=600 /></p></td>
+          <td><figure class="image"><img src="{{ site.data.tutorials[page.static_data].image }}" /></figure></td>
           {% endif %}
           </tr></table>
         </div>
