@@ -1,2 +1,2 @@
-This tutorial has some steps for reading from or writing to Kafka topics, for which you can use the Confluent Cloud UI or install the Confluent Cloud CLI.
-Instructions for installing Confluent Cloud CLI and configuring it to your Confluent Cloud environment is available from within the Confluent Cloud UI: navigate to your Kafka cluster, click on the `CLI and tools` section, and run through the steps in the `CCloud CLI` tab.
+This tutorial has some steps for reading from or writing to Kafka topics, for which you can use the Confluent Cloud Console or install the Confluent Cloud CLI.
+Instructions for installing Confluent Cloud CLI and configuring it to your Confluent Cloud environment is available from within the Confluent Cloud Console: navigate to your Kafka cluster, click on the `CLI and tools` section, and run through the steps in the `CCloud CLI` tab.

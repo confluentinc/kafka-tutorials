@@ -1,7 +1,7 @@
 Now that the Kafka Connect Datagen is running in Confluent Cloud, it is producing messages to your Kafka topic.
 View the messages being produced to the Kafka topic in Confluent Cloud.
 
-There are many ways to do this, including the Confluent Cloud UI, but for this tutorial we will show you how to it with the Confluent Cloud CLI.
+There are many ways to do this, including the Confluent Cloud Console, but for this tutorial we will show you how to it with the Confluent Cloud CLI.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen/confluent/code/tutorial-steps/dev/harness-console-consumer-keys.sh %}</code></pre>

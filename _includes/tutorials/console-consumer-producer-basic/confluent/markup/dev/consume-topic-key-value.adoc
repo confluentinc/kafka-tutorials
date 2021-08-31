@@ -7,7 +7,7 @@ From the same terminal you used to create the topic above, run the following com
 +++++
 
 You will be prompted for the Confluent Cloud Schema Registry credentials as shown below.
-Enter the values you got from when you enabled Schema Registry in the Confluent Cloud UI.
+Enter the values you got from when you enabled Schema Registry in the Confluent Cloud Console.
 
 ```
 Enter your Schema Registry API key:
