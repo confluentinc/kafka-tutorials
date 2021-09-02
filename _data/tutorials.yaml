@@ -466,12 +466,14 @@ console-consumer-producer-avro:
 count-messages:
   title: "How to count messages in a Kafka topic"
   meta-description: "count the number of messages in a Kafka topic"
+  canonical: confluent
   slug: "/how-to-count-messages-on-a-kafka-topic"
   question: "How can I count the number of messages in a Kafka topic?"
   introduction: "It can be useful to know how many messages there are currently in a topic. However, you cannot calculate this straight from the offsets, because you need to take into account the topic's retention policy, log compaction, and potential duplicate messages. In this example we'll take a topic of pageview data and see how we can count all of the messages in the topic. Note that the time complexity for this tutorial is O(n) (linear). Processing time will be dependent on the number of messages in the topic and large data sets will require long running times."
   status:
     ksql: enabled
     kafka: enabled
+    confluent: enabled
 
 kafka-streams-schedule-operations:
   title: "How to schedule operations in Kafka Streams"
