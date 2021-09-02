@@ -1,4 +1,4 @@
-From the Confluent Cloud Console, navigate to your Kafka cluster and click on ``Clients`` and then select ``Java``.
+From the Confluent Cloud Console, navigate to your Kafka cluster. From the ``Clients`` view, get the connection information customized to your cluster (select ``Java``).
 
 Create new credentials for your Kafka cluster and Schema Registry, and then Confluent Cloud will show a configuration similar to below with your new credentials automatically populated (make sure ``show API keys`` is checked).
 Copy and paste it into a `configuration/ccloud.properties` file on your machine.
