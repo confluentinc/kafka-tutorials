@@ -1,7 +1,5 @@
 Produce some messages to the Kafka topic.
   
-To do this from the commandline you can use the https://github.com/edenhill/kafkacat[`kafkacat`] tool which can act as a producer (and consumer).
-
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/count-messages/confluent/code/tutorial-steps/dev/produce-messages.sh %}</code></pre>
 +++++

@@ -3,4 +3,5 @@ docker run -it --network=host \
     edenhill/kcat:1.7.0 kafkacat \
          -F /tmp/configuration/ccloud.properties \
          -C -t test-topic \
-         -e -q | wc -l                                            
+         -e -q \
+         | grep -v "Reading configuration from file" | wc -l
