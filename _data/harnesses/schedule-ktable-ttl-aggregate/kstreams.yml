@@ -1,12 +1,5 @@
 dev:
   steps:
-
-    - title: Introduction
-      content:
-      - action: skip
-        render:
-          file:  tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/intro.adoc
-
     - title: Initialize the project
       content:
         - action: execute
