@@ -13,5 +13,5 @@ One fundamental operation for working with tables is populating them with data. 
  * Use the Apache Kafka® clients to write data to the underlying topics.
  * Use connectors to source data from external systems.
 
-This tutorial uses ksqlDB `INSERT INTO VALUES` syntax. For an example on how to use the Apache Kafka® clients to write data to the underlying topics, see link:/tutorials/creating-first-apache-kafka-producer-application/confluent.html[*building your first Kafka producer application*] and for an example on how to use connectors to source data from external systems, see link:/tutorials/connect-add-key-to-source/ksql.html[*creating a ksqlDB table from PostgresSQL data using Kafka Connect*].
+This tutorial uses ksqlDB `INSERT INTO VALUES` syntax. For an example on how to use the Apache Kafka® clients to write data to the underlying topics, see link:{{ "creating-first-apache-kafka-producer-application/confluent.html" | relative_url }}[*building your first Kafka producer application*] and for an example on how to use connectors to source data from external systems, see link:{{ "connect-add-key-to-source/ksql.html" | relative_url }}[*creating a ksqlDB table from PostgresSQL data using Kafka Connect*].
 ====
