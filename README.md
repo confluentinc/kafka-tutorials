@@ -6,12 +6,12 @@
   * [Add a narrative and test for the tutorial](#add-a-narrative-and-test-for-the-tutorial)
   * [Testing Locally](#testing-locally)
   * [Updating dependency versions](#updating-dependency-versions)
-  * [Updating kafka-tutorials.confluent.io](#updating-kafka-tutorialsconfluentio)
+  * [Updating Kafka Tutorials](#updating-kafka-tutorials)
 
 
 # Kafka Tutorials
 
-The source code for the [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/). Read about it [in our blog post](https://www.confluent.io/blog/announcing-apache-kafka-tutorials).
+The source code for [Kafka Tutorials](https://developer.confluent.io/tutorials/). Read about it [in our blog post](https://www.confluent.io/blog/announcing-apache-kafka-tutorials).
 
 ## Setup
 
@@ -280,7 +280,7 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 
 ## Testing Locally
 
-The [Kafka Tutorials microsite](https://kafka-tutorials.confluent.io/) shows how to manually execute each tutorial step-by-step.
+Each tutorial in [Kafka Tutorials](https://developer.confluent.io/tutorials/) shows how to manually execute each tutorial step-by-step.
 However, there are some scenarios when a user may want to run and test a tutorial in a more automated fashion:
 
 - End-to-end: user makes a small change to the code and wants to validate that the tutorial still works end-to-end
@@ -566,7 +566,7 @@ The following regular expressions may be useful to group-update all dependencies
 * `confluentinc\/ksqldb-([^:]*):\d+.\d+.\d+` will match all ksqlDB components.
    Capture group 1 can be used to build the component name.
 
-## Updating kafka-tutorials.confluent.io
+## Updating Kafka Tutorials
 
 The `release` branch tracks the content and code comprising the live site. Confluent manages the release process.
 
