@@ -9,7 +9,7 @@ TTL per key based on the last update for that key. This may or may not serve all
 mechanism via which we can purge data from a KTable. The transformer use a state store to store the last updated time seen for a key 
 and periodically (via a punctuator) scans its list of keys to see if any of them have exceeded a configured cutoff period (TTL). If they have, then a tombstone is forwarded onwards in the pipeline and the key removed from its own internal store.
 
-For a refresh on scheduling logic using a punctuator, have a look at the https://kafka-tutorials.confluent.io/kafka-streams-schedule-operations/kstreams.html[Scheduling Operations] tutorial.
+For a refresh on scheduling logic using a punctuator, have a look at the link:/tutorials/kafka-streams-schedule-operations/kstreams.html[Scheduling Operations] tutorial.
 
 Now let's take a look at some of the key points from the application.
 
