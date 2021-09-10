@@ -67,10 +67,10 @@ This will install Jekyll itself and any other gems that we use.
 #### 4. Run the development server
 
 ```
-bundle exec jekyll serve --livereload
+bundle exec jekyll serve --livereload --baseurl /tutorials
 ```
 
-This will launch a web server so that you can work on the site locally. Check it out on `http://localhost:4000`.
+This will launch a web server so that you can work on the site locally. Check it out on `http://localhost:4000/tutorials`.
 
 #### 5. Install the Pip package
 
