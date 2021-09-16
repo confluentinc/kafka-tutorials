@@ -15,6 +15,38 @@ $(document).ready(function () {
     }, 1500);
   });
 
+  // Event listeners for the copy button
+  $('.is-full').on('click', '.copy-btn', function () {
+    if (!window.analytics) {
+      // not ready
+      return;
+    }
+
+    var $this = $(this);
+    var $section = $this.closest('.is-full');
+    var payload = {};
+
+    // Section title
+    var $sectionTitle = $section.find('.title').eq(0);
+
+    if ($sectionTitle.length) {
+      payload.sectionTitle = $sectionTitle.text();
+    }
+
+    // Step
+    var $sectionStep = $this.closest('.tutorial-try-it-step');
+    var $stepTitle = $sectionStep.find('.subtitle').find('.text');
+
+    if ($stepTitle.text()) {
+      // Tutorial
+      payload.stepTitle = $stepTitle.text();
+      payload.stepNumber = $stepTitle.prev('.num').text();
+    }
+
+    window.analytics.track('Copy Code', payload);
+  });
+
+  // Add copy/expand buttons to code block
   $('pre').each(function (index, element) {
     //Set up copy buttons.
     var id = 'snippet-' + index;
@@ -37,6 +69,7 @@ $(document).ready(function () {
     }
   });
 
+  // Code block expand button
   $('.expand-btn').click(function () {
     $(this).siblings('pre').css('max-height', '');
 
@@ -44,6 +77,7 @@ $(document).ready(function () {
     $('.compress-btn').removeClass('is-hidden');
   });
 
+  // Code block compress button
   $('.compress-btn').click(function () {
     $(this).siblings('pre').css('max-height', CODE_BLOCK_HEIGHT);
 
