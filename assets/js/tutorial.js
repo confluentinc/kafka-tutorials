@@ -15,10 +15,10 @@ $(document).ready(function () {
     }, 1500);
   });
 
-  // Event listeners for the copy button
+  // Event listener for the copy button
   $('.is-full').on('click', '.copy-btn', function () {
     if (!window.analytics) {
-      // not ready
+      // segment not ready
       return;
     }
 
@@ -33,7 +33,7 @@ $(document).ready(function () {
       payload.sectionTitle = $sectionTitle.text();
     }
 
-    // Step
+    // Step section
     var $sectionStep = $this.closest('.tutorial-try-it-step');
     var $stepTitle = $sectionStep.find('.subtitle').find('.text');
 
