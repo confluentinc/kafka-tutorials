@@ -58,7 +58,7 @@
           <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
         </div>
       {% endunless %}
-      <h3 class="title">Code example:</h3>
+      <h3 class="title">Hands-on code example:</h3>
       <div class="cflt-options">
         <select>
           {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
@@ -178,7 +178,7 @@
       <div class="columns">
         <div class="column is-5">
           <ul id="toc" class="tutorial-navigation">
-            <li><a href="#try-it">Try it</a></li>
+            <li><a href="#run-it">Run it</a></li>
             <ul>
               {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
               <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
