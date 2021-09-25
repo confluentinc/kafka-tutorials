@@ -15,7 +15,7 @@ dev:
           render:
             file: tutorials/console-consumer-producer-basic/confluent/markup/dev/init.adoc
 
-    - title: Provision your fully managed Kafka cluster in Confluent Cloud
+    - title: Provision your Kafka cluster
       content:
         - action: skip
           render:
