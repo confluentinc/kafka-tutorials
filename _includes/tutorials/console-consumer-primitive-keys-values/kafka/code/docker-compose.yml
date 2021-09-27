@@ -42,7 +42,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
    
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.21.0
+    image: confluentinc/cp-ksqldb-server:6.2.1
     hostname: ksqldb
     container_name: ksqldb
     depends_on:
@@ -80,12 +80,11 @@ services:
       - -c 
       - |
         echo "Installing connector plugins"
-        mkdir -p /usr/share/confluent-hub-components/
-        confluent-hub install --no-prompt --component-dir /usr/share/confluent-hub-components/ mdrogalis/voluble:0.3.0
+        mkdir -p /home/appuser/confluent-hub-components/
+        confluent-hub install --no-prompt --component-dir /home/appuser/confluent-hub-components/ --worker-configs /dev/null mdrogalis/voluble:0.3.0
         #
         echo "Launching ksqlDB"
-        /usr/bin/docker/run & 
-       
+        /etc/confluent/docker/run &
 
          echo "Waiting for Kafka Connect to start listening on localhost ⏳"
         while : ; do
