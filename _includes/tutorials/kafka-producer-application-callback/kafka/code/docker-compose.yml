@@ -30,7 +30,7 @@ services:
       KAFKA_TOOLS_LOG4J_LOGLEVEL: ERROR
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:6.0.0
+    image: confluentinc/cp-schema-registry:6.2.1
     hostname: schema-registry
     container_name: schema-registry
     depends_on:
