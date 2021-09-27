@@ -84,7 +84,7 @@ services:
       - -lc
       - |
         echo "Installing connector plugins"
-        confluent-hub install --no-prompt --component-dir /usr/share/java/ mdrogalis/voluble:0.2.1
+        confluent-hub install --no-prompt --component-dir /usr/share/java/ mdrogalis/voluble:0.3.0
         #
         echo "Launching ksqlDB"
         /usr/bin/docker/run & 
