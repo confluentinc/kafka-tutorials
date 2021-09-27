@@ -8,7 +8,7 @@ version: "2"
 services:
 
   control-center:
-    image: confluentinc/cp-enterprise-control-center:6.1.0
+    image: confluentinc/cp-enterprise-control-center:6.2.1
     hostname: control-center
     container_name: control-center
     ports:
@@ -26,7 +26,7 @@ services:
       PORT: 9021
 
   broker:
-    image: confluentinc/cp-server:6.1.0
+    image: confluentinc/cp-server:6.2.1
     environment:
       KAFKA_METRIC_REPORTERS: io.confluent.metrics.reporter.ConfluentMetricsReporter
       CONFLUENT_METRICS_REPORTER_BOOTSTRAP_SERVERS: broker:9092
