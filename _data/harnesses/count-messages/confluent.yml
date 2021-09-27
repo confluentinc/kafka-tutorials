@@ -15,7 +15,7 @@ dev:
           render:
             file: tutorials/count-messages/kafka/markup/dev/01a-init.adoc
 
-    - title: Provision your fully managed Kafka cluster in Confluent Cloud
+    - title: Provision your Kafka cluster
       content:
         - action: skip
           render:

@@ -20,7 +20,7 @@ dev:
           render:
             file: tutorials/aggregating-count/kstreams/markup/dev/make-config-dir.adoc
 
-    - title: Provision your fully managed Kafka cluster in Confluent Cloud
+    - title: Provision your Kafka cluster
       content:
         - action: skip
           render:

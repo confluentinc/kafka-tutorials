@@ -1,4 +1,5 @@
-Use a combination of `cogroup` and and `aggregate` methods as shown below.
+You can run your application with link:https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud].
+In the Kafka Streams application, use a combination of `cogroup` and and `aggregate` methods as shown below.
 
 ++++
 <pre class="snippet">
