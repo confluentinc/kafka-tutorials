@@ -393,16 +393,10 @@ produce-consume-lang:
   introduction: "You want to enrich and expose a list of books from a library. You have to produce an event for each book acquisition (title, editor, release ...), and consume back the same events to serve the book collection over HTTP."
   status:
     c: disabled
-    clojure: enabled
     csharp: enabled
     go: enabled
-    groovy: enabled
-    javaspring: enabled
-    kotlin: enabled
     nodejs: enabled
     python: enabled
-    ruby: enabled
-    rust: enabled
     scala: enabled
 
 streams-to-table:
