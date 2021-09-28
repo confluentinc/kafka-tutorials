@@ -184,6 +184,11 @@ prod:
           render:
             file: tutorials/generate-test-data-streams/ksql/markup/prod/submit-to-api.adoc
 
+        - action: sleep
+          ms: 10000
+          render:
+            skip: true
+
     - title: Validate the deployment
       content:
         - action: execute
