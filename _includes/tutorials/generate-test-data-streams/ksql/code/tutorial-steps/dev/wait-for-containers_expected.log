@@ -1,4 +1,4 @@
 Wed 1 Apr 2020 11:58:49 BST  Component: Schema Registry         HTTP state:  200        (waiting for 200)
 ✅ Schema Registry is ready
 Wed 1 Apr 2020 11:58:49 BST  Component: ksqlDB                  HTTP state:  200        (waiting for 200)
-✅ Kafka Connect is ready
+✅ ksqlDB is ready
