@@ -1,4 +1,4 @@
-Create a Kafka topic called `order-detail` in Confluent Cloud.
+Create a Kafka topic called `orders` in Confluent Cloud.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/confluent/code/tutorial-steps/dev/create-topic.sh %}</code></pre>

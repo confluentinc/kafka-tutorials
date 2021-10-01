@@ -1,3 +1,16 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-producer-avro/kafka/markup/answer/produce.adoc
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-producer-avro/kafka/markup/answer/consume.adoc
+
 dev:
   steps:
     - title: Initialize the project
@@ -30,21 +43,8 @@ dev:
           file: tutorial-steps/dev/create-topic.sh
           render:
             file: tutorials/console-consumer-producer-avro/kafka/markup/dev/create-topic.adoc
-
-    - title: Create a schema
-      content:
-        - change_directory: console-consumer-producer-avro
-          action: execute
-          file: tutorial-steps/dev/make-schema-dir.sh
-          render:
-            skip: true
-
-        - action: make_file
-          file: schema/order_detail.avsc
-          render:
-            file: tutorials/console-consumer-producer-avro/kafka/markup/dev/create-schema.adoc
-
-    - title: Start an Avro console consumer
+            
+    - title: Start a console consumer
       content:
         - action: execute_async
           file: tutorial-steps/dev/harness-console-consumer.sh
@@ -52,7 +52,7 @@ dev:
           render:
             file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic.adoc
 
-    - title: Produce your first Avro records
+    - title: Produce your first records
       content:
         - action: execute
           file: tutorial-steps/dev/harness-console-producer.sh
@@ -62,10 +62,10 @@ dev:
 
         - name: wait for consumer to read records
           action: sleep
-          ms: 10000
+          ms: 5000
           render:
             skip: true
-
+            
     - title: Read all records
       content:
         - action: execute
@@ -77,48 +77,48 @@ dev:
 
     - title: Start a new consumer to read all records
       content:
-        - action: execute_async
-          file: tutorial-steps/dev/harness-console-consumer-from-beginning.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
-          render:
-            file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic-from-beginning.adoc
+      - action: execute_async
+        file: tutorial-steps/dev/harness-console-consumer-from-beginning.sh
+        stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
+        render:
+          file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic-from-beginning.adoc
 
 
-        - name: wait for consumer to read records
-          action: sleep
-          ms: 10000
-          render:
-            skip: true
+      - name: wait for consumer to read records
+        action: sleep
+        ms: 10000
+        render:
+          skip: true
 
     - title: Produce records with full key-value pairs
       content:
-        - action: execute
-          file: tutorial-steps/dev/harness-console-producer-keys.sh
-          stdin: tutorial-steps/dev/input-step-three.txt
-          render:
-            file: tutorials/console-consumer-producer-avro/kafka/markup/dev/produce-topic-keys-values.adoc
+      - action: execute
+        file: tutorial-steps/dev/harness-console-producer-keys.sh
+        stdin: tutorial-steps/dev/input-step-three.txt
+        render:
+         file: tutorials/console-consumer-producer-avro/kafka/markup/dev/produce-topic-keys-values.adoc
 
     - title: Start a consumer to show full key-value pairs
       content:
-        - action: execute_async
-          file: tutorial-steps/dev/harness-console-consumer-keys.sh
-          stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
-          render:
-            file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic-key-value.adoc
+      - action: execute_async
+        file: tutorial-steps/dev/harness-console-consumer-keys.sh
+        stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
+        render:
+          file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic-key-value.adoc
 
 
-        - name: wait for consumer to read records
-          action: sleep
-          ms: 10000
-          render:
-            skip: true
+      - name: wait for consumer to read records
+        action: sleep
+        ms: 5000
+        render:
+          skip: true
 
     - title: Clean Up
       content:
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            file: tutorials/console-consumer-producer-avro/kafka/markup/dev/clean-up.adoc
+      - action: execute
+        file: tutorial-steps/dev/clean-up.sh
+        render:
+          file: tutorials/console-consumer-producer-avro/kafka/markup/dev/clean-up.adoc
 
 ccloud:
   steps:
@@ -127,3 +127,9 @@ ccloud:
         - action: skip
           render:
             file: shared/markup/ccloud/try-ccloud.adoc
+
+    - title: See other documentation
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-producer-avro/kafka/markup/ccloud/doc-out.adoc

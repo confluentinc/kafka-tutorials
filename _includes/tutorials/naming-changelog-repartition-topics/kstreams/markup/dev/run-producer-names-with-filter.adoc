@@ -1,5 +1,5 @@
 ////
-   Example content file for how to include a console produer(s) in the tutorial.
+   Example content file for how to include a console producer(s) in the tutorial.
    Usually you'll include a line referencing the script to run the console producer and also include some content
    describing how to input data as shown below.
 

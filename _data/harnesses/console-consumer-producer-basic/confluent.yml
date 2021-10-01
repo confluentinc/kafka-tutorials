@@ -33,12 +33,6 @@ dev:
           render:
             file: tutorials/console-consumer-producer-basic/confluent/markup/dev/create-topic.adoc
 
-    - title: Create a schema for your records
-      content:
-      - action: skip
-        render:
-          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/create-schema.adoc
-
     - title: Start a console consumer
       content:
       - action: skip

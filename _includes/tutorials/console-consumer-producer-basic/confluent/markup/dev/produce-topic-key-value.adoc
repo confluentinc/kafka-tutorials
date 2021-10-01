@@ -10,7 +10,7 @@ The producer will start with some information and then wait for you to enter inp
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/confluent/code/tutorial-steps/dev/produce_expected.log %}</code></pre>
 +++++
 
-Below are example records in JSON format with each line representing a single record. In this case we are producing records in Avro format, however, first they are passed to the producer in JSON and the producer converts them to Avro based on the `order-detail-schema.json` schema prior to sending them to Kafka.
+Below are example records in JSON format with each line representing a single record.
 
 Copy each line and paste it into the producer terminal, pressing enter after each one to produce the new record. 
 
