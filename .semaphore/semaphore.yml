@@ -211,10 +211,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/message-ordering/kafka/code tutorial
 
-        - name: Kafka Consuming and Producing AVRO messages with console tools tests
-          commands:
-            - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
-
         - name: KStreams Test Kafka Streams session windows tests
           commands:
             - make -C _includes/tutorials/session-windows/kstreams/code tutorial
