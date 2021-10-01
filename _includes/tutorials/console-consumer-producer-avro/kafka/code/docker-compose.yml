@@ -36,6 +36,8 @@ services:
       - broker
     ports:
       - "8081:8081"
+    volumes:
+      - ${PWD}/:/etc/tutorial/
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'

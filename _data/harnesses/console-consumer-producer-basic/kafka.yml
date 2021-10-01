@@ -37,7 +37,7 @@ dev:
           render:
             skip: true
 
-    - title: Create a topic
+    - title: Create the Kafka topic
       content:
         - action: execute
           file: tutorial-steps/dev/create-topic.sh

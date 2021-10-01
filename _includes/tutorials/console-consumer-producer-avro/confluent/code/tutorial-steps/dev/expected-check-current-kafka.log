@@ -1,3 +1,0 @@
-      Id      |           Name            | Type  | Provider |  Region   | Availability | Status
-+-------------+---------------------------+-------+----------+-----------+--------------+--------+
-  * lkc-mpm07 | demo-kafka-cluster-114344 | BASIC | aws      | us-west-2 | single-zone  | UP

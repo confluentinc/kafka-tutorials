@@ -35,9 +35,10 @@ dev:
 
     - title: Create a schema for your records
       content:
-      - action: skip
-        render:
-          file: tutorials/console-consumer-producer-avro/confluent/markup/dev/create-schema.adoc
+        - action: make_file
+          file: orders-avro-schema.json
+          render:
+            file: tutorials/console-consumer-producer-avro/confluent/markup/dev/create-schema.adoc
 
     - title: Start a console consumer
       content:
