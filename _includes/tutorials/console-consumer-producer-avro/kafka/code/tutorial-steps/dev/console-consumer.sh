@@ -1,1 +1,1 @@
-kafka-console-consumer --topic example-topic --bootstrap-server broker:9092 
+kafka-avro-console-consumer --topic orders-avro --bootstrap-server broker:9092 

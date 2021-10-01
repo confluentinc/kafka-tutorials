@@ -1,1 +1,1 @@
-mkdir ccloud-produce-consume && cd ccloud-produce-consume
+mkdir ccloud-produce-consume-avro && cd ccloud-produce-consume-avro
