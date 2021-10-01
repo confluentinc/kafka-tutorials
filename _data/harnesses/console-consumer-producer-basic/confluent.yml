@@ -37,13 +37,13 @@ dev:
       content:
       - action: skip
         render:
-          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/consume-topic-key-value.adoc
+          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/consume-topic.adoc
 
     - title: Produce events to the Kafka topic
       content:
       - action: skip
         render:
-          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/produce-topic-key-value.adoc
+          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/produce-topic.adoc
 
     - title: Produce records with full key-value pairs
       content:

@@ -1,1 +1,1 @@
-ccloud kafka topic consume orders --print-key --delimiter "-"
+ccloud kafka topic consume orders --print-key --delimiter "-" --from-beginning

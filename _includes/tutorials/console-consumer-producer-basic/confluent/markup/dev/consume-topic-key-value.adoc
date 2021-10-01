@@ -1,10 +1,12 @@
-Next, let's open up a consumer to read records from the new topic. 
-
-From the same terminal you used to create the topic above, run the following command to start a console consumer with the `ccloud` CLI:
+Next, let's open up a consumer to read the new records.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/confluent/code/tutorial-steps/dev/harness-console-consumer-keys.sh %}</code></pre>
 +++++
 
-The consumer will start up and block waiting for records, you won't see any output until after the next step.
+You should see the initial set of records with null keys, and the second set of records with non-null keys.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/confluent/code/tutorial-steps/dev/expected-records-full.log %}</code></pre>
++++++
 
