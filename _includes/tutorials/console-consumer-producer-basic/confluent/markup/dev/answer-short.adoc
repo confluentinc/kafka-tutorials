@@ -3,7 +3,7 @@ With link:https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud], yo
 Producer:
 
 +++++
-<pre class="snippet"><code class="bash">{% include_raw tutorials/console-consumer-producer-basic/confluent/code/tutorial-steps/dev/produce.sh %}</code></pre>
+<pre class="snippet"><code class="bash">{% include_raw tutorials/console-consumer-producer-basic/confluent/code/tutorial-steps/dev/console-producer-keys.sh %}</code></pre>
 +++++
 
 Consumer:

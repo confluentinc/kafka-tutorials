@@ -1,1 +1,1 @@
-ccloud kafka topic produce orders-avro --parse-key --delimiter ":"
+ccloud kafka topic produce orders-avro --value-format avro --schema orders-avro-schema.json --parse-key --delimiter ":"

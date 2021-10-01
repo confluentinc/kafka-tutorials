@@ -1,1 +1,1 @@
-ccloud kafka topic produce example-topic --parse-key --delimiter ":"
+ccloud kafka topic produce orders --parse-key --delimiter ":"
