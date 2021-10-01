@@ -1,1 +1,1 @@
-docker-compose exec broker bash
+docker-compose exec schema-registry bash
