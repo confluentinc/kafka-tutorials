@@ -1,7 +1,7 @@
 Kafka works with key-value pairs, but so far you've only sent records with values only.  Well to be fair you've sent key-value pairs, but the keys are `null`.
 Sometimes you'll need to send a valid key in addition to the value from the command line.
 
-To enable sending full key-value pairs from the command line you add two properties to your Confluent Cloud CLI, `parse.key` and `key.separator`
+To enable sending full key-value pairs from the command line you add two properties to your Confluent Cloud CLI, `parse-key` and `delimiter`
 
 Let's try to send some full key-value records now.  If your previous producer is still running close it with a `CTRL+C` and run the following command to start a new console producer:
 
