@@ -98,6 +98,28 @@ dev:
         render:
           skip: true
 
+    - title: Produce records with full key-value pairs
+      content:
+      - action: execute
+        file: tutorial-steps/dev/harness-console-producer-keys.sh
+        stdin: tutorial-steps/dev/input-step-three.txt
+        render:
+         file: tutorials/console-consumer-producer-avro/kafka/markup/dev/produce-topic-keys-values.adoc
+
+    - title: Start a consumer to show full key-value pairs
+      content:
+      - action: execute_async
+        file: tutorial-steps/dev/harness-console-consumer-keys.sh
+        stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
+        render:
+          file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic-key-value.adoc
+
+      - name: wait for consumer to read records
+        action: sleep
+        ms: 5000
+        render:
+          skip: true
+
     - title: Clean Up
       content:
       - action: execute
