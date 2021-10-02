@@ -325,12 +325,12 @@ console-consumer-producer-basic:
     confluent: enabled
 
 console-consumer-producer-avro:
-  title: "Console Producer and Consumer Basics, with (de)serializers"
+  title: "Console Producer and Consumer with (de)serializers"
   meta-description: "produce and consume your first Kafka message, using (de)serializers and Schema Registry, with the commandline"
   canonical: confluent
   slug: "/kafka-console-consumer-producer-avro"
   question: "What is the simplest way to write messages to and read messages from Kafka, using (de)serializers and Schema Registry?"
-  introduction: "You'd like to produce and consume some basic messages, using (de)serializers and Schema Registry, and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Unlike <a href=\"https://kafka-tutorials.confluent.io/kafka-console-consumer-producer-basics/confluent.html\">CLI Basics tutorial</a>, this tutorial showcases Avro and Schema Registry "
+  introduction: "You'd like to produce and consume some basic messages, using (de)serializers and Schema Registry.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Unlike <a href=\"https://kafka-tutorials.confluent.io/kafka-console-consumer-producer-basics/confluent.html\">CLI Basics tutorial</a>, this tutorial showcases Avro and Schema Registry "
   status:
     ksql: disabled
     kstreams: disabled
