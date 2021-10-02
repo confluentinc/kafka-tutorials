@@ -22,7 +22,8 @@ dev:
 
     - title: Get Confluent Platform
       content:
-        - action: make_file
+        - change_directory: console-consumer-producer-basic
+          action: make_file
           file: docker-compose.yml
           render:
             file: tutorials/console-consumer-producer-basic/kafka/markup/dev/make-docker-compose.adoc
