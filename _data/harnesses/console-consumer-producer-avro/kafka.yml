@@ -47,7 +47,7 @@ dev:
 
     - title: Create a schema for your records
       content:
-        - action: execute
+        - action: make_file
           file: orders-avro-schema.json
           render:
             file: tutorials/console-consumer-producer-avro/kafka/markup/dev/create-schema.adoc
@@ -64,7 +64,7 @@ dev:
       content:
         - action: execute
           file: tutorial-steps/dev/harness-console-producer.sh
-          stdin: tutorial-steps/dev/input-step-one.txt
+          stdin: tutorial-steps/dev/records.txt
           render:
             file: tutorials/console-consumer-producer-avro/kafka/markup/dev/produce-topic.adoc
 
