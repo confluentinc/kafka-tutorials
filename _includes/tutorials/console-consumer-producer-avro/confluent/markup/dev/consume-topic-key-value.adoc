@@ -6,13 +6,10 @@ From the same terminal you used to create the topic above, run the following com
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/confluent/code/tutorial-steps/dev/harness-console-consumer-keys.sh %}</code></pre>
 +++++
 
-You will be prompted for the Confluent Cloud Schema Registry credentials as shown below.
-Enter the values you got from when you enabled Schema Registry in the Confluent Cloud Console.
+After the consumer starts you should see the following output in a few seconds:
 
-```
-Enter your Schema Registry API key:
-Enter your Schema Registry API secret:
-```
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/confluent/code/tutorial-steps/dev/expected-records-full.log %}</code></pre>
++++++
 
-The consumer will start up and block waiting for records, you won't see any output until after the next step.
-
+Since we kept the `--from-beginning` property, you'll see all the records sent to the topic.  You'll notice the results before you sent keys are formatted as `null-<value>`.
