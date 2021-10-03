@@ -1,1 +1,0 @@
-ccloud kafka cluster list
