@@ -74,30 +74,6 @@ dev:
           render:
             skip: true
             
-    - title: Read all records
-      content:
-        - action: execute
-          file: tutorial-steps/dev/harness-console-producer.sh
-          stdin: tutorial-steps/dev/input-step-two.txt
-          render:
-            file: tutorials/console-consumer-producer-avro/kafka/markup/dev/produce-topic-from-beginning.adoc
-
-
-    - title: Start a new consumer to read all records
-      content:
-      - action: execute_async
-        file: tutorial-steps/dev/harness-console-consumer-from-beginning.sh
-        stdout: tutorial-steps/dev/outputs/actual-output-step-two.txt
-        render:
-          file: tutorials/console-consumer-producer-avro/kafka/markup/dev/consume-topic-from-beginning.adoc
-
-
-      - name: wait for consumer to read records
-        action: sleep
-        ms: 10000
-        render:
-          skip: true
-
     - title: Produce records with full key-value pairs
       content:
       - action: execute

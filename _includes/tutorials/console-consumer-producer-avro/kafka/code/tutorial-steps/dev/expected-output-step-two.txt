@@ -5,4 +5,3 @@
 {"number":5,"date":18504,"shipping_address":"123 Cross Street,Irving, CA. 12345","subtotal":33.0,"shipping_cost":2.0,"tax":3.33,"grand_total":38.33}
 {"number":6,"date":18505,"shipping_address":"9182 Shipyard Drive, Raleigh, NC. 27609","subtotal":72.0,"shipping_cost":0.0,"tax":3.0,"grand_total":75.0}
 {"number":7,"date":18506,"shipping_address":"644 Lagon Street, Chicago, IL. 07712","subtotal":11.0,"shipping_cost":2.0,"tax":1.0,"grand_total":14.0}
-{"number":8,"date":18507,"shipping_address":"9182 Shipyard Drive, Raleigh, NC. 27609","subtotal":72.0,"shipping_cost":0.0,"tax":3.0,"grand_total":75.0}
