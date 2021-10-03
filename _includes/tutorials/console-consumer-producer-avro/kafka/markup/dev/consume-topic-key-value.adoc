@@ -1,4 +1,5 @@
-Next, let's run the consumer to read records from the topic:
+Next, let's run the consumer to read records from the topic.
+Since the key was serialized as just a `String` and not a schema, also set the configuration parameter for `key.deserializer` (by default, `kafka-avro-console-consumer` expects the key to also be deserialized as Avro).
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/console-consumer-keys.sh %}</code></pre>
