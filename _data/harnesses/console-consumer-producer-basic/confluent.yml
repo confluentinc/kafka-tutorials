@@ -8,13 +8,6 @@ answer:
 
 dev:
   steps:
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/console-consumer-producer-basic/confluent/markup/dev/init.adoc
-
     - title: Provision your Kafka cluster
       content:
         - action: skip
