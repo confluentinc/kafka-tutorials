@@ -6,10 +6,6 @@ To do this from the commandline you can use the https://github.com/edenhill/kafk
 <pre class="snippet"><code class="shell">{% include_raw tutorials/count-messages/kafka/code/tutorial-steps/dev/03a-count-messages.sh %}</code></pre>
 +++++
 
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/count-messages/kafka/code/tutorial-steps/dev/03a-count-messages.out %}</code></pre>
-+++++
-
 Let's take a close look at the commandline soup we've used here to count the messages. 
 
 * `docker exec kafkacat` runs the following command with its arguments in the Docker container called `kafkacat`
@@ -23,3 +19,10 @@ Let's take a close look at the commandline soup we've used here to count the mes
 ** `|` pipes the messages from kafkacat to the next command 
 ** `wc` reads the piped messages and writes the count to screen
 *** `-l` specifies to count the number of lines in total (one message per line). Contrast this to `-c` which would return the number of bytes. 
+
+Finally, the output of the command is the message count.
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/count-messages/kafka/code/tutorial-steps/dev/03a-count-messages.out %}</code></pre>
++++++
+

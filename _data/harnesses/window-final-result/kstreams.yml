@@ -94,7 +94,7 @@ dev:
           render:
             file: tutorials/window-final-result/kstreams/markup/dev/4_3-gradle-tasks.adoc
 
-    - title: Create the timestamp exctractor
+    - title: Create the timestamp extractor
       content:
         - action: make_file
           file: src/main/java/io/confluent/developer/PressureDatetimeExtractor.java

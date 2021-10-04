@@ -7,7 +7,7 @@ Find the datagen connector's id.
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen/confluent/code/tutorial-steps/dev/list-connector.sh %}</code></pre>
 +++++
 
-Delete the connector.  Verify the deletion in Confluent Cloud UI.
+Delete the connector.  Verify the deletion in Confluent Cloud Console.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen/confluent/code/tutorial-steps/dev/delete-connector.sh %}</code></pre>

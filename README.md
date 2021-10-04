@@ -156,8 +156,9 @@ There are some additional steps you'll need to take to complete the tutorial:
 1. Update the following entries in _data/tutorials.yaml file
     a. title
     b. meta-description
-    c. question
-    c. introduction
+    c. canonical (optional: preferred version of a page)
+    d. question
+    e. introduction
 
 You can find these fields by searching for my-tutorial-name in the _data/tutorials.yaml file.
 

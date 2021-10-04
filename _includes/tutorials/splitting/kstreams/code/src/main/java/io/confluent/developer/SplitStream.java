@@ -8,6 +8,8 @@ import org.apache.kafka.streams.StreamsBuilder;
 import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.KStream;
+import org.apache.kafka.streams.kstream.BranchedKStream;
+import org.apache.kafka.streams.kstream.Branched;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,14 +32,17 @@ public class SplitStream {
         final StreamsBuilder builder = new StreamsBuilder();
         final String inputTopic = allProps.getProperty("input.topic.name");
 
-        KStream<String, ActingEvent>[] branches = builder.<String, ActingEvent>stream(inputTopic)
-                .branch((key, appearance) -> "drama".equals(appearance.getGenre()),
-                        (key, appearance) -> "fantasy".equals(appearance.getGenre()),
-                        (key, appearance) -> true);
-
-        branches[0].to(allProps.getProperty("output.drama.topic.name"));
-        branches[1].to(allProps.getProperty("output.fantasy.topic.name"));
-        branches[2].to(allProps.getProperty("output.other.topic.name"));
+        builder.<String, ActingEvent>stream(inputTopic)
+              .split()
+              .branch(
+                   (key, appearance) -> "drama".equals(appearance.getGenre()),
+                   Branched.withConsumer(ks -> ks.to(allProps.getProperty("output.drama.topic.name"))))
+              .branch(
+                   (key, appearance) -> "fantasy".equals(appearance.getGenre()),
+                   Branched.withConsumer(ks -> ks.to(allProps.getProperty("output.fantasy.topic.name"))))
+              .branch(
+                   (key, appearance) -> true,
+                   Branched.withConsumer(ks -> ks.to(allProps.getProperty("output.other.topic.name"))));
 
         return builder.build();
     }

@@ -8,7 +8,12 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="{{ site.data.tutorials[page.static_data].meta-description }} using {{ site.data.stacks[page.stack].pretty }} with full code examples. Find and contribute more Kafka tutorials with Confluent, the real-time event streaming experts.">
+  <meta name="description" content="Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to {{ site.data.tutorials[page.static_data].meta-description }} using {{ site.data.stacks[page.stack].pretty }}.">
+  {% if site.data.tutorials[page.static_data].canonical %}
+    {% unless page.stack == site.data.tutorials[page.static_data].canonical or page.stack == 'ksql' %}
+      <link rel="canonical" href="{{ site.url }}{{ site.data.tutorials[page.static_data].slug | relative_url }}/{{ site.data.tutorials[page.static_data].canonical }}.html" />
+    {% endunless %}
+  {% endif %}
 
   <title>{{ site.data.stacks[page.stack].pretty }} Tutorial: {{ site.data.tutorials[page.static_data].title }} using {{ site.data.stacks[page.stack].pretty }}</title>
 
@@ -16,6 +21,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ "/assets/sass/fonts.css" | relative_url }}" />
   <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
+  <script src="https://cdn.optimizely.com/js/15784060578.js"></script>
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6";analytics.SNIPPET_VERSION="4.13.2";
+    analytics.load("az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6");
+    analytics.page();
+    }}();
+  </script>
 </head>
 <body class="pg-tutorial">
   {% include nav.html %}
@@ -46,7 +58,7 @@
           <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
         </div>
       {% endunless %}
-      <h3 class="title">Code example:</h3>
+      <h3 class="title">Hands-on code example:</h3>
       <div class="cflt-options">
         <select>
           {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
@@ -69,14 +81,14 @@
             Basic Kafka
           </option>
           {% endif %}
-          {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html" {% if page.stack == 'scala' %} selected {% endif %}>
-          Scala
-          </option>
-          {% endif %}
           {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html" {% if page.stack == 'python' %} selected {% endif %}>
           Python
+          </option>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.nodejs == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/nodejs.html" {% if page.stack == 'nodejs' %} selected {% endif %}>
+          Node.js
           </option>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.csharp == 'enabled' %}
@@ -97,6 +109,11 @@
           {% if site.data.tutorials[page.static_data].status.groovy == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/groovy.html" {% if page.stack == 'groovy' %} selected {% endif %}>
           Groovy
+          </option>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html" {% if page.stack == 'scala' %} selected {% endif %}>
+          Scala
           </option>
           {% endif %}
         </select>
@@ -123,14 +140,14 @@
             Basic Kafka
           </a>
           {% endif %}
-          {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
-          <a class="button {% if page.stack == 'scala' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html">
-            Scala
-          </a>
-          {% endif %}
           {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
           <a class="button {% if page.stack == 'python' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html">
             Python
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.nodejs == 'enabled' %}
+          <a class="button {% if page.stack == 'nodejs' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/nodejs.html">
+            Node.js
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.csharp == 'enabled' %}
@@ -153,6 +170,11 @@
             Groovy
           </a>
           {% endif %}
+          {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
+          <a class="button {% if page.stack == 'scala' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html">
+            Scala
+          </a>
+          {% endif %}
         </div>
       </div>
 
@@ -166,7 +188,7 @@
       <div class="columns">
         <div class="column is-5">
           <ul id="toc" class="tutorial-navigation">
-            <li><a href="#try-it">Try it</a></li>
+            <li><a href="#run-it">Run it</a></li>
             <ul>
               {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
               <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
@@ -230,5 +252,6 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/scala.min.js"></script>
   <script src="{{ "/assets/js/tutorial.js" | relative_url }}"></script>
+  <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
 </body>
 </html>
