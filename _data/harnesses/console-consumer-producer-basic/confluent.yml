@@ -8,13 +8,6 @@ answer:
 
 dev:
   steps:
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/console-consumer-producer-basic/confluent/markup/dev/init.adoc
-
     - title: Provision your Kafka cluster
       content:
         - action: skip
@@ -33,23 +26,39 @@ dev:
           render:
             file: tutorials/console-consumer-producer-basic/confluent/markup/dev/create-topic.adoc
 
-    - title: Create a schema for your records
-      content:
-      - action: skip
-        render:
-          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/create-schema.adoc
-
     - title: Start a console consumer
       content:
       - action: skip
         render:
-          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/consume-topic-key-value.adoc
+          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/consume-topic.adoc
 
     - title: Produce events to the Kafka topic
       content:
       - action: skip
         render:
-          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/produce-topic-key-value.adoc
+          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/produce-topic.adoc
+
+    - title: Produce records with full key-value pairs
+      content:
+      - action: execute
+        file: tutorial-steps/dev/harness-console-producer-keys.sh
+        stdin: tutorial-steps/dev/input-step-three.txt
+        render:
+         file: tutorials/console-consumer-producer-basic/confluent/markup/dev/produce-topic-keys-values.adoc
+
+    - title: Start a consumer to show full key-value pairs
+      content:
+      - action: execute_async
+        file: tutorial-steps/dev/harness-console-consumer-keys.sh
+        stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
+        render:
+          file: tutorials/console-consumer-producer-basic/confluent/markup/dev/consume-topic-key-value.adoc
+
+      - name: wait for consumer to read records
+        action: sleep
+        ms: 5000
+        render:
+          skip: true
 
     - title: Teardown Confluent Cloud resources
       content:

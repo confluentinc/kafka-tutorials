@@ -1,1 +1,6 @@
-docker-compose exec schema-registry kafka-avro-console-consumer --topic example-topic-avro --bootstrap-server broker:9092  --from-beginning --max-messages 8
+docker-compose exec schema-registry kafka-avro-console-consumer \
+  --topic orders-avro \
+  --bootstrap-server broker:9092 \
+  --property schema.registry.url=http://localhost:8081 \
+  --from-beginning \
+  --max-messages 8

@@ -312,12 +312,25 @@ cogrouping-streams:
     confluent: enabled
 
 console-consumer-producer-basic:
-  title: "Console Producer and Consumer Basics, no (de)serializers"
+  title: "Console Producer and Consumer Basics"
   meta-description: "produce and consume your first Kafka message with the commandline"
   canonical: confluent
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
   introduction: "So you are excited to get started with Kafka and you'd like to produce and consume some basic messages and you want to do so quickly.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+    confluent: enabled
+
+console-consumer-producer-avro:
+  title: "Console Producer and Consumer with (de)serializers"
+  meta-description: "produce and consume your first Kafka message, using (de)serializers and Schema Registry, with the commandline"
+  canonical: confluent
+  slug: "/kafka-console-consumer-producer-avro"
+  question: "What is the simplest way to write messages to and read messages from Kafka, using (de)serializers and Schema Registry?"
+  introduction: "You'd like to produce and consume some basic messages, using (de)serializers and Schema Registry.  In this tutorial we'll show you how to produce and consume messages from the command line with no code! Unlike <a href=\"https://kafka-tutorials.confluent.io/kafka-console-consumer-producer-basics/confluent.html\">CLI Basics tutorial</a>, this tutorial showcases Avro and Schema Registry "
   status:
     ksql: disabled
     kstreams: disabled
@@ -445,17 +458,6 @@ kafka-producer-application-callback:
     scala: disabled
     swift: disabled
     confluent: enabled
-
-console-consumer-producer-avro:
-  title: "Console Producer and Consumer for Avro messages"
-  meta-description: "produce and consume your first message with Kafka in Avro format using Schema Registry"
-  slug: "/kafka-console-consumer-producer-avro"
-  question: "What is the simplest way to write and read messages encoded in Avro to and from Kafka?"
-  introduction: "So you are excited to get started with Kafka and you would like to produce and consume some messages in Avro format.  In this tutorial we'll show you how to produce and consume messages from the command line with no code!"
-  status:
-    ksql: disabled
-    kstreams: disabled
-    kafka: enabled
 
 count-messages:
   title: "How to count messages in a Kafka topic"

@@ -1,9 +1,7 @@
-Next let’s create the schema to use when formatting the messages to produce to the topic created in previous step.
+We are going to use Schema Registry to control our record format. The first step is creating a schema definition which we will use when producing new records.
 
-Note that when you executed the `docker-compose up` command, it created a directory named `schema` on your local machine.
-
-From the same terminal you used to create the topic, create the following `order_detail.avsc` file inside the `schema` directory
+Create the following `orders-avro-schema.json` file: 
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/schema/order_detail.avsc %}</code></pre>
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/orders-avro-schema.json %}</code></pre>
 +++++

@@ -1,1 +1,1 @@
-ccloud kafka topic create order-detail
+ccloud kafka topic create orders --partitions 1
