@@ -45,7 +45,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
   ksql-server:
-    image: 368821881613.dkr.ecr.us-west-2.amazonaws.com/confluentinc/ksqldb-server:0.22.0-rc2
+    image: 368821881613.dkr.ecr.us-west-2.amazonaws.com/confluentinc/ksqldb-server:0.22.0-rc4
     hostname: ksql-server
     container_name: ksql-server
     depends_on:
@@ -64,7 +64,7 @@ services:
       KSQL_KSQL_STREAMS_CACHE_MAX_BYTES_BUFFERING: 0
 
   ksql-cli:
-    image: 368821881613.dkr.ecr.us-west-2.amazonaws.com/confluentinc/ksqldb-cli:0.22.0-rc2
+    image: 368821881613.dkr.ecr.us-west-2.amazonaws.com/confluentinc/ksqldb-cli:0.22.0-rc4
     container_name: ksql-cli
     depends_on:
       - broker
