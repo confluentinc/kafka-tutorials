@@ -6,7 +6,7 @@
 
   You'll need to update the wording and names of the avro files to fit your tutorial.
 
-  If you are'nt using Avro, delete this file from the folder.
+  If you aren't using Avro, delete this file from the folder.
 ////
 
 Then create the following Avro schema file at `src/main/avro/logintime.avsc` for our `LoginTime` object:

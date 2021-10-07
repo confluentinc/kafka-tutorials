@@ -9,4 +9,4 @@ null-to Kafka!
 key1-what a lovely
 key1-bunch of coconuts
 foo-bar
-fun-not quarantine
+fun-programming

@@ -1,1 +1,5 @@
-kafka-avro-console-consumer --topic example-topic-avro --bootstrap-server broker:9092  --from-beginning
+kafka-avro-console-consumer \
+  --topic orders-avro \
+  --property schema.registry.url=http://localhost:8081 \
+  --bootstrap-server broker:9092 \
+  --from-beginning

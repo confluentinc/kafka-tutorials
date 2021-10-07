@@ -1,3 +1,5 @@
-docker-compose exec -T schema-registry kafka-avro-console-producer --topic example-topic-avro\
+docker-compose exec -T schema-registry kafka-avro-console-producer \
+  --topic orders-avro \
   --bootstrap-server broker:9092 \
-  --property value.schema="$(< schema/order_detail.avsc)"
+  --property schema.registry.url=http://localhost:8081 \
+  --property value.schema="$(< orders-avro-schema.json)"

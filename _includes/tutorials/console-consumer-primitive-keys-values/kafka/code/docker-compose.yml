@@ -3,7 +3,7 @@ version: '2'
 
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:6.1.0
+    image: confluentinc/cp-zookeeper:6.2.1
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -12,7 +12,7 @@ services:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
   broker:
-    image: confluentinc/cp-kafka:6.1.0
+    image: confluentinc/cp-kafka:6.2.1
     hostname: broker
     container_name: broker
     depends_on:
@@ -30,7 +30,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:6.1.0
+    image: confluentinc/cp-schema-registry:6.2.1
     hostname: schema-registry
     container_name: schema-registry
     depends_on:
@@ -42,7 +42,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
    
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.8.1
+    image: confluentinc/cp-ksqldb-server:6.2.1
     hostname: ksqldb
     container_name: ksqldb
     depends_on:
@@ -72,7 +72,7 @@ services:
       KSQL_CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: '1'
       KSQL_CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: '1'
       KSQL_CONNECT_LOG4J_APPENDER_STDOUT_LAYOUT_CONVERSIONPATTERN: "[%d] %p %X{connector.context}%m (%c:%L)%n"
-      KSQL_CONNECT_PLUGIN_PATH: '/usr/share/java,/usr/share/confluent-hub-components/,/data/connect-jars'
+      KSQL_CONNECT_PLUGIN_PATH: '/usr/share/java,/home/appuser/confluent-hub-components/,/data/connect-jars'
     
     command: 
       # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
@@ -80,12 +80,11 @@ services:
       - -c 
       - |
         echo "Installing connector plugins"
-        mkdir -p /usr/share/confluent-hub-components/
-        confluent-hub install --no-prompt --component-dir /usr/share/confluent-hub-components/ mdrogalis/voluble:0.3.0
+        mkdir -p /home/appuser/confluent-hub-components/
+        confluent-hub install --no-prompt --component-dir /home/appuser/confluent-hub-components/ --worker-configs /dev/null mdrogalis/voluble:0.3.0
         #
         echo "Launching ksqlDB"
-        /usr/bin/docker/run & 
-       
+        /etc/confluent/docker/run &
 
          echo "Waiting for Kafka Connect to start listening on localhost ⏳"
         while : ; do

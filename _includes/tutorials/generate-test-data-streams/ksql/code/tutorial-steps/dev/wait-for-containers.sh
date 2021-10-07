@@ -18,7 +18,7 @@ while :
   echo -e $(date) " Component: ksqlDB \t\t\tHTTP state: " $curl_status "\t(waiting for 200)" 
   if [ $curl_status -eq 200 ] 
     then
-      echo "✅✅ Kafka Connect is ready"
+      echo "✅✅ ksqlDB is ready"
       break
   fi
   sleep 5 

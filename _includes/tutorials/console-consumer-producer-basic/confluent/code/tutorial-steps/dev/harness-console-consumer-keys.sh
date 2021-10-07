@@ -1,1 +1,1 @@
-ccloud kafka topic consume order-detail --value-format avro
+ccloud kafka topic consume orders --print-key --delimiter "-" --from-beginning

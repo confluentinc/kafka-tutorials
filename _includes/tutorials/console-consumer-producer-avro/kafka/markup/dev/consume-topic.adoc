@@ -1,12 +1,12 @@
-Next let’s open up an Avro console consumer to read records sent to the topic you created in previous step.
+Next let's open up a console consumer to read records sent to the topic you created in the previous step.
 
-From the same terminal you used to create the topic and schema above, run the following command to open a terminal on the broker container:
+From the same terminal you used to create the topic above, run the following command to open a terminal on the broker container:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/open-docker-shell.sh %}</code></pre>
 +++++
 
-From within the terminal on the schema-registry container, run this command to start an Avro console consumer:
+From within the terminal on the broker container, run this command to start a console consumer:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/kafka/code/tutorial-steps/dev/console-consumer.sh %}</code></pre>

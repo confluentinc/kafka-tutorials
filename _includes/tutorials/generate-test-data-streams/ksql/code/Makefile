@@ -45,10 +45,3 @@ tutorial:
 	# In this test we strip out everything except for the confirmation message "<service> is ready". 
 	# We then count the number of lines for the diff because the ✅ emoji causes some confusion in the diff
 	bash -c "diff <(grep 'is ready' $(STEPS_DIR)/dev/wait-for-containers_expected.log|wc -l) <(grep 'is ready' $(DEV_OUTPUTS_DIR)/wait-for-containers.out|wc -l)"
-
-	# ---
-	# Check the deploy to prod steps
-	bash -c "diff --ignore-all-space --strip-trailing-cr $(STEPS_DIR)/prod/check-deploy_expected.log $(PROD_OUTPUTS_DIR)/check-deploy.out"
-	bash -c "diff --ignore-all-space --strip-trailing-cr $(STEPS_DIR)/prod/send-to-api_expected.log $(PROD_OUTPUTS_DIR)/send-to-api.out"
-
-

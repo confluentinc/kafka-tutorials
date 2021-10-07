@@ -58,7 +58,7 @@
           <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
         </div>
       {% endunless %}
-      <h3 class="title">Code example:</h3>
+      <h3 class="title">Hands-on code example:</h3>
       <div class="cflt-options">
         <select>
           {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
@@ -81,14 +81,14 @@
             Basic Kafka
           </option>
           {% endif %}
-          {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
-          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html" {% if page.stack == 'scala' %} selected {% endif %}>
-          Scala
-          </option>
-          {% endif %}
           {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html" {% if page.stack == 'python' %} selected {% endif %}>
           Python
+          </option>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.nodejs == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/nodejs.html" {% if page.stack == 'nodejs' %} selected {% endif %}>
+          Node.js
           </option>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.csharp == 'enabled' %}
@@ -109,6 +109,11 @@
           {% if site.data.tutorials[page.static_data].status.groovy == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/groovy.html" {% if page.stack == 'groovy' %} selected {% endif %}>
           Groovy
+          </option>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html" {% if page.stack == 'scala' %} selected {% endif %}>
+          Scala
           </option>
           {% endif %}
         </select>
@@ -135,14 +140,14 @@
             Basic Kafka
           </a>
           {% endif %}
-          {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
-          <a class="button {% if page.stack == 'scala' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html">
-            Scala
-          </a>
-          {% endif %}
           {% if site.data.tutorials[page.static_data].status.python == 'enabled' %}
           <a class="button {% if page.stack == 'python' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/python.html">
             Python
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.nodejs == 'enabled' %}
+          <a class="button {% if page.stack == 'nodejs' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/nodejs.html">
+            Node.js
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.csharp == 'enabled' %}
@@ -165,6 +170,11 @@
             Groovy
           </a>
           {% endif %}
+          {% if site.data.tutorials[page.static_data].status.scala == 'enabled' %}
+          <a class="button {% if page.stack == 'scala' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/scala.html">
+            Scala
+          </a>
+          {% endif %}
         </div>
       </div>
 
@@ -178,7 +188,7 @@
       <div class="columns">
         <div class="column is-5">
           <ul id="toc" class="tutorial-navigation">
-            <li><a href="#try-it">Try it</a></li>
+            <li><a href="#run-it">Run it</a></li>
             <ul>
               {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
               <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>

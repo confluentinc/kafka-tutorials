@@ -1,0 +1,74 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-producer-avro/confluent/markup/dev/answer-short.adoc
+
+dev:
+  steps:
+    - title: Provision your Kafka cluster
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
+    - title: Download and setup the Confluent Cloud CLI
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/get-ccloud.adoc
+
+    - title: Create the Kafka topic
+      content:
+        - action: skip
+          render:
+            file: tutorials/console-consumer-producer-avro/confluent/markup/dev/create-topic.adoc
+
+    - title: Create a schema for your records
+      content:
+        - action: make_file
+          file: orders-avro-schema.json
+          render:
+            file: tutorials/console-consumer-producer-avro/confluent/markup/dev/create-schema.adoc
+
+    - title: Start a console consumer
+      content:
+      - action: skip
+        render:
+          file: tutorials/console-consumer-producer-avro/confluent/markup/dev/consume-topic.adoc
+
+    - title: Produce events to the Kafka topic
+      content:
+      - action: skip
+        render:
+          file: tutorials/console-consumer-producer-avro/confluent/markup/dev/produce-topic-key-value.adoc
+
+    - title: Produce records with full key-value pairs
+      content:
+      - action: execute
+        file: tutorial-steps/dev/harness-console-producer-keys.sh
+        stdin: tutorial-steps/dev/input-step-three.txt
+        render:
+         file: tutorials/console-consumer-producer-avro/confluent/markup/dev/produce-topic-keys-values.adoc
+
+    - title: Start a consumer to show full key-value pairs
+      content:
+      - action: execute_async
+        file: tutorial-steps/dev/harness-console-consumer-keys.sh
+        stdout: tutorial-steps/dev/outputs/actual-output-step-three.txt
+        render:
+          file: tutorials/console-consumer-producer-avro/confluent/markup/dev/consume-topic-key-value.adoc
+
+      - name: wait for consumer to read records
+        action: sleep
+        ms: 5000
+        render:
+          skip: true
+
+    - title: Teardown Confluent Cloud resources
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-destroy.adoc
