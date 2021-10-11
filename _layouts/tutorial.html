@@ -178,6 +178,12 @@
         </div>
       </div>
 
+      {% if page.stack == 'confluent' %}
+      <BR>
+      <BR>
+      New to Confluent Cloud? Sign up <a href="https://www.confluent.io/confluent-cloud/tryfree/">here</a> and then run this tutorial.
+      {% endif %}
+
       <div class="tutorial-markup">
         {% unless page.help_wanted %}
         {% include tutorial-content-answer.html %}
