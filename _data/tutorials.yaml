@@ -763,6 +763,7 @@ For a refresh on scheduling logic using a punctuator, have a look at the <a href
     scala: disabled
     swift: disabled
 
+
 optimize-producer-throughput:
   title: "How to optimize your Kafka producer for throughput"
   meta-description: "How to optimize your Apache Kafka producer application for throughput, set configuration parameters and test baseline using kafka-producer-perf-test"
@@ -782,3 +783,25 @@ creating-first-apache-kafka-streams-application:
   status:
     confluent: enabled
     kstreams: enabled
+
+multiple-event-types:
+  title: "Handling multiple events in a topic"
+  canonical: confluent
+  meta-description: "handling multiple event types"
+  slug: "/multiple-event-type-topics"
+  question: "How can I have multiple event types in a topic and maintain topic-name subject constraints?"
+  introduction: "You have distinct but releated event types and you want them in the same topic and you want to maintain topic-name subject constraints.  This tutorial will demonstarate how to achieve all your requirements"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+    confluent: enabled
+
