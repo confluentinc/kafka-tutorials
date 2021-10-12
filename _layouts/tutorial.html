@@ -56,6 +56,12 @@
         <div class="example">
           <h3 class="title">Example use case:</h3>
           <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
+          <div class="columns">
+            <div class="column is-5">
+            <BR>
+            <a href="https://twitter.com/intent/tweet?text=I%27m%20working%20my%20way%20through%20%40apachekafka%20tutorials!%20&url=https://kafka-tutorials.confluent.io&hashtags=ApacheKafka,KafkaTutorials"><img src="{{ "/assets/img/twitter.png" | relative_url }}" alt="Tweet" width=35 align=middle /></a>Share your tutorial progress
+            </div>
+          </div>
         </div>
       {% endunless %}
       <h3 class="title">Hands-on code example:</h3>
@@ -177,6 +183,14 @@
           {% endif %}
         </div>
       </div>
+
+      {% if page.stack == 'confluent' %}
+      <div class="columns">
+        <div class="column is-5">
+        New to Confluent Cloud? <a href="https://www.confluent.io/confluent-cloud/tryfree/">Sign up</a> and then run this tutorial.
+        </div>
+      </div>
+      {% endif %}
 
       <div class="tutorial-markup">
         {% unless page.help_wanted %}

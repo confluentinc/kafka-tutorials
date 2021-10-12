@@ -8,6 +8,12 @@ answer:
 
 dev:
   steps:
+    - title: Provision your Kafka cluster
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
     - title: Initialize the project
       content:
         - action: execute
@@ -19,12 +25,6 @@ dev:
           file: tutorial-steps/dev/make-configuration-dir.sh
           render:
             file: tutorials/filtering/kstreams/markup/dev/make-config-dir.adoc
-
-    - title: Provision your Kafka cluster
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/ccloud-setup-self.adoc
 
     - title: Write the cluster information into a local file
       content:
