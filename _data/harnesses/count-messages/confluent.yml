@@ -8,18 +8,18 @@ answer:
 
 dev:
   steps:
+    - title: Provision your Kafka cluster
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
     - title: Initialize the project
       content:
         - action: execute
           file: tutorial-steps/dev/01a-init.sh
           render:
             file: tutorials/count-messages/kafka/markup/dev/01a-init.adoc
-
-    - title: Provision your Kafka cluster
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/ccloud-setup-self.adoc
 
     - title: Write the cluster information into a local file
       content:
