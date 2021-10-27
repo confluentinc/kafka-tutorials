@@ -1,22 +1,3 @@
-Next is an aggregate object representing the object type in the KTable. Create the AggregateObject class by copying the following file to src/main/java/io/confluent/developer/AggregateObject.java:
-
-+++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/schedule-ktable-ttl-aggregate/kstreams/code/src/main/java/io/confluent/developer/AggregateObject.java %}</code></pre>
-+++++
-
-Create the JSONSerdeCompatible class (to help serialize ValueWrapper and AggregateObject) by copying the following file to src/main/java/io/confluent/developer/serdes/JSONSerdeCompatible.java:
-
-+++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/schedule-ktable-ttl-aggregate/kstreams/code/src/main/java/io/confluent/developer/serdes/JSONSerdeCompatible.java %}</code></pre>
-+++++
-
-Create the JSONSerde class (to use Jackson JSON Serialization) by copying the following file to src/main/java/io/confluent/developer/serdes/JSONSerde.java:
-
-+++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/schedule-ktable-ttl-aggregate/kstreams/code/src/main/java/io/confluent/developer/serdes/JSONSerde.java %}</code></pre>
-+++++
-
-
 Create the TTLKTableTombstoneEmitter class by copying the following file to src/main/java/io/confluent/developer/TTLKTableTombstoneEmitter.java:
 
 +++++
