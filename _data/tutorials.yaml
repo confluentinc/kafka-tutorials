@@ -793,8 +793,8 @@ multiple-event-types:
   introduction: "You have distinct but releated event types and you want them in the same topic and you want to maintain topic-name subject constraints.  This tutorial will demonstarate how to achieve all your requirements"
   status:
     ksql: disabled
-    kstreams: disabled
-    kafka: enabled
+    kstreams: enabled
+    kafka: disabled
     c: disabled
     go: disabled
     groovy: disabled
