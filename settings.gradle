@@ -108,6 +108,7 @@ include '_includes:tutorials:session-windows:confluent:code'
 include '_includes:tutorials:schedule-ktable-ttl:kstreams:code'
 include '_includes:tutorials:error-handling:kstreams:code'
 include '_includes:tutorials:error-handling:confluent:code'
+include '_includes:tutorials:schedule-ktable-ttl-aggregate:kstreams:code'
 
 
 // <end>
