@@ -109,7 +109,8 @@ include '_includes:tutorials:schedule-ktable-ttl:kstreams:code'
 include '_includes:tutorials:error-handling:kstreams:code'
 include '_includes:tutorials:error-handling:confluent:code'
 include '_includes:tutorials:schedule-ktable-ttl-aggregate:kstreams:code'
-
+include '_includes:tutorials:creating-first-apache-kafka-streams-application:kstreams:code'
+include '_includes:tutorials:creating-first-apache-kafka-streams-application:confluent:code'
 
 // <end>
 
