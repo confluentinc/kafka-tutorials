@@ -5,7 +5,7 @@ transforming:
   slug: "/transform-a-stream-of-events"
   question: "How do I transform a field in a stream of events in a Kafka topic?"
   introduction: "Consider a topic with events that represent movies. Each event has a single attribute that combines its title and its release year into a string. In this tutorial, we'll write a program that creates a new topic with the title and release date turned into their own attributes."
-  Status:
+  status:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
