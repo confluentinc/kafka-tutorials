@@ -14,7 +14,7 @@ A typical topology follows a common pattern:
 * Transform events by chaining together one or more transformations. In our example, we use `mapValues` to convert incoming String events to their upper case value.
 * Transformed events are streamed as the output of the topology using the `to` function specifying a destination topic as well as the serializers required to encode the data.
 
-The `peek` function allows you to observe and act on events and they flow through the topolgoy stages. In our example it is used to debug the topology by printing events as they flow through the topology.
+The `peek` function allows you to observe and act on events and they flow through the topology stages. In our example it is used to debug the topology by printing events as they flow through the topology.
 
 Once the topology is defined within the builder, the `buildTopology` function returns an instance of the `Topology` created from `builder.build`. Separating the building of the `Topology` in a function is useful for testing purposes, which we will see in the **Test It** section of the tutorial.
 
