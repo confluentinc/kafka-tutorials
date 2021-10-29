@@ -383,6 +383,6 @@ blocks:
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
 
-        - name: KStreams KStreams 101 Tests tests
+        - name: KStreams KStreams 101 tests
           commands:
             - make -C _includes/tutorials/creating-first-apache-kafka-streams-application/kstreams/code tutorial
