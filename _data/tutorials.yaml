@@ -17,7 +17,7 @@ filtering:
   canonical: confluent
   slug: "/filter-a-stream-of-events"
   question: "How do I filter messages in a Kafka topic to contain only those that I'm interested in?"
-  introduction: "Consoder a topic with events that represent book publications. In this tutorial, we'll write a program that creates a new topic which only contains the events for a particular author."
+  introduction: "Consider a topic with events that represent book publications. In this tutorial, we'll write a program that creates a new topic which only contains the events for a particular author."
   status:
     ksql: enabled
     kstreams: enabled
