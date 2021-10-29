@@ -379,7 +379,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
 
-
         - name: KStreams How to implement TTLs with KTable with aggregate tests
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
+
+        - name: KStreams KStreams 101 Tests tests
+          commands:
+            - make -C _includes/tutorials/creating-first-apache-kafka-streams-application/kstreams/code tutorial

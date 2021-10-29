@@ -5,7 +5,7 @@ transforming:
   slug: "/transform-a-stream-of-events"
   question: "How do I transform a field in a stream of events in a Kafka topic?"
   introduction: "Consider a topic with events that represent movies. Each event has a single attribute that combines its title and its release year into a string. In this tutorial, we'll write a program that creates a new topic with the title and release date turned into their own attributes."
-  status:
+  Status:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
@@ -17,7 +17,7 @@ filtering:
   canonical: confluent
   slug: "/filter-a-stream-of-events"
   question: "How do I filter messages in a Kafka topic to contain only those that I'm interested in?"
-  introduction: "Consider a topic with events that represent book publications. In this tutorial, we'll write a program that creates a new topic which only contains the events for a particular author."
+  introduction: "Consoder a topic with events that represent book publications. In this tutorial, we'll write a program that creates a new topic which only contains the events for a particular author."
   status:
     ksql: enabled
     kstreams: enabled
@@ -762,3 +762,14 @@ For a refresh on scheduling logic using a punctuator, have a look at the <a href
     ruby: disabled
     scala: disabled
     swift: disabled
+
+creating-first-apache-kafka-streams-application:
+  title: "How to build your first Apache Kafka Streams application"
+  meta-description: "build your first Kafka Streams application"
+  canonical: confluent
+  slug: "/creating-first-apache-kafka-streams-application"
+  question: "How do I get started in building my first Kafka Streams application?"
+  introduction: "You'd like to get started with Kafka Streams, but you're not sure where to start. In this tutorial you'll build a small stream processing application and produce some sample data to test it. You can use the code in this tutorial as an example of how to use Kafka Streams."
+  status:
+    confluent: enabled
+    kstreams: enabled
