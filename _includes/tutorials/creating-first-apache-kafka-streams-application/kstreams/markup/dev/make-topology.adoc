@@ -1,6 +1,6 @@
 Kafka Streams applications define their logic in a _processor topology_, which is a graph of stream processors (nodes) and streams (edges). There are two methods for defining these components in your Kafka Streams application, the https://docs.confluent.io/platform/current/streams/developer-guide/dsl-api.html[Streams DSL] and the https://docs.confluent.io/platform/current/streams/developer-guide/processor-api.html[Processor API]. The Streams DSL provides built-in abstractions for common event stream processing concepts like streams, tables, and transformations, while the Processor API can be used for advanced cases not supported by the DSL.
 
-The Streams DSL is recommended for most use cases and this tutorial will use it to define a basic text processing Kafka Streams application. To get started, let's focus on the important bits of Kafka Streams application code, highlighting the DSL usage.
+The Streams DSL is recommended for most use cases and this tutorial will use it to define a basic text processing application. To get started, let's focus on the important bits of Kafka Streams application code, highlighting the DSL usage.
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/creating-first-apache-kafka-streams-application/kstreams/code/tutorial-steps/dev/answer-short.java %}</code></pre>
