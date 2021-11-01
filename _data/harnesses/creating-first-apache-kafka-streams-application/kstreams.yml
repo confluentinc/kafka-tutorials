@@ -71,7 +71,7 @@ dev:
     - title: Create the Kafka Streams topology
       content:
         - action: make_file
-          file: src/main/java/io/confluent/developer/DynamicOutputTopic.java
+          file: src/main/java/io/confluent/developer/KafkaStreamsApplication.java
           render:
             file: tutorials/creating-first-apache-kafka-streams-application/kstreams/markup/dev/make-topology.adoc
 
