@@ -1,8 +1,8 @@
-In this step we’re going to create a topic for use during this tutorial, with the default number of partitions, which is `6`.
+In this step we’re going to create a topic for use during this tutorial, with the default number of `6` partitions.
 Use the following command to create the topic:
 
 ```
-ccloud kafka topic create output-topic
+ccloud kafka topic create topic-perf
 ```
 
 A topic partition is the unit of parallelism in Kafka, and messages to different partitions can be sent in parallel by producers, written in parallel by different brokers, and read in parallel by different consumers.

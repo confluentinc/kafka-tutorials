@@ -1,6 +1,16 @@
 Now rerun the Kafka producer performance test using optimized configuration values.
 This test will send the same number of records of the same size.
 
+The parameters to tweak include:
+
+- `batch.size`: increase to 100000–200000 (default 16384)
+- `linger.ms`: increase to 10–100 (default 0)
+- `compression.type=lz4` (default `none`, i.e., no compression)
+- `acks=1` (default 1)
+- `buffer.memory`: increase if there are a lot of partitions (default 33554432)
+
+For a detailed explanation of why these matter, please see link:https://www.confluent.io/resources/recommendations-developers-using-confluent-cloud/[Recommendations for Developers using Confluent Cloud]. 
+
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/optimize-app-throughput/confluent/code/tutorial-steps/dev/producer-perf-test-optimized-throughput.sh %}</code></pre>
 +++++

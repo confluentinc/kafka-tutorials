@@ -1,0 +1,31 @@
+Now rerun the Kafka consumer performance test using optimized configuration values.
+This test will send the same number of records of the same size.
+
+Assuming the application allows it, use consumer groups with multiple consumers to parallelize consumption.
+Parallelizing consumption may improve throughput because multiple consumers can balance the load, processing multiple partitions simultaneously.
+The upper limit on this parallelization is the number of partitions in the topic.
+
+You can also do parallelization within a given consumer using link:https://www.confluent.io/blog/introducing-confluent-parallel-message-processing-client/[Confluent Parallel Consumer], which subdivides the unit of work from a partition down to a key or even a message.
+For example, when partition counts are fixed for a reason beyond your control, you need to call other databases or microservices—which can take a while to respond—or use queue-like semantics, where slow-to-process messages don’t hold up faster ones further back in the queue. 
+
+The parameters to tweak include:
+
+* `fetch.min.bytes`: increase to ~100000 (default 1)
+
+For a detailed explanation of why these matter, please see link:https://www.confluent.io/resources/recommendations-developers-using-confluent-cloud/[Recommendations for Developers using Confluent Cloud]. 
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/optimize-app-throughput/confluent/code/tutorial-steps/dev/consumer-perf-test-optimized-throughput.sh %}</code></pre>
++++++
+
+Note the output results.
+They should resemble something like (your results will vary):
+
+```
+...
+TODO
+```
+
+Note the last line: the throughput being `1172.332943 records/sec (5.59 MB/sec)`.
+Your results will vary, but what you should see is a marked improvement over the baseline.
+In the case of the results shown in this tutorial, these modified configuration had more than a 3x throughput.

@@ -36,17 +36,30 @@ dev:
           render:
             file: tutorials/optimize-app-throughput/confluent/markup/dev/make-topic.adoc
 
-    - title: Run a baseline performance test
+    - title: Run a baseline producer performance test 
       content:
         - action: skip
           render:
             file: tutorials/optimize-app-throughput/confluent/markup/dev/producer-perf-test-default.adoc
 
-    - title: Run a performance test optimized for throughput
+    - title: Run a producer performance test with optimized throughput
       content:
         - action: skip
           render:
             file: tutorials/optimize-app-throughput/confluent/markup/dev/producer-perf-test-optimized-throughput.adoc
+
+
+    - title: Run a baseline consumer performance test
+      content:
+        - action: skip
+          render:
+            file: tutorials/optimize-app-throughput/confluent/markup/dev/consumer-perf-test-default.adoc
+
+    - title: Run a consumer performance test with optimized throughput
+      content:
+        - action: skip
+          render:
+            file: tutorials/optimize-app-throughput/confluent/markup/dev/consumer-perf-test-optimized-throughput.adoc
 
     - title: Teardown Confluent Cloud resources
       content:
