@@ -15,7 +15,7 @@ import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
-public class Util {
+public class Util implements AutoCloseable {
 
     private final Logger logger = LoggerFactory.getLogger(Util.class);
     private ExecutorService executorService = Executors.newFixedThreadPool(1);
@@ -87,8 +87,7 @@ public class Util {
         }
     }
 
-    @Override
-    public void finalize() {
+    public void close() {
         if (executorService != null) {
             executorService.shutdownNow();
             executorService = null;

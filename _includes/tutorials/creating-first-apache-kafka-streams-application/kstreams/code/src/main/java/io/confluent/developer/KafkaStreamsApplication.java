@@ -68,26 +68,27 @@ public class KafkaStreamsApplication {
         final String inputTopic = props.getProperty("input.topic.name");
         final String outputTopic = props.getProperty("output.topic.name");
 
-        Util utility = new Util();
+        try (Util utility = new Util()) {
 
-        utility.createTopics(
-                props,
-                Arrays.asList(
-                    new NewTopic(inputTopic, Optional.empty(), Optional.empty()),
-                    new NewTopic(outputTopic, Optional.empty(), Optional.empty())));
+            utility.createTopics(
+                    props,
+                    Arrays.asList(
+                            new NewTopic(inputTopic, Optional.empty(), Optional.empty()),
+                            new NewTopic(outputTopic, Optional.empty(), Optional.empty())));
 
-        // Ramdomizer only used to produce sample data for this application, not typical usage
-        Util.Randomizer rando = utility.startNewRandomizer(props, inputTopic);
+            // Ramdomizer only used to produce sample data for this application, not typical usage
+            try (Util.Randomizer rando = utility.startNewRandomizer(props, inputTopic)) {
 
-        KafkaStreams kafkaStreams = new KafkaStreams(
-            buildTopology(inputTopic, outputTopic),
-            props);
+                KafkaStreams kafkaStreams = new KafkaStreams(
+                        buildTopology(inputTopic, outputTopic),
+                        props);
 
-        Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
+                Runtime.getRuntime().addShutdownHook(new Thread(kafkaStreams::close));
 
-        logger.info("Kafka Streams 101 App Started");
-        runKafkaStreams(kafkaStreams);
+                logger.info("Kafka Streams 101 App Started");
+                runKafkaStreams(kafkaStreams);
 
-        rando.close();
+            }
+        }
     }
 }
