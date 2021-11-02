@@ -1,8 +1,8 @@
-Here is an example of some producer configuration values you can set to increase throughput (these are shown here for demonstration purposes, but you will need to further tune these for your environment):
+Here are some producer configuration parameters you can set to increase throughput (the values shown are for demonstration purposes, and you will need to further tune these for your environment):
 
 * `batch.size`: increase to 100000–200000 (default 16384)
 * `linger.ms`: increase to 10–100 (default 0)
 * `compression.type=lz4` (default `none`, i.e., no compression)
 * `acks=1` (default `all`, since Apache Kafka version 3.0)
 
-For a detailed explanation on these and other configuration parameters, for producers and consumers, please link:https://www.confluent.io/resources/recommendations-developers-using-confluent-cloud/[read these recommendations for developers].
+For a detailed explanation of these and other configuration parameters, link:https://www.confluent.io/resources/recommendations-developers-using-confluent-cloud/[read these recommendations for Kafka developers].
