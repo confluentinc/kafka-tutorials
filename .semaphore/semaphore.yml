@@ -231,6 +231,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/error-handling/kstreams/code tutorial
 
+        - name: KStreams KStreams 101 tests
+          commands:
+            - make -C _includes/tutorials/creating-first-apache-kafka-streams-application/kstreams/code tutorial
+
   - name: Run second block of tests (mostly ksqlDB)
     execution_time_limit:
       minutes: 10
@@ -383,6 +387,3 @@ blocks:
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
 
-        - name: KStreams KStreams 101 tests
-          commands:
-            - make -C _includes/tutorials/creating-first-apache-kafka-streams-application/kstreams/code tutorial
