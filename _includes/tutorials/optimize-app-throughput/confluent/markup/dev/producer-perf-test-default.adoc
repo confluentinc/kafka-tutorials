@@ -1,5 +1,5 @@
 Run a baseline test Kafka producer performance test using default configuration parameters.
-This test will send 5000 records of size 5000 bytes each.
+This test will send 10000 records of size 8000 bytes each.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/optimize-app-throughput/confluent/code/tutorial-steps/dev/producer-perf-test-default.sh %}</code></pre>

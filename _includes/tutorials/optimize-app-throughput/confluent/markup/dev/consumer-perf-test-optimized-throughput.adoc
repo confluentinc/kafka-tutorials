@@ -22,10 +22,10 @@ Note the output results.
 They should resemble something like (your results will vary):
 
 ```
-...
-TODO
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+2021-11-02 00:00:02:911, 2021-11-02 00:00:30:749, 570.3783, 20.4892, 100075, 3594.9062, 2990, 24848, 22.9547, 4027.4871
 ```
 
-Note the last line: the throughput being `1172.332943 records/sec (5.59 MB/sec)`.
+Note the last line: the throughput being `20.4892`.
 Your results will vary, but what you should see is a marked improvement over the baseline.
 In the case of the results shown in this tutorial, these modified configuration had more than a 3x throughput.

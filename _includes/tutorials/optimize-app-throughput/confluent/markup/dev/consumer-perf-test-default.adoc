@@ -1,5 +1,5 @@
 Run a baseline test Kafka consumer performance test using default configuration parameters.
-This test will send 5000 records of size 5000 bytes each.
+This test will send 10000 records of size 8000 bytes each.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/optimize-app-throughput/confluent/code/tutorial-steps/dev/consumer-perf-test-default.sh %}</code></pre>
@@ -9,9 +9,9 @@ Note the output results.
 They should resemble something like (your results will vary):
 
 ```
-...
-TODO
+start.time, end.time, data.consumed.in.MB, MB.sec, data.consumed.in.nMsg, nMsg.sec, rebalance.time.ms, fetch.time.ms, fetch.MB.sec, fetch.nMsg.sec
+2021-11-02 00:00:02:911, 2021-11-02 00:00:30:749, 570.3783, 20.4892, 100075, 3594.9062, 2990, 24848, 22.9547, 4027.4871
 ```
 
-The key thing to note here is in the last line: the throughput being `341.600055 records/sec (1.63 MB/sec)`.
+The key thing to note here is in the last line: the throughput being `20.4892`.
 This is the baseline consumer performance with default values.
