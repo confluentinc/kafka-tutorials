@@ -1,3 +1,11 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/optimize-app-throughput/confluent/markup/answer/short-answer.adoc
+
 dev:
   steps:
     - title: Provision your Kafka cluster
@@ -22,7 +30,7 @@ dev:
       content:
         - action: skip
           render:
-            file: shared/markup/ccloud/config-create.adoc
+            file: shared/markup/ccloud/config-broker-only-create.adoc
 
     - title: Download and setup the Confluent Cloud CLI
       content:
@@ -47,19 +55,6 @@ dev:
         - action: skip
           render:
             file: tutorials/optimize-app-throughput/confluent/markup/dev/producer-perf-test-optimized-throughput.adoc
-
-
-    - title: Run a baseline consumer performance test
-      content:
-        - action: skip
-          render:
-            file: tutorials/optimize-app-throughput/confluent/markup/dev/consumer-perf-test-default.adoc
-
-    - title: Run a consumer performance test with optimized throughput
-      content:
-        - action: skip
-          render:
-            file: tutorials/optimize-app-throughput/confluent/markup/dev/consumer-perf-test-optimized-throughput.adoc
 
     - title: Teardown Confluent Cloud resources
       content:

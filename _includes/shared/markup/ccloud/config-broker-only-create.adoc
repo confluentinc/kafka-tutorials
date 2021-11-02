@@ -1,0 +1,10 @@
+From the Confluent Cloud Console, navigate to your Kafka cluster. From the ``Clients`` view, get the connection information customized to your cluster.
+
+Create new credentials for your Kafka cluster, and then Confluent Cloud will show a configuration similar to below with your new credentials automatically populated (make sure ``show API keys`` is checked).
+Copy and paste it into a `configuration/ccloud.properties` file on your machine.
+
++++++
+<pre class="snippet"><code class="text">{% include_raw shared/code/ccloud/config-broker-only.properties %}</code></pre>
++++++
+
+NOTE: Do not directly copy and paste the above configuration. You must copy it from the Confluent Cloud Console so that it includes your Confluent Cloud information and credentials.
