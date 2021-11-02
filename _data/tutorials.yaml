@@ -762,3 +762,14 @@ For a refresh on scheduling logic using a punctuator, have a look at the <a href
     ruby: disabled
     scala: disabled
     swift: disabled
+
+creating-first-apache-kafka-streams-application:
+  title: "How to build your first Apache Kafka Streams application"
+  meta-description: "build your first Kafka Streams application"
+  canonical: confluent
+  slug: "/creating-first-apache-kafka-streams-application"
+  question: "How do I get started in building my first Kafka Streams application?"
+  introduction: "You'd like to get started with Kafka Streams, but you're not sure where to start. In this tutorial you'll build a small stream processing application and produce some sample data to test it. You can use the code in this tutorial as an example of how to use Kafka Streams. After you complete this tutorial, you can go more in-depth in the <a href='https://developer.confluent.io/learn-kafka/kafka-streams/get-started/'>Kafka Streams 101 Course</a>."
+  status:
+    confluent: enabled
+    kstreams: enabled
