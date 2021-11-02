@@ -768,6 +768,17 @@ optimize-producer-throughput:
   meta-description: "How to optimize your Apache Kafka producer application for throughput, set configuration parameters and test baseline using kafka-producer-perf-test"
   slug: "/optimize-producer-throughput"
   question: "How do I optimize my Kafka producer application for throughput?"
-  introduction: "Some use cases require producers to write as much data as they can within a given amount of time. Because of Kafka’s design, writing large volumes of data into it is not a hard thing to do. It’s faster than trying to push volumes of data through a traditional database or key-value store.  Many of the Kafka configuration parameters have default settings that optimize for latency, so if you do have a use case that necessitates higher throughput, where you are trying to maximize the rate at which this data moves, follow this tutorial to learn how to use `kafka-producer-perf-test` to measure baseline performance and tune your producer for throughput."
+  introduction: "When optimizing for performance, you'll typically need to consider tradeoffs between throughput and latency. Because of Kafka’s design, writing large volumes of data into it is not a hard thing to do, however, many of the Kafka configuration parameters have default settings that optimize for latency. If your use case calls for higher throughput, this tutorial walks you through how to use `kafka-producer-perf-test` to measure baseline performance and tune your producer for large volumes of data."
   status:
     confluent: enabled
+
+creating-first-apache-kafka-streams-application:
+  title: "How to build your first Apache Kafka Streams application"
+  meta-description: "build your first Kafka Streams application"
+  canonical: confluent
+  slug: "/creating-first-apache-kafka-streams-application"
+  question: "How do I get started in building my first Kafka Streams application?"
+  introduction: "You'd like to get started with Kafka Streams, but you're not sure where to start. In this tutorial you'll build a small stream processing application and produce some sample data to test it. You can use the code in this tutorial as an example of how to use Kafka Streams. After you complete this tutorial, you can go more in-depth in the <a href='https://developer.confluent.io/learn-kafka/kafka-streams/get-started/'>Kafka Streams 101 Course</a>."
+  status:
+    confluent: enabled
+    kstreams: enabled
