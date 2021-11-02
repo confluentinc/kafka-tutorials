@@ -15,3 +15,5 @@ Your results will vary depending on your connectivity and bandwidth to the Kafka
 
 The key thing to note here is in the last line: the throughput being `740.960285 records/sec (5.65 MB/sec)`.
 In your environment the performance improvement will vary, but for the test shown here, 5.65 MB/sec is about a 5x improvement over the 1.03 MB/sec baseline.
+
+While this test has demonstrated a starting point for improving the producer throughput, you should do further testing in your environment of these configuration parameters, and test it with your specific Kafka producer, not just using `kafka-producer-perf-test`.

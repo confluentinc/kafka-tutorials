@@ -5,4 +5,4 @@ Here are some producer configuration parameters you can set to increase throughp
 * `compression.type=lz4` (default `none`, i.e., no compression)
 * `acks=1` (default `all`, since Apache Kafka version 3.0)
 
-For a detailed explanation of these and other configuration parameters, link:https://www.confluent.io/resources/recommendations-developers-using-confluent-cloud/[read these recommendations for Kafka developers].
+For a detailed explanation of these and other configuration parameters, link:https://www.confluent.io/resources/recommendations-developers-using-confluent-cloud/[read these recommendations] for Kafka developers.
