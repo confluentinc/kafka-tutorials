@@ -4,7 +4,7 @@ answer:
       content:
         - action: skip
           render:
-            file: tutorials/optimize-app-throughput/confluent/markup/answer/short-answer.adoc
+            file: tutorials/optimize-producer-throughput/confluent/markup/answer/short-answer.adoc
 
 dev:
   steps:
@@ -19,12 +19,12 @@ dev:
         - action: execute
           file: tutorial-steps/dev/init.sh
           render:
-            file: tutorials/optimize-app-throughput/confluent/markup/dev/init.adoc
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/init.adoc
 
         - action: execute
           file: tutorial-steps/dev/make-configuration-dir.sh
           render:
-            file: tutorials/optimize-app-throughput/confluent/markup/dev/make-config-dir.adoc
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/make-config-dir.adoc
 
     - title: Write the cluster information into a local file
       content:
@@ -42,19 +42,19 @@ dev:
       content:
         - action: skip
           render:
-            file: tutorials/optimize-app-throughput/confluent/markup/dev/make-topic.adoc
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/make-topic.adoc
 
     - title: Run a baseline producer performance test 
       content:
         - action: skip
           render:
-            file: tutorials/optimize-app-throughput/confluent/markup/dev/producer-perf-test-default.adoc
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/producer-perf-test-default.adoc
 
     - title: Run a producer performance test with optimized throughput
       content:
         - action: skip
           render:
-            file: tutorials/optimize-app-throughput/confluent/markup/dev/producer-perf-test-optimized-throughput.adoc
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/producer-perf-test-optimized-throughput.adoc
 
     - title: Teardown Confluent Cloud resources
       content:

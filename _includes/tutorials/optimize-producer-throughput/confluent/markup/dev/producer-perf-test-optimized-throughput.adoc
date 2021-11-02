@@ -1,10 +1,10 @@
 Now rerun the Kafka producer performance test using optimized configuration values.
 This test will send the same number of records of the same size.
 
-include::_includes/tutorials/optimize-app-throughput/confluent/markup/dev/optimized-producer-config.adoc[]
+include::_includes/tutorials/optimize-producer-throughput/confluent/markup/dev/optimized-producer-config.adoc[]
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/optimize-app-throughput/confluent/code/tutorial-steps/dev/producer-perf-test-optimized-throughput.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/optimize-producer-throughput/confluent/code/tutorial-steps/dev/producer-perf-test-optimized-throughput.sh %}</code></pre>
 +++++
 
 Your results will vary depending on your connectivity and bandwidth to the Kafka cluster.

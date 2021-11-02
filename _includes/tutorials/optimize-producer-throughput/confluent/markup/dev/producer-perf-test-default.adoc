@@ -2,7 +2,7 @@ Run a performance test for the baseline Kafka producer using default configurati
 This test will send 10000 records of size 8000 bytes each.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/optimize-app-throughput/confluent/code/tutorial-steps/dev/producer-perf-test-default.sh %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/optimize-producer-throughput/confluent/code/tutorial-steps/dev/producer-perf-test-default.sh %}</code></pre>
 +++++
 
 Your results will vary depending on your connectivity and bandwidth to the Kafka cluster.
