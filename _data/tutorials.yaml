@@ -765,7 +765,7 @@ For a refresh on scheduling logic using a punctuator, have a look at the <a href
 
 optimize-producer-throughput:
   title: "How to optimize your Kafka producer for throughput"
-  meta-description: "How to optimize your Apache Kafka producer application for throughput"
+  meta-description: "How to optimize your Apache Kafka producer application for throughput, set configuration parameters and test baseline using kafka-producer-perf-test"
   slug: "/optimize-producer-throughput"
   question: "How do I optimize my Kafka producer application for throughput?"
   introduction: "Some use cases require producers to write as much data as they can within a given amount of time. Because of Kafka’s design, writing large volumes of data into it is not a hard thing to do. It’s faster than trying to push volumes of data through a traditional database or key-value store.  Many of the Kafka configuration parameters have default settings that optimize for latency, so if you do have a use case that necessitates higher throughput, where you are trying to maximize the rate at which this data moves, follow this tutorial to learn how to test and tune your producer application for throughput."
