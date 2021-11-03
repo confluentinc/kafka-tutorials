@@ -735,3 +735,41 @@ error-handling:
     scala: disabled
     swift: disabled
     confluent: enabled
+
+schedule-ktable-ttl-aggregate:
+  title: "How to implement TTL-based cleanup to expire data in a KTable created via aggregate"
+  meta-description: "implement TTLs to expire data in the middle of a topology"
+  slug: "/schedule-ktable-ttl-aggregate"
+  question: "How can I periodically expire KTable records in the middle of a topology created using aggregate() or other stateful functions?"
+  introduction: "You have a KStreams application which creates KTables in the middle of a topology using the aggregate() function and the state store grows over time. An example of this type of KTable usage is in a workflow application scenario where aggregate() is used to keep handle a fixed set of updates to a certain workflow instance. Once the workflow is completed, this data is no longer needed in the state store. In other data aggregation use cases, you may simply want to remove older data to keep size of the state store manageable. Although the Kafka Stream API does not natively include a notion of a TTL (Time to Live) for KTables, this tutorial shows you a way to manage the size of your state stores underlying KTables from aggregate() steps. <br><br>
+In a previous tutorial, we showed how to purge KTables which are created directly from an input topic. See <a href='https://kafka-tutorials.confluent.io/schedule-ktable-ttl/kstreams.html'>Expire data in a KTable with TTLs</a>
+<br><br>
+The example shows a fixed TTL per key based on the last update for that key. This may not serve all needs but it is sufficient to illustrate the
+mechanism via which we can purge data from a KTable. The transformer uses a state store to store the last updated time seen for a key
+and periodically (via a punctuator) scans its list of keys to see if any of them have exceeded a configured cutoff period (TTL). If they have met the condition for purging, then a
+signal (via a wrapper object) is forwarded onwards in the pipeline to signal to the downstream aggregate() function so that the key removed from the KTable's own internal store. This is due to the fact that the the groupBy() API will swallow a null key or null value.
+<br><br>
+For a refresh on scheduling logic using a punctuator, have a look at the <a href='https://kafka-tutorials.confluent.io/kafka-streams-schedule-operations/kstreams.html'>Scheduling Operations</a> tutorial."
+  status:
+    ksql: disabled
+    kstreams: enabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
+creating-first-apache-kafka-streams-application:
+  title: "How to build your first Apache Kafka Streams application"
+  meta-description: "build your first Kafka Streams application"
+  canonical: confluent
+  slug: "/creating-first-apache-kafka-streams-application"
+  question: "How do I get started in building my first Kafka Streams application?"
+  introduction: "You'd like to get started with Kafka Streams, but you're not sure where to start. In this tutorial you'll build a small stream processing application and produce some sample data to test it. You can use the code in this tutorial as an example of how to use Kafka Streams. After you complete this tutorial, you can go more in-depth in the <a href='https://developer.confluent.io/learn-kafka/kafka-streams/get-started/'>Kafka Streams 101 Course</a>."
+  status:
+    confluent: enabled
+    kstreams: enabled
