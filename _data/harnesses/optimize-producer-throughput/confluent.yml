@@ -1,0 +1,63 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/optimize-producer-throughput/confluent/markup/answer/short-answer.adoc
+
+dev:
+  steps:
+    - title: Provision your Kafka cluster
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/init.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/make-config-dir.adoc
+
+    - title: Write the cluster information into a local file
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/config-broker-only-create.adoc
+
+    - title: Download and setup the Confluent Cloud CLI
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/get-ccloud.adoc
+
+    - title: Create a topic
+      content:
+        - action: skip
+          render:
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/make-topic.adoc
+
+    - title: Run a baseline producer performance test 
+      content:
+        - action: skip
+          render:
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/producer-perf-test-default.adoc
+
+    - title: Run a producer performance test with optimized throughput
+      content:
+        - action: skip
+          render:
+            file: tutorials/optimize-producer-throughput/confluent/markup/dev/producer-perf-test-optimized-throughput.adoc
+
+    - title: Teardown Confluent Cloud resources
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-destroy.adoc
