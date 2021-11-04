@@ -1,5 +1,5 @@
-Now rerun the Kafka producer performance test using optimized configuration values.
-This test will send the same number of records of the same size.
+Run the Kafka producer performance test again, but this time use optimized configuration values.
+This test will send the same number of records of the same size as the previous performance test.
 
 include::_includes/tutorials/optimize-producer-throughput/confluent/markup/dev/optimized-producer-config.adoc[]
 
