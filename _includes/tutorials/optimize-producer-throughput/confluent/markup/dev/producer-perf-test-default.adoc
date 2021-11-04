@@ -1,4 +1,4 @@
-Run a performance test for the baseline Kafka producer using default configuration parameters.
+Run a performance test to capture a baseline measurement for your Kafka producer, using default configuration parameters.
 This test will send 10000 records of size 8000 bytes each.
 
 +++++
