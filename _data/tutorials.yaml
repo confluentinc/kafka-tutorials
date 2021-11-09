@@ -785,16 +785,20 @@ creating-first-apache-kafka-streams-application:
     kstreams: enabled
 
 multiple-event-types:
-  title: "Handling multiple events in a topic"
+  title: "Handling multiple event types in a topic"
   canonical: confluent
   meta-description: "handling multiple event types"
   slug: "/multiple-event-type-topics"
   question: "How can I have multiple event types in a topic and maintain topic-name subject constraints?"
-  introduction: "You have distinct but releated event types and you want them in the same topic and you want to maintain topic-name subject constraints.  This tutorial will demonstarate how to achieve all your requirements"
+  introduction: "You have distinct but releated event types and you want to produce them in the same topic, but you also want to maintain topic-name subject constraints. Why produce different events to the different
+  same topic? One reason would be you have low-traffic topics and you'd like to consolodate them to reduce overhead for the brokers.  Or you need to get the exact order of different finding-distinct-events
+  and by producing them to the same topic you are guaranteed correct ordering per-partition.   To do multiple events with topic-name constraints you'll need to use 
+  <a href='https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#schema-references'>schema references</a> now available in Schema Registry.  A schema reference is just as it sounds, a schema that contians a field representing an object which is reference to another another schema.
+  In this tutorial you'll learn about using schema references with both Protobuf and Avro."
   status:
     ksql: disabled
     kstreams: enabled
-    kafka: disabled
+    kafka: enabled
     c: disabled
     go: disabled
     groovy: disabled

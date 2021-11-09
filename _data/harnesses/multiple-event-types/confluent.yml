@@ -1,16 +1,5 @@
 dev:
   steps:
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/init.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/make-config-dir.adoc
 
     - title: Provision your Kafka cluster
       content:
@@ -30,7 +19,19 @@ dev:
           render:
             file: shared/markup/ccloud/get-ccloud.adoc
 
-    - title: Create a topic
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/init.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/make-configuration-dir.sh
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/make-config-dir.adoc
+
+    - title: Create the topics
       content:
         - action: skip
           render:
@@ -48,7 +49,7 @@ dev:
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/make-gradle-wrapper.adoc
 
-    - title: Add application and consumer properties
+    - title: Add application properties
       content:
         - action: skip
           render:
@@ -68,7 +69,71 @@ dev:
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/explain-properties.adoc
 
-    - title: Create the Kafka Consumer Application
+    - title: Create the Protobuf Schemas
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-proto-dir.sh
+          render:
+            skip: true
+
+        - action: skip
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/create-proto-schemas.adoc
+
+        - action: make_file
+          file: src/main/proto/purchase.proto
+          render:
+            skip: true   
+
+        - action: make_file
+          file: src/main/proto/page_view.proto
+          render:
+            skip: true   
+
+        - action: make_file
+          file: src/main/proto/customer_event.proto
+          render:
+            skip: true  
+
+    - title: Create the Avro Schemas
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-avro-dir.sh
+          render:
+            skip: true
+
+        - action: skip
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/create-avro-schemas.adoc
+
+        - action: make_file
+          file: src/main/avro/purchase.avsc
+          render:
+            skip: true   
+
+        - action: make_file
+          file: src/main/avro/page_view.avsc
+          render:
+            skip: true   
+
+        - action: make_file
+          file: src/main/avro/all_events.avsc
+          render:
+            skip: true  
+
+        - action: execute
+          file: tutorial-steps/dev/build-project.sh
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/build-project.adoc
+
+    - title: Register the schemas
+      content:
+        - action: execute
+          file: tutorial-steps/dev/register-schemas.sh
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/register-schemas.adoc
+
+    - title: Create the Multi Event application
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
@@ -78,19 +143,7 @@ dev:
         - action: make_file
           file: src/main/java/io/confluent/developer/KafkaMultiEventConsumerApplication.java
           render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/make-consumer-app.adoc 
-
-    - title: Create supporting classes
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/ConsumerRecordsHandler.java
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/make-supporting-classes.adoc 
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/FileWritingRecordsHandler.java
-          render:
-            skip: true
+            file: tutorials/multiple-event-types/kafka/markup/dev/make-multi-event-app.adoc         
 
     - title: Compile and run the Kafka Consumer program
       content:

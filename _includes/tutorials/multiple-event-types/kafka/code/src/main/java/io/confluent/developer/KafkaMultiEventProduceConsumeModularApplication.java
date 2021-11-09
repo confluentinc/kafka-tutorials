@@ -12,14 +12,14 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 
-public class KafkaMultiEventConsumerApplication {
+public class KafkaMultiEventProduceConsumeModularApplication {
 
   private volatile boolean keepConsuming = true;
   private ConsumerRecordsHandler<String, String> recordsHandler;
   private Consumer<String, String> consumer;
 
-  public KafkaMultiEventConsumerApplication(final Consumer<String, String> consumer,
-                                  final ConsumerRecordsHandler<String, String> recordsHandler) {
+  public KafkaMultiEventProduceConsumeModularApplication(final Consumer<String, String> consumer,
+                                                         final ConsumerRecordsHandler<String, String> recordsHandler) {
     this.consumer = consumer;
     this.recordsHandler = recordsHandler;
   }
@@ -55,11 +55,11 @@ public class KafkaMultiEventConsumerApplication {
           "This program takes one argument: the path to an environment configuration file.");
     }
 
-    final Properties consumerAppProps = KafkaMultiEventConsumerApplication.loadProperties(args[0]);
+    final Properties consumerAppProps = KafkaMultiEventProduceConsumeModularApplication.loadProperties(args[0]);
     final String filePath = consumerAppProps.getProperty("file.path");
     final Consumer<String, String> consumer = new KafkaConsumer<>(consumerAppProps);
     final ConsumerRecordsHandler<String, String> recordsHandler = new FileWritingRecordsHandler(Paths.get(filePath));
-    final KafkaMultiEventConsumerApplication consumerApplication = new KafkaMultiEventConsumerApplication(consumer, recordsHandler);
+    final KafkaMultiEventProduceConsumeModularApplication consumerApplication = new KafkaMultiEventProduceConsumeModularApplication(consumer, recordsHandler);
 
     Runtime.getRuntime().addShutdownHook(new Thread(consumerApplication::shutdown));
 
