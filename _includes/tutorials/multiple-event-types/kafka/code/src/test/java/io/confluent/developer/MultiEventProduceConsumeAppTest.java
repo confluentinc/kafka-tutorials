@@ -70,13 +70,14 @@ public class MultiEventProduceConsumeAppTest {
     }
 
     @Test
+    @SuppressWarnings("unchecked")
     public void testProduceAvroMultipleEvents() {
         KafkaAvroSerializer avroSerializer
                 = new KafkaAvroSerializer();
         avroSerializer.configure(commonConfigs, false);
         MockProducer<String, SpecificRecordBase> mockAvroProducer
                 = new MockProducer<String, SpecificRecordBase>(true, stringSerializer, (Serializer) avroSerializer);
-        produceConsumeApp.produceAvroEvents(() -> mockAvroProducer, (String) commonConfigs.get("proto.topic"), null);
+        produceConsumeApp.produceAvroEvents(() -> mockAvroProducer, (String) commonConfigs.get("proto.topic"), produceConsumeApp.avroEvents());
         List<KeyValue<String, SpecificRecordBase>> expectedKeyValues =
                 produceConsumeApp.avroEvents().stream().map((e -> KeyValue.pair((String) e.get("customer_id"), e))).collect(Collectors.toList());
 
@@ -89,7 +90,7 @@ public class MultiEventProduceConsumeAppTest {
     public void testConsumeProtobufEvents() {
         MockConsumer<String, CustomerEventProto.CustomerEvent> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
         String topic = (String) commonConfigs.get("proto.topic");
-        List<String> expectedProtoResults = List.of("http://acme/traps", "http://acme/bombs", "http://acme/bait", "road-runner-bait");
+        List<String> expectedProtoResults = List.of("Protobuf Pageview event -> http://acme/traps", "Protobuf Pageview event -> http://acme/bombs", "Protobuf Pageview event -> http://acme/bait", "Protobuf Purchase event -> road-runner-bait");
         List<String> actualProtoResults = new ArrayList<>();
         mockConsumer.schedulePollTask(()-> {
             addTopicPartitionsAssignment(topic, mockConsumer);
@@ -104,7 +105,7 @@ public class MultiEventProduceConsumeAppTest {
     public void testConsumeAvroEvents() {
         MockConsumer<String, SpecificRecordBase> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
         String topic = (String) commonConfigs.get("avro.topic");
-        List<String> expectedAvroResults = List.of("http://acme/traps", "http://acme/bombs", "http://acme/bait", "road-runner-bait");
+        List<String> expectedAvroResults = List.of("Avro Pageview event -> http://acme/traps", "Avro Pageview event -> http://acme/bombs", "Avro Pageview event -> http://acme/bait", "Avro Purchase event -> road-runner-bait");
         List<String> actualAvroResults = new ArrayList<>();
         mockConsumer.schedulePollTask(() -> {
             addTopicPartitionsAssignment(topic, mockConsumer);
@@ -137,6 +138,4 @@ public class MultiEventProduceConsumeAppTest {
                 .map(r -> new ConsumerRecord<>(topic, 0, offset.getAndIncrement(), keyFunction.apply(r), r))
                 .forEach(mockConsumer::addRecord);
     }
-
-
 }

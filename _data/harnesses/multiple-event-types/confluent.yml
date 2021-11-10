@@ -49,15 +49,10 @@ dev:
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/make-gradle-wrapper.adoc
 
-    - title: Add application properties
-      content:
         - action: skip
           render:
             file: tutorials/multiple-event-types/confluent/markup/dev/make-config-file.adoc
 
-        - action: skip
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/explain-properties.adoc
 
     - title: Update the properties file with Confluent Cloud information
       content:
@@ -65,9 +60,6 @@ dev:
           render:
             file: shared/markup/ccloud/append-ccloud-config.adoc
 
-        - action: skip
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/explain-properties.adoc
 
     - title: Create the Protobuf Schemas
       content:
@@ -141,11 +133,11 @@ dev:
             file: tutorials/multiple-event-types/kafka/markup/dev/make-src-dir.adoc
             
         - action: make_file
-          file: src/main/java/io/confluent/developer/KafkaMultiEventConsumerApplication.java
+          file: src/main/java/io/confluent/developer/MultiEventProduceConsumeApp.java
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/make-multi-event-app.adoc         
 
-    - title: Compile and run the Kafka Consumer program
+    - title: Compile and run the Multi Event application
       content:
         - action: execute
           file: tutorial-steps/dev/build-uberjar.sh
@@ -157,19 +149,6 @@ dev:
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/run-dev-app.adoc
 
-    - title: Produce sample data to the input topic
-      content:
-        - action: skip
-          render:
-            file: tutorials/multiple-event-types/confluent/markup/dev/ccloud-run-producer.adoc
-
-    - title: Inspect the consumed records
-      content:
-        - action: execute
-          file: tutorial-steps/dev/print-consumer-file-results.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.txt
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/print-consumer-file-results.adoc
 
     - title: Teardown Confluent Cloud resources
       content:
@@ -186,7 +165,7 @@ test:
           render:
             file: tutorials/multiple-event-types/kafka/markup/test/make-test-file.adoc
 
-    - title: Write a test for the consumer application
+    - title: Write a test for the Produce and Consume application
       content:
         - action: execute
           file: tutorial-steps/test/make-test-dir.sh
@@ -194,16 +173,9 @@ test:
             file: tutorials/multiple-event-types/kafka/markup/test/make-test-dir.adoc
 
         - action: make_file
-          file: src/test/java/io/confluent/developer/KafkaMultiEventConsumerApplicationTest.java
+          file: src/test/java/io/confluent/developer/MultiEventProduceConsumeAppTest.java
           render:
-            file: tutorials/multiple-event-types/kafka/markup/test/make-consumer-application-test.adoc
-
-    - title: Write a test for the records ConsumerRecordsHandler
-      content:
-        - action: make_file
-          file: src/test/java/io/confluent/developer/FileWritingRecordsHandlerTest.java
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/test/make-consumer-records-handler-test.adoc
+            file: tutorials/multiple-event-types/kafka/markup/test/make-produce-consume-application-test.adoc
 
 
     - title: Invoke the tests

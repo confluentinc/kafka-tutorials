@@ -5,6 +5,6 @@ Since you are going to produce records using Protobuf and Avro serialization, yo
 Use the following commands to create the topics:
 
 ```
-ccloud kafka topic create avro-events
-ccloud kafka topic create proto-events
+confluent kafka topic create avro-events
+confluent kafka topic create proto-events
 ```

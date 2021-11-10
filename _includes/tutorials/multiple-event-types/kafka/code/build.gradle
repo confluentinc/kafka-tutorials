@@ -76,7 +76,7 @@ jar {
   manifest {
     attributes(
       "Class-Path": configurations.compileClasspath.collect { it.getName() }.join(" "),
-      "Main-Class": "io.confluent.developer.KafkaMultiEventConsumerApplication"
+      "Main-Class": "io.confluent.developer.MultiEventProduceConsumeApp"
     )
   }
 }
@@ -103,11 +103,13 @@ schemaRegistry {
             // password is everything after ':' in the basic.auth.user.info property
             password = auth[1]
         }
-    } else {
+    } else if (file("configuration/dev.properties").exists()) {
         configs = file("configuration/dev.properties")
         configs.withInputStream { props.load(it) }
         def srUrl = props.getProperty("schema.registry.url")
         println "Using local dev properties Schema Registry endpoint:${srUrl}"
+    } else {
+        println "No configs to parse yet"
     }
 
 

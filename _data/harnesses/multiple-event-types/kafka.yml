@@ -54,11 +54,71 @@ dev:
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/make-dev-file.adoc
 
+    - title: Create the Protobuf Schemas
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-proto-dir.sh
+          render:
+            skip: true
+
         - action: skip
           render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/explain-properties.adoc
+            file: tutorials/multiple-event-types/kafka/markup/dev/create-proto-schemas.adoc
 
-    - title: Create the Kafka Consumer Application
+        - action: make_file
+          file: src/main/proto/purchase.proto
+          render:
+            skip: true   
+
+        - action: make_file
+          file: src/main/proto/page_view.proto
+          render:
+            skip: true   
+
+        - action: make_file
+          file: src/main/proto/customer_event.proto
+          render:
+            skip: true  
+
+    - title: Create the Avro Schemas
+      content:
+        - action: execute
+          file: tutorial-steps/dev/make-avro-dir.sh
+          render:
+            skip: true
+
+        - action: skip
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/create-avro-schemas.adoc
+
+        - action: make_file
+          file: src/main/avro/purchase.avsc
+          render:
+            skip: true   
+
+        - action: make_file
+          file: src/main/avro/page_view.avsc
+          render:
+            skip: true   
+
+        - action: make_file
+          file: src/main/avro/all_events.avsc
+          render:
+            skip: true  
+
+        - action: execute
+          file: tutorial-steps/dev/build-project.sh
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/build-project.adoc
+
+    - title: Register the schemas
+      content:
+        - action: execute
+          file: tutorial-steps/dev/register-schemas.sh
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/register-schemas.adoc
+
+    - title: Create the Multi Event application
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
@@ -66,23 +126,11 @@ dev:
             file: tutorials/multiple-event-types/kafka/markup/dev/make-src-dir.adoc
             
         - action: make_file
-          file: src/main/java/io/confluent/developer/KafkaMultiEventConsumerApplication.java
+          file: src/main/java/io/confluent/developer/MultiEventProduceConsumeApp.java
           render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/make-consumer-app.adoc 
+            file: tutorials/multiple-event-types/kafka/markup/dev/make-multi-event-app.adoc         
 
-    - title: Create supporting classes
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/ConsumerRecordsHandler.java
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/make-supporting-classes.adoc 
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/FileWritingRecordsHandler.java
-          render:
-            skip: true
-
-    - title: Compile and run the Kafka Consumer program
+    - title: Compile and run the Multi Event application
       content:
         - action: execute
           file: tutorial-steps/dev/build-uberjar.sh
@@ -94,21 +142,6 @@ dev:
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/run-dev-app.adoc
 
-    - title: Produce sample data to the input topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/harness-console-producer.sh
-          stdin: tutorial-steps/dev/input.txt
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/run-producer.adoc
-
-    - title: Inspect the consumed records
-      content:
-        - action: execute
-          file: tutorial-steps/dev/print-consumer-file-results.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.txt
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/print-consumer-file-results.adoc
 
 
 test:
@@ -120,7 +153,7 @@ test:
           render:
             file: tutorials/multiple-event-types/kafka/markup/test/make-test-file.adoc
 
-    - title: Write a test for the consumer application
+    - title: Write a test for the Produce and Consume application
       content:
         - action: execute
           file: tutorial-steps/test/make-test-dir.sh
@@ -128,16 +161,9 @@ test:
             file: tutorials/multiple-event-types/kafka/markup/test/make-test-dir.adoc
 
         - action: make_file
-          file: src/test/java/io/confluent/developer/KafkaMultiEventConsumerApplicationTest.java
+          file: src/test/java/io/confluent/developer/MultiEventProduceConsumeAppTest.java
           render:
-            file: tutorials/multiple-event-types/kafka/markup/test/make-consumer-application-test.adoc
-
-    - title: Write a test for the records ConsumerRecordsHandler
-      content:
-        - action: make_file
-          file: src/test/java/io/confluent/developer/FileWritingRecordsHandlerTest.java
-          render:
-            file: tutorials/multiple-event-types/kafka/markup/test/make-consumer-records-handler-test.adoc
+            file: tutorials/multiple-event-types/kafka/markup/test/make-produce-consume-application-test.adoc
 
 
     - title: Invoke the tests

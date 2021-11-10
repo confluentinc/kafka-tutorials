@@ -94,17 +94,16 @@ public class MultiEventProduceConsumeApp implements AutoCloseable{
                     CustomerEventProto.CustomerEvent customerEvent = consumerRec.value();
                     switch (customerEvent.getActionCase()) {
                         case PURCHASE:
-                            eventTracker.add(customerEvent.getPurchase().getItem());
+                            eventTracker.add(String.format("Protobuf Purchase event -> %s", customerEvent.getPurchase().getItem()));
                             break;
                         case PAGE_VIEW:
-                            eventTracker.add(customerEvent.getPageView().getUrl());
+                            eventTracker.add(String.format("Protobuf Pageview event -> %s", customerEvent.getPageView().getUrl()));
                             break;
                         default:
                             LOG.error("Unexpected type - this shouldn't happen");
                     }
                 });
             }
-            LOG.info("Protobuf consumer loop stopped now");
         }
     }
 
@@ -119,16 +118,15 @@ public class MultiEventProduceConsumeApp implements AutoCloseable{
                     SpecificRecord avroRecord = consumerRec.value();
                     if (avroRecord instanceof Purchase) {
                         Purchase purchase = (Purchase) avroRecord;
-                        eventTracker.add(purchase.getItem());
+                        eventTracker.add(String.format("Avro Purchase event -> %s",purchase.getItem()));
                     } else if (avroRecord instanceof PageView) {
                         PageView pageView = (PageView) avroRecord;
-                        eventTracker.add(pageView.getUrl());
+                        eventTracker.add(String.format("Avro Pageview event -> %s",pageView.getUrl()));
                     } else {
                         LOG.error("Unexpected type - this shouldn't happen");
                     }
                 });
             }
-            LOG.info("Avro consumer loop stopped now");
         }
     }
 
@@ -217,9 +215,8 @@ public class MultiEventProduceConsumeApp implements AutoCloseable{
             String avroTopic = (String) commonConfigs.get("avro.topic.name");
 
             LOG.info("Producing Protobuf events now");
-            multiEventApp.produceProtobufEvents(() -> new KafkaProducer<>(protoProduceConfigs(commonConfigs)), protobufTopic, null);
+            multiEventApp.produceProtobufEvents(() -> new KafkaProducer<>(protoProduceConfigs(commonConfigs)), protobufTopic, multiEventApp.protobufEvents());
 
-            LOG.info("Consuming Protobuf events");
             List<String> protoEvents = new ArrayList<>();
             multiEventApp.executorService.submit(() -> multiEventApp.consumeProtoEvents(() -> new KafkaConsumer<>(protoConsumeConfigs(commonConfigs)), protobufTopic, protoEvents));
             while (protoEvents.size() < 3) {
@@ -229,9 +226,8 @@ public class MultiEventProduceConsumeApp implements AutoCloseable{
 
 
             LOG.info("Producing Avro events");
-            multiEventApp.produceAvroEvents(() -> new KafkaProducer<>(avroProduceConfigs(commonConfigs)), avroTopic, null);
-
-            LOG.info("Consuming Avro events");
+            multiEventApp.produceAvroEvents(() -> new KafkaProducer<>(avroProduceConfigs(commonConfigs)), avroTopic, multiEventApp.avroEvents());
+            
             List<String> avroEvents = new ArrayList<>();
 
             multiEventApp.executorService.submit(() -> multiEventApp.consumeAvroEvents(() -> new KafkaConsumer<>(avroConsumeConfigs(commonConfigs)), avroTopic, avroEvents));

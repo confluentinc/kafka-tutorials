@@ -3,8 +3,11 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-To complete this tutorial, you'll build an application that uses a `KafkaProducer` and  `KafkaConsumer` instance for producing both Avro and Protobuf.  The approach you'll take in this tutorial is not typicaly of applications you'll build in a production setting. But by using multiple clients you can compare how to handle multiple event types
-for each serialzer format.
+To complete this tutorial, you'll build an application that uses a `KafkaProducer` and  `KafkaConsumer` instance for producing both Avro and Protobuf.  The approach you'll take in this tutorial is not typicaly of applications you'll build in a production setting. But by using multiple clients you can compare how to handle multiple event types for each serialzer format.
+
+**To that end, the point of this sample application is this:** you want capture pageview and purchase events in the exact order that they occur and you feel the best option is to have these events produced to the same topic.  Since the customer id is the key, you are guaranteed to get these events in the order that they occur.
+
+
 
 Let's go over some of the key parts of the `KafkaMultiEventConsumerApplication` starting with the producer for the Protobuf events.
 
@@ -72,7 +75,7 @@ But the biggest difference is the configurations you provide to the producer for
 Next let's move on to the `KafkaConsumer` instances, starting with the Protobuf version.
 
 [source, java]
-.KafkaConsumer for multiple events
+.KafkaConsumer for multiple events in Protobuf
 ----
    consumerRecords.forEach(consumerRec -> {
     CustomerEventProto.CustomerEvent customerEvent = consumerRec.value();
@@ -83,6 +86,8 @@ Next let's move on to the `KafkaConsumer` instances, starting with the Protobuf 
         case PAGE_VIEW:
             eventTracker.add(customerEvent.getPageView().getUrl()); <3>
             break;
+
+
 
 // details left out for clarity
 ----
@@ -105,6 +110,8 @@ consumerRecords.forEach(consumerRec -> {
   } else if (avroRecord instanceof PageView) {
       PageView pageView = (PageView) avroRecord;
       eventTracker.add(pageView.getUrl());
+
+// details left out for clarity
 ----
 
 <1> Getting the record
@@ -113,8 +120,28 @@ consumerRecords.forEach(consumerRec -> {
 
 With the Avro consumer you'll need to use the Java `instanceof` operator to determine concrete type for the record.  Notice that here you're using the `SpecificRecord` interface which every Avro generated object implements.  Once you find the correct concrete type you cast the record to that type and extract the required inforation.
 
-Now go ahead and create the `src/main/java/io/confluent/developer/KafkaMultiEventConsumerApplication.java` file:
+Before you go on to create the application we should mention quickly about the deserialization configurations you need to set
+
+[source, java]
+.Configurations needed by the Consumer for both Avro and Protobuf
+----
+ avroConsumeConfigs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaAvroDeserializer.class); <1>
+ avroConsumeConfigs.put(KafkaAvroDeserializerConfig.SPECIFIC_AVRO_READER_CONFIG, true); <2>
+
+ protoConsumeConfigs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class); <3>
+ protoConsumeConfigs.put(KafkaProtobufDeserializerConfig.SPECIFIC_PROTOBUF_VALUE_TYPE, CustomerEventProto.CustomerEvent.class); <4>
+----
+
+<1> Specifying to use the Avro deserializer for the Avro consumer
+<2> Setting the Avro deserializer to use the specific reader
+<3> Configurations for the Protobuf consumer to use the Protobuf deserializer
+<4> Setting the specific class type for the Protobuf deserializer
+
+It should come as no surprise that you need to set the deserializer class to either `KafkaAvroDeserializer` and `KafkaProtobufDeserializer` for the Avro and Protobuf consumers.  But when working with multiple types, you still need to set the configuration for a specific type.  For Protobuf it's straight forward, setting the specific type to the outer class makes sense since the proto deserialization process knows how to handle the embedded types due to the schema.  With Avro though even with the `union` schema you'll still need to specify to set the `SPECIFIC_AVRO_READER_CONFIG` to `true` to get the concete types.
+
+
+Now go ahead and create the `src/main/java/io/confluent/developer/MultiEventProduceConsumeApp.java` file:
 
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/multiple-event-types/kafka/code/src/main/java/io/confluent/developer/KafkaMultiEventConsumerApplication.java %}</code></pre>
+<pre class="snippet"><code class="java">{% include_raw tutorials/multiple-event-types/kafka/code/src/main/java/io/confluent/developer/MultiEventProduceConsumeApp.java %}</code></pre>
 +++++

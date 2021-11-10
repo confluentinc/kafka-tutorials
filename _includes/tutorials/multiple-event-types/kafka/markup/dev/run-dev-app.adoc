@@ -1,5 +1,14 @@
-Now that you have an uberjar for the KafkaMultiEventConsumerApplication, you can launch it locally. When you run the following, the prompt won't return, because the application will run until you exit it. There is always another message to process, so streaming applications don't exit until you force them.
+Now that you have an uberjar for the KafkaMultiEventConsumerApplication, you can launch it locally. When you run the following, you'll see some output as each producer sends records to the Kafka broker and you'll also see the results of the multiple event consumers.
+
+NOTE: We'll use a pipe and grep at the end of the command to filter out the logging from the clients which will make the results harder to see
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/multiple-event-types/kafka/code/tutorial-steps/dev/run-dev-app.sh %}</code></pre>
++++++
+
+
+The output should look something like this:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/multiple-event-types/kafka/code/tutorial-steps/dev/expected-output.txt %}</code></pre>
 +++++
