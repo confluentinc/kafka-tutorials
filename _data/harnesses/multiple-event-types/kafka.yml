@@ -24,7 +24,7 @@ dev:
           render:
             skip: true
 
-    - title: Create a topic
+    - title: Create topics
       content:
         - action: execute
           file: tutorial-steps/dev/harness-create-topic.sh
@@ -139,8 +139,15 @@ dev:
 
         - action: execute_async
           file: tutorial-steps/dev/run-dev-app.sh
+          stdout: tutorial-steps/dev/outputs/actual-output.txt
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/run-dev-app.adoc
+
+        - name: wait for the consumers to read all the messages
+          action: sleep
+          ms: 15000
+          render:
+            skip: true
 
 
 

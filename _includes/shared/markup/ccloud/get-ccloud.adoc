@@ -2,3 +2,4 @@ This tutorial has some steps for Kafka topic management and/or reading from or w
 Instructions for installing Confluent CLI and configuring it to your Confluent Cloud environment is available from within the Confluent Cloud Console: navigate to your Kafka cluster, click on the `CLI and tools` link, and run through the steps in the `Confluent CLI` tab.
 
 NOTE: The CLI clients for Confluent Cloud (`ccloud`) and Confluent Platform (`confluent` v1.0) have been unified into a single client Confluent CLI `confluent` v2.0.  This tutorial uses the unified Confluent CLI `confluent` v2.0 (`ccloud` client will continue to work until sunset on May 9, 2022, and you can read the migration instructions to the unified `confluent` CLI at https://docs.confluent.io/confluent-cli/current/migrate.html).
+
