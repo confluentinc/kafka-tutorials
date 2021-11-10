@@ -20,6 +20,7 @@ import org.junit.Test;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -90,7 +91,7 @@ public class MultiEventProduceConsumeAppTest {
     public void testConsumeProtobufEvents() {
         MockConsumer<String, CustomerEventProto.CustomerEvent> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
         String topic = (String) commonConfigs.get("proto.topic");
-        List<String> expectedProtoResults = List.of("Protobuf Pageview event -> http://acme/traps", "Protobuf Pageview event -> http://acme/bombs", "Protobuf Pageview event -> http://acme/bait", "Protobuf Purchase event -> road-runner-bait");
+        List<String> expectedProtoResults = Arrays.asList("Protobuf Pageview event -> http://acme/traps", "Protobuf Pageview event -> http://acme/bombs", "Protobuf Pageview event -> http://acme/bait", "Protobuf Purchase event -> road-runner-bait");
         List<String> actualProtoResults = new ArrayList<>();
         mockConsumer.schedulePollTask(()-> {
             addTopicPartitionsAssignment(topic, mockConsumer);
@@ -105,7 +106,7 @@ public class MultiEventProduceConsumeAppTest {
     public void testConsumeAvroEvents() {
         MockConsumer<String, SpecificRecordBase> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
         String topic = (String) commonConfigs.get("avro.topic");
-        List<String> expectedAvroResults = List.of("Avro Pageview event -> http://acme/traps", "Avro Pageview event -> http://acme/bombs", "Avro Pageview event -> http://acme/bait", "Avro Purchase event -> road-runner-bait");
+        List<String> expectedAvroResults = Arrays.asList("Avro Pageview event -> http://acme/traps", "Avro Pageview event -> http://acme/bombs", "Avro Pageview event -> http://acme/bait", "Avro Purchase event -> road-runner-bait");
         List<String> actualAvroResults = new ArrayList<>();
         mockConsumer.schedulePollTask(() -> {
             addTopicPartitionsAssignment(topic, mockConsumer);
