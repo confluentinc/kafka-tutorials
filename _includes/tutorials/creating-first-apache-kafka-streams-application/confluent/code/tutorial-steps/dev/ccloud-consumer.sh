@@ -1,1 +1,1 @@
-ccloud kafka topic consume random-strings
+confluent kafka topic consume random-strings

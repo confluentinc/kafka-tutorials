@@ -1,7 +1,7 @@
 Leaving your original terminals running, open another to consume the events that have been merged:
 
 ```
-ccloud kafka topic consume all-song-events \
+confluent kafka topic consume all-song-events \
       --from-beginning \
       --value-format avro
 ```

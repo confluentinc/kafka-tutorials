@@ -1,4 +1,4 @@
-ccloud kafka topic produce app-three-topic \
+confluent kafka topic produce app-three-topic \
        --parse-key \
        --delimiter ":" \
        --value-format avro \

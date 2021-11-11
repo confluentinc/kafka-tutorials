@@ -1,1 +1,1 @@
-ccloud kafka topic consume mytopic --print-key
+confluent kafka topic consume mytopic --print-key

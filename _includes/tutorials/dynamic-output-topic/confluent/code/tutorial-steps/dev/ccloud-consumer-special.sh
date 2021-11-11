@@ -1,1 +1,1 @@
-ccloud kafka topic consume special-order -b --value-format avro
+confluent kafka topic consume special-order -b --value-format avro

@@ -2,7 +2,7 @@ In this step we’re going to create a topic for use during this tutorial.
 Use the following command to create the topic:
 
 ```
-ccloud kafka topic create topic-perf
+confluent kafka topic create topic-perf
 ```
 
 This creates a topic called `topic-perf` with a default number of `6` partitions.

@@ -9,7 +9,7 @@ Now that you've ran the Kafka Streams application, it should have shut itself do
 Let's now run the Confluent Cloud CLI to confirm the output:
 
 ```
-ccloud kafka topic consume output-topic --from-beginning
+confluent kafka topic consume output-topic --from-beginning
 ```
 
 Your results should look something like this:

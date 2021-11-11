@@ -1,1 +1,1 @@
-ccloud kafka topic consume tall-random-strings
+confluent kafka topic consume tall-random-strings

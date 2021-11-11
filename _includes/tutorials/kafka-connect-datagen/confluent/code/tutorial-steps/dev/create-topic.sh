@@ -1,1 +1,1 @@
-ccloud kafka topic create mytopic
+confluent kafka topic create mytopic

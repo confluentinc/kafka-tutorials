@@ -1,7 +1,7 @@
 In a new terminal, run:
 
 ```
-ccloud kafka topic produce movies --value-format avro --schema src/main/avro/movie.avsc
+confluent kafka topic produce movies --value-format avro --schema src/main/avro/movie.avsc
 ```
 
 include::_includes/shared/markup/ccloud/ccloud-sr-produce.adoc[]

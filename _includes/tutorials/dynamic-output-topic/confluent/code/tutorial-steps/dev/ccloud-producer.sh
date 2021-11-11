@@ -1,4 +1,4 @@
-ccloud kafka topic produce input \
+confluent kafka topic produce input \
   --parse-key \
   --delimiter ":" \
   --value-format avro \

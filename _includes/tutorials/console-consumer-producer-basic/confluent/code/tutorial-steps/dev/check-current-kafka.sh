@@ -1,1 +1,1 @@
-ccloud kafka cluster list
+confluent kafka cluster list
