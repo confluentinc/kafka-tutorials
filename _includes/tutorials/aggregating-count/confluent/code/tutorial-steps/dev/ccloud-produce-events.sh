@@ -1,4 +1,4 @@
-ccloud kafka topic produce movie-ticket-sales \
+confluent kafka topic produce movie-ticket-sales \
   --parse-key \
   --delimiter ":" \
   --value-format avro \

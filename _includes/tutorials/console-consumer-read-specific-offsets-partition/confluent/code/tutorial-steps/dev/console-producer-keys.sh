@@ -1,1 +1,1 @@
-ccloud kafka topic produce example-topic --parse-key --delimiter ":"
+confluent kafka topic produce example-topic --parse-key --delimiter ":"

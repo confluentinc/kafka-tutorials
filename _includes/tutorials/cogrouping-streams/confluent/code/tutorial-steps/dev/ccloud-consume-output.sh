@@ -1,1 +1,1 @@
-ccloud kafka topic consume output-topic -b --value-format avro
+confluent kafka topic consume output-topic -b --value-format avro

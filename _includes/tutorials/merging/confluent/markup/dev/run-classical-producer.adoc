@@ -1,7 +1,7 @@
 To produce the classical songs, open up another terminal and run:
 
 ```
-ccloud kafka topic produce classical-song-events \
+confluent kafka topic produce classical-song-events \
     --value-format avro \
     --schema src/main/avro/song_event.avsc
 ```
