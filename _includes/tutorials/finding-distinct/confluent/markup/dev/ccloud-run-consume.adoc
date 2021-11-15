@@ -1,4 +1,4 @@
-Run the following command to start a Confluent Cloud CLI consumer to view the distinct click events:
+Run the following command to start a Confluent CLI consumer to view the distinct click events:
 
 ```
 confluent kafka topic consume distinct-clicks -b --value-format avro

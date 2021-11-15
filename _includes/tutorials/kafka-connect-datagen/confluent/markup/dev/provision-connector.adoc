@@ -1,6 +1,6 @@
 You can choose one of two options for provisioning a fully managed Kafka Connect Datagen source connector in Confluent Cloud.  Either option will use the connector configuration file `datagen-source-config.json` that you created in the previous step.
 
-*Option 1.* You can use the Confluent Cloud CLI which provides the `ccloud connector create` command allowing you to pass in the configuration file from the previous step.
+*Option 1.* You can use the Confluent CLI which provides the `ccloud connector create` command allowing you to pass in the configuration file from the previous step.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen/confluent/code/tutorial-steps/dev/create-connector.sh %}</code></pre>

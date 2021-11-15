@@ -1,4 +1,4 @@
-Using a terminal window, run the following command to start a Confluent Cloud CLI producer:
+Using a terminal window, run the following command to start a Confluent CLI producer:
 
 ```
 confluent kafka topic produce input-topic

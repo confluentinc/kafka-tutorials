@@ -1,4 +1,4 @@
-With link:https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud], you can use the Confluent Cloud CLI to produce and consume messages.
+With link:https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud], you can use the Confluent CLI to produce and consume messages.
 In the following code snippet, substitute the topic name and schema file path.
 
 Producer:
