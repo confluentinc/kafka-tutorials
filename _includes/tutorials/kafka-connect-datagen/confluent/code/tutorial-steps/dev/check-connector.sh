@@ -1,1 +1,1 @@
-ccloud connector list
+confluent connector list

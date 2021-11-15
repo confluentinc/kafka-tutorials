@@ -1,7 +1,7 @@
-Using a terminal window, run the following command to start a Confluent Cloud CLI producer:
+Using a terminal window, run the following command to start a Confluent CLI producer:
 
 ```
-ccloud kafka topic produce input-topic
+confluent kafka topic produce input-topic
 ```
 
 Each line represents input data for the KafkaConsumer application. To send all of the events below, paste the following into the prompt and press enter:

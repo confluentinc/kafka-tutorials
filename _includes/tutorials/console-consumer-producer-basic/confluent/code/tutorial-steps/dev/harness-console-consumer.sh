@@ -1,1 +1,1 @@
-ccloud kafka topic consume orders
+confluent kafka topic consume orders

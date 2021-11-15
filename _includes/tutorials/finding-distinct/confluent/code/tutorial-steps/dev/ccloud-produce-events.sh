@@ -1,4 +1,4 @@
-ccloud kafka topic produce clicks \
+confluent kafka topic produce clicks \
   --parse-key \
   --delimiter ":" \
   --value-format avro \

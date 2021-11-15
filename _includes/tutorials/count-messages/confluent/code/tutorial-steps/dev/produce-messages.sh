@@ -1,1 +1,1 @@
-ccloud kafka topic produce test-topic
+confluent kafka topic produce test-topic

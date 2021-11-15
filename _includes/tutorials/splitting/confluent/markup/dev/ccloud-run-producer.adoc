@@ -1,7 +1,7 @@
 In a new terminal, run:
 
 ```
-ccloud kafka topic produce acting-events --value-format avro --schema src/main/avro/acting_event.avsc
+confluent kafka topic produce acting-events --value-format avro --schema src/main/avro/acting_event.avsc
 ```
 
 include::_includes/shared/markup/ccloud/ccloud-sr-produce.adoc[]

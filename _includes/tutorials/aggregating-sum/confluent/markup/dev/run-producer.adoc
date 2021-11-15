@@ -1,4 +1,4 @@
-In a new terminal window, run the following command to start a Confluent Cloud CLI producer:
+In a new terminal window, run the following command to start a Confluent CLI producer:
 
 +++++
 <pre class="snippet"><code class="bash">{% include_raw tutorials/aggregating-sum/confluent/code/tutorial-steps/dev/ccloud-produce-events.sh %}</code></pre>
