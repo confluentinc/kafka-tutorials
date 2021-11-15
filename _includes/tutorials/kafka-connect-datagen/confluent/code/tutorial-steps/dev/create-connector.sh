@@ -1,1 +1,1 @@
-ccloud connector create --config datagen-source-config.json 
+confluent connector create --config datagen-source-config.json 

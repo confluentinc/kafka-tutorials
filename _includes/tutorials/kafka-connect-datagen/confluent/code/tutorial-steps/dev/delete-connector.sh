@@ -1,1 +1,1 @@
-ccloud connector delete <connector id>
+confluent connector delete <connector id>
