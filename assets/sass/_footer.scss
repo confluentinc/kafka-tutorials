@@ -23,9 +23,12 @@ footer {
   @extend %responsive-container-styles;
   padding: 40px 0;
 
-  .apache-info.container {
-    @extend %responsive-container-styles;
-    margin-bottom: 50px;
+  .apache-info {
+    margin: 0 5px 50px;
+
+    .container {
+      @extend %responsive-container-styles;
+    }
   }
 
   .footer-row {
