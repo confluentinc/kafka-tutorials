@@ -1,6 +1,6 @@
 transforming:
-  title: "How to transform a stream of events"
-  meta-description: "transform a field in a stream of events"
+  title: "Confluent Tutorial: How to transform a stream of events using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to transform a field in a stream of events using Confluent."
   canonical: confluent
   slug: "/transform-a-stream-of-events"
   question: "How do you transform a field in a stream of events in a Kafka topic?"
@@ -12,8 +12,8 @@ transforming:
     confluent: enabled
 
 filtering:
-  title: "How to filter a stream of events"
-  meta-description: "filter messages in a stream of events"
+  title: "Confluent Tutorial: How to filter a stream of events using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to filter messages in a stream of events using Confluent."
   canonical: confluent
   slug: "/filter-a-stream-of-events"
   question: "How do you filter messages in a Kafka topic to contain only those that you're interested in?"
@@ -25,8 +25,8 @@ filtering:
     confluent: enabled
 
 splitting:
-  title: "How to split a stream of events into substreams"
-  meta-description: "split a stream of events into substreams"
+  title: "Confluent Tutorial: How to split a stream of events into substreams using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to split a stream of events into substreams using Confluent."
   canonical: confluent
   slug: "/split-a-stream-of-events-into-substreams"
   question: "How do you split events in a Kafka topic so that the events are placed into subtopics?"
@@ -51,8 +51,8 @@ merging:
     confluent: enabled
 
 joining-stream-table:
-  title: "How to join a stream and a lookup table"
-  meta-description: "join a stream and a lookup table"
+  title: "Confluent Tutorial: How to join a stream and a lookup table using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to join a stream and a lookup table using Confluent."
   canonical: confluent
   slug: "/join-a-stream-to-a-table"
   question: "If you have events in a Kafka topic and a table of reference data (also known as a lookup table), how can you join each event in the stream to a piece of data in the table based on a common key?"
@@ -112,8 +112,8 @@ rekeying-function:
     kstreams: enabled
 
 tumbling-windows:
-  title: "How to create tumbling windows"
-  meta-description: "create tumbling windows"
+  title: "Confluent Tutorial: How to create tumbling windows using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to create tumbling windows using Confluent."
   canonical: confluent
   slug: "/create-tumbling-windows"
   question: "If you have time series events in a Kafka topic, how can you group them into fixed-size, non-overlapping, contiguous time intervals?"
@@ -133,8 +133,8 @@ hopping-windows:
     ksql: enabled
 
 session-windows:
-  title: "Create session windows"
-  meta-description: "create session windows for time-series events"
+  title: "Confluent Tutorial: Create session windows using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to create session windows for time-series events using Confluent."
   canonical: confluent
   slug: "/create-session-windows"
   question: "If you have time series events in a Kafka topic, how can you group them into variable-size, non-overlapping time intervals based on a configurable inactivity period?"
@@ -145,8 +145,8 @@ session-windows:
     confluent: enabled
 
 aggregating-count:
-  title: "How to count a stream of events"
-  meta-description: "count the number of events in a stream"
+  title: "Confluent Tutorial: How to count a stream of events using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to count the number of events in a stream using Confluent."
   canonical: confluent
   slug: "/create-stateful-aggregation-count"
   question: "How can you count the number of events in a Kafka topic based on some criteria?"
@@ -167,8 +167,8 @@ aggregating-minmax:
     kstreams: enabled
 
 aggregating-sum:
-  title: "How to sum a stream of events"
-  meta-description: "calculate the sum of one or more fields in a stream of events"
+  title: "Confluent Tutorial: How to sum a stream of events using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to calculate the sum of one or more fields in a stream of events using Confluent."
   canonical: confluent
   slug: "/create-stateful-aggregation-sum"
   question: "How can you calculate the sum of one or more fields from all records in a Kafka topic?"
@@ -200,8 +200,8 @@ connect-add-key-to-source:
     kstreams: enabled
 
 finding-distinct:
-  title: "How to find distinct values in a stream of events"
-  meta-description: "filter out duplicate events"
+  title: "Confluent Tutorial: How to find distinct values in a stream of events using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to filter out duplicate events using Confluent."
   canonical: confluent
   slug: "/finding-distinct-events"
   question: "How can you filter out duplicate events from a Kafka topic based on a field in the event, producing a new stream of unique events per time window?"
@@ -275,8 +275,8 @@ aggregating-average:
     kafka: disabled
 
 dynamic-output-topic:
-  title: "How to dynamically choose the output topic at runtime"
-  meta-description: "dynamically route records to different Kafka topics at runtime"
+  title: "Confluent Tutorial: How to dynamically choose the output topic at runtime using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to dynamically route records to different Kafka topics at runtime using Confluent."
   canonical: confluent
   slug: "/dynamic-output-topic"
   question: "How can you dynamically route records to different Kafka topics, like a \"topic exchange\"?"
@@ -299,8 +299,8 @@ naming-changelog-repartition-topics:
     kafka: disabled
 
 cogrouping-streams:
-  title: "How to combine stream aggregates together in a single larger object"
-  meta-description: "combine stream aggregates together in a single larger object"
+  title: "Confluent Tutorial: How to combine stream aggregates together in a single larger object using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to combine stream aggregates together in a single larger object using Confluent."
   canonical: confluent
   slug: "/cogrouping-streams"
   question: "How do you combine aggregate values, like `count`, from multiple streams into a single result?"
@@ -312,8 +312,8 @@ cogrouping-streams:
     confluent: enabled
 
 console-consumer-producer-basic:
-  title: "Console Producer and Consumer Basics"
-  meta-description: "produce and consume your first Kafka message with the commandline"
+  title: "Confluent Tutorial: Console Producer and Consumer Basics using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to produce and consume your first Kafka message with the commandline using Confluent."
   canonical: confluent
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
@@ -325,8 +325,8 @@ console-consumer-producer-basic:
     confluent: enabled
 
 console-consumer-producer-avro:
-  title: "Console Producer and Consumer with (de)serializers"
-  meta-description: "produce and consume your first Kafka message, using (de)serializers and Schema Registry, with the commandline"
+  title: "Confluent Tutorial: Console Producer and Consumer with (de)serializers using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to produce and consume your first Kafka message, using (de)serializers and Schema Registry, with the commandline using Confluent."
   canonical: confluent
   slug: "/kafka-console-consumer-producer-avro"
   question: "What is the simplest way to write messages to and read messages from Kafka, using (de)serializers and Schema Registry?"
@@ -349,8 +349,8 @@ console-consumer-primitive-keys-values:
     kafka: enabled
 
 console-consumer-read-specific-offsets-partition:
-  title: "How to read from a specific offset and partition with the Kafka Console Consumer"
-  meta-description: "read from a specific offset and partition with the commandline consumer"
+  title: "Confluent Tutorial: How to read from a specific offset and partition with the Kafka Console Consumer using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to read from a specific offset and partition with the commandline consumer using Confluent."
   canonical: confluent
   slug: "/kafka-console-consumer-read-specific-offsets-partitions"
   question: "How can you read from a specific offset and partition of a Kafka topic?"
@@ -362,8 +362,8 @@ console-consumer-read-specific-offsets-partition:
     confluent: enabled
 
 kafka-connect-datagen:
-  title: "How to generate mock data to a Kafka topic using the Kafka Connect Datagen"
-  meta-description: "generate mock data to a Kafka topic using the Kafka Connect Datagen"
+  title: "Confluent Tutorial: How to generate mock data to a Kafka topic using the Kafka Connect Datagen using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to generate mock data to a Kafka topic using the Kafka Connect Datagen using Confluent."
   canonical: confluent
   slug: "/kafka-connect-datagen"
   question: "How can you produce mock data to Kafka topics to test your Kafka applications?"
@@ -386,8 +386,8 @@ change-topic-partitions-replicas:
     kafka: disabled
 
 kafka-consumer-application:
-  title: "How to build your first Apache KafkaConsumer application"
-  meta-description: "build your first Kafka consumer application"
+  title: "Confluent Tutorial: How to build your first Apache KafkaConsumer application using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to build your first Kafka consumer application using Confluent."
   canonical: confluent
   slug: "/creating-first-apache-kafka-consumer-application"
   question: "How do you get started building your first Kafka consumer application?"
@@ -413,8 +413,8 @@ produce-consume-lang:
     scala: enabled
 
 streams-to-table:
-  title: "How to convert a Kafka Streams KStream to a KTable"
-  meta-description: "convert a Kafka Streams KStream to a KTable"
+  title: "Confluent Tutorial: How to convert a Kafka Streams KStream to a KTable using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to convert a Kafka Streams KStream to a KTable using Confluent."
   canonical: confluent
   slug: "/kafka-streams-convert-to-ktable"
   question: "How do you convert a KStream to a KTable without having to perform a dummy aggregation operation?"
@@ -426,8 +426,8 @@ streams-to-table:
     confluent: enabled
 
 kafka-producer-application:
-  title: "How to build your first Apache KafkaProducer application"
-  meta-description: "build your first Kafka producer application"
+  title: "Confluent Tutorial: How to build your first Apache KafkaProducer application using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to build your first Kafka producer application using Confluent."
   canonical: confluent
   slug: "/creating-first-apache-kafka-producer-application"
   question: "How do you get started building your first Kafka producer application?"
@@ -439,8 +439,8 @@ kafka-producer-application:
     confluent: enabled
 
 kafka-producer-application-callback:
-  title: "How build an Apache KafkaProducer application using callbacks"
-  meta-description: "build an Kafka producer application and handle responses using the Callback interface"
+  title: "Confluent Tutorial: How build an Apache KafkaProducer application using callbacks using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to build an Kafka producer application and handle responses using the Callback interface using Confluent."
   canonical: confluent
   slug: "/kafka-producer-callback-application"
   question: "How can you use callbacks with a KafkaProducer to handle produce responses?"
@@ -460,8 +460,8 @@ kafka-producer-application-callback:
     confluent: enabled
 
 count-messages:
-  title: "How to count messages in a Kafka topic"
-  meta-description: "count the number of messages in a Kafka topic"
+  title: "Confluent Tutorial: How to count messages in a Kafka topic using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to count the number of messages in a Kafka topic using Confluent."
   canonical: confluent
   slug: "/how-to-count-messages-on-a-kafka-topic"
   question: "How can you count the number of messages in a Kafka topic?"
@@ -716,8 +716,8 @@ schedule-ktable-ttl:
     swift: disabled
 
 error-handling:
-  title: "Handling uncaught exceptions"
-  meta-description: "handle uncaught exceptions"
+  title: "Confluent Tutorial: Handling uncaught exceptions using Confluent"
+  meta-description: "Get started developing Apache Kafka® applications with this step-by-step tutorial to learn how to handle uncaught exceptions using Confluent."
   canonical: confluent
   slug: "/error-handling"
   question: "How can you handle uncaught exceptions?"
