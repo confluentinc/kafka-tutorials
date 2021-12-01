@@ -1,29 +1,163 @@
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ site.google_tag_manager_id }}" height="0"
-    width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<nav class="navbar">
-  <div class="container">
-    <div class="navbar-brand">
-      <a class="navbar-item" href="{{ "/" | relative_url }}">
-        <img class="logo" src="{{ "/assets/img/logo.svg" | relative_url }}" alt="Confluent" />
-        <svg class="sub-domain" xmlns="http://www.w3.org/2000/svg" width="150" height="32" viewBox="0 0 180 29"><g fill="none" fill-rule="evenodd"><rect width="100%" height="100%" fill="#F3F4F7" rx="5"></rect><text fill="#000" font-family="Roboto" font-size="17.037" font-weight="bold" letter-spacing=".7"><tspan x="11" y="21">KAFKA TUTORIALS</tspan></text></g></svg>
-      </a>
-      <a class="navbar-burger">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-    <div class="navbar-menu is-uppercase">
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <a class="link" href="https://developer.confluent.io">Confluent Developer</a>
+
+<header class="header">
+  <div class="nav-container">
+    
+    <!-- Logo(s) -->
+    <a class="logo-container" href="{{ "/" | relative_url }}">
+      <img class="logo" src="{{ "/assets/img/logo-white.svg" | relative_url }}" alt="Confluent" />
+      <svg class="sub-domain" xmlns="http://www.w3.org/2000/svg" width="90" height="32" viewBox="0 0 180 29">
+        <g fill="none" fill-rule="evenodd">
+          <rect width="100%" height="100%" fill="transparent" rx="5"></rect>
+          <text fill="#fff" font-family="Roboto" font-size="17.037" font-weight="bold" letter-spacing=".7">
+            <tspan x="11" y="21">KAFKA TUTORIALS</tspan>
+          </text>
+        </g>
+      </svg>
+    </a>
+
+    <!-- Mobile navigation menu -->
+    <div class="nav-mobile">
+
+      <!-- Quick start (outer menu) link -->
+      <a class="button quick-start-nav-button" href="https://developer.confluent.io/quick-start/kafka-on-confluent-cloud/">Quick Start</a>
+      
+      <!-- Hamburger menu icon -->
+      <button type="button" class="mobile-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- Navigation links -->
+      <nav>
+
+        <!-- Quick start (inner menu) link -->
+        <a class="button denim quick-start-link" href="https://developer.confluent.io/quick-start/kafka-on-confluent-cloud/">Quick Start</a>
+
+        <!-- Course related links -->
+        <div class="accordion-item-wrapper collapsed mobile-accordion-item">
+          <div>
+            <div class="accordion-title">
+              Courses
+              <div class="arrow down md theme_denim indicator"></div>
+            </div>
+            <div class="accordion-panel"><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/apache-kafka/events/">Apache Kafka 101</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/kafka-connect/intro/">Kafka Connect 101</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/kafka-streams/get-started/">Kafka Streams 101</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/ksqldb/intro/">ksqlDB 101</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/inside-ksqldb/streaming-architecture/">Inside ksqlDB</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/spring/confluent-cloud/">Spring Framework and Apache Kafka</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/data-pipelines/intro/">Building Data Pipelines with Apache Kafka and Confluent</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/event-sourcing/event-driven-vs-state-based/">Event Sourcing and Event Storage with Apache Kafka</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/data-mesh/intro/">Data Mesh 101</a></div>
+          </div>
         </div>
-        <div class="navbar-item">
-          <a class="cta" href="{{ site.contribute_url }}"><span class="icon"><i class="fa fa-github"></i></span><span>Contribute</span></a>
+
+        <!-- Learn related links -->
+        <div class="accordion-item-wrapper collapsed mobile-accordion-item">
+          <div>
+            <div class="accordion-title">
+              Learn
+              <div class="arrow down md theme_denim indicator"></div>
+            </div>
+            <div class="accordion-panel"><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/apache-kafka/events/#what-is-apache-kafka">What is Apache Kafka®?</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/event-streaming-vs-related-trends/">Event Streaming vs. Related Trends</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/kraft/">KRaft: Kafka without ZooKeeper</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/kafka-transactions-and-guarantees/">Transactions &amp; Guarantees in Kafka</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/kafka-storage-and-processing/">Processing &amp; Storage Fundamentals of Kafka</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/kafka-performance/">Kafka Performance</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/cloud-native-kafka/">Cloud-native Kafka</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/streaming-database-systems/">Streaming Database Systems</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/testing-kafka/">Testing Apache Kafka</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/#kafka-internals">Explore Kafka's Internals</a></div>
+          </div>
         </div>
-      </div>
+
+        <!-- Design, Build, Run related links -->
+        <div class="accordion-item-wrapper collapsed mobile-accordion-item">
+          <div>
+            <div class="accordion-title">
+              Design, Build, Run
+              <div class="arrow down md theme_denim indicator"></div>
+            </div>
+            <div class="accordion-panel"><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/patterns/">Event Streaming Patterns</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/get-started/">Get Started With Your Favorite Language</a><a target="_blank" rel="noopener noreferrer" href="https://kafka-tutorials.confluent.io/">Tutorials</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/?build=apps#designbuildrun">Developers: Build Apps</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/?build=pipelines#designbuildrun">Data Engineers: Build Pipelines and Integrate</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/?build=operate#designbuildrun">Admins: Operate</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/demos-examples/">Demos &amp; In-depth Examples</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/100-days-of-code/">100 Days Of Code</a></div>
+          </div>
+        </div>
+
+        <!-- Community related links -->
+        <div class="accordion-item-wrapper collapsed mobile-accordion-item">
+          <div>
+            <div class="accordion-title">
+              Community
+              <div class="arrow down md theme_denim indicator"></div>
+            </div>
+            <div class="accordion-panel"><a target="_blank" rel="noopener noreferrer" href="https://www.kafka-summit.org/">Kafka Summit Conference</a><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/">Meetups &amp; Events</a><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/blog/">Blog</a><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/podcast/">Podcast</a><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/ask-the-community/">Ask the Community</a><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/nominate/">Community Catalysts</a></div>
+          </div>
+        </div>
+
+        <!-- Documentation link -->
+        <a class="mobile-link" target="_blank" rel="noopener noreferrer" href="https://docs.confluent.io/home/overview.html">Docs</a>
+      </nav>
     </div>
+
+    <!-- Desktop navigation menu -->
+    <nav class="nav">
+      <ul>
+
+        <!-- Course related links -->
+        <li class="dropdown-link">
+          <a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/">Courses</a>
+          <ul>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/apache-kafka/events/">Apache Kafka 101</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/kafka-connect/intro/">Kafka Connect 101</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/kafka-streams/get-started/">Kafka Streams 101</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/ksqldb/intro/">ksqlDB 101</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/inside-ksqldb/streaming-architecture/">Inside ksqlDB</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/spring/confluent-cloud/">Spring Framework and Apache Kafka</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/data-pipelines/intro/">Building Data Pipelines with Apache Kafka and Confluent</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/event-sourcing/event-driven-vs-state-based/">Event Sourcing and Event Storage with Apache Kafka</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/data-mesh/intro/">Data Mesh 101</a></li>
+          </ul>
+        </li>
+
+        <!-- Learn related links -->
+        <li class="dropdown-link">
+          <a rel=" noreferrer" href="https://developer.confluent.io/#">Learn</a>
+          <ul>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/apache-kafka/events/#what-is-apache-kafka">What is Apache Kafka®?</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/event-streaming-vs-related-trends/">Event Streaming vs. Related Trends</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/kraft/">KRaft: Kafka without ZooKeeper</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/kafka-transactions-and-guarantees/">Transactions &amp; Guarantees in Kafka</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/kafka-storage-and-processing/">Processing &amp; Storage Fundamentals of Kafka</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/kafka-performance/">Kafka Performance</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/cloud-native-kafka/">Cloud-native Kafka</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/streaming-database-systems/">Streaming Database Systems</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/learn/testing-kafka/">Testing Apache Kafka</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/#kafka-internals">Explore Kafka's Internals</a></li>
+          </ul>
+        </li>
+
+        <!-- Design, Build, Run related links -->
+        <li class="dropdown-link">
+          <a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/#designbuildrun">Design, Build, Run</a>
+          <ul>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/patterns/">Event Streaming Patterns</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/get-started/">Get Started With Your Favorite Language</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://kafka-tutorials.confluent.io/">Tutorials</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/?build=apps#designbuildrun">Developers: Build Apps</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/?build=pipelines#designbuildrun">Data Engineers: Build Pipelines and Integrate</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/?build=operate#designbuildrun">Admins: Operate</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/demos-examples/">Demos &amp; In-depth Examples</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/100-days-of-code/">100 Days Of Code</a></li>
+          </ul>
+        </li>
+
+        <!-- Community related links -->
+        <li class="dropdown-link">
+          <a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/">Community</a>
+          <ul>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.kafka-summit.org/">Kafka Summit Conference</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/">Meetups &amp; Events</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/blog/">Blog</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://developer.confluent.io/podcast/">Podcast</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/ask-the-community/">Ask the Community</a></li>
+            <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/nominate/">Community Catalysts</a></li>
+          </ul>
+        </li>
+
+        <!-- Documentation link -->
+        <li class=""><a target="_blank" rel="noopener noreferrer" href="https://docs.confluent.io/home/overview.html">Docs</a></li>
+
+        <!-- Quick start link -->
+        <li class="quick-start"><a class="button" href="https://developer.confluent.io/quick-start/kafka-on-confluent-cloud/">Quick Start</a></li>
+      </ul>
+    </nav>
   </div>
-</nav>
+</header>
