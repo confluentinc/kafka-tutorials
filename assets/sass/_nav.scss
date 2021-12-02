@@ -11,7 +11,7 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
 @mixin quick-start-styles {
   display: flex;
   align-items: center;
-  font-size: small;
+  font-size: 12px;
   height: 45px;
   padding: 15px;
   color: $color_white;
@@ -143,7 +143,7 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
             transform: none;
             text-transform: uppercase;
             font-weight: bold;
-            font-size: smaller;
+            font-size: 12px;
           }
 
           &.quick-start a {
