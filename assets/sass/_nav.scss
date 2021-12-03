@@ -1,3 +1,15 @@
+@font-face {
+  font-display: swap;
+  font-family: "MarkPro-Bold";
+  src: url("../fonts/MarkPro-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "MarkPro-Medium";
+  src: url("../fonts/MarkPro-Medium.woff2") format("woff2");
+}
+
 $color_academy: #0074a2;
 $color_black: #000;
 $color_carbon: #829494;
@@ -6,24 +18,35 @@ $color_iceBlue: #e6f5fb;
 $color_midnight: #040531;
 $color_white: #fff;
 $font-family: "MarkPro-Bold", Arial, sans-serif;
-$font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
+$font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
 @mixin quick-start-styles {
   display: flex;
   align-items: center;
   font-size: 12px;
+  letter-spacing: 0.1em;
   height: 45px;
   padding: 15px;
+  background: $color_midnight;
   color: $color_white;
-  background-color: transparent;
   border-radius: 34px;
   font-weight: bold;
   text-transform: uppercase;
   text-decoration: none;
-  transition: all .5s ease-out;
+  transition: all 0.5s ease-out;
 
   &:hover {
     color: $color_denim;
+    background: $color_white;
+  }
+}
+
+@mixin quick-start-scrolled-styles {
+  background-color: $color_academy;
+  border-color: $color_academy;
+  color: $color_white;
+
+  &:hover {
     background: $color_white;
   }
 }
@@ -48,6 +71,26 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
   font-weight: 400;
   line-height: 24px;
 
+  .logo-container {
+    .logo {
+      filter: brightness(0) invert(1);
+      width: 220px;
+    }
+
+    .sub-domain {
+      color: $color_white;
+    }
+
+    &.scrolled {
+      .logo {
+        filter: none;
+      }
+      .sub-domain {
+        color: $color_denim;
+      }
+    }
+  }
+
   + .hero {
     margin-top: $header-height;
   }
@@ -58,28 +101,12 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
     list-style: none;
   }
 
-  &.scrolled {
-    background-color: $color_white;
-    box-shadow: 0 4px 10px -3px $color_carbon;
-
-    nav > ul li:not(.quick-start) a {
-      color: $color_denim;
-    }
-    
-    .logo-container {
-      img {
-        filter: none;
-      }
-    }
-  }
-
   .logo-container {
     display: flex;
     align-items: center;
     text-decoration: none;
 
     img {
-      filter: brightness(0) invert(1);
       height: 65px;
 
       @media screen and (min-width: 768px) {
@@ -88,8 +115,8 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
 
       @media screen and (max-width: 410px) {
         + svg {
-            display: none;
-          }
+          display: none;
+        }
       }
     }
 
@@ -121,11 +148,7 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
       float: right;
       display: block;
 
-      @media screen and (max-width: 767px) {
-        display: none;
-      }
-
-      @media screen and (max-width: 1100px) {
+      @media screen and (max-width: 1115px) {
         display: none;
       }
 
@@ -149,6 +172,7 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
             text-transform: uppercase;
             font-weight: bold;
             font-size: 12px;
+            letter-spacing: 0.1em;
           }
 
           &.quick-start a {
@@ -278,6 +302,7 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
     .quick-start-nav-button {
       @include quick-start-styles;
       margin-right: 35px;
+      padding: 12px 30px;
     }
 
     .quick-start-link {
@@ -286,7 +311,7 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
       display: block;
     }
 
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1115px) {
       display: flex;
 
       & > a:first-of-type {
@@ -304,16 +329,15 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
 
           & > a:first-of-type {
             display: none;
-            
+
             @media screen and (max-width: 767px) {
               @include quick-start-styles;
               background-color: $color_denim;
-              color: $color_white;
 
-              &:hover {
-                color: $color_white;
-                background: $color_academy;
+              &.quick-start-link:hover {
+                background-color: $color_academy;
                 border-color: $color_academy;
+                color: $color_white;
               }
             }
           }
@@ -329,6 +353,24 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
         display: block;
         padding: 10px;
       }
+    }
+  }
+
+  &.scrolled {
+    background-color: $color_white;
+    box-shadow: 0 4px 10px -3px $color_carbon;
+
+    .nav-container .nav > ul li {
+      a {
+        color: $color_denim;
+      }
+      &.quick-start a {
+        @include quick-start-scrolled-styles;
+      }
+    }
+
+    .quick-start-nav-button {
+      @include quick-start-scrolled-styles;
     }
   }
 }
@@ -487,7 +529,6 @@ $font-family-secondary: "MarkPro-NarrowBook", Arial, sans-serif;
   position: absolute;
   top: 35px;
 }
-
 
 .arrow {
   cursor: pointer;
