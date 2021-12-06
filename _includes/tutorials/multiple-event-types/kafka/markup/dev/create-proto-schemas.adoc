@@ -3,7 +3,7 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-In this tutorial let's say you have a microserice for a e-commerce site and you track both customer page views and purchases.  Since the page views could be highly related to any purchase you'd like to capture the exact order of events as they occur so producing these events to the same topic makes sense.
+In this tutorial let's say you have a microserice for an e-commerce site and you track both customer page views and purchases.  Since the page views could be highly related to any purchase, you'd like to capture the exact order of both of these event types as they occur, so producing the events to the same topic makes sense.
 
 Since you use the customer id for the key, you are guaranteed to see the exact order of events since both types will live in the same partition.  Even though these two events are similar, you represent them as distinct domain objects as it fits in well with others in your organization that need the same data.
 

@@ -5,7 +5,7 @@ The text assumes a method buildTopology exists and constructs the Kafka Streams 
 
 To complete this tutorial, you'll build an application that uses a `KafkaProducer` and  `KafkaConsumer` instance for producing both Avro and Protobuf.  The approach you'll take in this tutorial is not typicaly of applications you'll build in a production setting. But by using multiple clients you can compare how to handle multiple event types for each serialzer format.
 
-**To that end, the point of this sample application is this:** you want capture pageview and purchase events in the exact order that they occur and you feel the best option is to have these events produced to the same topic.  Since the customer id is the key, you are guaranteed to get these events in the order that they occur.
+**To that end, the point of this sample application is this:** you want capture pageview and purchase events in the exact order that they occur and you feel the best option is to have these events produced to the same topic.  Since the customer id will be the message key, you are guaranteed to get per-customer events in the order that they occur.
 
 
 
@@ -37,7 +37,7 @@ public void produceProtobufEvents(final Supplier<Producer<String, CustomerEventP
 <2> Using a `java.util.stream` to map each event into  a `ProducerRecord` then send them to the broker
 <3> Creating the `ProducerRecord` instance.
 
-There are two points to emphasize here.  The first is the type of the producer, its using `CustomerEventProto.CustomerEvent` since you must use an outer class with Protobuf, the generics on the producer are a concrete type.  As a result, to set the key to be the customer id you can call the `CustomerEvent#getId` method directly.  Note the use of the `Supplier` to provide the producer this is done to delay the instantiation until the `Supplier.get()` method is executed.  Using a supplier also makes testing easier by simplifying the process of providing a different implementation.
+There are two points to emphasize here.  The first is the type of the producer, it's using `CustomerEventProto.CustomerEvent` since you must use an outer class with Protobuf, the generics on the producer are a concrete type.  As a result, to set the key to be the customer id you can call the `CustomerEvent#getId` method directly.  Note the use of the `Supplier` to provide the producer this is done to delay the instantiation until the `Supplier.get()` method is executed.  Using a supplier also makes testing easier by simplifying the process of providing a different implementation.
 
 The second point is that you can use auto-registration feature of Scheama Registry with Protobuf and the referenced schemas get registered recursively.
 
@@ -70,7 +70,7 @@ public void produceAvroEvents(final Supplier<Producer<String, SpecificRecordBase
 
 You have a very similar approach with the Avro producer, but take a took at the type at annotation one - it's an abstract class, `SpecificRecordBase` that every Avro generated class inherits from.  Since the schema for the Avro multi-event topic uses a `union` at the top level, you don't know the concrete type.  Since you want to use the customer id as the key you need to access the field in a map-like fashion by using the field name as it exists in the schema.  This is possible because `SpecificRecordBase` implements the `GenericRecord` interface which provides the `get` method for retrieving a field value by name.
 
-But the biggest difference is the configurations you provide to the producer for the Avro serializer. namely disabling automatic schema registration, otherwise it would override the union schema as the latest one.  Additionally since you've set `use.latest.version` to `true` the serializer looks up the latest version, the union schema, and will use that for serialization. https://www.confluent.io/blog/multiple-event-types-in-the-same-kafka-topic/#avro-unions-with-schema-references[This blog post] by Robert Yokota explains this mechanism in detail.
+But the biggest difference is the configurations you provide to the producer for the Avro serializer, namely disabling automatic schema registration, otherwise it would override the union schema as the latest one.  Additionally since you've set `use.latest.version` to `true` the serializer looks up the latest version, the union schema, and will use that for serialization. https://www.confluent.io/blog/multiple-event-types-in-the-same-kafka-topic/#avro-unions-with-schema-references[This blog post] by Robert Yokota explains this mechanism in detail.
 
 Next let's move on to the `KafkaConsumer` instances, starting with the Protobuf version.
 

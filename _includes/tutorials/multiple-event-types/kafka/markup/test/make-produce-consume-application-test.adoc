@@ -22,7 +22,7 @@ assertThat(actualKeyValues, equalTo(expectedKeyValues));
 <2> Executing the produce of Protobuf records with the mock producer
 <3> Replaying the history of the producer
 
-It's in annotation three above you see how we can use a mock producer in the test, we validate that all the records we exepected to produce were sent to the producer correctly. The test for the Avro producer has the identical logic so we won't review it here, but you can view the full source code if you'd like to see it.
+In annotation 3 above, we can use a mock producer in the test to validate that all the records we expected to be produced were sent to the producer correctly. The test for the Avro producer has identical logic so we won't review it here, but you can view the full source code if you'd like to see it.
 
 For testing the consumer, it's a little tricky becuase the consumer polls for records and will continue polling until you close the application. The `MockConsumer` provides a method `schedulePollTask` where you provide the action you want to take at each poll call.
 

@@ -27,7 +27,7 @@ Next create the schema for the page view object at `src/main/avro/page_view.avsc
 <pre class="snippet"><code class="json">{% include_raw tutorials/multiple-event-types/kafka/code/src/main/avro/page_view.avsc %}</code></pre>
 +++++
 
-Now that you have the scheams in place for your two domain objects, you'll create the schema that references the other two.
+Now that you have the schemas in place for your two domain objects, you'll create a third schema that references the other two.
 
 Go ahead and create the file `src/main/avro/all_events.avsc` now:
 [source, json]

@@ -2,7 +2,7 @@ Next you'll need to register some schemas. When you have an Avro schema where th
 
 Then you'll register the parent schema itself along with references to the schemas making up the union element.
 
-Fortunately, the gradle https://github.com/ImFlog/schema-registry-plugin[Schema Registry plugin] makes this easy for us. Here's the configuration in the build.gradle file:
+Fortunately, the gradle https://github.com/ImFlog/schema-registry-plugin[Schema Registry plugin] makes this easy for us. Here's the configuration that you already have in the build.gradle file:
 
 .Avro schemas configuration for using references
 [source, groovy]
@@ -20,7 +20,7 @@ register {
 <2> The parent schema containing the references
 <3> Adding the references which point to the schemas registered previously
 
-Now to register these schemas, run this in the command line:
+Now to register these Avro schemas, run this in the command line:
 
 +++++
 <pre class="snippet"><code class="proto">{% include_raw tutorials/multiple-event-types/kafka/code/tutorial-steps/dev/register-schemas.sh %}</code></pre>
@@ -30,9 +30,9 @@ This task runs quickly, and you should see some text followed by this result in 
 
 [source, bash]
 ----
-Build Successful
+BUILD SUCCESSFUL
 ----
 
-We don't have a corresponding register command to register schemas for protobuf.  Instead you going to use the auto registration feature for the protobuf scheams becuase protobuf will recursively register any proto files included in the main schema.  We'll get into some of the details more in the next section.
+We don't have a corresponding register command to register schemas for protobuf.  Instead you are going to use the auto registration feature for the protobuf scheams becuase protobuf will recursively register any proto files included in the main schema.  We'll get into some of the details more in the next section.
 
 Using the Confluent UI you can view the uploaded schemas by clicking in the `Schema Registry` tab and click on the individual schemas to inspect them.

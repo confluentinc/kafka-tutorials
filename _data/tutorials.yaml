@@ -789,16 +789,16 @@ multiple-event-types:
   canonical: confluent
   meta-description: "handling multiple event types"
   slug: "/multiple-event-type-topics"
-  question: "How can I have multiple event types in a topic and maintain topic-name subject constraints?"
-  introduction: "You have distinct but releated event types and you want to produce them in the same topic, but you also want to maintain topic-name subject constraints. Why produce different events to the different
+  question: "How can you have multiple event types in a topic and maintain topic-name subject constraints?"
+  introduction: "You have distinct but related event types and you want to produce them to the same topic, but you also want to maintain topic-name subject constraints. Why produce different events to the different
   same topic? One reason would be you have low-traffic topics and you'd like to consolodate them to reduce overhead for the brokers.  Or you need to get the exact order of different events
   and by producing them to the same topic you are guaranteed correct ordering per-partition.<br/>  
 
   To do multiple events with topic-name constraints you'll need to use 
-  <a href='https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#schema-references'>schema references</a> now available in Schema Registry.  A schema reference is just as it sounds, a schema that contians a field representing an object which is reference to another another schema.
+  <a href='https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#schema-references'>schema references</a>, which is a schema that contains a field representing an object which is reference to another another schema.
   In this tutorial you'll learn about using schema references with both Protobuf and Avro. <br/> 
   For more information on multiple event topics you can read <a href='https://www.confluent.io/blog/put-several-event-types-kafka-topic/'>Put several event types in a Kafka Topic</a> by
-  Martin Kleppmann and <a href='https://www.confluent.io/blog/multiple-event-types-in-the-same-kafka-topic/'>this blog by Confluent's own Robert Yokota</a> "
+  Martin Kleppmann and <a href='https://www.confluent.io/blog/multiple-event-types-in-the-same-kafka-topic/'>Putting Several Event Types in the Same Topic – Revisited</a> by Robert Yokota."
   
   status:
     ksql: disabled
