@@ -4,6 +4,7 @@
 @import "bulma/bulma";
 @import "_vars";
 @import "_mixins";
+@import "_nav";
 @import "_footer";
 @import "_form";
 @import "tutorial";
@@ -18,39 +19,38 @@ button {
 
 a {
   color: #38cced;
-  
+
   &:hover {
-    color: #0074A2;
+    color: #0074a2;
     text-decoration: underline;
   }
 }
 
 .card-cta {
+  .cta-button {
+    display: inline-block;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+    font-style: normal;
+    padding: 15px 10px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background-image: none;
+    border: none;
+    cursor: pointer;
 
-.cta-button {
-  display: inline-block;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 500;
-  font-style: normal;
-  padding: 15px 10px;
-  text-transform: uppercase;
-  white-space: nowrap;
-  background-image: none;
-  border: none;
-  cursor: pointer;
+    &.primary {
+      background-color: #fd672f;
+      color: #fff;
+    }
 
-  &.primary {
-    background-color: #fd672f;
-    color: #fff;
+    &.secondary {
+      color: $baseColor;
+      background-color: #fff;
+      border: solid 2px $baseColor;
+    }
   }
-
-  &.secondary {
-    color: $baseColor;
-    background-color: #fff;
-    border: solid 2px $baseColor
-  }
-}
 }
 
 body {
@@ -59,86 +59,12 @@ body {
   line-height: 1;
 }
 
-
-
-.navbar {
-    margin: 0 15px;
-    background: none;
-    padding: 18px 0;
-
-    .navbar-brand .navbar-item {
-        padding: 0;
-        .logo {
-            max-height: none;
-            height: 39px;
-            width: 125px;
-            margin-right: 10px;
-        }
-
-        .sub-domain {
-            width: 125px;
-        }
-
-    }
-
-    @media screen and (min-width: 1079px) {
-        margin: 0 25px;
-
-        .navbar-brand .navbar-item {
-            .logo, .sub-domain {
-                width: auto;
-            }
-
-        }
-    }
-
-    .navbar-burger span { height: 2px; }
-
-    .navbar-menu .navbar-item {
-        color: #222;
-        font-size: 14px;
-        font-weight: 400;
-        letter-spacing: .7px;
-        margin: 20px;
-        padding: 0;
-        a {
-            color: inherit;
-            padding: 2px 0;
-        }
-
-        width: 100%;
-
-
-        @media screen and (min-width: 1079px) {
-            width: auto;
-            margin: 0 20px;
-
-            .link {
-                margin-top: 2px;
-                color: inherit;
-                border-bottom: 5px solid transparent;
-                &:hover { border-color: #b78142; }
-            }
-
-            .cta {
-                background-color: #38cced;
-                color: #fff;
-                border-radius: 6px;
-                padding: 12px 30px 10px 30px;
-                margin-right: 0;
-                border: none;
-
-                .icon { display: inline-block; }
-            }
-        }
-    }
-}
-
 .snippet-wrapper {
   position: relative;
   margin: 5px 0 20px 0;
 
-  .snippet, .highlight {
+  .snippet,
+  .highlight {
     background: #f9f9fa;
     border-radius: 4px;
 
@@ -171,11 +97,11 @@ body {
           border-left: 5px solid transparent;
           border-right: 5px solid transparent;
           border-bottom: 5px solid #333;
-          content: '';
+          content: "";
         }
 
         &::after {
-          content: 'Copied!';
+          content: "Copied!";
           position: absolute;
           top: calc(100% + 5px);
           background: #333;
@@ -194,7 +120,7 @@ body {
 }
 
 .icon-aggregate {
-    height: 38px;
+  height: 38px;
 }
 
 .pg-main {
@@ -218,15 +144,15 @@ body {
         max-width: 650px;
 
         @media screen and (max-width: 479px) {
-            font-size: 50px;
+          font-size: 50px;
         }
       }
     }
 
     .subtitle {
-        max-width: 800px;
-        margin-top: 50px;
-        color: #ffffff;
+      max-width: 800px;
+      margin-top: 50px;
+      color: #ffffff;
     }
   }
 
@@ -239,8 +165,6 @@ body {
   background: #040531;
   padding-top: 100px;
   color: #ffffff;
-  border-radius: 8px;
-  margin: 0 25px;
 
   @media screen and (max-width: 768px) {
     border-radius: 0;
@@ -264,7 +188,6 @@ body {
     img {
       vertical-align: middle;
     }
-
   }
 }
 
@@ -361,7 +284,7 @@ body {
 
     a {
       font-size: 15px;
-      color: #0074A2;
+      color: #0074a2;
     }
   }
 }
@@ -431,5 +354,5 @@ body {
 }
 
 .apache-info {
-    margin-bottom: 50px;
+  margin-bottom: 50px;
 }
