@@ -804,13 +804,5 @@ multiple-event-types:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
-    c: disabled
-    go: disabled
-    groovy: disabled
-    nodejs: disabled
-    python: disabled
-    ruby: disabled
-    scala: disabled
-    swift: disabled
     confluent: enabled
 
