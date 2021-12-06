@@ -1,1 +1,1 @@
-gradle jibDockerBuild --image=io.confluent.developer/multiple-event-types-join:0.0.1
+gradle jibDockerBuild --image=io.confluent.developer/multiple-event-types:0.0.1
