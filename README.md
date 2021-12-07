@@ -1,4 +1,4 @@
-- [Kafka Tutorials](#kafka-tutorials)
+- [Tutorials](#tutorials)
   * [Setup](#setup)
   * [Add code for a new tutorial](#add-code-for-a-new-tutorial)
   * [Using tutorial author tools](#using-tutorial-author-tools)
@@ -6,12 +6,12 @@
   * [Add a narrative and test for the tutorial](#add-a-narrative-and-test-for-the-tutorial)
   * [Testing Locally](#testing-locally)
   * [Updating dependency versions](#updating-dependency-versions)
-  * [Updating Kafka Tutorials](#updating-kafka-tutorials)
+  * [Updating Tutorials](#updating-tutorials)
 
 
-# Kafka Tutorials
+# Tutorials
 
-The source code for [Kafka Tutorials](https://developer.confluent.io/tutorials/). Read about it [in our blog post](https://www.confluent.io/blog/announcing-apache-kafka-tutorials).
+This GitHub repo has the source code for Kafka [Tutorials](https://developer.confluent.io/tutorials/). Read about it [in our blog post](https://www.confluent.io/blog/announcing-apache-kafka-tutorials).
 
 ## Setup
 
@@ -102,7 +102,7 @@ A tutorial is a short procedure, targeted at developers, for getting a certain t
 
 In many cases, you can get that thing done using one of several _stacks_. For example, you might be able to perform data filtering by writing a KSQL query, by writing a Kafka Streams application, or by directly using the Kafka Consumer API. These comprise the three stacks this site supports: `ksql`, `kstreams`, and `kafka`.
 
-Kafka Tutorials is a bit unique in that each tutorial is self-testing. That is, we have built a light-weight harness system that's able to instrument the code that belongs to each tutorial to make sure that it actually works. This is really useful as we expect to have a lot of tutorials.
+These Tutorials are a bit unique in that each tutorial is self-testing. That is, we have built a light-weight harness system that's able to instrument the code that belongs to each tutorial to make sure that it actually works. This is really useful as we expect to have a lot of tutorials.
 
 With in each stack, these tutorials contain a few pieces. These are described below.
 
@@ -117,7 +117,7 @@ Let's describe each script.
 
 ### The `gen_project.sh` script
 
-As the name implies, the `gen_project.sh` script generates the minimal structure for a viable Kafka Tutorials tutorial.  The code and text contained in the tutorial are place holders, and you'll update those with your code and writing to complete the tutorial.
+As the name implies, the `gen_project.sh` script generates the minimal structure for a viable tutorial.  The code and text contained in the tutorial are place holders, and you'll update those with your code and writing to complete the tutorial.
 
 The script expects you to supply a properties file for setting the name and other parts of the tutorial.  Here's an example properties file you can use.
 ```sh
@@ -172,7 +172,7 @@ You can find these fields by searching for my-tutorial-name in the _data/tutoria
 
 ```
 
-If you only specified one tutorial type (`ksql` or `kstreams`) then you'd only have one link in the output.  Also, a copy of this output is copied in your tutorial directory `/Kafka Tutorials base dir/_includes/tutorials/you_tutorial_short_name`
+If you only specified one tutorial type (`ksql` or `kstreams`) then you'd only have one link in the output.  Also, a copy of this output is copied in your tutorial directory `/Tutorials base dir/_includes/tutorials/you_tutorial_short_name`
 
 ### The `clone-tutorial.sh` script
 
@@ -280,7 +280,7 @@ Lastly, create a Makefile in the `code` directory to invoke the harness runner a
 
 ## Testing Locally
 
-Each tutorial in [Kafka Tutorials](https://developer.confluent.io/tutorials/) shows how to manually execute each tutorial step-by-step.
+Each tutorial shows how to manually execute each tutorial step-by-step.
 However, there are some scenarios when a user may want to run and test a tutorial in a more automated fashion:
 
 - End-to-end: user makes a small change to the code and wants to validate that the tutorial still works end-to-end
@@ -332,10 +332,10 @@ docker build -t runner . ; docker run -v ${PWD}/harness_runner:/harness_runner/ 
 
 ### Run a tutorial
 
-1. (optional) If you want to augment or override a tutorial's Docker environment, set the Docker Compose CLI environment variable `COMPOSE_FILE` to include `docker-compose.yml` and **_the absolute path_** to a `docker-compose.override.yml` file.  For example, to use Confluent Control Center with any Kafka Tutorial, set `COMPOSE_FILE` to `docker-compose.yml` and the absolute path to [this docker-compose.override.yml](tools/docker-compose.override.yml).
+1. (optional) If you want to augment or override a tutorial's Docker environment, set the Docker Compose CLI environment variable `COMPOSE_FILE` to include `docker-compose.yml` and **_the absolute path_** to a `docker-compose.override.yml` file.  For example, to use Confluent Control Center with any tutorial, set `COMPOSE_FILE` to `docker-compose.yml` and the absolute path to [this docker-compose.override.yml](tools/docker-compose.override.yml).
 
 ```
-export COMPOSE_FILE=docker-compose.yml:<path to Kafka Tutorials>/tools/docker-compose.override.yml
+export COMPOSE_FILE=docker-compose.yml:<path to tutorials>/tools/docker-compose.override.yml
 ```
 
 2. End-to-end: execute the harness runner for a single tutorial by calling `make`, across all `dev`, `test`, and `prod` stages, to validate it works end-to-end. Identify the tutorial you want and then run `make`. Note that this destroys all the resources and Docker containers it created, so it cleans up after itself.  Format: `(cd _includes/tutorials/<tutorial name>/<type>/code && make)` where type is one of `ksql | kstreams | kafka`. Example:
@@ -566,7 +566,7 @@ The following regular expressions may be useful to group-update all dependencies
 * `confluentinc\/ksqldb-([^:]*):\d+.\d+.\d+` will match all ksqlDB components.
    Capture group 1 can be used to build the component name.
 
-## Updating Kafka Tutorials
+## Updating Tutorials
 
 The `release` branch tracks the content and code comprising the live site. Confluent manages the release process.
 
