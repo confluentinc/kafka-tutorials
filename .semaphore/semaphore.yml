@@ -16,7 +16,7 @@ global_job_config:
       - >
         aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
       - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
-      - docker login confluent-docker-internal.jfrog.io --username $DOCKERHUB_USER --password $ARTIFACTORY_API_KEY
+      - docker login --username $DOCKERHUB_USER --password $ARTIFACTORY_API_KEY confluent-docker-internal.jfrog.io
       - sudo pip3 install -e harness_runner/
       - >
         find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
