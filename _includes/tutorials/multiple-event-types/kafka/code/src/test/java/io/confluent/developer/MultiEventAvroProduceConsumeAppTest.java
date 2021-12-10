@@ -1,8 +1,6 @@
 package io.confluent.developer;
 
-import io.confluent.developer.proto.CustomerEventProto;
 import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import io.confluent.kafka.serializers.protobuf.KafkaProtobufSerializer;
 import org.apache.avro.specific.SpecificRecordBase;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.MockConsumer;
@@ -33,11 +31,11 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class MultiEventProduceConsumeAppTest {
+public class MultiEventAvroProduceConsumeAppTest {
     private static final Map<String, Object> commonConfigs = new HashMap<>();
     private static final Properties properties = new Properties();
     private final Serializer<String> stringSerializer = new StringSerializer();
-    private MultiEventProduceConsumeApp produceConsumeApp;
+    private MultiEventAvroProduceConsumeApp produceConsumeApp;
 
     @BeforeClass
     public static void beforeAllTests() throws IOException {
@@ -50,24 +48,7 @@ public class MultiEventProduceConsumeAppTest {
 
     @Before
     public void setup() {
-        produceConsumeApp = new MultiEventProduceConsumeApp();
-    }
-
-    @Test
-    public void testProduceProtobufMultipleEvents() {
-        KafkaProtobufSerializer<CustomerEventProto.CustomerEvent> protobufSerializer
-                = new KafkaProtobufSerializer<>();
-        protobufSerializer.configure(commonConfigs, false);
-        MockProducer<String, CustomerEventProto.CustomerEvent> mockProtoProducer
-                = new MockProducer<>(true, stringSerializer, protobufSerializer);
-        List<CustomerEventProto.CustomerEvent> events = produceConsumeApp.protobufEvents();
-        produceConsumeApp.produceProtobufEvents(() -> mockProtoProducer, (String) commonConfigs.get("proto.topic"), events);
-        List<KeyValue<String, CustomerEventProto.CustomerEvent>> expectedKeyValues =
-                produceConsumeApp.protobufEvents().stream().map((e -> KeyValue.pair(e.getId(), e))).collect(Collectors.toList());
-
-        List<KeyValue<String, CustomerEventProto.CustomerEvent>> actualKeyValues =
-                mockProtoProducer.history().stream().map(this::toKeyValue).collect(Collectors.toList());
-        assertThat(actualKeyValues, equalTo(expectedKeyValues));
+        produceConsumeApp = new MultiEventAvroProduceConsumeApp();
     }
 
     @Test
@@ -85,21 +66,6 @@ public class MultiEventProduceConsumeAppTest {
         List<KeyValue<String, SpecificRecordBase>> actualKeyValues =
                 mockAvroProducer.history().stream().map(this::toKeyValue).collect(Collectors.toList());
         assertThat(actualKeyValues, equalTo(expectedKeyValues));
-    }
-
-    @Test
-    public void testConsumeProtobufEvents() {
-        MockConsumer<String, CustomerEventProto.CustomerEvent> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
-        String topic = (String) commonConfigs.get("proto.topic");
-        List<String> expectedProtoResults = Arrays.asList("Protobuf Pageview event -> http://acme/traps", "Protobuf Pageview event -> http://acme/bombs", "Protobuf Pageview event -> http://acme/bait", "Protobuf Purchase event -> road-runner-bait");
-        List<String> actualProtoResults = new ArrayList<>();
-        mockConsumer.schedulePollTask(()-> {
-            addTopicPartitionsAssignment(topic, mockConsumer);
-            addConsumerRecords(mockConsumer, produceConsumeApp.protobufEvents(), CustomerEventProto.CustomerEvent::getId, topic);
-        });
-        mockConsumer.schedulePollTask(() -> produceConsumeApp.close());
-        produceConsumeApp.consumeProtoEvents(() -> mockConsumer, topic, actualProtoResults);
-        assertThat(actualProtoResults, equalTo(expectedProtoResults));
     }
 
     @Test

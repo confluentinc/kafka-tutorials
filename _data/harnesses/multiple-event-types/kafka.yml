@@ -118,7 +118,7 @@ dev:
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/register-schemas.adoc
 
-    - title: Create the Multi Event application
+    - title: Create the Protobuf Multi Event application
       content:
         - action: execute
           file: tutorial-steps/dev/make-src-dir.sh
@@ -126,11 +126,18 @@ dev:
             file: tutorials/multiple-event-types/kafka/markup/dev/make-src-dir.adoc
             
         - action: make_file
-          file: src/main/java/io/confluent/developer/MultiEventProduceConsumeApp.java
+          file: src/main/java/io/confluent/developer/MultiEventProtobufProduceConsumeApp.java
           render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/make-multi-event-app.adoc         
+            file: tutorials/multiple-event-types/kafka/markup/dev/make-multi-event-app-protobuf.adoc 
 
-    - title: Compile and run the Multi Event application
+    - title: Create the Avro Multi Event application
+      content:
+        - action: make_file
+          file: src/main/java/io/confluent/developer/MultiEventAvroProduceConsumeApp.java
+          render:
+            file: tutorials/multiple-event-types/kafka/markup/dev/make-multi-event-app-avro.adoc         
+
+    - title: Compile and run both the Multi Event applications
       content:
         - action: execute
           file: tutorial-steps/dev/build-uberjar.sh
@@ -138,10 +145,16 @@ dev:
             file: tutorials/multiple-event-types/kafka/markup/dev/build-uberjar.adoc
 
         - action: execute_async
-          file: tutorial-steps/dev/run-dev-app.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.txt
+          file: tutorial-steps/dev/run-dev-app-protobuf.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-protobuf.txt
           render:
             file: tutorials/multiple-event-types/kafka/markup/dev/run-dev-app.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/run-dev-app-avro.sh
+          stdout: tutorial-steps/dev/outputs/actual-output-avro.txt
+          render:
+            skip: true
 
         - name: wait for the consumers to read all the messages
           action: sleep
@@ -160,7 +173,7 @@ test:
           render:
             file: tutorials/multiple-event-types/kafka/markup/test/make-test-file.adoc
 
-    - title: Write a test for the Produce and Consume application
+    - title: Write tests for the Avro and Protobuf applications
       content:
         - action: execute
           file: tutorial-steps/test/make-test-dir.sh
@@ -168,9 +181,14 @@ test:
             file: tutorials/multiple-event-types/kafka/markup/test/make-test-dir.adoc
 
         - action: make_file
-          file: src/test/java/io/confluent/developer/MultiEventProduceConsumeAppTest.java
+          file: src/test/java/io/confluent/developer/MultiEventProtobufProduceConsumeAppTest.java
           render:
             file: tutorials/multiple-event-types/kafka/markup/test/make-produce-consume-application-test.adoc
+
+        - action: make_file
+          file: src/test/java/io/confluent/developer/MultiEventAvroProduceConsumeAppTest.java
+          render:
+            skip: true
 
 
     - title: Invoke the tests

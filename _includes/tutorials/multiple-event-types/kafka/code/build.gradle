@@ -76,7 +76,7 @@ jar {
   manifest {
     attributes(
       "Class-Path": configurations.compileClasspath.collect { it.getName() }.join(" "),
-      "Main-Class": "io.confluent.developer.MultiEventProduceConsumeApp"
+      "Main-Class": "io.confluent.developer.MultiEventProtobufProduceConsumeApp"
     )
   }
 }

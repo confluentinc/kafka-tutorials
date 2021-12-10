@@ -67,3 +67,23 @@ Next let's move on to the `KafkaConsumer` for the Protobuf application.
 
 With Protobuf when you have a `oneof` field, it generates an `enum` for each message that could possibly be in the field.  Determining which record to work with is straight forward by using different code blocks for each case.  The method to retrieve the `enum` alwasy follows the naming convention get<FieldName>Case.  So in this case the field name is `action` you use `getActionCase` for determining the type in the field.
 
+Before you go on to create the application we should mention quickly about the deserialization configurations you need to set
+
+[source, java]
+.Configurations needed by the Protobuf Consumer
+----
+ protoConsumeConfigs.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, KafkaProtobufDeserializer.class); <1>
+ protoConsumeConfigs.put(KafkaProtobufDeserializerConfig.SPECIFIC_PROTOBUF_VALUE_TYPE, CustomerEventProto.CustomerEvent.class); <2>
+----
+
+<1> Configurations for the Protobuf consumer to use the Protobuf deserializer
+<2> Setting the specific class type for the Protobuf deserializer
+
+It should come as no surprise that you need to set the deserializer class to `KafkaProtobufDeserializer` for the Protobuf consumers.  But when working with multiple types, you still need to set the configuration for a specific type.  For Protobuf it's straight forward, setting the specific type to the outer class makes sense since the proto deserialization process knows how to handle the embedded types due to the schema.
+
+Now go ahead and create the `src/main/java/io/confluent/developer/MultiEventProtobufProduceConsumeApp.java` file:
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/multiple-event-types/kafka/code/src/main/java/io/confluent/developer/MultiEventProtobufProduceConsumeApp.java %}</code></pre>
++++++
+
