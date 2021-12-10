@@ -47,6 +47,7 @@ blocks:
       prologue:
         commands:
           - checkout
+          - cache clear
           - cache restore
           - npm install
           - gem install bundler
