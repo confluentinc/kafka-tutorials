@@ -189,7 +189,7 @@ serialization:
     kstreams: enabled
 
 connect-add-key-to-source:
-  title: "Add key to data ingested through Kafka Connect"
+  title: "Add a key to data ingested through Kafka Connect"
   meta-description: "add key to a stream of data ingested through Kafka Connect"
   slug: "/connect-add-key-to-source"
   question: "How can you stream data from a source system (such as a database) into Kafka using Kafka Connect, and add a key to the data as part of the ingestion?"
@@ -439,7 +439,7 @@ kafka-producer-application:
     confluent: enabled
 
 kafka-producer-application-callback:
-  title: "How build an Apache KafkaProducer application using callbacks"
+  title: "How to build an Apache KafkaProducer application with callbacks"
   meta-description: "build an Kafka producer application and handle responses using the Callback interface"
   canonical: confluent
   slug: "/kafka-producer-callback-application"
