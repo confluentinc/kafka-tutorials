@@ -3,7 +3,7 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-To complete this tutorial, you'll build an application that uses a `KafkaProducer` and  `KafkaConsumer` instance for producing both Avro and Protobuf.  The approach you'll take in this tutorial is not typically of applications you'll build in a production setting. But by using multiple clients you can compare how to handle multiple event types for each serialzer format.
+To complete this tutorial, you'll build an application that uses a `KafkaProducer` and  `KafkaConsumer` instance for producing both Avro and Protobuf.  The approach you'll take in this tutorial is not typically of applications you'll build in a production setting. But by using multiple clients you can compare how to handle multiple event types for each serializer format.
 
 **To that end, the point of this sample application is this:** you want capture page-view and purchase events in the exact order that they occur and you feel the best option is to have these events produced to the same topic.  Since the customer id will be the message key, you are guaranteed to get per-customer events in the order that they occur.
 
