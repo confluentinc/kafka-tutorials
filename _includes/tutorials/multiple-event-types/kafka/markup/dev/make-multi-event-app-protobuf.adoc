@@ -3,9 +3,9 @@ In this file you describe the Kafka streams topology, and should cover the main 
 The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
 ////
 
-To complete this tutorial, you'll build an application that uses a `KafkaProducer` and  `KafkaConsumer` instance for producing both Avro and Protobuf.  The approach you'll take in this tutorial is not typicaly of applications you'll build in a production setting. But by using multiple clients you can compare how to handle multiple event types for each serialzer format.
+To complete this tutorial, you'll build an application that uses a `KafkaProducer` and  `KafkaConsumer` instance for producing both Avro and Protobuf.  The approach you'll take in this tutorial is not typically of applications you'll build in a production setting. But by using multiple clients you can compare how to handle multiple event types for each serialzer format.
 
-**To that end, the point of this sample application is this:** you want capture pageview and purchase events in the exact order that they occur and you feel the best option is to have these events produced to the same topic.  Since the customer id will be the message key, you are guaranteed to get per-customer events in the order that they occur.
+**To that end, the point of this sample application is this:** you want capture page-view and purchase events in the exact order that they occur and you feel the best option is to have these events produced to the same topic.  Since the customer id will be the message key, you are guaranteed to get per-customer events in the order that they occur.
 
 
 
@@ -37,9 +37,9 @@ public void produceProtobufEvents(final Supplier<Producer<String, CustomerEventP
 <2> Using a `java.util.stream` to map each event into  a `ProducerRecord` then send them to the broker
 <3> Creating the `ProducerRecord` instance.
 
-There are two points to emphasize here.  The first is the type of the producer, it's using `CustomerEventProto.CustomerEvent` since you must use an outer class with Protobuf, the generics on the producer are a concrete type.  As a result, to set the key to be the customer id you can call the `CustomerEvent#getId` method directly.  Note the use of the `Supplier` to provide the producer this is done to delay the instantiation until the `Supplier.get()` method is executed.  Using a supplier also makes testing easier by simplifying the process of providing a different implementation.
+There are two points to emphasize here.  The first is the type of the producer, it's using `CustomerEventProto.CustomerEvent` since you must use an outer class with Protobuf, the generics on the producer are a concrete type.  As a result, to set the key to be the customer id you can call the `CustomerEvent#getId` method directly.  Note the use of the `Supplier` to provide the producer this is done to delay the creation until the `Supplier.get()` method is executed.  Using a supplier also makes testing easier by simplifying the process of providing a different implementation.
 
-The second point is that you can use auto-registration feature of Scheama Registry with Protobuf and the referenced schemas get registered recursively.
+The second point is that you can use auto-registration feature of Schema Registry with Protobuf and the referenced schemas get registered recursively.
 
 Next let's move on to the `KafkaConsumer` for the Protobuf application.
 
@@ -63,9 +63,9 @@ Next let's move on to the `KafkaConsumer` for the Protobuf application.
 
 <1> Using a `switch` statement for the different `enum` types
 <2> Adding the purchased item to the event tracker
-<3> Adding the page view link to the event tracker
+<3> Adding the page-view link to the event tracker
 
-With Protobuf when you have a `oneof` field, it generates an `enum` for each message that could possibly be in the field.  Determining which record to work with is straight forward by using different code blocks for each case.  The method to retrieve the `enum` alwasy follows the naming convention get<FieldName>Case.  So in this case the field name is `action` you use `getActionCase` for determining the type in the field.
+With Protobuf, when you have a `oneof` field, it generates an `enum` for each message that could be in the field—determining which type to work with can be done by using a `switch` statement.  To retrieve the correct `enum`, you'll use a `get<field-name>Case` method, in this case, `getActionCase` since the `oneof` field is named `action`.
 
 Before you go on to create the application we should mention quickly about the deserialization configurations you need to set
 

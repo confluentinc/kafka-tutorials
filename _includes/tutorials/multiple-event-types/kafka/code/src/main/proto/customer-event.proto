@@ -3,7 +3,7 @@ syntax = "proto3";
 package io.confluent.developer.proto;
 
 import "purchase.proto";
-import "page_view.proto";
+import "page-view.proto";
 
 option java_outer_classname = "CustomerEventProto";
 

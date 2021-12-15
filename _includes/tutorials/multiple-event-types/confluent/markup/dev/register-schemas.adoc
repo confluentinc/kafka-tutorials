@@ -32,6 +32,6 @@ This task runs quickly, and you should see some text followed by this result in 
 BUILD SUCCESSFUL
 ----
 
-We don't have a corresponding register command to register schemas for Protobuf.  Instead you are going to use the auto registration feature for the Protobuf schemas because Protobuf will recursively register any proto files included in the main schema.  Using the Confluent UI you can view the uploaded schemas by clicking in the `Schema Registry` tab and click on the individual schemas to inspect them.
+We don't have a corresponding register command to register schemas for Protobuf.  Instead you are going to use the auto registration feature for the Protobuf schemas because Protobuf will recursively register any proto files included in the main schema.  Using the Confluent Cloud Console you can view the uploaded schemas by clicking in the `Schema Registry` tab and click on the individual schemas to inspect them.
 
 We'll get into some of the details more in the next section.

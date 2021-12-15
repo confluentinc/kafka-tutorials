@@ -22,7 +22,7 @@ public void produceAvroEvents(final Supplier<Producer<String, SpecificRecordBase
 <1> Getting the producer from the supplier
 <2> Streaming over the provided collection of Avro events to send
 <3> Creating the `ProducerRecord` instance, note the use of map-like access to get the required field for the key
-<4> Specifying **_to disable_** automatic schema registation
+<4> Specifying **_to disable_** automatic schema registration
 <5> Setting to use the latest schema
 
 You have a very similar approach with the Avro producer as you did with the Protobuf version, but take a took at the type at annotation one - it's an abstract class, `SpecificRecordBase` that every Avro generated class inherits from.  Since the schema for the Avro multi-event topic uses a `union` at the top level, you don't know the concrete type.  Since you want to use the customer id as the key you need to access the field in a map-like fashion by using the field name as it exists in the schema.  This is possible because `SpecificRecordBase` implements the `GenericRecord` interface which provides the `get` method for retrieving a field value by name.
@@ -47,10 +47,10 @@ consumerRecords.forEach(consumerRec -> {
 ----
 
 <1> Getting the record
-<2> Doing an `instanceof` check to detrmine the type
+<2> Doing an `instanceof` check to determine the type
 <3> Casting to the appropriate concrete type
 
-With the Avro consumer you'll need to use the Java `instanceof` operator to determine concrete type for the record.  Notice that here you're using the `SpecificRecord` interface which every Avro generated object implements.  Once you find the correct concrete type you cast the record to that type and extract the required inforation.
+With the Avro consumer you'll need to use the Java `instanceof` operator to determine concrete type for the record.  Notice that here you're using the `SpecificRecord` interface which every Avro generated object implements.  Once you find the correct concrete type you cast the record to that type and extract the required information.
 
 Before you go on to create the application we should mention quickly about the deserialization configurations you need to set
 

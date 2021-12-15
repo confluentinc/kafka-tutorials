@@ -78,12 +78,12 @@ dev:
             skip: true   
 
         - action: make_file
-          file: src/main/proto/page_view.proto
+          file: src/main/proto/page-view.proto
           render:
             skip: true   
 
         - action: make_file
-          file: src/main/proto/customer_event.proto
+          file: src/main/proto/customer-event.proto
           render:
             skip: true  
 
@@ -104,12 +104,12 @@ dev:
             skip: true   
 
         - action: make_file
-          file: src/main/avro/page_view.avsc
+          file: src/main/avro/page-view.avsc
           render:
             skip: true   
 
         - action: make_file
-          file: src/main/avro/all_events.avsc
+          file: src/main/avro/all-events.avsc
           render:
             skip: true  
 
@@ -123,7 +123,7 @@ dev:
         - action: execute
           file: tutorial-steps/dev/register-schemas.sh
           render:
-            file: tutorials/multiple-event-types/kafka/markup/dev/register-schemas.adoc
+            file: tutorials/multiple-event-types/confluent/markup/dev/register-schemas.adoc
 
     - title: Create the Protobuf Multi Event application
       content:

@@ -115,9 +115,9 @@ schemaRegistry {
 
     // Possible types are ["JSON", "PROTOBUF", "AVRO"]
     register {
-        subject('page-view', 'src/main/avro/page_view.avsc', 'AVRO')
+        subject('page-view', 'src/main/avro/page-view.avsc', 'AVRO')
         subject('purchase', 'src/main/avro/purchase.avsc', 'AVRO')
-        subject('avro-events-value', 'src/main/avro/all_events.avsc', 'AVRO')
+        subject('avro-events-value', 'src/main/avro/all-events.avsc', 'AVRO')
                 .addReference("io.confluent.developer.avro.PageView", "page-view", 1)
                 .addReference("io.confluent.developer.avro.Purchase", "purchase", 1)
     }
