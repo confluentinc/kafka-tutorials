@@ -1,6 +1,5 @@
-title: "Kafka Tutorials: Learn Kafka with End-to-End Code Examples"
-description: "Find, learn, and contribute Apache Kafka tutorials with full code examples for real use cases. Learn Kafka from Confluent, the real-time event streaming experts."
-
+title: "Kafka Tutorials: Learn Kafka and Stream Processing with Examples"
+description: "The largest collection of Apache Kafka tutorials with end-to-end code examples for all use cases. Learn to use Kafka and ksqlDB from the experts at Confluent Developer."
 url: "https://developer.confluent.io/tutorials"
 
 github_url: https://github.com/confluentinc/kafka-tutorials

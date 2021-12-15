@@ -189,7 +189,7 @@ serialization:
     kstreams: enabled
 
 connect-add-key-to-source:
-  title: "Add key to data ingested through Kafka Connect"
+  title: "Add a key to data ingested through Kafka Connect"
   meta-description: "add key to a stream of data ingested through Kafka Connect"
   slug: "/connect-add-key-to-source"
   question: "How can you stream data from a source system (such as a database) into Kafka using Kafka Connect, and add a key to the data as part of the ingestion?"
@@ -439,7 +439,7 @@ kafka-producer-application:
     confluent: enabled
 
 kafka-producer-application-callback:
-  title: "How build an Apache KafkaProducer application using callbacks"
+  title: "How to build an Apache KafkaProducer application with callbacks"
   meta-description: "build an Kafka producer application and handle responses using the Callback interface"
   canonical: confluent
   slug: "/kafka-producer-callback-application"
@@ -763,6 +763,7 @@ For a refresh on scheduling logic using a punctuator, have a look at the <a href
     scala: disabled
     swift: disabled
 
+
 optimize-producer-throughput:
   title: "How to optimize your Kafka producer for throughput"
   meta-description: "How to optimize your Apache Kafka producer application for throughput, set configuration parameters and test baseline using kafka-producer-perf-test"
@@ -782,3 +783,26 @@ creating-first-apache-kafka-streams-application:
   status:
     confluent: enabled
     kstreams: enabled
+
+multiple-event-types:
+  title: "Handling multiple event types in a topic"
+  canonical: confluent
+  meta-description: "handling multiple event types"
+  slug: "/multiple-event-type-topics"
+  question: "How can you have multiple event types in a topic and maintain topic-name subject constraints?"
+  introduction: "You have distinct but related event types and you want to produce them to the same topic, but you also want to maintain topic-name subject constraints. Why produce different events to the different
+  same topic? One reason would be you have low-traffic topics and you'd like to consolodate them to reduce overhead for the brokers.  Or you need to get the exact order of different events
+  and by producing them to the same topic you are guaranteed correct ordering per-partition.<br/>  
+
+  To do multiple events with topic-name constraints you'll need to use 
+  <a href='https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#schema-references'>schema references</a>, which is a schema that contains a field representing an object which is reference to another another schema.
+  In this tutorial you'll learn about using schema references with both Protobuf and Avro. <br/> 
+  For more information on multiple event topics you can read <a href='https://www.confluent.io/blog/put-several-event-types-kafka-topic/'>Put several event types in a Kafka Topic</a> by
+  Martin Kleppmann and <a href='https://www.confluent.io/blog/multiple-event-types-in-the-same-kafka-topic/'>Putting Several Event Types in the Same Topic – Revisited</a> by Robert Yokota."
+  
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+    confluent: enabled
+
