@@ -3,8 +3,8 @@
 .cflt-tabs {
   .button {
     &.is-selected {
-      background-color: $baseColor;
-      color: #fff;
+      background-color: $color_denim;
+      color: $color_white;
       font-weight: 500;
     }
 
@@ -13,9 +13,9 @@
     }
 
     border-radius: 4px;
-    border: solid 1px $baseColor;
-    background-color: #fff;
-    color: $baseColor;
+    border: solid 1px $color_denim;
+    background-color: $color_white;
+    color: $color_denim;
     font-size: 18px;
     font-weight: 300;
     width: 192px;
@@ -24,7 +24,7 @@
 
 .cflt-options {
   display: none;
-  background: $baseColor;
+  background: $color_denim;
   padding: 5px;
   border-radius: 4px;
   position: relative;
@@ -35,14 +35,14 @@
     transform: translateY(-50%);
     position: absolute;
     pointer-events: none;
-    color: #fff;
+    color: $color_white;
     right: 10px;
   }
 
   select {
-    background: $baseColor;
+    background: $color_denim;
     border: 0;
-    color: #fff;
+    color: $color_white;
     width: 100%;
     font-size: 18px;
     font-weight: 500;

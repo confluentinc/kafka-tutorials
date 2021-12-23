@@ -1,8 +1,7 @@
-@import "_vars";
 @import "_tabs";
 
 .pg-tutorial {
-  background: #fff;
+  background: $color_white;
 
   .section {
     padding-top: 35px;
@@ -30,7 +29,7 @@
 
   .summary {
     @include text;
-    color: #ffffff;
+    color: $color_white;
 
     h2 {
       font-size: 18px;
@@ -62,13 +61,13 @@
       }
 
       .community-contribution {
-          font-size: 0.75rem;
-          background: white;
-          border-radius: 6px;
-          padding: 2px 1px 2px 5px;
-          line-height: 2.5rem;
-          font-weight: 900;
-          text-transform: uppercase;
+        font-size: 0.75rem;
+        background:$color_white;
+        border-radius: 6px;
+        padding: 2px 1px 2px 5px;
+        line-height: 2.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
       }
 
     }
@@ -88,7 +87,7 @@
 
   h4.subtitle {
     margin: 0 0 5px -32px;
-    color: $textColor;
+    color: $color_black;
     font-weight: normal;
     font-size: 21px;
 
@@ -102,10 +101,10 @@
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: $baseColor;
+      background: $color_denim;
       text-align: center;
       font-size: 18px;
-      color: #fff;
+      color: $color_white;
       font-weight: bold;
       padding-top: 2px;
       display: inline-block;
@@ -114,7 +113,7 @@
   }
 
   .tutorial-try-it-step {
-    margin: 0 0 0px 32px;
+    margin: 0 0 0 32px;
 
     .subtitle {
       padding-bottom: 15px;
@@ -138,7 +137,7 @@
 
       a {
         @include text;
-        color: #0074A2;
+        color: $color_academy;
         line-height: 1.69;
         font-weight: 400;
       }
@@ -155,11 +154,11 @@
           padding-bottom: 50%;
 
           iframe {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
           }
       }
   }

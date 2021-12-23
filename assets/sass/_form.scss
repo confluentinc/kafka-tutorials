@@ -1,3 +1,5 @@
+@import './vars';
+
 #mkto-form {
   margin-top: 20px;
   width: 100%;
@@ -17,7 +19,7 @@
       display: flex;
       align-items: center;
       position: absolute;
-      background: #fff;
+      background: $color_white;
       opacity: 0;
       transition: opacity .4s ease-in-out;
       display: none;
@@ -40,7 +42,7 @@
       .cta-button {
         position: absolute;
         right: 2px;
-        color: #fff;
+        color: $color_white;
         background-color: #192048;
         border: solid 2px #192048;
         top: 2px;
