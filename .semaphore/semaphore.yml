@@ -235,6 +235,11 @@ blocks:
           commands:
             - make -C _includes/tutorials/creating-first-apache-kafka-streams-application/kstreams/code tutorial
 
+        - name: Kafka Test Multiple Event Types tests
+          commands:
+            - make -C _includes/tutorials/multiple-event-types/kafka/code tutorial    
+
+
   - name: Run second block of tests (mostly ksqlDB)
     execution_time_limit:
       minutes: 10

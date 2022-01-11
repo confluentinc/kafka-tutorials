@@ -112,7 +112,8 @@ include '_includes:tutorials:error-handling:confluent:code'
 include '_includes:tutorials:schedule-ktable-ttl-aggregate:kstreams:code'
 include '_includes:tutorials:creating-first-apache-kafka-streams-application:kstreams:code'
 include '_includes:tutorials:creating-first-apache-kafka-streams-application:confluent:code'
-
+include '_includes:tutorials:multiple-event-types:kafka:code'
+include '_includes:tutorials:multiple-event-types:confluent:code'
 // <end>
 
 // if new tutorial wasn't included in `settings.gradle` build will fail
