@@ -806,3 +806,14 @@ multiple-event-types:
     kafka: enabled
     confluent: enabled
 
+
+fleet-management:
+  title: "Optimize Fleet Management"
+  canonical: confluent
+  meta-description: "Optimize Fleet Management"
+  slug: "/fleet-management"
+  question: "Optimize Fleet Management"
+  introduction: "More and more, fleet management relies on knowing real-time information on vehicle availability, their locations, and integrating that with data from vehicle telematics. This enables businesses to improve operational efficiency by optimizing travel routes, lowering fuel consumption, and automating service schedules. This recipe combines fleet locations with individual vehicle information, so organizations can have a real-time consolidated view of their entire fleet. <center><img src='/tutorials/assets/img/fleet.png'></center>"
+
+  status:
+    confluent: enabled

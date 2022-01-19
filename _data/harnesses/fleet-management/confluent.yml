@@ -1,0 +1,8 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/fleet-management/ccloud/markup/dev/answer-short.adoc
+

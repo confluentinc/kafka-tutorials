@@ -1,0 +1,6 @@
+Run this in Confluent Cloud: INSERT BUTTON ONE CLICK
+
++++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/fleet-management/ccloud/code/tutorial-steps/dev/source.json %}</code></pre>
+<pre class="snippet"><code class="sql">{% include_raw tutorials/fleet-management/ccloud/code/tutorial-steps/dev/process.sql %}</code></pre>
++++++
