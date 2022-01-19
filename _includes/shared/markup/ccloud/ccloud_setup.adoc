@@ -1,0 +1,1 @@
+Once your Confluent Cloud cluster is available, create a link:https://ksqldb.io/[ksqlDB] application. ksqlDB supports a `SQL` language for processing the data in real time (and will soon support connector integration for reading and writing data to other data sources and sinks). Execute the recipe with the provided `SQL` commands using the Confluent Cloud ksqlDB editor. 
