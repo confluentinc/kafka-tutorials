@@ -63,7 +63,6 @@ services:
       # Kafka Connect config below
       KSQL_CONNECT_BOOTSTRAP_SERVERS: "broker:9092"
       KSQL_CONNECT_REST_ADVERTISED_HOST_NAME: 'ksqldb'
-      KSQL_CONNECT_REST_PORT: 8083
       KSQL_CONNECT_GROUP_ID: ksqldb-kafka-connect-group-01
       KSQL_CONNECT_CONFIG_STORAGE_TOPIC: _ksqldb-kafka-connect-group-01-configs
       KSQL_CONNECT_OFFSET_STORAGE_TOPIC: _ksqldb-kafka-connect-group-01-offsets
