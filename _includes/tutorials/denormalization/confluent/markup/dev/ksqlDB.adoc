@@ -1,0 +1,1 @@
+This streams the user orders and denormalizes the data by joining facts (orders) with the dimension (customer).

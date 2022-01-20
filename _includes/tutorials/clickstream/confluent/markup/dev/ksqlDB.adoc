@@ -1,0 +1,1 @@
+Now you can process the data in a variety of ways by enriching the clickstream data with user information, analyze errors, aggregate data into windows of time, etc.
