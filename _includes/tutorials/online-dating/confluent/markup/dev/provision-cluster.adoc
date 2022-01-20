@@ -1,0 +1,1 @@
+Provision a Kafka cluster in link:https://www.confluent.io/confluent-cloud/tryfree/?utm_source=github&utm_medium=ksqldb_recipes&utm_campaign=fleet_management[Confluent Cloud].

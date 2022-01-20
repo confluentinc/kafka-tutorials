@@ -836,3 +836,12 @@ credit-card-activity:
   introduction: "One way many financial institutions detect fraud is to check for unusual activity in a short period of time, raising a red flag to promptly alert their customers and confirm any recent unexpected purchases. Fraud can involve using stolen credit cards, forging checks and account numbers, multiple duplicate transactions, and more. This recipe analyzes a customer’s typical credit card spend, and flags the account when there are instances of excessive spending as a possible case of credit card theft. <center><img src='/prototype-recipe/assets/img/credit-card-activity.jpg'></center>"
   status:
     confluent: enabled
+
+online-dating:
+  title: "Match Users for Online Dating"
+  meta-description: "This ksqlDB recipe tracks repeated interactions between users of a social network or dating site."
+  slug: "/online-dating"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "When it comes to online dating, matching users based on mutual interests and their personal preferences, while enabling real-time communication are key to finding the right counterpart. This recipe enables developers to dynamically determine which pairs of people have connected and are ripe to get the ball rolling. <center><img src='/prototype-recipe/assets/img/dating.png'></center>"
+  status:
+    confluent: enabled

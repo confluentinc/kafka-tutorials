@@ -269,16 +269,8 @@ for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
             if [ $type == "confluent" ]; then
                 if [ ! -f $KT_HOME/tutorials/$NEW_TUTORIAL/confluent.html ]; then
 
-                   cp $KT_HOME/templates/confluent/filtered/confluent-* $TEMP_WORK_DIR
+                    cp $KT_HOME/tutorials/$ORIG_TUTORIAL/confluent.html $KT_HOME/tutorials/$NEW_TUTORIAL/confluent.html
 
-                       sed -i '.orig' "s/<PERMALINK>/${PERMALINK}/g" $TEMP_WORK_DIR/confluent-front-matter-template.html
-                       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/confluent-front-matter-template.html
-
-                       sed -i '.orig' "s/<SEMAPHORE-TEST-NAME>/${SEMAPHORE_TEST_NAME}/g" $TEMP_WORK_DIR/confluent-semaphore-template.yml
-                       sed -i '.orig' "s/<TUTORIAL-SHORT-NAME>/${NEW_TUTORIAL}/g" $TEMP_WORK_DIR/confluent-semaphore-template.yml
-
-                       echo "Adding new front-matter file for confluent.html"
-                       cp $TEMP_WORK_DIR/confluent-front-matter-template.html $KT_HOME/tutorials/$NEW_TUTORIAL/confluent.html
                     else
                       echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/confluent"
                     fi 
