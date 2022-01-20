@@ -961,8 +961,11 @@ loyalty-rewards:
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
   introduction: "Customer loyalty programs are everywhere in retail, even if it's as simple as 'Get 10 stamps for a free coffee.' However, in order to create a more sophisticated rewards program that engages customers at the right place and time, multiple data streams need to be aggregated to properly apply the right promotions. This recipe showcases how a coffee shop has implemented three separate promotions at the same time:
 <BR>
-&ndash A simple 'the more you buy, the bigger your discount' benefit
-&ndash An online version of 'Buy N, get 1 free' recurring reward
-&ndash A customizable program that looks at individual customer behavior and offers tailored personalized rewards <center><img src='/prototype-recipe/assets/img/loyalty.png'></center>"
+<ul>
+<li>A simple 'the more you buy, the bigger your discount' benefit
+<li>An online version of 'Buy N, get 1 free' recurring reward
+<li>A customizable program that looks at individual customer behavior and offers tailored personalized rewards 
+</ul>
+<center><img src='/prototype-recipe/assets/img/loyalty.png'></center>"
   status:
     confluent: enabled
