@@ -54,6 +54,7 @@
       {% unless page.help_wanted %}
         <div class="example">
           <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
+          <img src="{{ site.data.tutorials[page.static_data].introduction_media | relative_url }}" />
         </div>
       {% endunless %}
 
