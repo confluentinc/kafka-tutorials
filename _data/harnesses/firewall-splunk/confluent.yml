@@ -22,7 +22,7 @@ dev:
       content:
         - action: skip
           render:
-            file: shared/markup/ccloud/connect.adoc
+            file: shared/markup/ccloud/self_managed_connector.adoc
 
         - action: skip
           render:
@@ -54,14 +54,14 @@ dev:
           render:
             file: tutorials/firewall-splunk/confluent/markup/dev/manual.adoc
 
+    - title: Write the data out
+      content:
+        - action: skip
+          render:
+            file: tutorials/firewall-splunk/confluent/markup/dev/sink.adoc
+
     - title: Cleanup
       content:
         - action: skip
           render:
             file: shared/markup/ccloud/cleanup.adoc
-
-    - title: Explanation
-      content:
-        - action: skip
-          render:
-            file: tutorials/firewall-splunk/confluent/markup/dev/explanation.adoc
