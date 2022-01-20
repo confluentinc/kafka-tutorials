@@ -1,87 +1,147 @@
-Typically, customer information would be sourced from an existing database. As customer occupancy changes, tables in the database are updated and we can stream them into Kafka using Kafka Connect with [change data capture](https://www.confluent.io/blog/cdc-and-streaming-analytics-using-debezium-kafka/). The earlier example of the `MySqlCdcSource` configuration could be used to capture changes from a `customer` database's `tenant` table into the Kafka cluster. This connector is provided as [fully managed on Confluent Cloud](https://docs.confluent.io/cloud/current/connectors/cc-mysql-source-cdc-debezium.html).  
+### Create and populate the underlying tables
 
-Telemetry data may be sourced into Kafka in a variety of ways. MQTT is a popular source for the Internet of Things (IoT) devices, and smart electrical panels may provide this functionality out of the box. The [MQTT Connector](https://docs.confluent.io/cloud/current/connectors/cc-mqtt-source.html) is available as [fully managed on Confluent Cloud](https://docs.confluent.io/cloud/current/connectors/cc-mqtt-source.html).
+ksqlDB supports tables and streams as objects. Both are backed by Kafka topics. Here we're going to create three tables in a normalized data model to hold information about our customers, their bookings, and the flights. 
 
-The current state of customer tenant occupancy can be represented with a ksqlDB `TABLE`. Events streamed into the `tenant-occupancy` topic represent a customer (`customer_id`) beginning an occupancy of a particular tenant (`tenant_id`). As events are observed on the `tenant-occupancy` topic, the table will model the current set of tenant occupants. 
+[//]: # "`TODO: Simple ERD of the three tables`"
 
-[source,sql]
-----
-CREATE TABLE tenant_occupancy (
-  tenant_id VARCHAR PRIMARY KEY,
-  customer_id BIGINT
-) WITH (
-  KAFKA_TOPIC = 'tenant-occupancy',
-  PARTITIONS = 6,
-  KEY_FORMAT = 'JSON',
-  VALUE_FORMAT = 'JSON'
-);
-----
+First off, let's create a table that will hold data about our customers: 
 
-You can query this table to determine which customer occupies which tenant.
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/c01.sql %}</code></pre>
+++++
+
+This will store the data in a Kafka topic. In practice, you would probably populate this directly from your application or a feed from your database using Kafka Connect. For simplicity, here we'll just load some data directly: 
 
 [source,sql]
 ----
-SELECT * FROM tenant_occupancy EMIT CHANGES;
+INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (1, 'Gleda Lealle', '93 Express Point', 'glealle0@senate.gov', '+351 831 301 6746', 'Silver');
+INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (2, 'Gilly Crocombe', '332 Blaine Avenue', 'gcrocombe1@homestead.com', '+33 203 565 3736', 'Silver');
+INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (3, 'Astrix Aspall', '56 Randy Place', 'aaspall2@ebay.co.uk', '+33 679 296 6645', 'Gold');
+INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (4, 'Ker Omond', '23255 Tennessee Court', 'komond3@usnews.com', '+33 515 323 0170', 'Silver');
+INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (5, 'Arline Synnott', '144 Ramsey Avenue', 'asynnott4@theatlantic.com', '+62 953 759 8885', 'Bronze');
 ----
 
-When customers leave a tenant, the source system will need to send a [tombstone record](https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/create-table/#primary-key) (an event with a valid `tenant_id` key and a `null` value). ksqlDB will process the tombstone by removing the row with the given key from the table.
+Next, we'll create a table of flights and associated bookings for our customers. 
 
-Panel sensor readings can be streamed directly into a topic or sourced from an upstream system. A `STREAM` captures the power readings when they flow from the smart panel into Kafka. Each event contains a panel identifier and the associated tenant, in addition to two power readings.
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/c02.sql %}</code></pre>
+++++
+
+For these two tables, let's add some data. As before, this would usually come directly from your application or a stream of data from another system integrated through Kafka Connect. 
 
 [source,sql]
 ----
-CREATE STREAM panel_power_readings (
-  panel_id BIGINT,
-  tenant_id VARCHAR,
-  panel_current_utilization DOUBLE,
-  tenant_kwh_usage BIGINT
-) WITH (
-  KAFKA_TOPIC = 'panel-readings',
-  PARTITIONS = 6,
-  KEY_FORMAT = 'JSON',
-  VALUE_FORMAT = 'JSON'
-);
+INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (1, 'LBA', 'AMS', '642',  '2021-11-18T06:04:00', '2021-11-18T06:48:00');
+INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (2, 'LBA', 'LHR', '9607', '2021-11-18T07:36:00', '2021-11-18T08:05:00');
+INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (3, 'AMS', 'TXL', '7968', '2021-11-18T08:11:00', '2021-11-18T10:41:00');
+INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (4, 'AMS', 'OSL', '496',  '2021-11-18T11:20:00', '2021-11-18T13:25:00');
+INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (5, 'LHR', 'JFK', '9230', '2021-11-18T10:36:00', '2021-11-18T19:07:00');
+
+INSERT INTO bookings (ID, CUSTOMER_ID, FLIGHT_ID) VALUES (1,2,1);
+INSERT INTO bookings (ID, CUSTOMER_ID, FLIGHT_ID) VALUES (2,1,1);
+INSERT INTO bookings (ID, CUSTOMER_ID, FLIGHT_ID) VALUES (3,5,3);
+INSERT INTO bookings (ID, CUSTOMER_ID, FLIGHT_ID) VALUES (4,4,2);
 ----
 
-* `panel_current_utilization` represents the percentage of total capacity of the panel and is useful for business continuation monitoring
-* `tenant_kwh_usage` provides the total amount of energy consumed by the tenant in the current month 
+### Denormalize the data
 
-A simple example for determining when a panel is overloaded is provided by:
+To give us a single view of the passenger/flight data, we'll denormalize down the three tables into one. First, we join the customers to bookings that they've made and build a new table as a result: 
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}</code></pre>
+++++
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/j01.sql %}</code></pre>
+++++
+
+From here, we join to details of the flights themselves: 
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}</code></pre>
+++++
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/j02.sql %}</code></pre>
+++++
+
+At this stage, we can query the data held in the tables to show which customers are booked on which flights: 
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}</code></pre>
+++++
 
 [source,sql]
 ----
-CREATE STREAM overloaded_panels AS 
-  SELECT panel_id, tenant_id, panel_current_utilization 
-    FROM panel_power_readings 
-    WHERE panel_current_utilization >= 0.85
-  EMIT CHANGES;
+SELECT  CB_C_NAME           AS NAME
+      , CB_C_EMAIL          AS EMAIL
+      , CB_C_LOYALTY_STATUS AS LOYALTY_STATUS
+      , F_ORIGIN            AS ORIGIN
+      , F_DESTINATION       AS DESTINATION
+      , F_CODE              AS CODE
+      , F_SCHEDULED_DEP     AS SCHEDULED_DEP 
+FROM customer_flights
+EMIT CHANGES;      
 ----
 
-This command filters the panel power readings for instances where utilization is 85% or higher. This stream could be used in a monitoring or alerting context to notify on-call personnel of a potential issue with the power supplies to the aviation.
+[source,text]
+----
++---------------+------------------------+---------------+-------+------------+-----+------------------------+
+|NAME           |EMAIL                   |LOYALTY_STATUS |ORIGIN |DESTINATION |CODE |SCHEDULED_DEP           |
++---------------+------------------------+---------------+-------+------------+-----+------------------------+
+|Gilly Crocombe |gcrocombe1@homestead.com|Silver         |LBA    |AMS         |642  |2021-11-18T06:04:00.000 |
+|Ker Omond      |komond3@usnews.com      |Silver         |LBA    |LHR         |9607 |2021-11-18T07:36:00.000 |
+|Gleda Lealle   |glealle0@senate.gov     |Silver         |LBA    |AMS         |642  |2021-11-18T06:04:00.000 |
+|Ker Omond      |komond3@usnews.com      |Silver         |AMS    |TXL         |7968 |2021-11-18T08:11:00.000 |
+----
 
-To provide billing reports, a `STREAM` is created that joins the panel sensor readings with the customer tenant information. Functions are used to create a billable month indicator along with the necessary fields from the joined stream and table. 
+The last step in denormalizing the data is to set the key of the table to that of the flight ID so that it can be joined to the updates (which we'll get to below). 
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}</code></pre>
+++++
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/r01.sql %}</code></pre>
+++++
+
+We now have the `customer_flights` table but keyed on `FLIGHT_ID`. 
+
+### Add a stream of flight updates
+
+In the `flights` table above, we have the scheduled departure time of a flight (`SCHEDULED_DEP`). Now, let's introduce a stream of events that any flight changes will be written to. Again, we're populating it directly, but in the real world it'll be coming from somewhere else—perhaps Kafka Connect pulling the data from a JMS queue (or any of the other link:https://hub.confluent.io[hundreds of supported sources]). 
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/c03.sql %}</code></pre>
+++++
+
+### Join data
+
+By joining between our customer flight booking data and any flight updates, we can provide a stream of notifications to passengers. Many platforms exist for providing the push notification, whether bespoke in app or using a link:https://www.confluent.io/blog/building-a-telegram-bot-powered-by-kafka-and-ksqldb/[third-party messaging tool]. ksqlDB can integrate with these using its link:https://docs.ksqldb.io/en/latest/developer-guide/api/[REST interface], native link:https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-clients/java-client/[Java client], or one of the several https://docs.ksqldb.io/en/0.22.0-ksqldb/developer-guide/ksqldb-clients/[community-supported clients]. 
+
+In one ksqlDB window, run the following ksqlDB query to return customer details with flight updates. This is the same query that you would run from your application, and it runs continuously. 
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/p01.sql %}</code></pre>
+++++
+
+In another ksqlDB window, add some data to the flight update stream: 
 
 [source,sql]
 ----
-CREATE STREAM billable_power AS 
-  SELECT 
-      FORMAT_TIMESTAMP(FROM_UNIXTIME(panel_power_readings.ROWTIME), 'yyyy-MM') 
-        AS billable_month,
-      tenant_occupancy.customer_id as customer_id,
-      tenant_occupancy.tenant_id as tenant_id, 
-      panel_power_readings.tenant_kwh_usage as tenant_kwh_usage
-    FROM panel_power_readings
-    INNER JOIN tenant_occupancy ON 
-      panel_power_readings.tenant_id = tenant_occupancy.tenant_id
-  EMIT CHANGES;
+INSERT INTO flight_updates (ID, FLIGHT_ID, UPDATED_DEP, REASON) VALUES (1, 2, '2021-11-18T09:00:00.000', 'Cabin staff unavailable');
+INSERT INTO flight_updates (ID, FLIGHT_ID, UPDATED_DEP, REASON) VALUES (2, 3, '2021-11-19T14:00:00.000', 'Mechanical checks');
+INSERT INTO flight_updates (ID, FLIGHT_ID, UPDATED_DEP, REASON) VALUES (3, 1, '2021-11-19T08:10:09.000', 'Icy conditions');
 ----
 
-Finally, the `billable_power_report` aggregates the `billable_power` stream into a `TABLE` that can be queried to create reports by month, customer, and tenant.
+In the original window, you will see the details of which passengers are impacted by which flight changes:
 
-[source,sql]
+[source,text]
 ----
-CREATE TABLE billable_power_report WITH (KEY_FORMAT = 'JSON') AS
-  SELECT customer_id, tenant_id, billable_month, MAX(tenant_kwh_usage) as kwh
-    FROM billable_power
-    GROUP BY tenant_id, customer_id, billable_month;
++---------------+------------------------+--------------------+----------------------+---------------------------+------------------+-------------------+------------+
+|CUSTOMER_NAME  |FLIGHT_CHANGE_REASON    |FLIGHT_UPDATED_DEP  |FLIGHT_SCHEDULED_DEP  |CUSTOMER_EMAIL             |CUSTOMER_PHONE    |FLIGHT_DESTINATION |FLIGHT_CODE |
++---------------+------------------------+--------------------+----------------------+---------------------------+------------------+-------------------+------------+
+|Gleda Lealle   |Icy conditions          |2021-11-19T08:10:09 |2021-11-18T06:04:00   |glealle0@senate.gov        |+351 831 301 6746 |AMS                |642         |
+|Ker Omond      |Cabin staff unavailable |2021-11-18T09:00:00 |2021-11-18T07:36:00   |komond3@usnews.com         |+33 515 323 0170  |LHR                |9607        |
+|Arline Synnott |Mechanical checks       |2021-11-19T14:00:00 |2021-11-18T08:11:00   |asynnott4@theatlantic.com  |+62 953 759 8885  |TXL                |7968        |
 ----

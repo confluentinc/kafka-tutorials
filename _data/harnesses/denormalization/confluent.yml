@@ -54,6 +54,12 @@ dev:
           render:
             file: tutorials/denormalization/confluent/markup/dev/manual.adoc
 
+    - title: Write the data out
+      content:
+        - action: skip
+          render:
+            file: tutorials/denormalization/confluent/markup/dev/sink.adoc
+
     - title: Cleanup
       content:
         - action: skip
