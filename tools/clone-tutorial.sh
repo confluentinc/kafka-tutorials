@@ -269,7 +269,7 @@ for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
             if [ $type == "confluent" ]; then
                 if [ ! -f $KT_HOME/tutorials/$NEW_TUTORIAL/confluent.html ]; then
 
-                    cp $KT_HOME/tutorials/$ORIG_TUTORIAL/confluent.html $KT_HOME/tutorials/$NEW_TUTORIAL/confluent.html
+                    cp $KT_HOME/tutorials/$ORIG_TUTORIAL_BASE_DIR_NAME/confluent.html $KT_HOME/tutorials/$NEW_TUTORIAL/confluent.html
 
                     else
                       echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/confluent"

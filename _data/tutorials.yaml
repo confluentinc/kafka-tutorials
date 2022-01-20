@@ -845,3 +845,22 @@ online-dating:
   introduction: "When it comes to online dating, matching users based on mutual interests and their personal preferences, while enabling real-time communication are key to finding the right counterpart. This recipe enables developers to dynamically determine which pairs of people have connected and are ripe to get the ball rolling. <center><img src='/prototype-recipe/assets/img/dating.png'></center>"
   status:
     confluent: enabled
+
+datacenter:
+  title: "Analyze Datacenter Power Usage"
+  meta-description: "This ksqlDB recipe analyzes telemetry data from datacenter power electrical smart panels. The stream processing use cases for this data include detection of power usage levels for safety and accounting purposes."
+  slug: "/datacenter"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "For businesses that provide cloud infrastructure across multiple data centers with isolated tenants, you may have an accounting unit to accurately monitor and invoice your customers. Oftentimes these data centers consume large amounts of electricity and are constructed with smart electrical panels that control the power supplies to multiple customer tenants. This recipe demonstrates how to accurately bill each customer by capturing and analyzing telemetry data from these smart panels.<center><img src='/prototype-recipe/assets/img/datacenter.jpg'></center>"
+  status:
+    ksql: disabled
+    kstreams: disabled
+    kafka: disabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
