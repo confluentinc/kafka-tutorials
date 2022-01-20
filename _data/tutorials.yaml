@@ -854,3 +854,12 @@ datacenter:
   introduction: "For businesses that provide cloud infrastructure across multiple data centers with isolated tenants, you may have an accounting unit to accurately monitor and invoice your customers. Oftentimes these data centers consume large amounts of electricity and are constructed with smart electrical panels that control the power supplies to multiple customer tenants. This recipe demonstrates how to accurately bill each customer by capturing and analyzing telemetry data from these smart panels.<center><img src='/prototype-recipe/assets/img/datacenter.jpg'></center>"
   status:
     confluent: enabled
+
+internet-of-things:
+  title: "Flag Unhealthy IoT Devices"
+  meta-description: "This recipe demonstrates how to process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation."
+  slug: "/internet-of-things"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "Organizations are turning towards the Internet of Things (IoT) to provide immediately actionable insights into the health and performance of various devices. However, each device can emit high volumes of telemetry data, making it difficult to accurately analyze and determine if and when something needs attention in real time. This recipe shows you how to process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation. <center><img src='/prototype-recipe/assets/img/iot.jpg'></center>"
+  status:
+    confluent: enabled

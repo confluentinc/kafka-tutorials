@@ -1,35 +1,27 @@
--- Stream of fleet descriptions
-CREATE SOURCE CONNECTOR fleet_description WITH (
-  'connector.class'          = 'MongoDbAtlasSource',
-  'name'                     = 'recipe-mongodb-fleet_description',
-  'kafka.api.key'            = '<my-kafka-api-key>',
-  'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'connection.host'          = '<database-host-address>',
-  'connection.user'          = '<database-username>',
-  'connection.password'      = '<database-password>',
-  'database'                 = '<database-name>',
-  'collection'               = '<database-collection-name>',
-  'poll.await.time.ms'       = '5000',
-  'poll.max.batch.size'      = '1000',
-  'copy.existing'            = 'true',
-  'output.data.format'       = 'JSON',
-  'tasks.max'                = '1'
+CREATE SOURCE CONNECTOR customer WITH (
+  'connector.class'       = 'MySqlCdcSource',
+  'name'                  = 'Customer_Tenant_Source',
+  'kafka.api.key'         = '<my-kafka-api-key>',
+  'kafka.api.secret'      = '<my-kafka-api-secret>',
+  'database.hostname'     = '<db-hostname>',
+  'database.port'         = '3306',
+  'database.user'         = '<db-user>',
+  'database.password'     = '<db-password>',
+  'database.server.name'  = 'mysql',
+  'database.whitelist'    = 'customer',
+  'table.includelist'     = 'customer.tenant',
+  'snapshot.mode'         = 'initial',
+  'output.data.format'    = 'AVRO',
+  'tasks.max'             = '1'
 );
 
--- Stream of current location of each vehicle in the fleet
-CREATE SOURCE CONNECTOR fleet_location WITH (
-  'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-fleet_location',
-  'kafka.api.key'            = '<my-kafka-api-key>',
-  'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'connection.host'          = '<my-database-endpoint>',
-  'connection.port'          = '5432',
-  'connection.user'          = 'postgres',
-  'connection.password'      = '<my-database-password>',
-  'db.name'                  = '<db-name>',
-  'table.whitelist'          = 'fleet_location',
-  'timestamp.column.name'    = 'created_at',
-  'output.data.format'       = 'JSON',
-  'db.timezone'              = 'UTC',
-  'tasks.max'                = '1'
+CREATE SOURCE CONNECTOR readings WITH (
+  'connector.class'       = 'MqttSource',
+  'name'                  = 'Smart_Panel_Source',
+  'kafka.api.key'         = '<my-kafka-api-key>',
+  'kafka.api.secret'      = '<my-kafka-api-secret>',
+  'kafka.topic'           = 'panel-readings',
+  'mqtt.server.uri'       = 'tcp=//<mqtt-server-hostname>=1881',
+  'mqtt.topics'           = '<mqtt-topic>',
+  'tasks.max'             = '1'
 );
