@@ -827,3 +827,12 @@ inventory:
   introduction: "Having an up-to-date, real-time view of inventory on every item is essential in today's online marketplaces. This helps businesses maintain the optimum level of inventory—not too much and not too little—so that they can meet customer demand while minimizing inventory holding costs. This recipe demonstrates how to track and update inventory in real time, so you always have an up-to-date snapshot of your stock for both your customers and merchandising teams. <center><img src='/prototype-recipe/assets/img/inventory.jpg'></center>"
   status:
     confluent: enabled
+
+credit-card-activity:
+  title: "Detect Unusual Credit Card Activity"
+  meta-description: "This recipe analyzes total credit card spend, and if it's more than the average credit card usage of a customer, the account will be flagged as a possible case of credit card theft."
+  slug: "/credit-card-activity"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "One way many financial institutions detect fraud is to check for unusual activity in a short period of time, raising a red flag to promptly alert their customers and confirm any recent unexpected purchases. Fraud can involve using stolen credit cards, forging checks and account numbers, multiple duplicate transactions, and more. This recipe analyzes a customer’s typical credit card spend, and flags the account when there are instances of excessive spending as a possible case of credit card theft. <center><img src='/prototype-recipe/assets/img/credit-card-activity.jpg'></center>"
+  status:
+    confluent: enabled

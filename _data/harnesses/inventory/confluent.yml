@@ -4,7 +4,7 @@ answer:
       content:
         - action: skip
           render:
-            file: tutorials/inventory/ccloud/markup/dev/answer-short.adoc
+            file: tutorials/inventory/confluent/markup/dev/answer-short.adoc
 
 dev:
   steps:
@@ -12,7 +12,7 @@ dev:
       content:
         - action: skip
           render:
-            file: tutorials/inventory/ccloud/markup/dev/provision-cluster.adoc
+            file: tutorials/inventory/confluent/markup/dev/provision-cluster.adoc
 
         - action: skip
           render:
@@ -26,7 +26,7 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/inventory/ccloud/markup/dev/source.adoc
+            file: tutorials/inventory/confluent/markup/dev/source.adoc
 
         - action: skip
           render:
@@ -36,7 +36,7 @@ dev:
       content:
         - action: skip
           render:
-            file: tutorials/inventory/ccloud/markup/dev/ksqlDB.adoc
+            file: tutorials/inventory/confluent/markup/dev/ksqlDB.adoc
 
         - action: skip
           render:
@@ -44,7 +44,7 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/inventory/ccloud/markup/dev/process.adoc
+            file: tutorials/inventory/confluent/markup/dev/process.adoc
 
         - action: skip
           render:
@@ -52,7 +52,7 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/inventory/ccloud/markup/dev/manual.adoc
+            file: tutorials/inventory/confluent/markup/dev/manual.adoc
 
     - title: Cleanup
       content:
