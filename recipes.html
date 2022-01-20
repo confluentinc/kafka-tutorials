@@ -1,0 +1,128 @@
+---
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include vendors.html %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ site.description }}">
+    <meta class="swiftype" name="site-id" data-type="integer" content="5" />
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/sass/fonts.css" | relative_url }}" />
+    <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
+    <script src="https://cdn.optimizely.com/js/15784060578.js"></script>
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6";analytics.SNIPPET_VERSION="4.13.2";
+      analytics.load("az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6");
+      analytics.page();
+      }}();
+    </script>
+  </head>
+  <body class="pg-main">
+    {% include nav.html %}
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="headline">
+            <h1>
+              Welcome to Stream Processing Use Cases.
+            </h1>
+            <h2 class="subtitle">ksqlDB recipes provide a toolkit of code samples for the most popular stream processing use cases. <br/>&nbsp;<br/>Run the examples with <a href="https://www.confluent.io/confluent-cloud/tryfree/">Confluent Cloud</a>, Apache Kafka as a fully managed cloud service, deployable on <a href="https://www.confluent.io/confluent-cloud/tryfree/"><img src="{{ "/assets/img/providers.png" | relative_url }}" width="140" /></a></h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cards-container">
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-kafka-blue.svg" | relative_url }}" />
+            <div>Anomaly and Pattern Detection</div>
+          </div>
+           <ul>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-atom.svg" | relative_url }}" />
+            <div>Customer 360</div>
+          </div>
+          <ul>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-cluster.svg" | relative_url }}" />
+            <div>Cybersecurity</div>
+          </div>
+          <ul>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cards secondary-card-row">
+
+       <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-stream.svg"  | relative_url }}" />
+            <div>Predictive Analytics</div>
+          </div>
+          <ul>
+            <li><a href="fleet-management/confluent.html">Optimize fleet management</a></li>
+            <li><a href="inventory/confluent.html">Optimize omni-channel inventory</a></li>
+          </ul>
+          <!--div id="show"><a class="button is-small is-fullwidth">More</a></div-->
+        </div>
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-hub-spoke.svg"  | relative_url }}" />
+            <div>Real-time Analytics</div>
+          </div>
+          <ul>
+          </ul>
+        </div>
+
+        <div class="card card-cta">
+          <div class="title">
+            <div>Be the first to be notified about new recipes</div>
+            <form id="mktoForm_3977" style="display:none"></form>
+            <div id="mkto-form">
+              <div class="form">
+                <div class="is-hidden">Thank you!</div>
+                <a class="cta-button secondary">Sign Up</a>
+                <form>
+                  <input type="email" placeholder="Enter Email" name="Email" />
+                  <button class="cta-button secondary" type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div id="signup-notice" class="is-hidden notice">
+            <p>
+              By subscribing you understand we will process your personal information in accordance with our <a href="https://www.confluent.io/privacy">Privacy Statement</a>.
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <!--END 2nd card row -->
+    </div>
+
+
+    {% include footer.html %}
+    <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/nav.js" | relative_url }}"></script>
+    <script src="//go.confluent.io/js/forms2/js/forms2.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
+  </body>
+</html>
