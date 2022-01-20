@@ -59,9 +59,3 @@ dev:
         - action: skip
           render:
             file: shared/markup/ccloud/cleanup.adoc
-
-    - title: Explanation
-      content:
-        - action: skip
-          render:
-            file: tutorials/messaging-modernization/confluent/markup/dev/explanation.adoc
