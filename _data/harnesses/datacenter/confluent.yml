@@ -12,7 +12,7 @@ dev:
       content:
         - action: skip
           render:
-            file: tutorials/datacenter/confluent/markup/dev/provision-cluster.adoc
+            file: shared/markup/ccloud/provision-cluster.adoc
 
         - action: skip
           render:

@@ -863,3 +863,106 @@ internet-of-things:
   introduction: "Organizations are turning towards the Internet of Things (IoT) to provide immediately actionable insights into the health and performance of various devices. However, each device can emit high volumes of telemetry data, making it difficult to accurately analyze and determine if and when something needs attention in real time. This recipe shows you how to process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation. <center><img src='/prototype-recipe/assets/img/iot.jpg'></center>"
   status:
     confluent: enabled
+
+denormalization:
+  title: "Enrich Orders with Change Data Capture (CDC)"
+  meta-description: "This ksqlDB recipe demonstrates this principle by streaming from a SQL Server, denormalizing the data, and writing to Snowflake."
+  slug: "/denormalization"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "Change data capture (CDC) plays a vital role to ensure recently changed data is quickly ingested, transformed, and used by downstream analytics platforms and applications. If you have transactional events being written to a database, such as sales orders from a marketplace, you can use CDC to capture and denormalize these change events into a single table of enriched data to provide better query performance and consumption. This recipe demonstrates this principle by streaming data from a SQL Server, denormalizing the data, and writing it to Snowflake. <center><img src='/prototype-recipe/assets/img/denormalized-data.png'></center>"
+  status:
+    confluent: enabled
+
+dynamic-pricing:
+  title: "Build a Dynamic Pricing Strategy"
+  meta-description: "This ksqlDB recipe demonstrates how to use ksqlDB to set dynamic pricing in an online marketplace."
+  slug: "/dynamic-pricing"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "As consumers increasingly transact digitally and online comparison shopping has become common practice, implementing a dynamic pricing strategy is essential to stay competitive. This recipe helps you keep track of pricing trends and statistics, such as lowest, median, and average prices over a given timeframe, so both buyers and sellers can make dynamic offers based on historical sales activity. <center><img src='/prototype-recipe/assets/img/pricing.jpg'></center>"
+  status:
+    confluent: enabled
+
+payment-status-check:
+  title: "Automate Instant Payment Verifications"
+  meta-description: "This ksqlDB recipe shows you how to validate payments against available funds and anti-money laundering (AML) policies."
+  slug: "/payment-status-check"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "As digital transactions become the new norm, it’s critical to check customer payment requests in real time for suspicious activity. This means financial institutions must verify the payment by checking it against any regulatory restrictions before proceeding to process it. This recipe shows you how to validate these payments against available funds and anti-money laundering (AML) policies. <center><img src='/prototype-recipe/assets/img/payment.jpg'></center>"
+  status:
+    confluent: enabled
+
+salesforce:
+  title: "Handle Corrupted Data From Salesforce"
+  meta-description: "This ksqlDB recipe streams changes of Salesforce records and identifies gap events."
+  slug: "/salesforce"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "Salesforce sends a notification when a change to a Salesforce record occurs as part of a create, update, delete, or undelete operation. However, if there is corrupt data in Salesforce, it sends a gap event instead of a change event, and these gap events should be properly handled to avoid discrepancies between Salesforce reports and internal dashboards. This recipe demonstrates how to process Salesforce data and filter corrupt events, which allows a downstream application to appropriately process and reconcile those events for accurate reporting and analytics. <center><img src='/prototype-recipe/assets/img/salesforce.jpg'></center>"
+  status:
+    confluent: enabled
+
+SSH-attack:
+  title: "Detect and Analyze SSH Attacks"
+  meta-description: "This recipe processes Syslog data and streams out pairs of usernames and IP addresses from failed login attempts."
+  slug: "/SSH-attack"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "There are lots of ways SSH can be abused, but one of the most straightforward ways to detect suspicious activity is to monitor for rejected logins. This recipe processes Syslog data to detect failed logins, while streaming out those pairs of usernames and IP addresses. With ksqlDB, you can filter and react to unwanted events in real time to minimize damage rather than performing historical analysis of Syslog data from cold storage. <center><img src='/prototype-recipe/assets/img/ssh-attack.jpg'></center>"
+  status:
+    confluent: enabled
+
+firewall-splunk:
+  title: "Identify Firewall Deny Events from Splunk"
+  meta-description: "This recipe demonstrates how to use ksqlDB to identify and filter firewall deny events from Splunk."
+  slug: "/firewall-splunk"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "In the Security Information and Event Management (SIEM) world, it's important to have a scalable cyber intelligence platform so that you can swiftly identify potential security threats and vulnerabilities.
+But with each source having its own set of collectors generating different data flows, there may be too much aggregate information for you to analyze it and take action in a timely manner.
+If you start by intercepting those data flows as they arrive from their sources, you can analyze or filter the data in any way you wish before the data is sent to an aggregator.
+<BR><BR>
+This recipe demonstrates how to optimize Splunk data ingestion by using the [Splunk S2S Source connector](https://docs.confluent.io/kafka-connect-splunk-s2s/current/overview.html), which can receive data from a Splunk Universal Forwarder (UF) with the Splunk 2 Splunk protocol, to intercept data that would normally be sent to a Splunk HTTP Event Collector (HEC).
+The stream processing application filters for `deny` events, removes unnecessary fields to reduce message size, and then sends the new, targeted set of events to Splunk for indexing.
+You can also extend this solution to intercept data from a variety of SIEM vendors and create a vendor-independent solution that leverages multiple tools and analytic destinations."
+  status:
+    confluent: enabled
+
+aviation:
+  title: "Notify Passengers of Flight Updates"
+  meta-description: "This ksqlDB recipe uses a stream of flight updates to notify passengers if their flight is delayed."
+  slug: "/aviation"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "Worse than having a flight delayed is not being notified about the important changes that come with it, such as new boarding times, cancellations, gate changes, and estimated arrivals. This recipe shows how ksqlDB can help airlines combine passenger, flight booking, and current flight plan data to immediately alert a passenger about flight updates in real time.<center><img src='/prototype-recipe/assets/img/flight.png'></center>"
+  status:
+    confluent: enabled
+
+clickstream:
+  title: "Understand User Behavior with Clickstream Data"
+  meta-description: "This ksqlDB recipe processes clickstream data to understand the behavior of its online users."
+  slug: "/clickstream"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "Analyzing clickstream data enables businesses to optimize webpages and determine the effectiveness of their web presence by better understanding their users’ click activity and navigation patterns. Because clickstream data often involves large data volumes, stream processing is a natural fit, as it quickly processes data as soon as it is ingested for analysis. This recipe enables you to measure key statistics on visitor activity over a given time frame, such as how many webpages they are viewing, how long they’re engaging with the website, and more. <center><img src='/prototype-recipe/assets/img/clickstream.png'></center>"
+  status:
+    confluent: enabled
+
+messaging-modernization:
+  title: "Modernize Messaging Workloads"
+  meta-description: "This ksqlDB recipe shows you how to modernize messaging workloads to move beyond queues and pub/sub"
+  slug: "/messaging-modernization"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "Traditional messaging systems like Message Queues (MQs), Enterprise Service Buses (ESBs), and Extract, Transform and Load (ETL) tools have been widely used for decades to handle message distribution and inter-service communication across distributed applications.
+However, they can no longer keep up with the needs of modern applications across hybrid and multi cloud environments for asynchronicity, heterogeneous datasets and high volume throughput.
+Designed as monolithic systems, they are riddled with many challenges: they lack persistence or the ability to efficiently handle highly scalable, efficient and reliable message delivery.
+If you instead want to do real-time interactions and in-flight stream processing that modern applications demand, you can use a connector to read critical data from legacy messaging systems into Kafka and then do the processing there."
+  status:
+    confluent: enabled
+
+loyalty-rewards:
+  title: "Build Customer Loyalty Programs"
+  meta-description: "This recipe tracks customers' purchasing patterns, generating tailored rewards for a loyalty scheme."
+  slug: "/loyalty-rewards"
+  question: "TODO: INSERT LAUNCH RECIPE BUTTON"
+  introduction: "Customer loyalty programs are everywhere in retail, even if it's as simple as 'Get 10 stamps for a free coffee.' However, in order to create a more sophisticated rewards program that engages customers at the right place and time, multiple data streams need to be aggregated to properly apply the right promotions. This recipe showcases how a coffee shop has implemented three separate promotions at the same time:
+<BR>
+&ndash A simple 'the more you buy, the bigger your discount' benefit
+&ndash An online version of 'Buy N, get 1 free' recurring reward
+&ndash A customizable program that looks at individual customer behavior and offers tailored personalized rewards <center><img src='/prototype-recipe/assets/img/loyalty.png'></center>"
+  status:
+    confluent: enabled
