@@ -127,9 +127,7 @@ file('_includes/tutorials/').eachDir { dir ->
     
     // ksql projects don't use gradle. we will skip it
     if ( ( !(directoryName.contains("ksql")) && !(directoryName.contains("confluent")) ) && directoryName.endsWith("code") ) { 
-      println directoryName
       def projectName = getProjectName(directoryName)
-      println projectName
       if (!findProject(":${projectName}")) {
         throw new GradleException(
             "Tutorial ${projectName} was not included into the build. Check settings.gradle for details.")
