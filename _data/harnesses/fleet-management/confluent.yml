@@ -53,3 +53,9 @@ dev:
         - action: skip
           render:
             file: tutorials/fleet-management/ccloud/markup/dev/manual.adoc
+
+    - title: Cleanup
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/cleanup.adoc
