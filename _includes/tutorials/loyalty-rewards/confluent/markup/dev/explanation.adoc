@@ -231,7 +231,6 @@ CREATE TABLE promotion_loose_leaf AS
   AND NOT ARRAY_CONTAINS( collect_set(product_id), 'tea' )
   AND sum(price) > 20;
 ----
-```
 
 Querying that table looks like this:
 
