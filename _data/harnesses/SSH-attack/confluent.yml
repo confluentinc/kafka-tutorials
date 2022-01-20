@@ -22,7 +22,7 @@ dev:
       content:
         - action: skip
           render:
-            file: shared/markup/ccloud/connect.adoc
+            file: shared/markup/ccloud/self_managed_connector.adoc
 
         - action: skip
           render:
@@ -59,9 +59,3 @@ dev:
         - action: skip
           render:
             file: shared/markup/ccloud/cleanup.adoc
-
-    - title: Explanation
-      content:
-        - action: skip
-          render:
-            file: tutorials/SSH-attack/confluent/markup/dev/explanation.adoc
