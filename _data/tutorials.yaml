@@ -810,7 +810,7 @@ multiple-event-types:
 fleet-management:
   title: "Optimize Fleet Management"
   canonical: confluent
-  meta-description: "Optimize Fleet Management"
+  meta-description: "This ksqlDB recipe enriches fleet location data with data about each vehicle for a real-time view of consolidated information on the entire fleet"
   slug: "/fleet-management"
   question: "Optimize Fleet Management"
   introduction: "More and more, fleet management relies on knowing real-time information on vehicle availability, their locations, and integrating that with data from vehicle telematics. This enables businesses to improve operational efficiency by optimizing travel routes, lowering fuel consumption, and automating service schedules. This recipe combines fleet locations with individual vehicle information, so organizations can have a real-time consolidated view of their entire fleet. <center><img src='/prototype-recipe/assets/img/fleet.png'></center>"
