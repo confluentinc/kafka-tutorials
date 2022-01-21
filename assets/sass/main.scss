@@ -26,6 +26,71 @@ a {
   }
 }
 
+.btn-denim {
+  @include button;
+}
+
+.btn-island {
+  @include button;
+  background: $color_island;
+  border-color: $color_island;
+  color: $color_denim;
+
+  &:hover {
+    background: $color_academy;
+    border-color: $color_academy;
+    color: $color_white;
+  }
+}
+
+.btn-white {
+  @include button;
+  background: $color_white;
+  border-color: $color_denim;
+  color: $color_denim;
+
+  &:hover {
+    background: $color_denim;
+    border-color: $color_denim;
+    color: $color_white;
+  }
+}
+
+.btn-denim-white-outline {
+  @include button;
+  border-color: $color_white;
+
+  &:hover {
+    border-color: $color_white;
+  }
+}
+
+.btn-midnight {
+  @include button;
+  background: $color_midnight;
+  color: $color_white;
+  border-color: $color_midnight;
+
+  &:hover {
+    background: $color_white;
+    border-color: $color_midnight;
+    color: $color_midnight;
+  }
+}
+
+.btn-midnight-white-outline {
+  @include button;
+  background: $color_midnight;
+  color: $color_white;
+  border-color: $color_white;
+
+  &:hover {
+    background: $color_white;
+    border-color: $color_white;
+    color: $color_midnight;
+  }
+}
+
 .card-cta {
   .cta-button {
     display: inline-block;
@@ -162,7 +227,7 @@ body {
 }
 
 .hero {
-  background: #040531;
+  background: $color_midnight;
   padding-top: 100px;
   color: #ffffff;
 
@@ -174,6 +239,19 @@ body {
 
   .hero-body {
     padding-top: 20px;
+
+    .ctas {
+      margin-top: 25px;
+
+      > * {
+        margin-left: 15px;
+        margin-bottom: 15px;
+      }
+
+      :first-child {
+        margin-left: 0;
+      }
+    }
   }
 
   .headline {

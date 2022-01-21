@@ -13,7 +13,7 @@
     }
 
     .paragraph p {
-        overflow-wrap: break-word;
+      overflow-wrap: break-word;
     }
   }
 
@@ -62,15 +62,14 @@
       }
 
       .community-contribution {
-          font-size: 0.75rem;
-          background: white;
-          border-radius: 6px;
-          padding: 2px 1px 2px 5px;
-          line-height: 2.5rem;
-          font-weight: 900;
-          text-transform: uppercase;
+        font-size: 0.75rem;
+        background: white;
+        border-radius: 6px;
+        padding: 2px 1px 2px 5px;
+        line-height: 2.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
       }
-
     }
   }
 
@@ -79,17 +78,19 @@
   }
 
   .example {
+    display: flex;
+    flex-direction: row;
     margin-bottom: 40px;
 
-    p {
+    .text {
       @include p;
+      padding-top: 25px;
     }
 
-    img {
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      width: 50%;
+    .image {
+      display: inline-block;
+      margin-left: 25px;
+      width: 436px;
     }
   }
 
@@ -145,7 +146,7 @@
 
       a {
         @include text;
-        color: #0074A2;
+        color: #0074a2;
         line-height: 1.69;
         font-weight: 400;
       }
@@ -153,22 +154,22 @@
   }
 
   .tutorial-media-container {
-      margin-top: 60px;
+    margin-top: 60px;
 
-      .image {
-          position: relative;
-          height: 0;
-          overflow: hidden;
-          padding-bottom: 50%;
+    .image {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      padding-bottom: 50%;
 
-          iframe {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-          }
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
+    }
   }
 
   @media screen and (max-width: 640px) {
