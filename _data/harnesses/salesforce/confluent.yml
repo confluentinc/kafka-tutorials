@@ -28,10 +28,6 @@ dev:
           render:
             file: tutorials/salesforce/confluent/markup/dev/source.adoc
 
-        - action: skip
-          render:
-            file: shared/markup/ccloud/manual_insert.adoc
-
     - title: ksqlDB code
       content:
         - action: skip
@@ -45,14 +41,6 @@ dev:
         - action: skip
           render:
             file: tutorials/salesforce/confluent/markup/dev/process.adoc
-
-        - action: skip
-          render:
-            file: shared/markup/ccloud/manual_cue.adoc
-
-        - action: skip
-          render:
-            file: tutorials/salesforce/confluent/markup/dev/manual.adoc
 
     - title: Cleanup
       content:

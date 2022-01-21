@@ -1,18 +1,47 @@
--- tenant_id is in the form of a resource name used to indicate the 
---  data center provider, country, regional locale, and tenant id
-INSERT INTO tenant_occupancy (tenant_id, customer_id) VALUES ('dc:eqix:us:chi1:12', 924);
-INSERT INTO tenant_occupancy (tenant_id, customer_id) VALUES ('dc:eqix:us:chi1:10', 243);
-INSERT INTO tenant_occupancy (tenant_id, customer_id) VALUES ('dc:kddi:eu:ber1:15', 924);
-INSERT INTO tenant_occupancy (tenant_id, customer_id) VALUES ('dc:kddi:eu:ber1:20', 123);
-INSERT INTO tenant_occupancy (tenant_id, customer_id) VALUES ('dc:kddi:cn:hnk2:11', 243);
+-- Customer Data
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (10,'Brena','Tollerton','btollerton9@furl.net','Female','silver');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (9,'Even','Tinham','etinham8@facebook.com','Male','silver');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (8,'Patti','Rosten','prosten7@ihg.com','Female','silver');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (7,'Fay','Huc','fhuc6@quantcast.com','Female','bronze');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (6,'Robinet','Leheude','rleheude5@reddit.com','Female','platinum');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (5,'Hansiain','Coda','hcoda4@senate.gov','Male','platinum');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (4,'Hashim','Rumke','hrumke3@sohu.com','Male','platinum');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (3,'Mariejeanne','Cocci','mcocci2@techcrunch.com','Female','bronze');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (2,'Ruthie','Brockherst','rbrockherst1@ow.ly','Female','platinum');
+INSERT INTO customers (id, FIRST_NAME, LAST_NAME, EMAIL, GENDER, STATUS360) VALUES (1,'Rica','Blaisdell','rblaisdell0@rambler.ru','Female','bronze');
 
--- power readings contain two distinct readings. The current total utilization of the
---  panel, and the monthly total wattage usage for the referenced tenant
-INSERT INTO panel_power_readings (panel_id, tenant_id, panel_current_utilization, tenant_kwh_usage) VALUES (1, 'dc:eqix:us:chi1:12', 1.05, 1034);
-INSERT INTO panel_power_readings (panel_id, tenant_id, panel_current_utilization, tenant_kwh_usage) VALUES (2, 'dc:eqix:us:chi1:10', 0.85, 867);
-INSERT INTO panel_power_readings (panel_id, tenant_id, panel_current_utilization, tenant_kwh_usage) VALUES (1, 'dc:kddi:eu:ber1:15', 0.54, 345);
-INSERT INTO panel_power_readings (panel_id, tenant_id, panel_current_utilization, tenant_kwh_usage) VALUES (2, 'dc:kddi:eu:ber1:20', 0.67, 288);
-INSERT INTO panel_power_readings (panel_id, tenant_id, panel_current_utilization, tenant_kwh_usage) VALUES (1, 'dc:kddi:cn:hnk2:11', 1.11, 1119);
-INSERT INTO panel_power_readings (panel_id, tenant_id, panel_current_utilization, tenant_kwh_usage) VALUES (1, 'dc:eqix:us:chi1:12', 1.01, 1134);
-INSERT INTO panel_power_readings (panel_id, tenant_id, panel_current_utilization, tenant_kwh_usage) VALUES (2, 'dc:eqix:us:chi1:10', 0.75, 898);
-INSERT INTO panel_power_readings (panel_id, tenant_id, panel_current_utilization, tenant_kwh_usage) VALUES (1, 'dc:kddi:cn:hnk2:11', 1.10, 1201);
+-- Payment Instruction Data
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (1,1,1234000,100,'DBS');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (3,2,1234100,200,'Barclays Bank');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (5,3,1234200,300,'BNP Paribas');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (7,4,1234300,400,'Wells Fargo');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (9,5,1234400,500,'DBS');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (11,6,1234500,600,'Royal Bank of Canada');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (13,7,1234600,700,'DBS');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (15,8,1234700,800,'DBS');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (17,9,1234800,900,'DBS');
+INSERT INTO payments (PAYMENT_ID, CUSTID, ACCOUNTID, AMOUNT, BANK) VALUES (19,10,1234900,1000,'United Overseas Bank');
+
+-- AML Status Data
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (1,'Wells Fargo','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (3,'Commonwealth Bank of Australia','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (5,'Deutsche Bank','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (7,'DBS','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (9,'United Overseas Bank','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (11,'Citi','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (13,'Commonwealth Bank of Australia','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (15,'Barclays Bank','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (17,'United Overseas Bank','OK');
+INSERT INTO aml_status(PAYMENT_ID,BANK,STATUS) VALUES (19,'Royal Bank of Canada','OK');
+
+-- Funds Status Data
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (1,'00','OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (3,'99','OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (5,'30','OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (7,'00','OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (9,'00','OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (11,'00','NOT OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (13,'30','OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (15,'00','OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (17,'10','OK');
+INSERT INTO funds_status(PAYMENT_ID,REASON_CODE,STATUS) VALUES (19,'10','OK');
