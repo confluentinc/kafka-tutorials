@@ -6,6 +6,7 @@
   question: "I NEED TO BE UPDATED"
   introduction: "I NEED TO BE UPDATED"
   status:
+    confluent: disabled
     ksql: <KSQL-ENABLED>
     kstreams: <KSTREAMS-ENABLED>
     kafka: disabled
