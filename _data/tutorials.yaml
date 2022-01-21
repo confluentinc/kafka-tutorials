@@ -808,7 +808,7 @@ multiple-event-types:
 
 
 fleet-management:
-  title: "Optimize Fleet Management"
+  title: "Optimize fleet management"
   canonical: confluent
   meta-description: "This ksqlDB recipe enriches fleet location data with data about each vehicle for a real-time view of consolidated information on the entire fleet"
   slug: "/fleet-management"
@@ -819,7 +819,7 @@ fleet-management:
     confluent: enabled
 
 inventory:
-  title: "Optimize Omni-channel Inventory"
+  title: "Optimize omni-channel inventory"
   canonical: confluent
   meta-description: "This recipe demonstrates how to use ksqlDB to ensure an up-to-date snapshot of your inventory at all times."
   slug: "/inventory"
@@ -830,7 +830,7 @@ inventory:
     confluent: enabled
 
 credit-card-activity:
-  title: "Detect Unusual Credit Card Activity"
+  title: "Detect unusual credit card activity"
   meta-description: "This recipe analyzes total credit card spend, and if it's more than the average credit card usage of a customer, the account will be flagged as a possible case of credit card theft."
   slug: "/credit-card-activity"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -840,7 +840,7 @@ credit-card-activity:
     confluent: enabled
 
 online-dating:
-  title: "Match Users for Online Dating"
+  title: "Match users for online dating"
   meta-description: "This ksqlDB recipe tracks repeated interactions between users of a social network or dating site."
   slug: "/online-dating"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -850,7 +850,7 @@ online-dating:
     confluent: enabled
 
 datacenter:
-  title: "Analyze Datacenter Power Usage"
+  title: "Analyze datacenter power usage"
   meta-description: "This ksqlDB recipe analyzes telemetry data from datacenter power electrical smart panels. The stream processing use cases for this data include detection of power usage levels for safety and accounting purposes."
   slug: "/datacenter"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -860,7 +860,7 @@ datacenter:
     confluent: enabled
 
 internet-of-things:
-  title: "Flag Unhealthy IoT Devices"
+  title: "Flag unhealthy IoT devices"
   meta-description: "This recipe demonstrates how to process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation."
   slug: "/internet-of-things"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -870,7 +870,7 @@ internet-of-things:
     confluent: enabled
 
 denormalization:
-  title: "Enrich Orders with Change Data Capture (CDC)"
+  title: "Enrich orders with change data capture (CDC)"
   meta-description: "This ksqlDB recipe demonstrates this principle by streaming from a SQL Server, denormalizing the data, and writing to Snowflake."
   slug: "/denormalization"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -880,7 +880,7 @@ denormalization:
     confluent: enabled
 
 dynamic-pricing:
-  title: "Build a Dynamic Pricing Strategy"
+  title: "Build a dynamic pricing strategy"
   meta-description: "This ksqlDB recipe demonstrates how to use ksqlDB to set dynamic pricing in an online marketplace."
   slug: "/dynamic-pricing"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -890,7 +890,7 @@ dynamic-pricing:
     confluent: enabled
 
 payment-status-check:
-  title: "Automate Instant Payment Verifications"
+  title: "Automate instant payment verifications"
   meta-description: "This ksqlDB recipe shows you how to validate payments against available funds and anti-money laundering (AML) policies."
   slug: "/payment-status-check"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -900,7 +900,7 @@ payment-status-check:
     confluent: enabled
 
 salesforce:
-  title: "Handle Corrupted Data From Salesforce"
+  title: "Handle corrupted data from Salesforce"
   meta-description: "This ksqlDB recipe streams changes of Salesforce records and identifies gap events."
   slug: "/salesforce"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -910,7 +910,7 @@ salesforce:
     confluent: enabled
 
 SSH-attack:
-  title: "Detect and Analyze SSH Attacks"
+  title: "Detect and analyze SSH attacks"
   meta-description: "This recipe processes Syslog data and streams out pairs of usernames and IP addresses from failed login attempts."
   slug: "/SSH-attack"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -920,7 +920,7 @@ SSH-attack:
     confluent: enabled
 
 firewall-splunk:
-  title: "Identify Firewall Deny Events from Splunk"
+  title: "Identify firewall deny events from Splunk"
   meta-description: "This recipe demonstrates how to use ksqlDB to identify and filter firewall deny events from Splunk."
   slug: "/firewall-splunk"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -935,7 +935,7 @@ You can also extend this solution to intercept data from a variety of SIEM vendo
     confluent: enabled
 
 aviation:
-  title: "Notify Passengers of Flight Updates"
+  title: "Notify passengers of flight updates"
   meta-description: "This ksqlDB recipe uses a stream of flight updates to notify passengers if their flight is delayed."
   slug: "/aviation"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -945,7 +945,7 @@ aviation:
     confluent: enabled
 
 clickstream:
-  title: "Understand User Behavior with Clickstream Data"
+  title: "Understand user behavior with clickstream data"
   meta-description: "This ksqlDB recipe processes clickstream data to understand the behavior of its online users."
   slug: "/clickstream"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -955,7 +955,7 @@ clickstream:
     confluent: enabled
 
 messaging-modernization:
-  title: "Modernize Messaging Workloads"
+  title: "Modernize messaging workloads"
   meta-description: "This ksqlDB recipe shows you how to modernize messaging workloads to move beyond queues and pub/sub"
   slug: "/messaging-modernization"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
@@ -967,7 +967,7 @@ If you instead want to do real-time interactions and in-flight stream processing
     confluent: enabled
 
 loyalty-rewards:
-  title: "Build Customer Loyalty Programs"
+  title: "Build customer loyalty programs"
   meta-description: "This recipe tracks customers' purchasing patterns, generating tailored rewards for a loyalty scheme."
   slug: "/loyalty-rewards"
   question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
