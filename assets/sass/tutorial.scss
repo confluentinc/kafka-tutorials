@@ -85,6 +85,11 @@
   .example {
     margin-bottom: 40px;
 
+    .example-content {
+      display: flex;
+      flex-direction: row;
+    }
+
     .text {
       @include p;
       padding-top: 25px;
