@@ -1,3 +1,4 @@
+
 $font-family: "MarkPro-Bold", Arial, sans-serif;
 $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
@@ -46,10 +47,11 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   background: $color_midnight;
   box-shadow: none;
   color: $color_white;
-  font-family: $font-family-secondary;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
+
+  @include ff_medium;
 
   .logo-container {
     .logo {
@@ -87,9 +89,9 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     text-decoration: none;
 
     img {
-      height: 65px;
+      height: 50px;
 
-      @media screen and (min-width: 768px) {
+      @include for-min-tablet {  
         height: 75px;
       }
 
@@ -108,7 +110,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     img:nth-of-type(2n) {
       display: none;
 
-      @media screen and (min-width: 768px) {
+      @include for-min-tablet {    
         display: block;
       }
     }
@@ -128,7 +130,8 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       float: right;
       display: block;
 
-      @media screen and (max-width: 1115px) {
+      // @media screen and (max-width: 1115px) {
+      @include for-tablet-nav {  
         display: none;
       }
 
@@ -241,7 +244,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       padding-bottom: 80px;
       left: 0;
       width: 100%;
-      border-top: 1px solid #4c4c4d;
+      border-top: 1px solid $color_dimGray;
       height: 100%;
       transition: all 0.5s ease;
       overflow: auto;
@@ -279,6 +282,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
     .quick-start-nav-button {
       @include quick-start-styles;
+
       margin-right: 35px;
       padding: 12px 30px;
     }
@@ -289,7 +293,8 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       display: block;
     }
 
-    @media screen and (max-width: 1115px) {
+    @include for-tablet-nav {  
+
       display: flex;
 
       & > a:first-of-type {
@@ -308,7 +313,8 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           & > a:first-of-type {
             display: none;
 
-            @media screen and (max-width: 767px) {
+            @include for-max-mobile{
+              
               @include quick-start-styles;
               background-color: $color_denim;
 
@@ -356,10 +362,10 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 .mobile-accordion-item {
   background-color: $color_white;
   margin-bottom: 0;
-  border-bottom: 4px solid #eceeee;
+  border-bottom: 4px solid $color_ltGray;
 
   &:first-of-type {
-    border-top: 4px solid #eceeee;
+    border-top: 4px solid $color_ltGray;
   }
 
   .accordion-title {
@@ -485,7 +491,6 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 }
 
 .accordion-title {
-  font-family: $font-family;
   font-size: 18px;
   font-style: normal;
   font-weight: bold;
@@ -495,6 +500,8 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   background-color: $color_iceBlue;
   position: relative;
   cursor: pointer;
+
+  @include ff_narrowBold;
 
   @media screen and (max-width: 767px) {
     font-size: 16px;

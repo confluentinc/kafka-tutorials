@@ -1,8 +1,7 @@
-@import "_vars";
 @import "_tabs";
 
 .pg-tutorial {
-  background: #fff;
+  background: $color_white;
 
   .section {
     padding-top: 35px;
@@ -35,7 +34,7 @@
 
   .summary {
     @include text;
-    color: #ffffff;
+    color: $color_white;
 
     h2 {
       font-size: 18px;
@@ -68,7 +67,7 @@
 
       .community-contribution {
         font-size: 0.75rem;
-        background: white;
+        background:$color_white;
         border-radius: 6px;
         padding: 2px 1px 2px 5px;
         line-height: 2.5rem;
@@ -104,7 +103,7 @@
 
   h4.subtitle {
     margin: 0 0 5px -32px;
-    color: $textColor;
+    color: $color_black;
     font-weight: normal;
     font-size: 21px;
 
@@ -123,10 +122,10 @@
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: $baseColor;
+      background: $color_denim;
       text-align: center;
       font-size: 18px;
-      color: #fff;
+      color: $color_white;
       font-weight: bold;
       padding-top: 4px;
       display: inline-block;
@@ -136,7 +135,6 @@
     }
   }
 
-  .tutorial-try-it-step {
     margin: 0;
 
     .subtitle {
@@ -161,7 +159,7 @@
 
       a {
         @include text;
-        color: #0074a2;
+        color: $color_academy;
         line-height: 1.69;
         font-weight: 400;
       }
@@ -183,6 +181,7 @@
         left: 0;
         width: 100%;
         height: 100%;
+
       }
     }
   }

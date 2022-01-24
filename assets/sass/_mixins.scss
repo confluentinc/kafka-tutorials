@@ -1,20 +1,22 @@
+@import '_vars';
+
 @mixin title {
   font-size: 18px;
   font-weight: bold;
-  color: $baseColor;
+  color: $color_denim;
 }
 
 @mixin text {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.44;
-  color: $textColor;
+  color: $color_black;
 }
 
 @mixin p {
   font-size: 1rem;
   font-weight: 400;
-  color: $textColor;
+  color: $color_black;
   line-height: 1.5;
   padding-bottom: 15px;
 }
@@ -38,5 +40,43 @@
     color: $color_white;
     background: $color_academy;
     border-color: $color_academy;
+  }
+}
+
+@mixin for-min-desktop {
+  @media screen and (min-width: $medium) {
+    @content;
+  }
+}
+
+
+@mixin for-tablet-nav {
+  @media screen and (max-width: 1100px) {
+    @content;
+  }
+}
+
+@mixin for-min-tablet {
+  @media screen and (min-width: $small) {
+    @content;
+  }
+}
+
+@mixin for-max-tablet {
+  @media screen and (max-width: #{$medium - 1}) {
+    @content;
+  }
+}
+
+
+@mixin for-max-mobile {
+  @media screen and (max-width: #{$small - 1}) {
+    @content;
+  }
+}
+
+@mixin for-max-mobile-small {
+  @media screen and (max-width: $extraSmall) {
+    @content;
   }
 }
