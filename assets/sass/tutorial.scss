@@ -12,7 +12,7 @@
     }
 
     .paragraph p {
-      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .tutorial-section-item-title {
@@ -67,7 +67,7 @@
 
       .community-contribution {
         font-size: 0.75rem;
-        background:$color_white;
+        background: $color_white;
         border-radius: 6px;
         padding: 2px 1px 2px 5px;
         line-height: 2.5rem;
@@ -87,6 +87,15 @@
     .example-content {
       display: flex;
       flex-direction: row;
+
+      @include for-max-mobile {
+        flex-direction: column;
+
+        .image {
+          margin-left: 0;
+          width: 100%;
+        }
+      }
     }
 
     .text {
@@ -127,7 +136,7 @@
       font-size: 18px;
       color: $color_white;
       font-weight: bold;
-      padding-top: 4px;
+      padding-top: 0;
       display: inline-block;
       margin-right: 8px;
       position: relative;
@@ -182,7 +191,6 @@
         left: 0;
         width: 100%;
         height: 100%;
-
       }
     }
   }

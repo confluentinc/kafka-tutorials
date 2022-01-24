@@ -19,10 +19,10 @@ button {
 }
 
 a {
-  color: $color_island;
+  color: $color_academy;
 
   &:hover {
-    color: $color_academy;
+    color: $color_midnight;
     text-decoration: underline;
   }
 }
@@ -128,6 +128,11 @@ a {
 .snippet-wrapper {
   position: relative;
   margin: 5px 0 20px 0;
+  max-width: 90vw;
+
+  @include for-max-mobile {
+    max-width: 82vw;
+  }
 
   .snippet,
   .highlight {
@@ -252,6 +257,16 @@ a {
       :first-child {
         margin-left: 0;
       }
+
+      @include for-max-mobile {
+        display: flex;
+        flex-direction: column;
+
+        > * {
+          margin-left: 0;
+          display: inline-block;
+        }
+      }
     }
   }
 
@@ -334,6 +349,7 @@ a {
 
     li {
       margin-bottom: 15px;
+      line-height: 1;
 
       a {
         font-size: 15px;
