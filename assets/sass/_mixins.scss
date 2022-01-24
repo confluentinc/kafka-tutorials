@@ -18,3 +18,25 @@
   line-height: 1.5;
   padding-bottom: 15px;
 }
+
+@mixin button {
+  display: inline-block;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-family: "MarkOT";
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  border: 1px solid $color_denim;
+  background: $color_denim;
+  color: #fff;
+  padding: 12px 30px;
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    text-decoration: none;
+    color: $color_white;
+    background: $color_academy;
+    border-color: $color_academy;
+  }
+}
