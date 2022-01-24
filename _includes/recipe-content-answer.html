@@ -22,8 +22,9 @@
 
               {% if section.render.skip != true %}
 
-              {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
-             {{ prose | asciidocify }}
+        <div class="ctas">
+          <a href="https://www.confluent.io/confluent-cloud/tryfree/\?tutorial={{ site.data.tutorials[page.static_data].tutorial-id }}" class="btn-denim">Provision a Kafka cluster</a>
+        </div>
 
               {% endif %}
 

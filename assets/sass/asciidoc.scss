@@ -1,3 +1,4 @@
+@import './vars';
 /** Admonition **/
 /* span.icon > .fa {
   cursor: default;
@@ -159,7 +160,7 @@ div.toc {
     margin-bottom: 5px;
     font-size: 18px;
     font-weight: bold;
-    color: $baseColor;
+    color: $color_denim;
     line-height: 1.5;
   }
 
@@ -178,7 +179,7 @@ div.toc {
   h2,
   h3,
   h4 {
-    color: $baseColor;
+    color: $color_denim;
     font-weight: bold;
     margin: 20px 0 10px;
   }

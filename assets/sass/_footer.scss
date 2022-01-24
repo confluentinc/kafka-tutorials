@@ -1,56 +1,18 @@
-$small: 768px;
-$medium: 992px;
-$large: 1200px;
-$max-width: 1035px;
-
-%responsive-container-styles {
-  margin: 0 auto;
-
-  @media screen and (min-width: $small) {
-    width: 750px;
-  }
-
-  @media screen and (min-width: $medium) {
-    width: 970px;
-  }
-
-  @media screen and (min-width: $large) {
-    width: 1035px;
-  }
-};
-
 footer {
-  @extend %responsive-container-styles;
-  padding: 40px 0;
-
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 40px 25px;
+  
   .apache-info {
-    margin: 0 5px 50px;
-
-    .container {
-      @extend %responsive-container-styles;
-    }
+    margin-bottom: 50px;
   }
 
   .footer-row {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 25px;
 
-    @media screen and (min-width: $medium) {
-      justify-content: space-between;
-    }
-
-    @media screen and (max-width: #{$small - 1}) {
-      display: none;
-    }
-  }
-
-  .social-large-screens {
-    @media screen and (min-width: $small) {
-      display: initial;
-    }
-
-    @media screen and (max-width: #{$medium - 1}) {
+    @include for-max-mobile {
       display: none;
     }
   }
@@ -65,7 +27,7 @@ footer {
     .copy {
       font-size: 11px;
       font-weight: 500;
-      color: #000;
+      color: $color_black;
       text-decoration: none;
     }
 
@@ -76,10 +38,6 @@ footer {
 
     .copyright {
       text-align: center;
-
-      @media screen and (min-width: $medium) {
-        text-align: left;
-      }
 
       p {
         font-size: 11px;
@@ -103,18 +61,16 @@ footer {
       text-align: center;
 
       a {
-        color: #000;
+        color: $color_black;
         font-size: 11px;
       }
     }
   }
 
   .social-small-screens {
-    @media screen and (min-width: $small) {
-      display: none;
-    }
+    display: none;
 
-    @media screen and (max-width: #{$medium - 1}) {
+    @include for-max-tablet {
       display: initial;
 
       .social-nav {
@@ -133,7 +89,7 @@ footer {
     list-style: none;
     margin: 0;
     padding: 0;
-    color: white;
+    color: $color_white;
     font-size: 16px;
     margin-bottom: 40px;
 
@@ -178,7 +134,7 @@ footer {
   }
 
   .social-links {
-    @media screen and (max-width: #{$medium - 1}) {
+    @include for-max-tablet {
       display: none;
     }
   }
@@ -192,6 +148,14 @@ footer {
 
       li {
         margin: 0 5px;
+
+        &:first-of-type {
+          margin-left: 0;
+
+          @include for-max-tablet {
+            margin-left: 5px;
+          }
+        }
       }
     }
   }
@@ -215,7 +179,7 @@ footer {
 
     &.github-icon {
       &:hover {
-        fill: #333;
+        fill: $color_darkCharcoal;
       }
     }
 
@@ -247,8 +211,7 @@ footer {
   .social-media-list-container {
     display: flex;
 
-    @media screen and (max-width: #{$medium - 1}) {
-      display: flex;
+    @include for-max-tablet {
       justify-content: center;
     }
   }
