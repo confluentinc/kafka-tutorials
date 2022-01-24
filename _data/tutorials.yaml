@@ -981,3 +981,12 @@ loyalty-rewards:
   introduction_media: "/assets/img/loyalty.png"
   status:
     confluent: enabled
+
+customer-journey:
+  title: "Track a Customer Journey"
+  meta-description: "This recipe demonstrates how to use ksqlDB to track a customer journey through web pages online."
+  slug: "/customer-journey"
+  question: "Get started with this recipe in <a href='https://www.confluent.io/confluent-cloud/tryfree'>Confluent Cloud</a>"
+  introduction: "Companies with online websites, and customers that browse those websites, want to know which web pages their customers have visited. Knowing an online customer's behavior—which pages the customer visits—can be useful for analytics, or, in case the customer calls for support, to understand exactly what the customer did beforehand. For real-time analysis of the customer journey, you can use ksqlDB to collect the pages that a customer visited, and then send the list out for analytics in another application."
+  status:
+    confluent: enabled
