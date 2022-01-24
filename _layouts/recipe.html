@@ -41,17 +41,6 @@
         <div class="headline">
           <h1>{{ site.data.tutorials[page.static_data].title }}</h1>
         </div>
-        <div class="summary">
-          <p>{{site.data.tutorials[page.static_data].question }}</p>
-        </div>
-        <div class="ctas">
-          <a class="btn-island">Island Button</a>
-          <a class="btn-denim">Denim Button</a>
-          <a class="btn-white">White Button</a>
-          <a class="btn-denim-white-outline">Denim Button white outline</a>
-          <a class="btn-midnight">Midnight Button</a>
-          <a class="btn-midnight-white-outline">Midnight Button white outline</a>
-        </div>
       </div>
     </div>
   </section>
@@ -63,7 +52,7 @@
         <div class="example">
           <div class="example-content">
             <div class="text">{{ site.data.tutorials[page.static_data].introduction }}</div>
-            <img class="image" src="{{ site.data.tutorials[page.static_data].introduction_media | relative_url }}" />
+            <img class="image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
           </div>
         </div>
       {% endunless %}
