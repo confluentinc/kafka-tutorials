@@ -55,7 +55,9 @@
       {% unless page.help_wanted %}
         <div class="example">
           <h3 class="title">Example use case:</h3>
-          <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
+          <div class="example-content">
+            <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
+          </div>
           <div class="columns">
             <div class="column is-5">
             <BR>

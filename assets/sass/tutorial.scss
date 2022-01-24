@@ -15,6 +15,11 @@
     .paragraph p {
       overflow-wrap: break-word;
     }
+
+    .tutorial-section-item-title {
+      font-size: 28px;
+      margin-top: 40px;
+    }
   }
 
   .btn-edit {
@@ -78,8 +83,6 @@
   }
 
   .example {
-    display: flex;
-    flex-direction: row;
     margin-bottom: 40px;
 
     .text {

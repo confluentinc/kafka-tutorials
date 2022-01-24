@@ -61,8 +61,10 @@
       <a href="{{ site.github_url }}/tree/master/_includes/tutorials/{{ page.static_data }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
       {% unless page.help_wanted %}
         <div class="example">
-          <div class="text">{{ site.data.tutorials[page.static_data].introduction }}</div>
-          <img class="image" src="{{ site.data.tutorials[page.static_data].introduction_media | relative_url }}" />
+          <div class="example-content">
+            <div class="text">{{ site.data.tutorials[page.static_data].introduction }}</div>
+            <img class="image" src="{{ site.data.tutorials[page.static_data].introduction_media | relative_url }}" />
+          </div>
         </div>
       {% endunless %}
 
