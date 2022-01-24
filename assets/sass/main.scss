@@ -251,6 +251,16 @@ body {
       :first-child {
         margin-left: 0;
       }
+
+      @include for-mobile {
+        display: flex;
+        flex-direction: column;
+
+        > * {
+          margin-left: 0;
+          display: inline-block;
+        }
+      }
     }
   }
 

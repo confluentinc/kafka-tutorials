@@ -88,6 +88,15 @@
     .example-content {
       display: flex;
       flex-direction: row;
+
+      @include for-mobile {
+        flex-direction: column;
+
+        .image {
+          margin-left: 0;
+          width: 100%;
+        }
+      }
     }
 
     .text {

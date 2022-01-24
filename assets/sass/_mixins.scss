@@ -40,3 +40,21 @@
     border-color: $color_academy;
   }
 }
+
+@mixin for-mobile {
+  @media screen and (max-width: #{$small - 1}) {
+    @content;
+  }
+}
+
+@mixin for-tablet {
+  @media screen and (max-width: #{$medium - 1}) {
+    @content;
+  }
+}
+
+@mixin for-tablet-only {
+  @media screen and (min-width: $small) and (max-width: #{$medium - 1}) {
+    @content;
+  }
+}

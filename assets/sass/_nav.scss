@@ -89,7 +89,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     img {
       height: 65px;
 
-      @media screen and (min-width: 768px) {
+      @include for-mobile {
         height: 75px;
       }
 
@@ -108,7 +108,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     img:nth-of-type(2n) {
       display: none;
 
-      @media screen and (min-width: 768px) {
+      @include for-mobile {
         display: block;
       }
     }
