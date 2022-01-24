@@ -104,6 +104,11 @@
       display: inline-block;
       vertical-align: middle;
     }
+  }
+
+  .content-item {
+    display: flex;
+    flex-direction: row;
 
     .num {
       min-width: 26px;
@@ -115,14 +120,16 @@
       font-size: 18px;
       color: #fff;
       font-weight: bold;
-      padding-top: 2px;
+      padding-top: 4px;
       display: inline-block;
-      margin-right: 5px;
+      margin-right: 8px;
+      position: relative;
+      top: -2px;
     }
   }
 
   .tutorial-try-it-step {
-    margin: 0 0 0px 32px;
+    margin: 0;
 
     .subtitle {
       padding-bottom: 15px;
