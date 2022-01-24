@@ -12,7 +12,7 @@
     }
 
     .paragraph p {
-      overflow-wrap: break-word;
+      word-break: break-word;
     }
 
     .tutorial-section-item-title {
@@ -136,7 +136,7 @@
       font-size: 18px;
       color: $color_white;
       font-weight: bold;
-      padding-top: 4px;
+      padding-top: 0;
       display: inline-block;
       margin-right: 8px;
       position: relative;

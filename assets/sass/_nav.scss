@@ -34,7 +34,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 .header {
   $header-height: 85px;
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: $header-height;
   position: fixed;
   top: 0;
