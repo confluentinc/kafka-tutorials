@@ -47,14 +47,22 @@
           site.data.harnesses[page.static_data][page.stack].test.steps %}
 
           <div class="tutorial-try-it-step content">
-            <h4 class="subtitle" id="{{ step.title | slugify }}">
-              <div class="num">{{ forloop.index }}</div>
-              <div class="text">{{ step.title }}</div>
-            </h4>
+            <h2
+              class="title tutorial-section-item-title"
+              id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
 
-            {% for section in step.content %} {% if section.render.skip != true
-            %} {% capture prose %}{% include {{ section.render.file }} %}{%
-            endcapture %} {{ prose | asciidocify }} {% endif %} {% endfor %}
+            <div class="content-item">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="item-display">
+                {% for section in step.content %} {% if section.render.skip !=
+                true %} {% capture prose %}{% include {{ section.render.file }}
+                %}{% endcapture %} {{ prose | asciidocify }} {% endif %} {%
+                endfor %}
+              </div>
+            </div>
           </div>
           {% endfor %}
         </div>
@@ -72,15 +80,23 @@
           {% for step in
           site.data.harnesses[page.static_data][page.stack].prod.steps %}
 
-          <div class="tutorial-try-it-step">
-            <h4 class="subtitle" id="{{ step.title | slugify }}">
-              <div class="num">{{ forloop.index }}</div>
-              <div class="text">{{ step.title }}</div>
-            </h4>
+          <div class="tutorial-try-it-step content">
+            <h2
+              class="title tutorial-section-item-title"
+              id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
 
-            {% for section in step.content %} {% if section.render.skip != true
-            %} {% capture prose %}{% include {{ section.render.file }} %}{%
-            endcapture %} {{ prose | asciidocify }} {% endif %} {% endfor %}
+            <div class="content-item">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="item-display">
+                {% for section in step.content %} {% if section.render.skip !=
+                true %} {% capture prose %}{% include {{ section.render.file }}
+                %}{% endcapture %} {{ prose | asciidocify }} {% endif %} {%
+                endfor %}
+              </div>
+            </div>
           </div>
           {% endfor %}
         </div>
@@ -101,15 +117,23 @@
           {% for step in
           site.data.harnesses[page.static_data][page.stack].ccloud.steps %}
 
-          <div class="tutorial-try-it-step">
-            <h4 class="subtitle" id="{{ step.title | slugify }}">
-              <div class="num">{{ forloop.index }}</div>
-              <div class="text">{{ step.title }}</div>
-            </h4>
+          <div class="tutorial-try-it-step content">
+            <h2
+              class="title tutorial-section-item-title"
+              id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
 
-            {% for section in step.content %} {% if section.render.skip != true
-            %} {% capture prose %}{% include {{ section.render.file }} %}{%
-            endcapture %} {{ prose | asciidocify }} {% endif %} {% endfor %}
+            <div class="content-item">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="item-display">
+                {% for section in step.content %} {% if section.render.skip !=
+                true %} {% capture prose %}{% include {{ section.render.file }}
+                %}{% endcapture %} {{ prose | asciidocify }} {% endif %} {%
+                endfor %}
+              </div>
+            </div>
           </div>
           {% endfor %}
         </div>
