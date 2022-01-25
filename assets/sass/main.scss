@@ -20,9 +20,10 @@ button {
 
 a {
   color: $color_academy;
+  transition: all 0.25s ease-in-out;
 
   &:hover {
-    color: $color_academy;
+    color: $color_midnight;
     text-decoration: underline;
   }
 }
@@ -31,71 +32,52 @@ a {
   @include button;
 }
 
-.btn-island {
-  @include button;
-  background: $color_island;
-  border-color: $color_island;
-  color: $color_denim;
+.btn-denim-white-outline {
+  @include button($borderColor: $color_white, $hoverBorder: $color_white);
+}
 
-  &:hover {
-    background: $color_academy;
-    border-color: $color_academy;
-    color: $color_white;
-  }
+.btn-island {
+  @include button(
+    $bg: $color_island,
+    $color: $color_denim,
+    $borderColor: $color_island,
+    $hoverBg: $color_denim,
+    $hoverColor: $color_white,
+    $hoverBorder: $color_denim
+  );
 }
 
 .btn-white {
-  @include button;
-  background: $color_white;
-  border-color: $color_denim;
-  color: $color_denim;
-
-  &:hover {
-    background: $color_denim;
-    border-color: $color_denim;
-    color: $color_white;
-  }
-}
-
-.btn-denim-white-outline {
-  @include button;
-  border-color: $color_white;
-
-  &:hover {
-    border-color: $color_white;
-  }
+  @include button(
+    $bg: $color_white,
+    $color: $color_denim,
+    $borderColor: $color_white,
+    $hoverBg: $color_denim,
+    $hoverColor: $color_white,
+    $hoverBorder: $color_white
+  );
 }
 
 .btn-midnight {
-  @include button;
-  background: $color_midnight;
-  color: $color_white;
-  border-color: $color_midnight;
-
-  &:hover {
-    background: $color_white;
-    border-color: $color_midnight;
-    color: $color_midnight;
-  }
+  @include button(
+    $bg: $color_midnight,
+    $color: $color_white,
+    $borderColor: $color_midnight,
+    $hoverBg: $color_white,
+    $hoverColor: $color_midnight,
+    $hoverBorder: $color_midnight
+  );
 }
 
 .btn-midnight-white-outline {
-  @include button;
-  background: $color_midnight;
-  color: $color_white;
-  border-color: $color_white;
-
-  &:hover {
-    background: $color_white;
-    border-color: $color_white;
-    color: $color_midnight;
-  }
-
-  body {
-    background: $color_whiteSmoke;
-    font-size: 14px;
-    line-height: 1;
-  }
+  @include button(
+    $bg: $color_midnight,
+    $color: $color_white,
+    $borderColor: $color_white,
+    $hoverBg: $color_white,
+    $hoverColor: $color_midnight,
+    $hoverBorder: $color_white
+  );
 }
 
 .card-cta {
@@ -217,6 +199,15 @@ a {
   .hero {
     .hero-body {
       padding-bottom: 250px;
+    }
+
+    a {
+      color: $color_island;
+
+      &:hover {
+        color: $color_academy;
+        text-decoration: underline;
+      }
     }
 
     .headline {
@@ -373,6 +364,11 @@ a {
       a {
         font-size: 15px;
         color: $color_academy;
+
+        &:hover {
+          text-decoration: underline;
+          color: $color_midnight;
+        }
       }
     }
 

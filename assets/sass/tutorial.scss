@@ -172,6 +172,10 @@
         color: $color_academy;
         line-height: 1.69;
         font-weight: 400;
+
+        &:hover {
+          color: $color_midnight;
+        }
       }
     }
   }
