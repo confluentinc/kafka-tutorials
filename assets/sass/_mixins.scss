@@ -21,7 +21,14 @@
   padding-bottom: 15px;
 }
 
-@mixin button {
+@mixin button(
+  $bg: $color_denim,
+  $color: $color_white,
+  $borderColor: $color_denim,
+  $hoverBg: $color_academy,
+  $hoverColor: $color_white,
+  $hoverBorder: $color_academy
+) {
   display: inline-block;
   border-radius: 25px;
   text-transform: uppercase;
@@ -29,17 +36,18 @@
   font-weight: bold;
   font-size: 12px;
   line-height: 15px;
-  border: 1px solid $color_denim;
-  background: $color_denim;
-  color: #fff;
+  border: 1px solid $borderColor !important;
+  background: $bg !important;
+  color: $color !important;
   padding: 12px 30px;
   transition: all 0.25s ease-in-out;
+  text-decoration: none;
 
   &:hover {
-    text-decoration: none;
-    color: $color_white;
-    background: $color_academy;
-    border-color: $color_academy;
+    text-decoration: none !important;
+    color: $hoverColor !important;
+    background: $hoverBg !important;
+    border-color: $hoverBorder !important;
   }
 }
 
