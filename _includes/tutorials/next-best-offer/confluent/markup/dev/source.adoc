@@ -1,0 +1,5 @@
+Our next-best-offer power analysis applications require data from two different sources: customer tenant information and smart control panel readings.
+
+++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/next-best-offer/confluent/code/tutorial-steps/dev/source.json %}</code></pre>
+++++

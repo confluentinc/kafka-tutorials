@@ -990,3 +990,12 @@ customer-journey:
   tutorial-id: "17"
   status:
     confluent: enabled
+
+next-best-offer:
+  title: "Next Best Offer for Banking"
+  meta-description: "This recipe demonstrates how to use ksqlDB to present relevant offers to banking customers."
+  slug: "/next-best-offer"
+  introduction: "Customers today are faced with never ending marketing messages from a variety of sources.  Often these messages are generic and don't have any consideration for the individual needs of the customer.  This one-size-fits-all approach leads to poor conversion rates.  A better approach is to tailor offerings that take into consideration the interests of the customer based on previous purchases or behavior.   This recipe demonstrates how to take existing customer information and provide a 'Next Best Offer' to encourage sales and retain customers."
+  tutorial-id: "18"
+  status:
+    confluent: enabled
