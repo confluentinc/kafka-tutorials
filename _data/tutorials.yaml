@@ -999,3 +999,12 @@ next-best-offer:
   tutorial-id: "18"
   status:
     confluent: enabled
+
+ddos:
+  title: "Detect a Slowloris DDoS attack"
+  meta-description: "This recipe shows you how to use ksqlDB to detect network disruption attacks by processing packet data."
+  slug: "/ddos"
+  introduction: "A distributed denial-of-service (DDoS) attack is a specific type of cyber attack in which a targeted system is flooded with spurious network requests using multiple hosts and IP addresses. The distributed nature of these attacks makes them more effective and difficult to mitigate. This recipe shows a strategy for ingesting and processing network packet data in an effort to detect a specific DDoS attack known as Slowloris."
+  tutorial-id: "19"
+  status:
+    confluent: enabled

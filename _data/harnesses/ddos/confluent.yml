@@ -1,0 +1,67 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/ddos/confluent/markup/dev/answer-short.adoc
+
+dev:
+  steps:
+    - title: Setup your environment
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/provision-cluster.adoc
+
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud_setup.adoc
+
+    - title: Read the data in
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/connect.adoc
+
+        - action: skip
+          render:
+            file: tutorials/ddos/confluent/markup/dev/source.adoc
+
+        - action: skip
+          render:
+            file: shared/markup/ccloud/manual_insert.adoc
+
+    - title: ksqlDB code
+      content:
+        - action: skip
+          render:
+            file: tutorials/ddos/confluent/markup/dev/ksqlDB.adoc
+
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ksqlb_processing_intro.adoc
+
+        - action: skip
+          render:
+            file: tutorials/ddos/confluent/markup/dev/process.adoc
+
+        - action: skip
+          render:
+            file: shared/markup/ccloud/manual_cue.adoc
+
+        - action: skip
+          render:
+            file: tutorials/ddos/confluent/markup/dev/manual.adoc
+
+    - title: Cleanup
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/cleanup.adoc
+
+    - title: Explanation
+      content:
+        - action: skip
+          render:
+            file: tutorials/ddos/confluent/markup/dev/explanation.adoc

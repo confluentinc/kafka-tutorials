@@ -1,0 +1,3 @@
+This application takes the raw network packet data and creates a structured stream of events that can be processed using SQL. Using link:https://docs.ksqldb.io/en/latest/concepts/time-and-windows-in-ksqldb-queries/#windows-in-sql-queries[windows] and filters, the application detects a high number of connection `RESET` events from the server and isolates the potentially offending source.
+
+
