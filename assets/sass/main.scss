@@ -138,6 +138,7 @@ a {
     background: $color_whiteSmoke;
     border-radius: 4px;
     padding: 0;
+    overflow-y: auto;
 
     & > code {
       background: $color_whiteSmoke;
