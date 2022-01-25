@@ -128,22 +128,41 @@ a {
 .snippet-wrapper {
   position: relative;
   margin: 5px 0 20px 0;
-  max-width: 90vw;
+  overflow-x: auto;
 
-  @include for-max-mobile {
-    max-width: 82vw;
+  // for under 1088 this makes the most sense
+  // full width,
+  // minus the padding of the section > .container,
+  // minus the width of the number
+  max-width: calc(100vw - 3rem - 34px);
+
+  @media screen and (min-width: 1088px) {
+    max-width: 926px;
+    width: 926px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1118px;
+    width: 1118px;
+  }
+
+  @media screen and (min-width: 1472px) {
+    max-width: 1344px;
+    width: 1344px;
   }
 
   .snippet,
   .highlight {
     background: $color_whiteSmoke;
     border-radius: 4px;
+    padding: 0;
 
     & > code {
       background: $color_whiteSmoke;
       font-size: 14px;
       line-height: 1.69;
       color: $color_black;
+      padding: 1.25em;
     }
   }
 
