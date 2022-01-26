@@ -1022,3 +1022,12 @@ mainframe-offload:
   tutorial-id: "20"
   status:
     confluent: enabled
+
+discount-promo:
+  title: "Assess the success of a discount promotion"
+  meta-description: "This tutorial shows how to use ksqlDB to track the success of discounts for a small online business."
+  slug: "/discount-promo"
+  introduction: "Small, online retailers often run promotions in order to entice buyers and increase sales. Suppose the retailer implements a 'scratch-off' promotion where customers are provided a scratch card where they will receive discount code for a random percentage (up to 50%) off of their order. How well do these promotions work? And how much does the discount percentage affect the total amount purchased in a given order? Let's find out!"
+  tutorial-id: "21"
+  status:
+    confluent: enabled
