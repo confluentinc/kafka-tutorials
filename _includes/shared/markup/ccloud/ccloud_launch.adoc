@@ -1,1 +1,1 @@
-Click below to automatically launch this recipe in Confluent Cloud (alternatively: proceed with the step-by-step instructions that follow).
+Click below to automatically launch this tutorial in Confluent Cloud (alternatively: proceed with the step-by-step instructions that follow).

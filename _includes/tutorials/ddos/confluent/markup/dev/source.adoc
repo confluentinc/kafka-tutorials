@@ -1,4 +1,4 @@
-This recipe assumes that you have captured your network packet data and published it to a RabbitMQ queue in JSON format. An example packet may look like the following:
+This tutorial assumes that you have captured your network packet data and published it to a RabbitMQ queue in JSON format. An example packet may look like the following:
 
 [source,json]
 ----

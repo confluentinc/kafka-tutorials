@@ -1031,3 +1031,12 @@ discount-promo:
   tutorial-id: "21"
   status:
     confluent: enabled
+
+logistics:
+  title: "Real-time logistics for a delivery fleet"
+  meta-description: "This recipe shows how to track vehicles while delivering orders."
+  slug: "/logistics"
+  introduction: "In today's world, last-mile delivery services are crucial. These operations have to operate as smoothly as possible, ensuring that customers are receiving their orders on time and that they are, ideally, provided real-time updates as the process takes place. This recipe will show your delivery service how to compute delivery estimates and status updates in real-time."
+  tutorial-id: "22"
+  status:
+    confluent: enabled

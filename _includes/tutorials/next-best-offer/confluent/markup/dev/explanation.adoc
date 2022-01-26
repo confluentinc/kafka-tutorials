@@ -1,6 +1,6 @@
 ### Adding the lookup tables
 
-In the event stream you'll use for this recipe, each activity entry contains only the id for the customer. This is expected, as it's a common practice to have link:https://en.wikipedia.org/wiki/Database_normalization[normalized] event streams.  But when it's time to analyze the data, it's important to have additional customer information to provide context for any analysts reviewing the results. You'll also need a table to use for the calculated offer.
+In the event stream you'll use for this tutorial, each activity entry contains only the id for the customer. This is expected, as it's a common practice to have link:https://en.wikipedia.org/wiki/Database_normalization[normalized] event streams.  But when it's time to analyze the data, it's important to have additional customer information to provide context for any analysts reviewing the results. You'll also need a table to use for the calculated offer.
 
 #### Creating the customer table and inserting records
 
