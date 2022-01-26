@@ -18,6 +18,23 @@ button {
   font-family: "MarkOT";
 }
 
+ul,
+ol {
+  margin: 10px 0 20px;
+
+  li {
+    margin-left: 17px;
+  }
+}
+
+ul li {
+  list-style-type: disc;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
 a {
   color: $color_academy;
   transition: all 0.25s ease-in-out;
@@ -137,7 +154,7 @@ a {
   .highlight {
     background: $color_whiteSmoke;
     border-radius: 4px;
-    padding: 0;
+    padding: 1.25em;
     overflow-y: auto;
 
     & > code {
@@ -145,7 +162,7 @@ a {
       font-size: 14px;
       line-height: 1.69;
       color: $color_black;
-      padding: 1.25em;
+      padding: 0;
     }
   }
 
