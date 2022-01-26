@@ -1,6 +1,6 @@
 This solution uses ksqlDB's ability to link:https://www.confluent.io/blog/ksqldb-techniques-that-make-stream-processing-easier-than-ever/[model] and link:https://docs.ksqldb.io/en/latest/how-to-guides/query-structured-data/[query] structured data. 
 
-### Streaming JSON
+## Streaming JSON
 
 Let's break down the commands in this application and explain the individual parts.
 
@@ -61,7 +61,7 @@ WITH (
 
 We also indicate the data format of the events on the topic, using the `VALUE_FORMAT` property. Finally, we use the `TIMESTAMP` property to indicate an event field that can be used as the rowtime of the event. This would allow us to perform time-based operations based on the actual event time as provided by the captured packet data.
 
-### Materialized view
+## Materialized view
 
 Now that we have a useful stream of packet capture data, we're ready to try to detect potential DDoS attacks from the events.
 
