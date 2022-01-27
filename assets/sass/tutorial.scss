@@ -68,6 +68,7 @@
       .community-contribution {
         font-size: 0.75rem;
         background: $color_white;
+        color: $color_dimGray;
         border-radius: 6px;
         padding: 2px 1px 2px 5px;
         line-height: 2.5rem;
@@ -156,6 +157,11 @@
   .tutorial-navigation {
     margin-top: 60px;
     display: inline-block;
+
+    li {
+      margin-left: 0;
+      list-style-type: none;
+    }
 
     > li > a {
       @include title;
