@@ -258,6 +258,14 @@ a {
   .footer {
     margin-top: 130px;
   }
+
+  .cards ul,
+  .cards ol {
+    li {
+      list-style-type: none;
+      margin-left: 0;
+    }
+  }
 }
 
 .hero {
