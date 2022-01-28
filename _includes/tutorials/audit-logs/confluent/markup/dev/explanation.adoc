@@ -1,0 +1,96 @@
+The first step of this tutorial was to link:https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/create-stream/[create a stream] from the audit log topic. When creating a stream, you can assign a schema or link:https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/create-stream/[model the JSON]. After applying a model or schema, you can directly query nested sections of the data, which allows you to apply filters and only pull back the log entries that interest you. Additionally, you can cherry-pick selected fields from the nested structure, so you can limit the amount of data you retrieve with the query. The second part of the tutorial leverages the applied schema to specify that you want only log entries pertaining to events on Kafka topics. 
+
+The link:https://docs.confluent.io/platform/current/security/audit-logs/audit-logs-concepts.html#audit-log-content[JSON structure of the Confluent log entries] contains several fields:
+
+[source,json]
+----
+{   "id": "889bdcd9-a378-4bfe-8860-180ef8efd208",
+    "source": "crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q",
+    "specversion": "1.0",
+    "type": "io.confluent.kafka.server/authorization",
+    "time": "2019-10-24T16:15:48.355Z",  <---Time of the event
+    "datacontenttype": "application/json",
+    "subject": "crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q/topic=app3-topic",
+    "confluentRouting": {
+        "route": "confluent-audit-log-events"
+    },
+    "data": {  <--- Relevant data of the event
+      ...
+    "authorizationInfo": {
+        "granted": true,
+        "operation": "Create",
+        "resourceType": "Topic",  <--- You only want events involving topics
+        "resourceName": "app3-topic",
+        "patternType": "LITERAL",
+        "superUserAuthorization": true
+      }
+     ... 
+    }
+}
+----
+
+Of these fields, you're only interested in the `time` of the event and the `data` field. The `data` field contains the specifics of the log event, which in this case is any operation where the `resourceType` is `Topic`. So the first step is to apply a schema to this JSON:
+
+[source,sql]
+----
+CREATE STREAM audit_log_events (
+  id VARCHAR, 
+  source VARCHAR, 
+  specversion VARCHAR, 
+  type VARCHAR, 
+  time VARCHAR,  
+  datacontenttype VARCHAR, 
+  subject VARCHAR, 
+  confluentRouting STRUCT<route VARCHAR >,  
+  data STRUCT<
+    serviceName VARCHAR, 
+    methodName VARCHAR, 
+    resourceName VARCHAR, 
+    authenticationInfo STRUCT<principal VARCHAR>, 
+....
+
+) WITH (
+  KAFKA_TOPIC = 'confluent-audit-log-events', 
+  VALUE_FORMAT='JSON', 
+  TIMESTAMP='time', 
+  TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ss.SSSX',
+  PARTITIONS = 6
+);
+----
+
+By supplying a schema to the ksqlDB `STREAM`, you are describing the structure of the data to ksqlDB. The top-level fields (`id` to `data`) correspond to column names. You'll notice that there are nested `STRUCT` fields representing nested JSON objects within the structure.  In the `WITH` statement you specify that ksqlDB should use the `time` field for the record timestamp and the format to parse it-`TIMESTAMP_FORMAT`.
+
+Now that you've described the structure of the data (by applying a schema), you can create another `STREAM` that will contain only the data of interest. Let's review this query in two parts—the `CREATE` statement and the `SELECT` statement.
+
+[source,sql]
+----
+CREATE STREAM audit_log_topics
+  WITH (
+  KAFKA_TOPIC='topic-operations-audit-log', 
+  PARTITIONS=6
+) 
+----
+
+This `CREATE STREAM` statement specifies to use (or create, if it doesn't exist yet) a Kafka topic to store the results of the stream.
+
+The `SELECT` part of the query is where you can drill down in the original stream and pull out only the records that interest you. Let's take a look at each line:
+
+[source,sql]
+----
+SELECT time, data
+----
+
+This specifies that you want only the `time` field and the nested `data` entry from the original JSON. In ksqlDB, you can access nested JSON objects using the `->` operator.
+
+[source,sql]
+----
+FROM  audit_log_events
+
+The `FROM` clause simply tells ksqlDB to pull the records from the original stream that you created to model the Confluent log data.
+
+[source,sql]
+----
+WHERE data->authorizationinfo->resourcetype = 'Topic'
+----
+
+In this `WHERE` statement, you use the `->` operator to drill down through several layers of nested JSON. This statement specifies that the new stream will contain only entries involving topic operations.

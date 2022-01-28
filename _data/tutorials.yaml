@@ -1034,9 +1034,18 @@ discount-promo:
 
 logistics:
   title: "Real-time logistics for a delivery fleet"
-  meta-description: "This recipe shows how to track vehicles while delivering orders."
+  meta-description: "This tutorial shows how to track vehicles while delivering orders."
   slug: "/logistics"
-  introduction: "In today's world, last-mile delivery services are crucial. These operations have to operate as smoothly as possible, ensuring that customers are receiving their orders on time and that they are, ideally, provided real-time updates as the process takes place. This recipe will show your delivery service how to compute delivery estimates and status updates in real-time."
+  introduction: "In today's world, last-mile delivery services are crucial. These operations have to operate as smoothly as possible, ensuring that customers are receiving their orders on time and that they are, ideally, provided real-time updates as the process takes place. This tutorial will show your delivery service how to compute delivery estimates and status updates in real-time."
   tutorial-id: "22"
+  status:
+    confluent: enabled
+
+audit-logs:
+  title: "Filter audit logs for output to splunk"
+  meta-description: "This tutorial demonstrates how to filter Confluent audit logs to Splunk for SIEM processing"
+  slug: "/audit-logs"
+  introduction: "In the Security Information and Event Management (SIEM) world, it's just as important to have insight into internal activities as it is to monitor for external security threats and vulnerabilities. But viewing all internal audit logs would provide too much information; you need to narrow the scope to particular events. This tutorial demonstrates how to filter audit logs in a Kafka topic and filter them for specific events and forward them to Splunk for indexing via the <a href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk Sink connector</a>.  The example data used is from <a href='https://www.confluent.io/confluent-cloud/tryfree/'>Confluent Cloud</a> audit logs."
+  tutorial-id: "23"
   status:
     confluent: enabled

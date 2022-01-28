@@ -1,0 +1,5 @@
+After processing the data, send it to Splunk.
+
+++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/audit-logs/confluent/code/tutorial-steps/dev/sink.json %}</code></pre>
+++++
