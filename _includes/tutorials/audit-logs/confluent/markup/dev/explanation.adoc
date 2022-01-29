@@ -85,6 +85,7 @@ This specifies that you want only the `time` field and the nested `data` entry f
 [source,sql]
 ----
 FROM  audit_log_events
+----
 
 The `FROM` clause simply tells ksqlDB to pull the records from the original stream that you created to model the Confluent log data.
 
