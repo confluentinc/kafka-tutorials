@@ -1,0 +1,1 @@
+This application processes real-time vehicle information, showing the current state of the order on the vehicle –  `WAREHOUSE`, `EN ROUTE`, or `DELIVERED` – along with the distance away from the final destination and an estimated delivery time.

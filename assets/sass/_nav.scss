@@ -1,4 +1,5 @@
-
+$font-family: "MarkPro-Bold", Arial, sans-serif;
+$font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
 @mixin quick-start-styles {
   display: flex;
@@ -33,7 +34,7 @@
 .header {
   $header-height: 85px;
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: $header-height;
   position: fixed;
   top: 0;
@@ -89,7 +90,7 @@
     img {
       height: 50px;
 
-      @include for-min-tablet {  
+      @include for-min-tablet {
         height: 75px;
       }
 
@@ -108,7 +109,7 @@
     img:nth-of-type(2n) {
       display: none;
 
-      @include for-min-tablet {    
+      @include for-min-tablet {
         display: block;
       }
     }
@@ -129,7 +130,7 @@
       display: block;
 
       // @media screen and (max-width: 1115px) {
-      @include for-tablet-nav {  
+      @include for-tablet-nav {
         display: none;
       }
 
@@ -291,8 +292,7 @@
       display: block;
     }
 
-    @include for-tablet-nav {  
-
+    @include for-tablet-nav {
       display: flex;
 
       & > a:first-of-type {
@@ -311,8 +311,7 @@
           & > a:first-of-type {
             display: none;
 
-            @include for-max-mobile{
-              
+            @include for-max-mobile {
               @include quick-start-styles;
               background-color: $color_denim;
 

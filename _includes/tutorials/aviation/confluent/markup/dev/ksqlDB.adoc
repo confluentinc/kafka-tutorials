@@ -1,0 +1,1 @@
+This ksqlDB application joins between customer flight booking data and any flight updates to provide a stream of notifications to passengers.

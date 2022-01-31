@@ -61,3 +61,15 @@
   src: local("Mark OT Narrow Light"), local("Mark-OT-Narrow-Light"),
     url("https://cdn.confluent.io/fonts/MarkOT/MarkOT-NarrowLightItalic.woff2") format("woff2");
 }
+
+@font-face {
+  font-display: swap;
+  font-family: "MarkPro-Bold";
+  src: url("../fonts/MarkPro-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "MarkPro-Medium";
+  src: url("../fonts/MarkPro-Medium.woff2") format("woff2");
+}

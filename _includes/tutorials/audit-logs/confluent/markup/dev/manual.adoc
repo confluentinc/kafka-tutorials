@@ -1,0 +1,3 @@
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/audit-logs/confluent/code/tutorial-steps/dev/manual.sql %}</code></pre>
+++++

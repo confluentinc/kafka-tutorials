@@ -1,4 +1,4 @@
-@import '_vars';
+@import "_vars";
 
 @mixin title {
   font-size: 18px;
@@ -21,12 +21,42 @@
   padding-bottom: 15px;
 }
 
+@mixin button(
+  $bg: $color_denim,
+  $color: $color_white,
+  $borderColor: $color_denim,
+  $hoverBg: $color_academy,
+  $hoverColor: $color_white,
+  $hoverBorder: $color_academy
+) {
+  display: inline-block;
+  border-radius: 25px;
+  text-transform: uppercase;
+  font-family: "MarkOT";
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  border: 1px solid $borderColor !important;
+  background: $bg !important;
+  color: $color !important;
+  padding: 12px 30px;
+  transition: all 0.25s ease-in-out;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: none !important;
+    color: $hoverColor !important;
+    background: $hoverBg !important;
+    border-color: $hoverBorder !important;
+    cursor: pointer;
+  }
+}
+
 @mixin for-min-desktop {
   @media screen and (min-width: $medium) {
     @content;
   }
 }
-
 
 @mixin for-tablet-nav {
   @media screen and (max-width: 1100px) {
@@ -45,7 +75,6 @@
     @content;
   }
 }
-
 
 @mixin for-max-mobile {
   @media screen and (max-width: #{$small - 1}) {

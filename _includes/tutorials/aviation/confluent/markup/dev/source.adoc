@@ -1,0 +1,5 @@
+This example pulls in data from different tables for customers, flights, flight updates, and bookings.
+
+++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/source.json %}</code></pre>
+++++
