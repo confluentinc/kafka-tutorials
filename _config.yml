@@ -1,6 +1,6 @@
 title: "Kafka Tutorials: Learn Kafka and Stream Processing with Examples"
 description: "The largest collection of Apache Kafka tutorials with end-to-end code examples for all use cases. Learn to use Kafka and ksqlDB from the experts at Confluent Developer."
-url: "https://kafka-tutorials.confluent.io"
+url: "https://developer.confluent.io/tutorials"
 
 github_url: https://github.com/confluentinc/kafka-tutorials
 contribute_url: https://github.com/confluentinc/kafka-tutorials/blob/master/CONTRIBUTING.md
