@@ -1,8 +1,7 @@
-@import "_vars";
 @import "_tabs";
 
 .pg-tutorial {
-  background: #fff;
+  background: $color_white;
 
   .section {
     padding-top: 35px;
@@ -13,7 +12,12 @@
     }
 
     .paragraph p {
-        overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .tutorial-section-item-title {
+      font-size: 28px;
+      margin-top: 40px;
     }
   }
 
@@ -30,7 +34,7 @@
 
   .summary {
     @include text;
-    color: #ffffff;
+    color: $color_white;
 
     h2 {
       font-size: 18px;
@@ -62,15 +66,15 @@
       }
 
       .community-contribution {
-          font-size: 0.75rem;
-          background: white;
-          border-radius: 6px;
-          padding: 2px 1px 2px 5px;
-          line-height: 2.5rem;
-          font-weight: 900;
-          text-transform: uppercase;
+        font-size: 0.75rem;
+        background: $color_white;
+        color: $color_dimGray;
+        border-radius: 6px;
+        padding: 2px 1px 2px 5px;
+        line-height: 2.5rem;
+        font-weight: 900;
+        text-transform: uppercase;
       }
-
     }
   }
 
@@ -81,14 +85,35 @@
   .example {
     margin-bottom: 40px;
 
-    p {
+    .example-content {
+      display: flex;
+      flex-direction: row;
+
+      @include for-max-mobile {
+        flex-direction: column;
+
+        .image {
+          margin-left: 0;
+          width: 100%;
+        }
+      }
+    }
+
+    .text {
       @include p;
+      padding-top: 25px;
+    }
+
+    .image {
+      display: inline-block;
+      margin-left: 25px;
+      width: 436px;
     }
   }
 
   h4.subtitle {
     margin: 0 0 5px -32px;
-    color: $textColor;
+    color: $color_black;
     font-weight: normal;
     font-size: 21px;
 
@@ -96,25 +121,32 @@
       display: inline-block;
       vertical-align: middle;
     }
+  }
+
+  .content-item {
+    display: flex;
+    flex-direction: row;
 
     .num {
       min-width: 26px;
       width: 26px;
       height: 26px;
       border-radius: 50%;
-      background: $baseColor;
+      background: $color_denim;
       text-align: center;
       font-size: 18px;
-      color: #fff;
+      color: $color_white;
       font-weight: bold;
-      padding-top: 2px;
+      padding-top: 0;
       display: inline-block;
-      margin-right: 5px;
+      margin-right: 8px;
+      position: relative;
+      top: -2px;
     }
   }
 
   .tutorial-try-it-step {
-    margin: 0 0 0px 32px;
+    margin: 0;
 
     .subtitle {
       padding-bottom: 15px;
@@ -125,6 +157,11 @@
   .tutorial-navigation {
     margin-top: 60px;
     display: inline-block;
+
+    li {
+      margin-left: 0;
+      list-style-type: none;
+    }
 
     > li > a {
       @include title;
@@ -138,30 +175,34 @@
 
       a {
         @include text;
-        color: #0074A2;
+        color: $color_academy;
         line-height: 1.69;
         font-weight: 400;
+
+        &:hover {
+          color: $color_midnight;
+        }
       }
     }
   }
 
   .tutorial-media-container {
-      margin-top: 60px;
+    margin-top: 60px;
 
-      .image {
-          position: relative;
-          height: 0;
-          overflow: hidden;
-          padding-bottom: 50%;
+    .image {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      padding-bottom: 50%;
 
-          iframe {
-              position: absolute;
-              top: 0;
-              left: 0;
-              width: 100%;
-              height: 100%;
-          }
+      iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
       }
+    }
   }
 
   @media screen and (max-width: 640px) {

@@ -9,7 +9,12 @@
 
 ### New tutorial checklist
 
-<!-- - [ ] Add a `Short Answer` -->
-<!-- - [ ] Implement good test cases -->
+<!-- - [ ] Add a `Short Answer` (if relevant) -->
+<!-- - [ ] Implement good test cases (if relevant) -->
 <!-- - [ ] Validate hyperlinks -->
 <!-- - [ ] Spell check (e.g. using `aspell`) -->
+<!-- - [ ] Full code validated in Confluent Cloud -->
+<!-- - [ ] SQL style/syntax consistent to existing recipes -->
+<!-- - [ ] Validate presentation with `bundle exec jekyll serve --livereload` -->
+<!-- - [ ] Tutorial added to appropriate `index.html` or `use-case.html` file -->
+<!-- - [ ] Source connector's auto topic naming convention works with the ksqlDB app values for `KAFKA_TOPIC` (if relevant) -->

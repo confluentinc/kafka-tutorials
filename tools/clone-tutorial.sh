@@ -61,8 +61,8 @@ ORIG_TUTORIAL_BASE_DIR_NAME=$(echo ${ORIG_TUTORIAL} | cut -d '/' -f 1)
 SINGLE_TYPE_CLONE=$(echo ${ORIG_TUTORIAL} | cut -d '/' -s  -f 2)
 
 
-if [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/ksql" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kstreams" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kafka" ]; then
-	echo "An existing tutorial for ksql, kstreams, and kafka  exists for ${KT_HOME}/${NEW_TUTORIAL}, so quitting now"
+if [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/ksql" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kstreams" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/kafka" ] && [ -d "${TUTORIALS_DIR}/${NEW_TUTORIAL}/confluent" ]; then
+	echo "An existing tutorial for ksql, kstreams, kafka, and confluent exists for ${KT_HOME}/${NEW_TUTORIAL}, so quitting now"
 	exit 1
 fi
 
@@ -79,12 +79,14 @@ if [ ! -z "${SINGLE_TYPE_CLONE}" ]; then
 	    echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE} of ${ORIG_TUTORIAL}"
 	elif [ "${SINGLE_TYPE_CLONE}" == "kafka" ]; then
 	    echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE} of ${ORIG_TUTORIAL}"
+	elif [ "${SINGLE_TYPE_CLONE}" == "confluent" ]; then
+	    echo "Cloning single type tutorial of ${SINGLE_TYPE_CLONE} of ${ORIG_TUTORIAL}"
 	else
 		echo "Unrecognized type [${SINGLE_TYPE_CLONE}], quitting"
 		exit 1
 	fi
 else 
-	echo "Cloning ${ORIG_TUTORIAL} if ksql, kstreams, and kafka exist then all of those are cloned"
+	echo "Cloning ${ORIG_TUTORIAL} if ksql, kstreams, kafka, and confluent exist then all of those are cloned"
 fi
 
 ORIG_CLONE_FILES_DIR=$ORIG_TUTORIAL_BASE_DIR_NAME
@@ -179,11 +181,17 @@ if [ "${NEW_TUTORIAL_ENTRY}" -eq 0 ]; then
 	    	sed -i '.orig' "s/kafka: disabled/kafka: ${KAFKA_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 	    fi
 
+	    if [ $type == "confluent" ]; then
+	    	CONFLUENT_ENABLED="enabled"
+	    	sed -i '.orig' "s/confluent: disabled/confluent: ${CONFLUENT_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
+	    fi
+
 	done
 
 	sed -i '.orig' "s/<KSQL-ENABLED>/${KSQL_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml	
 	sed -i '.orig' "s/<KSTREAMS-ENABLED>/${KSTREAMS_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 	sed -i '.orig' "s/<KAFKA-ENABLED>/${KAFKA_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
+	sed -i '.orig' "s/<CONFLUENT-ENABLED>/${CONFLUENT_ENABLED}/g" $TEMP_WORK_DIR/tutorial-description-template.yml
 
     echo "Adding new entry into ${KT_HOME}/_data/tutorials.yaml now"
     cat $TEMP_WORK_DIR/tutorial-description-template.yml >> $KT_HOME/_data/tutorials.yaml
@@ -257,6 +265,16 @@ for type in $(ls $TUTORIALS_DIR/$NEW_TUTORIAL); do
 		      echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/kafka"
 		    fi	
 	    fi 
+
+            if [ $type == "confluent" ]; then
+                if [ ! -f $KT_HOME/tutorials/$NEW_TUTORIAL/confluent.html ]; then
+
+                    cp $KT_HOME/tutorials/$ORIG_TUTORIAL_BASE_DIR_NAME/confluent.html $KT_HOME/tutorials/$NEW_TUTORIAL/confluent.html
+
+                    else
+                      echo "Front matter/semaphore entry exist for ${NEW_TUTORIAL}/confluent"
+                    fi 
+            fi
 done
 
 function create_and_report_checklist() {

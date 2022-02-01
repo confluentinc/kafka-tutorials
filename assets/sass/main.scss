@@ -4,6 +4,7 @@
 @import "bulma/bulma";
 @import "_vars";
 @import "_mixins";
+@import "_typography";
 @import "_nav";
 @import "_footer";
 @import "_form";
@@ -17,13 +18,83 @@ button {
   font-family: "MarkOT";
 }
 
+ul,
+ol {
+  margin: 10px 0 20px;
+
+  li {
+    margin-left: 17px;
+  }
+}
+
+ul li {
+  list-style-type: disc;
+}
+
+ol li {
+  list-style-type: decimal;
+}
+
 a {
-  color: #38cced;
+  color: $color_academy;
+  transition: all 0.25s ease-in-out;
 
   &:hover {
-    color: #0074a2;
+    color: $color_midnight;
     text-decoration: underline;
   }
+}
+
+.btn-denim {
+  @include button;
+}
+
+.btn-denim-white-outline {
+  @include button($borderColor: $color_white, $hoverBorder: $color_white);
+}
+
+.btn-island {
+  @include button(
+    $bg: $color_island,
+    $color: $color_denim,
+    $borderColor: $color_island,
+    $hoverBg: $color_denim,
+    $hoverColor: $color_white,
+    $hoverBorder: $color_denim
+  );
+}
+
+.btn-white {
+  @include button(
+    $bg: $color_white,
+    $color: $color_denim,
+    $borderColor: $color_white,
+    $hoverBg: $color_denim,
+    $hoverColor: $color_white,
+    $hoverBorder: $color_white
+  );
+}
+
+.btn-midnight {
+  @include button(
+    $bg: $color_midnight,
+    $color: $color_white,
+    $borderColor: $color_midnight,
+    $hoverBg: $color_white,
+    $hoverColor: $color_midnight,
+    $hoverBorder: $color_midnight
+  );
+}
+
+.btn-midnight-white-outline {
+  @include button(
+    $bg: $color_midnight,
+    $color: $color_white,
+    $borderColor: $color_white,
+    $hoverBg: $color_white,
+    $hoverColor: $color_midnight,
+    $hoverBorder: $color_white
+  );
 }
 
 .card-cta {
@@ -41,38 +112,57 @@ a {
     cursor: pointer;
 
     &.primary {
-      background-color: #fd672f;
-      color: #fff;
+      background-color: $color_tomato;
+      color: $color_white;
     }
 
     &.secondary {
-      color: $baseColor;
-      background-color: #fff;
-      border: solid 2px $baseColor;
+      color: $color_denim;
+      background-color: $color_white;
+      border: solid 2px $color_denim;
     }
   }
-}
-
-body {
-  background: #f9f9fa;
-  font-size: 14px;
-  line-height: 1;
 }
 
 .snippet-wrapper {
   position: relative;
   margin: 5px 0 20px 0;
+  overflow-x: auto;
+
+  // for under 1088 this makes the most sense
+  // full width,
+  // minus the padding of the section > .container,
+  // minus the width of the number
+  max-width: calc(100vw - 3rem - 34px);
+
+  @media screen and (min-width: 1088px) {
+    max-width: 926px;
+    width: 926px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    max-width: 1118px;
+    width: 1118px;
+  }
+
+  @media screen and (min-width: 1472px) {
+    max-width: 1344px;
+    width: 1344px;
+  }
 
   .snippet,
   .highlight {
-    background: #f9f9fa;
+    background: $color_whiteSmoke;
     border-radius: 4px;
+    padding: 1.25em;
+    overflow-y: auto;
 
     & > code {
-      background: #f9f9fa;
+      background: $color_whiteSmoke;
       font-size: 14px;
       line-height: 1.69;
-      color: $textColor;
+      color: $color_black;
+      padding: 0;
     }
   }
 
@@ -96,7 +186,7 @@ body {
           height: 0;
           border-left: 5px solid transparent;
           border-right: 5px solid transparent;
-          border-bottom: 5px solid #333;
+          border-bottom: 5px solid $color_darkCharcoal;
           content: "";
         }
 
@@ -104,8 +194,8 @@ body {
           content: "Copied!";
           position: absolute;
           top: calc(100% + 5px);
-          background: #333;
-          color: white;
+          background: $color_darkCharcoal;
+          color: $color_white;
           padding: 8px 10px;
           font-size: 14px;
           border-radius: 4px;
@@ -127,6 +217,15 @@ body {
   .hero {
     .hero-body {
       padding-bottom: 250px;
+    }
+
+    a {
+      color: $color_island;
+
+      &:hover {
+        color: $color_academy;
+        text-decoration: underline;
+      }
     }
 
     .headline {
@@ -152,19 +251,27 @@ body {
     .subtitle {
       max-width: 800px;
       margin-top: 50px;
-      color: #ffffff;
+      color: $color_white;
     }
   }
 
   .footer {
     margin-top: 130px;
   }
+
+  .cards ul,
+  .cards ol {
+    li {
+      list-style-type: none;
+      margin-left: 0;
+    }
+  }
 }
 
 .hero {
-  background: #040531;
+  background: $color_midnight;
   padding-top: 100px;
-  color: #ffffff;
+  color: $color_white;
 
   @media screen and (max-width: 768px) {
     border-radius: 0;
@@ -174,6 +281,29 @@ body {
 
   .hero-body {
     padding-top: 20px;
+
+    .ctas {
+      margin-top: 25px;
+
+      > * {
+        margin-left: 10px;
+        margin-bottom: 15px;
+      }
+
+      :first-child {
+        margin-left: 0;
+      }
+
+      @include for-max-mobile {
+        display: flex;
+        flex-direction: column;
+
+        > * {
+          margin-left: 0;
+          display: inline-block;
+        }
+      }
+    }
   }
 
   .headline {
@@ -201,7 +331,7 @@ body {
     flex-direction: column;
     font-size: 28px;
     font-weight: bold;
-    color: $baseColor;
+    color: $color_denim;
     align-items: center;
     text-align: center;
     min-height: 193px;
@@ -238,11 +368,35 @@ body {
   margin-top: -200px;
 
   .card {
-    flex: 1;
-    min-width: 325px;
-    max-width: 325px;
-    margin-right: 46px;
+    width: 325px;
     padding: 35px 25px 55px;
+    margin-right: 46px;
+    border-radius: 4px;
+    box-shadow: 0 3px 21px 0 rgba(0, 0, 0, 0.1);
+    background-color: $color_white;
+
+    .title {
+      @include title;
+
+      div {
+        margin-top: 20px;
+      }
+    }
+
+    li {
+      margin-bottom: 15px;
+      line-height: 1;
+
+      a {
+        font-size: 15px;
+        color: $color_academy;
+
+        &:hover {
+          text-decoration: underline;
+          color: $color_midnight;
+        }
+      }
+    }
 
     &:last-child {
       margin-right: 0;
@@ -250,48 +404,17 @@ body {
   }
 }
 
-.secondary-card-row {
-  margin-top: 25px;
-}
-
-.third-card-row {
-  margin-top: 25px;
-}
-
-.fourth-card-row {
-  margin-top: 25px;
-}
-
+.secondary-card-row,
+.third-card-row,
+.fourth-card-row,
 .fifth-card-row {
   margin-top: 25px;
-}
-
-.card {
-  border-radius: 4px;
-  box-shadow: 0 3px 21px 0 rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-
-  .title {
-    @include title;
-
-    div {
-      margin-top: 20px;
-    }
-  }
-
-  li {
-    margin-bottom: 15px;
-
-    a {
-      font-size: 15px;
-      color: #0074a2;
-    }
-  }
 }
 
 .section {
   .title {
     @include title;
+
     margin-bottom: 15px;
     font-weight: 550;
     line-height: 1.5;
@@ -302,13 +425,20 @@ body {
   }
 }
 
-@media screen and (max-width: 1079px) {
+@include for-tablet-nav {
   .pg-main {
+    .hero {
+      .hero-body {
+        padding-bottom: 100px;
+      }
+    }
+
     .footer {
       margin-top: 40px;
     }
 
     .cards-container {
+      padding: 0 25px;
       .card-cta {
         flex-direction: column;
         margin-top: 0;
@@ -331,8 +461,10 @@ body {
       flex-direction: column;
       margin-top: 0;
       align-items: center;
+      width: 100%;
 
       .card {
+        width: 100%;
         margin: 20px 0;
 
         &:first-child {
@@ -351,8 +483,4 @@ body {
   body {
     font-size: 10px;
   }
-}
-
-.apache-info {
-  margin-bottom: 50px;
 }

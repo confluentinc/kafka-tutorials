@@ -1,0 +1,7 @@
+This tutorial creates simulated data with the `Datagen` connector.
+
+Optional: To simulate a real-world scenario where user sessions aren't just always open but do close after some time, you can pause and resume the `DATAGEN_CLICKSTREAM` connector.
+
+++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/clickstream/confluent/code/tutorial-steps/dev/source.json %}</code></pre>
+++++

@@ -1,1 +1,1 @@
-You may try https://kafka-tutorials.confluent.io[another Kafka tutorial], but if you don't plan on doing other tutorials, use the Confluent Cloud Console or CLI to destroy all the resources you created. Verify they are destroyed to avoid unexpected charges.
+You may try link:{{ site.url }}[another tutorial], but if you don't plan on doing other tutorials, use the Confluent Cloud Console or CLI to destroy all the resources you created. Verify they are destroyed to avoid unexpected charges.

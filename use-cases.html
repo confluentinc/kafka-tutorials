@@ -1,0 +1,144 @@
+---
+---
+
+<!DOCTYPE html>
+<html>
+  <head>
+    {% include vendors.html %}
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ site.description }}">
+    <meta class="swiftype" name="site-id" data-type="integer" content="5" />
+    <title>{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ "/assets/sass/fonts.css" | relative_url }}" />
+    <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
+    <script src="https://cdn.optimizely.com/js/15784060578.js"></script>
+    <script>
+      !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6";analytics.SNIPPET_VERSION="4.13.2";
+      analytics.load("az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6");
+      analytics.page();
+      }}();
+    </script>
+  </head>
+  <body class="pg-main">
+    {% include nav.html %}
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <div class="headline">
+            <h1>
+              Say Hello World to Stream Processing
+            </h1>
+            <h2 class="subtitle">From Idea to Proof-of-concept: Learn the Apache Kafka® fundamentals quickly with our functional tutorials, then explore the most popular stream processing use cases with recipes powered by ksqlDB so you can take immediate action, 100% in the cloud. <a href="https://www.confluent.io/confluent-cloud/tryfree/">Get started here</a></h2>
+            <div class="ctas">
+                <a href="{{ "/index.html" | relative_url }}" class="btn-midnight">Functional Tutorials</a>
+                <a href="{{ "/use-cases.html" | relative_url }}" class="btn-midnight-white-outline">Use Case Recipes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="cards-container">
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-aggregate.svg" | relative_url }}" />
+            <div>Anomaly and Pattern Detection</div>
+          </div>
+           <ul>
+            <li><a href="{{ "/credit-card-activity/confluent.html" | relative_url }}">Detect unusual credit card activity</a></li>
+            <li><a href="{{ "/internet-of-things/confluent.html" | relative_url }}">Flag unhealthy IoT devices</a></li>
+            <li><a href="{{ "/salesforce/confluent.html" | relative_url }}">Handle corrupted data from Salesforce</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-hub-spoke.svg" | relative_url }}" />
+            <div>Customer 360</div>
+          </div>
+          <ul>
+            <li><a href="{{ "/online-dating/confluent.html" | relative_url }}">Match users for online dating</a></li>
+            <li><a href="{{ "/clickstream/confluent.html" | relative_url }}">Understand user behavior with clickstream data</a></li>
+            <li><a href="{{ "/aviation/confluent.html" | relative_url }}">Notify passengers of flight updates</a></li>
+            <li><a href="{{ "/loyalty-rewards/confluent.html" | relative_url }}">Build customer loyalty programs</a></li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-stream.svg" | relative_url }}" />
+            <div>Cybersecurity</div>
+          </div>
+          <ul>
+            <li><a href="{{ "/SSH-attack/confluent.html" | relative_url }}">Detect and analyze SSH attacks</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cards secondary-card-row">
+
+       <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-cluster.svg"  | relative_url }}" />
+            <div>Predictive Analytics</div>
+          </div>
+          <ul>
+            <li><a href="{{ "/fleet-management/confluent.html" | relative_url }}">Optimize fleet management</a></li>
+            <li><a href="{{ "/inventory/confluent.html" | relative_url }}">Optimize omni-channel inventory</a></li>
+          </ul>
+          <!--div id="show"><a class="button is-small is-fullwidth">More</a></div-->
+        </div>
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-atom.svg"  | relative_url }}" />
+            <div>Real-time Analytics</div>
+          </div>
+          <ul>
+            <li><a href="{{ "/datacenter/confluent.html" | relative_url }}">Analyze datacenter power usage</a></li>
+            <li><a href="{{ "/payment-status-check/confluent.html" | relative_url }}">Automate instant payment verifications</a></li>
+            <li><a href="{{ "/denormalization/confluent.html" | relative_url }}">Enrich orders with change data capture (CDC)</a></li>
+            <li><a href="{{ "/dynamic-pricing/confluent.html" | relative_url }}">Build a dynamic pricing strategy</a></li>
+          </ul>
+        </div>
+
+        <div class="card card-cta">
+          <div class="title">
+            <div>Be the first to be notified about new tutorials</div>
+            <form id="mktoForm_3977" style="display:none"></form>
+            <div id="mkto-form">
+              <div class="form">
+                <div class="is-hidden">Thank you!</div>
+                <a class="cta-button secondary">Sign Up</a>
+                <form>
+                  <input type="email" placeholder="Enter Email" name="Email" />
+                  <button class="cta-button secondary" type="submit">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div id="signup-notice" class="is-hidden notice">
+            <p>
+              By subscribing you understand we will process your personal information in accordance with our <a href="https://www.confluent.io/privacy">Privacy Statement</a>.
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <!--END 2nd card row -->
+    </div>
+
+
+    {% include footer.html %}
+    <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/main.js" | relative_url }}"></script>
+    <script src="{{ "/assets/js/nav.js" | relative_url }}"></script>
+    <script src="//go.confluent.io/js/forms2/js/forms2.min.js"></script>
+    <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+To clean up the ksqlDB resources created by this tutorial, use the ksqlDB commands shown below (substitute stream or topic name, as appropriate).
+By including the `DELETE TOPIC` clause, the topic backing the stream or table is also deleted, asynchronously.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw shared/code/ccloud/cleanup.sql %}</code></pre>
++++++
+
+If you also created connectors, you'll need to remove those as well.
