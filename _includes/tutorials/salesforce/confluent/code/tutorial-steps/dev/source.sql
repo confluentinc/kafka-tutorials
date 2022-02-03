@@ -11,6 +11,6 @@ CREATE SOURCE CONNECTOR sfdc_cdc WITH (
   'salesforce.consumer.key'    = '<sfdc-consumer-key>',
   'salesforce.consumer.secret' = '<sfdc-consumer-secret>',
   'salesforce.cdc.name'        = 'AccountChangeEvent',
-  'output.data.format'         = 'AVRO',
+  'output.data.format'         = 'JSON',
   'tasks.max'                  = '1'
 );

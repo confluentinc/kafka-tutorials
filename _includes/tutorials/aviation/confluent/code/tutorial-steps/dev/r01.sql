@@ -1,4 +1,4 @@
-CREATE STREAM cf_stream WITH (KAFKA_TOPIC='customer_flights', FORMAT='AVRO');
+CREATE STREAM cf_stream WITH (KAFKA_TOPIC='customer_flights', FORMAT='JSON');
 
 CREATE STREAM cf_rekey WITH (KAFKA_TOPIC='cf_rekey') AS 
   SELECT F_ID                 AS FLIGHT_ID
@@ -18,4 +18,4 @@ CREATE STREAM cf_rekey WITH (KAFKA_TOPIC='cf_rekey') AS
 
 CREATE TABLE customer_flights_rekeyed 
   (FLIGHT_ID INT PRIMARY KEY) 
-  WITH (KAFKA_TOPIC='cf_rekey', FORMAT='AVRO');
+  WITH (KAFKA_TOPIC='cf_rekey', FORMAT='JSON');

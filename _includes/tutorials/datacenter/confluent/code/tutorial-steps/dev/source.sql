@@ -11,7 +11,7 @@ CREATE SOURCE CONNECTOR customer WITH (
   'database.whitelist'    = 'customer',
   'table.includelist'     = 'customer.tenant',
   'snapshot.mode'         = 'initial',
-  'output.data.format'    = 'AVRO',
+  'output.data.format'    = 'JSON',
   'tasks.max'             = '1'
 );
 

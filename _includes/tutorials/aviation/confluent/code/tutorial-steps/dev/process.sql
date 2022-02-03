@@ -7,7 +7,7 @@ CREATE TABLE customers (ID             INT     PRIMARY KEY
                        , PHONE          VARCHAR
                        , LOYALTY_STATUS VARCHAR)
               WITH (KAFKA_TOPIC = 'customers'
-                   , FORMAT = 'AVRO'
+                   , FORMAT = 'JSON'
                    , PARTITIONS = 6
 );
 
@@ -18,7 +18,7 @@ CREATE TABLE flights (ID               INT     PRIMARY KEY
                        , SCHEDULED_DEP TIMESTAMP
                        , SCHEDULED_ARR TIMESTAMP)
               WITH (KAFKA_TOPIC = 'flights'
-                   , FORMAT = 'AVRO'
+                   , FORMAT = 'JSON'
                    , PARTITIONS = 6
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE bookings (ID            INT     PRIMARY KEY
                        , CUSTOMER_ID INT
                        , FLIGHT_ID   INT)
               WITH (KAFKA_TOPIC = 'bookings'
-                   , FORMAT = 'AVRO'
+                   , FORMAT = 'JSON'
                    , PARTITIONS = 6
 );
 
@@ -43,7 +43,7 @@ CREATE TABLE customer_flights
           INNER JOIN flights F
               ON CB.FLIGHT_ID = F.ID;
 
-CREATE STREAM cf_stream WITH (KAFKA_TOPIC = 'customer_flights', FORMAT = 'AVRO');
+CREATE STREAM cf_stream WITH (KAFKA_TOPIC = 'customer_flights', FORMAT = 'JSON');
 
 CREATE STREAM cf_rekey WITH (KAFKA_TOPIC = 'cf_rekey') AS 
   SELECT F_ID                 AS FLIGHT_ID
@@ -63,7 +63,7 @@ CREATE STREAM cf_rekey WITH (KAFKA_TOPIC = 'cf_rekey') AS
 
 CREATE TABLE customer_flights_rekeyed 
   (FLIGHT_ID INT PRIMARY KEY) 
-  WITH (KAFKA_TOPIC = 'cf_rekey', FORMAT = 'AVRO');
+  WITH (KAFKA_TOPIC = 'cf_rekey', FORMAT = 'JSON');
 
 CREATE STREAM flight_updates (ID          INT KEY
                             , FLIGHT_ID   INT
@@ -71,7 +71,7 @@ CREATE STREAM flight_updates (ID          INT KEY
                             , REASON      VARCHAR
                              )
               WITH (KAFKA_TOPIC = 'flight_updates'
-                   , FORMAT = 'AVRO'
+                   , FORMAT = 'JSON'
                    , PARTITIONS = 6
 );
 

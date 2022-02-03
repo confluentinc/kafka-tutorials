@@ -6,7 +6,7 @@ CREATE STREAM messages (
   message VARCHAR
 ) WITH (
   KAFKA_TOPIC = 'MESSAGES',
-  VALUE_FORMAT = 'AVRO',
+  VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 

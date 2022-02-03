@@ -4,5 +4,5 @@ CREATE STREAM flight_updates (ID          INT KEY
                             , REASON      VARCHAR
                              )
               WITH (KAFKA_TOPIC='flight_updates'
-                   , FORMAT='AVRO'
+                   , FORMAT='JSON'
                    , PARTITIONS=6);
