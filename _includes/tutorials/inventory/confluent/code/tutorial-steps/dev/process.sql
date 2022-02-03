@@ -2,8 +2,8 @@ SET 'auto.offset.reset' = 'earliest';
 
 -- Create stream of inventory
 CREATE STREAM inventory_stream (
-  id STRING KEY,
-  item STRING,
+  id VARCHAR KEY,
+  item VARCHAR,
   quantity INTEGER
 ) WITH (
   VALUE_FORMAT = 'JSON',
