@@ -3,7 +3,7 @@ SET 'auto.offset.reset' = 'earliest';
 -- Create stream of sales
 CREATE STREAM sales (
   item_id INT KEY,
-  seller_id STRING,
+  seller_id VARCHAR,
   price DOUBLE
 ) WITH (
   VALUE_FORMAT = 'JSON',
@@ -14,7 +14,7 @@ CREATE STREAM sales (
 -- Create table of items
 CREATE TABLE items (
   item_id INT PRIMARY KEY,
-  item_name STRING
+  item_name VARCHAR
 ) WITH (
   VALUE_FORMAT = 'JSON',
   KAFKA_TOPIC = 'items',

@@ -19,7 +19,7 @@ HAVING
   REDUCE(
     ENTRIES(
         AS_MAP(
-          COLLECT_LIST(CAST(rowtime AS STRING)),
+          COLLECT_LIST(CAST(rowtime AS VARCHAR)),
           COLLECT_LIST(send_id)
         ),
         true

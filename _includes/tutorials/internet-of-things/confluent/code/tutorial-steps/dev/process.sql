@@ -2,8 +2,8 @@ SET 'auto.offset.reset' = 'earliest';
 
 -- Create table with latest state of alarms
 CREATE TABLE alarms (
-  device_id STRING PRIMARY KEY,
-  alarm_name STRING,
+  device_id VARCHAR PRIMARY KEY,
+  alarm_name VARCHAR,
   code INT
 ) WITH (
   VALUE_FORMAT = 'JSON',
@@ -13,7 +13,7 @@ CREATE TABLE alarms (
 
 -- Create stream of throughputs 
 CREATE STREAM throughputs (
-  device_id STRING KEY,
+  device_id VARCHAR KEY,
   throughput DOUBLE
 ) WITH (
   VALUE_FORMAT = 'JSON',

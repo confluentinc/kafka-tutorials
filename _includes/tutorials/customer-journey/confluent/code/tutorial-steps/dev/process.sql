@@ -4,8 +4,8 @@ SET 'auto.offset.reset' = 'earliest';
 CREATE STREAM pages (
   customer INTEGER,
   time BIGINT,
-  page_id STRING,
-  page STRING
+  page_id VARCHAR,
+  page VARCHAR
 ) WITH (
   VALUE_FORMAT = 'JSON',
   KAFKA_TOPIC = 'pages',
