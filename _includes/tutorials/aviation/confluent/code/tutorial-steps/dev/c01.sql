@@ -5,5 +5,5 @@ CREATE TABLE customers (ID             INT     PRIMARY KEY
                        , PHONE          VARCHAR
                        , LOYALTY_STATUS VARCHAR)
               WITH (KAFKA_TOPIC='customers'
-                   , FORMAT='AVRO'
+                   , FORMAT='JSON'
                    , PARTITIONS=6);
