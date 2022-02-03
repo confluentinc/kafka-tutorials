@@ -4,7 +4,7 @@ SET 'auto.offset.reset' = 'earliest';
 CREATE STREAM stream_sfdc_cdc_opportunity_raw
 WITH (
   KAFKA_TOPIC = 'sfdc.cdc.raw',
-  VALUE_FORMAT = 'AVRO',
+  VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 

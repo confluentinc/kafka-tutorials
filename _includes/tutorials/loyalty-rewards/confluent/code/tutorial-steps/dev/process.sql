@@ -5,7 +5,7 @@ CREATE STREAM users (
   name VARCHAR
 ) WITH (
   KAFKA_TOPIC = 'USERS',
-  VALUE_FORMAT = 'AVRO',
+  VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 
@@ -15,7 +15,7 @@ CREATE STREAM products (
   price DECIMAL(10,2)
 ) WITH (
   KAFKA_TOPIC = 'products',
-  VALUE_FORMAT = 'AVRO',
+  VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 
@@ -24,7 +24,7 @@ CREATE STREAM purchases (
   product_id VARCHAR
 ) WITH (
   KAFKA_TOPIC = 'purchases',
-  VALUE_FORMAT = 'AVRO',
+  VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 
