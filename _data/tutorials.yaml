@@ -1058,3 +1058,12 @@ model-retraining:
   tutorial-id: "24"
   status:
     confluent: enabled
+
+location-based-alerting:
+  title: "Geolocation-Based Alerting"
+  meta-description: "This ksqlDB tutorial demonstrates how to create real-time, personalized, location-based alerts. Merchant data and user location events are joined to generate alerts when a user passes close to a participating merchant."
+  slug: "/location-based-alerting"
+  introduction: "Customers are no longer satisfied with using boring static websites to purchase your product or consume your service. Users demand interactive and contextualized real-time mobile applications. Providing customers with rich, real-time experiences is fundamental, and this recipe shows how ksqlDB can help to build personalized, location-based alerts in real time with user-provided mobile geolocation data."
+  tutorial-id: "25"
+  status:
+    confluent: enabled

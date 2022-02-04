@@ -1,0 +1,6 @@
+**Note:**
+The manual insert commands below should be executed in two discrete steps, see the code comments for details.
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/location-based-alerting/confluent/code/tutorial-steps/dev/manual.sql %}</code></pre>
+++++
