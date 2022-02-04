@@ -1049,3 +1049,12 @@ audit-logs:
   tutorial-id: "23"
   status:
     confluent: enabled
+
+model-retraining:
+  title: "Machine Learning Model Retraining"
+  meta-description: "This recipe demonstrates how to use ksqlDB to evaluate the predictions of a machine learning model and send data to retrain the model when needed."
+  slug: "/model-retraining"
+  introduction: "Machine learning provides valuable insights to an organization, and tools like Apache Kafka, Kafka Connect, and ksqlDB allow us to build powerful machine learning pipelines. We can also use these tools to extend an existing machine learning pipeline. In this recipe, we'll use Connect and ksqlDB to read the results of an existing pipeline, determine the accuracy of those results, and send data to retrain our model.  This recipe is based on the excellent blog post <a href='https://www.confluent.io/blog/how-baader-built-a-predictive-analytics-machine-learning-system-with-kafka-and-rstudio/'>Apache Kafka and R: Real-Time Prediction and Model (Re)training</a>, by Patrick Neff."
+  tutorial-id: "24"
+  status:
+    confluent: enabled
