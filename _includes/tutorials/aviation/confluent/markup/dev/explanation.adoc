@@ -2,8 +2,6 @@
 
 ksqlDB supports tables and streams as objects. Both are backed by Kafka topics. Here we're going to create three tables in a normalized data model to hold information about our customers, their bookings, and the flights. 
 
-[//]: # "`TODO: Simple ERD of the three tables`"
-
 First off, let's create a table that will hold data about our customers: 
 
 ++++
@@ -105,7 +103,7 @@ The last step in denormalizing the data is to set the key of the table to that o
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/r01.sql %}</code></pre>
 ++++
 
-We now have the `customer_flights` table but keyed on `FLIGHT_ID`. 
+We now have the `customer_flights` table but keyed on `flight_id`. 
 
 ### Add a stream of flight updates
 
