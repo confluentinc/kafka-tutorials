@@ -6,7 +6,7 @@ CREATE TABLE customers (
   phone          VARCHAR,
   loyalty_status VARCHAR
 ) WITH (
-  KAFKA_TOPIC='customers',
-  FORMAT='JSON',
-  PARTITIONS=6
+  KAFKA_TOPIC = 'customers',
+  FORMAT = 'JSON',
+  PARTITIONS = 6
 );

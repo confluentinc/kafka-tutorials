@@ -1,4 +1,20 @@
-CREATE STREAM cf_stream WITH (KAFKA_TOPIC='customer_flights', FORMAT='JSON');
+CREATE TABLE customer_flights_rekeyed (
+  flight_id INT PRIMARY KEY,
+  customer_id VARCHAR,
+  customer_name VARCHAR,
+  customer_address VARCHAR,
+  customer_email VARCHAR,
+  customer_phone VARCHAR,
+  customer_loyalty_status VARCHAR,
+  flight_origin VARCHAR,
+  flight_destination VARCHAR,
+  flight_code VARCHAR,
+  flight_scheduled_dep TIMESTAMP,
+  flight_scheduled_arr TIMESTAMP
+) WITH (
+  KAFKA_TOPIC = 'cf_rekey',
+  FORMAT = 'JSON'
+);
 
 CREATE STREAM cf_rekey WITH (KAFKA_TOPIC = 'cf_rekey') AS
   SELECT f_id AS flight_id,
@@ -18,4 +34,4 @@ CREATE STREAM cf_rekey WITH (KAFKA_TOPIC = 'cf_rekey') AS
 
 CREATE TABLE customer_flights_rekeyed 
   (flight_id INT PRIMARY KEY) 
-  WITH (KAFKA_TOPIC='cf_rekey', FORMAT='JSON');
+  WITH (KAFKA_TOPIC = 'cf_rekey', FORMAT = 'JSON');

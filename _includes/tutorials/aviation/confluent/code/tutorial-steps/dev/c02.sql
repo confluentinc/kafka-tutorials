@@ -6,9 +6,9 @@ CREATE TABLE flights (
   scheduled_dep TIMESTAMP,
   scheduled_arr TIMESTAMP
 ) WITH (
-  KAFKA_TOPIC='flights',
-  FORMAT='JSON',
-  PARTITIONS=6
+  KAFKA_TOPIC = 'flights',
+  FORMAT = 'JSON',
+  PARTITIONS = 6
 );
 
 CREATE TABLE bookings (
@@ -16,7 +16,7 @@ CREATE TABLE bookings (
   customer_id INT,
   flight_id INT
 ) WITH (
-  KAFKA_TOPIC='bookings',
-  FORMAT='JSON',
-  PARTITIONS=6
+  KAFKA_TOPIC = 'bookings',
+  FORMAT = 'JSON',
+  PARTITIONS = 6
 );

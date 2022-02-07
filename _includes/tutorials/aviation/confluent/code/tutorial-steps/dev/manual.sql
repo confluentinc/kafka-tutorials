@@ -17,4 +17,4 @@ INSERT INTO bookings (id, customer_id, flight_id) VALUES (4,4,2);
 
 INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (1, 2, '2021-11-18T09:00:00.000', 'Cabin staff unavailable');
 INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (2, 3, '2021-11-19T14:00:00.000', 'Mechanical checks');
-INSERT INTO flight_updates (id, FLIGHT_id, updated_dep, reason) VALUES (3, 1, '2021-11-19T08:10:09.000', 'Icy conditions');
+INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (3, 1, '2021-11-19T08:10:09.000', 'Icy conditions');
