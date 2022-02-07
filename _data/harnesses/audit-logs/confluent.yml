@@ -56,14 +56,14 @@ dev:
           render:
             file: tutorials/audit-logs/confluent/markup/dev/sink.adoc
 
-    - title: Cleanup
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/cleanup.adoc
-
     - title: Explanation
       content:
         - action: skip
           render:
             file: tutorials/audit-logs/confluent/markup/dev/explanation.adoc
+
+    - title: Cleanup
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/cleanup.adoc
