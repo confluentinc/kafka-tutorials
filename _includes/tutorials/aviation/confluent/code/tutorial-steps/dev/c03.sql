@@ -1,8 +1,10 @@
-CREATE STREAM flight_updates (ID          INT KEY
-                            , FLIGHT_ID   INT
-                            , UPDATED_DEP TIMESTAMP
-                            , REASON      VARCHAR
-                             )
-              WITH (KAFKA_TOPIC='flight_updates'
-                   , FORMAT='JSON'
-                   , PARTITIONS=6);
+CREATE STREAM flight_updates (
+  id INT KEY,
+  flight_id INT,
+  updated_dep TIMESTAMP,
+  reason VARCHAR
+) WITH (
+  KAFKA_TOPIC = 'flight_updates',
+  FORMAT = 'JSON',
+  PARTITIONS = 6
+);

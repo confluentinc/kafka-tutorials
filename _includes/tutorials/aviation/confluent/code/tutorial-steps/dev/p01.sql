@@ -1,12 +1,12 @@
-SELECT  CUSTOMER_NAME
-      , FU.REASON      AS FLIGHT_CHANGE_REASON 
-      , FU.UPDATED_DEP AS FLIGHT_UPDATED_DEP
-      , FLIGHT_SCHEDULED_DEP 
-      , CUSTOMER_EMAIL
-      , CUSTOMER_PHONE
-      , FLIGHT_DESTINATION
-      , FLIGHT_CODE
+SELECT  customer_name,
+      FU.reason AS flight_change_reason,
+      FU.updated_dep AS flight_updated_dep,
+      flight_scheduled_dep,
+      customer_email,
+      customer_phone,
+      flight_destination,
+      flight_code
   FROM flight_updates FU
         INNER JOIN customer_flights_rekeyed CB
-        ON FU.FLIGHT_ID = CB.FLIGHT_ID
+        ON FU.flight_id = CB.flight_id
 EMIT CHANGES;

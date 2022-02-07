@@ -1,21 +1,53 @@
-CREATE STREAM cf_stream WITH (KAFKA_TOPIC='customer_flights', FORMAT='JSON');
+CREATE TABLE customer_flights_rekeyed (
+  flight_id INT PRIMARY KEY,
+  customer_id VARCHAR,
+  customer_name VARCHAR,
+  customer_address VARCHAR,
+  customer_email VARCHAR,
+  customer_phone VARCHAR,
+  customer_loyalty_status VARCHAR,
+  flight_origin VARCHAR,
+  flight_destination VARCHAR,
+  flight_code VARCHAR,
+  flight_scheduled_dep TIMESTAMP,
+  flight_scheduled_arr TIMESTAMP
+) WITH (
+  KAFKA_TOPIC = 'cf_rekey',
+  KEY_FORMAT = 'KAFKA',
+  VALUE_FORMAT = 'JSON'
+);
 
-CREATE STREAM cf_rekey WITH (KAFKA_TOPIC='cf_rekey') AS 
-  SELECT F_ID                 AS FLIGHT_ID
-        , CB_C_ID             AS CUSTOMER_ID
-        , CB_C_NAME           AS CUSTOMER_NAME
-        , CB_C_ADDRESS        AS CUSTOMER_ADDRESS
-        , CB_C_EMAIL          AS CUSTOMER_EMAIL
-        , CB_C_PHONE          AS CUSTOMER_PHONE
-        , CB_C_LOYALTY_STATUS AS CUSTOMER_LOYALTY_STATUS
-        , F_ORIGIN            AS FLIGHT_ORIGIN
-        , F_DESTINATION       AS FLIGHT_DESTINATION
-        , F_CODE              AS FLIGHT_CODE
-        , F_SCHEDULED_DEP     AS FLIGHT_SCHEDULED_DEP
-        , F_SCHEDULED_ARR     AS FLIGHT_SCHEDULED_ARR
+CREATE STREAM cf_rekey WITH (KAFKA_TOPIC = 'cf_rekey') AS
+  SELECT f_id           AS flight_id,
+    cb_c_id             AS customer_id,
+    cb_c_name           AS customer_name,
+    cb_c_address        AS customer_address,
+    cb_c_email          AS customer_email,
+    cb_c_phone          AS customer_phone,
+    cb_c_loyalty_status AS customer_loyalty_status,
+    f_origin            AS flight_origin,
+    f_destination       AS flight_destination,
+    f_code              AS flight_code,
+    f_scheduled_dep     AS flight_scheduled_dep,
+    f_scheduled_arr     AS flight_scheduled_arr
   FROM cf_stream
-  PARTITION BY F_ID;
+  PARTITION BY f_id;
 
-CREATE TABLE customer_flights_rekeyed 
-  (FLIGHT_ID INT PRIMARY KEY) 
-  WITH (KAFKA_TOPIC='cf_rekey', FORMAT='JSON');
+CREATE TABLE customer_flights_rekeyed (
+  flight_id INT PRIMARY KEY,
+  customer_id VARCHAR,
+  customer_name VARCHAR,
+  customer_address VARCHAR,
+  customer_email VARCHAR,
+  customer_phone VARCHAR,
+  customer_loyalty_status VARCHAR,
+  flight_origin VARCHAR,
+  flight_destination VARCHAR,
+  flight_code VARCHAR,
+  flight_scheduled_dep TIMESTAMP,
+  flight_scheduled_arr TIMESTAMP
+) WITH (
+  KAFKA_TOPIC = 'cf_rekey',
+  KEY_FORMAT = 'KAFKA',
+  VALUE_FORMAT = 'JSON'
+);
