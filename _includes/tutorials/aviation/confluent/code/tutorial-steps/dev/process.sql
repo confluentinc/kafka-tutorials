@@ -1,12 +1,12 @@
 SET 'auto.offset.reset' = 'earliest';
 
 CREATE TABLE customers (
-  ID INT PRIMARY KEY,
-  NAME VARCHAR,
-  ADDRESS VARCHAR,
-  EMAIL VARCHAR,
-  PHONE VARCHAR,
-  LOYALTY_STATUS VARCHAR
+  id INT PRIMARY KEY,
+  name VARCHAR,
+  address VARCHAR,
+  email VARCHAR,
+  phone VARCHAR,
+  loyalty_status VARCHAR
 ) WITH (
   KAFKA_TOPIC='customers',
   FORMAT='JSON',
@@ -14,12 +14,12 @@ CREATE TABLE customers (
 );
 
 CREATE TABLE flights (
-  ID INT PRIMARY KEY,
-  ORIGIN VARCHAR,
-  DESTINATION VARCHAR,
-  CODE VARCHAR,
-  SCHEDULED_DEP TIMESTAMP,
-  SCHEDULED_ARR TIMESTAMP
+  id INT PRIMARY KEY,
+  origin VARCHAR,
+  destination VARCHAR,
+  code VARCHAR,
+  scheduled_dep TIMESTAMP,
+  scheduled_arr TIMESTAMP
 ) WITH (
   KAFKA_TOPIC='flights',
   FORMAT='JSON',
@@ -27,9 +27,9 @@ CREATE TABLE flights (
 );
 
 CREATE TABLE bookings (
-  ID INT PRIMARY KEY,
-  CUSTOMER_ID INT,
-  FLIGHT_ID INT
+  id INT PRIMARY KEY,
+  customer_id INT,
+  flight_id INT
 ) WITH (
   KAFKA_TOPIC='bookings',
   FORMAT='JSON',
@@ -37,43 +37,43 @@ CREATE TABLE bookings (
 );
 
 CREATE TABLE customer_bookings AS 
-  SELECT C.*, B.ID, B.FLIGHT_ID
+  SELECT C.*, B.id, B.flight_id
   FROM bookings B
   INNER JOIN customers C
-  ON B.CUSTOMER_ID = C.ID;
+  ON B.customer_id = C.id;
 
 CREATE TABLE customer_flights WITH (KAFKA_TOPIC = 'customer_flights') AS
   SELECT CB.*, F.*
   FROM customer_bookings CB
   INNER JOIN flights F
-  ON CB.FLIGHT_ID = F.ID;
+  ON CB.flight_id = F.id;
 
 CREATE STREAM cf_stream WITH (KAFKA_TOPIC = 'customer_flights', FORMAT = 'JSON');
 
 CREATE STREAM cf_rekey WITH (KAFKA_TOPIC = 'cf_rekey') AS 
-  SELECT F_ID AS FLIGHT_ID,
-    CB_C_ID             AS CUSTOMER_ID,
-    CB_C_NAME           AS CUSTOMER_NAME,
-    CB_C_ADDRESS        AS CUSTOMER_ADDRESS,
-    CB_C_EMAIL          AS CUSTOMER_EMAIL,
-    CB_C_PHONE          AS CUSTOMER_PHONE,
-    CB_C_LOYALTY_STATUS AS CUSTOMER_LOYALTY_STATUS,
-    F_ORIGIN            AS FLIGHT_ORIGIN,
-    F_DESTINATION       AS FLIGHT_DESTINATION,
-    F_CODE              AS FLIGHT_CODE,
-    F_SCHEDULED_DEP     AS FLIGHT_SCHEDULED_DEP,
-    F_SCHEDULED_ARR     AS FLIGHT_SCHEDULED_ARR
+  SELECT f_id AS flight_id,
+    cb_c_id             AS customer_id,
+    cb_c_name           AS customer_name,
+    cb_c_address        AS customer_address,
+    cb_c_email          AS customer_email,
+    cb_c_phone          AS customer_phone,
+    cb_c_loyalty_status AS customer_loyalty_status,
+    f_origin            AS flight_origin,
+    f_destination       AS flight_destination,
+    f_code              AS flight_code,
+    f_scheduled_dep     AS flight_scheduled_dep,
+    f_scheduled_arr     AS flight_scheduled_arr
   FROM cf_stream
-  PARTITION BY F_ID;
+  PARTITION BY f_id;
 
-CREATE TABLE customer_flights_rekeyed (FLIGHT_ID INT PRIMARY KEY) 
+CREATE TABLE customer_flights_rekeyed (flight_id INT PRIMARY KEY) 
 WITH (KAFKA_TOPIC = 'cf_rekey', FORMAT = 'JSON');
 
 CREATE STREAM flight_updates (
-  ID INT KEY,
-  FLIGHT_ID INT,
-  UPDATED_DEP TIMESTAMP,
-  REASON VARCHAR
+  id INT KEY,
+  flight_id INT,
+  updated_dep TIMESTAMP,
+  reason VARCHAR
 ) WITH (
   KAFKA_TOPIC = 'flight_updates',
   FORMAT = 'JSON',
@@ -81,15 +81,15 @@ CREATE STREAM flight_updates (
 );
 
 CREATE STREAM customer_flight_updates AS
-SELECT  CUSTOMER_NAME,
-  FU.REASON AS FLIGHT_CHANGE_REASON,
-  FU.UPDATED_DEP AS FLIGHT_UPDATED_DEP,
-  FLIGHT_SCHEDULED_DEP,
-  CUSTOMER_EMAIL,
-  CUSTOMER_PHONE,
-  FLIGHT_DESTINATION,
-  FLIGHT_CODE
+SELECT  customer_name,
+  FU.reason AS flight_change_reason,
+  FU.updated_dep AS flight_updated_dep,
+  flight_scheduled_dep,
+  customer_email,
+  customer_phone,
+  flight_destination,
+  flight_code
 FROM flight_updates FU
   INNER JOIN customer_flights_rekeyed CB
-  ON FU.FLIGHT_ID = CB.FLIGHT_ID
+  ON FU.flight_id = CB.flight_id
 EMIT CHANGES;

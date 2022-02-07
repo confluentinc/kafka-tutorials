@@ -3,4 +3,4 @@ CREATE TABLE customer_flights
   SELECT CB.*, F.*
   FROM   customer_bookings CB
           INNER JOIN flights F
-              ON CB.FLIGHT_ID=F.ID;
+              ON CB.flight_id=F.id;

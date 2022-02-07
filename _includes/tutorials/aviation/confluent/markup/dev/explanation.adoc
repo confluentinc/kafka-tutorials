@@ -14,11 +14,11 @@ This will store the data in a Kafka topic. In practice, you would probably popul
 
 [source,sql]
 ----
-INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (1, 'Gleda Lealle', '93 Express Point', 'glealle0@senate.gov', '+351 831 301 6746', 'Silver');
-INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (2, 'Gilly Crocombe', '332 Blaine Avenue', 'gcrocombe1@homestead.com', '+33 203 565 3736', 'Silver');
-INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (3, 'Astrix Aspall', '56 Randy Place', 'aaspall2@ebay.co.uk', '+33 679 296 6645', 'Gold');
-INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (4, 'Ker Omond', '23255 Tennessee Court', 'komond3@usnews.com', '+33 515 323 0170', 'Silver');
-INSERT INTO customers (ID, NAME, ADDRESS, EMAIL, PHONE, LOYALTY_STATUS) VALUES (5, 'Arline Synnott', '144 Ramsey Avenue', 'asynnott4@theatlantic.com', '+62 953 759 8885', 'Bronze');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (1, 'Gleda Lealle', '93 Express Point', 'glealle0@senate.gov', '+351 831 301 6746', 'Silver');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (2, 'Gilly Crocombe', '332 Blaine Avenue', 'gcrocombe1@homestead.com', '+33 203 565 3736', 'Silver');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (3, 'Astrix Aspall', '56 Randy Place', 'aaspall2@ebay.co.uk', '+33 679 296 6645', 'Gold');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (4, 'Ker Omond', '23255 Tennessee Court', 'komond3@usnews.com', '+33 515 323 0170', 'Silver');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (5, 'Arline Synnott', '144 Ramsey Avenue', 'asynnott4@theatlantic.com', '+62 953 759 8885', 'Bronze');
 ----
 
 Next, we'll create a table of flights and associated bookings for our customers. 
@@ -31,16 +31,16 @@ For these two tables, let's add some data. As before, this would usually come di
 
 [source,sql]
 ----
-INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (1, 'LBA', 'AMS', '642',  '2021-11-18T06:04:00', '2021-11-18T06:48:00');
-INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (2, 'LBA', 'LHR', '9607', '2021-11-18T07:36:00', '2021-11-18T08:05:00');
-INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (3, 'AMS', 'TXL', '7968', '2021-11-18T08:11:00', '2021-11-18T10:41:00');
-INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (4, 'AMS', 'OSL', '496',  '2021-11-18T11:20:00', '2021-11-18T13:25:00');
-INSERT INTO flights (ID, ORIGIN, DESTINATION, CODE, SCHEDULED_DEP, SCHEDULED_ARR) VALUES (5, 'LHR', 'JFK', '9230', '2021-11-18T10:36:00', '2021-11-18T19:07:00');
+INSERT INTO flights (id, origin, destination, code, scheduled_dep, scheduled_arr) VALUES (1, 'LBA', 'AMS', '642',  '2021-11-18T06:04:00', '2021-11-18T06:48:00');
+INSERT INTO flights (id, origin, destination, code, scheduled_dep, scheduled_arr) VALUES (2, 'LBA', 'LHR', '9607', '2021-11-18T07:36:00', '2021-11-18T08:05:00');
+INSERT INTO flights (id, origin, destination, code, scheduled_dep, scheduled_arr) VALUES (3, 'AMS', 'TXL', '7968', '2021-11-18T08:11:00', '2021-11-18T10:41:00');
+INSERT INTO flights (id, origin, destination, code, scheduled_dep, scheduled_arr) VALUES (4, 'AMS', 'OSL', '496',  '2021-11-18T11:20:00', '2021-11-18T13:25:00');
+INSERT INTO flights (id, origin, destination, code, scheduled_dep, scheduled_arr) VALUES (5, 'LHR', 'JFK', '9230', '2021-11-18T10:36:00', '2021-11-18T19:07:00');
 
-INSERT INTO bookings (ID, CUSTOMER_ID, FLIGHT_ID) VALUES (1,2,1);
-INSERT INTO bookings (ID, CUSTOMER_ID, FLIGHT_ID) VALUES (2,1,1);
-INSERT INTO bookings (ID, CUSTOMER_ID, FLIGHT_ID) VALUES (3,5,3);
-INSERT INTO bookings (ID, CUSTOMER_ID, FLIGHT_ID) VALUES (4,4,2);
+INSERT INTO bookings (id, customer_id, flight_id) VALUES (1,2,1);
+INSERT INTO bookings (id, customer_id, flight_id) VALUES (2,1,1);
+INSERT INTO bookings (id, customer_id, flight_id) VALUES (3,5,3);
+INSERT INTO bookings (id, customer_id, flight_id) VALUES (4,4,2);
 ----
 
 ### Denormalize the data
@@ -73,13 +73,13 @@ At this stage, we can query the data held in the tables to show which customers 
 
 [source,sql]
 ----
-SELECT CB_C_NAME           AS NAME,
-       CB_C_EMAIL          AS EMAIL,
-       CB_C_LOYALTY_STATUS AS LOYALTY_STATUS,
-       F_ORIGIN            AS ORIGIN,
-       F_DESTINATION       AS DESTINATION,
-       F_CODE              AS CODE,
-       F_SCHEDULED_DEP     AS SCHEDULED_DEP
+SELECT cb_c_name           AS name,
+       cb_c_email          AS email,
+       cb_c_loyalty_status AS loyalty_status,
+       f_origin            AS origin,
+       f_destination       AS destination,
+       f_code              AS code,
+       f_scheduled_dep     AS scheduled_dep
 FROM customer_flights
 EMIT CHANGES;      
 ----
@@ -87,7 +87,7 @@ EMIT CHANGES;
 [source,text]
 ----
 +---------------+------------------------+---------------+-------+------------+-----+------------------------+
-|NAME           |EMAIL                   |LOYALTY_STATUS |ORIGIN |DESTINATION |CODE |SCHEDULED_DEP           |
+|name           |email                   |loyalty_status |origin |destination |code |scheduled_dep           |
 +---------------+------------------------+---------------+-------+------------+-----+------------------------+
 |Gilly Crocombe |gcrocombe1@homestead.com|Silver         |LBA    |AMS         |642  |2021-11-18T06:04:00.000 |
 |Ker Omond      |komond3@usnews.com      |Silver         |LBA    |LHR         |9607 |2021-11-18T07:36:00.000 |
@@ -129,9 +129,9 @@ In another ksqlDB window, add some data to the flight update stream:
 
 [source,sql]
 ----
-INSERT INTO flight_updates (ID, FLIGHT_ID, UPDATED_DEP, REASON) VALUES (1, 2, '2021-11-18T09:00:00.000', 'Cabin staff unavailable');
-INSERT INTO flight_updates (ID, FLIGHT_ID, UPDATED_DEP, REASON) VALUES (2, 3, '2021-11-19T14:00:00.000', 'Mechanical checks');
-INSERT INTO flight_updates (ID, FLIGHT_ID, UPDATED_DEP, REASON) VALUES (3, 1, '2021-11-19T08:10:09.000', 'Icy conditions');
+INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (1, 2, '2021-11-18T09:00:00.000', 'Cabin staff unavailable');
+INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (2, 3, '2021-11-19T14:00:00.000', 'Mechanical checks');
+INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (3, 1, '2021-11-19T08:10:09.000', 'Icy conditions');
 ----
 
 In the original window, you will see the details of which passengers are impacted by which flight changes:
@@ -139,7 +139,7 @@ In the original window, you will see the details of which passengers are impacte
 [source,text]
 ----
 +---------------+------------------------+--------------------+----------------------+---------------------------+------------------+-------------------+------------+
-|CUSTOMER_NAME  |FLIGHT_CHANGE_REASON    |FLIGHT_UPDATED_DEP  |FLIGHT_SCHEDULED_DEP  |CUSTOMER_EMAIL             |CUSTOMER_PHONE    |FLIGHT_DESTINATION |FLIGHT_CODE |
+|customer_name  |flight_change_reason    |flight_updated_dep  |flight_scheduled_dep  |customer_email             |customer_phone    |flight_destination |flight_code |
 +---------------+------------------------+--------------------+----------------------+---------------------------+------------------+-------------------+------------+
 |Gleda Lealle   |Icy conditions          |2021-11-19T08:10:09 |2021-11-18T06:04:00   |glealle0@senate.gov        |+351 831 301 6746 |AMS                |642         |
 |Ker Omond      |Cabin staff unavailable |2021-11-18T09:00:00 |2021-11-18T07:36:00   |komond3@usnews.com         |+33 515 323 0170  |LHR                |9607        |
