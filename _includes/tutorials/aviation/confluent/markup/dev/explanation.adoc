@@ -73,13 +73,13 @@ At this stage, we can query the data held in the tables to show which customers 
 
 [source,sql]
 ----
-SELECT  CB_C_NAME           AS NAME
-      , CB_C_EMAIL          AS EMAIL
-      , CB_C_LOYALTY_STATUS AS LOYALTY_STATUS
-      , F_ORIGIN            AS ORIGIN
-      , F_DESTINATION       AS DESTINATION
-      , F_CODE              AS CODE
-      , F_SCHEDULED_DEP     AS SCHEDULED_DEP 
+SELECT CB_C_NAME           AS NAME,
+       CB_C_EMAIL          AS EMAIL,
+       CB_C_LOYALTY_STATUS AS LOYALTY_STATUS,
+       F_ORIGIN            AS ORIGIN,
+       F_DESTINATION       AS DESTINATION,
+       F_CODE              AS CODE,
+       F_SCHEDULED_DEP     AS SCHEDULED_DEP
 FROM customer_flights
 EMIT CHANGES;      
 ----
