@@ -36,20 +36,22 @@ CREATE TABLE bookings (
   PARTITIONS = 6
 );
 
-CREATE TABLE customer_bookings WITH (KAFKA_TOPIC = 'customer_bookings') AS 
-  SELECT C.*, B.id, B.flight_id
+CREATE TABLE customer_bookings WITH (KAFKA_TOPIC = 'customer_bookings', KEY_FORMAT = 'KAFKA', VALUE_FORMAT = 'JSON') AS 
+  SELECT C.*,
+         B.id,
+         B.flight_id
   FROM bookings B
   INNER JOIN customers C
   ON B.customer_id = C.id;
 
-CREATE TABLE customer_flights WITH (KAFKA_TOPIC = 'customer_flights') AS
-  SELECT CB.*, F.*
+CREATE TABLE customer_flights WITH (KAFKA_TOPIC = 'customer_flights', KEY_FORMAT = 'KAFKA', VALUE_FORMAT = 'JSON') AS
+  SELECT CB.*,
+         F.*
   FROM customer_bookings CB
   INNER JOIN flights F
   ON CB.flight_id = F.id;
 
 CREATE STREAM cf_stream (
-  cb_b_id INTEGER,
   cb_c_id INTEGER,
   cb_c_name VARCHAR,
   cb_c_address VARCHAR,
@@ -65,11 +67,12 @@ CREATE STREAM cf_stream (
   f_scheduled_arr TIMESTAMP
 ) WITH (
   KAFKA_TOPIC = 'customer_flights',
-  FORMAT = 'JSON'
+  KEY_FORMAT = 'KAFKA',
+  VALUE_FORMAT = 'JSON'
 );
 
 CREATE STREAM cf_rekey WITH (KAFKA_TOPIC = 'cf_rekey') AS 
-  SELECT f_id AS flight_id,
+  SELECT f_id           AS flight_id,
     cb_c_id             AS customer_id,
     cb_c_name           AS customer_name,
     cb_c_address        AS customer_address,
@@ -99,7 +102,8 @@ CREATE TABLE customer_flights_rekeyed (
   flight_scheduled_arr TIMESTAMP
 ) WITH (
   KAFKA_TOPIC = 'cf_rekey',
-  FORMAT = 'JSON'
+  KEY_FORMAT = 'KAFKA',
+  VALUE_FORMAT = 'JSON'
 );
 
 CREATE STREAM flight_updates (
@@ -109,7 +113,8 @@ CREATE STREAM flight_updates (
   reason VARCHAR
 ) WITH (
   KAFKA_TOPIC = 'flight_updates',
-  FORMAT = 'JSON',
+  KEY_FORMAT = 'KAFKA',
+  VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 
