@@ -19,7 +19,7 @@ Add the next class at `src/main/java/io/confluent/developer/PressureDatetimeExtr
 %}</code></pre>
 +++++
 
-Ok, lets translate this `extract` method from Java to English. First of all, we try to realise the following operation
+Ok, lets translate this `extract` method from Java to English. First of all, we try to realize the following operation
 that may raise an exception:
 
 1. we cast the value Object as `PressureAlert` and call its `.getDatetime` method
