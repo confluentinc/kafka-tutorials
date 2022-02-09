@@ -322,6 +322,7 @@ console-consumer-producer-basic:
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
   introduction: "So you are excited to get started with Kafka, and you'd like to produce and consume some basic messages, quickly. In this tutorial, we'll show you how to produce and consume messages from the command line without any code."
+  introduction-media: "/assets/img/cli.png"
   status:
     ksql: disabled
     kstreams: disabled
@@ -335,6 +336,7 @@ console-consumer-producer-avro:
   slug: "/kafka-console-consumer-producer-avro"
   question: "What is the simplest way to write messages to and read messages from Kafka, using (de)serializers and Schema Registry?"
   introduction: "You'd like to produce and consume some basic messages, using (de)serializers and Schema Registry.  In this tutorial, we'll show you how to produce and consume messages from the command line without any code. Unlike the <a href=\"/tutorials/kafka-console-consumer-producer-basics/confluent.html\">CLI Basics</a> tutorial, this tutorial uses Avro and Schema Registry."
+  introduction-media: "/assets/img/sr.png"
   status:
     ksql: disabled
     kstreams: disabled
@@ -784,6 +786,7 @@ creating-first-apache-kafka-streams-application:
   slug: "/creating-first-apache-kafka-streams-application"
   question: "How do you get started building your first Kafka Streams application?"
   introduction: "You'd like to get started with Kafka Streams, but you're not sure where to start. In this tutorial, you'll build a small stream processing application and produce some sample data to test it. After you complete this tutorial, you can go more in depth in the <a href='https://developer.confluent.io/learn-kafka/kafka-streams/get-started/'>Kafka Streams 101</a> course."
+  introduction-media: "/assets/img/streams-app.png"
   status:
     confluent: enabled
     kstreams: enabled
