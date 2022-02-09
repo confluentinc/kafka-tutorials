@@ -30,7 +30,8 @@ splitting:
   canonical: confluent
   slug: "/split-a-stream-of-events-into-substreams"
   question: "How do you split events in a Kafka topic so that the events are placed into subtopics?"
-  introduction: "Suppose that you have a Kafka topic representing appearances of an actor or actress in a film, with each event denoting the genre. In this tutorial, we'll write a program that splits the stream into substreams based on the genre. We'll have a topic for drama films, a topic for fantasy films, and a topic for everything else."
+  introduction: "Suppose that you have a Kafka topic representing appearances of an actor or actress in a film, with each event denoting the genre. In this tutorial, we'll write a program that splits the stream into substreams based on the genre. We'll have a topic for drama films, a topic for fantasy films, and a topic for everything else. Related pattern: <a href='https://developer.confluent.io/patterns/event-processing/event-router'>Event Router</a>."
+  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg"
   status:
     ksql: enabled
     kstreams: enabled
@@ -43,7 +44,8 @@ merging:
   canonical: confluent
   slug: "/merge-many-streams-into-one-stream"
   question: "If you have many Kafka topics with events, how do you merge them all into a single topic?"
-  introduction: "Suppose that you have a set of Kafka topics representing songs of a particular genre being played. You might have a topic for rock songs, another for classical songs, and so forth. In this tutorial, we'll write a program that merges all of the song play events into a single topic."
+  introduction: "Suppose that you have a set of Kafka topics representing songs of a particular genre being played. You might have a topic for rock songs, another for classical songs, and so forth. In this tutorial, we'll write a program that merges all of the song play events into a single topic. Related pattern: <a href='https://developer.confluent.io/patterns/stream-processing/event-stream-merger'>Event Stream Merger</a>."
+  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-stream-merger.svg"
   status:
     ksql: enabled
     kstreams: enabled
@@ -56,7 +58,8 @@ joining-stream-table:
   canonical: confluent
   slug: "/join-a-stream-to-a-table"
   question: "If you have events in a Kafka topic and a table of reference data (also known as a lookup table), how can you join each event in the stream to a piece of data in the table based on a common key?"
-  introduction: "Suppose you have a set of movies that have been released and a stream of ratings from moviegoers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie."
+  introduction: "Suppose you have a set of movies that have been released and a stream of ratings from moviegoers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie. Related pattern: <a href='https://developer.confluent.io/patterns/stream-processing/event-joiner'>Event Joiner</a>"
+  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-joiner.svg"
   status:
     ksql: enabled
     kstreams: enabled
@@ -280,7 +283,8 @@ dynamic-output-topic:
   canonical: confluent
   slug: "/dynamic-output-topic"
   question: "How can you dynamically route records to different Kafka topics, like a \"topic exchange\"?"
-  introduction: "Consider a situation where you want to direct the output of different records to different topics, like a \"topic exchange.\" In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value."
+  introduction: "Consider a situation where you want to direct the output of different records to different topics, like a \"topic exchange.\" In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value. Related pattern: <a href='https://developer.confluent.io/patterns/event-processing/event-router'>Event Router</a>."
+  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg"
   status:
     ksql: disabled
     kstreams: enabled

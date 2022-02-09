@@ -56,7 +56,10 @@
         <div class="example">
           <h3 class="title">Example use case:</h3>
           <div class="example-content">
-            <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
+            <div class="text">{{ site.data.tutorials[page.static_data].introduction }}</div>
+            {% if site.data.tutorials[page.static_data].introduction-media %}
+              <img class="image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
+            {% endif %}
           </div>
           <div class="columns">
             <div class="column is-5">
