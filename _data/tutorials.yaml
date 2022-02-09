@@ -903,7 +903,7 @@ salesforce:
   title: "Handle corrupted data from Salesforce"
   meta-description: "This ksqlDB tutorial streams changes of Salesforce records and identifies gap events."
   slug: "/salesforce"
-  introduction: "Salesforce sends a notification when a change to a Salesforce record occurs as part of a create, update, delete, or undelete operation. However, if there is corrupt data in Salesforce, it sends a gap event instead of a change event, and these gap events should be properly handled to avoid discrepancies between Salesforce reports and internal dashboards. This tutorial demonstrates how to process Salesforce data and filter corrupt events, which allows a downstream application to appropriately process and reconcile those events for accurate reporting and analytics."
+  introduction: "Salesforce sends a notification when a change to a Salesforce record occurs as part of a create, update, delete, or undelete operation. However, if there is corrupt data in Salesforce, it sends a gap event instead of a change event, and these gap events should be properly handled to avoid discrepancies between Salesforce reports and internal dashboards. This tutorial demonstrates how to process Salesforce data and filter corrupt events, which allows a downstream application to appropriately process and reconcile those events for accurate reporting and analytics. For a more detailed explanation of this use case, read <a href='https://www.confluent.io/blog/streaming-etl-sfdc-data-for-real-time-customer-analytics'>Streaming ETL SFDC Data for Real-Time Customer Analytics</a>."
   introduction-media: "/assets/img/salesforce.jpg"
   tutorial-id: "10"
   status:
