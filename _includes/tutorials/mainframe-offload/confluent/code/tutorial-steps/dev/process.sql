@@ -2,7 +2,7 @@ SET 'auto.offset.reset' = 'earliest';
 
 -- Create stream of transactions from the Kafka topic
 CREATE STREAM mq_transactions (
-  dep_account_no STRING,
+  dep_account_no VARCHAR,
   dep_balance_dollars BIGINT,
   dep_balance_cents BIGINT,
   timestamp BIGINT
@@ -25,7 +25,7 @@ PARTITION BY dep_account_no
 EMIT CHANGES;
 
 CREATE SOURCE TABLE mq_cache (
-    dep_account_no STRING PRIMARY KEY,
+    dep_account_no VARCHAR PRIMARY KEY,
     balance BIGINT,
     ts_stream BIGINT,
     ts_cache BIGINT,

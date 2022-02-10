@@ -6,7 +6,7 @@ CREATE STREAM messages (
   message VARCHAR
 ) WITH (
   KAFKA_TOPIC = 'MESSAGES',
-  VALUE_FORMAT = 'AVRO',
+  VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 
@@ -19,7 +19,7 @@ HAVING
   REDUCE(
     ENTRIES(
         AS_MAP(
-          COLLECT_LIST(CAST(rowtime AS STRING)),
+          COLLECT_LIST(CAST(rowtime AS VARCHAR)),
           COLLECT_LIST(send_id)
         ),
         true

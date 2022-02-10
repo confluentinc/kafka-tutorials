@@ -56,7 +56,10 @@
         <div class="example">
           <h3 class="title">Example use case:</h3>
           <div class="example-content">
-            <p class="text">{{ site.data.tutorials[page.static_data].introduction }}</p>
+            <div class="text">{{ site.data.tutorials[page.static_data].introduction }}</div>
+            {% if site.data.tutorials[page.static_data].introduction-media %}
+              <img class="image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
+            {% endif %}
           </div>
           <div class="columns">
             <div class="column is-5">
@@ -189,7 +192,7 @@
       {% if page.stack == 'confluent' %}
       <div class="columns">
         <div class="column is-5">
-        New to Confluent Cloud? <a href="https://www.confluent.io/confluent-cloud/tryfree/">Sign up</a> and run this tutorial for free.
+        New to Confluent Cloud? <a href="https://www.confluent.io/confluent-cloud/tryfree/">Get started here</a>.
         </div>
       </div>
       {% endif %}

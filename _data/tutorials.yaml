@@ -30,7 +30,8 @@ splitting:
   canonical: confluent
   slug: "/split-a-stream-of-events-into-substreams"
   question: "How do you split events in a Kafka topic so that the events are placed into subtopics?"
-  introduction: "Suppose that you have a Kafka topic representing appearances of an actor or actress in a film, with each event denoting the genre. In this tutorial, we'll write a program that splits the stream into substreams based on the genre. We'll have a topic for drama films, a topic for fantasy films, and a topic for everything else."
+  introduction: "Suppose that you have a Kafka topic representing appearances of an actor or actress in a film, with each event denoting the genre. In this tutorial, we'll write a program that splits the stream into substreams based on the genre. We'll have a topic for drama films, a topic for fantasy films, and a topic for everything else. Related pattern: <a href='https://developer.confluent.io/patterns/event-processing/event-router'>Event Router</a>."
+  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg"
   status:
     ksql: enabled
     kstreams: enabled
@@ -43,7 +44,8 @@ merging:
   canonical: confluent
   slug: "/merge-many-streams-into-one-stream"
   question: "If you have many Kafka topics with events, how do you merge them all into a single topic?"
-  introduction: "Suppose that you have a set of Kafka topics representing songs of a particular genre being played. You might have a topic for rock songs, another for classical songs, and so forth. In this tutorial, we'll write a program that merges all of the song play events into a single topic."
+  introduction: "Suppose that you have a set of Kafka topics representing songs of a particular genre being played. You might have a topic for rock songs, another for classical songs, and so forth. In this tutorial, we'll write a program that merges all of the song play events into a single topic. Related pattern: <a href='https://developer.confluent.io/patterns/stream-processing/event-stream-merger'>Event Stream Merger</a>."
+  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-stream-merger.svg"
   status:
     ksql: enabled
     kstreams: enabled
@@ -56,7 +58,8 @@ joining-stream-table:
   canonical: confluent
   slug: "/join-a-stream-to-a-table"
   question: "If you have events in a Kafka topic and a table of reference data (also known as a lookup table), how can you join each event in the stream to a piece of data in the table based on a common key?"
-  introduction: "Suppose you have a set of movies that have been released and a stream of ratings from moviegoers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie."
+  introduction: "Suppose you have a set of movies that have been released and a stream of ratings from moviegoers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie. Related pattern: <a href='https://developer.confluent.io/patterns/stream-processing/event-joiner'>Event Joiner</a>"
+  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-joiner.svg"
   status:
     ksql: enabled
     kstreams: enabled
@@ -280,7 +283,8 @@ dynamic-output-topic:
   canonical: confluent
   slug: "/dynamic-output-topic"
   question: "How can you dynamically route records to different Kafka topics, like a \"topic exchange\"?"
-  introduction: "Consider a situation where you want to direct the output of different records to different topics, like a \"topic exchange.\" In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value."
+  introduction: "Consider a situation where you want to direct the output of different records to different topics, like a \"topic exchange.\" In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value. Related pattern: <a href='https://developer.confluent.io/patterns/event-processing/event-router'>Event Router</a>."
+  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg"
   status:
     ksql: disabled
     kstreams: enabled
@@ -318,6 +322,7 @@ console-consumer-producer-basic:
   slug: "/kafka-console-consumer-producer-basics"
   question: "What is the simplest way to write messages to and read messages from Kafka?"
   introduction: "So you are excited to get started with Kafka, and you'd like to produce and consume some basic messages, quickly. In this tutorial, we'll show you how to produce and consume messages from the command line without any code."
+  introduction-media: "/assets/img/cli.png"
   status:
     ksql: disabled
     kstreams: disabled
@@ -331,6 +336,7 @@ console-consumer-producer-avro:
   slug: "/kafka-console-consumer-producer-avro"
   question: "What is the simplest way to write messages to and read messages from Kafka, using (de)serializers and Schema Registry?"
   introduction: "You'd like to produce and consume some basic messages, using (de)serializers and Schema Registry.  In this tutorial, we'll show you how to produce and consume messages from the command line without any code. Unlike the <a href=\"/tutorials/kafka-console-consumer-producer-basics/confluent.html\">CLI Basics</a> tutorial, this tutorial uses Avro and Schema Registry."
+  introduction-media: "/assets/img/sr.png"
   status:
     ksql: disabled
     kstreams: disabled
@@ -780,6 +786,7 @@ creating-first-apache-kafka-streams-application:
   slug: "/creating-first-apache-kafka-streams-application"
   question: "How do you get started building your first Kafka Streams application?"
   introduction: "You'd like to get started with Kafka Streams, but you're not sure where to start. In this tutorial, you'll build a small stream processing application and produce some sample data to test it. After you complete this tutorial, you can go more in depth in the <a href='https://developer.confluent.io/learn-kafka/kafka-streams/get-started/'>Kafka Streams 101</a> course."
+  introduction-media: "/assets/img/streams-app.png"
   status:
     confluent: enabled
     kstreams: enabled
@@ -903,7 +910,7 @@ salesforce:
   title: "Handle corrupted data from Salesforce"
   meta-description: "This ksqlDB tutorial streams changes of Salesforce records and identifies gap events."
   slug: "/salesforce"
-  introduction: "Salesforce sends a notification when a change to a Salesforce record occurs as part of a create, update, delete, or undelete operation. However, if there is corrupt data in Salesforce, it sends a gap event instead of a change event, and these gap events should be properly handled to avoid discrepancies between Salesforce reports and internal dashboards. This tutorial demonstrates how to process Salesforce data and filter corrupt events, which allows a downstream application to appropriately process and reconcile those events for accurate reporting and analytics."
+  introduction: "Salesforce sends a notification when a change to a Salesforce record occurs as part of a create, update, delete, or undelete operation. However, if there is corrupt data in Salesforce, it sends a gap event instead of a change event, and these gap events should be properly handled to avoid discrepancies between Salesforce reports and internal dashboards. This tutorial demonstrates how to process Salesforce data and filter corrupt events, which allows a downstream application to appropriately process and reconcile those events for accurate reporting and analytics. For a more detailed explanation of this use case, read <a href='https://www.confluent.io/blog/streaming-etl-sfdc-data-for-real-time-customer-analytics'>Streaming ETL SFDC Data for Real-Time Customer Analytics</a>."
   introduction-media: "/assets/img/salesforce.jpg"
   tutorial-id: "10"
   status:
@@ -1047,5 +1054,23 @@ audit-logs:
   slug: "/audit-logs"
   introduction: "In the Security Information and Event Management (SIEM) world, it's just as important to have insight into internal activities as it is to monitor for external security threats and vulnerabilities. But viewing all internal audit logs would provide too much information; you need to narrow the scope to particular events. This tutorial demonstrates how to filter audit logs in a Kafka topic and filter them for specific events and forward them to Splunk for indexing via the <a href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk Sink connector</a>.  The example data used is from <a href='https://www.confluent.io/confluent-cloud/tryfree/'>Confluent Cloud</a> audit logs."
   tutorial-id: "23"
+  status:
+    confluent: enabled
+
+model-retraining:
+  title: "Machine Learning Model Retraining"
+  meta-description: "This recipe demonstrates how to use ksqlDB to evaluate the predictions of a machine learning model and send data to retrain the model when needed."
+  slug: "/model-retraining"
+  introduction: "Machine learning provides valuable insights to an organization, and tools like Apache Kafka, Kafka Connect, and ksqlDB allow us to build powerful machine learning pipelines. We can also use these tools to extend an existing machine learning pipeline. In this recipe, we'll use Connect and ksqlDB to read the results of an existing pipeline, determine the accuracy of those results, and send data to retrain our model.  This recipe is based on the excellent blog post <a href='https://www.confluent.io/blog/how-baader-built-a-predictive-analytics-machine-learning-system-with-kafka-and-rstudio/'>Apache Kafka and R: Real-Time Prediction and Model (Re)training</a>, by Patrick Neff."
+  tutorial-id: "24"
+  status:
+    confluent: enabled
+
+location-based-alerting:
+  title: "Geolocation-Based Alerting"
+  meta-description: "This ksqlDB tutorial demonstrates how to create real-time, personalized, location-based alerts. Merchant data and user location events are joined to generate alerts when a user passes close to a participating merchant."
+  slug: "/location-based-alerting"
+  introduction: "Customers are no longer satisfied with using boring static websites to purchase your product or consume your service. Users demand interactive and contextualized real-time mobile applications. Providing customers with rich, real-time experiences is fundamental, and this recipe shows how ksqlDB can help to build personalized, location-based alerts in real time with user-provided mobile geolocation data."
+  tutorial-id: "25"
   status:
     confluent: enabled

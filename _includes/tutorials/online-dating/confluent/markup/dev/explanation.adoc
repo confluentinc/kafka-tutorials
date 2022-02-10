@@ -72,7 +72,7 @@ CREATE TABLE conversations_mapped AS
   SELECT
     ARRAY_JOIN(ARRAY_SORT(ARRAY [send_id, recv_id]), '<>') AS conversation_id,
     AS_MAP(
-      COLLECT_LIST(CAST(rowtime AS STRING)),
+      COLLECT_LIST(CAST(rowtime AS VARCHAR)),
       COLLECT_LIST(send_id)
     ) AS message_times
   FROM messages
@@ -110,7 +110,7 @@ CREATE TABLE conversations_sequenced AS
     ARRAY_JOIN(ARRAY_SORT(ARRAY [send_id, recv_id]), '<>') AS conversation_id,
     ENTRIES(
         AS_MAP(
-          COLLECT_LIST(CAST(rowtime AS STRING)),
+          COLLECT_LIST(CAST(rowtime AS VARCHAR)),
           COLLECT_LIST(send_id)
         ),
         true

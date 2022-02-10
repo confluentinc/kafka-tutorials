@@ -1,9 +1,12 @@
-CREATE TABLE customers (ID             INT     PRIMARY KEY
-                       , NAME           VARCHAR
-                       , ADDRESS        VARCHAR
-                       , EMAIL          VARCHAR
-                       , PHONE          VARCHAR
-                       , LOYALTY_STATUS VARCHAR)
-              WITH (KAFKA_TOPIC='customers'
-                   , FORMAT='AVRO'
-                   , PARTITIONS=6);
+CREATE TABLE customers (
+  id INT PRIMARY KEY,
+  name           VARCHAR,
+  address        VARCHAR,
+  email          VARCHAR,
+  phone          VARCHAR,
+  loyalty_status VARCHAR
+) WITH (
+  KAFKA_TOPIC = 'customers',
+  FORMAT = 'JSON',
+  PARTITIONS = 6
+);
