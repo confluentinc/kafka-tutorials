@@ -53,7 +53,7 @@ CREATE TABLE customer_flights WITH (KAFKA_TOPIC = 'customer_flights', KEY_FORMAT
 
 -- In preparation for joining customer flights with flight updates, need to first
 -- rekey the customer_flights table by flight ID, which is currently a multi-step
--- process (https://github.com/confluentinc/ksql/issues/2356)
+-- process
 CREATE STREAM cf_stream (
   cb_c_id INTEGER,
   cb_c_name VARCHAR,

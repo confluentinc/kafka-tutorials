@@ -46,21 +46,19 @@ INSERT INTO bookings (id, customer_id, flight_id) VALUES (4,4,2);
 To give us a single view of the passenger/flight data, we'll denormalize down the three tables into one. First, we join the customers to bookings that they've made and build a new table as a result: 
 
 ++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}</code></pre>
-++++
-
-++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/j01.sql %}</code></pre>
+<pre class="snippet"><code class="sql">
+{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}
+{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/j01.sql %}
+</code></pre>
 ++++
 
 From here, we join to details of the flights themselves: 
 
 ++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}</code></pre>
-++++
-
-++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/j02.sql %}</code></pre>
+<pre class="snippet"><code class="sql">
+{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}
+{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/j02.sql %}
+</code></pre>
 ++++
 
 At this stage, we can query the data held in the tables to show which customers are booked on which flights: 
@@ -93,17 +91,17 @@ EMIT CHANGES;
 |Ker Omond      |komond3@usnews.com      |Silver         |AMS    |TXL         |7968 |2021-11-18T08:11:00.000 |
 ----
 
-The last step in denormalizing the data is to set the key of the table to that of the flight ID so that it can be joined to the updates (which we'll get to below). 
+The last step in denormalizing the data is to set the key of the customer flights table to that of the flight ID so that it can be joined to the flight updates (which we'll get to below). 
+This is currently a multi-step process, see link:https://github.com/confluentinc/ksql/issues/2356[details].
 
 ++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}</code></pre>
+<pre class="snippet"><code class="sql">
+{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/o01.sql %}
+{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/r01.sql %}
+</code></pre>
 ++++
 
-++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/r01.sql %}</code></pre>
-++++
-
-We now have the `customer_flights` table but keyed on `flight_id`. 
+We now have the customer flights table as before, but keyed on `flight_id`. 
 
 ### Add a stream of flight updates
 
