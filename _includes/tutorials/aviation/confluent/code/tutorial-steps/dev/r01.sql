@@ -1,18 +1,19 @@
-CREATE TABLE customer_flights_rekeyed (
-  flight_id INT PRIMARY KEY,
-  customer_id VARCHAR,
-  customer_name VARCHAR,
-  customer_address VARCHAR,
-  customer_email VARCHAR,
-  customer_phone VARCHAR,
-  customer_loyalty_status VARCHAR,
-  flight_origin VARCHAR,
-  flight_destination VARCHAR,
-  flight_code VARCHAR,
-  flight_scheduled_dep TIMESTAMP,
-  flight_scheduled_arr TIMESTAMP
+CREATE STREAM cf_stream (
+  cb_c_id INTEGER,
+  cb_c_name VARCHAR,
+  cb_c_address VARCHAR,
+  cb_c_email VARCHAR,
+  cb_c_phone VARCHAR,
+  cb_c_loyalty_status VARCHAR,
+  cb_flight_id INTEGER,
+  f_id INTEGER,
+  f_origin VARCHAR,
+  f_destination VARCHAR,
+  f_code VARCHAR,
+  f_scheduled_dep TIMESTAMP,
+  f_scheduled_arr TIMESTAMP
 ) WITH (
-  KAFKA_TOPIC = 'cf_rekey',
+  KAFKA_TOPIC = 'customer_flights',
   KEY_FORMAT = 'KAFKA',
   VALUE_FORMAT = 'JSON'
 );

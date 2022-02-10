@@ -51,6 +51,9 @@ CREATE TABLE customer_flights WITH (KAFKA_TOPIC = 'customer_flights', KEY_FORMAT
   INNER JOIN flights F
   ON CB.flight_id = F.id;
 
+-- In preparation for joining customer flights with flight updates, need to first
+-- rekey the customer_flights table by flight ID, which is currently a multi-step
+-- process
 CREATE STREAM cf_stream (
   cb_c_id INTEGER,
   cb_c_name VARCHAR,
