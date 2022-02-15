@@ -32,7 +32,7 @@ dev:
           render:
             file: tutorials/SSH-attack/confluent/markup/dev/source.adoc
 
-    - title: ksqlDB code
+    - title: Execute ksqlDB code
       content:
         - action: skip
           render:

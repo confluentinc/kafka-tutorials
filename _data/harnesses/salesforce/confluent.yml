@@ -18,7 +18,7 @@ dev:
           render:
             file: shared/markup/ccloud/ccloud_setup.adoc
 
-    - title: ksqlDB code
+    - title: Execute ksqlDB code
       content:
         - action: skip
           render:
