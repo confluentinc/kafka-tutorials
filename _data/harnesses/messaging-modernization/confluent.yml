@@ -18,7 +18,7 @@ dev:
           render:
             file: shared/markup/ccloud/ccloud_setup.adoc
 
-    - title: Read the data in
+    - title: ksqlDB code
       content:
         - action: skip
           render:
@@ -26,14 +26,8 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/messaging-modernization/confluent/markup/dev/source.adoc
-
-        - action: skip
-          render:
             file: shared/markup/ccloud/manual_insert.adoc
 
-    - title: ksqlDB code
-      content:
         - action: skip
           render:
             file: tutorials/messaging-modernization/confluent/markup/dev/ksqlDB.adoc
@@ -46,6 +40,8 @@ dev:
           render:
             file: tutorials/messaging-modernization/confluent/markup/dev/process.adoc
 
+    - title: Test with mock data
+      content:
         - action: skip
           render:
             file: shared/markup/ccloud/manual_cue.adoc

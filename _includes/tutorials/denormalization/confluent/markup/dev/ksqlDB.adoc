@@ -1,1 +1,3 @@
 This streams the user orders and denormalizes the data by joining facts (orders) with the dimension (customer).
+
+Change data capture (CDC) for orders is being read from a SQL Server database, and the customer data is being read from Oracle.

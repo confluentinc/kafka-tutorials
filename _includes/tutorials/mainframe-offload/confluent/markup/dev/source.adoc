@@ -1,5 +1,3 @@
-Our mainframe-offload power analysis applications require data from two different sources: customer tenant information and smart control panel readings.
-
 ++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/mainframe-offload/confluent/code/tutorial-steps/dev/source.json %}</code></pre>
 ++++

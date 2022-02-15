@@ -26,7 +26,7 @@ dev:
 
         - action: skip
           render:
-            file: shared/markup/ccloud/manual_insert.adoc
+            file: shared/markup/ccloud/manual_insert_no_connector.adoc
 
     - title: ksqlDB code
       content:
@@ -42,6 +42,8 @@ dev:
           render:
             file: tutorials/audit-logs/confluent/markup/dev/process.adoc
 
+    - title: Test with mock data
+      content:
         - action: skip
           render:
             file: shared/markup/ccloud/manual_cue.adoc

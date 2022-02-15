@@ -1,3 +1,2 @@
 [NOTE]
-Confluent Cloud Console does not allow you to execute this code in the ksqlDB editor as a single block, so until this limitation is removed, copy and paste each statement into the editor and execute them one at a time.
-Also, when creating the intial stream or table, if the backing Kafka topic already exists, then the `PARTITIONS` property may be omitted.
+When creating the intial stream or table, if the backing Kafka topic already exists, then the `PARTITIONS` property may be omitted.

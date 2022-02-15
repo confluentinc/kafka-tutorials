@@ -1,1 +1,1 @@
-In the previous section link:#read-the-data-in[Read the data in], if you did not have a real data source to connect to, you can now use ksqlDB to insert example events into the source topics with the following statements:
+If you are you not running source connectors to produce events, you can now use ksqlDB to insert example events into the source topics with the following `INSERT INTO` statements:
