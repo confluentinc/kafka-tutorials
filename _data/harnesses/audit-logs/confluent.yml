@@ -28,7 +28,7 @@ dev:
           render:
             file: shared/markup/ccloud/manual_insert_no_connector.adoc
 
-    - title: ksqlDB code
+    - title: Execute ksqlDB code
       content:
         - action: skip
           render:
