@@ -36,7 +36,7 @@ dev:
 
         - action: skip
           render:
-            file: shared/markup/ccloud/ksqlb_processing_intro.adoc
+            file: shared/markup/ccloud/ksqldb_processing_intro.adoc
 
         - action: skip
           render:
