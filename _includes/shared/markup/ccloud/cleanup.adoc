@@ -5,4 +5,8 @@ By including the `DELETE TOPIC` clause, the topic backing the stream or table is
 <pre class="snippet"><code class="sql">{% include_raw shared/code/ccloud/cleanup.sql %}</code></pre>
 +++++
 
-If you also created connectors, you'll need to remove those as well.
+If you also created connectors, you'll need to remove those as well (substitute connector name).
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw shared/code/ccloud/cleanup_connectors.sql %}</code></pre>
++++++
