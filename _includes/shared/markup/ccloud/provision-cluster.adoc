@@ -1,1 +1,1 @@
-Provision a Kafka cluster in link:https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud].
+Provision a Kafka cluster in link:https://www.confluent.io/confluent-cloud/tryfree/\?tutorial={{ site.data.tutorials[page.static_data].tutorial-id }}[Confluent Cloud].
