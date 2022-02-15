@@ -6,9 +6,9 @@ CREATE STREAM rabbit (userid VARCHAR,
                       transaction VARCHAR,
                       amount VARCHAR
 ) WITH (
-  KAFKA_TOPIC='from-rabbit',
-  VALUE_FORMAT='json',
-  PARTITIONS=6
+  KAFKA_TOPIC = 'from-rabbit',
+  VALUE_FORMAT = 'json',
+  PARTITIONS = 6
 );
 
 -- Convert the stream to typed fields
