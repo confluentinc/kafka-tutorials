@@ -12,4 +12,5 @@ CREATE SOURCE CONNECTOR aviation WITH (
   'timestamp.column.name'    = 'created_at',
   'output.data.format'       = 'JSON',
   'db.timezone'              = 'UTC',
-  'tasks.max'                = '1');
+  'tasks.max'                = '1'
+);

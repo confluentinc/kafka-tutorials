@@ -8,4 +8,5 @@ CREATE SOURCE CONNECTOR RabbitMQ WITH (
   'rabbitmq.username'        = '<username>',
   'rabbitmq.password'        = '<password>',
   'rabbitmq.queue'           = 'transactions',
-  'tasks.max'                = '1');
+  'tasks.max'                = '1'
+);

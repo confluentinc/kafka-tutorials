@@ -30,9 +30,9 @@ CREATE STREAM audit_log_events (
     >
 ) WITH (
   KAFKA_TOPIC = 'confluent-audit-log-events', 
-  VALUE_FORMAT='JSON', 
-  TIMESTAMP='time', 
-  TIMESTAMP_FORMAT='yyyy-MM-dd''T''HH:mm:ss.SSSX',
+  VALUE_FORMAT = 'JSON', 
+  TIMESTAMP = 'time', 
+  TIMESTAMP_FORMAT = 'yyyy-MM-dd''T''HH:mm:ss.SSSX',
   PARTITIONS = 6
 );
 
@@ -40,8 +40,8 @@ CREATE STREAM audit_log_events (
 -- Application logic
 CREATE STREAM audit_log_topics
   WITH (
-  KAFKA_TOPIC='topic-operations-audit-log', 
-  PARTITIONS=6
+  KAFKA_TOPIC = 'topic-operations-audit-log', 
+  PARTITIONS = 6
 ) 
 AS SELECT time, data
 	FROM  audit_log_events
