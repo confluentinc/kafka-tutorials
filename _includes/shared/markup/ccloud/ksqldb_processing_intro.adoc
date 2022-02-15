@@ -1,2 +1,2 @@
 [NOTE]
-When creating the intial stream or table, if the backing Kafka topic already exists, then the `PARTITIONS` property may be omitted.
+When creating the initial STREAM or TABLE, if the backing Kafka topic already exists, then the `PARTITIONS` property may be omitted.
