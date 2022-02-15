@@ -18,18 +18,12 @@ dev:
           render:
             file: shared/markup/ccloud/ccloud_setup.adoc
 
-    - title: Read the data in
+    - title: ksqlDB code
       content:
         - action: skip
           render:
             file: shared/markup/ccloud/connect.adoc
 
-        - action: skip
-          render:
-            file: tutorials/clickstream/confluent/markup/dev/source.adoc
-
-    - title: ksqlDB code
-      content:
         - action: skip
           render:
             file: tutorials/clickstream/confluent/markup/dev/ksqlDB.adoc

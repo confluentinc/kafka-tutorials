@@ -10,7 +10,7 @@
      <div class="container" style="background-color: #E6F5FB; padding: 30px; ">
        <div class="columns">
          <div class="column is-full">
-           <h3 class="title">Get Started</h3>
+           <h3 class="title">Launch Now</h3>
            {% for step in site.data.harnesses[page.static_data][page.stack].answer.steps %}
 
             <div class="tutorial-try-it-step content">
@@ -23,7 +23,7 @@
               {% if section.render.skip != true %}
 
         <div class="ctas">
-          <a href="https://www.confluent.io/confluent-cloud/tryfree/\?tutorial={{ site.data.tutorials[page.static_data].tutorial-id }}" class="btn-denim">Take me to Confluent Cloud</a>
+          <a href="https://www.confluent.io/confluent-cloud/tryfree/\?tutorial={{ site.data.tutorials[page.static_data].tutorial-id }}" class="btn-denim">Go to Confluent Cloud</a>
         </div>
 
               {% endif %}
