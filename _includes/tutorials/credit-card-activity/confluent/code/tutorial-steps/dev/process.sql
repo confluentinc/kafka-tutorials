@@ -61,7 +61,7 @@ CREATE STREAM fd_transactions_enriched WITH (KAFKA_TOPIC = 'transactions_enriche
 -- Aggregate the stream of transactions for each account ID using a two-hour
 -- tumbling window, and filter for accounts in which the total spend in a
 -- two-hour period is greater than the customer’s average:
-CREATE TABLE fd_possible_stolen_card WITH (KAFKA_TOPIC = 'FD_possible_stolen_card', KEY_FORMAT = JSON') AS
+CREATE TABLE fd_possible_stolen_card WITH (KAFKA_TOPIC = 'FD_possible_stolen_card', KEY_FORMAT = 'JSON') AS
   SELECT
     TIMESTAMPTOSTRING(WINDOWSTART, 'yyyy-MM-dd HH:mm:ss Z') AS WINDOW_START, 
     T.ACCOUNT_ID,
