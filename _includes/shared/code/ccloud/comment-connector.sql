@@ -1,0 +1,2 @@
+-- If you do not want to connect to a real data source, remove the CREATE SOURCE CONNECTOR commands,
+-- and add the INSERT INTO commands to insert mock data into the streams
