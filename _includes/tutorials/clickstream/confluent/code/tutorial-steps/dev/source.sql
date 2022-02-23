@@ -1,3 +1,4 @@
+-- Stream of users
 CREATE SOURCE CONNECTOR datagen_clickstream_users WITH (
   'name'                     = 'Datagen_users',
   'connector.class'          = 'DatagenSource',
@@ -10,6 +11,7 @@ CREATE SOURCE CONNECTOR datagen_clickstream_users WITH (
   'output.data.format'       = 'JSON'
 );
 
+-- Stream of per-user session information
 CREATE SOURCE CONNECTOR datagen_clickstream WITH (
   'name'                     = 'Datagen_clicks',
   'connector.class'          = 'DatagenSource',
