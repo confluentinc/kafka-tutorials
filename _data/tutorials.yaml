@@ -927,16 +927,15 @@ SSH-attack:
     confluent: enabled
 
 firewall-splunk:
-  title: "Identify firewall deny events from Splunk"
+  title: "Identify firewall deny events"
   meta-description: "This tutorial demonstrates how to use ksqlDB to identify and filter firewall deny events from Splunk."
   slug: "/firewall-splunk"
-  introduction: "In the Security Information and Event Management (SIEM) world, it's important to have a scalable cyber intelligence platform so that you can swiftly identify potential security threats and vulnerabilities.
-But with each source having its own set of collectors generating different data flows, there may be too much aggregate information for you to analyze it and take action in a timely manner.
-If you start by intercepting those data flows as they arrive from their sources, you can analyze or filter the data in any way you wish before the data is sent to an aggregator.
+  introduction: "In the security information and event management (SIEM) world, it's critical to have a scalable cyber intelligence platform to swiftly identify potential security threats and vulnerabilities, such as firewall deny events. But with each source having its own set of collectors generating different data flows, there  is often too much aggregate information for you to analyze and take action in a timely and cost-effective manner. This recipe demonstrates how you can intercept those data flows as they arrive from their sources, and analyze or filter the data before sending to an aggregator. 
 <BR><BR>
-This tutorial demonstrates how to optimize Splunk data ingestion by using the <a href=\"https://docs.confluent.io/kafka-connect-splunk-s2s/current/overview.html\">Splunk S2S Source connector</a>, which can receive data from a Splunk Universal Forwarder (UF) with the Splunk 2 Splunk protocol, to intercept data that would normally be sent to a Splunk HTTP Event Collector (HEC).
-The stream processing application filters for `deny` events, removes unnecessary fields to reduce message size, and then sends the new, targeted set of events to Splunk for indexing.
-You can also extend this solution to intercept data from a variety of SIEM vendors and create a vendor-independent solution that leverages multiple tools and analytic destinations."
+Learn to optimize Splunk data ingestion by using the <a href=\"https://docs.confluent.io/kafka-connect-splunk-s2s/current/overview.html\">Splunk S2S Source connector</a> to offload data that would normally be sent to a Splunk HTTP Event Collector (HEC). The stream processing application filters for “deny” events, removes unnecessary fields to reduce message size, and sends the new, targeted set of events to Splunk for cost-effective indexing. 
+<BR><BR>
+You can also extend this solution to intercept data from a variety of SIEM vendors and create a vendor-agnostic solution that leverages multiple tools and analytics solutions."
+  introduction-media: "/assets/img/firewall.png"
   tutorial-id: "12"
   status:
     confluent: enabled
@@ -962,13 +961,11 @@ clickstream:
     confluent: enabled
 
 messaging-modernization:
-  title: "Modernize messaging workloads"
+  title: "Integrate legacy messaging systems with Kafka"
   meta-description: "This ksqlDB tutorial shows you how to modernize messaging workloads to move beyond queues and pub/sub"
   slug: "/messaging-modernization"
-  introduction: "Traditional messaging systems like Message Queues (MQs), Enterprise Service Buses (ESBs), and Extract, Transform and Load (ETL) tools have been widely used for decades to handle message distribution and inter-service communication across distributed applications.
-However, they can no longer keep up with the needs of modern applications across hybrid and multi cloud environments for asynchronicity, heterogeneous datasets and high volume throughput.
-Designed as monolithic systems, they are riddled with many challenges: they lack persistence or the ability to efficiently handle highly scalable, efficient and reliable message delivery.
-If you instead want to do real-time interactions and in-flight stream processing that modern applications demand, you can use a connector to read critical data from legacy messaging systems into Kafka and then do the processing there."
+  introduction: "Traditional message queues (MQs) such as RabbitMQ, TIBCO EMS, IBM MQ, and ActiveMQ have been widely used for decades to handle message distribution and inter-service communication across distributed applications. However, they can no longer keep up with the needs of modern applications across hybrid and multicloud environments for high volume throughput, asynchronicity, and heterogeneous datasets. They are riddled with many challenges – they lack persistence and were designed to support point-to-point message delivery. This recipe shows how to perform real-time stream processing in-flight by leveraging a connector to read critical data from legacy messaging systems into Kafka."
+  introduction-media: "/assets/img/message-modernization.png"
   tutorial-id: "15"
   status:
     confluent: enabled
@@ -990,19 +987,21 @@ loyalty-rewards:
     confluent: enabled
 
 customer-journey:
-  title: "Track a Customer Journey"
+  title: "Get a full view of a customer’s online journey"
   meta-description: "This tutorial demonstrates how to use ksqlDB to track a customer journey through web pages online."
   slug: "/customer-journey"
-  introduction: "Companies with online websites, and customers that browse those websites, want to know which web pages their customers have visited. Knowing an online customer's behavior—which pages the customer visits—can be useful for analytics, or, in case the customer calls for support, to understand exactly what the customer did beforehand. For real-time analysis of the customer journey, you can use ksqlDB to collect the pages that a customer visited, and then send the list out for analytics in another application."
+  introduction: "To unlock improved conversion rates and personalized experiences, many companies often want to know which web pages visitors have browsed and engaged with. Analyzing online behavior can be useful to better understand customer behavior and needs, improve each webpage’s relevancy, and tailor customer support interactions. This recipe showcases how to run real-time analyses of the customer journey by leveraging ksqlDB to collect web pages visited  and send the list out for downstream analytics."
+  introduction-media: "/assets/img/customer-journey.png"
   tutorial-id: "17"
   status:
     confluent: enabled
 
 next-best-offer:
-  title: "Next Best Offer for Banking"
+  title: "Create personalized banking promotions"
   meta-description: "This tutorial demonstrates how to use ksqlDB to present relevant offers to banking customers."
   slug: "/next-best-offer"
-  introduction: "Customers today are faced with never ending marketing messages from a variety of sources.  Often these messages are generic and don't have any consideration for the individual needs of the customer.  This one-size-fits-all approach leads to poor conversion rates.  A better approach is to tailor offerings that take into consideration the interests of the customer based on previous purchases or behavior.   This tutorial demonstrates how to take existing customer information and provide a 'Next Best Offer' to encourage sales and retain customers."
+  introduction: "Consumers often face never-ending generic marketing messages not tailored to their needs, resulting in poor customer conversion rates. A better approach is known as 'Next Best Offer,' which leverages predictive analytics to analyze a customer’s spending habits and activities to create more targeted promotions. This recipe demonstrates how ksqlDB can take customer banking information to create a predictive analytics model and improve customer conversions through personalized marketing efforts."
+  introduction-media: "/assets/img/next-best-offer.png"
   tutorial-id: "18"
   status:
     confluent: enabled
@@ -1011,66 +1010,72 @@ ddos:
   title: "Detect a Slowloris DDoS attack"
   meta-description: "This tutorial shows you how to use ksqlDB to detect network disruption attacks by processing packet data."
   slug: "/ddos"
-  introduction: "A distributed denial-of-service (DDoS) attack is a specific type of cyber attack in which a targeted system is flooded with spurious network requests using multiple hosts and IP addresses. The distributed nature of these attacks makes them more effective and difficult to mitigate. This tutorial shows a strategy for ingesting and processing network packet data in an effort to detect a specific DDoS attack known as Slowloris."
+  introduction: "Distributed denial-of-service (DDoS) attacks are a specific type of cyberattack in which a targeted system is flooded with malicious network requests using multiple hosts and IP addresses. The distributed nature of these attacks, along with their increased occurrence, sophistication, and strength, makes them one of the most severe forms of cyber attacks that’s getting progressively  difficult to mitigate. This recipe shows a strategy for ingesting and processing network packet data to quickly detect a specific DDoS attack known as Slowloris."
+  introduction-media: "/assets/img/slowloris.png"
   tutorial-id: "19"
   status:
     confluent: enabled
 
 mainframe-offload:
-  title: "Modernize Mainframes for Real-Time"
+  title: "Modernize and offload mainframe data"
   meta-description: "This ksqlDB tutorial demonstrates how to modernize mainframes to a more modern data-store in real-time"
   slug: "/mainframe-offload"
-  introduction: "From order processing to financial transactions, inventory control to payroll, mainframes continue to support many mission-critical applications by continuing to perform the majority of batch processing for many enterprises.  Data-driven enterprises need real-time access to mainframe data to feed distributed applications, microservices and other business operations, and to enable organizations to use all their data for competitive advantage.  Confluent enables you to combine data from mainframes with real-time data across the rest of your organization to increase the benefits of both.<BR>
-<ul>
-<li>Offload with Apache Kafka to keep a more modern data-store in real-time sync with the mainframe
-<li>Reduce overall operational expenses including Millions of Instructions Per Second (MIPS) costs, while providing a path for architectural modernization
-<li>Enable event-driven microservices and deliver to other systems such as data warehouses and search indexes
-</ul>"
+  introduction: "Mainframes have historically underpinned many mission-critical applications as the de facto solution for many high performance batch processes. However, as organizations look to modernize their data infrastructure, it becomes increasingly expensive and complex to access and integrate mainframe data to other more modern distributed applications, microservices, and data platforms. Thus, many organizations have turned to Kafka to become a modern datastore that is in real-time sync with the mainframe. This recipe showcases how to leverage a real-time cache in ksqlDB, which can be used to offload mainframe calls to Kafka."
+  introduction-media: "/assets/img/mainframe.png"
   tutorial-id: "20"
   status:
     confluent: enabled
 
 discount-promo:
-  title: "Assess the success of a discount promotion"
+  title: "Assess multi-touch discount code efficacy"
   meta-description: "This tutorial shows how to use ksqlDB to track the success of discounts for a small online business."
   slug: "/discount-promo"
-  introduction: "Small, online retailers often run promotions in order to entice buyers and increase sales. Suppose the retailer implements a 'scratch-off' promotion where customers are provided a scratch card where they will receive discount code for a random percentage (up to 50%) off of their order. How well do these promotions work? And how much does the discount percentage affect the total amount purchased in a given order? Let's find out!"
+  introduction: "Oftentimes retailers will run promotions to drive sales and move inventory. However, if retailers are looking to build complex promotional strategies that involve multiple discounts using different coupon codes, it can be difficult to track the overall effectiveness of the marketing program. This recipe shows how ksqlDB can help track the performance of a multi-discount code promotion by understanding the average order value organized by discount percentage and the number of items purchased."
+  introduction-media: "/assets/img/discount.png"
   tutorial-id: "21"
   status:
     confluent: enabled
 
 logistics:
-  title: "Real-time logistics for a delivery fleet"
+  title: "Track order shipments in real time"
   meta-description: "This tutorial shows how to track vehicles while delivering orders."
   slug: "/logistics"
-  introduction: "In today's world, last-mile delivery services are crucial. These operations have to operate as smoothly as possible, ensuring that customers are receiving their orders on time and that they are, ideally, provided real-time updates as the process takes place. This tutorial will show your delivery service how to compute delivery estimates and status updates in real-time."
+  introduction: "Customers today expect organizations to provide real-time visibility into their order status to help ensure shipments are received in a timely manner. However, aggregating data from multiple different data sources and continuously processing it in real time as locations change can be rather daunting. This recipe makes it easy by walking through how to compute delivery estimates based on a vehicle’s current location, so you can provide your customers with real-time status updates on their orders."
+  introduction-media: "/assets/img/logistics.png"
   tutorial-id: "22"
   status:
     confluent: enabled
 
 audit-logs:
-  title: "Filter audit logs for output to splunk"
+  title: "Monitor security threats by analyzing and filtering audit logs"
   meta-description: "This tutorial demonstrates how to filter Confluent audit logs to Splunk for SIEM processing"
   slug: "/audit-logs"
-  introduction: "In the Security Information and Event Management (SIEM) world, it's just as important to have insight into internal activities as it is to monitor for external security threats and vulnerabilities. But viewing all internal audit logs would provide too much information; you need to narrow the scope to particular events. This tutorial demonstrates how to filter audit logs in a Kafka topic and filter them for specific events and forward them to Splunk for indexing via the <a href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk Sink connector</a>.  The example data used is from <a href='https://www.confluent.io/confluent-cloud/tryfree/'>Confluent Cloud</a> audit logs."
+  introduction: "Audit logs are often captured and stored in SIEM tools to find malicious insiders, monitor changes to policies, protect against data leakage, and ensure regulatory compliance. However, indefinitely storing all audit logs in SIEM tools, irrespective of whether they are of high or low value can be an expensive proposition, often forcing tradeoffs between cost, flexibility, and visibility.
+<BR><BR>
+This recipe demonstrates how to aggregate audit logs in a Kafka topic, filter for specific events, and forward them to Splunk for indexing via the <a href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk Sink connector</a> or route your data to a more cost-effective destination for long-term storage to reduce data indexing, analysis, and storage costs." 
+  introduction-media: "/assets/img/audit-logs.png"
   tutorial-id: "23"
   status:
     confluent: enabled
 
 model-retraining:
-  title: "Machine Learning Model Retraining"
+  title: "Retrain a machine learning model"
   meta-description: "This recipe demonstrates how to use ksqlDB to evaluate the predictions of a machine learning model and send data to retrain the model when needed."
   slug: "/model-retraining"
-  introduction: "Machine learning provides valuable insights to an organization, and tools like Apache Kafka, Kafka Connect, and ksqlDB allow us to build powerful machine learning pipelines. We can also use these tools to extend an existing machine learning pipeline. In this recipe, we'll use Connect and ksqlDB to read the results of an existing pipeline, determine the accuracy of those results, and send data to retrain our model.  This recipe is based on the excellent blog post <a href='https://www.confluent.io/blog/how-baader-built-a-predictive-analytics-machine-learning-system-with-kafka-and-rstudio/'>Apache Kafka and R: Real-Time Prediction and Model (Re)training</a>, by Patrick Neff."
+  introduction: "Today’s leading companies leverage  machine learning (ML) models to help better understand and predict customer needs. The process of training an ML model involves leveraging an ML algorithm, and providing it with training data from which to learn. Every so often, you will need to retrain your model if the data distributions have deviated significantly from those of the original training set. ksqlDB makes this easy by triggering the retraining process whenever the prediction error is greater than a defined threshold This recipe walks through how to take an existing ML pipeline, with results stored in MongoDB, and trigger the retraining process once the prediction error exceeds a certain threshold, in this case, 15%. 
+<BR><BR>
+The generated example is based on a factory for fish processing. In the first step, the fish size (length and height) is measured. The model then predicts the weight of the fish based on its size and species, which will determine a selling price. By retraining the model, we can help maximize revenue by accurately determining the optimal selling price. This recipe is based on the blog post <a href='https://www.confluent.io/blog/how-baader-built-a-predictive-analytics-machine-learning-system-with-kafka-and-rstudio/'>Apache Kafka and R: Real-Time Prediction and Model (Re)training</a>, by Patrick Neff."
+  introduction-media: "/assets/img/ml.png"
   tutorial-id: "24"
   status:
     confluent: enabled
 
 location-based-alerting:
-  title: "Geolocation-Based Alerting"
+  title: "Create geolocation-based customer alerts and promotions"
   meta-description: "This ksqlDB tutorial demonstrates how to create real-time, personalized, location-based alerts. Merchant data and user location events are joined to generate alerts when a user passes close to a participating merchant."
   slug: "/location-based-alerting"
-  introduction: "Customers are no longer satisfied with using boring static websites to purchase your product or consume your service. Users demand interactive and contextualized real-time mobile applications. Providing customers with rich, real-time experiences is fundamental, and this recipe shows how ksqlDB can help to build personalized, location-based alerts in real time with user-provided mobile geolocation data."
+  introduction: "In an effort to build more personalized offers and promotions, organizations have turned toward geolocation alerts. This uses the merchant and mobile user’s geolocations to alert customers of the latest promotions when they near one of their stores. However, this can be difficult because it requires determining the distance between static store location data and continuous streams of geolocation data from hundreds of thousands of mobile devices. This recipe showcases how to do this easily with ksqlDB by aggregating and comparing merchant and mobile user geolocation data to produce user proximity alerts and notifications."
+  introduction-media: "/assets/img/geolocation.png"
   tutorial-id: "25"
   status:
     confluent: enabled
