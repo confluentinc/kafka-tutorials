@@ -10,10 +10,10 @@ CREATE TABLE ORDERS (
     DEST_LONG DOUBLE,
     ORDER_TOTAL DOUBLE 
 ) WITH (
-    KAFKA_TOPIC='orders', 
-    VALUE_FORMAT='JSON', 
-    KEY_FORMAT='KAFKA',
-    PARTITIONS=4
+    KAFKA_TOPIC = 'orders', 
+    VALUE_FORMAT = 'JSON', 
+    KEY_FORMAT = 'KAFKA',
+    PARTITIONS = 6
 );
 
 -- Create Vehicle Stream
@@ -28,17 +28,16 @@ CREATE STREAM VEHICLES (
     TEMPERATURE DOUBLE,
     TIRE_PRESSURE DOUBLE
 ) WITH (
-    KAFKA_TOPIC='fleet_updates', 
-    VALUE_FORMAT='JSON', 
-    KEY_FORMAT='KAFKA',
-    PARTITIONS=4
+    KAFKA_TOPIC = 'fleet_updates', 
+    VALUE_FORMAT = 'JSON', 
+    KEY_FORMAT = 'KAFKA',
+    PARTITIONS = 6
 );
 
 -- Create order tracking table to show the eta based on vehicle location.
 CREATE TABLE ORDER_TRACKER WITH (
-    KAFKA_TOPIC='order_tracker', 
-    PARTITIONS=4, 
-    REPLICAS=3
+    KAFKA_TOPIC = 'order_tracker', 
+    PARTITIONS = 6
 ) AS 
 SELECT 
     O.ID ORDER_ID, 

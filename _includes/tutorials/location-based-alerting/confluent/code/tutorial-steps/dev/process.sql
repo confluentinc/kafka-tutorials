@@ -8,8 +8,8 @@ CREATE TABLE merchant_locations (
   longitude DECIMAL(10,7),
   geohash VARCHAR
 ) WITH (
-  KAFKA_TOPIC='merchant-locations', 
-  VALUE_FORMAT='JSON',
+  KAFKA_TOPIC = 'merchant-locations',
+  VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 
@@ -17,9 +17,9 @@ CREATE TABLE merchant_locations (
 --    substring (precision) of the geohash
 CREATE TABLE merchants_by_geohash
 WITH (
-  KAFKA_TOPIC='merchant-geohash', 
-  FORMAT='JSON', 
-  PARTITIONS=6
+  KAFKA_TOPIC = 'merchant-geohash',
+  FORMAT = 'JSON', 
+  PARTITIONS = 6
 ) AS 
 SELECT 
   SUBSTRING(geohash, 1, 6) AS geohash, 
@@ -34,9 +34,9 @@ CREATE STREAM user_locations (
   longitude DECIMAL(10,7),
   geohash VARCHAR
 ) WITH (
-  KAFKA_TOPIC='user-locations', 
-  VALUE_FORMAT='JSON',
-  PARTITIONS=6
+  KAFKA_TOPIC = 'user-locations',
+  VALUE_FORMAT = 'JSON',
+  PARTITIONS = 6
 );
 
 -- Creates a stream of alerts when a user's geohash based location roughly 
@@ -44,9 +44,9 @@ CREATE STREAM user_locations (
 --    merchants_by_geohash table.
 CREATE STREAM alerts_raw
 WITH (
-  KAFKA_TOPIC='alerts-raw', 
-  VALUE_FORMAT='JSON', 
-  PARTITIONS=6
+  KAFKA_TOPIC = 'alerts-raw',
+  VALUE_FORMAT = 'JSON', 
+  PARTITIONS = 6
 ) AS 
 SELECT 
   user_locations.id as user_id,
@@ -63,9 +63,9 @@ PARTITION BY null;
 --    intersects with a merchant within a specified distance (0.2 KM)
 CREATE STREAM promo_alerts 
 WITH (
-  KAFKA_TOPIC='promo-alerts', 
-  VALUE_FORMAT='JSON',
-  PARTITIONS=6
+  KAFKA_TOPIC = 'promo-alerts',
+  VALUE_FORMAT = 'JSON',
+  PARTITIONS = 6
 ) AS 
 SELECT 
   alerts_raw.user_id,

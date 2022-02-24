@@ -31,7 +31,7 @@ CREATE SOURCE TABLE mq_cache (
     ts_cache BIGINT,
     ts_delta BIGINT
 ) WITH (
-    KAFKA_TOPIC='mq_transactions_normalized',
-    KEY_FORMAT='KAFKA',
-    VALUE_FORMAT='JSON'
+    KAFKA_TOPIC = 'mq_transactions_normalized',
+    KEY_FORMAT = 'KAFKA',
+    VALUE_FORMAT = 'JSON'
 );
