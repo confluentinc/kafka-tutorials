@@ -817,7 +817,7 @@ multiple-event-types:
 fleet-management:
   title: "Optimize fleet management"
   canonical: confluent
-  meta-description: "This ksqlDB tutorial enriches fleet location data with data about each vehicle for a real-time view of consolidated information on the entire fleet"
+  meta-description: "enrich fleet location data with data about each vehicle for a real-time view of consolidated information on the entire fleet"
   slug: "/fleet-management"
   introduction: "More and more, fleet management relies on knowing real-time information on vehicle availability, their locations, and integrating that with data from vehicle telematics. This enables businesses to improve operational efficiency by optimizing travel routes, lowering fuel consumption, and automating service schedules. This tutorial combines fleet locations with individual vehicle information, so organizations can have a real-time consolidated view of their entire fleet."
   introduction-media: "/assets/img/fleet.png"
@@ -828,7 +828,7 @@ fleet-management:
 inventory:
   title: "Optimize omni-channel inventory"
   canonical: confluent
-  meta-description: "This tutorial demonstrates how to use ksqlDB to ensure an up-to-date snapshot of your inventory at all times."
+  meta-description: "use ksqlDB to ensure an up-to-date snapshot of your inventory at all times"
   slug: "/inventory"
   introduction: "Having an up-to-date, real-time view of inventory on every item is essential in today's online marketplaces. This helps businesses maintain the optimum level of inventory—not too much and not too little—so that they can meet customer demand while minimizing inventory holding costs. This tutorial demonstrates how to track and update inventory in real time, so you always have an up-to-date snapshot of your stock for both your customers and merchandising teams"
   introduction-media: "/assets/img/inventory.jpg"
@@ -838,7 +838,7 @@ inventory:
 
 credit-card-activity:
   title: "Detect unusual credit card activity"
-  meta-description: "This tutorial analyzes total credit card spend, and if it's more than the average credit card usage of a customer, the account will be flagged as a possible case of credit card theft."
+  meta-description: "analyze total credit card spend and flag accounts for possible case of credit card theft"
   slug: "/credit-card-activity"
   introduction: "One way many financial institutions detect fraud is to check for unusual activity in a short period of time, raising a red flag to promptly alert their customers and confirm any recent unexpected purchases. Fraud can involve using stolen credit cards, forging checks and account numbers, multiple duplicate transactions, and more. This tutorial analyzes a customer’s typical credit card spend, and flags the account when there are instances of excessive spending as a possible case of credit card theft."
   introduction-media: "/assets/img/credit-card-activity.jpg"
@@ -848,7 +848,7 @@ credit-card-activity:
 
 online-dating:
   title: "Match users for online dating"
-  meta-description: "This ksqlDB tutorial tracks repeated interactions between users of a social network or dating site."
+  meta-description: "track repeated interactions between users of a social network or dating site"
   slug: "/online-dating"
   introduction: "When it comes to online dating, matching users based on mutual interests and their personal preferences, while enabling real-time communication are key to finding the right counterpart. This tutorial enables developers to dynamically determine which pairs of people have connected and are ripe to get the ball rolling."
   introduction-media: "/assets/img/dating.png"
@@ -858,7 +858,7 @@ online-dating:
 
 datacenter:
   title: "Analyze datacenter power usage"
-  meta-description: "This ksqlDB tutorial analyzes telemetry data from datacenter power electrical smart panels. The stream processing use cases for this data include detection of power usage levels for safety and accounting purposes."
+  meta-description: "analyze telemetry data from datacenter power electrical smart panels"
   slug: "/datacenter"
   introduction: "For businesses that provide cloud infrastructure across multiple data centers with isolated tenants, you may have an accounting unit to accurately monitor and invoice your customers. Oftentimes these data centers consume large amounts of electricity and are constructed with smart electrical panels that control the power supplies to multiple customer tenants. This tutorial demonstrates how to accurately bill each customer by capturing and analyzing telemetry data from these smart panels."
   introduction-media: "/assets/img/datacenter.jpg"
@@ -868,7 +868,7 @@ datacenter:
 
 internet-of-things:
   title: "Flag unhealthy IoT devices"
-  meta-description: "This tutorial demonstrates how to process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation."
+  meta-description: "process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation"
   slug: "/internet-of-things"
   introduction: "Organizations are turning towards the Internet of Things (IoT) to provide immediately actionable insights into the health and performance of various devices. However, each device can emit high volumes of telemetry data, making it difficult to accurately analyze and determine if and when something needs attention in real time. This tutorial shows you how to process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation."
   introduction-media: "/assets/img/iot.jpg"
@@ -878,7 +878,7 @@ internet-of-things:
 
 denormalization:
   title: "Enrich orders with change data capture (CDC)"
-  meta-description: "This ksqlDB tutorial demonstrates this principle by streaming from a SQL Server, denormalizing the data, and writing to Snowflake."
+  meta-description: "enrich change data capture (CDC)  by streaming orders from a SQL Server, denormalizing the data, and writing to Snowflake"
   slug: "/denormalization"
   introduction: "Change data capture (CDC) plays a vital role to ensure recently changed data is quickly ingested, transformed, and used by downstream analytics platforms and applications. If you have transactional events being written to a database, such as sales orders from a marketplace, you can use CDC to capture and denormalize these change events into a single table of enriched data to provide better query performance and consumption. This tutorial demonstrates this principle by streaming data from a SQL Server, denormalizing the data, and writing it to Snowflake."
   introduction-media: "/assets/img/denormalized-data.png"
@@ -888,7 +888,7 @@ denormalization:
 
 dynamic-pricing:
   title: "Build a dynamic pricing strategy"
-  meta-description: "This ksqlDB tutorial demonstrates how to use ksqlDB to set dynamic pricing in an online marketplace."
+  meta-description: "use ksqlDB to set dynamic pricing in an online marketplace"
   slug: "/dynamic-pricing"
   introduction: "As consumers increasingly transact digitally and online comparison shopping has become common practice, implementing a dynamic pricing strategy is essential to stay competitive. This tutorial helps you keep track of pricing trends and statistics, such as lowest, median, and average prices over a given timeframe, so both buyers and sellers can make dynamic offers based on historical sales activity."
   introduction-media: "/assets/img/pricing.jpg"
@@ -898,7 +898,7 @@ dynamic-pricing:
 
 payment-status-check:
   title: "Automate instant payment verifications"
-  meta-description: "This ksqlDB tutorial shows you how to validate payments against available funds and anti-money laundering (AML) policies."
+  meta-description: "validate payments against available funds and anti-money laundering (AML) policies"
   slug: "/payment-status-check"
   introduction: "As digital transactions become the new norm, it’s critical to check customer payment requests in real time for suspicious activity. This means financial institutions must verify the payment by checking it against any regulatory restrictions before proceeding to process it. This tutorial shows you how to validate these payments against available funds and anti-money laundering (AML) policies."
   introduction-media: "/assets/img/payment.jpg"
@@ -908,7 +908,7 @@ payment-status-check:
 
 salesforce:
   title: "Handle corrupted data from Salesforce"
-  meta-description: "This ksqlDB tutorial streams changes of Salesforce records and identifies gap events."
+  meta-description: "stream changes of Salesforce records and identifies gap events"
   slug: "/salesforce"
   introduction: "Salesforce sends a notification when a change to a Salesforce record occurs as part of a create, update, delete, or undelete operation. However, if there is corrupt data in Salesforce, it sends a gap event instead of a change event, and these gap events should be properly handled to avoid discrepancies between Salesforce reports and internal dashboards. This tutorial demonstrates how to process Salesforce data and filter corrupt events, which allows a downstream application to appropriately process and reconcile those events for accurate reporting and analytics. For a more detailed explanation of this use case, read <a href='https://www.confluent.io/blog/streaming-etl-sfdc-data-for-real-time-customer-analytics'>Streaming ETL SFDC Data for Real-Time Customer Analytics</a>."
   introduction-media: "/assets/img/salesforce.jpg"
@@ -918,7 +918,7 @@ salesforce:
 
 SSH-attack:
   title: "Detect and analyze SSH attacks"
-  meta-description: "This tutorial processes Syslog data and streams out pairs of usernames and IP addresses from failed login attempts."
+  meta-description: "process Syslog data and stream out pairs of usernames and IP addresses from failed login attempts"
   slug: "/SSH-attack"
   introduction: "There are lots of ways SSH can be abused, but one of the most straightforward ways to detect suspicious activity is to monitor for rejected logins. This tutorial processes Syslog data to detect failed logins, while streaming out those pairs of usernames and IP addresses. With ksqlDB, you can filter and react to unwanted events in real time to minimize damage rather than performing historical analysis of Syslog data from cold storage."
   introduction-media: "/assets/img/ssh-attack.jpg"
@@ -928,7 +928,7 @@ SSH-attack:
 
 firewall-splunk:
   title: "Identify firewall deny events"
-  meta-description: "This tutorial demonstrates how to use ksqlDB to identify and filter firewall deny events from Splunk."
+  meta-description: "use ksqlDB to identify and filter firewall deny events from Splunk"
   slug: "/firewall-splunk"
   introduction: "In the security information and event management (SIEM) world, it's critical to have a scalable cyber intelligence platform to swiftly identify potential security threats and vulnerabilities, such as firewall deny events. But with each source having its own set of collectors generating different data flows, there  is often too much aggregate information for you to analyze and take action in a timely and cost-effective manner. This recipe demonstrates how you can intercept those data flows as they arrive from their sources, and analyze or filter the data before sending to an aggregator. 
 <BR><BR>
@@ -942,7 +942,7 @@ You can also extend this solution to intercept data from a variety of SIEM vendo
 
 aviation:
   title: "Notify passengers of flight updates"
-  meta-description: "This ksqlDB tutorial uses a stream of flight updates to notify passengers if their flight is delayed."
+  meta-description: "use a stream of flight updates to notify passengers if their flight is delayed"
   slug: "/aviation"
   introduction: "Worse than having a flight delayed is not being notified about the important changes that come with it, such as new boarding times, cancellations, gate changes, and estimated arrivals. This tutorial shows how ksqlDB can help airlines combine passenger, flight booking, and current flight plan data to immediately alert a passenger about flight updates in real time"
   introduction-media: "/assets/img/flight.png"
@@ -952,7 +952,7 @@ aviation:
 
 clickstream:
   title: "Understand user behavior with clickstream data"
-  meta-description: "This ksqlDB tutorial processes clickstream data to understand the behavior of its online users."
+  meta-description: "process clickstream data to understand the behavior of online users"
   slug: "/clickstream"
   introduction: "Analyzing clickstream data enables businesses to optimize webpages and determine the effectiveness of their web presence by better understanding their users’ click activity and navigation patterns. Because clickstream data often involves large data volumes, stream processing is a natural fit, as it quickly processes data as soon as it is ingested for analysis. This tutorial enables you to measure key statistics on visitor activity over a given time frame, such as how many webpages they are viewing, how long they’re engaging with the website, and more."
   introduction-media: "/assets/img/clickstream.png"
@@ -962,7 +962,7 @@ clickstream:
 
 messaging-modernization:
   title: "Integrate legacy messaging systems with Kafka"
-  meta-description: "This ksqlDB tutorial shows you how to modernize messaging workloads to move beyond queues and pub/sub"
+  meta-description: "integrate legacy messaging systems, such as RabbitMQ, TIBCO EMS, IBM MQ, and ActiveMQ, with Kafka"
   slug: "/messaging-modernization"
   introduction: "Traditional message queues (MQs) such as RabbitMQ, TIBCO EMS, IBM MQ, and ActiveMQ have been widely used for decades to handle message distribution and inter-service communication across distributed applications. However, they can no longer keep up with the needs of modern applications across hybrid and multicloud environments for high volume throughput, asynchronicity, and heterogeneous datasets. They are riddled with many challenges – they lack persistence and were designed to support point-to-point message delivery. This recipe shows how to perform real-time stream processing in-flight by leveraging a connector to read critical data from legacy messaging systems into Kafka."
   introduction-media: "/assets/img/message-modernization.png"
@@ -972,7 +972,7 @@ messaging-modernization:
 
 loyalty-rewards:
   title: "Build customer loyalty programs"
-  meta-description: "This tutorial tracks customers' purchasing patterns, generating tailored rewards for a loyalty scheme."
+  meta-description: "track customers' purchasing patterns, generating tailored rewards for a loyalty scheme"
   slug: "/loyalty-rewards"
   introduction: "Customer loyalty programs are everywhere in retail, even if it's as simple as 'Get 10 stamps for a free coffee.' However, in order to create a more sophisticated rewards program that engages customers at the right place and time, multiple data streams need to be aggregated to properly apply the right promotions. This tutorial showcases how a coffee shop has implemented three separate promotions at the same time:
 <BR>
@@ -988,7 +988,7 @@ loyalty-rewards:
 
 customer-journey:
   title: "Get a full view of a customer’s online journey"
-  meta-description: "This tutorial demonstrates how to use ksqlDB to track a customer journey through web pages online."
+  meta-description: "use ksqlDB to track a customer journey through web pages online"
   slug: "/customer-journey"
   introduction: "To unlock improved conversion rates and personalized experiences, many companies often want to know which web pages visitors have browsed and engaged with. Analyzing online behavior can be useful to better understand customer behavior and needs, improve each webpage’s relevancy, and tailor customer support interactions. This recipe showcases how to run real-time analyses of the customer journey by leveraging ksqlDB to collect web pages visited  and send the list out for downstream analytics."
   introduction-media: "/assets/img/customer-journey.png"
@@ -998,7 +998,7 @@ customer-journey:
 
 next-best-offer:
   title: "Create personalized banking promotions"
-  meta-description: "This tutorial demonstrates how to use ksqlDB to present relevant offers to banking customers."
+  meta-description: "use ksqlDB to present relevant offers to banking customers"
   slug: "/next-best-offer"
   introduction: "Consumers often face never-ending generic marketing messages not tailored to their needs, resulting in poor customer conversion rates. A better approach is known as 'Next Best Offer,' which leverages predictive analytics to analyze a customer’s spending habits and activities to create more targeted promotions. This recipe demonstrates how ksqlDB can take customer banking information to create a predictive analytics model and improve customer conversions through personalized marketing efforts."
   introduction-media: "/assets/img/next-best-offer.png"
@@ -1008,7 +1008,7 @@ next-best-offer:
 
 ddos:
   title: "Detect a Slowloris DDoS attack"
-  meta-description: "This tutorial shows you how to use ksqlDB to detect network disruption attacks by processing packet data."
+  meta-description: "use ksqlDB to detect network disruption attacks by processing packet data"
   slug: "/ddos"
   introduction: "Distributed denial-of-service (DDoS) attacks are a specific type of cyberattack in which a targeted system is flooded with malicious network requests using multiple hosts and IP addresses. The distributed nature of these attacks, along with their increased occurrence, sophistication, and strength, makes them one of the most severe forms of cyber attacks that’s getting progressively  difficult to mitigate. This recipe shows a strategy for ingesting and processing network packet data to quickly detect a specific DDoS attack known as Slowloris."
   introduction-media: "/assets/img/slowloris.png"
@@ -1018,7 +1018,7 @@ ddos:
 
 mainframe-offload:
   title: "Modernize and offload mainframe data"
-  meta-description: "This ksqlDB tutorial demonstrates how to modernize mainframes to a more modern data-store in real-time"
+  meta-description: "modernize and offload mainframes data to a more modern data-store"
   slug: "/mainframe-offload"
   introduction: "Mainframes have historically underpinned many mission-critical applications as the de facto solution for many high performance batch processes. However, as organizations look to modernize their data infrastructure, it becomes increasingly expensive and complex to access and integrate mainframe data to other more modern distributed applications, microservices, and data platforms. Thus, many organizations have turned to Kafka to become a modern datastore that is in real-time sync with the mainframe. This recipe showcases how to leverage a real-time cache in ksqlDB, which can be used to offload mainframe calls to Kafka."
   introduction-media: "/assets/img/mainframe.png"
@@ -1028,7 +1028,7 @@ mainframe-offload:
 
 discount-promo:
   title: "Assess multi-touch discount code efficacy"
-  meta-description: "This tutorial shows how to use ksqlDB to track the success of discounts for a small online business."
+  meta-description: "use ksqlDB to track the success of discounts for a small online business"
   slug: "/discount-promo"
   introduction: "Oftentimes retailers will run promotions to drive sales and move inventory. However, if retailers are looking to build complex promotional strategies that involve multiple discounts using different coupon codes, it can be difficult to track the overall effectiveness of the marketing program. This recipe shows how ksqlDB can help track the performance of a multi-discount code promotion by understanding the average order value organized by discount percentage and the number of items purchased."
   introduction-media: "/assets/img/discount.png"
@@ -1038,7 +1038,7 @@ discount-promo:
 
 logistics:
   title: "Track order shipments in real time"
-  meta-description: "This tutorial shows how to track vehicles while delivering orders."
+  meta-description: "track vehicles while delivering orders"
   slug: "/logistics"
   introduction: "Customers today expect organizations to provide real-time visibility into their order status to help ensure shipments are received in a timely manner. However, aggregating data from multiple different data sources and continuously processing it in real time as locations change can be rather daunting. This recipe makes it easy by walking through how to compute delivery estimates based on a vehicle’s current location, so you can provide your customers with real-time status updates on their orders."
   introduction-media: "/assets/img/logistics.png"
@@ -1048,7 +1048,7 @@ logistics:
 
 audit-logs:
   title: "Monitor security threats by analyzing and filtering audit logs"
-  meta-description: "This tutorial demonstrates how to filter Confluent audit logs to Splunk for SIEM processing"
+  meta-description: "monitor security threats by analyzing and filtering audit logs"
   slug: "/audit-logs"
   introduction: "Audit logs are often captured and stored in SIEM tools to find malicious insiders, monitor changes to policies, protect against data leakage, and ensure regulatory compliance. However, indefinitely storing all audit logs in SIEM tools, irrespective of whether they are of high or low value can be an expensive proposition, often forcing tradeoffs between cost, flexibility, and visibility.
 <BR><BR>
@@ -1060,7 +1060,7 @@ This recipe demonstrates how to aggregate audit logs in a Kafka topic, filter fo
 
 model-retraining:
   title: "Retrain a machine learning model"
-  meta-description: "This recipe demonstrates how to use ksqlDB to evaluate the predictions of a machine learning model and send data to retrain the model when needed."
+  meta-description: "use ksqlDB to evaluate the predictions of a machine learning model and send data to retrain the model when needed"
   slug: "/model-retraining"
   introduction: "Today’s leading companies leverage  machine learning (ML) models to help better understand and predict customer needs. The process of training an ML model involves leveraging an ML algorithm, and providing it with training data from which to learn. Every so often, you will need to retrain your model if the data distributions have deviated significantly from those of the original training set. ksqlDB makes this easy by triggering the retraining process whenever the prediction error is greater than a defined threshold This recipe walks through how to take an existing ML pipeline, with results stored in MongoDB, and trigger the retraining process once the prediction error exceeds a certain threshold, in this case, 15%. 
 <BR><BR>
@@ -1072,7 +1072,7 @@ The generated example is based on a factory for fish processing. In the first st
 
 location-based-alerting:
   title: "Create geolocation-based customer alerts and promotions"
-  meta-description: "This ksqlDB tutorial demonstrates how to create real-time, personalized, location-based alerts. Merchant data and user location events are joined to generate alerts when a user passes close to a participating merchant."
+  meta-description: "create real-time, personalized, location-based alerts"
   slug: "/location-based-alerting"
   introduction: "In an effort to build more personalized offers and promotions, organizations have turned toward geolocation alerts. This uses the merchant and mobile user’s geolocations to alert customers of the latest promotions when they near one of their stores. However, this can be difficult because it requires determining the distance between static store location data and continuous streams of geolocation data from hundreds of thousands of mobile devices. This recipe showcases how to do this easily with ksqlDB by aggregating and comparing merchant and mobile user geolocation data to produce user proximity alerts and notifications."
   introduction-media: "/assets/img/geolocation.png"
