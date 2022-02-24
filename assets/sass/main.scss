@@ -404,6 +404,23 @@ a {
   }
 }
 
+.breadcrumb {
+  a {
+    color: #edeaeafa !important;
+  }
+}
+
+.section {
+  .container {
+    .breadcrumb {
+      a {
+        color: #000000 !important;
+        font-weight: 900;
+      }
+    }
+  }
+}
+
 .secondary-card-row,
 .third-card-row,
 .fourth-card-row,
