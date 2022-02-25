@@ -35,6 +35,9 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
+        <ul class="breadcrumb">
+          <li><a href="/tutorials/">&lt; Back to tutorials</a></li>
+        </ul>
         {% if page.community_contribution %}
         <span class="community-contribution">Community contribution ✨</span>
         {% endif %}
@@ -260,6 +263,13 @@
       {% include contribute-tutorial-lang.html %}
       {% else %}
       {% include tutorial-content.html %}
+      <section class="section">
+        <div class="container">
+          <ul class="breadcrumb">
+            <li><a href="/tutorials/">&lt; Back to tutorials</a></li>
+          </ul>
+        </div>
+      </section>
       {% endif %}
     {% endif %}
   </div>
