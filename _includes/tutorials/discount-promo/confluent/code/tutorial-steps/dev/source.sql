@@ -25,7 +25,7 @@ CREATE SOURCE CONNECTOR orders WITH (
   'connection.user'          = 'postgres',
   'connection.password'      = '<my-database-password>',
   'db.name'                  = '<db-name>',
-  'table.whitelist'          = 'order_stream',
+  'table.whitelist'          = 'order_data',
   'timestamp.column.name'    = 'order_time',
   'output.data.format'       = 'JSON',
   'db.timezone'              = 'UTC',
