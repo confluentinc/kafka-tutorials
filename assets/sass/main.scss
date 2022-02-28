@@ -133,21 +133,22 @@ a {
   // full width,
   // minus the padding of the section > .container,
   // minus the width of the number
-  max-width: calc(100vw - 3rem - 34px);
+  max-width: calc(100vw - 3rem - 74px);
+  width: calc(100vw - 3rem - 74px);
 
   @media screen and (min-width: 1088px) {
-    max-width: 926px;
-    width: 926px;
+    max-width: 870px;
+    width: 870px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 1118px;
-    width: 1118px;
+    max-width: 1060px;
+    width: 1060px;
   }
 
   @media screen and (min-width: 1472px) {
-    max-width: 1344px;
-    width: 1344px;
+    max-width: 1290px;
+    width: 1290px;
   }
 
   .snippet,
