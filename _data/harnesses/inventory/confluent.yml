@@ -34,21 +34,6 @@ dev:
 
     - title: ksqlDB code
       content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            skip: true
-
-        - action: execute_async
-          file: docker-compose-up.sh
-          render:
-            skip: true
-
-        - action: execute
-          file: wait-for-containers.sh
-          render:
-            skip: true
-
         - action: skip
           render:
             file: tutorials/inventory/confluent/markup/dev/ksqlDB.adoc
@@ -57,45 +42,17 @@ dev:
           render:
             file: shared/markup/ccloud/ksqldb_processing_intro.adoc
 
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: start-cli.sh
-          stdout:
-            directory: tutorial-steps/dev/outputs
-          column_width: 75
+        - action: skip
           render:
-            skip: true
-          stdin:
-            - file: tutorial-steps/dev/process.sql
-              render:
-                file: tutorials/inventory/confluent/markup/dev/process.adoc
-
-        - name: wait for streams to be created
-          action: sleep
-          ms: 5000
-          render:
-            skip: true
+            file: tutorials/inventory/confluent/markup/dev/process.adoc
 
         - action: skip
           render:
             file: shared/markup/ccloud/manual_cue.adoc
 
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: start-cli.sh
-          stdout:
-            directory: tutorial-steps/dev/outputs
-          column_width: 75
+        - action: skip
           render:
-            skip: true
-          stdin:
-            - file: tutorial-steps/dev/manual.sql
-              render:
-                file: tutorials/inventory/confluent/markup/dev/manual.adoc
-
-            - file: tutorial-steps/dev/validate.sql
-              render:
-                file: tutorials/inventory/confluent/markup/dev/validate.adoc
+            file: tutorials/inventory/confluent/markup/dev/manual.adoc
 
     - title: Cleanup
       content:
