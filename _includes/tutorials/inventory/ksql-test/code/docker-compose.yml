@@ -57,6 +57,3 @@ services:
     environment:
       KSQL_CONFIG_DIR: "/etc/ksqldb"
     tty: true
-    volumes:
-      - ./src:/opt/app/src
-      - ./test:/opt/app/test
