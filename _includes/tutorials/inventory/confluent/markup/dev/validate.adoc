@@ -1,0 +1,11 @@
+You can validate the data in the table `inventory_stream_table`.
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/inventory/confluent/code/tutorial-steps/dev/validate.sql %}</code></pre>
+++++
+
+The output should resemble:
+
+++++
+<pre class="snippet"><code class="bash">{% include_raw tutorials/inventory/confluent/code/tutorial-steps/dev/expected-outputs/select-from-table.log %}</code></pre>
+++++

@@ -12,5 +12,5 @@ tutorial:
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/inventory/confluent.yml $(TEMP_DIR) $(SEQUENCE)
 	# Check for presence of one inventory item in the table output
-	grep MacBookPro13 $(DEV_OUTPUTS_DIR)/select-from-table/output-0.log
+	grep MacBookPro13 $(DEV_OUTPUTS_DIR)/validate/output-0.log
 	reset

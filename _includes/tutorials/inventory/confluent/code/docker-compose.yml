@@ -31,7 +31,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.23.0
+    image: confluentinc/ksqldb-server:0.23.1
     hostname: ksqldb-server
     container_name: ksqldb-server
     depends_on:
@@ -45,9 +45,10 @@ services:
       KSQL_HOST_NAME: ksqldb-server
       KSQL_LISTENERS: "http://0.0.0.0:8088"
       KSQL_CACHE_MAX_BYTES_BUFFERING: 0
+      KSQL_KSQL_STREAMS_AUTO_OFFSET_RESET: "earliest"
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.23.0
+    image: confluentinc/ksqldb-cli:0.23.1
     container_name: ksqldb-cli
     depends_on:
       - broker
