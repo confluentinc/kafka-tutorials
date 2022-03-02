@@ -392,3 +392,16 @@ blocks:
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
 
+  - name: Run third block of tests (recipes)
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - sudo apt-get install gradle-6.8.3 -y
+          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
+      jobs:
+
+        - name: Recipe: Inventory
+          commands:
+            - make -C _includes/tutorials/inventory/confluent/code tutorial

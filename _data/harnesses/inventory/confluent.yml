@@ -54,6 +54,36 @@ dev:
           render:
             file: tutorials/inventory/confluent/markup/dev/manual.adoc
 
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            skip: true
+
+        - action: execute_async
+          file: docker-compose-up.sh
+          render:
+            skip: true
+
+        - action: execute
+          file: wait-for-containers.sh
+          render:
+            skip: true
+
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: start-cli.sh
+          stdout:
+            directory: tutorial-steps/dev/outputs
+          column_width: 75
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/dev/process.sql
+            - file: tutorial-steps/dev/manual.sql
+            - file: tutorial-steps/dev/select-from-table.sql
+          stdout:
+            directory: tutorial-steps/dev/outputs
+
     - title: Cleanup
       content:
         - action: skip
