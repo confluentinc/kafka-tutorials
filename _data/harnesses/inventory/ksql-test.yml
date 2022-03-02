@@ -21,7 +21,7 @@ test:
           container: ksqldb-cli
           docker_bootup_file: start-cli.sh
           stdout:
-            directory: tutorial-steps/dev/outputs
+            directory: tutorial-steps/test/outputs
           column_width: 75
           render:
             skip: true
@@ -38,10 +38,10 @@ test:
           container: ksqldb-cli
           docker_bootup_file: start-cli.sh
           stdout:
-            directory: tutorial-steps/dev/outputs
+            directory: tutorial-steps/test/outputs
           column_width: 75
           render:
             skip: true
           stdin:
             - file: ../../confluent/code/tutorial-steps/dev/manual.sql
-            - file: tutorial-steps/dev/validate.sql
+            - file: tutorial-steps/test/validate.sql
