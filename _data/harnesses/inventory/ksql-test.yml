@@ -46,9 +46,4 @@ test:
             skip: true
           stdin:
             - file: ../../confluent/code/tutorial-steps/dev/manual.sql
-              render:
-                file: tutorials/inventory/confluent/markup/dev/manual.adoc
-
-            - file: ../../confluent/code/tutorial-steps/dev/validate.sql
-              render:
-                file: tutorials/inventory/confluent/markup/dev/validate.adoc
+            - file: tutorial-steps/dev/validate.sql
