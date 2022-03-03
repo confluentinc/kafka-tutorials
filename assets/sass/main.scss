@@ -133,21 +133,22 @@ a {
   // full width,
   // minus the padding of the section > .container,
   // minus the width of the number
-  max-width: calc(100vw - 3rem - 34px);
+  max-width: calc(100vw - 3rem - 74px);
+  width: calc(100vw - 3rem - 74px);
 
   @media screen and (min-width: 1088px) {
-    max-width: 926px;
-    width: 926px;
+    max-width: 900px;
+    width: 900px;
   }
 
   @media screen and (min-width: 1280px) {
-    max-width: 1118px;
-    width: 1118px;
+    max-width: 1090px;
+    width: 1090px;
   }
 
   @media screen and (min-width: 1472px) {
-    max-width: 1344px;
-    width: 1344px;
+    max-width: 1285px;
+    width: 1285px;
   }
 
   .snippet,
@@ -400,6 +401,26 @@ a {
 
     &:last-child {
       margin-right: 0;
+    }
+  }
+}
+
+.breadcrumb {
+  a {
+    color: $color_white !important;
+  }
+  li {
+    margin-left: 0;
+  }
+}
+
+.section {
+  .container {
+    .breadcrumb {
+      a {
+        color: $color_black !important;
+        font-weight: 900;
+      }
     }
   }
 }

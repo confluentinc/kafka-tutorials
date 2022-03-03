@@ -9,7 +9,7 @@ CREATE SOURCE CONNECTOR customers WITH (
   'connection.user'          = 'postgres',
   'connection.password'      = '<my-database-password>',
   'db.name'                  = '<db-name>',
-  'table.whitelist'          = 'customers',
+  'table.whitelist'          = 'customer_info',
   'timestamp.column.name'    = 'created_at',
   'output.data.format'       = 'JSON',
   'db.timezone'              = 'UTC',
