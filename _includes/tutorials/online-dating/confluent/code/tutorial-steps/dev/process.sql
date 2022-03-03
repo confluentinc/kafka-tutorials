@@ -5,14 +5,15 @@ CREATE STREAM messages (
   recv_id BIGINT,
   message VARCHAR
 ) WITH (
-  KAFKA_TOPIC = 'MESSAGES',
+  KAFKA_TOPIC = 'messages',
   VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
 
-CREATE STREAM conversations AS
+CREATE TABLE conversations AS
 SELECT
-  ARRAY_JOIN(ARRAY_SORT(ARRAY [send_id, recv_id]), '<>') AS conversation_id
+  ARRAY_JOIN(ARRAY_SORT(ARRAY [send_id, recv_id]), '<>') AS conversation_id,
+  AS_VALUE(ARRAY_JOIN(ARRAY_SORT(ARRAY [send_id, recv_id]), '<>')) AS conversation_value
 FROM messages
 GROUP BY ARRAY_JOIN(ARRAY_SORT(ARRAY [send_id, recv_id]), '<>')
 HAVING

@@ -86,6 +86,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/inventory/ksql-test/code tutorial
 
+        - name: Online Dating
+          commands:
+            - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
+
         - name: Datacenter
           commands:
             - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
