@@ -1,5 +1,5 @@
--- Stream of orders
-CREATE SOURCE CONNECTOR orders WITH (
+-- Stream of sales_orders
+CREATE SOURCE CONNECTOR sales_orders WITH (
   'connector.class'          = 'SqlServerCdcSource',
   'name'                     = 'recipe-sqlservercdc-orders',
   'kafka.api.key'            = '<my-kafka-api-key>',
