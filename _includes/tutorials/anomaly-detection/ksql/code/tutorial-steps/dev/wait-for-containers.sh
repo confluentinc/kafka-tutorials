@@ -19,6 +19,8 @@ while :
   if [ $curl_status -eq 200 ]
     then
       echo "✅✅ ksqlDB is ready"
+      # Attempt to avoid flaky test failures
+      sleep 1
       break
   fi
   sleep 5
