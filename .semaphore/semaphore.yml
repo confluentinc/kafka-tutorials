@@ -87,8 +87,8 @@ blocks:
             - make -C _includes/tutorials/inventory/ksql-test/code tutorial
 
         - name: Aviation
-           commands:
-             - make -C _includes/tutorials/aviation/ksql-test/code tutorial
+          commands:
+            - make -C _includes/tutorials/aviation/ksql-test/code tutorial
 
         - name: Datacenter
           commands:
