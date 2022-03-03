@@ -82,6 +82,10 @@ blocks:
           - sudo apt-get install gradle-6.8.3 -y
           - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
+        - name: Model Retraining
+          commands:
+            - make -C _includes/tutorials/model-retraining/ksql-test/code tutorial
+
         - name: Inventory
           commands:
             - make -C _includes/tutorials/inventory/ksql-test/code tutorial
@@ -89,6 +93,10 @@ blocks:
         - name: Online Dating
           commands:
             - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
+
+        - name: DDoS
+          commands:
+            - make -C _includes/tutorials/ddos/ksql-test/code tutorial
 
         - name: Datacenter
           commands:
