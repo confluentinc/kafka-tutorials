@@ -41,7 +41,7 @@ CREATE TABLE customers (
   GENDER VARCHAR, 
   STATUS360 VARCHAR
 ) WITH (
-  KAFKA_TOPIC = 'customers',
+  KAFKA_TOPIC = 'customer_info',
   VALUE_FORMAT = 'JSON',
   PARTITIONS = 6
 );
