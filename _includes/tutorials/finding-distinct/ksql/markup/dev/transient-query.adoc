@@ -10,8 +10,6 @@ The second statement declares a stream on top of the `DETECTED_CLICKS` table, de
 
 In the third statement you set the key of the `DISTINCT_CLICKS` stream to just the IP address using the `PARTITION BY` statement.  The `WHERE` clause is where we filter out duplicates by specifying to only retrieve IP addresses with a `IP_COUNT` of `1`.
 
-The `WHERE` clause also removes any rows where the ip-address is null due to any tombstones. Tombstone records are sent to indicate a row has been deleted from the table; they have a null value, meaning ip-address will be null.
-
 To verify everything is working as expected, run the following query:
 
 +++++
