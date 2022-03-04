@@ -82,6 +82,10 @@ blocks:
           - sudo apt-get install gradle-6.8.3 -y
           - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
+        - name: Payment Status Check
+          commands:
+            - make -C _includes/tutorials/payment-status-check/ksql-test/code tutorial
+
         - name: Model Retraining
           commands:
             - make -C _includes/tutorials/model-retraining/ksql-test/code tutorial
