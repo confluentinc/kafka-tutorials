@@ -98,6 +98,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
 
+        - name: Credit card activity
+          commands:
+            - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
+
   - name: Run second block of tests
     execution_time_limit:
       minutes: 10
