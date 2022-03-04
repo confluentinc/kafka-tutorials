@@ -23,7 +23,6 @@ bin/
 s3_website.yml
 harness_runner/harness_runner.pyc
 *_checklist.txt
-_includes/tutorials/aviation/ksql-test/code/tutorial-steps/test/manual2.sql
 
 # Ignore Gradle project-specific cache directory
 .gradle
