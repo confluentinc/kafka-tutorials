@@ -1,3 +1,8 @@
+-- For the purposes of this recipe when testing by inserting records manually,
+--  a short pause between these insert groups is required. This allows
+--  the flight data to be processed by the customer_flights_rekeyed
+--  table before the JOIN with the flight updates data
+
 INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (1, 'Gleda Lealle', '93 Express Point', 'glealle0@senate.gov', '+351 831 301 6746', 'Silver');
 INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (2, 'Gilly Crocombe', '332 Blaine Avenue', 'gcrocombe1@homestead.com', '+33 203 565 3736', 'Silver');
 INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (3, 'Astrix Aspall', '56 Randy Place', 'aaspall2@ebay.co.uk', '+33 679 296 6645', 'Gold');
@@ -14,6 +19,8 @@ INSERT INTO bookings (id, customer_id, flight_id) VALUES (1,2,1);
 INSERT INTO bookings (id, customer_id, flight_id) VALUES (2,1,1);
 INSERT INTO bookings (id, customer_id, flight_id) VALUES (3,5,3);
 INSERT INTO bookings (id, customer_id, flight_id) VALUES (4,4,2);
+
+-- Wait 10 seconds before inserting the records below
 
 INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (1, 2, '2021-11-18T09:00:00.000', 'Cabin staff unavailable');
 INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (2, 3, '2021-11-19T14:00:00.000', 'Mechanical checks');
