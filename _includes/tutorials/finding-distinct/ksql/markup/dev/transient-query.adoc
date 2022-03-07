@@ -1,11 +1,14 @@
-In the first statement above, we created the query that finds only distinct events, naming it `DETECTED_CLICKS`. We modeled it as a table since the query performs aggregations.
+In the first statement above, we created the query that finds click events, naming it `DETECTED_CLICKS`. We modeled it as a table since the query performs aggregations.
 
 As we're grouping by ip-address, url and timestamp, these columns will become part of the primary key of the table.
 Primary key columns are stored in the Kafka message's key. As we'll need them in the value later, we use `AS_VALUE` to copy the columns into the value and set their name. To avoid the value column names clashing with the key columns, we add aliases to rename the key columns.
 
 As it stands, the key of the `DETECTED_CLICKS` table contains the ip-address, url, timestamp columns, and as the table is windowed, the window start time. Wouldn't it be nice if the key was just the IP address?
-That's what the next two statements do! The second statement declares a stream on top of the `DETECTED_CLICKS` changelog topic, defining only the value columns we're interested in.
-This allows the third statement to set the key of the `DISTINCT_CLICKS` stream to just the IP address. It contains a filter to remove any rows where the ip-address is null to filter out any tombstones from the source topic. Tombstones are sent to the changelog to indicate a row has been deleted from the table; they have a null value, meaning ip-address will be null.
+You'll take care of that as well as finding distinct IP addresses with the next two queries.
+
+The second statement declares a stream on top of the `DETECTED_CLICKS` table, defining only the value columns we're interested in.
+
+In the third statement you set the key of the `DISTINCT_CLICKS` stream to just the IP address using the `PARTITION BY` statement.  The `WHERE` clause is where we filter out duplicates by specifying to only retrieve IP addresses with a `IP_COUNT` of `1`.
 
 To verify everything is working as expected, run the following query:
 
