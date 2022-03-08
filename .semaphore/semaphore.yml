@@ -90,6 +90,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/inventory/ksql-test/code tutorial
 
+        - name: Dynamic Pricing
+          commands:
+            - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
+
         - name: Aviation
           commands:
             - make -C _includes/tutorials/aviation/ksql-test/code tutorial
