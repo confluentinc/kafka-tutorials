@@ -102,6 +102,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
 
+        - name: Mainframe offload
+          commands:
+            - make -C _includes/tutorials/mainframe-offload/ksql-test/code tutorial
+
         - name: Credit card activity
           commands:
             - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
