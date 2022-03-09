@@ -35,7 +35,7 @@ dev:
         - action: docker_ksql_cli_session
           container: ksql-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 73
+          column_width: 41
           render:
             file: tutorials/finding-distinct/ksql/markup/dev/start-cli.adoc
           stdin:

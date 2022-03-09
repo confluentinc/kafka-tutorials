@@ -82,6 +82,10 @@ blocks:
           - sudo apt-get install gradle-6.8.3 -y
           - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
+        - name: Payment Status Check
+          commands:
+            - make -C _includes/tutorials/payment-status-check/ksql-test/code tutorial
+
         - name: Model Retraining
           commands:
             - make -C _includes/tutorials/model-retraining/ksql-test/code tutorial
@@ -90,6 +94,26 @@ blocks:
           commands:
             - make -C _includes/tutorials/inventory/ksql-test/code tutorial
 
+        - name: Online Dating
+          commands:
+            - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
+
+        - name: Loyalty Rewards
+          commands:
+            - make -C _includes/tutorials/loyalty-rewards/ksql-test/code tutorial
+
+        - name: Dynamic Pricing
+          commands:
+            - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
+
+        - name: Aviation
+          commands:
+            - make -C _includes/tutorials/aviation/ksql-test/code tutorial
+
+        - name: Denormalization
+          commands:
+            - make -C _includes/tutorials/denormalization/ksql-test/code tutorial
+
         - name: DDoS
           commands:
             - make -C _includes/tutorials/ddos/ksql-test/code tutorial
@@ -97,6 +121,22 @@ blocks:
         - name: Datacenter
           commands:
             - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
+
+        - name: Logistics
+          commands:
+            - make -C _includes/tutorials/logistics/ksql-test/code tutorial
+
+        - name: Mainframe offload
+          commands:
+            - make -C _includes/tutorials/mainframe-offload/ksql-test/code tutorial
+
+        - name: Clickstream
+          commands:
+            - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
+
+        - name: Credit card activity
+          commands:
+            - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
 
   - name: Run second block of tests
     execution_time_limit:

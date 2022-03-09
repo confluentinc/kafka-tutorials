@@ -1,0 +1,24 @@
++-----------------------------------------------------+-----------------------------------------------------+-----------------------------------------------------+
+|PAYMENT_ID                                           |STATUS_COUNTS                                        |SERVICE_STATUS_LIST                                  |
++-----------------------------------------------------+-----------------------------------------------------+-----------------------------------------------------+
+|1                                                    |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+|15                                                   |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+|7                                                    |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+|17                                                   |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+|5                                                    |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+|19                                                   |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+|9                                                    |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+|3                                                    |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+|11                                                   |{NOT OK=1, OK=1}                                     |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "NOT OK"}]                        |
+|13                                                   |{OK=2}                                               |[{ "system" : "AML", "status" : "OK"}, { "system" : "|
+|                                                     |                                                     |FUNDS", "status" : "OK"}]                            |
+Query terminated
