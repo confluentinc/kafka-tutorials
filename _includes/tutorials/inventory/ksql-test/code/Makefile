@@ -8,5 +8,5 @@ tutorial:
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/inventory/ksql-test.yml $(TEMP_DIR) $(SEQUENCE)
 	# Check for presence of one inventory item in the table output
-	grep MacBookPro13 $(TEST_OUTPUTS_DIR)/validate/output-0.log
+	grep MacBookPro13 $(TEST_OUTPUTS_DIR)/validate/output-0.log || { cat $(TEST_OUTPUTS_DIR)/validate/output-0.log ; false; }
 	reset
