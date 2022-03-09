@@ -8,5 +8,5 @@ tutorial:
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/inventory/ksql-test.yml $(TEMP_DIR) $(SEQUENCE)
 	# Read entry
-	grep S938807 $(TEST_OUTPUTS_DIR)/validate/output-0.log | grep 7721
+	grep S938807 $(TEST_OUTPUTS_DIR)/validate/output-0.log | grep 7721 || { cat $(TEST_OUTPUTS_DIR)/validate/output-0.log ; false; }
 	reset

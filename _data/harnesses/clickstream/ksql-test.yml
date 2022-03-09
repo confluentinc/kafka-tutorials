@@ -45,7 +45,7 @@ test:
           docker_bootup_file: start-cli.sh
           stdout:
             directory: tutorial-steps/test/outputs
-          column_width: 75
+          column_width: 15
           render:
             skip: true
           stdin:
