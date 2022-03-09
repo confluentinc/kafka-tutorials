@@ -30,7 +30,7 @@ test:
 
         - name: wait for streams to be created
           action: sleep
-          ms: 5000
+          ms: 10000
           render:
             skip: true
 
