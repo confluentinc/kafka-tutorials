@@ -94,6 +94,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/inventory/ksql-test/code tutorial
 
+        - name: Firewall Splunk
+          commands:
+            - make -C _includes/tutorials/firewall-splunk/ksql-test/code tutorial
+
         - name: Online Dating
           commands:
             - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
