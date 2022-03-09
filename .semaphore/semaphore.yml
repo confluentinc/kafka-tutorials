@@ -90,6 +90,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/inventory/ksql-test/code tutorial
 
+        - name: Loyalty Rewards
+          commands:
+            - make -C _includes/tutorials/loyalty-rewards/ksql-test/code tutorial
+
         - name: Dynamic Pricing
           commands:
             - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
