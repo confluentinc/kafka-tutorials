@@ -7,6 +7,6 @@ tutorial:
 	rm -r $(TEST_OUTPUTS_DIR) || true
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/inventory/ksql-test.yml $(TEMP_DIR) $(SEQUENCE)
-	# Look for one item's price 
-	grep 'Janice Smith' $(TEST_OUTPUTS_DIR)/validate/output-0.log || { cat $(TEST_OUTPUTS_DIR)/validate/output-0.log ; false; }
+	# Look at one order
+	grep 67 $(TEST_OUTPUTS_DIR)/validate/output-0.log | grep 37.596484
 	reset
