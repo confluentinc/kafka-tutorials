@@ -8,5 +8,6 @@ tutorial:
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/clickstream/ksql-test.yml $(TEMP_DIR) $(SEQUENCE)
 	# Look for one IP address 
+	cat $(TEST_OUTPUTS_DIR)/validate/output-0.log
 	grep 222.249.79.9 $(TEST_OUTPUTS_DIR)/validate/output-0.log
 	reset

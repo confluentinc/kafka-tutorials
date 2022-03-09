@@ -20,8 +20,9 @@ while :
   echo -e $(date) " Kafka Connect HTTP state: " $curl_status " (waiting for 200)"
   if [ $curl_status -eq 200 ]
     then
+      # Sleep an extra 10 seconds for Herder to start
+      sleep 10
       echo "✅ Connect is ready"
-      sleep 1
       break
   fi
   sleep 5
