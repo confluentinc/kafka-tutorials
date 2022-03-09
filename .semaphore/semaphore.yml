@@ -114,6 +114,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/mainframe-offload/ksql-test/code tutorial
 
+        - name: Clickstream
+          commands:
+            - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
+
         - name: Credit card activity
           commands:
             - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial

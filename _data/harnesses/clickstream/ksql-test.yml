@@ -1,0 +1,52 @@
+test:
+  steps:
+    - title: ksqlDB code
+      content:
+        - action: make_file
+          file: Dockerfile
+          render:
+            skip: true
+
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            skip: true
+
+        - action: execute_async
+          file: docker-compose-up.sh
+          render:
+            skip: true
+
+        - action: execute
+          file: wait-for-containers.sh
+          render:
+            skip: true
+
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: start-cli.sh
+          stdout:
+            directory: tutorial-steps/test/outputs
+          column_width: 75
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/test/source.sql
+            - file: ../../confluent/code/tutorial-steps/dev/process.sql
+
+        - name: wait for connector to run
+          action: sleep
+          ms: 30000
+          render:
+            skip: true
+
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: start-cli.sh
+          stdout:
+            directory: tutorial-steps/test/outputs
+          column_width: 75
+          render:
+            skip: true
+          stdin:
+            - file: tutorial-steps/test/validate.sql
