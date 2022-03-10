@@ -821,7 +821,6 @@ fleet-management:
   slug: "/fleet-management"
   introduction: "More and more, fleet management relies on knowing real-time information on vehicle availability, their locations, and integrating that with data from vehicle telematics. This enables businesses to improve operational efficiency by optimizing travel routes, lowering fuel consumption, and automating service schedules. This tutorial combines fleet locations with individual vehicle information, so organizations can have a real-time consolidated view of their entire fleet."
   introduction-media: "/assets/img/fleet.png"
-  tutorial-id: "1"
   status:
     confluent: enabled
 
@@ -832,7 +831,6 @@ inventory:
   slug: "/inventory"
   introduction: "Having an up-to-date, real-time view of inventory on every item is essential in today's online marketplaces. This helps businesses maintain the optimum level of inventory—not too much and not too little—so that they can meet customer demand while minimizing inventory holding costs. This tutorial demonstrates how to track and update inventory in real time, so you always have an up-to-date snapshot of your stock for both your customers and merchandising teams"
   introduction-media: "/assets/img/inventory.jpg"
-  tutorial-id: "2"
   status:
     confluent: enabled
 
@@ -842,7 +840,6 @@ credit-card-activity:
   slug: "/credit-card-activity"
   introduction: "One way many financial institutions detect fraud is to check for unusual activity in a short period of time, raising a red flag to promptly alert their customers and confirm any recent unexpected purchases. Fraud can involve using stolen credit cards, forging checks and account numbers, multiple duplicate transactions, and more. This tutorial analyzes a customer’s typical credit card spend, and flags the account when there are instances of excessive spending as a possible case of credit card theft."
   introduction-media: "/assets/img/credit-card-activity.jpg"
-  tutorial-id: "3"
   status:
     confluent: enabled
 
@@ -852,7 +849,6 @@ online-dating:
   slug: "/online-dating"
   introduction: "When it comes to online dating, matching users based on mutual interests and their personal preferences, while enabling real-time communication are key to finding the right counterpart. This tutorial enables developers to dynamically determine which pairs of people have connected and are ripe to get the ball rolling."
   introduction-media: "/assets/img/dating.png"
-  tutorial-id: "4"
   status:
     confluent: enabled
 
@@ -862,7 +858,6 @@ datacenter:
   slug: "/datacenter"
   introduction: "For businesses that provide cloud infrastructure across multiple data centers with isolated tenants, you may have an accounting unit to accurately monitor and invoice your customers. Oftentimes these data centers consume large amounts of electricity and are constructed with smart electrical panels that control the power supplies to multiple customer tenants. This tutorial demonstrates how to accurately bill each customer by capturing and analyzing telemetry data from these smart panels."
   introduction-media: "/assets/img/datacenter.jpg"
-  tutorial-id: "5"
   status:
     confluent: enabled
 
@@ -872,7 +867,6 @@ internet-of-things:
   slug: "/internet-of-things"
   introduction: "Organizations are turning towards the Internet of Things (IoT) to provide immediately actionable insights into the health and performance of various devices. However, each device can emit high volumes of telemetry data, making it difficult to accurately analyze and determine if and when something needs attention in real time. This tutorial shows you how to process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation."
   introduction-media: "/assets/img/iot.jpg"
-  tutorial-id: "6"
   status:
     confluent: enabled
 
@@ -882,7 +876,6 @@ denormalization:
   slug: "/denormalization"
   introduction: "Change data capture (CDC) plays a vital role to ensure recently changed data is quickly ingested, transformed, and used by downstream analytics platforms and applications. If you have transactional events being written to a database, such as sales orders from a marketplace, you can use CDC to capture and denormalize these change events into a single table of enriched data to provide better query performance and consumption. This tutorial demonstrates this principle by streaming data from a SQL Server, denormalizing the data, and writing it to Snowflake."
   introduction-media: "/assets/img/denormalized-data.png"
-  tutorial-id: "7"
   status:
     confluent: enabled
 
@@ -892,7 +885,6 @@ dynamic-pricing:
   slug: "/dynamic-pricing"
   introduction: "As consumers increasingly transact digitally and online comparison shopping has become common practice, implementing a dynamic pricing strategy is essential to stay competitive. This tutorial helps you keep track of pricing trends and statistics, such as lowest, median, and average prices over a given timeframe, so both buyers and sellers can make dynamic offers based on historical sales activity."
   introduction-media: "/assets/img/pricing.jpg"
-  tutorial-id: "8"
   status:
     confluent: enabled
 
@@ -902,7 +894,6 @@ payment-status-check:
   slug: "/payment-status-check"
   introduction: "As digital transactions become the new norm, it’s critical to check customer payment requests in real time for suspicious activity. This means financial institutions must verify the payment by checking it against any regulatory restrictions before proceeding to process it. This tutorial shows you how to validate these payments against available funds and anti-money laundering (AML) policies."
   introduction-media: "/assets/img/payment.jpg"
-  tutorial-id: "9"
   status:
     confluent: enabled
 
@@ -912,7 +903,6 @@ salesforce:
   slug: "/salesforce"
   introduction: "Salesforce sends a notification when a change to a Salesforce record occurs as part of a create, update, delete, or undelete operation. However, if there is corrupt data in Salesforce, it sends a gap event instead of a change event, and these gap events should be properly handled to avoid discrepancies between Salesforce reports and internal dashboards. This tutorial demonstrates how to process Salesforce data and filter corrupt events, which allows a downstream application to appropriately process and reconcile those events for accurate reporting and analytics. For a more detailed explanation of this use case, read <a href='https://www.confluent.io/blog/streaming-etl-sfdc-data-for-real-time-customer-analytics'>Streaming ETL SFDC Data for Real-Time Customer Analytics</a>."
   introduction-media: "/assets/img/salesforce.jpg"
-  tutorial-id: "10"
   status:
     confluent: enabled
 
@@ -922,7 +912,6 @@ SSH-attack:
   slug: "/SSH-attack"
   introduction: "There are lots of ways SSH can be abused, but one of the most straightforward ways to detect suspicious activity is to monitor for rejected logins. This tutorial processes Syslog data to detect failed logins, while streaming out those pairs of usernames and IP addresses. With ksqlDB, you can filter and react to unwanted events in real time to minimize damage rather than performing historical analysis of Syslog data from cold storage."
   introduction-media: "/assets/img/ssh-attack.jpg"
-  tutorial-id: "11"
   status:
     confluent: enabled
 
@@ -936,7 +925,6 @@ Learn to optimize Splunk data ingestion by using the <a href=\"https://docs.conf
 <BR><BR>
 You can also extend this solution to intercept data from a variety of SIEM vendors and create a vendor-agnostic solution that leverages multiple tools and analytics solutions."
   introduction-media: "/assets/img/firewall.png"
-  tutorial-id: "12"
   status:
     confluent: enabled
 
@@ -946,7 +934,6 @@ aviation:
   slug: "/aviation"
   introduction: "Worse than having a flight delayed is not being notified about the important changes that come with it, such as new boarding times, cancellations, gate changes, and estimated arrivals. This tutorial shows how ksqlDB can help airlines combine passenger, flight booking, and current flight plan data to immediately alert a passenger about flight updates in real time"
   introduction-media: "/assets/img/flight.png"
-  tutorial-id: "13"
   status:
     confluent: enabled
 
@@ -956,7 +943,6 @@ clickstream:
   slug: "/clickstream"
   introduction: "Analyzing clickstream data enables businesses to optimize webpages and determine the effectiveness of their web presence by better understanding their users’ click activity and navigation patterns. Because clickstream data often involves large data volumes, stream processing is a natural fit, as it quickly processes data as soon as it is ingested for analysis. This tutorial enables you to measure key statistics on visitor activity over a given time frame, such as how many webpages they are viewing, how long they’re engaging with the website, and more."
   introduction-media: "/assets/img/clickstream.png"
-  tutorial-id: "14"
   status:
     confluent: enabled
 
@@ -966,7 +952,6 @@ messaging-modernization:
   slug: "/messaging-modernization"
   introduction: "Traditional message queues (MQs) such as RabbitMQ, TIBCO EMS, IBM MQ, and ActiveMQ have been widely used for decades to handle message distribution and inter-service communication across distributed applications. However, they can no longer keep up with the needs of modern applications across hybrid and multicloud environments for high volume throughput, asynchronicity, and heterogeneous datasets. They are riddled with many challenges – they lack persistence and were designed to support point-to-point message delivery. This recipe shows how to perform real-time stream processing in-flight by leveraging a connector to read critical data from legacy messaging systems into Kafka."
   introduction-media: "/assets/img/message-modernization.png"
-  tutorial-id: "15"
   status:
     confluent: enabled
 
@@ -982,7 +967,6 @@ loyalty-rewards:
 <li>A customizable program that looks at individual customer behavior and offers tailored personalized rewards 
 </ul>"
   introduction-media: "/assets/img/loyalty.png"
-  tutorial-id: "16"
   status:
     confluent: enabled
 
@@ -992,7 +976,6 @@ customer-journey:
   slug: "/customer-journey"
   introduction: "To unlock improved conversion rates and personalized experiences, many companies often want to know which web pages visitors have browsed and engaged with. Analyzing online behavior can be useful to better understand customer behavior and needs, improve each webpage’s relevancy, and tailor customer support interactions. This recipe showcases how to run real-time analyses of the customer journey by leveraging ksqlDB to collect web pages visited  and send the list out for downstream analytics."
   introduction-media: "/assets/img/customer-journey.png"
-  tutorial-id: "17"
   status:
     confluent: enabled
 
@@ -1002,7 +985,6 @@ next-best-offer:
   slug: "/next-best-offer"
   introduction: "Consumers often face never-ending generic marketing messages not tailored to their needs, resulting in poor customer conversion rates. A better approach is known as 'Next Best Offer,' which leverages predictive analytics to analyze a customer’s spending habits and activities to create more targeted promotions. This recipe demonstrates how ksqlDB can take customer banking information to create a predictive analytics model and improve customer conversions through personalized marketing efforts."
   introduction-media: "/assets/img/next-best-offer.png"
-  tutorial-id: "18"
   status:
     confluent: enabled
 
@@ -1012,7 +994,6 @@ ddos:
   slug: "/ddos"
   introduction: "Distributed denial-of-service (DDoS) attacks are a specific type of cyberattack in which a targeted system is flooded with malicious network requests using multiple hosts and IP addresses. The distributed nature of these attacks, along with their increased occurrence, sophistication, and strength, makes them one of the most severe forms of cyber attacks that’s getting progressively  difficult to mitigate. This recipe shows a strategy for ingesting and processing network packet data to quickly detect a specific DDoS attack known as Slowloris."
   introduction-media: "/assets/img/slowloris.png"
-  tutorial-id: "19"
   status:
     confluent: enabled
 
@@ -1022,7 +1003,6 @@ mainframe-offload:
   slug: "/mainframe-offload"
   introduction: "Mainframes have historically underpinned many mission-critical applications as the de facto solution for many high performance batch processes. However, as organizations look to modernize their data infrastructure, it becomes increasingly expensive and complex to access and integrate mainframe data to other more modern distributed applications, microservices, and data platforms. Thus, many organizations have turned to Kafka to become a modern datastore that is in real-time sync with the mainframe. This recipe showcases how to leverage a real-time cache in ksqlDB, which can be used to offload mainframe calls to Kafka."
   introduction-media: "/assets/img/mainframe.png"
-  tutorial-id: "20"
   status:
     confluent: enabled
 
@@ -1032,7 +1012,6 @@ discount-promo:
   slug: "/discount-promo"
   introduction: "Oftentimes retailers will run promotions to drive sales and move inventory. However, if retailers are looking to build complex promotional strategies that involve multiple discounts using different coupon codes, it can be difficult to track the overall effectiveness of the marketing program. This recipe shows how ksqlDB can help track the performance of a multi-discount code promotion by understanding the average order value organized by discount percentage and the number of items purchased."
   introduction-media: "/assets/img/discount.png"
-  tutorial-id: "21"
   status:
     confluent: enabled
 
@@ -1042,7 +1021,6 @@ logistics:
   slug: "/logistics"
   introduction: "Customers today expect organizations to provide real-time visibility into their order status to help ensure shipments are received in a timely manner. However, aggregating data from multiple different data sources and continuously processing it in real time as locations change can be rather daunting. This recipe makes it easy by walking through how to compute delivery estimates based on a vehicle’s current location, so you can provide your customers with real-time status updates on their orders."
   introduction-media: "/assets/img/logistics.png"
-  tutorial-id: "22"
   status:
     confluent: enabled
 
@@ -1054,7 +1032,6 @@ audit-logs:
 <BR><BR>
 This recipe demonstrates how to aggregate audit logs in a Kafka topic, filter for specific events, and forward them to Splunk for indexing via the <a href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk Sink connector</a> or route your data to a more cost-effective destination for long-term storage to reduce data indexing, analysis, and storage costs." 
   introduction-media: "/assets/img/audit-logs.png"
-  tutorial-id: "23"
   status:
     confluent: enabled
 
@@ -1066,7 +1043,6 @@ model-retraining:
 <BR><BR>
 The generated example is based on a factory for fish processing. In the first step, the fish size (length and height) is measured. The model then predicts the weight of the fish based on its size and species, which will determine a selling price. By retraining the model, we can help maximize revenue by accurately determining the optimal selling price. This recipe is based on the blog post <a href='https://www.confluent.io/blog/how-baader-built-a-predictive-analytics-machine-learning-system-with-kafka-and-rstudio/'>Apache Kafka and R: Real-Time Prediction and Model (Re)training</a>, by Patrick Neff."
   introduction-media: "/assets/img/ml.png"
-  tutorial-id: "24"
   status:
     confluent: enabled
 
@@ -1076,6 +1052,5 @@ location-based-alerting:
   slug: "/location-based-alerting"
   introduction: "In an effort to build more personalized offers and promotions, organizations have turned toward geolocation alerts. This uses the merchant and mobile user’s geolocations to alert customers of the latest promotions when they near one of their stores. However, this can be difficult because it requires determining the distance between static store location data and continuous streams of geolocation data from hundreds of thousands of mobile devices. This recipe showcases how to do this easily with ksqlDB by aggregating and comparing merchant and mobile user geolocation data to produce user proximity alerts and notifications."
   introduction-media: "/assets/img/geolocation.png"
-  tutorial-id: "25"
   status:
     confluent: enabled
