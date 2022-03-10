@@ -73,7 +73,72 @@ blocks:
             - sem-version java $JAVA_VERSION
             - ./gradlew clean test
 
-  - name: Run first block of tests
+  - name: Run first block of tests (recipes)
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - sudo apt-get install gradle-6.8.3 -y
+          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
+      jobs:
+        - name: Payment Status Check
+          commands:
+            - make -C _includes/tutorials/payment-status-check/ksql-test/code tutorial
+
+        - name: Model Retraining
+          commands:
+            - make -C _includes/tutorials/model-retraining/ksql-test/code tutorial
+
+        - name: Inventory
+          commands:
+            - make -C _includes/tutorials/inventory/ksql-test/code tutorial
+
+        - name: Online Dating
+          commands:
+            - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
+
+        - name: Loyalty Rewards
+          commands:
+            - make -C _includes/tutorials/loyalty-rewards/ksql-test/code tutorial
+
+        - name: Dynamic Pricing
+          commands:
+            - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
+
+        - name: Aviation
+          commands:
+            - make -C _includes/tutorials/aviation/ksql-test/code tutorial
+
+        - name: Denormalization
+          commands:
+            - make -C _includes/tutorials/denormalization/ksql-test/code tutorial
+
+        - name: DDoS
+          commands:
+            - make -C _includes/tutorials/ddos/ksql-test/code tutorial
+
+        - name: Datacenter
+          commands:
+            - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
+
+        - name: Logistics
+          commands:
+            - make -C _includes/tutorials/logistics/ksql-test/code tutorial
+
+        - name: Mainframe offload
+          commands:
+            - make -C _includes/tutorials/mainframe-offload/ksql-test/code tutorial
+
+        - name: Clickstream
+          commands:
+            - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
+
+        - name: Credit card activity
+          commands:
+            - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
+
+  - name: Run second block of tests
     execution_time_limit:
       minutes: 10
     task:
@@ -240,7 +305,7 @@ blocks:
             - make -C _includes/tutorials/multiple-event-types/kafka/code tutorial    
 
 
-  - name: Run second block of tests (mostly ksqlDB)
+  - name: Run third block of tests (mostly ksqlDB)
     execution_time_limit:
       minutes: 10
     task:
@@ -391,4 +456,3 @@ blocks:
         - name: KStreams How to implement TTLs with KTable with aggregate tests
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
-

@@ -1,6 +1,6 @@
 -- Stream of users
-CREATE SOURCE CONNECTOR datagen_clickstream_users WITH (
-  'name'                     = 'Datagen_users',
+CREATE SOURCE CONNECTOR DATAGEN_USERS WITH (
+  'name'                     = 'DATAGEN_USERS',
   'connector.class'          = 'DatagenSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
@@ -12,8 +12,8 @@ CREATE SOURCE CONNECTOR datagen_clickstream_users WITH (
 );
 
 -- Stream of per-user session information
-CREATE SOURCE CONNECTOR datagen_clickstream WITH (
-  'name'                     = 'Datagen_clicks',
+CREATE SOURCE CONNECTOR DATAGEN_CLICKS WITH (
+  'name'                     = 'DATAGEN_CLICKS',
   'connector.class'          = 'DatagenSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
