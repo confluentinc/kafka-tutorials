@@ -38,10 +38,10 @@ CREATE STREAM audit_log_events (
 
 
 -- Application logic
-CREATE STREAM audit_log_topics WITH (KAFKA_TOPIC = 'topic-operations-audit-log', PARTITIONS = 6) AS 
+CREATE STREAM audit_log_topics WITH (KAFKA_TOPIC = 'topic-operations-audit-log') AS
 SELECT
- time,
- data
+  time,
+  data
 FROM  audit_log_events
 WHERE data->authorizationinfo->resourcetype = 'Topic'
 EMIT CHANGES;
