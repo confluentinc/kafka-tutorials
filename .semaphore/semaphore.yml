@@ -106,6 +106,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
 
+        - name: Location Based Alerting
+          commands:
+            - make -C _includes/tutorials/location-based-alerting/ksql-test/code tutorial
+
         - name: Aviation
           commands:
             - make -C _includes/tutorials/aviation/ksql-test/code tutorial
