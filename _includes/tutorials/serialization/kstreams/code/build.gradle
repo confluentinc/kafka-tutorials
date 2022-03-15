@@ -43,7 +43,7 @@ dependencies {
 
   testImplementation "org.apache.kafka:kafka-streams-test-utils:2.8.1"
   testImplementation 'junit:junit:4.13.2'
-  testImplementation 'org.assertj:assertj-core:3.19.0'
+  testImplementation 'org.assertj:assertj-core:3.22.0'
 }
 
 test {
@@ -76,7 +76,7 @@ protobuf {
   generatedFilesBaseDir = "$buildDir/generated-main-proto-java/"
 
   protoc {
-    artifact = "com.google.protobuf:protoc:3.17.3"
+    artifact = "com.google.protobuf:protoc:3.18.2"
   }
 
 }
