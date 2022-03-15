@@ -118,9 +118,9 @@ blocks:
           commands:
             - make -C _includes/tutorials/customer-journey/ksql-test/code tutorial
 
-        - name: Message Modernization
+        - name: Messaging Modernization
           commands:
-            - make -C _includes/tutorials/message-modernization/ksql-test/code tutorial
+            - make -C _includes/tutorials/messaging-modernization/ksql-test/code tutorial
 
         - name: Salesforce
           commands:
