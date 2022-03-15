@@ -36,12 +36,12 @@ dependencies {
   implementation "io.confluent:kafka-streams-avro-serde:6.2.1"
   implementation "com.typesafe:config:1.4.1"
 
-  testImplementation "org.apache.kafka:kafka-streams-test-utils:2.8.1"
+  testImplementation "org.apache.kafka:kafka-streams-test-utils:7.0.1-ce"
   testImplementation "junit:junit:4.13.2"
   testImplementation 'org.hamcrest:hamcrest:2.2'
 
-  testCompileOnly "org.projectlombok:lombok:1.18.20"
-  testAnnotationProcessor "org.projectlombok:lombok:1.18.18"
+  testCompileOnly "org.projectlombok:lombok:1.18.22"
+  testAnnotationProcessor "org.projectlombok:lombok:1.18.22"
 }
 
 test {
