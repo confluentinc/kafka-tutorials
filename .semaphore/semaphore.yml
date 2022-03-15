@@ -138,6 +138,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
 
+        - name: SSH Attack
+          commands:
+            - make -C _includes/tutorials/SSH-attack/ksql-test/code tutorial
+
         - name: Credit card activity
           commands:
             - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
