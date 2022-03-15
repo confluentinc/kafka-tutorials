@@ -8,5 +8,5 @@ tutorial:
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/payment-status-check/ksql-test.yml $(TEMP_DIR) $(SEQUENCE)
 	# Check presence of entry
-	grep "NOT OK" $(TEST_OUTPUTS_DIR)/validate/output-0.log
+	grep "NOT OK" $(TEST_OUTPUTS_DIR)/validate/output-0.log || { cat $(TEST_OUTPUTS_DIR)/validate/output-0.log ; false; }
 	reset

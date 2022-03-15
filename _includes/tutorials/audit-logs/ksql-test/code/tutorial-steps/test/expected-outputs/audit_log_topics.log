@@ -1,0 +1,35 @@
++---------------------------------------------------------------------------+---------------------------------------------------------------------------+
+|TIME                                                                       |DATA                                                                       |
++---------------------------------------------------------------------------+---------------------------------------------------------------------------+
+|2019-10-24T16:15:48.355Z                                                   |{SERVICENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q, METHODNAME=kafka.CreateTo|
+|                                                                           |pics, RESOURCENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q/topic=app3-topic, AU|
+|                                                                           |THENTICATIONINFO={PRINCIPAL=User:admin}, AUTHORIZATIONINFO={GRANTED=true, O|
+|                                                                           |PERATION=Create, RESOURCETYPE=Topic, RESOURCENAME=app3-topic, PATTERNTYPE=L|
+|                                                                           |ITERAL, SUPERUSERAUTHORIZATION=true}, REQUEST={CORRELATION_ID=3, CLIENT_ID=|
+|                                                                           |adminclient-6}, REQUESTMETADATA={CLIENT_ADDRESS=/127.0.0.1}}               |
+|2019-10-25T18:17:32.355Z                                                   |{SERVICENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q, METHODNAME=kafka.CreateTo|
+|                                                                           |pics, RESOURCENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q/topic=app3-topic, AU|
+|                                                                           |THENTICATIONINFO={PRINCIPAL=User:admin}, AUTHORIZATIONINFO={GRANTED=true, O|
+|                                                                           |PERATION=Delete, RESOURCETYPE=Topic, RESOURCENAME=app4-topic, PATTERNTYPE=L|
+|                                                                           |ITERAL, SUPERUSERAUTHORIZATION=true}, REQUEST={CORRELATION_ID=3, CLIENT_ID=|
+|                                                                           |adminclient-8}, REQUESTMETADATA={CLIENT_ADDRESS=/127.0.0.1}}               |
+|2019-10-26T20:19:33.355Z                                                   |{SERVICENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q, METHODNAME=kafka.CreateTo|
+|                                                                           |pics, RESOURCENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q/topic=app3-topic, AU|
+|                                                                           |THENTICATIONINFO={PRINCIPAL=User:admin}, AUTHORIZATIONINFO={GRANTED=true, O|
+|                                                                           |PERATION=Delete, RESOURCETYPE=Topic, RESOURCENAME=app9-topic, PATTERNTYPE=L|
+|                                                                           |ITERAL, SUPERUSERAUTHORIZATION=true}, REQUEST={CORRELATION_ID=3, CLIENT_ID=|
+|                                                                           |adminclient-5}, REQUESTMETADATA={CLIENT_ADDRESS=/127.0.0.1}}               |
+|2019-10-26T21:20:34.355Z                                                   |{SERVICENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q, METHODNAME=kafka.CreateTo|
+|                                                                           |pics, RESOURCENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q/topic=app3-topic, AU|
+|                                                                           |THENTICATIONINFO={PRINCIPAL=User:admin}, AUTHORIZATIONINFO={GRANTED=true, O|
+|                                                                           |PERATION=Modify, RESOURCETYPE=Topic, RESOURCENAME=app5-topic, PATTERNTYPE=L|
+|                                                                           |ITERAL, SUPERUSERAUTHORIZATION=true}, REQUEST={CORRELATION_ID=3, CLIENT_ID=|
+|                                                                           |adminclient-6}, REQUESTMETADATA={CLIENT_ADDRESS=/127.0.0.1}}               |
+|2019-10-25T19:18:21.355Z                                                   |{SERVICENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q, METHODNAME=kafka.CreateTo|
+|                                                                           |pics, RESOURCENAME=crn:///kafka=8caBa-0_Tu-2k3rKSxY64Q/topic=app3-topic, AU|
+|                                                                           |THENTICATIONINFO={PRINCIPAL=User:admin}, AUTHORIZATIONINFO={GRANTED=true, O|
+|                                                                           |PERATION=Create, RESOURCETYPE=Topic, RESOURCENAME=app5-topic, PATTERNTYPE=L|
+|                                                                           |ITERAL, SUPERUSERAUTHORIZATION=true}, REQUEST={CORRELATION_ID=3, CLIENT_ID=|
+|                                                                           |adminclient-6}, REQUESTMETADATA={CLIENT_ADDRESS=/127.0.0.1}}               |
+Limit Reached
+Query terminated

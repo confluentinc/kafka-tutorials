@@ -1,0 +1,29 @@
++------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+
+|NBO_OFFER_ID      |CUSTOMER_ID       |ACTIVITY_ID       |PROPENSITY_TO_BUY |ACTIVITY_TYPE     |INCOME            |FICO              |OFFER_NAME        |OFFER_URL         |
++------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+------------------+
+|1                 |1                 |1                 |0.4               |branch_visit      |403646            |465               |new_savings       |http://google.com.|
+|                  |                  |                  |                  |                  |                  |                  |                  |br/magnis/dis/part|
+|                  |                  |                  |                  |                  |                  |                  |                  |urient.json       |
+|3                 |3                 |3                 |0.33              |web_open          |407964            |750               |new_home_loan     |https://webs.com/i|
+|                  |                  |                  |                  |                  |                  |                  |                  |n/ante.jpg        |
+|5                 |1                 |7                 |0.97              |mobile_open       |403646            |465               |no_offer          |https://ezineartic|
+|                  |                  |                  |                  |                  |                  |                  |                  |les.com/ipsum/prim|
+|                  |                  |                  |                  |                  |                  |                  |                  |is/in/faucibus/orc|
+|                  |                  |                  |                  |                  |                  |                  |                  |i/luctus.html     |
+|1                 |1                 |4                 |0.41              |deposit           |403646            |465               |new_savings       |http://google.com.|
+|                  |                  |                  |                  |                  |                  |                  |                  |br/magnis/dis/part|
+|                  |                  |                  |                  |                  |                  |                  |                  |urient.json       |
+|1                 |1                 |10                |0.14              |new_account       |403646            |465               |new_savings       |http://google.com.|
+|                  |                  |                  |                  |                  |                  |                  |                  |br/magnis/dis/part|
+|                  |                  |                  |                  |                  |                  |                  |                  |urient.json       |
+|3                 |2                 |2                 |0.56              |deposit           |109825            |705               |new_home_loan     |https://webs.com/i|
+|                  |                  |                  |                  |                  |                  |                  |                  |n/ante.jpg        |
+|3                 |3                 |6                 |0.33              |web_open          |407964            |750               |new_home_loan     |https://webs.com/i|
+|                  |                  |                  |                  |                  |                  |                  |                  |n/ante.jpg        |
+|3                 |2                 |5                 |0.44              |deposit           |109825            |705               |new_home_loan     |https://webs.com/i|
+|                  |                  |                  |                  |                  |                  |                  |                  |n/ante.jpg        |
+|3                 |3                 |9                 |0.86              |deposit           |407964            |750               |new_home_loan     |https://webs.com/i|
+|                  |                  |                  |                  |                  |                  |                  |                  |n/ante.jpg        |
+|3                 |2                 |8                 |0.83              |deposit           |109825            |705               |new_home_loan     |https://webs.com/i|
+|                  |                  |                  |                  |                  |                  |                  |                  |n/ante.jpg        |
+Query terminated
