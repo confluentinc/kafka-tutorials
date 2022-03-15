@@ -126,6 +126,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/audit-logs/ksql-test/code tutorial
 
+        - name: Discount promo
+          commands:
+            - make -C _includes/tutorials/discount-promo/ksql-test/code tutorial
+
         - name: Logistics
           commands:
             - make -C _includes/tutorials/logistics/ksql-test/code tutorial
@@ -137,6 +141,10 @@ blocks:
         - name: Clickstream
           commands:
             - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
+
+        - name: SSH Attack
+          commands:
+            - make -C _includes/tutorials/SSH-attack/ksql-test/code tutorial
 
         - name: Credit card activity
           commands:
