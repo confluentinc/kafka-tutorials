@@ -47,7 +47,7 @@ test:
 
         - name: workaround (cannot wait inbetween INSERT INTO)
           action: sleep
-          ms: 10000
+          ms: 20000
           render:
             skip: true
 
