@@ -8,5 +8,5 @@ tutorial:
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/inventory/ksql-test.yml $(TEMP_DIR) $(SEQUENCE)
 	# Validate 7 lines are returned
-	bash -c "diff <(wc -l $(STEPS_DIR)/test/expected-output/conversations.log|awk '{print \$$1}') <(wc -l $(DEV_OUTPUTS_DIR)/validate/output-0.log|awk '{print \$$1}')"
+	bash -c "diff <(wc -l $(STEPS_DIR)/test/expected-output/conversations.log|awk '{print \$$1}') <(wc -l $(DEV_OUTPUTS_DIR)/validate/output-0.log|awk '{print \$$1}')" || { cat $(TEST_OUTPUTS_DIR)/validate/output-0.log ; false; }
 	reset

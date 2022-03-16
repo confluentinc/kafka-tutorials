@@ -13,7 +13,7 @@ Lets look at the core logic of the Kafka Streams application:
 
   KStream&lt;Long, Long&gt; countStream = inputStream.groupByKey().count().toStream();
 
-  KStream&lt;Long, String&gt; joinedStream = inputStream.join(exampleCountStream, (v1, v2) -> v1.getName() + v2.toString(),
+  KStream&lt;Long, String&gt; joinedStream = inputStream.join(countStream, (v1, v2) -> v1.getName() + v2.toString(),
                                                               JoinWindows.of(Duration.ofMillis(100)),
                                                               StreamJoined.with(longSerde, exampleSerde, longSerde));
 </code></pre>

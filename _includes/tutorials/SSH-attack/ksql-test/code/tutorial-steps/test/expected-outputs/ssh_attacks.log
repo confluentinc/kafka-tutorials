@@ -1,0 +1,16 @@
++---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+
+|SYSLOG_TIMESTAMP           |HOST                       |FACILITY                   |FACILITY_DESCRIPTION       |ATTACK_USER                |ATTACK_IP                  |
++---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+---------------------------+
+|2022-03-14 14:44:48        |asgard.example.com         |4                          |security/authorization mess|bsmith                     |192.168.10.83              |
+|                           |                           |                           |ages                       |                           |                           |
+|2022-03-14 14:44:48        |asgard.example.com         |4                          |security/authorization mess|asmith                     |192.168.10.83              |
+|                           |                           |                           |ages                       |                           |                           |
+|2022-03-14 14:44:48        |asgard.example.com         |4                          |security/authorization mess|dsmith                     |192.168.10.83              |
+|                           |                           |                           |ages                       |                           |                           |
+|2022-03-14 14:44:48        |asgard.example.com         |4                          |security/authorization mess|csmith                     |192.168.10.83              |
+|                           |                           |                           |ages                       |                           |                           |
+|2022-03-14 14:44:48        |asgard.example.com         |4                          |security/authorization mess|fsmith                     |192.168.10.83              |
+|                           |                           |                           |ages                       |                           |                           |
+|2022-03-14 14:44:48        |asgard.example.com         |4                          |security/authorization mess|esmith                     |192.168.10.83              |
+|                           |                           |                           |ages                       |                           |                           |
+Query terminated
