@@ -1,0 +1,5 @@
+Any downstream application or database can receive the post-processed data.
+
+++++
+<pre class="snippet"><code class="json">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/sink.json %}</code></pre>
+++++

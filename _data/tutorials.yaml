@@ -945,7 +945,7 @@ aviation:
   title: "Notify passengers of flight updates"
   meta-description: "This ksqlDB tutorial uses a stream of flight updates to notify passengers if their flight is delayed."
   slug: "/aviation"
-  introduction: "Worse than having a flight delayed is not being notified about the important changes that come with it, such as new boarding times, cancellations, gate changes, and estimated arrivals. This tutorial shows how ksqlDB can help airlines combine passenger, flight booking, and current flight plan data to immediately alert a passenger about flight updates in real time"
+  introduction: "Worse than having a flight delayed is not being notified about the important changes that come with it, such as new boarding times, cancellations, gate changes, and estimated arrivals. This tutorial shows how ksqlDB can help airlines combine passenger, flight booking, and current flight plan data to immediately alert a passenger about flight updates in real time. You can also meet the requirements for different use cases at the same time, for example you can export the impacted flight information to the analytics team for further processing and send the flight information to a Lamda function to notify the customer."
   introduction-media: "/assets/img/flight.png"
   tutorial-id: "13"
   status:
