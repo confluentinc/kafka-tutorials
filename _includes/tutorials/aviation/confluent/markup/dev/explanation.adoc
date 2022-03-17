@@ -94,7 +94,7 @@ EMIT CHANGES;
 
 The last step in denormalizing the data is to set the key of the customer flights table to that of the flight ID so that it can be joined to the flight updates (which we'll get to below). 
 This is currently a multi-step process, see link:https://github.com/confluentinc/ksql/issues/2356[details].
-One additional step that is taken during the repartitioning is to also mask the customer loyalty ID, as an example of how to protect sensitive data.
+One additional transformation during the repartitioning is the partial masking of the customer loyalty ID to protect sensitive data.
 
 ++++
 <pre class="snippet"><code class="sql">
@@ -132,7 +132,8 @@ INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (2, 3, '2
 INSERT INTO flight_updates (id, flight_id, updated_dep, reason) VALUES (3, 1, '2021-11-19T08:10:09.000', 'Icy conditions');
 ----
 
-In the original window, you will see the details of which passengers are impacted by which flight changes:
+In the original window, you will see the details of which passengers are impacted by which flight changes, as shown below.
+Notice that the customer loyalty IDs are partially masked.
 
 [source,text]
 ----
