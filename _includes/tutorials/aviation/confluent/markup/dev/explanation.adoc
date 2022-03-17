@@ -12,11 +12,11 @@ This will store the data in a Kafka topic. In practice, you would probably popul
 
 [source,sql]
 ----
-INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (1, 'Gleda Lealle', '93 Express Point', 'glealle0@senate.gov', '+351 831 301 6746', 'Silver');
-INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (2, 'Gilly Crocombe', '332 Blaine Avenue', 'gcrocombe1@homestead.com', '+33 203 565 3736', 'Silver');
-INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (3, 'Astrix Aspall', '56 Randy Place', 'aaspall2@ebay.co.uk', '+33 679 296 6645', 'Gold');
-INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (4, 'Ker Omond', '23255 Tennessee Court', 'komond3@usnews.com', '+33 515 323 0170', 'Silver');
-INSERT INTO customers (id, name, address, email, phone, loyalty_status) VALUES (5, 'Arline Synnott', '144 Ramsey Avenue', 'asynnott4@theatlantic.com', '+62 953 759 8885', 'Bronze');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status, loyalty_id) VALUES (1, 'Gleda Lealle', '93 Express Point', 'glealle0@senate.gov', '+351 831 301 6746', 'Silver', '2PLNX338063');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status, loyalty_id) VALUES (2, 'Gilly Crocombe', '332 Blaine Avenue', 'gcrocombe1@homestead.com', '+33 203 565 3736', 'Silver', '7AWLM918339');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status, loyalty_id) VALUES (3, 'Astrix Aspall', '56 Randy Place', 'aaspall2@ebay.co.uk', '+33 679 296 6645', 'Gold', '3RNZH870911');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status, loyalty_id) VALUES (4, 'Ker Omond', '23255 Tennessee Court', 'komond3@usnews.com', '+33 515 323 0170', 'Silver', '5BWEP418137');
+INSERT INTO customers (id, name, address, email, phone, loyalty_status, loyalty_id) VALUES (5, 'Arline Synnott', '144 Ramsey Avenue', 'asynnott4@theatlantic.com', '+62 953 759 8885', 'Bronze', '4MNJB877136');
 ----
 
 Next, we'll create a table of flights and associated bookings for our customers. 
@@ -72,6 +72,7 @@ At this stage, we can query the data held in the tables to show which customers 
 SELECT cb_c_name           AS name,
        cb_c_email          AS email,
        cb_c_loyalty_status AS loyalty_status,
+       cb_c_loyalty_id     AS loyalty_id,
        f_origin            AS origin,
        f_destination       AS destination,
        f_code              AS code,
@@ -82,17 +83,18 @@ EMIT CHANGES;
 
 [source,text]
 ----
-+---------------+------------------------+---------------+-------+------------+-----+------------------------+
-|name           |email                   |loyalty_status |origin |destination |code |scheduled_dep           |
-+---------------+------------------------+---------------+-------+------------+-----+------------------------+
-|Gilly Crocombe |gcrocombe1@homestead.com|Silver         |LBA    |AMS         |642  |2021-11-18T06:04:00.000 |
-|Ker Omond      |komond3@usnews.com      |Silver         |LBA    |LHR         |9607 |2021-11-18T07:36:00.000 |
-|Gleda Lealle   |glealle0@senate.gov     |Silver         |LBA    |AMS         |642  |2021-11-18T06:04:00.000 |
-|Ker Omond      |komond3@usnews.com      |Silver         |AMS    |TXL         |7968 |2021-11-18T08:11:00.000 |
++-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+
+|NAME                     |EMAIL                    |LOYALTY_STATUS           |LOYALTY_ID               |ORIGIN                   |DESTINATION              |CODE                     |SCHEDULED_DEP            |
++-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+-------------------------+
+|Arline Synnott           |asynnott4@theatlantic.com|Bronze                   |4MNJB877136              |AMS                      |TXL                      |7968                     |2021-11-18T08:11:00.000  |
+|Gleda Lealle             |glealle0@senate.gov      |Silver                   |2PLNX338063              |LBA                      |AMS                      |642                      |2021-11-18T06:04:00.000  |
+|Ker Omond                |komond3@usnews.com       |Silver                   |5BWEP418137              |LBA                      |LHR                      |9607                     |2021-11-18T07:36:00.000  |
+|Gilly Crocombe           |gcrocombe1@homestead.com |Silver                   |7AWLM918339              |LBA                      |AMS                      |642                      |2021-11-18T06:04:00.000  |
 ----
 
 The last step in denormalizing the data is to set the key of the customer flights table to that of the flight ID so that it can be joined to the flight updates (which we'll get to below). 
 This is currently a multi-step process, see link:https://github.com/confluentinc/ksql/issues/2356[details].
+One additional step that is taken during the repartitioning is to also mask the customer loyalty ID, as an example of how to protect sensitive data.
 
 ++++
 <pre class="snippet"><code class="sql">
@@ -134,10 +136,10 @@ In the original window, you will see the details of which passengers are impacte
 
 [source,text]
 ----
-+---------------+------------------------+--------------------+----------------------+---------------------------+------------------+-------------------+------------+
-|customer_name  |flight_change_reason    |flight_updated_dep  |flight_scheduled_dep  |customer_email             |customer_phone    |flight_destination |flight_code |
-+---------------+------------------------+--------------------+----------------------+---------------------------+------------------+-------------------+------------+
-|Gleda Lealle   |Icy conditions          |2021-11-19T08:10:09 |2021-11-18T06:04:00   |glealle0@senate.gov        |+351 831 301 6746 |AMS                |642         |
-|Ker Omond      |Cabin staff unavailable |2021-11-18T09:00:00 |2021-11-18T07:36:00   |komond3@usnews.com         |+33 515 323 0170  |LHR                |9607        |
-|Arline Synnott |Mechanical checks       |2021-11-19T14:00:00 |2021-11-18T08:11:00   |asynnott4@theatlantic.com  |+62 953 759 8885  |TXL                |7968        |
++---------------+------------------------+--------------------+----------------------+---------------------+---------------------------+------------------+-------------------+------------+
+|customer_name  |flight_change_reason    |flight_updated_dep  |flight_scheduled_dep  |customer_loyalty_id  |customer_email             |customer_phone    |flight_destination |flight_code |
++---------------+------------------------+--------------------+----------------------+---------------------+---------------------------+------------------+-------------------+------------+
+|Gleda Lealle   |Icy conditions          |2021-11-19T08:10:09 |2021-11-18T06:04:00   |nXXXXnnn063          |glealle0@senate.gov        |+351 831 301 6746 |AMS                |642         |
+|Ker Omond      |Cabin staff unavailable |2021-11-18T09:00:00 |2021-11-18T07:36:00   |nXXXXnnn137          |komond3@usnews.com         |+33 515 323 0170  |LHR                |9607        |
+|Arline Synnott |Mechanical checks       |2021-11-19T14:00:00 |2021-11-18T08:11:00   |nXXXXnnn136          |asynnott4@theatlantic.com  |+62 953 759 8885  |TXL                |7968        |
 ----
