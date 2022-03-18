@@ -50,6 +50,12 @@ dev:
           render:
             file: tutorials/aviation/confluent/markup/dev/manual.adoc
 
+    - title: Write the data out
+      content:
+        - action: skip
+          render:
+            file: tutorials/aviation/confluent/markup/dev/sink.adoc
+
     - title: Explanation
       content:
         - action: skip

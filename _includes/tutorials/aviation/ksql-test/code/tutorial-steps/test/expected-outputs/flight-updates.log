@@ -1,12 +1,12 @@
-+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
-|CB_FLIGHT_ID    |CUSTOMER_NAME   |FLIGHT_CHANGE_RE|FLIGHT_UPDATED_D|FLIGHT_SCHEDULED|CUSTOMER_EMAIL  |CUSTOMER_PHONE  |FLIGHT_DESTINATI|FLIGHT_CODE     |
-|                |                |ASON            |EP              |_DEP            |                |                |ON              |                |
-+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+----------------+
-|3               |Arline Synnott  |Mechanical check|2021-11-19T14:00|2021-11-18T08:11|asynnott4@theatl|+62 953 759 8885|TXL             |7968            |
-|                |                |s               |:00.000         |:00.000         |antic.com       |                |                |                |
-|2               |Ker Omond       |Cabin staff unav|2021-11-18T09:00|2021-11-18T07:36|komond3@usnews.c|+33 515 323 0170|LHR             |9607            |
-|                |                |ailable         |:00.000         |:00.000         |om              |                |                |                |
-|1               |Gleda Lealle    |Icy conditions  |2021-11-19T08:10|2021-11-18T06:04|glealle0@senate.|+351 831 301 674|AMS             |642             |
-|                |                |                |:09.000         |:00.000         |gov             |6               |                |                |
++-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+
+|CB_FLIGHT_ID       |CUSTOMER_NAME      |FLIGHT_CHANGE_REASO|FLIGHT_UPDATED_DEP |FLIGHT_SCHEDULED_DE|CUSTOMER_EMAIL     |CUSTOMER_PHONE     |CUSTOMER_LOYALTY_ID|FLIGHT_DESTINATION |FLIGHT_CODE        |
+|                   |                   |N                  |                   |P                  |                   |                   |                   |                   |                   |
++-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+-------------------+
+|3                  |Arline Synnott     |Mechanical checks  |2021-11-19T14:00:00|2021-11-18T08:11:00|asynnott4@theatlant|+62 953 759 8885   |nXXXXnnn136        |TXL                |7968               |
+|                   |                   |                   |.000               |.000               |ic.com             |                   |                   |                   |                   |
+|2                  |Ker Omond          |Cabin staff unavail|2021-11-18T09:00:00|2021-11-18T07:36:00|komond3@usnews.com |+33 515 323 0170   |nXXXXnnn137        |LHR                |9607               |
+|                   |                   |able               |.000               |.000               |                   |                   |                   |                   |                   |
+|1                  |Gilly Crocombe     |Icy conditions     |2021-11-19T08:10:09|2021-11-18T06:04:00|gcrocombe1@homestea|+33 203 565 3736   |nXXXXnnn339        |AMS                |642                |
+|                   |                   |                   |.000               |.000               |d.com              |                   |                   |                   |                   |
 Limit Reached
 Query terminated
