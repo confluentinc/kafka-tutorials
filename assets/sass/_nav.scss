@@ -172,13 +172,12 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
               top: 66px;
               left: -60px;
               visibility: hidden;
-              padding: 10px 10px 10px 0;
+              padding: 20px 10px 20px 0;
               background: $color_white;
               z-index: 10;
               box-shadow: none;
               border-radius: 7px;
               opacity: 0;
-              padding: 20px 30px 20px 0;
               box-shadow: 3px 3px 17px rgba(0, 0, 0, 0.08);
               border: 1px solid rgba(130, 148, 148, 0.25);
               border-top: 1px solid $color_white;
@@ -186,14 +185,14 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
               a {
                 color: $color_denim;
                 font-size: 16px;
-                font-weight: 300;
+                font-weight: 100;
                 width: 100%;
                 display: block;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 padding: 10px 0;
-                margin: 0 20px;
+                margin: 0 10px;
                 line-height: 20px;
 
                 &[href="#"] {
