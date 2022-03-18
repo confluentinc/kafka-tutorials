@@ -127,9 +127,22 @@
           </div>
         </div>
 
-        <!-- Documentation link -->
-        <a class="mobile-link" target="_blank" rel="noopener noreferrer"
-          href="https://docs.confluent.io/home/overview.html">Docs</a>
+        <!-- Documentation related links -->
+        <div class="accordion-item-wrapper collapsed mobile-accordion-item">
+          <div>
+            <div class="accordion-title">
+              Docs
+              <div class="arrow down md theme_denim indicator"></div>
+            </div>
+            <div class="accordion-panel">
+              <a href="https://docs.confluent.io/home/overview.html" rel=" noreferrer" data-test-id="link">Docs Home</a>
+              <a href="https://docs.confluent.io/platform/current/overview.html" rel=" noreferrer" data-test-id="link">Confluent Platform</a>
+              <a href="https://docs.confluent.io/home/connect/overview.html" rel=" noreferrer" data-test-id="link">Confluent Connectors</a>
+              <a href="https://docs.confluent.io/home/tools/overview.html" rel=" noreferrer" data-test-id="link">Tools</a>
+              <a href="https://docs.confluent.io/home/clients/overview.html" rel=" noreferrer" data-test-id="link">Clients</a>
+            </div>
+          </div>
+        </div>
       </nav>
     </div>
 
@@ -215,8 +228,27 @@
         </li>
 
         <!-- Documentation link -->
-        <li class=""><a target="_blank" rel="noopener noreferrer"
-            href="https://docs.confluent.io/home/overview.html">Docs</a></li>
+        <li class="dropdown-link">
+          <a rel="noopener noreferrer"
+            href="https://docs.confluent.io/home/overview.html">Docs</a>
+          <ul>
+            <li>
+              <a href="https://docs.confluent.io/home/overview.html" rel=" noreferrer" data-test-id="link">Docs Home</a>
+            </li>
+            <li>
+              <a href="https://docs.confluent.io/platform/current/overview.html" rel=" noreferrer" data-test-id="link">Confluent Platform</a>
+            </li>
+            <li>
+              <a href="https://docs.confluent.io/home/connect/overview.html" rel=" noreferrer" data-test-id="link">Confluent Connectors</a>
+            </li>
+            <li>
+              <a href="https://docs.confluent.io/home/tools/overview.html" rel=" noreferrer" data-test-id="link">Tools</a>
+            </li>
+            <li>
+              <a href="https://docs.confluent.io/home/clients/overview.html" rel=" noreferrer" data-test-id="link">Clients</a>
+            </li>
+          </ul>
+        </li>
 
         <!-- Quick start link -->
         <li class="quick-start"><a class="button"
