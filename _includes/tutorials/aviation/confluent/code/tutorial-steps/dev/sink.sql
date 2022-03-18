@@ -24,7 +24,7 @@ CREATE SINK CONNECTOR recipe-lambda-aviation WITH (
   'input.data.format'        = 'JSON',
   'aws.access.key.id'        = '<aws-key-id>',
   'aws.secret.access.key'    = '<aws-access-key>',
-  'aws.lambda.function.name' = 'lambdaTextCustomer'',
+  'aws.lambda.function.name' = 'lambdaTextCustomer',
   'aws.lambda.invocation.type' = 'sync',
   'behavior.on.error'        = 'fail',
   'tasks.max'                = '1'
