@@ -28,11 +28,14 @@ $(document).ready(function () {
 
     //Set up expand buttons.
     var actualHeight = $element.height();
+    const shouldCodeBeExpandedAtLoad = $element.hasClass('expand-default');
 
     if (actualHeight > CODE_BLOCK_HEIGHT) {
-      $element.css('max-height', CODE_BLOCK_HEIGHT);
+
+      if(!shouldCodeBeExpandedAtLoad) $element.css('max-height', CODE_BLOCK_HEIGHT);
+
       $element.after(
-        "<span class='icon toggle-expand expand-btn'><i class='fa fa-expand'></i></span><span class='icon toggle-expand compress-btn is-hidden'><i class='fa fa-compress'></i></span>"
+        `<span class='icon toggle-expand expand-btn ${shouldCodeBeExpandedAtLoad ? 'is-hidden': ''}'><i class='fa fa-expand'></i></span><span class='icon toggle-expand compress-btn ${shouldCodeBeExpandedAtLoad ? '': 'is-hidden'}'><i class='fa fa-compress'></i></span>`
       );
     }
   });
