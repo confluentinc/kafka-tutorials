@@ -1,5 +1,5 @@
 ++++
-<pre class="snippet"><code class="sql">
+<pre class="snippet expand-default"><code class="sql">
 {% include_raw shared/code/ccloud/comment-connector.sql %}
 {% include_raw tutorials/payment-status-check/confluent/code/tutorial-steps/dev/source.sql %}
 {% include_raw tutorials/payment-status-check/confluent/code/tutorial-steps/dev/process.sql %}
