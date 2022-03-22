@@ -26,13 +26,13 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/SSH-attack/confluent/markup/dev/source.adoc
+            file: shared/markup/ccloud/manual_insert_no_connector.adoc
 
         - action: skip
           render:
-            file: shared/markup/ccloud/manual_insert.adoc
+            file: tutorials/SSH-attack/confluent/markup/dev/source.adoc
 
-    - title: ksqlDB code
+    - title: Execute ksqlDB code
       content:
         - action: skip
           render:
@@ -46,6 +46,8 @@ dev:
           render:
             file: tutorials/SSH-attack/confluent/markup/dev/process.adoc
 
+    - title: Test with mock data
+      content:
         - action: skip
           render:
             file: shared/markup/ccloud/manual_cue.adoc
