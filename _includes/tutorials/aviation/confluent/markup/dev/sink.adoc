@@ -1,4 +1,5 @@
 Any downstream application or database can receive the post-processed data.
+This example demonstrates exporting data using the link:https://docs.confluent.io/cloud/current/connectors/cc-snowflake-sink.html[Snowflake Sink Connector for Confluent Cloud].
 
 ++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aviation/confluent/code/tutorial-steps/dev/sink.sql %}</code></pre>
