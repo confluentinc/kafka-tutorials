@@ -24,7 +24,7 @@ CREATE SOURCE CONNECTOR customers WITH (
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'topic.prefix'             = 'oracle_',
-  'connection.host'          = '<my-database-endpoint>',
+  'connection.host'          = '<database-host>',
   'connection.port'          = '1521',
   'connection.user'          = '<database-username>',
   'connection.password'      = '<database-password>',
