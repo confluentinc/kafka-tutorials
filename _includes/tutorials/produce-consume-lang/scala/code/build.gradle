@@ -42,7 +42,7 @@ allprojects {
         implementation "com.lihaoyi:cask_2.13:0.8.0"
         implementation "ch.qos.logback:logback-classic:1.2.3"
         implementation "com.github.pureconfig:pureconfig_2.13:0.17.1"
-        implementation "com.nrinaudo:kantan.csv-generic_2.13:0.6.1"
+        implementation "com.nrinaudo:kantan.csv-generic_2.13:0.6.2"
         implementation "com.nrinaudo:kantan.csv-java8_2.13:0.6.1"
         implementation "com.nrinaudo:kantan.csv-enumeratum_2.13:0.6.1"
     }
