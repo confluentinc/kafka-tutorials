@@ -1,1 +1,1 @@
-This ksqlDB application joins between customer flight booking data and any flight updates to provide a stream of notifications to passengers.
+This ksqlDB application pulls in data from different tables for customers, flights, flight updates, and bookings, joins customer flight booking data and any flight updates, and provides a stream of notifications to passengers.

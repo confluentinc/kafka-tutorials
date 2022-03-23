@@ -149,9 +149,9 @@ You'll see a lot of information scroll across the screen, describing each step o
 ```
 Your tutorial, my-tutorial-name, has been generated successfully!
 The script adds a copy of this checklist to the my-tutorial-name directory.
+```
 
 There are some additional steps you'll need to take to complete the tutorial:
-
 
 1. Update the following entries in _data/tutorials.yaml file
     a. title
@@ -162,14 +162,13 @@ There are some additional steps you'll need to take to complete the tutorial:
 
 You can find these fields by searching for my-tutorial-name in the _data/tutorials.yaml file.
 
+2. Add the new tutorial to the tutorials/recipes landing page in Contentful.
 
-2. Update the link text then add the following link(s) to the index.html file in the appropriate section:
+3. For completeness, update the link text then add the following link(s) to the [index.html](index.html) file in the appropriate section:
 
-
+```
    <li><a href="seo-friendly-link-to-my-tutorial/kstreams.html">MEANINGFUL LINK TEXT HERE</a></li>
-
    <li><a href="seo-friendly-link-to-my-tutorial/ksql.html">MEANINGFUL LINK TEXT HERE</a></li> 
-
 ```
 
 If you only specified one tutorial type (`ksql` or `kstreams`) then you'd only have one link in the output.  Also, a copy of this output is copied in your tutorial directory `/Tutorials base dir/_includes/tutorials/you_tutorial_short_name`

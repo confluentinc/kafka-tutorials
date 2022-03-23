@@ -31,9 +31,9 @@
             <h1>
               Say Hello World to Stream Processing
             </h1>
-            <h2 class="subtitle">From Idea to Proof-of-concept: Learn the Apache Kafka® fundamentals quickly with our functional tutorials, then explore the most popular stream processing use cases with recipes powered by ksqlDB so you can take immediate action, 100% in the cloud. <a href="https://www.confluent.io/confluent-cloud/tryfree/">Get started here</a></h2>
+            <h2 class="subtitle">From Idea to Proof-of-concept: Learn stream processing the simple way. Use this cookbook of recipes to easily get started at any level.</h2>
             <div class="ctas">
-                <a href="{{ "/index.html" | relative_url }}" class="btn-midnight">Functional Tutorials</a>
+                <a href="{{ "/index.html" | relative_url }}" class="btn-midnight">Concepts</a>
                 <a href="{{ "/use-cases.html" | relative_url }}" class="btn-midnight-white-outline">Use Case Recipes</a>
             </div>
           </div>
@@ -65,8 +65,8 @@
           <ul>
             <li><a href="{{ "/online-dating/confluent.html" | relative_url }}">Match users for online dating</a></li>
             <li><a href="{{ "/clickstream/confluent.html" | relative_url }}">Understand user behavior with clickstream data</a></li>
-            <li><a href="{{ "/aviation/confluent.html" | relative_url }}">Notify passengers of flight updates</a></li>
             <li><a href="{{ "/loyalty-rewards/confluent.html" | relative_url }}">Build customer loyalty programs</a></li>
+            <li><a href="{{ "/customer-journey/confluent.html" | relative_url }}">Get a full view of a customer’s online journey</a></li>
           </ul>
         </div>
 
@@ -76,6 +76,9 @@
             <div>Cybersecurity</div>
           </div>
           <ul>
+            <li><a href="{{ "/audit-logs/confluent.html" | relative_url }}">Monitor security threats by analyzing and filtering audit logs</a></li>
+            <li><a href="{{ "/firewall-splunk/confluent.html" | relative_url }}">Identify firewall deny events</a></li>
+            <li><a href="{{ "/ddos/confluent.html" | relative_url }}">Detect a Slowloris DDoS attack</a></li>
             <li><a href="{{ "/SSH-attack/confluent.html" | relative_url }}">Detect and analyze SSH attacks</a></li>
           </ul>
         </div>
@@ -89,8 +92,9 @@
             <div>Predictive Analytics</div>
           </div>
           <ul>
-            <li><a href="{{ "/fleet-management/confluent.html" | relative_url }}">Optimize fleet management</a></li>
             <li><a href="{{ "/inventory/confluent.html" | relative_url }}">Optimize omni-channel inventory</a></li>
+            <li><a href="{{ "/next-best-offer/confluent.html" | relative_url }}">Create personalized banking promotions</a></li>
+            <li><a href="{{ "/model-retraining/confluent.html" | relative_url }}">Retrain a machine learning model</a></li>
           </ul>
           <!--div id="show"><a class="button is-small is-fullwidth">More</a></div-->
         </div>
@@ -101,39 +105,45 @@
             <div>Real-time Analytics</div>
           </div>
           <ul>
+            <li><a href="{{ "/messaging-modernization/confluent.html" | relative_url }}">Integrate legacy messaging systems with Kafka</a></li>
             <li><a href="{{ "/datacenter/confluent.html" | relative_url }}">Analyze datacenter power usage</a></li>
             <li><a href="{{ "/payment-status-check/confluent.html" | relative_url }}">Automate instant payment verifications</a></li>
             <li><a href="{{ "/denormalization/confluent.html" | relative_url }}">Enrich orders with change data capture (CDC)</a></li>
             <li><a href="{{ "/dynamic-pricing/confluent.html" | relative_url }}">Build a dynamic pricing strategy</a></li>
+            <li><a href="{{ "/mainframe-offload/confluent.html" | relative_url }}">Modernize and offload mainframe data</a></li>
+            <li><a href="{{ "/discount-promo/confluent.html" | relative_url }}">Assess multi-touch discount code efficacy</a></li>
           </ul>
         </div>
 
-        <div class="card card-cta">
+        <div class="card">
           <div class="title">
-            <div>Be the first to be notified about new tutorials</div>
-            <form id="mktoForm_3977" style="display:none"></form>
-            <div id="mkto-form">
-              <div class="form">
-                <div class="is-hidden">Thank you!</div>
-                <a class="cta-button secondary">Sign Up</a>
-                <form>
-                  <input type="email" placeholder="Enter Email" name="Email" />
-                  <button class="cta-button secondary" type="submit">Submit</button>
-                </form>
-              </div>
-            </div>
+            <img src="{{ "/assets/img/icon-cascade.svg"  | relative_url }}" />
+            <div>Logistics and IoT Management</div>
           </div>
-          <div id="signup-notice" class="is-hidden notice">
-            <p>
-              By subscribing you understand we will process your personal information in accordance with our <a href="https://www.confluent.io/privacy">Privacy Statement</a>.
-            </p>
-          </div>
+          <ul>
+            <li><a href="{{ "/fleet-management/confluent.html" | relative_url }}">Optimize fleet management</a></li>
+            <li><a href="{{ "/logistics/confluent.html" | relative_url }}">Track order shipments in real time</a></li>
+          </ul>
         </div>
 
       </div>
       <!--END 2nd card row -->
     </div>
 
+      <div class="cards third-card-row">
+
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-join.svg" | relative_url }}" />
+            <div>Real-time Alerts and Notifications</div>
+          </div>
+          <ul>
+            <li><a href="{{ "/location-based-alerting/confluent.html" | relative_url }}">Create geolocation-based customer alerts and promotions</a></li>
+            <li><a href="{{ "/aviation/confluent.html" | relative_url }}">Notify passengers of flight updates</a></li>
+          </ul>
+        </div>
+       </div>
+       <!-- END Third card row-->
 
     {% include footer.html %}
     <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
