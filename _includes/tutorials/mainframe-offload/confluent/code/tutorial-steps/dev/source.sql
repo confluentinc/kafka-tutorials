@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR transactions WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS transactions WITH (
   'connector.class'          = 'IbmMQSource',
   'name'                     = 'recipe-mainframe-offload',
   'kafka.api.key'            = '<my-kafka-api-key>',

@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR JDBC_SOURCE_POSTGRES_01 WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS JDBC_SOURCE_POSTGRES_01 WITH (
     'connector.class'= 'io.confluent.connect.jdbc.JdbcSourceConnector',
     'connection.url'= 'jdbc:postgresql://postgres:5432/postgres',
     'connection.user'= 'postgres',

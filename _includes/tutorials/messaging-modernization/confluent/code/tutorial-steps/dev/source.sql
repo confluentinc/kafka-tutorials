@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR RabbitMQ WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS RabbitMQ WITH (
   'connector.class'          = 'RabbitMQSource',
   'name'                     = 'RabbitMQSource_0',
   'kafka.api.key'            = '<my-kafka-api-key>',

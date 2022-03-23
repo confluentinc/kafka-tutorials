@@ -1,4 +1,4 @@
-CREATE SINK CONNECTOR JDBC_SINK_POSTGRES_01 WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS JDBC_SINK_POSTGRES_01 WITH (
     'connector.class'     = 'io.confluent.connect.jdbc.JdbcSinkConnector',
     'connection.url'      = 'jdbc:postgresql://postgres:5432/',
     'connection.user'     = 'postgres',

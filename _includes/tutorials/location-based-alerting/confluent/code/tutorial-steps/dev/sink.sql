@@ -1,4 +1,4 @@
-CREATE SINK CONNECTOR promo-alerts-sink WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS promo-alerts-sink WITH (
   'connector.class'    = 'ElasticsearchSink',
   'name'               = 'promo-alerts-sink',
   'input.data.format'  = 'JSON',

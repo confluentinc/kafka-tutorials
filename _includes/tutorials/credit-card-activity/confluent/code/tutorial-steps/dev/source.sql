@@ -1,5 +1,5 @@
 -- Stream of transactions
-CREATE SOURCE CONNECTOR FD_transactions WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS FD_transactions WITH (
   'connector.class'          = 'OracleDatabaseSource',
   'name'                     = 'recipe-oracle-transactions-cc',
   'connector.class'          = 'OracleDatabaseSource',
@@ -18,7 +18,7 @@ CREATE SOURCE CONNECTOR FD_transactions WITH (
 );
 
 -- Stream of customers
-CREATE SOURCE CONNECTOR FD_customers WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS FD_customers WITH (
   'connector.class'          = 'OracleDatabaseSource',
   'name'                     = 'recipe-oracle-customers-cc',
   'connector.class'          = 'OracleDatabaseSource',

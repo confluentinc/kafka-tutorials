@@ -1,5 +1,5 @@
 -- Send data to Snowflake
-CREATE SINK CONNECTOR customer_flight_updates WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS customer_flight_updates WITH (
   'connector.class'          = 'SnowflakeSink',
   'name'                     = 'recipe-snowflake-aviation',
   'kafka.api.key'            = '<my-kafka-api-key>',
@@ -15,7 +15,7 @@ CREATE SINK CONNECTOR customer_flight_updates WITH (
 );
 
 -- Send data to Amazon Lambda
-CREATE SINK CONNECTOR recipe-lambda-aviation WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS recipe-lambda-aviation WITH (
   'connector.class'          = 'LambdaSink',
   'name'                     = 'recipe-lambda-aviation',
   'kafka.api.key'            = '<my-kafka-api-key>',

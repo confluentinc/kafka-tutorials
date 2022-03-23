@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR inventory WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS inventory WITH (
   'connector.class'          = 'PostgresSource',
   'name'                     = 'recipe-postgres-inventory',
   'kafka.api.key'            = '<my-kafka-api-key>',

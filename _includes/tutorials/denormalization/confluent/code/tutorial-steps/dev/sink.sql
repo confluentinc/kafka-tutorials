@@ -1,5 +1,5 @@
 -- Send data to Snowflake
-CREATE SINK CONNECTOR orders_enriched WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS orders_enriched WITH (
   'connector.class'          = 'SnowflakeSink',
   'name'                     = 'recipe-snowflake-analyzed_clickstream',
   'kafka.api.key'            = '<my-kafka-api-key>',

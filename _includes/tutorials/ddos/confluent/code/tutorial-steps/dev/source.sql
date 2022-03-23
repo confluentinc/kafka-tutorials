@@ -1,5 +1,5 @@
 -- Example
-CREATE SOURCE CONNECTOR network-traffic-source WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS network-traffic-source WITH (
   'connector.class'   = 'RabbitMQSource',
   'name'              = 'network-traffic-source',
   'kafka.api.key'     = '<my-kafka-api-key>',
