@@ -1,6 +1,6 @@
-Typically, customer information would be sourced from an existing database. As customer occupancy changes, tables in the database are updated and we can stream them into Kafka using Kafka Connect with [change data capture](https://www.confluent.io/blog/cdc-and-streaming-analytics-using-debezium-kafka/). The earlier example of the `MySqlCdcSource` configuration could be used to capture changes from a `customer` database's `tenant` table into the Kafka cluster. This connector is provided as [fully managed on Confluent Cloud](https://docs.confluent.io/cloud/current/connectors/cc-mysql-source-cdc-debezium.html).  
+Typically, customer information would be sourced from an existing database. As customer occupancy changes, tables in the database are updated and we can stream them into Kafka using Kafka Connect with link:https://www.confluent.io/blog/cdc-and-streaming-analytics-using-debezium-kafka/[change data capture]. The earlier example of the `MySqlCdcSource` configuration could be used to capture changes from a `customer` database's `tenant` table into the Kafka cluster. This connector is provided as link:https://docs.confluent.io/cloud/current/connectors/cc-mysql-source-cdc-debezium.html[fully managed on Confluent Cloud].
 
-Telemetry data may be sourced into Kafka in a variety of ways. MQTT is a popular source for the Internet of Things (IoT) devices, and smart electrical panels may provide this functionality out of the box. The [MQTT Connector](https://docs.confluent.io/cloud/current/connectors/cc-mqtt-source.html) is available as [fully managed on Confluent Cloud](https://docs.confluent.io/cloud/current/connectors/cc-mqtt-source.html).
+Telemetry data may be sourced into Kafka in a variety of ways. MQTT is a popular source for the Internet of Things (IoT) devices, and smart electrical panels may provide this functionality out of the box. The link:https://docs.confluent.io/cloud/current/connectors/cc-mqtt-source.html[MQTT Connector] is available as link:https://docs.confluent.io/cloud/current/connectors/cc-mqtt-source.html[fully managed on Confluent Cloud].
 
 The current state of customer tenant occupancy can be represented with a ksqlDB `TABLE`. Events streamed into the `tenant-occupancy` topic represent a customer (`customer_id`) beginning an occupancy of a particular tenant (`tenant_id`). As events are observed on the `tenant-occupancy` topic, the table will model the current set of tenant occupants. 
 
@@ -24,7 +24,7 @@ You can query this table to determine which customer occupies which tenant.
 SELECT * FROM tenant_occupancy EMIT CHANGES;
 ----
 
-When customers leave a tenant, the source system will need to send a [tombstone record](https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/create-table/#primary-key) (an event with a valid `tenant_id` key and a `null` value). ksqlDB will process the tombstone by removing the row with the given key from the table.
+When customers leave a tenant, the source system will need to send a link:https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/create-table/#primary-key[tombstone record] (an event with a valid `tenant_id` key and a `null` value). ksqlDB will process the tombstone by removing the row with the given key from the table.
 
 Panel sensor readings can be streamed directly into a topic or sourced from an upstream system. A `STREAM` captures the power readings when they flow from the smart panel into Kafka. Each event contains a panel identifier and the associated tenant, in addition to two power readings.
 
