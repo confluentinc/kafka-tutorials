@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR telemetry WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS telemetry WITH (
   'connector.class'          = 'PostgresSource',
   'name'                     = 'recipe-postgres-iot',
   'kafka.api.key'            = '<my-kafka-api-key>',

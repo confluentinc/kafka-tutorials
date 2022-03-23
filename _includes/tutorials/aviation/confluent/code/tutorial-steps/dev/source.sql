@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR aviation WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS aviation WITH (
   'connector.class'          = 'PostgresSource',
   'name'                     = 'recipe-postgres-aviation',
   'kafka.api.key'            = '<my-kafka-api-key>',

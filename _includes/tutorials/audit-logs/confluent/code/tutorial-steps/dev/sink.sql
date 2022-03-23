@@ -1,5 +1,5 @@
 -- Send data to Splunk
-CREATE SINK CONNECTOR filtered_splunk WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS filtered_splunk WITH (
   'connector.class'          = 'SplunkSink',
   'name'                     = 'recipe-splunk-filter-logs',
   'input.data.format'        = 'JSON',

@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR customer WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS customer WITH (
   'connector.class'       = 'MySqlCdcSource',
   'name'                  = 'Customer_Tenant_Source',
   'kafka.api.key'         = '<my-kafka-api-key>',
@@ -15,7 +15,7 @@ CREATE SOURCE CONNECTOR customer WITH (
   'tasks.max'             = '1'
 );
 
-CREATE SOURCE CONNECTOR readings WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS readings WITH (
   'connector.class'       = 'MqttSource',
   'name'                  = 'Smart_Panel_Source',
   'kafka.api.key'         = '<my-kafka-api-key>',

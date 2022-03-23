@@ -1,5 +1,5 @@
 -- Stream of users
-CREATE SOURCE CONNECTOR DATAGEN_USERS WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS DATAGEN_USERS WITH (
   'name'                     = 'DATAGEN_USERS',
   'connector.class'          = 'DatagenSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
@@ -12,7 +12,7 @@ CREATE SOURCE CONNECTOR DATAGEN_USERS WITH (
 );
 
 -- Stream of per-user session information
-CREATE SOURCE CONNECTOR DATAGEN_CLICKS WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS DATAGEN_CLICKS WITH (
   'name'                     = 'DATAGEN_CLICKS',
   'connector.class'          = 'DatagenSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
