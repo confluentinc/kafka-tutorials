@@ -47,7 +47,7 @@ apply plugin: "com.github.johnrengelman.shadow"
 dependencies {
     implementation 'com.google.protobuf:protobuf-java:3.19.4'
     implementation 'org.apache.avro:avro:1.11.0'
-    implementation 'org.slf4j:slf4j-simple:1.7.32'
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
     implementation "org.apache.kafka:kafka-streams:3.0.0"
     testImplementation "junit:junit:4.13.2"
     testImplementation 'org.hamcrest:hamcrest:2.2'
