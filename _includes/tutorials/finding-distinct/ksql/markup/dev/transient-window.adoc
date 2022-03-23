@@ -1,6 +1,6 @@
 Let's experiment with these events.
 
-First, let's create a query to select the information we need and count each occurance of an IP address.
+First, let's create a query to select the information we need and count each occurrence of an IP address.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/ksql/code/tutorial-steps/dev/transient-window.sql %}</code></pre>
