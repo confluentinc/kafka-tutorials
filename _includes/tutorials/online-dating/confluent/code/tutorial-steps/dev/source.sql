@@ -9,9 +9,9 @@ CREATE SOURCE CONNECTOR online_dating WITH (
   'connection.user'          = '<database-user>',
   'connection.password'      = '<database-password>',
   'database'                 = '<database-name>',
-  'table.whitelist'          : 'messages',
-  'timestamp.column.name'    : 'created_at',
-  'output.data.format'       : 'JSON',
-  'db.timezone'              : 'UTC',
-  'tasks.max'                : '1'
+  'table.whitelist'          = 'messages',
+  'timestamp.column.name'    = 'created_at',
+  'output.data.format'       = 'JSON',
+  'db.timezone'              = 'UTC',
+  'tasks.max'                = '1'
 );
