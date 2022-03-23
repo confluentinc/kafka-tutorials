@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.2"
+        classpath "com.github.jengelman.gradle.plugins:shadow:6.1.0"
     }
 }
 
