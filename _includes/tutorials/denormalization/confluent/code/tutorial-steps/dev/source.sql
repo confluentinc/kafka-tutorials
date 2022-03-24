@@ -10,7 +10,7 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS sales_orders WITH (
   'database.password'        = '<database-password>',
   'database.dbname'          = 'database-name',
   'database.server.name'     = 'sql',
-  'table.include.list'       ='<table_name>',
+  'table.include.list'       = '<table_name>',
   'snapshot.mode'            = 'initial',
   'output.data.format'       = 'JSON',
   'tasks.max'                = '1'
