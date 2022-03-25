@@ -1,7 +1,7 @@
 -- Stream of fish weight predictions
 CREATE SOURCE CONNECTOR IF NOT EXISTS weight_predictions WITH (
   'connector.class'        = 'MongoDbAtlasSource',
-  'name'                   = 'model-retrain-weight_predictions',
+  'name'                   = 'model-retrain-weight-predictions',
   'kafka.api.key'          = '<my-kafka-api-key>',
   'kafka.api.secret'       = '<my-kafka-api-secret>',
   'connection.host'        = '<database-host-address>',
@@ -20,7 +20,7 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS weight_predictions WITH (
 -- Stream of actual fish weights
 CREATE SOURCE CONNECTOR IF NOT EXISTS actual_weights WITH (
   'connector.class'        = 'MongoDbAtlasSource',
-  'name'                   = 'model-retrain-actual_weights',
+  'name'                   = 'model-retrain-actual-weights',
   'kafka.api.key'          = '<my-kafka-api-key>',
   'kafka.api.secret'       = '<my-kafka-api-secret>',
   'connection.host'        = '<database-host-address>',
