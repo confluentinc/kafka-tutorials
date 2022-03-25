@@ -1,4 +1,4 @@
-CREATE SINK CONNECTOR IF NOT EXISTS training-data WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS training_data WITH (
     'connector.class'          = 'MongoDbAtlasSink',
     'name'                     = 'weight-data', 
     'kafka.auth.mode'          = 'KAFKA_API_KEY',
@@ -13,11 +13,11 @@ CREATE SINK CONNECTOR IF NOT EXISTS training-data WITH (
     'retries.defer.timeout'    = '5000',
     'max.batch.size'           = '0',
     'database'                 = 'mdb',
-    'collection'               = 'training-data',
+    'collection'               = 'training_data',
     'tasks.max'                = '1'
 );     
 
-CREATE SINK CONNECTOR IF NOT EXISTS retraining-trigger WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS retraining_trigger WITH (
     'connector.class'          = 'HttpSink',
     'input.data.format'        = 'JSON',
     'name'                     = 'retrain-trigger',

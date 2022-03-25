@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS merchant-data-cdc WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS merchant_data_cdc WITH (
   'connector.class'       = 'PostgresSource',
   'name'                  = 'merchant-data-source',
   'kafka.api.key'         = '<my-kafka-api-key>',
