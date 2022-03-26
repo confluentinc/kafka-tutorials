@@ -1,6 +1,6 @@
-CREATE SINK CONNECTOR IF NOT EXISTS promo-alerts-sink WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS promo_alerts_sink WITH (
   'connector.class'    = 'ElasticsearchSink',
-  'name'               = 'promo-alerts-sink',
+  'name'               = 'promo_alerts_sink',
   'input.data.format'  = 'JSON',
   'kafka.api.key'      = '<my-kafka-api-key>',
   'kafka.api.secret'   = '<my-kafka-api-secret>',
