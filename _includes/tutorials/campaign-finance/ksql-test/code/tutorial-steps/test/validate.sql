@@ -1,1 +1,1 @@
-SELECT * from CATEGORIZATION_DONATIONS LIMIT 10;
+SELECT * FROM categorization_donations LIMIT 10;
