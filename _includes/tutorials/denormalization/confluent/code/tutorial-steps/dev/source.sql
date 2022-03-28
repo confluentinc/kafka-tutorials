@@ -1,5 +1,5 @@
 -- Stream of sales_orders
-CREATE SOURCE CONNECTOR sales_orders WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS sales_orders WITH (
   'connector.class'          = 'SqlServerCdcSource',
   'name'                     = 'recipe-sqlservercdc-orders',
   'kafka.api.key'            = '<my-kafka-api-key>',
@@ -10,21 +10,21 @@ CREATE SOURCE CONNECTOR sales_orders WITH (
   'database.password'        = '<database-password>',
   'database.dbname'          = 'database-name',
   'database.server.name'     = 'sql',
-  'table.include.list'       ='<table_name>',
+  'table.include.list'       = '<table_name>',
   'snapshot.mode'            = 'initial',
   'output.data.format'       = 'JSON',
   'tasks.max'                = '1'
 );
 
 -- Stream of customers
-CREATE SOURCE CONNECTOR customers WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS customers WITH (
   'connector.class'          = 'OracleDatabaseSource',
   'name'                     = 'recipe-oracle-customers',
   'connector.class'          = 'OracleDatabaseSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'topic.prefix'             = 'oracle_',
-  'connection.host'          = '<my-database-endpoint>',
+  'connection.host'          = '<database-host>',
   'connection.port'          = '1521',
   'connection.user'          = '<database-username>',
   'connection.password'      = '<database-password>',

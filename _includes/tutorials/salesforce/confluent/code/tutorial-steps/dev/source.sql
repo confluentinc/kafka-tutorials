@@ -1,5 +1,5 @@
 -- Stream of changes to Salesforce records
-CREATE SOURCE CONNECTOR sfdc_cdc WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS sfdc_cdc WITH (
   'connector.class'            = 'SalesforceCdcSource',
   'name'                       = 'SalesforceCdcSourceConnector',
   'kafka.api.key'              = '<my-kafka-api-key>',

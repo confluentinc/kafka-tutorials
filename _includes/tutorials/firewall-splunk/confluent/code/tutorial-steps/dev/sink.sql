@@ -1,5 +1,5 @@
 -- Send data to Splunk
-CREATE SINK CONNECTOR cybersecurity_splunk WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS cybersecurity_splunk WITH (
   'connector.class'          = 'SplunkSink',
   'name'                     = 'recipe-cybersecurity-splunk',
   'input.data.format'        = 'JSON',

@@ -1,12 +1,12 @@
-CREATE SOURCE CONNECTOR sales WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS sales WITH (
   'connector.class'          = 'PostgresSource',
   'name'                     = 'recipe-postgres-pricing',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'connection.host'          = '<my-database-endpoint>',
+  'connection.host'          = '<database-host>',
   'connection.port'          = '5432',
   'connection.user'          = 'postgres',
-  'connection.password'      = '<my-database-password>',
+  'connection.password'      = '<database-password>',
   'db.name'                  = '<db-name>',
   'table.whitelist'          = 'sales',
   'timestamp.column.name'    = 'created_at',
@@ -15,15 +15,15 @@ CREATE SOURCE CONNECTOR sales WITH (
   'tasks.max'                = '1'
 );
 
-CREATE SOURCE CONNECTOR items WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS items WITH (
   'connector.class'          = 'PostgresSource',
   'name'                     = 'recipe-postgres-items',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'connection.host'          = '<my-database-endpoint>',
+  'connection.host'          = '<database-host>',
   'connection.port'          = '5432',
   'connection.user'          = 'postgres',
-  'connection.password'      = '<my-database-password>',
+  'connection.password'      = '<database-password>',
   'db.name'                  = '<db-name>',
   'table.whitelist'          = 'items',
   'timestamp.column.name'    = 'created_at',

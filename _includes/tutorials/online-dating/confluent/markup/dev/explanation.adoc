@@ -223,7 +223,7 @@ To wrap up, let's just trim that down to the final answers:
 [source,sql]
 ----
 SELECT conversation_id
-FROM conversation_state
+FROM conversation_states
 WHERE state->step = 'connected';
 ----
 

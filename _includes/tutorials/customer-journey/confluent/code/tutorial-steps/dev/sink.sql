@@ -1,5 +1,5 @@
 -- Send data to Elasticsearch
-CREATE SINK CONNECTOR analyzed_clickstream WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS analyzed_clickstream WITH (
   'connector.class'          = 'ElasticsearchSink',
   'name'                     = 'recipe-elasticsearch-customer_journey',
   'input.data.format'        = 'JSON',

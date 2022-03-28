@@ -1,12 +1,12 @@
-CREATE SOURCE CONNECTOR merchant-data-cdc WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS merchant_data_cdc WITH (
   'connector.class'       = 'PostgresSource',
-  'name'                  = 'merchant-data-source',
+  'name'                  = 'merchant_data_cdc',
   'kafka.api.key'         = '<my-kafka-api-key>',
   'kafka.api.secret'      = '<my-kafka-api-secret>',
-  'connection.host'       = '<my-database-endpoint>',
+  'connection.host'       = '<database-host>',
   'connection.port'       = '5432',
   'connection.user'       = 'postgres',
-  'connection.password'   = '<my-database-password>',
+  'connection.password'   = '<database-password>',
   'db.name'               = '<db-name>',
   'table.whitelist'       = 'merchant-locations',
   'timestamp.column.name' = 'created_at',

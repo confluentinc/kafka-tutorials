@@ -1,5 +1,5 @@
 -- Stream of fleet descriptions
-CREATE SOURCE CONNECTOR fleet_description WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS fleet_description WITH (
   'connector.class'          = 'MongoDbAtlasSource',
   'name'                     = 'recipe-mongodb-fleet_description',
   'kafka.api.key'            = '<my-kafka-api-key>',
@@ -17,15 +17,15 @@ CREATE SOURCE CONNECTOR fleet_description WITH (
 );
 
 -- Stream of current location of each vehicle in the fleet
-CREATE SOURCE CONNECTOR fleet_location WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS fleet_location WITH (
   'connector.class'          = 'PostgresSource',
   'name'                     = 'recipe-postgres-fleet_location',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'connection.host'          = '<my-database-endpoint>',
+  'connection.host'          = '<database-host>',
   'connection.port'          = '5432',
   'connection.user'          = 'postgres',
-  'connection.password'      = '<my-database-password>',
+  'connection.password'      = '<database-password>',
   'db.name'                  = '<db-name>',
   'table.whitelist'          = 'fleet_location',
   'timestamp.column.name'    = 'created_at',

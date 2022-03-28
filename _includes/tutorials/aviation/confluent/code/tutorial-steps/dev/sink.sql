@@ -1,5 +1,5 @@
 -- Send data to Snowflake
-CREATE SINK CONNECTOR customer_flight_updates WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS customer_flight_updates WITH (
   'connector.class'          = 'SnowflakeSink',
   'name'                     = 'recipe-snowflake-aviation',
   'kafka.api.key'            = '<my-kafka-api-key>',
@@ -11,21 +11,5 @@ CREATE SINK CONNECTOR customer_flight_updates WITH (
   'snowflake.private.key'    = '<private-key>',
   'snowflake.database.name'  = '<database-name>',
   'snowflake.schema.name'    = '<schema-name>',
-  'tasks.max'                = '1'
-);
-
--- Send data to Amazon Lambda
-CREATE SINK CONNECTOR recipe-lambda-aviation WITH (
-  'connector.class'          = 'LambdaSink',
-  'name'                     = 'recipe-lambda-aviation',
-  'kafka.api.key'            = '<my-kafka-api-key>',
-  'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'topics'                   = 'customer_flight_updates',
-  'input.data.format'        = 'JSON',
-  'aws.access.key.id'        = '<aws-key-id>',
-  'aws.secret.access.key'    = '<aws-access-key>',
-  'aws.lambda.function.name' = 'lambdaTextCustomer',
-  'aws.lambda.invocation.type' = 'sync',
-  'behavior.on.error'        = 'fail',
   'tasks.max'                = '1'
 );

@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR CLICKS WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS CLICKS WITH (
     'connector.class'             = 'io.mdrogalis.voluble.VolubleSourceConnector',
     'key.converter'               = 'org.apache.kafka.connect.storage.StringConverter',
     

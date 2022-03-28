@@ -1,4 +1,4 @@
-CREATE SOURCE CONNECTOR NETWORK_TRAFFIC WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS NETWORK_TRAFFIC WITH (
     'connector.class'                = 'io.mdrogalis.voluble.VolubleSourceConnector',
     'key.converter'                  = 'org.apache.kafka.connect.storage.StringConverter',
 
