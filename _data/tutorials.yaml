@@ -1054,3 +1054,11 @@ location-based-alerting:
   introduction-media: "/assets/img/geolocation.png"
   status:
     confluent: enabled
+
+campaign-finance:
+  title: "Analyze campaign finance contributions"
+  meta-description: "analyze campaign finance contributions"
+  slug: "/campaign-finance"
+  introduction: "Analyze campaign finance contributions slicing the data in various ways, for example, group by candidate or party affiliation, or sum up the contributions for a particular candidate, group by range of values."
+  status:
+    confluent: enabled
