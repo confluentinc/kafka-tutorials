@@ -38,7 +38,7 @@ EMIT CHANGES;
 CREATE TABLE contributions_small_count WITH (KAFKA_TOPIC = 'contributions_small_count') AS
 SELECT
   category,
-  COUNT(category) as count_contributions
+  COUNT(category) AS count_contributions
 FROM categorization_donations
 WHERE category = 'small'
 GROUP BY category;
