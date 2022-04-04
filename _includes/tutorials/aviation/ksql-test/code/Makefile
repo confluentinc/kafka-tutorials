@@ -11,5 +11,5 @@ tutorial:
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/aviation/ksql-test.yml $(TEMP_DIR) $(SEQUENCE)
 	# Check presence of customer flight update
-	grep 'Mechanical' $(TEST_OUTPUTS_DIR)/validate/output-0.log || { cat $(TEST_OUTPUTS_DIR)/validate/output-0.log ; false; }
+	grep 'Icy conditions' $(TEST_OUTPUTS_DIR)/validate/output-0.log || { cat $(TEST_OUTPUTS_DIR)/validate/output-0.log ; false; }
 	reset
