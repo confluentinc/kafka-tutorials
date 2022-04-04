@@ -1,1 +1,1 @@
-SELECT * FROM CONTRIBUTIONS_SMALL_COUNT;
+SELECT * FROM contributions_small_count;
