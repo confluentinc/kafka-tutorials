@@ -12,19 +12,11 @@ CREATE STREAM campaign_finance (
   VALUE_FORMAT = 'JSON'
 );
 
--- Filter by party affiliation
-CREATE STREAM contributions_for_independents WITH (KAFKA_TOPIC = 'contributions_for_independents') AS
-SELECT
-  FORMAT_TIMESTAMP(FROM_UNIXTIME(time), 'yyyy-MM-dd HH:mm:ss') AS ts,
-  cand_id,
-  contribution
-FROM campaign_finance
-WHERE party_affiliation = 'IND';
-
 -- Categorize donations by amount
 CREATE STREAM categorization_donations WITH (KAFKA_TOPIC = 'categorization_donations') AS
 SELECT
   FORMAT_TIMESTAMP(FROM_UNIXTIME(time), 'yyyy-MM-dd HH:mm:ss') AS ts,
+  party_affiliation,
   cand_id,
   CASE
     WHEN contribution < 500 THEN 'small'
@@ -35,10 +27,11 @@ FROM campaign_finance
 EMIT CHANGES;
 
 -- Get count of "small" contributions
-CREATE TABLE contributions_small_count WITH (KAFKA_TOPIC = 'contributions_small_count') AS
+CREATE TABLE contributions_small_count WITH (KAFKA_TOPIC = 'contributions_small_count', KEY_FORMAT='JSON') AS
 SELECT
   category,
+  party_affiliation,
   COUNT(category) AS count_contributions
 FROM categorization_donations
 WHERE category = 'small'
-GROUP BY category;
+GROUP BY category, party_affiliation;

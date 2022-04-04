@@ -1,1 +1,1 @@
-SELECT * FROM categorization_donations LIMIT 10;
+SELECT * FROM CONTRIBUTIONS_SMALL_COUNT;

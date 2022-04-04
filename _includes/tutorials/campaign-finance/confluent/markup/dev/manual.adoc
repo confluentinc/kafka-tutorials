@@ -13,5 +13,3 @@ Your output should resemble:
 ++++
 <pre class="snippet"><code class="text">{% include_raw tutorials/campaign-finance/ksql-test/code/tutorial-steps/test/expected-outputs/check_campaigns.log %}</code></pre>
 ++++
-
-
