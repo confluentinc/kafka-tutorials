@@ -2,7 +2,7 @@
 <pre class="snippet"><code class="sql">{% include_raw tutorials/dynamic-pricing/confluent/code/tutorial-steps/dev/manual.sql %}</code></pre>
 ++++
 
-To validate that this recipe is working, you can run the following query:
+To validate that this recipe is working, run the following query:
 
 ++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/dynamic-pricing/ksql-test/code/tutorial-steps/test/validate.sql %}</code></pre>
