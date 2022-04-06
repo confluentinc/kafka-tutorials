@@ -35,15 +35,16 @@ services:
     hostname: schema-registry
     container_name: schema-registry
     depends_on:
+      - zookeeper
       - broker
     ports:
       - "8081:8081"
     environment:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
+      SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.24.0
+    image: confluent-docker.jfrog.io/confluentinc/ksqldb-server:0.25.1-rc4
     hostname: ksqldb
     container_name: ksqldb
     depends_on:
@@ -91,7 +92,7 @@ services:
         sleep infinity
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.24.0
+    image: confluent-docker.jfrog.io/confluentinc/ksqldb-cli:0.25.1-rc4
     container_name: ksqldb-cli
     depends_on:
       - broker
