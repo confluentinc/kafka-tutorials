@@ -53,7 +53,7 @@ dependencies {
     testImplementation 'org.hamcrest:hamcrest:2.2'
     implementation "io.confluent:kafka-avro-serializer:7.0.1"
     implementation "io.confluent:kafka-protobuf-serializer:7.0.0"
-    implementation "io.confluent:kafka-protobuf-provider:7.0.0"
+    implementation "io.confluent:kafka-protobuf-provider:7.1.0"
 }
 
 protobuf {
