@@ -44,7 +44,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksql-server:
-    image: confluentinc/ksqldb-server:0.24.0
+    image: confluent-docker.jfrog.io/confluentinc/ksqldb-server:0.25.1-rc4
     hostname: ksql-server
     container_name: ksql-server
     depends_on:
@@ -63,7 +63,7 @@ services:
       KSQL_KSQL_STREAMS_CACHE_MAX_BYTES_BUFFERING: 0
 
   ksql-cli:
-    image: confluentinc/ksqldb-cli:0.24.0
+    image: confluent-docker.jfrog.io/confluentinc/ksqldb-cli:0.25.1-rc4
     container_name: ksql-cli
     depends_on:
       - broker
