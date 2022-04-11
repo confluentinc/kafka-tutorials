@@ -77,7 +77,7 @@ blocks:
 
   - name: Run first block of tests (recipes)
     execution_time_limit:
-      minutes: 10
+      minutes: 30
     task:
       prologue:
         commands:
