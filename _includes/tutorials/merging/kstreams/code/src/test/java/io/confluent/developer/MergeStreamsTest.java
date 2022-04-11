@@ -6,6 +6,7 @@ import org.apache.kafka.common.serialization.Serializer;
 import org.apache.kafka.streams.TestInputTopic;
 import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.TopologyTestDriver;
+import org.apache.kafka.streams.StreamsConfig;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
@@ -51,6 +52,8 @@ public class MergeStreamsTest {
     public void testMergeStreams() throws IOException {
         MergeStreams ms = new MergeStreams();
         Properties allProps = ms.loadEnvProperties(TEST_CONFIG_FILE);
+        allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
+        allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
 
         String rockTopic = allProps.getProperty("input.rock.topic.name");
         String classicalTopic = allProps.getProperty("input.classical.topic.name");
