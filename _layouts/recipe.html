@@ -34,21 +34,25 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <ul class="breadcrumb">
-          <li><a href="{{ "/" | relative_url }}">&lt; Back to recipes</a></li>
-        </ul>
         {% if page.community_contribution %}
         <span class="community-contribution">Community contribution ✨</span>
         {% endif %}
         <div class="headline">
           <h1>{{ site.data.tutorials[page.static_data].title }}</h1>
         </div>
+
+        {% unless page.help_wanted %}
+        {% include recipe-content-answer.html %}
+        {% endunless %}
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
+      <ul class="breadcrumb">
+        <li><a href="{{ "/" | relative_url }}">&lt; Back to recipes</a></li>
+      </ul>
       <a href="{{ site.github_url }}/tree/master/_includes/tutorials/{{ page.static_data }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
       {% unless page.help_wanted %}
         <div class="example">
@@ -60,12 +64,6 @@
           </div>
         </div>
       {% endunless %}
-
-      <div class="tutorial-markup">
-        {% unless page.help_wanted %}
-        {% include recipe-content-answer.html %}
-        {% endunless %}
-      </div>
 
       {% if site.data.harnesses[page.static_data][page.stack].dev %}
       <div class="columns">

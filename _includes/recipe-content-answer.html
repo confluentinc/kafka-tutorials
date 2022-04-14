@@ -1,29 +1,21 @@
-<div>
+<div class="launch-container">
 
    {% if site.data.harnesses[page.static_data][page.stack].answer %}
 
-   <br>
-   <br>
-   <br>
-   <br>
-
-     <div class="container" style="background-color: #E6F5FB; padding: 30px; ">
-       <div class="columns">
-         <div class="column is-full">
-           <h3 class="title">Launch recipe in Confluent Cloud</h3>
            {% for step in site.data.harnesses[page.static_data][page.stack].answer.steps %}
 
             <div class="tutorial-try-it-step content">
+            {% if step.title %}
              <h4 class="subtitle" id="{{ step.title | slugify }}">
-               <div class="text">{{ step.title }}</div>
+               <div class="text">{{ step.title }} Fake Title</div>
              </h4>
-
+             {% endif %}
               {% for section in step.content %}
 
               {% if section.render.skip != true %}
 
         <div class="ctas">
-          <a href="https://www.confluent.io/confluent-cloud/tryfree/\?next=tutorials/ksql-recipe-{{ page.static_data }}" class="btn-denim">Launch</a>
+          <a href="https://www.confluent.io/confluent-cloud/tryfree/\?next=tutorials/ksql-recipe-{{ page.static_data }}" class="btn-island">Launch recipe in Confluent Cloud</a>
         </div>
 
               {% endif %}
@@ -31,9 +23,6 @@
               {% endfor %}
            </div>
            {% endfor %}
-         </div>
-       </div>
-     </div>
    {% endif %}
 
 </div>

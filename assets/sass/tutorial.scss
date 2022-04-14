@@ -65,6 +65,17 @@
         margin: 20px auto;
       }
 
+      .launch-container {
+        padding: 0;
+
+        .tutorial-try-it-step {
+          .subtitle {
+            color: $color_white;
+            margin-left: 0;
+          }
+        }
+      }
+
       .community-contribution {
         font-size: 0.75rem;
         background: $color_white;
