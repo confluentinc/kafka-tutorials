@@ -1,2 +1,2 @@
 ksqlDB processes data in realtime, and you can also import and export data straight from ksqlDB from popular data sources and end systems in the cloud.
-This tutorial shows sample connector(s) below, but you can run another connector to any link:https://docs.confluent.io/cloud/current/connectors/index.html[supported data source].
+This tutorial shows you how to run the recipe in one of two ways: using connector(s) to any link:https://docs.confluent.io/cloud/current/connectors/index.html[supported data source] or using ksqlDB's `INSERT INTO` functionality.
