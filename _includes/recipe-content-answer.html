@@ -6,10 +6,10 @@
 
             <div class="tutorial-try-it-step content">
             {% if step.title %}
-             <h4 class="subtitle" id="{{ step.title | slugify }}">
-               <div class="text">{{ step.title }}</div>
-             </h4>
-             {% endif %}
+              <h4 class="subtitle" id="{{ step.title | slugify }}">
+                <div class="text">{{ step.title }}</div>
+              </h4>
+            {% endif %}
               {% for section in step.content %}
 
               {% if section.render.skip != true %}
