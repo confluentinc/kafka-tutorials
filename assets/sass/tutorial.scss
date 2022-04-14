@@ -19,6 +19,17 @@
       font-size: 28px;
       margin-top: 40px;
     }
+
+    .example-image {
+      float: right;
+      margin-left: 25px;
+      width: 436px;
+      height: 100%;
+
+      @include for-max-mobile {
+        display: none;
+      }
+    }
   }
 
   .btn-edit {
@@ -49,6 +60,10 @@
 
   .tutorial-try-it-step p {
     @include p;
+  }
+
+  .tutorial-markup .section:first-of-type {
+    padding-top: 0;
   }
 
   .hero {
@@ -104,8 +119,10 @@
         flex-direction: column;
 
         .image {
+          display: inline-block;
           margin-left: 0;
           width: 100%;
+          height: 100%;
         }
       }
     }
@@ -116,10 +133,7 @@
     }
 
     .image {
-      display: inline-block;
-      margin-left: 25px;
-      width: 436px;
-      height: 100%;
+      display: none;
     }
   }
 
@@ -167,7 +181,6 @@
   }
 
   .tutorial-navigation {
-    margin-top: 60px;
     display: inline-block;
 
     li {

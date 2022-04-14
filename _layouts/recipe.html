@@ -50,6 +50,9 @@
 
   <section class="section">
     <div class="container">
+      {% if site.data.tutorials[page.static_data].introduction-media %}
+        <img class="example-image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
+      {% endif %}
       <ul class="breadcrumb">
         <li><a href="{{ "/" | relative_url }}">&lt; Back to recipes</a></li>
       </ul>
@@ -66,8 +69,8 @@
       {% endunless %}
 
       {% if site.data.harnesses[page.static_data][page.stack].dev %}
-      <div class="columns">
-        <div class="column is-5">
+      <div class="columns" {% if page.media_youtube %}style="clear: both;"{% endif %}>
+        <div {% if page.media_youtube %}class="column is-5"{% else %}class="column">{% endif %}
           <ul id="toc" class="tutorial-navigation">
             <li><a href="#run-it">Run it</a></li>
             <ul>
@@ -101,14 +104,14 @@
             {% endif %}
           </ul>
         </div>
-        <div class="column is-7 tutorial-media-container">
-          {% if page.media_youtube %}
-          <h5 class="title is-5">Video walkthrough</h5>
-           <figure class="image">
+        {% if page.media_youtube %}
+          <div class="column is-7 tutorial-media-container">
+            <h5 class="title is-5">Video walkthrough</h5>
+            <figure class="image">
               <iframe src="https://www.youtube.com/embed/{{ page.media_youtube }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </figure>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
       </div>
       {% endif %}
     </div>
