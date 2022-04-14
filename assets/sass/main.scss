@@ -256,6 +256,14 @@ a {
     }
   }
 
+  .container {
+    margin: 15px auto;
+
+    .title {
+      color: #E6F5FB;
+    }
+  }
+
   .footer {
     margin-top: 130px;
   }
@@ -417,6 +425,8 @@ a {
 .section {
   .container {
     .breadcrumb {
+      margin-top: 0;
+      
       a {
         color: $color_black !important;
         font-weight: 900;
