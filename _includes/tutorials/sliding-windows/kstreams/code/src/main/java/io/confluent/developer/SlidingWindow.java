@@ -58,7 +58,7 @@ public class SlidingWindow {
 
         builder.stream(tempReadingTopic, Consumed.with(Serdes.String(), temReadingSerde))
                 .groupByKey()
-                .windowedBy(SlidingWindows.withTimeDifferenceAndGrace(Duration.ofMillis(500), Duration.ofMillis(100)))
+                .windowedBy(SlidingWindows.ofTimeDifferenceAndGrace(Duration.ofMillis(500), Duration.ofMillis(100)))
                 .aggregate(TempAverage::new, (k, tr, ave) -> {
                     ave.setNumReadings(ave.getNumReadings() +1);
                     ave.setTotal(ave.getTotal() + tr.getTemp());
