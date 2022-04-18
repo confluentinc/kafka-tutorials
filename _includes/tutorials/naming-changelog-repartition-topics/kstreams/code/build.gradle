@@ -25,9 +25,6 @@ repositories {
     maven {
         url "https://packages.confluent.io/maven"
     }
-    tasks.withType(JavaCompile) {
-      options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
-    }
 }
 
 apply plugin: "com.commercehub.gradle.plugin.avro"
