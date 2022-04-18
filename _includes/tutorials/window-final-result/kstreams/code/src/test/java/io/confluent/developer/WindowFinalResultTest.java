@@ -51,7 +51,7 @@ public class WindowFinalResultTest {
   private final Serde<Windowed<String>> keyResultSerde = timeWindowedSerdeFrom(String.class, testWindowSize.toMillis());
 
   private TimeWindows makeFixedTimeWindow() {
-    return TimeWindows.of(testWindowSize).advanceBy(testWindowSize).grace(testGracePeriodSize);
+    return TimeWindows.ofSizeAndGrace(testWindowSize,testGracePeriodSize).advanceBy(testWindowSize);
   }
 
   private SpecificAvroSerde<PressureAlert> makePressureAlertSerde() {
