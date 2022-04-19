@@ -35,9 +35,6 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <ul class="breadcrumb">
-          <li><a href="{{ "/" | relative_url }}">&lt; Back to recipes</a></li>
-        </ul>
         {% if page.community_contribution %}
         <span class="community-contribution">Community contribution ✨</span>
         {% endif %}
@@ -57,6 +54,9 @@
       {% if site.data.tutorials[page.static_data].introduction-media %}
         <img class="example-image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
       {% endif %}
+      <ul class="breadcrumb">
+        <li><a href="{{ "/" | relative_url }}">&lt; Back to recipes</a></li>
+      </ul>
       <a href="{{ site.github_url }}/tree/master/_includes/tutorials/{{ page.static_data }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
       {% unless page.help_wanted %}
         <div class="example">
