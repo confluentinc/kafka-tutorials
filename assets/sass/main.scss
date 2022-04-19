@@ -414,9 +414,6 @@ a {
 }
 
 .breadcrumb {
-  a {
-    color: $color_white !important;
-  }
   li {
     margin-left: 0;
   }
@@ -428,8 +425,9 @@ a {
       margin-top: 0;
       
       a {
-        color: $color_black !important;
+        color: $color_academy;
         font-weight: 900;
+        text-decoration: underline;
       }
     }
   }
