@@ -58,7 +58,7 @@ public class TumblingWindow {
         builder.<String, Rating>stream(ratingTopic)
             .map((key, rating) -> new KeyValue<>(rating.getTitle(), rating))
             .groupByKey()
-            .windowedBy(TimeWindows.ofSizeWithNoGrace(Duration.ofMinutes(10)))
+            .windowedBy(TimeWindows.ofSizeAndGrace(Duration.ofMinutes(10), Duration.ofMinutes(1440)))
             .count()
             .toStream()
             .map((Windowed<String> key, Long count) -> new KeyValue<>(key.key(), count.toString()))

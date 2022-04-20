@@ -4,7 +4,6 @@
 "name": "OrderDetail",
 "fields": [
     {"name": "number", "type": "long", "doc": "The order number."},
-    {"name": "date", "type": "long", "logicalType": "date", "doc": "The date the order was submitted."},
     {"name": "shipping_address", "type": "string", "doc": "The shipping address."},
     {"name": "subtotal", "type": "double", "doc": "The amount without shipping cost and tax."},
     {"name": "shipping_cost", "type": "double", "doc": "The shipping cost."},
