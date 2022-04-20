@@ -1054,3 +1054,12 @@ location-based-alerting:
   introduction-media: "/assets/img/geolocation.png"
   status:
     confluent: enabled
+
+campaign-finance:
+  title: "Analyze political campaign fundraising performance"
+  meta-description: "Analyze political campaign fundraising performance"
+  slug: "/campaign-finance"
+  introduction: "Oftentimes political analysts need to perform in-depth financial analysis to get insights into campaign performance, predict future contributions from their base of support, and optimize their ongoing strategy. Data from the <a href='https://www.fec.gov/data/browse-data/?tab=bulk-data'>Federal Election Commission of the United States of America</a> provides all the statements and reports filed with the Commission to help feed this analysis. This recipe walks through how to leverage Kafka and ksqlDB to analyze and slice this campaign financial data in various ways, such as grouping by party affiliation, counting contributions for particular candidate, and more."
+  introduction-media: "/assets/img/campaign.jpg"
+  status:
+    confluent: enabled
