@@ -1,2 +1,3 @@
 Once your Confluent Cloud cluster is available, create a link:https://ksqldb.io/[ksqlDB] application and navigate to the ksqlDB editor to execute this tutorial.
-ksqlDB supports `SQL` language for extracting, transforming, and loading events within your Kafka cluster.
+ksqlDB supports `SQL` language for real-time extracting, transforming, and loading events within your Kafka cluster.
+You can also import and export data straight from ksqlDB from popular data sources and end systems in the cloud.
