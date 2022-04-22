@@ -256,6 +256,14 @@ a {
     }
   }
 
+  .container {
+    margin: 15px auto;
+
+    .title {
+      color: #E6F5FB;
+    }
+  }
+
   .footer {
     margin-top: 130px;
   }
@@ -406,9 +414,6 @@ a {
 }
 
 .breadcrumb {
-  a {
-    color: $color_white !important;
-  }
   li {
     margin-left: 0;
   }
@@ -417,9 +422,12 @@ a {
 .section {
   .container {
     .breadcrumb {
+      margin-top: 0;
+      
       a {
-        color: $color_black !important;
+        color: $color_academy;
         font-weight: 900;
+        text-decoration: underline;
       }
     }
   }
