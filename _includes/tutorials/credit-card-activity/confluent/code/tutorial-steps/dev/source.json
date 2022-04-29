@@ -1,7 +1,6 @@
 {
   "connector.class"          : "OracleDatabaseSource",
   "name"                     : "recipe-oracle-transactions-cc",
-  "connector.class"          : "OracleDatabaseSource",
   "kafka.api.key"            : "<my-kafka-api-key>",
   "kafka.api.secret"         : "<my-kafka-api-secret>",
   "connection.host"          : "<database-host>",
@@ -19,7 +18,6 @@
 {
   "connector.class"          : "OracleDatabaseSource",
   "name"                     : "recipe-oracle-customers-cc",
-  "connector.class"          : "OracleDatabaseSource",
   "kafka.api.key"            : "<my-kafka-api-key>",
   "kafka.api.secret"         : "<my-kafka-api-secret>",
   "connection.host"          : "<database-host>",
