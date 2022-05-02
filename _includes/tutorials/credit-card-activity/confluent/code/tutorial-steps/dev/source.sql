@@ -2,7 +2,6 @@
 CREATE SOURCE CONNECTOR IF NOT EXISTS FD_transactions WITH (
   'connector.class'          = 'OracleDatabaseSource',
   'name'                     = 'recipe-oracle-transactions-cc',
-  'connector.class'          = 'OracleDatabaseSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
@@ -21,7 +20,6 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS FD_transactions WITH (
 CREATE SOURCE CONNECTOR IF NOT EXISTS FD_customers WITH (
   'connector.class'          = 'OracleDatabaseSource',
   'name'                     = 'recipe-oracle-customers-cc',
-  'connector.class'          = 'OracleDatabaseSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',

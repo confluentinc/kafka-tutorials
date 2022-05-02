@@ -20,7 +20,6 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS sales_orders WITH (
 CREATE SOURCE CONNECTOR IF NOT EXISTS customers WITH (
   'connector.class'          = 'OracleDatabaseSource',
   'name'                     = 'recipe-oracle-customers',
-  'connector.class'          = 'OracleDatabaseSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'topic.prefix'             = 'oracle_',
