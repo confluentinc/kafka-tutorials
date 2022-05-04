@@ -69,7 +69,7 @@ public class NamingChangelogAndRepartitionTopics {
                                     .toStream();
 
         joinedStream = inputStream.join(countStream, (v1, v2) -> v1 + v2.toString(),
-                                                              JoinWindows.ofTimeDifferenceWithNoGrace(Duration.ofMillis(100)),
+                                                              JoinWindows.of(Duration.ofMillis(100)),
                                                               StreamJoined.with(longSerde, stringSerde, longSerde));
     } else {
         countStream = inputStream.groupByKey(Grouped.with("count", longSerde, stringSerde))
@@ -77,7 +77,7 @@ public class NamingChangelogAndRepartitionTopics {
                                    .toStream();
 
         joinedStream = inputStream.join(countStream, (v1, v2) -> v1 + v2.toString(),
-                                                              JoinWindows.ofTimeDifferenceWithNoGrace(Duration.ofMillis(100)),
+                                                              JoinWindows.of(Duration.ofMillis(100)),
                                                               StreamJoined.with(longSerde, stringSerde, longSerde)
                                                                           .withName("join").withStoreName("the-join-store"));
     }
