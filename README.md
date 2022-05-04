@@ -131,9 +131,9 @@ TUTORIAL_SHORT_NAME=my-tutorial-name
 
 # the MAIN_CLASS variable will generate a test named MAIN_CLASSTest
 MAIN_CLASS=FilteringCode
-AK_VERSION=2.7.0
-CP_VERSION=6.1.0
-KSQLDB_VERSION=0.11.0
+AK_VERSION=3.1.0
+CP_VERSION=7.1.0
+KSQLDB_VERSION=0.24.0
 SEMAPHORE_TEST_NAME="Test name for Semaphore run"
 PERMALINK="seo-friendly-link-to-my-tutorial"
 ```

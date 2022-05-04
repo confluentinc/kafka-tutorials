@@ -7,5 +7,5 @@ tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/tumbling-windows/kstreams.yml $(TEMP_DIR) $(SEQUENCE)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/windowed-counted-ratings.txt $(DEV_OUTPUTS_DIR)/windowed-ratings-actual.txt
+	diff --ignore-blank-lines --strip-trailing-cr $(STEPS_DIR)/dev/windowed-counted-ratings.txt $(DEV_OUTPUTS_DIR)/windowed-ratings-actual.txt
 	reset

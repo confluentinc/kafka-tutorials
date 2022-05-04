@@ -95,7 +95,7 @@ dev:
 
         - name: wait for the consumer to read the messages
           action: sleep
-          ms: 60000
+          ms: 30000
           render:
             skip: true
 

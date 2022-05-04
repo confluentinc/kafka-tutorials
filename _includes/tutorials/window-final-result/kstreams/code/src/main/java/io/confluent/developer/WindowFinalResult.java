@@ -22,7 +22,7 @@ import java.util.Properties;
 import static io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig.SCHEMA_REGISTRY_URL_CONFIG;
 import static java.util.Collections.singletonMap;
 import static org.apache.kafka.streams.kstream.Suppressed.BufferConfig.unbounded;
-import static org.apache.kafka.streams.kstream.WindowedSerdes.timeWindowedSerdeFrom;
+import static org.apache.kafka.streams.kstream.WindowedSerdes.TimeWindowedSerde;
 
 public class WindowFinalResult {
 
@@ -51,7 +51,7 @@ public class WindowFinalResult {
         String outputTopic = config.getString("output.topic.name");
 
         Produced<Windowed<String>, Long> producedCount = Produced
-                .with(timeWindowedSerdeFrom(String.class), Serdes.Long());
+                .with(new TimeWindowedSerde<>(Serdes.String(), Long.MAX_VALUE), Serdes.Long());
 
         Consumed<String, PressureAlert> consumedPressure = Consumed
                 .with(Serdes.String(), pressureSerde)
@@ -95,11 +95,9 @@ public class WindowFinalResult {
 
         TimeWindows windows = TimeWindows
 
-                .of(config.getDuration("window.size"))
+                .ofSizeAndGrace(config.getDuration("window.size"), config.getDuration("window.grace.period"))
 
-                .advanceBy(config.getDuration("window.size"))
-
-                .grace(config.getDuration("window.grace.period"));
+                .advanceBy(config.getDuration("window.size"));
 
         Topology topology = buildTopology(config, windows, pressureSerde);
 
