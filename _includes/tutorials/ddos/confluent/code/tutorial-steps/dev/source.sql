@@ -10,4 +10,4 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS network_traffic_source WITH (
   'rabbitmq.password' = '<my-rabbitmq-password>',
   'rabbitmq.queue'    = '<my-rabbitmq-queue>',
   'tasks.max'         = '1'
-)
+);
