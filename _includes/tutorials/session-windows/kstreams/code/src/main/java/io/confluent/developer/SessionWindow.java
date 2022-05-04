@@ -54,7 +54,7 @@ public class SessionWindow {
 
         builder.stream(inputTopic, Consumed.with(Serdes.String(), clicksSerde))
                 .groupByKey()
-                .windowedBy(SessionWindows.with(Duration.ofMinutes(5)).grace(Duration.ofSeconds(30)))
+                .windowedBy(SessionWindows.ofInactivityGapAndGrace(Duration.ofMinutes(5), Duration.ofSeconds(30)))
                 .count()
                 .toStream()
                 .map((windowedKey, count) ->  {

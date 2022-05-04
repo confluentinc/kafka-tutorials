@@ -75,120 +75,7 @@ blocks:
             - sem-version java $JAVA_VERSION
             - ./gradlew clean test
 
-  - name: Run first block of tests (recipes)
-    execution_time_limit:
-      minutes: 10
-    task:
-      prologue:
-        commands:
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
-      jobs:
-        - name: Payment Status Check
-          commands:
-            - make -C _includes/tutorials/payment-status-check/ksql-test/code tutorial
-
-        - name: Model Retraining
-          commands:
-            - make -C _includes/tutorials/model-retraining/ksql-test/code tutorial
-
-        - name: Inventory
-          commands:
-            - make -C _includes/tutorials/inventory/ksql-test/code tutorial
-
-        - name: Firewall Splunk
-          commands:
-            - make -C _includes/tutorials/firewall-splunk/ksql-test/code tutorial
-
-        - name: Internet of Things
-          commands:
-            - make -C _includes/tutorials/internet-of-things/ksql-test/code tutorial
-
-        - name: Online Dating
-          commands:
-            - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
-
-        - name: Loyalty Rewards
-          commands:
-            - make -C _includes/tutorials/loyalty-rewards/ksql-test/code tutorial
-
-        - name: Dynamic Pricing
-          commands:
-            - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
-
-        - name: Location Based Alerting
-          commands:
-            - make -C _includes/tutorials/location-based-alerting/ksql-test/code tutorial
-
-        - name: Aviation
-          commands:
-            - make -C _includes/tutorials/aviation/ksql-test/code tutorial
-
-        - name: Denormalization
-          commands:
-            - make -C _includes/tutorials/denormalization/ksql-test/code tutorial
-
-        - name: Customer Journey
-          commands:
-            - make -C _includes/tutorials/customer-journey/ksql-test/code tutorial
-
-        - name: Messaging Modernization
-          commands:
-            - make -C _includes/tutorials/messaging-modernization/ksql-test/code tutorial
-
-        - name: Salesforce
-          commands:
-            - make -C _includes/tutorials/salesforce/ksql-test/code tutorial
-
-        - name: Next Best Offer
-          commands:
-            - make -C _includes/tutorials/next-best-offer/ksql-test/code tutorial
-
-        - name: Fleet Management
-          commands:
-            - make -C _includes/tutorials/fleet-management/ksql-test/code tutorial
-
-        - name: DDoS
-          commands:
-            - make -C _includes/tutorials/ddos/ksql-test/code tutorial
-
-        - name: Datacenter
-          commands:
-            - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
-
-        - name: Audit logs
-          commands:
-            - make -C _includes/tutorials/audit-logs/ksql-test/code tutorial
-
-        - name: Discount promo
-          commands:
-            - make -C _includes/tutorials/discount-promo/ksql-test/code tutorial
-
-        - name: Logistics
-          commands:
-            - make -C _includes/tutorials/logistics/ksql-test/code tutorial
-
-        - name: Mainframe offload
-          commands:
-            - make -C _includes/tutorials/mainframe-offload/ksql-test/code tutorial
-
-        - name: Clickstream
-          commands:
-            - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
-
-        - name: SSH Attack
-          commands:
-            - make -C _includes/tutorials/SSH-attack/ksql-test/code tutorial
-
-        - name: Credit card activity
-          commands:
-            - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
-
-        - name: Campaign Finance
-          commands:
-            - make -C _includes/tutorials/campaign-finance/ksql-test/code tutorial
-
-  - name: Run second block of tests
+  - name: Run first block of tests (mostly Kafka and KStreams)
     execution_time_limit:
       minutes: 10
     task:
@@ -354,6 +241,118 @@ blocks:
           commands:
             - make -C _includes/tutorials/multiple-event-types/kafka/code tutorial    
 
+        - name: KStreams How to implement TTLs with KTable with aggregate tests
+          commands:
+            - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
+
+  - name: Run second block of tests (ksqlDB recipes)
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - sudo apt-get install gradle-6.8.3 -y
+          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
+      jobs:
+        - name: Payment Status Check
+          commands:
+            - make -C _includes/tutorials/payment-status-check/ksql-test/code tutorial
+
+        - name: Model Retraining
+          commands:
+            - make -C _includes/tutorials/model-retraining/ksql-test/code tutorial
+
+        - name: Inventory
+          commands:
+            - make -C _includes/tutorials/inventory/ksql-test/code tutorial
+
+        - name: Firewall Splunk
+          commands:
+            - make -C _includes/tutorials/firewall-splunk/ksql-test/code tutorial
+
+        - name: Internet of Things
+          commands:
+            - make -C _includes/tutorials/internet-of-things/ksql-test/code tutorial
+
+        - name: Online Dating
+          commands:
+            - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
+
+        - name: Loyalty Rewards
+          commands:
+            - make -C _includes/tutorials/loyalty-rewards/ksql-test/code tutorial
+
+        - name: Dynamic Pricing
+          commands:
+            - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
+
+        - name: Location Based Alerting
+          commands:
+            - make -C _includes/tutorials/location-based-alerting/ksql-test/code tutorial
+
+        - name: Aviation
+          commands:
+            - make -C _includes/tutorials/aviation/ksql-test/code tutorial
+
+        - name: Denormalization
+          commands:
+            - make -C _includes/tutorials/denormalization/ksql-test/code tutorial
+
+        - name: Customer Journey
+          commands:
+            - make -C _includes/tutorials/customer-journey/ksql-test/code tutorial
+
+        - name: Messaging Modernization
+          commands:
+            - make -C _includes/tutorials/messaging-modernization/ksql-test/code tutorial
+
+        - name: Salesforce
+          commands:
+            - make -C _includes/tutorials/salesforce/ksql-test/code tutorial
+
+        - name: Next Best Offer
+          commands:
+            - make -C _includes/tutorials/next-best-offer/ksql-test/code tutorial
+
+        - name: Fleet Management
+          commands:
+            - make -C _includes/tutorials/fleet-management/ksql-test/code tutorial
+
+        - name: DDoS
+          commands:
+            - make -C _includes/tutorials/ddos/ksql-test/code tutorial
+
+        - name: Datacenter
+          commands:
+            - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
+
+        - name: Audit logs
+          commands:
+            - make -C _includes/tutorials/audit-logs/ksql-test/code tutorial
+
+        - name: Discount promo
+          commands:
+            - make -C _includes/tutorials/discount-promo/ksql-test/code tutorial
+
+        - name: Logistics
+          commands:
+            - make -C _includes/tutorials/logistics/ksql-test/code tutorial
+
+        - name: Mainframe offload
+          commands:
+            - make -C _includes/tutorials/mainframe-offload/ksql-test/code tutorial
+
+        - name: Clickstream
+          commands:
+            - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
+
+        - name: SSH Attack
+          commands:
+            - make -C _includes/tutorials/SSH-attack/ksql-test/code tutorial
+
+        - name: Credit card activity
+          commands:
+            - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
 
   - name: Run third block of tests (mostly ksqlDB)
     execution_time_limit:
@@ -455,11 +454,11 @@ blocks:
           commands:
             - make -C _includes/tutorials/transforming/ksql/code tutorial
 
-        - name: ksqlDB  Connect SMT key tests
+        - name: KSQL  Connect SMT key tests
           commands:
             - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
 
-        - name: ksqlDB Test Change number of partitions and replicas
+        - name: KSQL Test Change number of partitions and replicas
           commands:
             - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
 
@@ -502,7 +501,3 @@ blocks:
         - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
-
-        - name: KStreams How to implement TTLs with KTable with aggregate tests
-          commands:
-            - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial

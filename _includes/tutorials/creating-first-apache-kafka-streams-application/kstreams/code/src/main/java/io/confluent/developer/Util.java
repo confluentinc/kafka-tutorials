@@ -81,7 +81,7 @@ public class Util implements AutoCloseable {
             logger.info("Asking cluster for topic descriptions");
             client
                 .describeTopics(topicNames)
-                .all()
+                .allTopicNames()
                 .get(10, TimeUnit.SECONDS)
                 .forEach((name, description) -> logger.info("Topic Description: {}", description.toString()));
         }
