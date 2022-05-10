@@ -2,15 +2,6 @@ package io.confluent.developer;
 
 
 import io.confluent.common.utils.TestUtils;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.common.serialization.Serde;
@@ -27,6 +18,16 @@ import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Materialized;
 import org.apache.kafka.streams.kstream.Produced;
 import org.apache.kafka.streams.kstream.StreamJoined;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
 
 public class NamingChangelogAndRepartitionTopics {
 
@@ -69,7 +70,7 @@ public class NamingChangelogAndRepartitionTopics {
                                     .toStream();
 
         joinedStream = inputStream.join(countStream, (v1, v2) -> v1 + v2.toString(),
-                                                              JoinWindows.of(Duration.ofMillis(100)),
+                                                              JoinWindows.ofTimeDifferenceWithNoGrace(Duration.ofMillis(100)),
                                                               StreamJoined.with(longSerde, stringSerde, longSerde));
     } else {
         countStream = inputStream.groupByKey(Grouped.with("count", longSerde, stringSerde))
@@ -77,7 +78,7 @@ public class NamingChangelogAndRepartitionTopics {
                                    .toStream();
 
         joinedStream = inputStream.join(countStream, (v1, v2) -> v1 + v2.toString(),
-                                                              JoinWindows.of(Duration.ofMillis(100)),
+                                                              JoinWindows.ofTimeDifferenceWithNoGrace(Duration.ofMillis(100)),
                                                               StreamJoined.with(longSerde, stringSerde, longSerde)
                                                                           .withName("join").withStoreName("the-join-store"));
     }
