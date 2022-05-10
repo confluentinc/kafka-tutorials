@@ -26,10 +26,6 @@ dev:
 
         - action: skip
           render:
-            file: shared/markup/ccloud/manual_insert.adoc
-
-        - action: skip
-          render:
             file: tutorials/messaging-modernization/confluent/markup/dev/ksqlDB.adoc
 
         - action: skip
@@ -40,15 +36,11 @@ dev:
           render:
             file: tutorials/messaging-modernization/confluent/markup/dev/process.adoc
 
-    - title: Test with mock data
+    - title: Test with real data
       content:
         - action: skip
           render:
-            file: shared/markup/ccloud/manual_cue.adoc
-
-        - action: skip
-          render:
-            file: tutorials/messaging-modernization/confluent/markup/dev/manual.adoc
+            file: tutorials/messaging-modernization/confluent/markup/dev/source.adoc
 
     - title: Cleanup
       content:
