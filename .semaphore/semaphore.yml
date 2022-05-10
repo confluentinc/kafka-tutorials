@@ -81,8 +81,8 @@ blocks:
     task:
       prologue:
         commands:
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle          
+          - sudo apt-get install gradle-7.4.2 -y
+          - sudo update-alternatives --set gradle /usr/lib/gradle/7.4.2/bin/gradle          
       jobs:
         - name: KStreams Test Streams schedule operations tests
           commands:
