@@ -73,6 +73,11 @@ dev:
           render:
             file: tutorials/error-handling/kstreams/markup/dev/make-exception-handler.adoc
 
+        - action: make_file
+          file: src/main/java/io/confluent/developer/ProcessorException.java
+          render:
+            skip: true    
+
     - title: Create the Kafka Streams topology
       content:
         - action: make_file

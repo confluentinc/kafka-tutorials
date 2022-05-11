@@ -68,7 +68,7 @@ CREATE STREAM audit_log_topics
   WITH (
   KAFKA_TOPIC='topic-operations-audit-log', 
   PARTITIONS=6
-) 
+);
 ----
 
 This `CREATE STREAM` statement specifies to use (or create, if it doesn't exist yet) a Kafka topic to store the results of the stream.

@@ -4,10 +4,4 @@ STREAMS
 LEAD
 TO
 CONFLUENT
-ALL
-STREAMS
-LEAD
-TO
-CONFLUENT
-GO
-Processed a total of 12 messages
+Processed a total of 6 messages

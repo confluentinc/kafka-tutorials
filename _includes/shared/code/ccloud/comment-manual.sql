@@ -1,1 +1,1 @@
--- Add the INSERT INTO commands to insert mock data into the streams
+-- Add the INSERT INTO commands to insert mock data
