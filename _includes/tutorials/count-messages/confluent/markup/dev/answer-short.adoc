@@ -1,4 +1,4 @@
-If your Kafka topic is in https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud], consume the entire topic using `kafkacat` and count how many messages are read.
+If your Kafka topic is in https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud], consume the entire topic using `kcat` and count how many messages are read.
   
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/count-messages/confluent/code/tutorial-steps/dev/03a-count-messages.sh %}</code></pre>

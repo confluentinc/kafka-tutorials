@@ -1,4 +1,4 @@
-With the connector running let's now inspect the data that's being generated to the Kafka topic. Here we'll use kafkacat, but you could use any Kafka consumer if you wanted.
+With the connector running let's now inspect the data that's being generated to the Kafka topic. Here we'll use kcat, but you could use any Kafka consumer if you wanted.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/kafka/code/tutorial-steps/dev/consume-topic-01.sh %}</code></pre>
