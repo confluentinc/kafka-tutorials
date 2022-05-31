@@ -26,9 +26,7 @@ CREATE TABLE customers (
 
 -- Denormalize data, joining facts (sales_orders) with the dimension (customer)
 CREATE STREAM sales_orders_enriched WITH (
-  KAFKA_TOPIC = 'sales_orders_enriched',
-  VALUE_FORMAT = 'JSON',
-  PARTITIONS = 6
+  KAFKA_TOPIC = 'sales_orders_enriched'
 ) AS
   SELECT
     c.id AS customer_id,
