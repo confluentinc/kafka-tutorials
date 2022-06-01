@@ -68,9 +68,9 @@ services:
       CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: "1"
       CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: "1"
 
-  kafkacat:
-    image: edenhill/kafkacat:1.5.0
-    container_name: kafkacat
+  kcat:
+    image: edenhill/kcat:1.7.1
+    container_name: kcat
     links:
       - broker
     entrypoint: 

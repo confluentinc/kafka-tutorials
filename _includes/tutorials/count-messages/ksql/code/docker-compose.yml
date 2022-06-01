@@ -139,9 +139,9 @@ services:
       - ./src:/opt/app/src
       - ./test:/opt/app/test
 
-  kafkacat:
-    image: edenhill/kafkacat:1.6.0
-    container_name: kafkacat
+  kcat:
+    image: edenhill/kcat:1.7.1
+    container_name: kcat
     links:
       - broker
     entrypoint: 
