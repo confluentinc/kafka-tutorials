@@ -32,7 +32,7 @@ dev:
           render:
             file: tutorials/count-messages/kafka/markup/dev/02c-wait-for-containers.adoc
 
-    - title: Run kafkacat to count the messages
+    - title: Run kcat to count the messages
       content:
         - action: execute
           file: tutorial-steps/dev/03a-count-messages.sh
@@ -49,7 +49,7 @@ dev:
             file: tutorials/count-messages/kafka/markup/dev/05-clean-up.adoc
 
 
-    - title: Use kafkacat with Confluent Cloud
+    - title: Use kcat with Confluent Cloud
       content:
         - action: execute
         # There's nothing to run here because we're not testing against CCloud yet

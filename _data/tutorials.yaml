@@ -1007,7 +1007,7 @@ mainframe-offload:
     confluent: enabled
 
 discount-promo:
-  title: "Assess multi-touch discount code efficacy"
+  title: "Assess marketing promotional campaign efficacy"
   meta-description: "use ksqlDB to track the success of discounts for a small online business"
   slug: "/discount-promo"
   introduction: "Oftentimes retailers will run promotions to drive sales and move inventory. However, if retailers are looking to build complex promotional strategies that involve multiple discounts using different coupon codes, it can be difficult to track the overall effectiveness of the marketing program. This recipe shows how ksqlDB can help track the performance of a multi-discount code promotion by understanding the average order value organized by discount percentage and the number of items purchased."
