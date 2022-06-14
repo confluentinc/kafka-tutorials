@@ -106,7 +106,7 @@ dev:
 
         - name: wait for streams to stop
           action: sleep
-          ms: 5000
+          ms: 10000
           render:
             skip: true    
      
@@ -114,6 +114,12 @@ dev:
           file: tutorial-steps/dev/run-dev-app-no-name-filter.sh
           render:
             skip: true
+
+        - name: wait for updated streams app to create new changelogs
+          action: sleep
+          ms: 60000
+          render:
+            skip: true    
 
     - title: Produce some records to the updated topology
       content:
@@ -160,6 +166,12 @@ dev:
           render:
             skip: true
 
+        - name: wait for updated streams app to create new changelogs
+          action: sleep
+          ms: 60000
+          render:
+            skip: true  
+
     - title: Produce records to the named topology
       content:
         - action: execute
@@ -203,6 +215,12 @@ dev:
           file: tutorial-steps/dev/run-dev-app-names-with-filter.sh
           render:
             skip: true
+            
+        - name: wait for updated streams app to create new changelogs
+          action: sleep
+          ms: 60000
+          render:
+            skip: true  
 
     - title: Produce records to the updated, named topology
       content:

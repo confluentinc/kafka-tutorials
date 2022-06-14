@@ -103,9 +103,9 @@ services:
     volumes:
       - ./src:/opt/app/src
 
-  kafkacat:
-    image: edenhill/kafkacat:1.5.0
-    container_name: kafkacat
+  kcat:
+    image: edenhill/kcat:1.7.1
+    container_name: kcat
     links:
       - broker
     entrypoint: 

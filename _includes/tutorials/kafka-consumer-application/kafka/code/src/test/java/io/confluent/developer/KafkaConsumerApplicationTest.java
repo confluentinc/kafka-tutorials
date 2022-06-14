@@ -33,14 +33,10 @@ public class KafkaConsumerApplicationTest {
     final MockConsumer<String, String> mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
 
     final KafkaConsumerApplication consumerApplication = new KafkaConsumerApplication(mockConsumer, recordsHandler);
-
-    // the KafkaConsumerApplication runs synchronously so the test needs to run
-    // the application in its own thread
-    new Thread(() -> consumerApplication.runConsume(testConsumerProps)).start();
-    Thread.sleep(500);
-    addTopicPartitionsAssignmentAndAddConsumerRecords(topic, mockConsumer, topicPartition);
-    Thread.sleep(500);
-    consumerApplication.shutdown();
+    
+    mockConsumer.schedulePollTask(() -> addTopicPartitionsAssignmentAndAddConsumerRecords(topic, mockConsumer, topicPartition));
+    mockConsumer.schedulePollTask(consumerApplication::shutdown);
+    consumerApplication.runConsume(testConsumerProps);
 
     final List<String> expectedWords = Arrays.asList("foo", "bar", "baz");
     List<String> actualRecords = Files.readAllLines(tempFilePath);

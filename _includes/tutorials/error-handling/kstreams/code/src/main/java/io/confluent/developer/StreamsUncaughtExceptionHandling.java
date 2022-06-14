@@ -17,11 +17,10 @@ import org.apache.kafka.streams.kstream.Produced;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 public class StreamsUncaughtExceptionHandling {
@@ -37,7 +36,7 @@ public class StreamsUncaughtExceptionHandling {
                 .mapValues(value -> {
                     counter++;
                     if (counter == 2 || counter == 8 || counter == 15) {
-                        throw new IllegalStateException("It works on my box!!!");
+                        throw new ProcessorException("It works on my box!!!");
                     }
                     return value.toUpperCase();
                 })
@@ -102,7 +101,7 @@ public class StreamsUncaughtExceptionHandling {
         Runtime.getRuntime().addShutdownHook(new Thread("streams-shutdown-hook") {
             @Override
             public void run() {
-                streams.close();
+                streams.close(Duration.ofSeconds(5));
             }
         });
 
