@@ -1063,3 +1063,13 @@ campaign-finance:
   introduction-media: "/assets/img/campaign.jpg"
   status:
     confluent: enabled
+
+iot-loss-tracking:
+  title: "IoT device loss tracking"
+  meta-description: "Determine when IoT devices lose connectivity"
+  slug: "/iot-loss-tracking"
+  question: "Which devices in the fleet have unexpectedly stopped reporting telemetry?"
+  introduction: "Whether tracking a fleet of vehicles or a network of smart home devices, Internet of Things (IoT) use cases rely on device tracking. Loss tracking, where users or administrators are alerted when devices stop phoning home, is particularly important in order to proactively determine when a device might need maintenance. Streaming is a natural setting for these use cases given the high volume and velocity of data, and the need to track device loss in real time. This recipe demonstrates how to leverage ksqlDB to determine devices whose telemetry data in Kafka has recently gone dark."
+  introduction-media: "/assets/img/iot-loss-tracking.jpg"
+  status:
+    confluent: enabled
