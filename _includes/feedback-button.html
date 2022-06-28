@@ -1,0 +1,25 @@
+<style>
+    .feedbackBtn {
+        position: fixed;
+        padding: 10px 30px;
+        font-size: 16px;
+        right: -48px;
+        top: 50%;
+        transform: rotate(270deg);
+        background: #257bd7;
+        color: white;
+        border-radius: 0;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        border-right: none;
+        z-index: 9999;
+    }
+    .feedbackBtn:hover {
+        background: #4285f4;
+        cursor: pointer;
+    }
+</style>
+
+<button class="feedbackBtn" onclick="window.Userback.open('general', 'form')">
+    Feedback
+</button>
