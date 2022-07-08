@@ -745,6 +745,8 @@ ul {
 
   .navItemGroupCta {
     padding-left: 0;
+    font-size: 12px !important;
+    text-transform: uppercase;
   }
 
   @mixin nav-item-group-wrapper-commons {
