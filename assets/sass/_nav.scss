@@ -163,13 +163,12 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           &:not(.quick-start) {
 
             > ul {
-              display: flex;
+              display: none;
               position: absolute;
               top: 66px;
               z-index: 10;
               box-shadow: none;
               border-radius: 7px;
-              opacity: 0;
 
               a {
                 color: $color_white;
@@ -191,13 +190,17 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
                   }
                 }
               }
+
+              &:hover {
+                display: flex !important;
+              }
             }
 
             &.dropdown-link {
               &:hover {
 
                 > ul {
-                  opacity: 1;
+                  display: flex;
                   visibility: visible;
                 }
               }
@@ -212,7 +215,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     display: none;
 
     nav {
-      opacity: 0;
+      display: none;
       visibility: hidden;
       padding: 1em 0;
       position: fixed;
@@ -269,7 +272,6 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     }
 
     @include for-tablet-nav {
-      display: flex;
 
       & > a:first-of-type {
         @media screen and (max-width: 767px) {
@@ -279,7 +281,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
       &.open {
         nav {
-          opacity: 1;
+          display: flex;
           visibility: visible;
           padding-top: 0;
           background: $color_white;
@@ -414,7 +416,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 .mobile-menu.open {
   span {
     &:nth-child(2) {
-      opacity: 0;
+      display: none;
     }
     &:first-child {
       transform: rotate(45deg);
@@ -444,7 +446,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     overflow: hidden;
 
     .accordion-panel {
-      opacity: 0;
+      display: none;
       transition: all 0.4s ease 0.1s;
     }
 
@@ -458,7 +460,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     overflow: visible;
 
     .accordion-panel {
-      opacity: 1;
+      display: block;
     }
   }
 }
@@ -618,7 +620,7 @@ ul {
   }
 
   .courses {
-    width: 764px;
+    width: 845px;
     left: -250px;
 
     .navItemGroupWrapper {
@@ -646,16 +648,21 @@ ul {
   .learn {
     width: 855px;
     left: -250px;
-    opacity: 1 !important;
+  }
 
-    > ul:not(.wrapperSection) {
-      padding-top: 20px;
-    }
+  .build {
+    width: 646px;
+    left: -250px;
+    //opacity: 1 !important;
+  }
 
-    .navItemGroupWrapper {
-      width: 280px;
-      height: 335px;
-    }
+  > ul:not(.wrapperSection) {
+    padding-top: 20px;
+  }
+
+  .navItemGroupWrapper {
+    width: 280px;
+    height: 335px;
   }
 }
 
