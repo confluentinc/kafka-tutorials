@@ -146,7 +146,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           }
 
           > a {
-            display: block;
+            //display: block;
             text-decoration: none;
             margin: 0;
             padding: 0;
@@ -161,10 +161,6 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           }
 
           &:not(.quick-start) {
-            a {
-              color: $color_white;
-              padding: 0;
-            }
 
             > ul {
               display: flex;
@@ -180,7 +176,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
                 font-size: 14px;
                 font-weight: 300;
                 width: 100%;
-                display: block;
+                //display: block;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 padding: 10px 0;
@@ -624,7 +620,6 @@ ul {
   .courses {
     width: 764px;
     left: -250px;
-    opacity: 1 !important;
 
     .navItemGroupWrapper {
       height: 335px;
@@ -647,18 +642,47 @@ ul {
       }
     }
   }
+
+  .learn {
+    width: 855px;
+    left: -250px;
+    opacity: 1 !important;
+
+    > ul:not(.wrapperSection) {
+      padding-top: 20px;
+    }
+
+    .navItemGroupWrapper {
+      width: 280px;
+      height: 335px;
+    }
+  }
+}
+
+a:hover {
+  text-decoration: none !important;
 }
 
 .navItem {
-  max-width: 280px;
+  width: 270px;
   display: flex;
   align-items: center;
   gap: 15px;
+
+  > a {
+    display: flex;
+    gap: 15px;
+
+    .title {
+      margin-bottom: 10px;
+    }
+  }
 
   .title {
     max-width: 250px;
     word-break: break-word;
     font-size: 14px;
+    color: $color_white;
   }
 
   .icon {
@@ -676,7 +700,6 @@ ul {
 
   &:hover {
     border-left: 5px solid $color_island;
-    cursor: pointer;
     padding-right: 10px;
     position: relative;
 
@@ -703,7 +726,7 @@ ul {
   flex-direction: column;
   background: $color_deepMeadow;
   max-width: 290px;
-  padding: 20px 30px 20px 20px;
+  padding: 30px;
 
   .icon {
     width: 40px;
@@ -747,6 +770,12 @@ ul {
     padding-left: 0;
     font-size: 12px !important;
     text-transform: uppercase;
+    display: flex;
+    gap: 5px;
+
+    &:hover {
+      color: $color_island !important;
+    }
   }
 
   @mixin nav-item-group-wrapper-commons {
