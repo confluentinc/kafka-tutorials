@@ -606,7 +606,6 @@ ul {
     margin-top: 1px !important;
 
     ul {
-      max-width: 290px;
       height: 100%;
 
       @include for-max-tablet {
@@ -653,7 +652,17 @@ ul {
   .build {
     width: 646px;
     left: -250px;
-    //opacity: 1 !important;
+
+    ul {
+      &:nth-child(1) {
+        width: 370px;
+      }
+    }
+
+    .navItem {
+      width: 300px;
+      margin-bottom: 15px;
+    }
   }
 
   > ul:not(.wrapperSection) {
@@ -671,7 +680,6 @@ a:hover {
 }
 
 .navItem {
-  width: 270px;
   display: flex;
   align-items: center;
   gap: 15px;
