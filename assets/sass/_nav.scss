@@ -606,7 +606,6 @@ ul {
     margin-top: 1px !important;
 
     ul {
-      height: 100%;
 
       @include for-max-tablet {
         max-width: 100%;
@@ -649,7 +648,7 @@ ul {
     left: -250px;
   }
 
-  .build {
+  .build, .community {
     width: 646px;
     left: -250px;
 
@@ -671,7 +670,7 @@ ul {
 
   .navItemGroupWrapper {
     width: 280px;
-    height: 335px;
+    height: 100%;
   }
 }
 
