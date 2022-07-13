@@ -650,7 +650,12 @@ ul {
 
   .docs {
     width: 855px;
-    left: -600px
+    left: -600px;
+    height: 305px;
+
+    .navItem {
+      margin-bottom: 15px;
+    }
   }
 
   .build, .community {
@@ -693,7 +698,7 @@ a:hover {
     gap: 15px;
 
     .title {
-      margin-bottom: 10px;
+      margin-bottom: 5px;
     }
   }
 
