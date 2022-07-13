@@ -129,6 +129,14 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       float: right;
       display: block;
 
+      a {
+        color: $color_white;
+
+        &:hover {
+          color: $color_island;
+        }
+      }
+
       // @media screen and (max-width: 1115px) {
       @include for-tablet-nav {
         display: none;
@@ -437,7 +445,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     font-weight: normal;
 
     &:hover {
-      color: $color_midnight;
+      color: $color_denim;
     }
   }
 
