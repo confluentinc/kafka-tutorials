@@ -1,0 +1,40 @@
+.feedbackBtn {
+  position: fixed;
+  padding: 10px 30px;
+  font-size: 16px;
+  right: -48px;
+  transform: rotate(270deg);
+  background: #257bd7;
+  color: $color_white;
+  border-radius: 0;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-right: none;
+  z-index: 999;
+  text-transform: uppercase;
+
+
+  &:hover {
+    opacity: 0.9;
+    cursor: pointer;
+  }
+
+  @include for-min-desktop {
+    top: 50%;
+  }
+
+  @include for-max-mobile {
+    left: 32%;
+    padding: 0;
+  }
+
+  @include for-max-tablet {
+    width: 128px;
+    height: 40px;
+    text-align: center;
+    bottom: 0;
+    right: 45%;
+    transform: none;
+    padding: 0;
+  }
+}
