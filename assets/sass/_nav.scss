@@ -220,7 +220,6 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   }
 
   .nav-mobile {
-    display: none;
 
     nav {
       display: none;
@@ -235,6 +234,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       transition: all 0.5s ease;
       overflow: auto;
       top: 80px;
+      background: $color_denim;
 
       > ul {
         display: flex;
@@ -289,7 +289,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
       &.open {
         nav {
-          display: flex;
+          display: block;
           visibility: visible;
           padding-top: 0;
           background: $color_white;
@@ -343,7 +343,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 }
 
 .mobile-accordion-item {
-  background-color: $color_white;
+  background-color: $color_denim;
   margin-bottom: 0;
   border-bottom: 4px solid $color_ltGray;
 
@@ -378,7 +378,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 }
 
 .mobile-accordion-item a {
-  color: $color_midnight;
+  color: $color_white;
   font-weight: bold;
   line-height: 25px;
   display: block;
@@ -683,12 +683,19 @@ ul {
   }
 
   > ul:not(.wrapperSection) {
-    padding-top: 20px;
+
+    @include for-min-desktop {
+      padding-top: 20px;
+    }
   }
 
   .navItemGroupWrapper {
     width: 280px;
     height: 100%;
+
+    @include for-max-tablet {
+      width: 100%;
+    }
   }
 }
 
@@ -813,7 +820,7 @@ a:hover {
   @mixin nav-item-group-wrapper-commons {
     max-width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     padding: 30px;
   }
