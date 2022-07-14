@@ -264,6 +264,12 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           }
         }
       }
+
+      .groupWrapperHeading {
+        display: flex;
+        gap: 13px;
+        align-items: flex-start;
+      }
     }
 
     .quick-start-nav-button {
@@ -734,7 +740,8 @@ a:hover {
   }
 
   @include for-max-mobile {
-    padding: 5px 10px;
+    padding: 5px 0;
+    margin-left: 10px;
   }
 
   &:hover {
