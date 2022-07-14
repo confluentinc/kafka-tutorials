@@ -358,7 +358,8 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   }
 
   .accordion-title {
-    background-color: $color_white;
+    background-color: $color_denim;
+    color: $color_white;
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
@@ -438,7 +439,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     }
     &:last-child {
       transform: rotate(-45deg);
-      top: -12px;
+      top: 0;
     }
   }
 }
@@ -510,7 +511,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   &::after {
     content: "";
     position: absolute;
-    background-color: $color_denim;
+    background-color: $color_white;
     transition: all 0.4s cubic-bezier(1, 0.07, 0.28, 1.04);
     width: 15px;
     height: 2px;
