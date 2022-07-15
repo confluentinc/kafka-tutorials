@@ -221,6 +221,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
   .nav-mobile {
 
+
     nav {
       display: none;
       visibility: hidden;
@@ -283,6 +284,10 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       margin: 20px;
       border-radius: 25px;
       display: block;
+    }
+
+    @include for-min-desktop {
+      display: none;
     }
 
     @include for-tablet-nav {
@@ -353,7 +358,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   margin-bottom: 0;
 
   .accordion-title {
-    background-color: $color_denim;
+    background-color: $color_midnight;
     color: $color_white;
     font-weight: 500;
     font-size: 12px;
