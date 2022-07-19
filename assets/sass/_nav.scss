@@ -332,6 +332,12 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
         padding: 10px;
       }
     }
+
+    .build, .community {
+      ul {
+        padding-top: 20px;
+      }
+    }
   }
 
   &.scrolled {
@@ -632,6 +638,35 @@ ul {
     }
   }
 
+  .navItemMainColumns {
+    display: flex;
+    ul {
+      min-width: 250px;
+      &:nth-child(1) {
+
+        @include for-min-desktop {
+          width: 250px;
+        }
+      }
+    }
+
+    @include for-max-mobile {
+      flex-direction: column;
+      padding: 10px 0;
+      //ul {
+      //  width: 100% !important;
+      //}
+    }
+
+    @include for-max-tablet {
+      padding: 20px 30px;
+      justify-content: space-around;
+      //ul {
+      //  width: 50% ;
+      //}
+    }
+  }
+
   .courses {
     width: 845px;
     left: -250px;
@@ -646,21 +681,18 @@ ul {
       &:nth-child(1) {
         width: 280px;
       }
-
-      &:nth-child(2) {
-        width: 250px;
-        padding-top: 30px;
-      }
-
-      &:nth-child(3) {
-        padding-top: 30px;
-      }
     }
   }
 
   .learn {
-    width: 855px;
-    left: -250px;
+    left: -270px;
+
+    .navItemMainColumns {
+      width: 620px;
+      ul {
+        width: 50%;
+      }
+    }
   }
 
   .docs {
@@ -689,7 +721,7 @@ ul {
     }
   }
 
-  > ul:not(.wrapperSection) {
+  > ul:not(.wrapperSection, .navItemMainColumns) {
 
     @include for-min-desktop {
       padding-top: 20px;
