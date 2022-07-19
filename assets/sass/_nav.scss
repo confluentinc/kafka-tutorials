@@ -221,6 +221,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
   .nav-mobile {
 
+    display: none;
 
     nav {
       display: none;
@@ -291,6 +292,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     }
 
     @include for-tablet-nav {
+      display: flex;
 
       & > a:first-of-type {
         @media screen and (max-width: 767px) {
@@ -653,17 +655,11 @@ ul {
     @include for-max-mobile {
       flex-direction: column;
       padding: 10px 0;
-      //ul {
-      //  width: 100% !important;
-      //}
     }
 
     @include for-max-tablet {
-      padding: 20px 30px;
+      padding: 20px 0;
       justify-content: space-around;
-      //ul {
-      //  width: 50% ;
-      //}
     }
   }
 
@@ -773,8 +769,11 @@ a:hover {
   }
 
   @include for-max-mobile {
-    padding: 5px 0;
     margin-left: 10px;
+  }
+
+  @include for-max-tablet {
+    margin-bottom: 15px;
   }
 
   &:hover {
