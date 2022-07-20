@@ -574,9 +574,7 @@ Confluent manages the processes of merging changes from this branch.
 
 ### Create a release PR
 
-1. Go to the `release` branch of Kafka Tutorials at https://github.com/confluentinc/kafka-tutorials/tree/release
-
-2. Open a pull request from `master` to `release`. A pull request into the `release` branch denotes a request to update the live site.
+1. Open a pull request from `master` to `release`. A pull request into the `release` branch denotes a request to update the live site.
 
 - Title the PR “KT release [date]”
 - In the description add links to PRs that resulted in new tutorials, content changes, or any other noteworthy addition
@@ -584,16 +582,20 @@ Confluent manages the processes of merging changes from this branch.
 - Tag reviewers
 - Create PR
 
-3. The semaphore tests for the PR will automatically create the staging site. You can manually click to deploy to staging site if trust that failing tests work (ksqlDB tests can be flaky sometimes). Look at the staging site from different browsers.  
+2. The semaphore tests for the PR will automatically create the staging site. You can manually click to deploy to staging site if trust that failing tests work (ksqlDB tests can be flaky sometimes).
 
-4. Ensure that you get approval from required reviewers. Submit PRs with fixes, if needed.
+![image](assets/img/manual-deploy-staging.png)
 
-5. Once the PR is approved, merge the PR. Note: do not `Squash and Merge`, use `Create a merge commit`.  This is so that the git log will include the individual commits.
+3. Look at the staging site from different browsers. Ensure that you get approval from required reviewers. Submit PRs with fixes, if needed.
+
+4. Once the PR is approved, merge the PR. Note: do not `Squash and Merge`, use `Create a merge commit`.  This is so that the git log will include the individual commits.
 
 ### Deploy to live site
 
-1. To deploy artifacts from the `release` branch to the live site, it should be done from the `release` branch, not the above PR.  So do not `deploy to live site` from the PR, because that would deploy from `master`.  Instead, go to the `release` branch, let the tests pass, and then deploy (or if a test is flaky, you can deploy anyway).
+To deploy artifacts from the `release` branch to the live site, it should be done from the `release` branch, not the above PR.  So do not `deploy to live site` from the PR, because that would deploy from `master`.  Instead, go to the `release` branch, let the tests pass, and then deploy
 
 ![image](assets/img/release-promote.png)
 
-2. The landing page is at https://developer.confluent.io/tutorials/ (it is not [index.html](index.html)).  Any changes to the landing page should be worked through Confluent.
+### Landing page
+
+The landing page is at https://developer.confluent.io/tutorials/ (it is not [index.html](index.html)).  Any changes to the landing page should be worked through Confluent.
