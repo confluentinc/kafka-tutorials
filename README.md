@@ -567,10 +567,11 @@ The following regular expressions may be useful to group-update all dependencies
 
 ## Updating Tutorials
 
-The `release` branch tracks the content and code comprising the live site. Confluent manages the release process.
+Confluent manages the release process and the process described here must be done by a Confluent employee.
+
+The `release` branch tracks the content and code comprising the live site.
 
 The `ksqldb-latest` branch builds against the latest `master` branch of ksqlDB, and should be used for updates that are only in the master branch of ksqlDB.
-Confluent manages the processes of merging changes from this branch.
 
 ### Create a release PR
 
@@ -582,13 +583,13 @@ Confluent manages the processes of merging changes from this branch.
 - Tag reviewers
 - Create PR
 
-2. The semaphore tests for the PR will automatically create the staging site. You can manually click to deploy to staging site if trust that failing tests work (ksqlDB tests can be flaky sometimes).
+2. The semaphore tests for the PR will automatically create the staging site. You can manually click to deploy to staging site if you trust that failing tests work (ksqlDB tests can be flaky sometimes).
 
 ![image](assets/img/manual-deploy-staging.png)
 
 3. Look at the staging site from different browsers. Ensure that you get approval from required reviewers. Submit PRs with fixes, if needed.
 
-4. Once the PR is approved, merge the PR. Note: do not `Squash and Merge`, use `Create a merge commit`.  This is so that the git log will include the individual commits.
+4. Once the PR is approved, merge the PR. Note: do not `Squash and Merge`, instead use `Create a merge commit`.  This is so that the git log will include the individual commits.
 
 ### Deploy to live site
 
@@ -598,4 +599,4 @@ To deploy artifacts from the `release` branch to the live site, it should be don
 
 ### Landing page
 
-The landing page is at https://developer.confluent.io/tutorials/ (it is not [index.html](index.html)).  Any changes to the landing page should be worked through Confluent.
+The landing page is at https://developer.confluent.io/tutorials/ (it is not [index.html](index.html)), and the source for it is in Contentful.  Any changes to the landing page should be worked through Confluent.
