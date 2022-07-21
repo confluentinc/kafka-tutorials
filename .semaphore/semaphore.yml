@@ -2,13 +2,14 @@ version: v1.0
 name: Kafka Tutorials pipeline
 agent:
   machine:
-    type: e1-standard-2
-    os_image: ubuntu1804
+    type: s1-prod-ubuntu20-04-amd64-1
 global_job_config:
   secrets:
     - name: vault_sem2_approle
   prologue:
     commands:
+      - echo $SEMAPHORE_WORKFLOW_ID
+      - sudo add-apt-repository ppa:cwchien/gradle -y
       - checkout
       - make install-vault
       - . vault-bin/vault-setup
@@ -48,6 +49,7 @@ blocks:
     task:
       prologue:
         commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
           - checkout
           - cache restore
           - npm install
@@ -64,6 +66,7 @@ blocks:
     task:
       prologue:
         commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
           - checkout
           - cache restore
       jobs:
@@ -81,6 +84,7 @@ blocks:
     task:
       prologue:
         commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
           - sudo apt-get install gradle-7.4.2 -y
           - sudo update-alternatives --set gradle /usr/lib/gradle/7.4.2/bin/gradle          
       jobs:
@@ -251,6 +255,7 @@ blocks:
     task:
       prologue:
         commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
           - sudo apt-get install gradle-6.8.3 -y
           - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
@@ -368,6 +373,7 @@ blocks:
     task:
       prologue:
         commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
           - sudo apt-get install gradle-6.8.3 -y
           - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
