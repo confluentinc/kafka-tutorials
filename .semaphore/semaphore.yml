@@ -1,12 +1,13 @@
 agent:
   machine:
-    os_image: ubuntu1804
-    type: e1-standard-2
+    type: s1-prod-ubuntu20-04-amd64-1
 global_job_config:
   secrets:
     - name: vault_sem2_approle
   prologue:
     commands:
+      - echo $SEMAPHORE_WORKFLOW_ID
+      - sudo add-apt-repository ppa:cwchien/gradle -y
       - checkout
       - make install-vault
       - . vault-bin/vault-setup
