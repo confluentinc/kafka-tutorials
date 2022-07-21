@@ -2,9 +2,8 @@ version: v1.0
 name: Kafka Tutorials staging site deployment
 agent:
   machine:
-    type: e1-standard-2
-    os_image: ubuntu1804
-
+    type: s1-prod-ubuntu20-04-amd64-1
+    os_image: ''
 blocks:
   - task:
       secrets:
@@ -17,5 +16,6 @@ blocks:
             - . vault-bin/vault-setup
             - . vault-sem-get-secret aws_credentials
             - cache restore site-$SEMAPHORE_GIT_SHA
-            - aws s3 cp --recursive ./_site "s3://kafka-tutorials-staging/$SEMAPHORE_GIT_BRANCH/"
-            - echo "Deployed to http://kafka-tutorials-staging.s3-website-us-west-2.amazonaws.com/$SEMAPHORE_GIT_BRANCH/"
+            - 'aws s3 cp --recursive ./_site "s3://kafka-tutorials-staging/$SEMAPHORE_GIT_BRANCH/"'
+            - 'echo "Deployed to http://kafka-tutorials-staging.s3-website-us-west-2.amazonaws.com/$SEMAPHORE_GIT_BRANCH/"'
+    name: ''
