@@ -3,7 +3,7 @@ name: Kafka Tutorials live site deployment
 agent:
   machine:
     type: s1-prod-ubuntu20-04-amd64-1
-
+    os_image: ''
 blocks:
   - task:
       secrets:
@@ -20,4 +20,5 @@ blocks:
             - gem install bundler
             - bundle install
             - JEKYLL_ENV=production bundle exec jekyll build --baseurl /tutorials
-            - aws s3 cp --recursive ./_site s3://kafka-tutorials.confluent.io/tutorials
+            - 'aws s3 cp --recursive ./_site s3://kafka-tutorials.confluent.io/tutorials'
+    name: ''
