@@ -9,7 +9,7 @@ global_job_config:
   prologue:
     commands:
       - echo $SEMAPHORE_WORKFLOW_ID
-      - sudo add-apt-repository ppa:cwchien/gradle && sudo apt-get update && 
+      - sudo add-apt-repository ppa:cwchien/gradle && sudo apt-get update 
       - checkout
       - make install-vault
       - . vault-bin/vault-setup
