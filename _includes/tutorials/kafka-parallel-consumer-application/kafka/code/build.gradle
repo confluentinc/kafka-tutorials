@@ -1,0 +1,52 @@
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+
+        gradlePluginPortal()
+    }
+}
+
+plugins {
+    id "java"
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+version = "0.0.1"
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+}
+
+dependencies {
+    implementation "org.slf4j:slf4j-simple:2.0.0"
+    implementation "io.confluent.parallelconsumer:parallel-consumer-core:0.5.2.2"
+    testImplementation "junit:junit:4.13.2"
+    testImplementation 'org.awaitility:awaitility:4.2.0'
+    testImplementation "io.confluent.parallelconsumer:parallel-consumer-core:0.5.2.2:tests" // for LongPollingMockConsumer
+}
+
+test {
+    testLogging {
+        outputs.upToDateWhen { false }
+        showStandardStreams = true
+        exceptionFormat = "full"
+    }
+}
+
+jar {
+  manifest {
+    attributes(
+      "Class-Path": configurations.compileClasspath.collect { it.getName() }.join(" "),
+      "Main-Class": "io.confluent.developer.KafkaParallelConsumerApplication"
+    )
+  }
+}
+
+shadowJar {
+    archiveBaseName = "kafka-parallel-consumer-application-standalone"
+}
