@@ -129,6 +129,14 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       float: right;
       display: block;
 
+      a {
+        color: $color_white;
+
+        &:hover {
+          color: $color_island;
+        }
+      }
+
       // @media screen and (max-width: 1115px) {
       @include for-tablet-nav {
         display: none;
@@ -146,7 +154,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           }
 
           > a {
-            display: block;
+            //display: block;
             text-decoration: none;
             margin: 0;
             padding: 0;
@@ -161,34 +169,21 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           }
 
           &:not(.quick-start) {
-            a {
-              color: $color_white;
-              padding: 0;
-            }
 
             > ul {
-              display: block;
+              display: none;
               position: absolute;
               top: 66px;
-              left: -60px;
-              visibility: hidden;
-              padding: 20px 10px 20px 0;
-              background: $color_white;
               z-index: 10;
               box-shadow: none;
               border-radius: 7px;
-              opacity: 0;
-              box-shadow: 3px 3px 17px rgba(0, 0, 0, 0.08);
-              border: 1px solid rgba(130, 148, 148, 0.25);
-              border-top: 1px solid $color_white;
 
               a {
-                color: $color_denim;
-                font-size: 16px;
+                color: $color_white;
+                font-size: 14px;
                 font-weight: 300;
                 width: 100%;
-                display: block;
-                white-space: nowrap;
+                //display: block;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 padding: 10px 0;
@@ -203,24 +198,17 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
                   }
                 }
               }
+
+              &:hover {
+                display: flex !important;
+              }
             }
 
             &.dropdown-link {
               &:hover {
-                &:after {
-                  content: "";
-                  bottom: -17px;
-                  left: calc(50% - 20px);
-                  transform: rotate(45deg);
-                  background-color: $color_white;
-                  width: 30px;
-                  height: 30px;
-                  position: absolute;
-                  border-radius: 2px 0px 0 0;
-                }
 
                 > ul {
-                  opacity: 1;
+                  display: flex;
                   visibility: visible;
                 }
               }
@@ -232,10 +220,11 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   }
 
   .nav-mobile {
+
     display: none;
 
     nav {
-      opacity: 0;
+      display: none;
       visibility: hidden;
       padding: 1em 0;
       position: fixed;
@@ -247,6 +236,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       transition: all 0.5s ease;
       overflow: auto;
       top: 80px;
+      background: $color_denim;
 
       > ul {
         display: flex;
@@ -276,6 +266,12 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           }
         }
       }
+
+      .groupWrapperHeading {
+        display: flex;
+        gap: 13px;
+        align-items: flex-start;
+      }
     }
 
     .quick-start-nav-button {
@@ -291,6 +287,10 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       display: block;
     }
 
+    @include for-min-desktop {
+      display: none;
+    }
+
     @include for-tablet-nav {
       display: flex;
 
@@ -302,7 +302,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
       &.open {
         nav {
-          opacity: 1;
+          display: block;
           visibility: visible;
           padding-top: 0;
           background: $color_white;
@@ -334,6 +334,12 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
         padding: 10px;
       }
     }
+
+    .build, .community {
+      ul {
+        padding-top: 20px;
+      }
+    }
   }
 
   &.scrolled {
@@ -356,16 +362,12 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 }
 
 .mobile-accordion-item {
-  background-color: $color_white;
+  background-color: $color_denim;
   margin-bottom: 0;
-  border-bottom: 4px solid $color_ltGray;
-
-  &:first-of-type {
-    border-top: 4px solid $color_ltGray;
-  }
 
   .accordion-title {
-    background-color: $color_white;
+    background-color: $color_midnight;
+    color: $color_white;
     font-weight: 500;
     font-size: 12px;
     line-height: 15px;
@@ -391,7 +393,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 }
 
 .mobile-accordion-item a {
-  color: $color_midnight;
+  color: $color_white;
   font-weight: bold;
   line-height: 25px;
   display: block;
@@ -437,7 +439,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 .mobile-menu.open {
   span {
     &:nth-child(2) {
-      opacity: 0;
+      display: none;
     }
     &:first-child {
       transform: rotate(45deg);
@@ -445,29 +447,29 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     }
     &:last-child {
       transform: rotate(-45deg);
-      top: -12px;
+      top: 0;
     }
   }
 }
 
 .accordion-item-wrapper {
-  margin-bottom: 2px;
   transition: all 0.5s ease;
 
   .accordion-panel a {
     font-weight: normal;
 
     &:hover {
-      color: $color_midnight;
+      color: $color_denim;
     }
   }
 
   &.collapsed {
     max-height: 64px;
+    border-bottom: 0.5px solid $color_ltGray;
     overflow: hidden;
 
     .accordion-panel {
-      opacity: 0;
+      display: none;
       transition: all 0.4s ease 0.1s;
     }
 
@@ -481,7 +483,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     overflow: visible;
 
     .accordion-panel {
-      opacity: 1;
+      display: block;
     }
   }
 }
@@ -517,7 +519,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   &::after {
     content: "";
     position: absolute;
-    background-color: $color_denim;
+    background-color: $color_white;
     transition: all 0.4s cubic-bezier(1, 0.07, 0.28, 1.04);
     width: 15px;
     height: 2px;
@@ -609,5 +611,266 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   &::before,
   &::after {
     background-color: $color_denim;
+  }
+}
+
+ul {
+  .menuGroup {
+    position: fixed;
+    min-width: 500px;
+    max-width: 900px;
+    top: 75px;
+    left: 35%;
+    background: #173361;
+    display: flex;
+    padding: 0;
+    border-image: linear-gradient(to right, #AE1B85, #6144D7, #38CCED) 1;
+    border-top: 5px solid;
+    margin-top: 1px !important;
+
+    ul {
+
+      @include for-max-tablet {
+        max-width: 100%;
+      }
+
+      @include for-max-mobile {
+        max-width: 100%;
+      }
+    }
+  }
+
+  .navItemMainColumns {
+    display: flex;
+    ul {
+      min-width: 250px;
+      &:nth-child(1) {
+
+        @include for-min-desktop {
+          width: 250px;
+        }
+      }
+    }
+
+    @include for-max-mobile {
+      flex-direction: column;
+      padding: 10px 0;
+    }
+
+    @include for-max-tablet {
+      padding: 20px 0;
+      justify-content: space-around;
+    }
+  }
+
+  .courses {
+    width: 845px;
+    left: -250px;
+
+    .navItemGroupWrapper {
+      height: 335px;
+      border-top-right-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    ul {
+      &:nth-child(1) {
+        width: 280px;
+      }
+    }
+  }
+
+  .learn {
+    left: -270px;
+
+    .navItemMainColumns {
+      width: 620px;
+      ul {
+        width: 50%;
+      }
+    }
+  }
+
+  .docs {
+    width: 855px;
+    left: -600px;
+    height: 305px;
+
+    .navItem {
+      margin-bottom: 15px;
+    }
+  }
+
+  .build, .community {
+    width: 646px;
+    left: -250px;
+
+    ul {
+      &:nth-child(1) {
+        width: 370px;
+      }
+    }
+
+    .navItem {
+      width: 300px;
+      margin-bottom: 15px;
+    }
+  }
+
+  > ul:not(.wrapperSection, .navItemMainColumns) {
+
+    @include for-min-desktop {
+      padding-top: 20px;
+    }
+  }
+
+  .navItemGroupWrapper {
+    width: 280px;
+    height: 100%;
+
+    @include for-max-tablet {
+      width: 100%;
+    }
+  }
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  > a {
+    display: flex;
+    gap: 15px;
+
+    .title {
+      margin-bottom: 5px;
+    }
+  }
+
+  .title {
+    max-width: 250px;
+    word-break: break-word;
+    font-size: 14px;
+    color: $color_white;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .navItemLinkSection {
+    max-width: 200px;
+  }
+
+  @include for-max-mobile {
+    margin-left: 10px;
+  }
+
+  @include for-max-tablet {
+    margin-bottom: 15px;
+  }
+
+  &:hover {
+    border-left: 5px solid $color_island;
+    padding-right: 10px;
+    position: relative;
+
+    .title {
+      color: $color_island !important;
+      text-decoration: none;
+    }
+
+    &:after {
+      content: ">";
+      color: $color_island;
+      padding: 6px;
+      font-size: 24px;
+      position: absolute;
+      transform: translateY(-50%);
+      right: 0;
+      top: 40%;
+    }
+  }
+}
+
+.navItemGroupWrapper {
+  display: flex;
+  flex-direction: column;
+  background: $color_deepMeadow;
+  max-width: 290px;
+  padding: 30px;
+
+  .icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .title {
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: $color_white;
+
+    @include for-max-mobile {
+      margin-top: 0;
+    }
+
+    @include for-max-tablet {
+      margin-top: 0;
+    }
+
+  }
+
+  .subline {
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  a {
+    margin: 15px 0 !important;
+    text-transform: uppercase;
+
+    .ctaDirect {
+      position: relative;
+      top: 3px;
+      left: 5px;
+    }
+  }
+
+  .navItemGroupCta {
+    padding-left: 0;
+    font-size: 12px !important;
+    text-transform: uppercase;
+    display: flex;
+    gap: 5px;
+
+    &:hover {
+      color: $color_island !important;
+    }
+  }
+
+  @mixin nav-item-group-wrapper-commons {
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+  }
+
+  @include for-max-mobile {
+
+    @include nav-item-group-wrapper-commons
+  }
+
+  @include for-max-tablet {
+
+    @include nav-item-group-wrapper-commons
   }
 }
