@@ -1,0 +1,85 @@
+////
+In this file you describe the Kafka streams topology, and should cover the main points of the tutorial.
+The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
+////
+
+To complete this tutorial, you'll build a main application class and a helper class
+
+
+First, you'll create the main application,`ParallelConsumerApplication`, which is the focal point of this tutorial; consuming records from a Kafka topic using the Confluent Parallel Consumer.
+
+
+Let's go over some of the key parts of the `ParallelConsumerApplication` starting with the constructor:
+
+[source, java]
+.ParallelConsumerApplication constructor
+----
+  public ParallelConsumerApplication(final ParallelStreamProcessor<String, String> parallelConsumer,
+                                          final ConsumerRecordHandler<String, String> recordsHandler) {
+    this.parallelConsumer = parallelConsumer;
+    this.recordHandler = recordsHandler;
+  }
+----
+
+Her we supply instances of the Confluent Parallel Consumer's `ParallelStreamProcessor` and the application's `ConsumerRecordHandler` via constructor parameters.
+
+By using interfaces vs. concrete implementations you can more easily test the `ParallelConsumerApplication` class by swapping in a `MockConsumer` for the test.  We'll cover testing in an upcoming section.  Also, interfaces make it simple to change `ConsumerRecord` handling at run-time.
+
+In this tutorial you'll inject the dependencies in the `ParallelConsumerApplication.main()` method, but in practice you may want to use a dependency injection framework library, such as the https://spring.io/projects/spring-framework[Spring Framework].
+
+
+Next, let's review the `ParallelConsumerApplication.runConsume()` method, which provides the core functionality of this tutorial.
+
+[source, java]
+.ParallelConsumerApplication.process
+----
+  public void runConsume(final Properties consumerProps) {
+      parallelConsumer.subscribe(Collections.singletonList(consumerProps.getProperty("input.topic.name"))); // <1>
+      parallelConsumer.poll(context -> recordHandler.process(context.getSingleConsumerRecord())); //<2>
+  }
+----
+
+<1> Subscribing to the Kafka topic.
+<2> Simply `poll` once. With the Confluent Parallel Consumer, you call `poll` only once and it will poll indefinitely,
+calling the lambda that you supply for each message. The library handles everything for you subject to how you configure
+the Parallel Consumer.
+
+Speaking of configuration, this snippet instantiates the `ParallelStreamProcessor` that our application's
+constructor expects:
+
+[source, java]
+.ParallelConsumerApplication.process
+----
+    final Properties consumerAppProps = ParallelConsumerApplication.loadProperties(args[0]); // <1>
+    final String filePath = consumerAppProps.getProperty("file.path"); // <2>
+    final Consumer<String, String> consumer = new KafkaConsumer<>(consumerAppProps); // <3>
+    final ParallelConsumerOptions options = ParallelConsumerOptions.<String, String>builder() // <4>
+            .ordering(KEY) // <5>
+            .maxConcurrency(1000) // <6>
+            .consumer(consumer) // <7>
+            .commitMode(PERIODIC_CONSUMER_SYNC) // <8>
+            .build();
+    ParallelStreamProcessor<String, String> eosStreamProcessor = ParallelStreamProcessor.createEosStreamProcessor(options); // <9>
+
+----
+
+<1> Load consumer properties from a file. These properties include standard Apache Kafka Consumer properties as well as a few application specific properties.
+<2> The file path to which we will write consumed events.
+<3> Create the Apache Kafka Consumer that the Confluent Parallel Consumer wraps.
+<4> Create the Parallel Consumer configuration via builder pattern.
+<5> Specify consumption ordering by key, i.e., even though we are consuming with a higher degree of parallelism
+than the number of partitions (and recall that all messages with a given key reside in the same partition), we can still
+enforce ordering by key. The advantage of this mode is that, while a given input topic may not have many partitions,
+it may have a large number of unique keys. Each of these key → message sets can actually be processed concurrently,
+bringing concurrent processing to a per key level, without having to increase the number of input partitions. This all happens while keeping strong ordering by key.
+<6> Specify the degree of parallelism. Here we specify 1000 threads.
+<7> The Apache Kafka Consumer that we are wrapping.
+<8> Here we specify how to commit offsets. `PERIODIC_CONSUMER_SYNC` will block the Parallel Consumer's processing loop until a successful commit response is received. Asynchronous is also supported, which optimizes for
+consumption throughput (the downside being higher risk of needing to process duplicate messages in error recovery scenarios).
+<9> Create a `ParallelStreamProcessor` with the previously created configuration. This is the object we use to consume in lieu of a `KafkaConsumer`.
+
+Now go ahead and create the `src/main/java/io/confluent/developer/ParallelConsumerApplication.java` file:
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/confluent-parallel-consumer-application/kafka/code/src/main/java/io/confluent/developer/ParallelConsumerApplication.java %}</code></pre>
++++++

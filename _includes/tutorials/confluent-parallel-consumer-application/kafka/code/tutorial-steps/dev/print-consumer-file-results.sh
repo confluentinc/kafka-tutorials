@@ -1,0 +1,1 @@
+cat parallel-consumer-records.out
