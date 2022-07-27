@@ -21,6 +21,8 @@ global_job_config:
       - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
       - docker login --username $DOCKER_USER --password $DOCKER_APIKEY confluent-docker.jfrog.io
       - sudo pip3 install -e harness_runner/
+      - ls -altrR harness_runner/
+      - sudo chown -R semaphore:semaphore harness_runner/
       - >
         find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
 
