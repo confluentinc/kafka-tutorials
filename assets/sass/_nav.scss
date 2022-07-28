@@ -774,6 +774,15 @@ a:hover {
     max-width: 200px;
   }
 
+  .new {
+    display: none;
+    color: $color_island;
+
+    @include for-min-desktop {
+      display: inline;
+    }
+  }
+
   @include for-max-mobile {
     margin-left: 10px;
   }
