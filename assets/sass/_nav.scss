@@ -52,6 +52,16 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
   @include ff_medium;
 
+  .circledBoundary {
+    display: flex;
+    width: 65px;
+    height: 65px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: $color_lightMeadow;
+  }
+
   .logo-container {
     .logo {
       filter: brightness(0) invert(1);
