@@ -720,7 +720,7 @@ ul {
   > ul:not(.wrapperSection, .navItemMainColumns) {
 
     @include for-min-desktop {
-      padding-top: 20px;
+      padding: 20px 30px 30px 30px;
     }
   }
 
@@ -742,6 +742,7 @@ a:hover {
   display: flex;
   align-items: center;
   gap: 15px;
+  margin-left: auto;
 
   > a {
     display: flex;
@@ -755,7 +756,7 @@ a:hover {
   .title {
     max-width: 250px;
     word-break: break-word;
-    font-size: 14px;
+    font-size: 16px;
     color: $color_white;
   }
 
