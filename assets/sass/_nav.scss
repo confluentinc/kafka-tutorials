@@ -687,7 +687,7 @@ ul {
 
   .courses {
     width: 845px;
-    left: -250px;
+    left: -298px;
 
     .navItemGroupWrapper {
       height: 335px;
@@ -702,7 +702,7 @@ ul {
   }
 
   .learn {
-    left: -270px;
+    left: -442px;
 
     .navItemMainColumns {
       width: 620px;
@@ -714,7 +714,7 @@ ul {
 
   .docs {
     width: 950px;
-    left: -600px;
+    left: -752px;
 
     .navItemMainColumns {
       width: 684px;
@@ -730,7 +730,7 @@ ul {
 
   .build, .community {
     width: 646px;
-    left: -250px;
+    left: -290px;
 
     ul {
       &:nth-child(1) {
@@ -742,6 +742,10 @@ ul {
       width: 300px;
       margin-bottom: 15px;
     }
+  }
+
+  .community {
+    left: -330px;
   }
 
   > ul:not(.wrapperSection, .navItemMainColumns) {
