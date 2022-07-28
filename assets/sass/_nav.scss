@@ -618,7 +618,6 @@ ul {
   .menuGroup {
     position: fixed;
     min-width: 500px;
-    max-width: 900px;
     top: 75px;
     left: 35%;
     background: #173361;
@@ -692,9 +691,15 @@ ul {
   }
 
   .docs {
-    width: 855px;
+    width: 950px;
     left: -600px;
-    height: 305px;
+
+    .navItemMainColumns {
+      width: 684px;
+      ul {
+        width: 50%;
+      }
+    }
 
     .navItem {
       margin-bottom: 15px;
@@ -788,14 +793,15 @@ a:hover {
     }
 
     &:after {
-      content: ">";
-      color: $color_island;
+      content: url(
+        'data:image/svg+xml; utf8, <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M11.01 7.5217L5.17 1.54049C4.83 1.21387 4.31 1.21387 3.99 1.54049C3.67 1.86711 3.67 2.41827 3.99 2.74489L9.25 8.1137L3.99 13.4825C3.67 13.8295 3.67 14.3603 3.99 14.6869C4.31 15.0135 4.83 15.0135 5.17 14.6869L11.01 8.72611C11.33 8.37908 11.33 7.84832 11.01 7.5217Z" fill="cyan"/> </svg> '
+      );
       padding: 6px;
       font-size: 24px;
       position: absolute;
       transform: translateY(-50%);
       right: 0;
-      top: 40%;
+      top: 50%;
     }
   }
 }
