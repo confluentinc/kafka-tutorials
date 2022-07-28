@@ -647,6 +647,19 @@ ul {
         max-width: 100%;
       }
     }
+
+    .groupWrapperHeading, .navItemGroupWrapper {
+
+      .title {
+        font-size: 12px;
+        font-weight: 400 !important;
+      }
+
+      .subline {
+        font-size: 14px;
+        font-weight: 400 !important;
+      }
+    }
   }
 
   .navItemMainColumns {
