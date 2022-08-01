@@ -1,35 +1,57 @@
+@import "mixins";
+
 .feedbackBtn {
   position: fixed;
-  padding: 10px 30px;
-  font-size: 16px;
-  right: -48px;
-  transform: rotate(270deg);
+  transform: translateX(-50%) !important;
   background: #257bd7;
   color: $color_white;
   border-radius: 0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-  border-right: none;
-  z-index: 999;
-  text-transform: uppercase;
-  cursor: pointer;
+  z-index: 99;
 
-  @include for-min-desktop {
+  &:hover {
     opacity: 0.9;
-    top: 50%;
   }
 
-  @include for-max-mobile {
-    left: 32%;
-    padding: 0;
+  span {
+    display: none;
+    @include for-min-desktop {
+      display: block;
+    }
+  }
+
+  svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+
+    @include for-min-desktop {
+      display: none;
+    }
   }
 
   @include for-max-tablet {
+    display: flex;
+    right: 0;
+    padding: 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    bottom: 10px;
+    align-items: center;
+    justify-content: center;
+    border: none;
+  }
+
+  @include for-min-desktop {
+    top: 50%;
     width: 128px;
     height: 40px;
-    bottom: 0;
-    right: 45%;
-    transform: none;
-    padding: 0;
+    text-transform: uppercase;
+    right: -3%;
+    transform: rotate(270deg) !important;
+    left: auto;
+    cursor: pointer;
   }
 }
