@@ -1,4 +1,4 @@
-$(function () {
+window.addEventListener('DOMContentLoaded', function () {
   // If target element is code copy
   function isTargetCodeCopyButton(elem) {
     return elem.classList.contains('fa-copy');
@@ -9,7 +9,7 @@ $(function () {
     if (e.target.tagName === 'A' || isTargetCodeCopyButton(e.target)) {
       return { target: e.target };
     } else if (e.target.parentNode.tagName === 'A') {
-      // For image
+      // For image/icon
       return { target: e.target, parent: e.target.parentNode };
     }
 
@@ -17,6 +17,7 @@ $(function () {
     return null;
   }
 
+  // Get the payload to be sent
   function getPayload({ target, parent }) {
     let hrefUrl;
     let text;
@@ -57,7 +58,9 @@ $(function () {
         return;
       }
 
+      // Traverse the locations
       const location = path.reduce((location, node) => {
+        // Using "data-tracking-location"
         if (!node?.dataset?.trackingLocation) {
           return location;
         } else if (location) {
