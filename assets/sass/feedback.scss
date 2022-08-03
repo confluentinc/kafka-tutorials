@@ -4,7 +4,7 @@
   position: fixed;
   transform: translateX(-50%) !important;
   background: #257bd7;
-  color: $color_white;
+  color: #ffffff;
   border-radius: 0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
@@ -33,7 +33,7 @@
 
   @include for-max-tablet {
     display: flex;
-    right: 0;
+    right: 10px;
     padding: 0;
     border-radius: 50%;
     width: 40px;
@@ -45,13 +45,12 @@
   }
 
   @include for-min-desktop {
-    top: 50%;
     width: 128px;
     height: 40px;
     text-transform: uppercase;
-    right: -3%;
+    top: 50%;
+    right: -47px !important;
     transform: rotate(270deg) !important;
     left: auto;
-    cursor: pointer;
   }
 }
