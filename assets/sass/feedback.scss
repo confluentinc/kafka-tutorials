@@ -8,7 +8,10 @@
   border-radius: 0;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
+  padding: 12px 30px;
   z-index: 99;
+  border: none;
+  font-weight: 700;
 
   &:hover {
     opacity: 0.9;
@@ -45,8 +48,6 @@
   }
 
   @include for-min-desktop {
-    width: 128px;
-    height: 40px;
     text-transform: uppercase;
     top: 50%;
     right: -47px !important;
