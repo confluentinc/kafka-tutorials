@@ -1,0 +1,18 @@
+{
+  "inputs": [
+    { "topic": "suspicious_names", "key": "Verizon", "value": { "CREATED_TS": "2019-03-08 00:00:00", "COMPANY_NAME": "Verizon", "COMPANY_ID":  1 } },
+    { "topic": "suspicious_names", "key": "Spirit Halloween", "value": { "CREATED_TS": "2019-10-31 00:00:00", "COMPANY_NAME": "Spirit Halloween", "COMPANY_ID":  2 } },
+    { "topic": "suspicious_names", "key": "Best Buy", "value": { "CREATED_TS": "2019-12-15 00:00:00", "COMPANY_NAME": "Best Buy", "COMPANY_ID":  3 } },
+    { "topic": "transactions", "value": { "TXN_ID": 9900, "USERNAME": "Abby Normal", "RECIPIENT": "Verizon", "AMOUNT": 22.0, "TS": "2020-10-20 13:05:36" } },
+    { "topic": "transactions", "value": { "TXN_ID": 12, "USERNAME": "Victor von Frankenstein", "RECIPIENT": "Tattered Cover", "AMOUNT": 7.0, "TS": "2020-10-20 13:07:59" } },
+    { "topic": "transactions", "value": { "TXN_ID": 13, "USERNAME": "Frau Blücher", "RECIPIENT": "Peebles", "AMOUNT": 70.0, "TS": "2020-10-20 13:15:00" } },
+    { "topic": "transactions", "value": { "TXN_ID": 9903, "USERNAME": "Abby Normal", "RECIPIENT": "Verizon", "AMOUNT": 61.0, "TS": "2020-10-20 13:31:02" } },
+    { "topic": "transactions", "value": { "TXN_ID": 9901, "USERNAME": "Abby Normal", "RECIPIENT": "Spirit Halloween", "AMOUNT": 83.0, "TS": "2020-10-20 13:44:41" } },
+    { "topic": "transactions", "value": { "TXN_ID": 9902, "USERNAME": "Abby Normal", "RECIPIENT": "Spirit Halloween", "AMOUNT": 46.0, "TS": "2020-10-20 13:44:43" } },
+    { "topic": "transactions", "value": { "TXN_ID": 9904, "USERNAME": "Abby Normal", "RECIPIENT": "Spirit Halloween", "AMOUNT": 59.0, "TS": "2020-10-20 13:44:44" } },
+    { "topic": "transactions", "value": { "TXN_ID": 6, "USERNAME": "Victor von Frankenstein", "RECIPIENT": "Confluent Cloud", "AMOUNT": 21.0, "TS": "2020-10-20 13:47:51" } },
+    { "topic": "transactions", "value": { "TXN_ID": 18, "USERNAME": "Frau Blücher", "RECIPIENT": "Target", "AMOUNT": 70.0, "TS": "2020-10-20 13:52:01" } },
+    { "topic": "transactions", "value": { "TXN_ID": 7, "USERNAME": "Victor von Frankenstein", "RECIPIENT": "Verizon", "AMOUNT": 100.0, "TS": "2020-10-20 13:55:06" } },
+    { "topic": "transactions", "value": { "TXN_ID": 19, "USERNAME": "Frau Blücher", "RECIPIENT": "Goodwill", "AMOUNT": 7.0, "TS": "2020-10-20 14:12:32" } }
+  ]
+}

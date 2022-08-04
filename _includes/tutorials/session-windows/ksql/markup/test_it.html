@@ -7,7 +7,7 @@
   <pre class="snippet"><code class="json">{% include_raw tutorials/session-windows/ksql/code/test/input.json %}</code></pre>
 
   <p>
-    Similarly, create a file at <code>test/output.json</code> with the expected outputs. Notice that because KSQL joins its grouping key with the window boundaries, we need to use a bit of extra expression to describe what to expect. We leverage the <code>window</code> key to describe the start and end boundaries that the key represents.
+    Similarly, create a file at <code>test/output.json</code> with the expected outputs. Notice that because ksqlDB joins its grouping key with the window boundaries, we need to use a bit of extra expression to describe what to expect. We leverage the <code>window</code> key to describe the start and end boundaries that the key represents.
   </p>
   <pre class="snippet"><code class="json">{% include_raw tutorials/session-windows/ksql/code/test/output.json %}</code></pre>
 </div>

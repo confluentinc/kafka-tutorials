@@ -1,4 +1,4 @@
-Assuming transaction events are joined with table reference data, use `WINDOWING` to group anomalous transactions.
+Assuming transaction events are joined with table reference data, use windowing to group anomalous transactions.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/create-accounts-to-monitor-table.sql %}</code></pre>

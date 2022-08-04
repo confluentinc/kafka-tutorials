@@ -7,7 +7,7 @@
         "TXN_ID": 9900,
         "USERNAME": "Abby Normal",
         "AMOUNT": 22.0,
-        "TIMESTAMP": "2020-10-20 13:05:36"
+        "TS": "2020-10-20 13:05:36"
       }
     },
     {
@@ -17,7 +17,7 @@
         "TXN_ID": 9903,
         "USERNAME": "Abby Normal",
         "AMOUNT": 61.0,
-        "TIMESTAMP": "2020-10-20 13:31:02"
+        "TS": "2020-10-20 13:31:02"
       }
     },
     {
@@ -27,7 +27,7 @@
         "TXN_ID": 9901,
         "USERNAME": "Abby Normal",
         "AMOUNT": 83.0,
-        "TIMESTAMP": "2020-10-20 13:44:41"
+        "TS": "2020-10-20 13:44:41"
       }
     },
     {
@@ -37,7 +37,7 @@
         "TXN_ID": 9902,
         "USERNAME": "Abby Normal",
         "AMOUNT": 46.0,
-        "TIMESTAMP": "2020-10-20 13:44:43"
+        "TS": "2020-10-20 13:44:43"
       }
     },
     {
@@ -47,7 +47,7 @@
         "TXN_ID": 9904,
         "USERNAME": "Abby Normal",
         "AMOUNT": 59.0,
-        "TIMESTAMP": "2020-10-20 13:44:44"
+        "TS": "2020-10-20 13:44:44"
       }
     },
     {
@@ -57,41 +57,8 @@
         "TXN_ID": 7,
         "USERNAME": "Victor von Frankenstein",
         "AMOUNT": 100.0,
-        "TIMESTAMP": "2020-10-20 13:55:06"
+        "TS": "2020-10-20 13:55:06"
       }
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Abby Normal",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": null,
-      "timestamp": 1603199136000
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Abby Normal",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": null,
-      "timestamp": 1603200662000
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Abby Normal",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": null,
-      "timestamp": 1603201481000
     },
     {
       "topic": "accounts_to_monitor",
@@ -120,17 +87,6 @@
         "WINDOW_END": "2020-10-21 00:00:00 +0000"
       },
       "timestamp": 1603201484000
-    },
-    {
-      "topic": "accounts_to_monitor",
-      "key": "Victor von Frankenstein",
-      "window": {
-        "start": 1603152000000,
-        "end": 1603238400000,
-        "type": "time"
-      },
-      "value": null,
-      "timestamp": 1603202106000
     }
 
   ]

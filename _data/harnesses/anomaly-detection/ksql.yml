@@ -128,7 +128,7 @@ dev:
     - title: Write your statements to a file
       content:
         - action: make_file
-          file: src/test-statements.sql
+          file: src/statements.sql
           render:
             file: tutorials/anomaly-detection/ksql/markup/dev/make-src-file.adoc
 
@@ -136,6 +136,11 @@ test:
   steps:
     - title: Create the test data
       content:
+        - action: make_file
+          file: test/input.json
+          render:
+            file: tutorials/anomaly-detection/ksql/markup/test/make-test-input.adoc
+
         - action: make_file
           file: test/output.json
           render:
