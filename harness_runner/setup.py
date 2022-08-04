@@ -5,5 +5,5 @@ setup(
     version='0.0.1',
     scripts=['harness-runner'],
     py_modules=[],
-    install_requires=['pyyaml==5.5']
+    install_requires=['pyyaml==5.4.1']
 )
