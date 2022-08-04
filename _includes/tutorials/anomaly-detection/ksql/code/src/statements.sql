@@ -1,22 +1,20 @@
-CREATE TABLE suspicious_names (CREATED_DATE VARCHAR,
+CREATE TABLE suspicious_names (CREATED_TS TIMESTAMP,
                                COMPANY_NAME VARCHAR PRIMARY KEY,
                                COMPANY_ID INT)
     WITH (kafka_topic='suspicious_names',
           partitions=1,
           value_format='JSON',
-          timestamp='CREATED_DATE',
-          timestamp_format='yyyy-MM-dd HH:mm:ss');
+          timestamp='CREATED_TS');
 
-CREATE STREAM transactions (TXN_ID BIGINT, USERNAME VARCHAR, RECIPIENT VARCHAR, AMOUNT DOUBLE, TIMESTAMP VARCHAR)
+CREATE STREAM transactions (TXN_ID BIGINT, USERNAME VARCHAR, RECIPIENT VARCHAR, AMOUNT DOUBLE, TS TIMESTAMP)
     WITH (kafka_topic='transactions',
           partitions=1,
           value_format='JSON',
-          timestamp='TIMESTAMP',
-          timestamp_format='yyyy-MM-dd HH:mm:ss');
+          timestamp='TS');
 
 CREATE STREAM suspicious_transactions
     WITH (kafka_topic='suspicious_transactions', partitions=1, value_format='JSON') AS
-    SELECT T.TXN_ID, T.USERNAME, T.RECIPIENT, T.AMOUNT, T.TIMESTAMP
+    SELECT T.TXN_ID, T.USERNAME, T.RECIPIENT, T.AMOUNT, T.TS
     FROM transactions T
     INNER JOIN
     suspicious_names S
