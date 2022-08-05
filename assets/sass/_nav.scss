@@ -803,10 +803,17 @@ a:hover {
   }
 
   .title {
-    max-width: 250px;
+    //max-width: 250px;
     word-break: break-word;
     font-size: 16px;
     color: $color_white;
+
+    .span {
+
+      &:hover {
+        color: $color_white !important;
+      }
+    }
   }
 
   .icon {
@@ -838,9 +845,12 @@ a:hover {
   &:hover {
     position: relative;
 
-    @include for-min-tablet {
+    @include for-min-desktop {
       margin-left: -30px;
       padding-left: 25px;
+    }
+
+    @include for-min-tablet {
       border-left: 5px solid $color_island;
     }
 
