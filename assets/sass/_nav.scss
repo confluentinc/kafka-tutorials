@@ -767,6 +767,7 @@ ul {
 
     @include for-max-tablet {
       width: 100%;
+      padding-bottom: 0;
     }
   }
 }
