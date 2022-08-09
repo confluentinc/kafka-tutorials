@@ -44,7 +44,7 @@
         SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
   
     ksqldb-server:
-      image: confluent-docker.jfrog.io/confluentinc/ksqldb-server:0.27.2-rc4
+      image: confluent-docker.jfrog.io/confluentinc/ksqldb-server:0.27.3-rc1
       hostname: ksqldb-server
       container_name: ksqldb-server
       depends_on:
@@ -68,7 +68,7 @@
         - ./log4j:/opt/app/log4j
   
     ksqldb-cli:
-      image: confluent-docker.jfrog.io/confluentinc/ksqldb-cli:0.27.2-rc4
+      image: confluent-docker.jfrog.io/confluentinc/ksqldb-cli:0.27.3-rc1
       container_name: ksqldb-cli
       depends_on:
         - broker
