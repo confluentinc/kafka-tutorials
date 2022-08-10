@@ -20,9 +20,12 @@
       analytics.page();
       }}();
     </script>
+    <script src="assets/js/feedback.js"></script>
   </head>
   <body class="pg-main">
     {% include nav.html %}
+
+    {% include feedback-button.html %}
 
     <section class="hero">
       <div class="hero-body">
@@ -120,6 +123,7 @@
             <div>Logistics and IoT Management</div>
           </div>
           <ul>
+            <li><a href="{{ "/iot-loss-tracking/confluent.html" | relative_url }}">IoT device loss tracking</a></li>
             <li><a href="{{ "/fleet-management/confluent.html" | relative_url }}">Optimize fleet management</a></li>
             <li><a href="{{ "/logistics/confluent.html" | relative_url }}">Track order shipments in real time</a></li>
           </ul>
