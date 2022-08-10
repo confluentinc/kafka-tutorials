@@ -25,7 +25,7 @@ def preDir = {
     return SKIP_SUBTREE
   }
 }
-
+// Dummy comment to force build
 // dynamic project discovery won't work with dependabot
 /*
 rootDir.traverse(
