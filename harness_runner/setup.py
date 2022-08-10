@@ -3,5 +3,7 @@ from setuptools import setup
 setup(
     name='harness-runner',
     version='0.0.1',
-    scripts=['harness-runner']
+    py_modules=['util', 'harness_runner', 'ksql'],
+    scripts=['harness-runner'],
+    install_requires=['pyyaml==6.0']
 )
