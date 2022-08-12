@@ -714,6 +714,7 @@ ul {
   }
 
   .learn {
+    width: 828px;
     left: -442px;
 
     .navItemMainColumns {
@@ -805,7 +806,7 @@ a:hover {
   .title {
     //max-width: 250px;
     word-break: break-word;
-    font-size: 16px;
+    font-size: 14px;
     color: $color_white;
 
     .span {
@@ -913,7 +914,7 @@ a:hover {
   }
 
   .subline {
-    font-size: 14px;
+    font-size: 12px;
     word-break: break-word;
   }
 
@@ -957,4 +958,8 @@ a:hover {
 
     @include nav-item-group-wrapper-commons
   }
+}
+
+.navItemSubline {
+  font-size: 12px;
 }
