@@ -243,7 +243,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       transition: all 0.5s ease;
       overflow: auto;
       top: 80px;
-      background: $color_denim;
+      background: $color_midnight !important;
 
       > ul {
         display: flex;
@@ -380,8 +380,30 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 }
 
 .mobile-accordion-item {
-  background-color: $color_denim;
+  background-color: $color_midnight;
   margin-bottom: 0;
+
+  .menuGroup {
+    background: $color_denim;
+  }
+
+  @include for-min-tablet {
+    .menuGroup {
+      border-radius: 10px;
+      margin: 10px;
+    }
+    .courses {
+      .navItemGroupWrapper {
+        border-radius: 10px 10px 0 0;
+      }
+    }
+
+    .learn, .build, .community, .docs {
+      .navItemGroupWrapper {
+        border-radius: 0 0 10px 10px;
+      }
+    }
+  }
 
   .accordion-title {
     background-color: $color_midnight;
