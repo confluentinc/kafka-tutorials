@@ -203,6 +203,10 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
                   font-weight: 700;
                 }
 
+                span {
+                  font-size: 12px;
+                }
+
                 &[href="#"] {
                   font-weight: bold;
 
@@ -758,7 +762,8 @@ ul {
   }
 
   .community {
-    width: 610px;
+    width: 580px;
+    left: -330px;
 
     .navItemGroupWrapper {
       width: 260px;
@@ -766,13 +771,13 @@ ul {
 
     ul {
       &:nth-child(1) {
-        width: 350px;
+        width: 320px;
       }
     }
   }
 
   .build {
-    width: 646px;
+    width: 616px;
     left: -290px;
 
     .navItemGroupWrapper {
@@ -781,7 +786,7 @@ ul {
 
     ul {
       &:nth-child(1) {
-        width: 370px;
+        width: 340px;
       }
     }
 
@@ -793,10 +798,6 @@ ul {
     .navItem:last-child {
       margin-bottom: 0;
     }
-  }
-
-  .community {
-    left: -330px;
   }
 
   > ul:not(.wrapperSection, .navItemMainColumns) {
@@ -842,8 +843,9 @@ a:hover {
     font-size: 14px;
     color: $color_white;
 
-    .span {
+    span {
       font-weight: 300;
+      font-size: 12px;
       &:hover {
         color: $color_white !important;
       }
