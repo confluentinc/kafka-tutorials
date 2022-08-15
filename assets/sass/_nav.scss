@@ -710,8 +710,8 @@ ul {
     }
 
     @include for-max-tablet {
-      padding: 20px 0;
-      justify-content: space-around;
+      padding: 20px 30px;
+      gap: 50px;
     }
   }
 
@@ -854,13 +854,13 @@ a:hover {
     word-break: break-word;
     font-size: 14px;
     color: $color_white;
+  }
 
-    span {
-      font-weight: 300;
-      font-size: 12px;
-      &:hover {
-        color: $color_white !important;
-      }
+  span {
+    font-weight: 300;
+    font-size: 12px;
+    &:hover {
+      color: $color_white !important;
     }
   }
 
@@ -898,7 +898,7 @@ a:hover {
       padding-left: 25px;
     }
 
-    @include for-min-tablet {
+    @include for-min-desktop {
       border-left: 5px solid $color_island;
     }
 
