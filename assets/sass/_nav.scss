@@ -757,7 +757,21 @@ ul {
     }
   }
 
-  .build, .community {
+  .community {
+    width: 610px;
+
+    .navItemGroupWrapper {
+      width: 260px;
+    }
+
+    ul {
+      &:nth-child(1) {
+        width: 350px;
+      }
+    }
+  }
+
+  .build {
     width: 646px;
     left: -290px;
 
