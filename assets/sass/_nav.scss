@@ -193,12 +193,15 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
                 font-size: 14px;
                 font-weight: 300;
                 width: 100%;
-                //display: block;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 padding: 10px 0;
-                margin: 0 10px;
+                //margin: 0 10px;
                 line-height: 20px;
+
+                &[class="title"] {
+                  font-weight: 700;
+                }
 
                 &[href="#"] {
                   font-weight: bold;
@@ -714,20 +717,33 @@ ul {
   }
 
   .learn {
-    width: 828px;
+    width: 900px;
     left: -442px;
 
     .navItemMainColumns {
       width: 620px;
-      ul {
-        width: 50%;
+
+      ul:first-child {
+        width: 333px;
       }
+
+      ul:nth-child(2) {
+        width: 288px;
+      }
+    }
+
+    .navItemGroupWrapper {
+      width: 280px;
     }
   }
 
   .docs {
     width: 950px;
     left: -752px;
+
+    .navItemGroupWrapper {
+      width: 276px;
+    }
 
     .navItemMainColumns {
       width: 684px;
@@ -744,6 +760,10 @@ ul {
   .build, .community {
     width: 646px;
     left: -290px;
+
+    .navItemGroupWrapper {
+      width: 276px;
+    }
 
     ul {
       &:nth-child(1) {
@@ -773,7 +793,6 @@ ul {
   }
 
   .navItemGroupWrapper {
-    width: 280px;
     height: 100%;
     border-bottom-right-radius: 10px;
 
@@ -800,17 +819,17 @@ a:hover {
 
     .title {
       margin-bottom: 5px;
+      font-weight: 700;
     }
   }
 
   .title {
-    //max-width: 250px;
     word-break: break-word;
     font-size: 14px;
     color: $color_white;
 
     .span {
-
+      font-weight: 300;
       &:hover {
         color: $color_white !important;
       }
