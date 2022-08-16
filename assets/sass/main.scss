@@ -46,6 +46,10 @@ a {
   }
 }
 
+svg path {
+  pointer-events: none;
+}
+
 .btn-denim {
   @include button;
 }
