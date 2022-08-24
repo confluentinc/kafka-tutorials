@@ -404,6 +404,26 @@ kafka-consumer-application:
     kafka: enabled
     confluent: enabled
 
+confluent-parallel-consumer-application:
+  title: "How to use the Confluent Parallel Consumer"
+  meta-description: "How to use the Confluent Parallel Consumer"
+  slug: "/confluent-parallel-consumer"
+  question: "How can I consume Kafka topics with a higher degree of parallelism than the partition count?"
+  introduction: "The Confluent Parallel Consumer is an Apache 2.0-licensed Java library that enables developers to consume from a Kafka topic with a higher degree of parallelism than the number of partitions for the input data, i.e., the effective parallelism limit achievable via an Apache Kafka consumer group. This is desirable in many situations, e.g., when partition counts are fixed for a reason beyond your control, or if you need to make a high-latency call out to a database or microservice while consuming.<br><br>In this tutorial, you'll build a small application that uses the Confluent Parallel Consumer library to read records from Kafka.<br><br>Prepare to say \"hello world\" to the the Confluent Parallel Consumer!"
+  status:
+    confluent: enabled
+    ksql: disabled
+    kstreams: disabled
+    kafka: enabled
+    c: disabled
+    go: disabled
+    groovy: disabled
+    nodejs: disabled
+    python: disabled
+    ruby: disabled
+    scala: disabled
+    swift: disabled
+
 produce-consume-lang:
   title: "Produce and Consume Records in non-Java languages"
   meta-description: "produce and consume events from Kafka in non-Java languages"
