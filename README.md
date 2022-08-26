@@ -578,7 +578,14 @@ The `ksqldb-latest` branch builds against the latest `master` branch of ksqlDB, 
 1. Open a pull request from `master` to `release`. A pull request into the `release` branch denotes a request to update the live site.
 
 - Title the PR “KT release [date]”
-- In the description add links to PRs that resulted in new tutorials, content changes, or any other noteworthy addition
+- In the description add links to PRs that resulted in new tutorials, content changes, or any other noteworthy addition, e.g.:
+```
+This release contains:
+
+New Tutorial! A fun new tutorial #1287
+New recipe group for financial services use cases #1264
+plus many other small fixes
+```
 - Add a link to the staging site with the updates (snag the staging site name from Semaphore's "Deploy to staging site" step)
 - Tag reviewers
 - Create PR
@@ -589,7 +596,7 @@ The `ksqldb-latest` branch builds against the latest `master` branch of ksqlDB, 
 
 3. Look at the staging site from different browsers. Ensure that you get approval from required reviewers. Submit PRs with fixes, if needed.
 
-4. Once the PR is approved, merge the PR. Note: do not `Squash and Merge`, instead use `Create a merge commit`.  This is so that the git log will include the individual commits.
+4. Once the PR is approved, merge the PR via `Squash and Merge`.
 
 ### Deploy to live site
 
