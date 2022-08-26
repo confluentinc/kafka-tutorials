@@ -64,10 +64,6 @@ dev:
           render:
             file: shared/markup/ccloud/append-ccloud-config.adoc
 
-        - action: skip
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/explain-properties.adoc
-
     - title: Create the Kafka Consumer Application
       content:
         - action: execute
