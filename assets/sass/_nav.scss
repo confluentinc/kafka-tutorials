@@ -766,6 +766,10 @@ ul {
       ul {
         width: 50%;
       }
+
+      li:last-child {
+        margin-bottom: 0 !important;
+      }
     }
 
     .navItem {
