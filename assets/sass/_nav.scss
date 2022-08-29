@@ -834,6 +834,10 @@ a:hover {
   text-decoration: none !important;
 }
 
+.py50 {
+  padding: 50px 0 !important;
+}
+
 .navItem {
   display: flex;
   align-items: center;
@@ -876,6 +880,7 @@ a:hover {
   .new {
     display: none;
     color: $color_island;
+    font-weight: 700;
 
     @include for-min-desktop {
       display: inline;
