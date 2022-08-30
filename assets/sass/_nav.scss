@@ -933,7 +933,7 @@ a:hover {
       }
 
       @include for-max-tablet {
-        right: 0;
+        right: -30px;
       }
 
       @include for-min-desktop {
