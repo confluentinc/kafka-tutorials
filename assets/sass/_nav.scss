@@ -392,12 +392,13 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     border-radius: 0;
   }
 
-  @include for-min-tablet {
-    .menuGroup {
-      border-radius: 10px;
-      margin: 10px;
-    }
+  .menuGroup {
+    border-radius: 10px;
+  }
 
+  @include for-min-tablet {
+
+    margin: 10px;
     .navItemGroupWrapper {
       border-radius: 10px 10px 0 0;
     }
