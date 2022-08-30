@@ -343,8 +343,9 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     }
 
     .build, .community {
-      ul {
-        padding-top: 20px;
+
+      ul:not(.wrapperSection) {
+        padding: 20px 30px;
       }
 
       .navItem {
@@ -387,21 +388,18 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     background: $color_denim;
   }
 
+  .navItemGroupWrapper {
+    border-radius: 0;
+  }
+
   @include for-min-tablet {
     .menuGroup {
       border-radius: 10px;
       margin: 10px;
     }
-    .courses {
-      .navItemGroupWrapper {
-        border-radius: 10px 10px 0 0;
-      }
-    }
 
-    .learn, .build, .community, .docs {
-      .navItemGroupWrapper {
-        border-radius: 0 0 10px 10px;
-      }
+    .navItemGroupWrapper {
+      border-radius: 10px 10px 0 0;
     }
   }
 
@@ -417,7 +415,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   }
 
   a {
-    padding: 10px 20px;
+    padding: 10px 0;
   }
 }
 
@@ -704,14 +702,15 @@ ul {
       }
     }
 
-    @include for-max-mobile {
-      flex-direction: column;
-      padding: 10px 0;
-    }
-
     @include for-max-tablet {
       padding: 20px 30px;
       gap: 50px;
+    }
+
+    @include for-max-mobile {
+      flex-direction: column;
+      padding: 20px 30px;
+      gap: 0;
     }
   }
 
@@ -895,7 +894,7 @@ a:hover {
   }
 
   @include for-max-mobile {
-    margin-left: 10px;
+    margin-left: 0;
   }
 
   @include for-max-tablet {
