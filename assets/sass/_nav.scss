@@ -853,6 +853,7 @@ a:hover {
 
   > a {
     display: flex;
+    align-items: start;
     gap: 15px;
 
     .title {
