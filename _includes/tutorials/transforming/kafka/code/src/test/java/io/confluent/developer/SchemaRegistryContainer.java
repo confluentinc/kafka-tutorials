@@ -25,7 +25,7 @@ class SchemaRegistryContainer extends GenericContainer<SchemaRegistryContainer> 
 
     String getTarget() {
         StringBuilder sb = new StringBuilder();
-        sb.append("http://").append(getContainerIpAddress());
+        sb.append("http://").append(getHost());
         sb.append(":").append(getMappedPort(8081));
         return sb.toString();
     }

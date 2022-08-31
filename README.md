@@ -567,13 +567,43 @@ The following regular expressions may be useful to group-update all dependencies
 
 ## Updating Tutorials
 
-The `release` branch tracks the content and code comprising the live site. Confluent manages the release process.
+Confluent manages the release process and the process described here must be done by a Confluent employee.
+
+The `release` branch tracks the content and code comprising the live site.
 
 The `ksqldb-latest` branch builds against the latest `master` branch of ksqlDB, and should be used for updates that are only in the master branch of ksqlDB.
-Confluent manages the processes of merging changes from this branch.
 
-#### Prepare a release PR
+### Create a release PR
 
-A pull request into the `release` branch denotes a request to update the live site. The PR description should summarize the content changes and link to the staging site with the updates. In general, releases are timed, so target dates should also be noted.
+1. Open a pull request from `master` to `release`. A pull request into the `release` branch denotes a request to update the live site.
 
-Release artifacts are automatically promoted to the live site by CI, as part of successful `release` branch builds.
+- Title the PR “KT release [date]”
+- In the description add links to PRs that resulted in new tutorials, content changes, or any other noteworthy addition, e.g.:
+```
+This release contains:
+
+New Tutorial! A fun new tutorial #1287
+New recipe group for financial services use cases #1264
+plus many other small fixes
+```
+- Add a link to the staging site with the updates (snag the staging site name from Semaphore's "Deploy to staging site" step)
+- Tag reviewers
+- Create PR
+
+2. The semaphore tests for the PR will automatically create the staging site. You can manually click to deploy to staging site if you trust that failing tests work (ksqlDB tests can be flaky sometimes).
+
+![image](assets/img/manual-deploy-staging.png)
+
+3. Look at the staging site from different browsers. Ensure that you get approval from required reviewers. Submit PRs with fixes, if needed.
+
+4. Once the PR is approved, merge the PR via `Squash and Merge`.
+
+### Deploy to live site
+
+To deploy artifacts from the `release` branch to the live site, it should be done from the `release` branch, not the above PR.  So do not `deploy to live site` from the PR, because that would deploy from `master`.  Instead, go to the `release` branch, let the tests pass, and then deploy
+
+![image](assets/img/release-promote.png)
+
+### Landing page
+
+The landing page is at https://developer.confluent.io/tutorials/ (it is not [index.html](index.html)), and the source for it is in Contentful.  Any changes to the landing page should be worked through Confluent.
