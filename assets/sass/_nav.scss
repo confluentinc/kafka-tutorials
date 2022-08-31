@@ -156,6 +156,27 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
             letter-spacing: 0.1em;
           }
 
+          &.search {
+            .search-link {
+              background-color: transparent;
+
+              .search-text {
+                // visually hides, but visible to screen readers
+                clip: rect(0 0 0 0);
+                clip-path: inset(50%);
+                height: 1px;
+                overflow: hidden;
+                position: absolute;
+                white-space: nowrap;
+                width: 1px;
+              }
+
+              .search-icon {
+                margin-bottom: -4px;
+              }
+            }
+          }
+
           &.quick-start a {
             @include quick-start-styles;
           }
@@ -289,6 +310,17 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       margin: 20px;
       border-radius: 25px;
       display: block;
+    }
+
+    .search-link {
+      font-weight: normal;
+      text-decoration: none;
+      position: relative;
+
+      .search-icon {
+        position: absolute;
+        right: 28px;
+      }
     }
 
     @include for-tablet-nav {
