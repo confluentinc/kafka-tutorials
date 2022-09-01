@@ -4,7 +4,7 @@ answer:
       content:
         - action: skip
           render:
-            file: tutorials/iot-loss-tracking/confluent/markup/dev/answer-short.adoc
+            file: tutorials/iot-asset-tracking/confluent/markup/dev/answer-short.adoc
 
 dev:
   steps:
@@ -30,7 +30,7 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/iot-loss-tracking/confluent/markup/dev/ksqlDB.adoc
+            file: tutorials/iot-asset-tracking/confluent/markup/dev/ksqlDB.adoc
 
         - action: skip
           render:
@@ -38,7 +38,7 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/iot-loss-tracking/confluent/markup/dev/process.adoc
+            file: tutorials/iot-asset-tracking/confluent/markup/dev/process.adoc
 
     - title: Test with mock data
       content:
@@ -48,7 +48,7 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/iot-loss-tracking/confluent/markup/dev/manual.adoc
+            file: tutorials/iot-asset-tracking/confluent/markup/dev/manual.adoc
 
     - title: Cleanup
       content:
