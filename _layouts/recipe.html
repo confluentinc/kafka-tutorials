@@ -96,6 +96,14 @@
                 {% endfor %}
               </ul>
             {% endif %}
+            {% if site.data.harnesses[page.static_data][page.stack].perftest %}
+            <li><a href="#perf-test-it">Performance test it</a></li>
+            <ul>
+              {% for step in site.data.harnesses[page.static_data][page.stack].perftest.steps %}
+              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+              {% endfor %}
+            </ul>
+            {% endif %}
             {% if site.data.harnesses[page.static_data][page.stack].prod %}
               <li><a href="#take-it-to-prod">Take it to production</a></li>
               <ul>
