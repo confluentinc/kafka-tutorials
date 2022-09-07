@@ -19,6 +19,11 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     color: $color_denim;
     background: $color_white;
   }
+
+  @include for-max-tablet {
+    background: $color_island;
+    color: $color_black;
+  }
 }
 
 @mixin quick-start-scrolled-styles {
@@ -313,6 +318,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
       margin: 20px;
       border-radius: 25px;
       display: block;
+      background: $color_white !important;
     }
 
     @include for-min-desktop {
