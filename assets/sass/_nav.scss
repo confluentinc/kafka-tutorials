@@ -380,7 +380,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
 
     .build, .community {
 
-      ul:not(.wrapperSection) {
+      ul:not(.wrapperSection, .singleContainer) {
         padding: 20px 30px;
       }
 
@@ -550,6 +550,10 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     .secondColumn {
       padding: 0 30px 30px 30px;
 
+      li:last-child {
+        margin-bottom: 0 !important;
+      }
+
       @include for-min-tablet {
         padding-top: 20px;
       }
@@ -562,6 +566,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   }
 
   .canonicalPadding {
+    margin-left: 0;
     padding: 20px 30px 30px 30px;
   }
 
@@ -835,7 +840,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   }
 
   .community {
-    width: 600px;
+    width: 660px;
     left: -330px;
 
     .navItemGroupWrapper {
@@ -857,12 +862,6 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     .navItemGroupWrapper {
       width: 276px;
       border-bottom-left-radius: 10px;
-    }
-
-    ul {
-      &:nth-child(1) {
-        width: 340px;
-      }
     }
 
     .navItem {
@@ -897,6 +896,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
   }
 
   .canonicalPadding {
+    margin-left: 0;
     @include for-min-desktop {
       padding: 20px 30px 30px 30px;
     }
