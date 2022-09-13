@@ -159,7 +159,6 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
           }
 
           > a {
-            //display: block;
             text-decoration: none;
             margin: 0;
             padding: 0;
@@ -212,7 +211,6 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 padding: 10px 0;
-                //margin: 0 10px;
                 line-height: 20px;
 
                 &[class="title"] {
@@ -716,7 +714,6 @@ ul {
     }
 
     .groupWrapperHeading, .navItemGroupWrapper {
-
       .title, .navItemGroupCta {
         font-size: 12px;
         font-weight: 700 !important;
@@ -1048,12 +1045,10 @@ a:hover {
   }
 
   @include for-max-mobile {
-
     @include nav-item-group-wrapper-commons
   }
 
   @include for-max-tablet {
-
     @include nav-item-group-wrapper-commons
   }
 }
