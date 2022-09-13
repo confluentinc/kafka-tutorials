@@ -22,7 +22,7 @@
 
       <!-- Quick start (outer menu) link -->
       <a class="button quick-start-nav-button"
-        href="https://confluent.io/get-started/">GET STARTED FREE</a>
+        href="https://confluent.io/get-started/">GET STARTED</a>
 
       <!-- Hamburger menu icon -->
       <button type="button" class="mobile-menu">
@@ -36,29 +36,16 @@
 
         <!-- Quick start (inner menu) link -->
         <a class="button denim quick-start-link"
-          href="https://confluent.io/get-started/">GET STARTED FREE</a>
+          href="https://confluent.io/get-started/">GET STARTED</a>
 
         <!-- Course related links -->
         <div class="accordion-item-wrapper collapsed mobile-accordion-item">
           <div>
             <div class="accordion-title">
               Courses
-              <div class="arrow down md theme_denim indicator"></div>
+              <div class="arrow down md indicator"></div>
             </div>
-            <div class="accordion-panel">
-              <a href="https://developer.confluent.io/learn-kafka/apache-kafka/events/">Apache Kafka 101</a>
-              <a href="https://developer.confluent.io/learn-kafka/kafka-connect/intro/">Kafka Connect 101</a>
-              <a href="https://developer.confluent.io/learn-kafka/kafka-streams/get-started/">Kafka Streams 101</a>
-              <a href="https://developer.confluent.io/learn-kafka/data-mesh/intro/">Data Mesh 101</a>
-              <a href="https://developer.confluent.io/learn-kafka/ksqldb/intro/">ksqlDB 101</a>
-              <a href="https://developer.confluent.io/learn-kafka/inside-ksqldb/streaming-architecture/">Inside ksqlDB</a>
-              <a href="https://developer.confluent.io/learn-kafka/spring/confluent-cloud/">Spring Framework and Apache Kafka</a>
-              <a href="https://developer.confluent.io/learn-kafka/data-pipelines/intro/">Building Data Pipelines with
-                Apache Kafka and Confluent</a>
-              <a href="https://developer.confluent.io/learn-kafka/event-sourcing/event-driven-vs-state-based/">Event
-                Sourcing and Event Storage with Apache Kafka</a>
-              <a href="https://developer.confluent.io/learn-kafka/architecture/get-started/">Kafka Internals</a>
-            </div>
+            {% include navMenus/courses.html %}
           </div>
         </div>
 
@@ -67,17 +54,9 @@
           <div>
             <div class="accordion-title">
               Learn
-              <div class="arrow down md theme_denim indicator"></div>
+              <div class="arrow down md indicator"></div>
             </div>
-            <div class="accordion-panel">
-              <a href="https://developer.confluent.io/learn/">Articles</a>
-              <a href="https://developer.confluent.io/patterns/">Patterns</a>
-              <a href="https://developer.confluent.io/learn/apache-kafka-faqs/">FAQs</a>
-              <a href="https://developer.confluent.io/100-days-of-code/">100 Days of Code</a>
-              <a href="https://www.confluent.io/blog/">Blog</a>
-              <a href="https://developer.confluent.io/podcast/">Podcast</a>
-              <a href="https://developer.confluent.io/live/">Confluent Developer Live</a>
-            </div>
+            {% include navMenus/learn.html %}
           </div>
         </div>
 
@@ -86,13 +65,9 @@
           <div>
             <div class="accordion-title">
               Build
-              <div class="arrow down md theme_denim indicator"></div>
+              <div class="arrow down md indicator"></div>
             </div>
-            <div class="accordion-panel">
-              <a href="https://developer.confluent.io/get-started/">Language Guides</a>
-              <a href="https://developer.confluent.io/tutorials/">Tutorials</a>
-              <a href="https://developer.confluent.io/demos-examples/">Demos</a>
-            </div>
+            {% include navMenus/build.html %}
           </div>
         </div>
 
@@ -101,14 +76,9 @@
           <div>
             <div class="accordion-title">
               Community
-              <div class="arrow down md theme_denim indicator"></div>
+              <div class="arrow down md indicator"></div>
             </div>
-            <div class="accordion-panel">
-              <a target="_blank" rel="noopener noreferrer" href="https://www.kafka-summit.org/">Kafka Summit Conference</a>
-              <a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/">Meetups &amp; Events</a>
-              <a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/ask-the-community/">Ask the Community</a>
-              <a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/nominate/">Community Catalysts</a>
-            </div>
+            {% include navMenus/community.html %}
           </div>
         </div>
 
@@ -117,16 +87,9 @@
           <div>
             <div class="accordion-title">
               Docs
-              <div class="arrow down md theme_denim indicator"></div>
+              <div class="arrow down md indicator"></div>
             </div>
-            <div class="accordion-panel">
-              <a href="https://docs.confluent.io/home/overview.html" rel="noopener noreferrer" data-test-id="link">Docs Home</a>
-              <a href="https://docs.confluent.io/cloud/current/overview.html" rel="noopener noreferrer" data-test-id="link">Confluent Cloud</a>
-              <a href="https://docs.confluent.io/platform/current/overview.html" rel="noopener noreferrer" data-test-id="link">Confluent Platform</a>
-              <a href="https://docs.confluent.io/home/connect/overview.html" rel="noopener noreferrer" data-test-id="link">Confluent Connectors</a>
-              <a href="https://docs.confluent.io/home/tools/overview.html" rel="noopener noreferrer" data-test-id="link">Tools</a>
-              <a href="https://docs.confluent.io/home/clients/overview.html" rel="noopener noreferrer" data-test-id="link">Clients</a>
-            </div>
+            {% include navMenus/docs.html %}
           </div>
         </div>
 
@@ -146,89 +109,34 @@
 
         <!-- Course related links -->
         <li class="dropdown-link">
-          <a rel="noopener noreferrer" href="https://developer.confluent.io/learn-kafka/">Courses</a>
-          <ul>
-            <li><a href="https://developer.confluent.io/learn-kafka/apache-kafka/events/">Apache Kafka 101</a></li>
-            <li><a href="https://developer.confluent.io/learn-kafka/kafka-connect/intro/">Kafka Connect 101</a></li>
-            <li><a href="https://developer.confluent.io/learn-kafka/kafka-streams/get-started/">Kafka Streams 101</a>
-            </li>
-            <li><a href="https://developer.confluent.io/learn-kafka/data-mesh/intro/">Data Mesh 101</a></li>
-            <li><a href="https://developer.confluent.io/learn-kafka/ksqldb/intro/">ksqlDB 101</a></li>
-            <li><a href="https://developer.confluent.io/learn-kafka/inside-ksqldb/streaming-architecture/">Inside
-                ksqlDB</a></li>
-            <li><a href="https://developer.confluent.io/learn-kafka/spring/confluent-cloud/">Spring Framework and Apache
-                Kafka</a></li>
-            <li><a href="https://developer.confluent.io/learn-kafka/data-pipelines/intro/">Building Data Pipelines with
-                Apache Kafka and Confluent</a></li>
-            <li><a href="https://developer.confluent.io/learn-kafka/event-sourcing/event-driven-vs-state-based/">Event
-                Sourcing and Event Storage with Apache Kafka</a></li>
-            <li><a href="https://developer.confluent.io/learn-kafka/architecture/get-started/">Kafka Internals</a></li>
-          </ul>
+          <a rel="noopener noreferrer" class="py50" href="https://developer.confluent.io/learn-kafka/">Courses</a>
+          {% include navMenus/courses.html %}
         </li>
 
         <!-- Learn related links -->
         <li class="dropdown-link">
-          <a rel=" noreferrer" href="https://developer.confluent.io/learn/">Learn</a>
-          <ul>
-            <li><a href="https://developer.confluent.io/learn/">Articles</a></li>
-            <li><a href="https://developer.confluent.io/patterns/">Patterns</a></li>
-            <li><a href="https://developer.confluent.io/learn/apache-kafka-faqs/">FAQs</a></li>
-            <li><a href="https://developer.confluent.io/100-days-of-code/">100 Days of Code</a></li>
-            <li><a href="https://www.confluent.io/blog/">Blog</a></li>
-            <li><a href="https://developer.confluent.io/podcast/">Podcast</a></li>
-            <li><a href="https://developer.confluent.io/live/">Confluent Developer Live</a></li>
-          </ul>
+          <a rel=" noreferrer" class="py50" href="https://developer.confluent.io/learn/">Learn</a>
+          {% include navMenus/learn.html %}
         </li>
 
-        <!-- Design, Build, Run related links -->
+        <!-- Build related links -->
         <li class="dropdown-link">
-          <a rel="noopener noreferrer" href="https://developer.confluent.io/#designbuildrun">Build</a>
-          <ul>
-            <li><a href="https://developer.confluent.io/get-started/">Language Guides</a></li>
-            <li><a href="https://developer.confluent.io/tutorials/">Tutorials</a></li>
-            <li><a href="https://developer.confluent.io/demos-examples/">Demos</a></li>
-          </ul>
+          <a rel="noopener noreferrer" class="py50" href="https://developer.confluent.io/#designbuildrun">Build</a>
+          {% include navMenus/build.html %}
         </li>
 
         <!-- Community related links -->
         <li class="dropdown-link">
-          <a rel="noopener noreferrer" href="https://www.confluent.io/community/">Community</a>
-          <ul>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://www.kafka-summit.org/">Kafka Summit
-                Conference</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/community/">Meetups &amp;
-                Events</a></li>
-            <li><a target="_blank" rel="noopener noreferrer"
-                href="https://www.confluent.io/community/ask-the-community/">Ask the Community</a></li>
-            <li><a target="_blank" rel="noopener noreferrer" href="https://www.confluent.io/nominate/">Community
-                Catalysts</a></li>
-          </ul>
+          <a rel="noopener noreferrer" class="py50" href="https://www.confluent.io/community/">Community</a>
+          {% include navMenus/community.html %}
         </li>
 
         <!-- Documentation link -->
         <li class="dropdown-link">
           <a rel="noopener noreferrer"
+             class="py50"
             href="https://docs.confluent.io/home/overview.html">Docs</a>
-          <ul>
-            <li>
-              <a href="https://docs.confluent.io/home/overview.html" rel="noopener noreferrer" data-test-id="link">Docs Home</a>
-            </li>
-            <li>
-              <a href="https://docs.confluent.io/cloud/current/overview.html" rel="noopener noreferrer" data-test-id="link">Confluent Cloud</a>
-            </li>
-            <li>
-              <a href="https://docs.confluent.io/platform/current/overview.html" rel="noopener noreferrer" data-test-id="link">Confluent Platform</a>
-            </li>
-            <li>
-              <a href="https://docs.confluent.io/home/connect/overview.html" rel="noopener noreferrer" data-test-id="link">Confluent Connectors</a>
-            </li>
-            <li>
-              <a href="https://docs.confluent.io/home/tools/overview.html" rel="noopener noreferrer" data-test-id="link">Tools</a>
-            </li>
-            <li>
-              <a href="https://docs.confluent.io/home/clients/overview.html" rel="noopener noreferrer" data-test-id="link">Clients</a>
-            </li>
-          </ul>
+          {% include navMenus/docs.html %}
         </li>
 
         <li class="search">
@@ -240,7 +148,7 @@
 
         <!-- Quick start link -->
         <li class="quick-start"><a class="button"
-            href="https://www.confluent.io/get-started/">GET STARTED FREE</a></li>
+            href="https://www.confluent.io/get-started/">GET STARTED</a></li>
       </ul>
     </nav>
   </div>
