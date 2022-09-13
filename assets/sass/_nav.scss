@@ -127,7 +127,7 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     position: relative;
     height: 100%;
     width: 1170px;
-    padding: 0 25px;
+    padding: 0 20px 0 25px;
     margin: 0 auto;
 
     .nav {
@@ -518,11 +518,11 @@ $font-family-secondary: "MarkPro-Medium", Arial, sans-serif;
     }
     &:first-child {
       transform: rotate(45deg);
-      top: 12px;
+      top: 5px;
     }
     &:last-child {
       transform: rotate(-45deg);
-      top: 0;
+      top: -7px;
     }
   }
 }
