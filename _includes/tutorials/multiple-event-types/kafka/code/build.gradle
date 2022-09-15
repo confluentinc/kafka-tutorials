@@ -18,7 +18,7 @@ buildscript {
 
 plugins {
     id "java"
-    id "com.google.cloud.tools.jib" version "3.2.0"
+    id "com.google.cloud.tools.jib" version "3.3.0"
     id "idea"
     id "eclipse"
     id "com.github.imflog.kafka-schema-registry-gradle-plugin" version "1.6.0"
@@ -60,7 +60,7 @@ protobuf {
     generatedFilesBaseDir = "${project.buildDir}/generated-main-proto-java"
 
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.20.0'
+        artifact = 'com.google.protobuf:protoc:3.21.6'
     }
 }
 
