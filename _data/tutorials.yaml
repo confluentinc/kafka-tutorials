@@ -1073,3 +1073,12 @@ iot-asset-tracking:
   introduction-media: "/assets/img/iot-asset-tracking.png"
   status:
     confluent: enabled
+
+omnichannel-commerce:
+  title: "Correlate customer behavior across in-store and online channels"
+  meta-description: "Correlate customer behavior across in-store and online channels"
+  slug: "/omnichannel-commerce"
+  question: "What are in-store shoppers doing online around the time that they purchase?"
+  introduction: "Today's retail customers browse and purchase products across many channels — from brick-and-mortar, to web, to mobile applications — and they expect a seamless shopping experience bridging these channels. The omnichannel retail setting is often rife with technical challenges stemming from data residing in disparate data sources. For example, web clickstream, mobile application user activity, and in-store purchase data often reside in different data stores or SaaS platforms. This tutorial enables you to correlate customers' in-store purchase activity with online user behavior, which can then feed downstream omnichannel analytics or improved customer experience (e.g., more relevant product recommendations online based on customers' in-store activity)."
+  status:
+    confluent: enabled
