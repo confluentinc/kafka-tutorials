@@ -23,7 +23,7 @@ plugins {
     id "eclipse"
     id "com.github.imflog.kafka-schema-registry-gradle-plugin" version "1.6.0"
     id "com.google.protobuf" version "0.8.18"
-    id "com.github.davidmc24.gradle.plugin.avro" version "1.2.1"
+    id "com.github.davidmc24.gradle.plugin.avro" version "1.4.0"
 }
 
 
