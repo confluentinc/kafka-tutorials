@@ -42,7 +42,7 @@ promotions:
   - name: Stage PRs for review 
     pipeline_file: pr-staging-deploy.yml
     auto_promote:
-      when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot\\.'"
+      when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot'"
 
 blocks:
   - name: Build the website
