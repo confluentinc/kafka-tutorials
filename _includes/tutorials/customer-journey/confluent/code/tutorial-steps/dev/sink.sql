@@ -5,7 +5,7 @@ CREATE SINK CONNECTOR IF NOT EXISTS analyzed_clickstream WITH (
   'input.data.format'        = 'JSON',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'topics'                   = 'pages_per_customer, ERRORS_PER_MIN_ALERT',
+  'topics'                   = 'pages_per_customer',
   'connection.url'           = '<elasticsearch-URI>',
   'connection.user'          = '<elasticsearch-username>',
   'connection.password'      = '<elasticsearch-password>',
