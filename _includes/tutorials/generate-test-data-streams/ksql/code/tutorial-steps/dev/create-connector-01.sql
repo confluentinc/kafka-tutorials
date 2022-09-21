@@ -1,7 +1,6 @@
 CREATE SOURCE CONNECTOR IF NOT EXISTS CLICKS WITH (
     'connector.class'             = 'io.mdrogalis.voluble.VolubleSourceConnector',
     'key.converter'               = 'org.apache.kafka.connect.storage.StringConverter',
-    
     'genkp.clicks.with'           = '#{Number.randomDigit}',
     'attrkp.clicks.null.rate'     = 1,
     'genv.clicks.source_ip.with'  = '#{Internet.ipV4Address}',

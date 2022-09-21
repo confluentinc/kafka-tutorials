@@ -52,8 +52,8 @@ CREATE STREAM fd_transactions_enriched WITH (KAFKA_TOPIC = 'transactions_enriche
     T.ACCOUNT_ID,
     T.CARD_TYPE,
     T.AMOUNT, 
-    C.FIRST_NAME + ' ' + C.LAST_NAME AS FULL_NAME, 
-    C.AVG_CREDIT_SPEND 
+    C.FIRST_NAME + ' ' + C.LAST_NAME AS FULL_NAME,
+    C.AVG_CREDIT_SPEND
   FROM fd_transactions T
   INNER JOIN fd_customers C
   ON T.ACCOUNT_ID = C.ID;
@@ -63,13 +63,13 @@ CREATE STREAM fd_transactions_enriched WITH (KAFKA_TOPIC = 'transactions_enriche
 -- two-hour period is greater than the customer’s average:
 CREATE TABLE fd_possible_stolen_card WITH (KAFKA_TOPIC = 'FD_possible_stolen_card', KEY_FORMAT = 'JSON') AS
   SELECT
-    TIMESTAMPTOSTRING(WINDOWSTART, 'yyyy-MM-dd HH:mm:ss Z') AS WINDOW_START, 
-    T.ACCOUNT_ID,
-    T.CARD_TYPE,
-    SUM(T.AMOUNT) AS TOTAL_CREDIT_SPEND, 
-    T.FULL_NAME,
-    MAX(T.AVG_CREDIT_SPEND) AS AVG_CREDIT_SPEND 
-  FROM fd_transactions_enriched T
-  WINDOW TUMBLING (SIZE 2 HOURS) 
-  GROUP BY T.ACCOUNT_ID, T.CARD_TYPE, T.FULL_NAME 
-  HAVING SUM(T.AMOUNT) > MAX(T.AVG_CREDIT_SPEND);
+    TIMESTAMPTOSTRING(WINDOWSTART, 'yyyy-MM-dd HH:mm:ss Z') AS WINDOW_START,
+    ACCOUNT_ID,
+    CARD_TYPE,
+    SUM(AMOUNT) AS TOTAL_CREDIT_SPEND,
+    FULL_NAME,
+    MAX(AVG_CREDIT_SPEND) AS AVG_CREDIT_SPEND
+  FROM fd_transactions_enriched
+  WINDOW TUMBLING (SIZE 2 HOURS)
+  GROUP BY ACCOUNT_ID, CARD_TYPE, FULL_NAME
+  HAVING SUM(AMOUNT) > MAX(AVG_CREDIT_SPEND);

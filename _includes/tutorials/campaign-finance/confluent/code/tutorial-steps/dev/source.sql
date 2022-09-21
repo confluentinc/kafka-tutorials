@@ -1,6 +1,5 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS campaign_finance WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_campaign_finance WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-campaign_finance',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',

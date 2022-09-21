@@ -1,6 +1,5 @@
-CREATE SINK CONNECTOR IF NOT EXISTS training_data WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS recipe_mongodb_training_weights WITH (
     'connector.class'          = 'MongoDbAtlasSink',
-    'name'                     = 'weight-data', 
     'kafka.auth.mode'          = 'KAFKA_API_KEY',
     'kafka.api.key'            = '<my-kafka-api-key',
     'kafka.api.secret'         = '<my-kafka-api-secret>',
@@ -17,10 +16,9 @@ CREATE SINK CONNECTOR IF NOT EXISTS training_data WITH (
     'tasks.max'                = '1'
 );     
 
-CREATE SINK CONNECTOR IF NOT EXISTS retraining_trigger WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS recipe_http_retrain_trigger WITH (
     'connector.class'          = 'HttpSink',
     'input.data.format'        = 'JSON',
-    'name'                     = 'retrain-trigger',
     'kafka.auth.mode'          = 'KAFKA_API_KEY',
     'kafka.api.key'            = '<my-kafka-api-key>',
     'kafka.api.secret'         = '<my-kafka-api-secret>',
