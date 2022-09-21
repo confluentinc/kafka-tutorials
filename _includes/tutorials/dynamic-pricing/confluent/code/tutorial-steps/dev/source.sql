@@ -1,6 +1,5 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS sales WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_pricing WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-pricing',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
@@ -15,9 +14,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS sales WITH (
   'tasks.max'                = '1'
 );
 
-CREATE SOURCE CONNECTOR IF NOT EXISTS items WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_items WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-items',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
