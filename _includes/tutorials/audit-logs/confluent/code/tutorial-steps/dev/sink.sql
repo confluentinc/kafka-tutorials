@@ -1,11 +1,10 @@
 -- Send data to Splunk
-CREATE SINK CONNECTOR IF NOT EXISTS filtered_splunk WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS recipe_splunk_filter_logs WITH (
   'connector.class'          = 'SplunkSink',
-  'name'                     = 'recipe-splunk-filter-logs',
   'input.data.format'        = 'JSON',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'topics'                   = 'TOPIC-OPERATIONS-AUDIT-LOG',
+  'topics'                   = 'topic-operations-audit-log',
   'splunk.hec.uri'           = '<splunk-indexers>',
   'splunk.hec.token'         = '<Splunk HTTP Event Collector token>',
   'tasks.max'                = '1'
