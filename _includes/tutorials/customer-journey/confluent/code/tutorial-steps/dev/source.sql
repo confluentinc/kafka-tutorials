@@ -1,6 +1,5 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS inventory WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_customer_journey WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-customer_journey',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',

@@ -1,6 +1,5 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS customer WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_mysqlcdc_customer_tenant WITH (
   'connector.class'       = 'MySqlCdcSource',
-  'name'                  = 'Customer_Tenant_Source',
   'kafka.api.key'         = '<my-kafka-api-key>',
   'kafka.api.secret'      = '<my-kafka-api-secret>',
   'database.hostname'     = '<db-hostname>',
@@ -15,9 +14,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS customer WITH (
   'tasks.max'             = '1'
 );
 
-CREATE SOURCE CONNECTOR IF NOT EXISTS readings WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_mqtt_smart_panel WITH (
   'connector.class'       = 'MqttSource',
-  'name'                  = 'Smart_Panel_Source',
   'kafka.api.key'         = '<my-kafka-api-key>',
   'kafka.api.secret'      = '<my-kafka-api-secret>',
   'kafka.topic'           = 'panel-readings',
