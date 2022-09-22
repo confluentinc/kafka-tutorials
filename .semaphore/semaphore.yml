@@ -10,6 +10,13 @@ global_job_config:
     commands:
       - echo $SEMAPHORE_WORKFLOW_ID
       - checkout
+      - |
+        if ! cache has_key gradle-7.5.1; then
+          mkdir ~/.gradle
+          wget -P ~/.gradle https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
+          unzip ~/.gradle/gradle-7.5.1-bin.zip -d ~/.gradle
+          cache store gradle-7.5.1 ~/.gradle
+        fi
       - cache restore gradle-7.5.1
       - sudo update-alternatives --install /usr/bin/gradle gradle ~/.gradle/gradle-7.5.1/bin/gradle 10 || true
       - make install-vault
@@ -46,19 +53,6 @@ promotions:
       when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot'"
 
 blocks:
-  - name: Install pipeline dependencies
-    task:
-      prologue:
-        commands:
-          - echo $SEMAPHORE_WORKFLOW_ID
-      jobs:
-        - name: Install Gradle
-          commands:
-            - mkdir ~/.gradle
-            - wget -P ~/.gradle https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
-            - unzip ~/.gradle/gradle-7.5.1-bin.zip -d ~/.gradle
-            - cache store gradle-7.5.1 ~/.gradle
-
   - name: Build the website
     task:
       prologue:
