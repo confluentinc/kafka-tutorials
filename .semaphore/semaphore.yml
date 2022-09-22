@@ -9,7 +9,6 @@ global_job_config:
   prologue:
     commands:
       - echo $SEMAPHORE_WORKFLOW_ID
-      - sudo add-apt-repository ppa:cwchien/gradle -y
       - checkout
       - make install-vault
       - . vault-bin/vault-setup
@@ -45,6 +44,20 @@ promotions:
       when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot'"
 
 blocks:
+  - name: Install pipeline dependencies
+    task:
+      prologue:
+        commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
+      jobs:
+        - name: Install Gradle
+          commands:
+            - sudo mkdir /opt/gradle
+            - sudo wget -P /opt/gradle https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
+            - sudo unzip /opt/gradle/gradle-7.5.1-bin.zip -d /opt/gradle
+            - cache store gradle-7.5.1 /opt/gradle
+            - sudo update-alternatives --install /usr/bin/gradle gradle /opt/gradle/gradle-7.5.1/bin/gradle 10
+
   - name: Build the website
     task:
       prologue:
@@ -85,8 +98,8 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-7.4.2 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/7.4.2/bin/gradle          
+          - cache restore
+          - sudo update-alternatives --install /usr/bin/gradle gradle /opt/gradle/gradle-7.5.1/bin/gradle 10
       jobs:
         - name: KStreams Test Streams schedule operations tests
           commands:
@@ -256,8 +269,8 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
+          - cache restore
+          - sudo update-alternatives --install /usr/bin/gradle gradle /opt/gradle/gradle-7.5.1/bin/gradle 10
       jobs:
         - name: Payment Status Check
           commands:
@@ -374,8 +387,8 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
+          - cache restore
+          - sudo update-alternatives --install /usr/bin/gradle gradle /opt/gradle/gradle-7.5.1/bin/gradle 10
       jobs:
         - name: KStreams Connect key tests
           commands:
