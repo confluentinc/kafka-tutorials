@@ -10,6 +10,8 @@ global_job_config:
     commands:
       - echo $SEMAPHORE_WORKFLOW_ID
       - sudo add-apt-repository ppa:cwchien/gradle -y
+      - sudo apt-get install gradle-7.4.2 -y
+      - sudo update-alternatives --set gradle /usr/lib/gradle/7.4.2/bin/gradle
       - checkout
       - make install-vault
       - . vault-bin/vault-setup
@@ -85,8 +87,6 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-7.4.2 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/7.4.2/bin/gradle          
       jobs:
         - name: KStreams Test Streams schedule operations tests
           commands:
@@ -256,8 +256,6 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
         - name: Payment Status Check
           commands:
@@ -374,8 +372,6 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
         - name: KStreams Connect key tests
           commands:
