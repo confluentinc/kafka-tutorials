@@ -1,6 +1,5 @@
 -- Stream of users
-CREATE SOURCE CONNECTOR IF NOT EXISTS DATAGEN_USERS WITH (
-  'name'                     = 'DATAGEN_USERS',
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_datagen_users WITH (
   'connector.class'          = 'io.confluent.kafka.connect.datagen.DatagenConnector',
   'kafka.topic'              = 'clickstream_users',
   'quickstart'               = 'CLICKSTREAM_USERS',
@@ -10,8 +9,7 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS DATAGEN_USERS WITH (
 );
 
 -- Stream of per-user session information
-CREATE SOURCE CONNECTOR IF NOT EXISTS DATAGEN_CLICKS WITH (
-  'name'                     = 'DATAGEN_CLICKS',
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_datagen_clicks WITH (
   'connector.class'          = 'io.confluent.kafka.connect.datagen.DatagenConnector',
   'kafka.topic'              = 'clickstream',
   'quickstart'               = 'CLICKSTREAM',

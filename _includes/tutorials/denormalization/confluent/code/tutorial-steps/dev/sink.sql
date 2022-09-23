@@ -1,7 +1,6 @@
 -- Send data to Snowflake
-CREATE SINK CONNECTOR IF NOT EXISTS orders_enriched WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS recipe_snowflake_analyzed_clickstream WITH (
   'connector.class'          = 'SnowflakeSink',
-  'name'                     = 'recipe-snowflake-analyzed_clickstream',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'topics'                   = 'sales_orders_enriched',
