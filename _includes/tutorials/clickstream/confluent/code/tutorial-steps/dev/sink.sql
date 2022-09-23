@@ -1,11 +1,10 @@
 -- Send data to Elasticsearch
-CREATE SINK CONNECTOR IF NOT EXISTS analyzed_clickstream WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS recipe_elasticsearch_analyzed_clickstream WITH (
   'connector.class'          = 'ElasticsearchSink',
-  'name'                     = 'recipe-elasticsearch-analyzed_clickstream',
   'input.data.format'        = 'JSON',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
-  'topics'                   = 'USER_IP_ACTIVITY, ERRORS_PER_MIN_ALERT',
+  'topics'                   = 'user_ip_activity, errors_per_min_alert',
   'connection.url'           = '<elasticsearch-URI>',
   'connection.user'          = '<elasticsearch-username>',
   'connection.password'      = '<elasticsearch-password>',

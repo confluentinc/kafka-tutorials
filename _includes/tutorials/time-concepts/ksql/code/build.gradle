@@ -4,7 +4,7 @@ buildscript {
     }
     dependencies {
         classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.21.0"
-        classpath "com.github.jengelman.gradle.plugins:shadow:4.0.2"
+        classpath "gradle.plugin.com.github.jengelman.gradle.plugins:shadow:7.0.0"
     }
 }
 

@@ -1,7 +1,6 @@
 -- Stream of customers
-CREATE SOURCE CONNECTOR IF NOT EXISTS customers WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_customers WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-payment-status-check-customers',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
@@ -17,9 +16,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS customers WITH (
 );
 
 -- Stream of payments
-CREATE SOURCE CONNECTOR IF NOT EXISTS payments WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_payments WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-payment-status-check-payments',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
@@ -35,9 +33,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS payments WITH (
 );
 
 -- Stream of aml_status
-CREATE SOURCE CONNECTOR IF NOT EXISTS aml_status WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_aml_status WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-payment-status-check-aml_status',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
@@ -53,9 +50,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS aml_status WITH (
 );
 
 -- Stream of funds_status
-CREATE SOURCE CONNECTOR IF NOT EXISTS funds_status WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_funds_status WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-payment-status-check-funds_status',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',

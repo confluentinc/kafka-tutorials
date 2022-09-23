@@ -1,7 +1,6 @@
 -- Example
-CREATE SOURCE CONNECTOR IF NOT EXISTS online_dating WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_dating WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-dating',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',

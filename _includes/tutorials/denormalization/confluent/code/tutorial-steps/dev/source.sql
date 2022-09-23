@@ -1,7 +1,6 @@
 -- Stream of sales_orders
-CREATE SOURCE CONNECTOR IF NOT EXISTS sales_orders WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_sqlservercdc_orders WITH (
   'connector.class'          = 'SqlServerCdcSource',
-  'name'                     = 'recipe-sqlservercdc-orders',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'database.hostname'        = '<db-name>',
@@ -17,9 +16,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS sales_orders WITH (
 );
 
 -- Stream of customers
-CREATE SOURCE CONNECTOR IF NOT EXISTS customers WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_oracle_customers WITH (
   'connector.class'          = 'OracleDatabaseSource',
-  'name'                     = 'recipe-oracle-customers',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'topic.prefix'             = 'oracle_',

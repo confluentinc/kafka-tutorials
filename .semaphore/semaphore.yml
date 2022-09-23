@@ -9,8 +9,16 @@ global_job_config:
   prologue:
     commands:
       - echo $SEMAPHORE_WORKFLOW_ID
-      - sudo add-apt-repository ppa:cwchien/gradle -y
       - checkout
+      - |
+        if ! cache has_key gradle-7.5.1; then
+          mkdir ~/.gradle
+          wget -P ~/.gradle https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
+          unzip ~/.gradle/gradle-7.5.1-bin.zip -d ~/.gradle
+          cache store gradle-7.5.1 ~/.gradle
+        fi
+      - cache restore gradle-7.5.1
+      - sudo update-alternatives --install /usr/bin/gradle gradle ~/.gradle/gradle-7.5.1/bin/gradle 10
       - make install-vault
       - . vault-bin/vault-setup
       - . vault-sem-get-secret aws_credentials
@@ -42,7 +50,7 @@ promotions:
   - name: Stage PRs for review 
     pipeline_file: pr-staging-deploy.yml
     auto_promote:
-      when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot\\.'"
+      when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot'"
 
 blocks:
   - name: Build the website
@@ -59,7 +67,7 @@ blocks:
       jobs:
         - name: Compile with Jekyll
           commands:
-            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_BRANCH"
+            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_WORKING_BRANCH"
             - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
@@ -68,7 +76,6 @@ blocks:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
           - checkout
-          - cache restore
       jobs:
         - name: Tests
           matrix:
@@ -85,8 +92,6 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-7.4.2 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/7.4.2/bin/gradle          
       jobs:
         - name: KStreams Test Streams schedule operations tests
           commands:
@@ -256,8 +261,6 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
         - name: Payment Status Check
           commands:
@@ -374,8 +377,6 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
-          - sudo apt-get install gradle-6.8.3 -y
-          - sudo update-alternatives --set gradle /usr/lib/gradle/6.8.3/bin/gradle
       jobs:
         - name: KStreams Connect key tests
           commands:
