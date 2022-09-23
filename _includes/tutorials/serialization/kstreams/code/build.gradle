@@ -12,7 +12,7 @@ plugins {
   id "java"
   id "application"
   id "idea"
-  id "com.google.cloud.tools.jib" version "3.2.0"
+  id "com.google.cloud.tools.jib" version "3.3.0"
   id "com.github.johnrengelman.shadow" version "6.1.0"
   id "com.google.protobuf" version "0.8.18"
 }
@@ -34,8 +34,8 @@ apply plugin: "com.github.johnrengelman.shadow"
 
 dependencies {
   implementation "org.apache.avro:avro:1.11.0"
-  implementation "com.google.protobuf:protobuf-java:3.19.4"
-  implementation "org.slf4j:slf4j-simple:1.7.36"
+  implementation "com.google.protobuf:protobuf-java:3.21.6"
+  implementation "org.slf4j:slf4j-simple:2.0.2"
   implementation "org.apache.kafka:kafka-streams:3.1.0"
   implementation "io.confluent:kafka-streams-avro-serde:7.1.0"
   implementation "io.confluent:kafka-streams-protobuf-serde:7.1.0"
@@ -43,7 +43,7 @@ dependencies {
 
   testImplementation "org.apache.kafka:kafka-streams-test-utils:3.1.0"
   testImplementation 'junit:junit:4.13.2'
-  testImplementation 'org.assertj:assertj-core:3.22.0'
+  testImplementation 'org.assertj:assertj-core:3.23.1'
 }
 
 test {
@@ -76,7 +76,7 @@ protobuf {
   generatedFilesBaseDir = "$buildDir/generated-main-proto-java/"
 
   protoc {
-    artifact = "com.google.protobuf:protoc:3.20.0"
+    artifact = "com.google.protobuf:protoc:3.21.6"
   }
 
 }

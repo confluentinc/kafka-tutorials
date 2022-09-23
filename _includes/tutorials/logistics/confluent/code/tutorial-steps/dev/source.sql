@@ -1,6 +1,5 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS orders WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_logistics_orders WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-logistics-orders',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
@@ -15,9 +14,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS orders WITH (
   'tasks.max'                = '1'
 );
 
-CREATE SOURCE CONNECTOR IF NOT EXISTS fleet_updates WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_logistics_fleet WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-logistics-fleet',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
