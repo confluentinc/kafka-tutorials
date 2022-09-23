@@ -47,7 +47,7 @@ test {
 }
 
 task run(type: JavaExec) {
-  main = 'io.confluent.developer.TumblingWindow'
+  mainClass = 'io.confluent.developer.TumblingWindow'
   classpath = sourceSets.main.runtimeClasspath
   args = ['configuration/dev.properties']
 }
