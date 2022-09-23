@@ -1,7 +1,6 @@
 -- Stream of changes to Salesforce records
-CREATE SOURCE CONNECTOR IF NOT EXISTS sfdc_cdc WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_salesforcecdc_account_changes WITH (
   'connector.class'            = 'SalesforceCdcSource',
-  'name'                       = 'SalesforceCdcSourceConnector',
   'kafka.api.key'              = '<my-kafka-api-key>',
   'kafka.api.secret'           = '<my-kafka-api-secret>',
   'kafka.topic'                = 'sfdc.cdc.raw',
