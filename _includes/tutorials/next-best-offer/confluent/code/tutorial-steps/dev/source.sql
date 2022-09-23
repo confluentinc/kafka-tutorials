@@ -1,6 +1,5 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS customer_activity WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_next_best_offer WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-next-best-offer',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',

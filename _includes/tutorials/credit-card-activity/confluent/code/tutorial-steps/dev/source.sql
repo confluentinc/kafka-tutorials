@@ -1,7 +1,6 @@
 -- Stream of transactions
-CREATE SOURCE CONNECTOR IF NOT EXISTS FD_transactions WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_oracle_transactions_cc WITH (
   'connector.class'          = 'OracleDatabaseSource',
-  'name'                     = 'recipe-oracle-transactions-cc',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
@@ -17,9 +16,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS FD_transactions WITH (
 );
 
 -- Stream of customers
-CREATE SOURCE CONNECTOR IF NOT EXISTS FD_customers WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_oracle_customers_cc WITH (
   'connector.class'          = 'OracleDatabaseSource',
-  'name'                     = 'recipe-oracle-customers-cc',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
