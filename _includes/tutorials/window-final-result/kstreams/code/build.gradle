@@ -64,17 +64,17 @@ shadowJar {
 
 
 task createTopics(type: JavaExec) {
-    main = 'io.confluent.developer.helper.TopicCreation'
+    mainClass = 'io.confluent.developer.helper.TopicCreation'
     classpath = sourceSets.main.runtimeClasspath
 }
 
 task publishSchemas(type: JavaExec) {
-    main = 'io.confluent.developer.helper.SchemaPublication'
+    mainClass = 'io.confluent.developer.helper.SchemaPublication'
     classpath = sourceSets.main.runtimeClasspath
 }
 
 task consumeResult(type: JavaExec) {
-    main = 'io.confluent.developer.helper.ResultConsumer'
+    mainClass = 'io.confluent.developer.helper.ResultConsumer'
     classpath = sourceSets.main.runtimeClasspath
 }
 

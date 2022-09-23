@@ -47,7 +47,7 @@ test {
 }
 
 task run(type: JavaExec) {
-  main = 'io.confluent.developer.TransformStream'
+  mainClass = 'io.confluent.developer.TransformStream'
   classpath = sourceSets.main.runtimeClasspath
   args = ['configuration/dev.properties']
 }

@@ -68,7 +68,7 @@ configure(subprojects) {
     task spec(dependsOn: ['compileTestScala'], type: JavaExec) {
         group = 'verification'
         description = 'Runs the scala tests.'
-        main = 'org.scalatest.tools.Runner'
+        mainClass = 'org.scalatest.tools.Runner'
         args = ['-R', 'build/classes/scala/test', '-o']
         classpath = sourceSets.test.runtimeClasspath
     }
@@ -90,11 +90,11 @@ configure(project('produce-consume-scala-consumer-app')) {
 }
 
 task topicCreation(type: JavaExec) {
-    main = 'io.confluent.developer.helper.TopicCreation'
+    mainClass = 'io.confluent.developer.helper.TopicCreation'
     classpath = sourceSets.main.runtimeClasspath
 }
 
 task schemaPublication(type: JavaExec) {
-    main = 'io.confluent.developer.helper.SchemaPublication'
+    mainClass = 'io.confluent.developer.helper.SchemaPublication'
     classpath = sourceSets.main.runtimeClasspath
 }
