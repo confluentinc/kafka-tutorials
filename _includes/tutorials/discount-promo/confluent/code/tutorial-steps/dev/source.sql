@@ -1,6 +1,5 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS discount_codes WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_discount_codes WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-discounting-codes',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
@@ -15,9 +14,8 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS discount_codes WITH (
   'tasks.max'                = '1'
 );
 
-CREATE SOURCE CONNECTOR IF NOT EXISTS orders WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_discount_orders WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-discounting-orders',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',

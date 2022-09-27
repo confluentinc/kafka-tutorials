@@ -1,7 +1,6 @@
 -- Send data to Snowflake
-CREATE SINK CONNECTOR IF NOT EXISTS customer_flight_updates WITH (
+CREATE SINK CONNECTOR IF NOT EXISTS recipe_snowflake_aviation WITH (
   'connector.class'          = 'SnowflakeSink',
-  'name'                     = 'recipe-snowflake-aviation',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'topics'                   = 'customer_flight_updates',

@@ -1,6 +1,5 @@
 -- Stream of users
-CREATE SOURCE CONNECTOR IF NOT EXISTS DATAGEN_USERS WITH (
-  'name'                     = 'DATAGEN_USERS',
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_datagen_users WITH (
   'connector.class'          = 'DatagenSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
@@ -12,8 +11,7 @@ CREATE SOURCE CONNECTOR IF NOT EXISTS DATAGEN_USERS WITH (
 );
 
 -- Stream of per-user session information
-CREATE SOURCE CONNECTOR IF NOT EXISTS DATAGEN_CLICKS WITH (
-  'name'                     = 'DATAGEN_CLICKS',
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_datagen_clicks WITH (
   'connector.class'          = 'DatagenSource',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',

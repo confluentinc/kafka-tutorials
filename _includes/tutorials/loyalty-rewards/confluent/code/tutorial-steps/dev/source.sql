@@ -1,6 +1,5 @@
-CREATE SOURCE CONNECTOR IF NOT EXISTS loyalty_rewards WITH (
+CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_postgres_loyalty_rewards WITH (
   'connector.class'          = 'PostgresSource',
-  'name'                     = 'recipe-postgres-loyalty-rewards',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'connection.host'          = '<database-host>',
