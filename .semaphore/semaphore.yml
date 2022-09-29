@@ -516,3 +516,8 @@ blocks:
         - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+
+        - name: Confluent Parallel Consumer tests
+          commands:
+            - make -C _includes/tutorials/confluent-parallel-consumer-application/kafka/code tutorial
+            
