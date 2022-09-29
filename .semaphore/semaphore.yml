@@ -17,6 +17,22 @@ global_job_config:
           unzip ~/.gradle/gradle-7.5.1-bin.zip -d ~/.gradle
           cache store gradle-7.5.1 ~/.gradle
         fi
+      - |
+        if ! cache has_key cp-7.1.0-images; then
+          docker save confluentinc/cp-kafka:7.1.0 \
+                      confluentinc/cp-zookeeper:7.1.0 \
+                      confluentinc/cp-schema-registry:7.1.0 \
+                      confluentinc/cp-kafka-connect-base:7.1.0 \
+                      confluentinc/cp-server-connect-base:7.1.0 \
+                      confluentinc/ksqldb-server:0.24.0 \
+                      confluentinc/ksqldb-cli:0.24.0 \
+                      | gzip > cp.tar.gz
+          cache store cp-7.1.0-images cp.tar.gz
+          rm -f cp.tar.gz
+        else
+          docker image inspect confluentinc/cp-kafka:7.1.0 || \
+            (cache restore cp-7.1.0-images && gunzip cp.tar.gz && sudo mkdir -p /var/lib/docker/tmp && docker load -i cp.tar && rm -f cp.tar)
+        fi
       - cache restore gradle-7.5.1
       - sudo update-alternatives --install /usr/bin/gradle gradle ~/.gradle/gradle-7.5.1/bin/gradle 10
       - make install-vault
