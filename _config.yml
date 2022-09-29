@@ -31,7 +31,6 @@ exclude:
   - tools/
 
 ak_javadoc_version: 23
-cp_version: v5.3.0
 google_tag_manager_id: GTM-M58HDC6
 
 plugins:
