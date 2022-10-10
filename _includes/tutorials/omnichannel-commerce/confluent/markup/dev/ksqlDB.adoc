@@ -1,0 +1,4 @@
+This tutorial creates simulated data with the `Datagen` connector.
+Then you can process the data in a variety of ways by enriching the orders and clickstream data with product and customer attributes, analyze errors, aggregate data by time, etc.
+  
+Optional: To simulate a real-world scenario where user sessions aren't just always open but do close after some time, you can pause and resume the `DATAGEN_SHOE_CLICKSTREAM` connector.
