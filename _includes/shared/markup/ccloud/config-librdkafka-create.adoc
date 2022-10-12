@@ -1,6 +1,6 @@
 From the Confluent Cloud UI, navigate to your Kafka cluster. From the ``Clients`` view, get the connection information customized to your cluster (select ``C/C++``).
 
-Create new credentials for your Kafka cluster, and then Confluent Cloud will show a configuration similar to below with your new credentials automatically populated (make sure ``show API keys`` is checked).
+Create new credentials for your Kafka cluster, writing in an appropriate description so that the key is easy to find and delete later. The Confluent Cloud Console will show a configuration similar to below with your new credentials automatically populated (make sure ``Show API keys`` is checked).
 Copy and paste it into a `configuration/ccloud.properties` file on your machine.
 
 +++++
