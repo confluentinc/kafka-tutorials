@@ -87,6 +87,47 @@
     </div>
   </section>
 {% endif %}
+  {% if site.data.harnesses[page.static_data][page.stack].perftest %}
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-full">
+          <h2 class="title tutorial-section-title" id="perf-test-it">
+            Performance test it
+          </h2>
+
+          {% for step in site.data.harnesses[page.static_data][page.stack].perftest.steps %}
+          <div class="tutorial-try-it-step content">
+            <h2
+                    class="title tutorial-section-item-title"
+                    id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
+            <div class="content-item">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="item-display">
+
+                {% for section in step.content %}
+
+                {% if section.render.skip != true %}
+
+                {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+                {{ prose | asciidocify }}
+
+                {% endif %}
+
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
 {% if site.data.harnesses[page.static_data][page.stack].prod %}
   <section class="section" data-tracking-location="Take it to production">
     <div class="container">
