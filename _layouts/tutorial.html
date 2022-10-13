@@ -33,12 +33,12 @@
   </script>
   <script src="../assets/js/feedback.js"></script>
 </head>
-<body class="pg-tutorial">
+<body class="pg-tutorial" data-tracking-location="page > layout">
   {% include nav.html %}
 
   {% include feedback-button.html %}
 
-  <section class="hero">
+  <section class="hero" data-tracking-location="body > hero">
     <div class="hero-body">
       <div class="container">
         {% if page.community_contribution %}
@@ -55,12 +55,12 @@
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" data-tracking-location="body">
     <div class="container">
       {% if site.data.tutorials[page.static_data].introduction-media %}
         <img class="example-image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
       {% endif %}
-      <ul class="breadcrumb">
+      <ul class="breadcrumb" data-tracking-location="breadcrumb-top">
         <li><a href="{{ "/" | relative_url }}">&lt; Back to tutorials</a></li>
       </ul>
       <a href="{{ site.github_url }}/tree/master/_includes/tutorials/{{ page.static_data }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
@@ -141,7 +141,7 @@
           {% endif %}
         </select>
       </div>
-      <div class="cflt-tabs">
+      <div class="cflt-tabs" data-tracking-location="tabs">
         <div class="buttons">
           {% if site.data.tutorials[page.static_data].status.confluent == 'enabled' %}
           <a class="button {% if page.stack == 'confluent' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/confluent.html">
@@ -202,7 +202,7 @@
       </div>
 
       {% if page.stack == 'confluent' %}
-      <div class="columns">
+      <div class="columns" data-tracking-location="CTA below tabs">
         <div class="column is-5">
         New to Confluent Cloud? <a href="https://www.confluent.io/confluent-cloud/tryfree/">Get started here</a>.
         </div>
@@ -218,24 +218,32 @@
       {% if site.data.harnesses[page.static_data][page.stack].dev %}
       <div class="columns">
         <div class="column is-5">
-          <ul id="toc" class="tutorial-navigation">
+          <ul id="toc" class="tutorial-navigation" data-tracking-location="table-of-contents">
             <li><a href="#run-it">Run it</a></li>
-            <ul>
+            <ul data-tracking-location="Run it">
               {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
               <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
               {% endfor %}
             </ul>
             {% if site.data.harnesses[page.static_data][page.stack].test %}
               <li><a href="#test-it">Test it</a></li>
-              <ul>
+              <ul data-tracking-location="Test it">
                 {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
                 <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
                 {% endfor %}
               </ul>
             {% endif %}
+            {% if site.data.harnesses[page.static_data][page.stack].perftest %}
+            <li><a href="#test-it">Performance test it</a></li>
+            <ul>
+              {% for step in site.data.harnesses[page.static_data][page.stack].perftest.steps %}
+              <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
+              {% endfor %}
+            </ul>
+            {% endif %}
             {% if site.data.harnesses[page.static_data][page.stack].prod %}
               <li><a href="#take-it-to-prod">Take it to production</a></li>
-              <ul>
+              <ul data-tracking-location="Take it to production">
                 {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
                 <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
                 {% endfor %}
@@ -243,7 +251,7 @@
             {% endif %}
             {% if site.data.harnesses[page.static_data][page.stack].ccloud %}
                <li><a href="#deploy-on-confluent-cloud">Deploy on Confluent Cloud</a></li>
-               <ul>
+               <ul data-tracking-location="Deploy on Confluent Cloud">
                  {% for step in site.data.harnesses[page.static_data][page.stack].ccloud.steps %}
                  <li><a href="#{{ step.title | slugify }}">{{ forloop.index }}. {{ step.title }}</a></li>
                  {% endfor %}
@@ -264,7 +272,7 @@
     </div>
   </section>
 
-  <div class="tutorial-markup">
+  <div class="tutorial-markup" data-tracking-location="body">
     {% if page.help_wanted %}
     {% include contribute-tutorial.html %}
     {% else %}
@@ -274,7 +282,7 @@
       {% include tutorial-content.html %}
       <section class="section">
         <div class="container">
-          <ul class="breadcrumb">
+          <ul class="breadcrumb" data-tracking-location="breadcrumb-bottom">
             <li><a href="{{ "/" | relative_url }}">&lt; Back to tutorials</a></li>
           </ul>
         </div>
@@ -285,6 +293,7 @@
 
   {% include footer.html %}
 
+  <script src="{{ "/assets/js/segment.js" | relative_url }}"></script>
   <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>

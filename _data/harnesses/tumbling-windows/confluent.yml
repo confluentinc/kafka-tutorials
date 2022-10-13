@@ -21,7 +21,7 @@ dev:
       content:
         - action: skip
           render:
-            file: shared/markup/ccloud/config-create.adoc
+            file: shared/markup/ccloud/config-create-java.adoc
 
     - title: Download and setup the Confluent CLI
       content:
