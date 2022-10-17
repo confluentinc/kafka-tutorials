@@ -26,10 +26,6 @@ dev:
 
         - action: skip
           render:
-            file: shared/markup/ccloud/manual_insert.adoc
-
-        - action: skip
-          render:
             file: tutorials/campaign-finance/confluent/markup/dev/ksqlDB.adoc
 
         - action: skip
@@ -39,16 +35,6 @@ dev:
         - action: skip
           render:
             file: tutorials/campaign-finance/confluent/markup/dev/process.adoc
-
-    - title: Test with mock data
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/manual_cue.adoc
-
-        - action: skip
-          render:
-            file: tutorials/campaign-finance/confluent/markup/dev/manual.adoc
 
     - title: Cleanup
       content:
