@@ -22,15 +22,15 @@ test:
           docker_bootup_file: start-cli.sh
           stdout:
             directory: tutorial-steps/test/outputs
-          column_width: 25
+          column_width: 75
           render:
             skip: true
           stdin:
-            - file: ../../confluent/code/tutorial-steps/dev/process.sql
+            - file: tutorial-steps/test/source.sql
 
-        - name: wait for streams to be created
+        - name: wait for connector to run
           action: sleep
-          ms: 5000
+          ms: 30000
           render:
             skip: true
 
@@ -43,5 +43,15 @@ test:
           render:
             skip: true
           stdin:
-            - file: ../../confluent/code/tutorial-steps/dev/manual.sql
+            - file: ../../confluent/code/tutorial-steps/dev/process.sql
+
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: start-cli.sh
+          stdout:
+            directory: tutorial-steps/test/outputs
+          column_width: 25
+          render:
+            skip: true
+          stdin:
             - file: tutorial-steps/test/validate.sql
