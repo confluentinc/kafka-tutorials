@@ -1,23 +1,23 @@
 SET 'auto.offset.reset' = 'earliest';
 
--- Create a Stream for the campaign finance data
+-- Create a stream of campaign contributions
 CREATE STREAM campaign_finance (
   time BIGINT,
-  cand_id VARCHAR,
+  candidate_id VARCHAR,
   party_affiliation VARCHAR,
   contribution BIGINT
 ) WITH (
   KAFKA_TOPIC = 'campaign_finance',
-  PARTITIONS = 6,
+  PARTITIONS = 1,
   VALUE_FORMAT = 'JSON'
 );
 
--- Categorize donations by amount
+-- Categorize contributions by amount
 CREATE STREAM categorization_donations WITH (KAFKA_TOPIC = 'categorization_donations') AS
 SELECT
   FORMAT_TIMESTAMP(FROM_UNIXTIME(time), 'yyyy-MM-dd HH:mm:ss') AS ts,
   party_affiliation,
-  cand_id,
+  candidate_id,
   CASE
     WHEN contribution < 500 THEN 'small'
     WHEN contribution < 2900 THEN 'medium'
