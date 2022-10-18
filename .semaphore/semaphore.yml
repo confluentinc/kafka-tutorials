@@ -254,6 +254,10 @@ blocks:
           commands:
             - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
 
+        - name: Confluent Parallel Consumer tests
+          commands:
+            - make -C _includes/tutorials/confluent-parallel-consumer-application/kafka/code tutorial
+
   - name: Run second block of tests (ksqlDB recipes)
     execution_time_limit:
       minutes: 20
@@ -516,8 +520,3 @@ blocks:
         - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
-
-        - name: Confluent Parallel Consumer tests
-          commands:
-            - make -C _includes/tutorials/confluent-parallel-consumer-application/kafka/code tutorial
-            
