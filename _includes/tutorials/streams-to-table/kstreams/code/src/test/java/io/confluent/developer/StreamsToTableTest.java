@@ -6,10 +6,10 @@ import static org.hamcrest.Matchers.is;
 import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Properties;
-import io.confluent.common.utils.TestUtils;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
@@ -36,7 +36,7 @@ public class StreamsToTableTest {
      }
      allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
      allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
-     allProps.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
+     allProps.put(StreamsConfig.STATE_DIR_CONFIG, Files.createTempDirectory("temp").toString());
 
     final String inputTopic = allProps.getProperty("input.topic.name");
     final String streamsOutputTopicName = allProps.getProperty("streams.output.topic.name");
