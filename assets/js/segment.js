@@ -1,4 +1,27 @@
 window.addEventListener('DOMContentLoaded', function () {
+  function copy(node) {
+    let copyText;
+
+    if (navigator.clipboard) {
+      // Modern browser
+      copyText = node.textContent;
+      navigator.clipboard.writeText(copyText);
+    } else {
+      const selection = getSelection();
+      selection.removeAllRanges();
+
+      const range = document.createRange();
+      range.selectNodeContents(node);
+      selection.addRange(range);
+      copyText = range.toString();
+
+      document.execCommand('copy');
+      selection.removeAllRanges();
+    }
+
+    return copyText;
+  }
+
   // If target element is code copy
   function isTargetCodeCopyButton(elem) {
     return elem.classList.contains('fa-copy');
@@ -6,9 +29,12 @@ window.addEventListener('DOMContentLoaded', function () {
 
   // Determine whether we should track or not
   function shouldTrack(e) {
-    if (e.target.tagName === 'A' || isTargetCodeCopyButton(e.target)) {
+    if (e.target.tagName === 'A') {
       return { target: e.target };
-    } else if (e.target.parentNode.tagName === 'A') {
+    } else if (
+      isTargetCodeCopyButton(e.target) ||
+      e.target.parentNode.tagName === 'A'
+    ) {
       // For image/icon
       return { target: e.target, parent: e.target.parentNode };
     }
@@ -19,10 +45,16 @@ window.addEventListener('DOMContentLoaded', function () {
 
   // Get the payload to be sent
   function getPayload({ target, parent }) {
+    let eventName = 'Click';
     let hrefUrl;
     let text;
 
-    if (parent) {
+    if (isTargetCodeCopyButton(target)) {
+      // Code copy
+      eventName = 'Copy Code';
+      text = copy(document.querySelector(parent.dataset.clipboardTarget));
+      hrefUrl = window.location.pathname;
+    } else if (parent) {
       hrefUrl = parent.href;
 
       if (target.classList.contains('logo')) {
@@ -31,16 +63,13 @@ window.addEventListener('DOMContentLoaded', function () {
       } else {
         text = target.getAttribute('title') || target.getAttribute('alt');
       }
-    } else if (isTargetCodeCopyButton(target)) {
-      // Code copy
-      // @TODO: No spec yet
-      return;
     } else {
       hrefUrl = target.href;
       text = target.textContent;
     }
 
     return {
+      eventName,
       hrefUrl,
       text: (text || '').trim(),
     };
@@ -51,12 +80,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const elems = shouldTrack(e);
 
     if (elems && path) {
-      const payload = getPayload(elems);
-
-      if (!payload) {
-        // Do nothing
-        return;
-      }
+      const { eventName, ...payload } = getPayload(elems);
 
       // Traverse the locations
       const location = path.reduce((location, node) => {
@@ -73,7 +97,7 @@ window.addEventListener('DOMContentLoaded', function () {
       }, '');
 
       // Start tracking logic
-      analytics.track('Click', { ...payload, location });
+      analytics.track(eventName, { ...payload, location });
     }
   });
 });
