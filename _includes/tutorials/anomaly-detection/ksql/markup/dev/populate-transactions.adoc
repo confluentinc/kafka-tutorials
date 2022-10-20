@@ -1,4 +1,4 @@
-Let's add some transaction data into our event stream.
+Let's add some transaction data into our event stream. Note that the timestamps for these transactions are all within the past day, i.e., _after_ the timestamps of the suspicious name records.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/populate-transactions.sql %}</code></pre>

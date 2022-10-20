@@ -551,7 +551,7 @@ anomaly-detection:
   meta-description: "detect anomalies in a stream of Kafka events"
   slug: "/anomaly-detection"
   question: "If you have time series events in a Kafka topic, how can you find anomalous events?"
-  introduction: "A common technique of fraudsters is to disguise transactions under the name of a popular company, the idea being that the chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, or USPS are likely to look similar and blend in with legitimate transactions. This tutorial shows you how to identify this pattern of behavior by detecting 'abnormal' transactions that occur within a window of time.
+  introduction: "A common technique of fraudsters is to disguise transactions under the name of a popular company, the idea being that the chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, or USPS are likely to look similar and blend in with legitimate transactions. This tutorial shows you how to identify this pattern of behavior by detecting abnormal transactions that occur within a window of time.
 
                  Normally, a group of these transactions will occur within a 24 hour period. In fraud detection, financial institutions will categorize this behavior as unusual and alert their fraud team to investigate immediately. Other example use cases include detecting ATM fraud or unusual credit card activity."
   status:
