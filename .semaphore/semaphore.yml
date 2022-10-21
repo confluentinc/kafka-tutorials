@@ -3,6 +3,9 @@ name: Kafka Tutorials pipeline
 agent:
   machine:
     type: s1-prod-ubuntu20-04-amd64-1
+auto_cancel:
+  running:
+    when: "true"
 global_job_config:
   secrets:
     - name: vault_sem2_approle
