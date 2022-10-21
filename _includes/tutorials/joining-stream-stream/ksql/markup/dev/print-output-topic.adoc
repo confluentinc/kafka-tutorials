@@ -11,4 +11,4 @@ This should yield the following output:
 
 As you can see, the output sits in a plain Kafka topic and therefore, any application that is able to consume data from it will be able to have access to this data.
 
-Type 'exit' and hit enter to exit the ksqlDB cli.
+Type 'exit' and hit enter to exit the ksqlDB CLI.
