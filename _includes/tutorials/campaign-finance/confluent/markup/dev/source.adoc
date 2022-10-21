@@ -1,3 +1,5 @@
+This tutorial creates simulated data with the `Datagen` connector.
+
 ++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/campaign-finance/confluent/code/tutorial-steps/dev/source.json %}</code></pre>
 ++++
