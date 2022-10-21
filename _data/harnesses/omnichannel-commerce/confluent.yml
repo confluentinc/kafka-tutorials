@@ -4,7 +4,7 @@ answer:
       content:
         - action: skip
           render:
-            file: tutorials/clickstream/confluent/markup/dev/answer-short.adoc
+            file: tutorials/omnichannel-commerce/confluent/markup/dev/answer-short.adoc
 
 dev:
   steps:
@@ -23,7 +23,7 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/clickstream/confluent/markup/dev/ksqlDB.adoc
+            file: tutorials/omnichannel-commerce/confluent/markup/dev/ksqlDB.adoc
 
         - action: skip
           render:
@@ -31,13 +31,13 @@ dev:
 
         - action: skip
           render:
-            file: tutorials/clickstream/confluent/markup/dev/process.adoc
+            file: tutorials/omnichannel-commerce/confluent/markup/dev/process.adoc
 
     - title: Write the data out
       content:
         - action: skip
           render:
-            file: tutorials/clickstream/confluent/markup/dev/sink.adoc
+            file: tutorials/omnichannel-commerce/confluent/markup/dev/sink.adoc
 
     - title: Cleanup
       content:

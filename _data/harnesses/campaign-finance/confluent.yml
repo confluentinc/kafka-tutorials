@@ -20,9 +20,6 @@ dev:
 
     - title: Execute ksqlDB code
       content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/connect.adoc
 
         - action: skip
           render:
