@@ -24,4 +24,4 @@ tutorial_main:
 
 cleanup:
 	cd $(TEMP_DIR)
-	docker-compose down
+	docker compose down
