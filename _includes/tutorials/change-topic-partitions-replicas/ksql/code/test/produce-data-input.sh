@@ -1,4 +1,4 @@
-docker-compose exec broker kafka-console-producer \
+docker exec broker kafka-console-producer \
   --bootstrap-server localhost:9092 \
   --topic topic1 \
   --property parse.key=true \
