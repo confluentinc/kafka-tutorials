@@ -27,7 +27,7 @@ If you are interested in testing tutorials locally see the [Testing Locally](#te
 - npm
 - python3 / pip3
 - gradle
-- docker-compose
+- [Docker Compose](https://docs.docker.com/compose/)
 
 On the Mac, you can get the dependencies like this:
 
@@ -293,7 +293,7 @@ The following prerequisites are required if you are going to run a tutorial prog
 
 - python3 / pip3
 - gradle
-- docker-compose
+- [Docker Compose](https://docs.docker.com/compose/)
 
 ### Environment Setup
 
@@ -508,7 +508,7 @@ In the next sections, you'll see how to use `action` keys to organize your harne
 
 * `execute_async` The `execute_async` step is for steps needing to execute in the background while the user continues going through the tutorial
   
-     Here's an example of running `docker-compose` to start docker containers to run the duration of the tutorial
+     Here's an example of running `docker compose` to start docker containers to run the duration of the tutorial
      
      ```yml
       - action: execute_async
