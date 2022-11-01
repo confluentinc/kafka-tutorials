@@ -1,1 +1,1 @@
-docker-compose down && docker rm -f $(docker ps -q --filter name=sqlitekt)
+docker compose down && docker rm -f $(docker ps -q --filter name=sqlitekt)
