@@ -4,7 +4,7 @@
 
 ////
 
-Now that you've ran the Kafka Streams application, it should have shut it self down due to reaching the max-error threshold.
+Now that you've run the Kafka Streams application, it should have shut it self down due to reaching the max-error threshold.
 
 Let's now run the `kafka-console-consumer` to confirm the output:
 
