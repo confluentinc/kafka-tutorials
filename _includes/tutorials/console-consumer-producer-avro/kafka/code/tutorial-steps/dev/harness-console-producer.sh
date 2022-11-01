@@ -1,4 +1,4 @@
-docker-compose exec -T schema-registry kafka-avro-console-producer \
+docker compose exec -T schema-registry kafka-avro-console-producer \
   --topic orders-avro \
   --bootstrap-server broker:9092 \
   --property schema.registry.url=http://localhost:8081 \
