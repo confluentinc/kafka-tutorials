@@ -23,7 +23,7 @@ Run the container with this:
 
 [source,text]
 ----
-docker-compose up -d
+docker compose up -d
 ----
 
 Create a Syslog Source connector configuration file called `connector-syslog.config`:
