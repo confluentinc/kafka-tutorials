@@ -2,7 +2,7 @@
 
 # Wait for the datagen topic to be created
 while : 
-  do output=$(docker-compose exec broker kafka-topics --bootstrap-server localhost:29092 --topic temp-readings --describe)
+  do output=$(docker exec -t broker kafka-topics --bootstrap-server localhost:29092 --topic temp-readings --describe)
   if [[ "$output" =~ "Topic: temp-readings" ]]; then
     echo "Topic temp-readings exists"
     break
