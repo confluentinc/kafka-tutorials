@@ -107,6 +107,12 @@ dev:
           render:
             file: tutorials/confluent-parallel-consumer-application/kafka/markup/dev/run-producer.adoc
 
+        - name: wait for producer
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
     - title: Inspect the consumed records
       content:
         - action: execute
