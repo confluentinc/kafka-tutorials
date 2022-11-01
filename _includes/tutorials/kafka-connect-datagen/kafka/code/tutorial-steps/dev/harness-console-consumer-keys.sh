@@ -1,4 +1,4 @@
-docker-compose exec connect kafka-avro-console-consumer \
+docker exec -t connect kafka-avro-console-consumer \
  --bootstrap-server broker:9092 \
  --property schema.registry.url=http://schema-registry:8081 \
  --topic pageviews \
