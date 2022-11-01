@@ -25,7 +25,7 @@ Run the container with the Connect worker:
 
 [source,text]
 ----
-docker-compose up -d
+docker compose up -d
 ----
 
 Create a configuration file, `connector-splunk-s2s.config`, for the Splunk S2S Source connector, specifying the port that the connector will use:
