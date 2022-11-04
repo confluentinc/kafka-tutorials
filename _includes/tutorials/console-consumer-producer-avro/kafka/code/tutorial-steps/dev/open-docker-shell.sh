@@ -1,1 +1,1 @@
-docker-compose exec schema-registry bash
+docker exec schema-registry bash

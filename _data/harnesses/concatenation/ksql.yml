@@ -80,8 +80,6 @@ dev:
         - action: docker_ksql_cli_session
           container: ksqldb-cli
           docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          stdout:
-            directory: tutorial-steps/dev/outputs
           column_width: 50
           render:
             skip: true

@@ -1,4 +1,4 @@
-docker-compose exec broker kafka-console-consumer \
+docker exec -t broker kafka-console-consumer \
   --bootstrap-server localhost:9092 \
   --topic topic1 \
   --property print.key=true \

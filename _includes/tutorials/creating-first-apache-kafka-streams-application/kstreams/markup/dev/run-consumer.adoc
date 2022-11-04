@@ -26,4 +26,4 @@ You should see output events that are entirely upper case:
 
 Once you are done with observing the behavior of the application, stop the consumers and the Kafka Streams application with `ctrl-c` in the appropriate terminal windows.
 
-Finally, shutdown Confluent Platform by invoking `docker-compose down -v`.
+Finally, shutdown Confluent Platform by invoking `docker compose down -v`.
