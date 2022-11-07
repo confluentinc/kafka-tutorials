@@ -26,7 +26,7 @@ test:
           render:
             skip: true
           stdin:
-            - file: ../../ksql/code/tutorial-steps/dev/process.sql
+            - file: ../../ksql/code/tutorial-steps/dev/table_stream.sql
 
         - name: wait for streams to be created
           action: sleep
@@ -46,6 +46,57 @@ test:
             - file: ../../ksql/code/tutorial-steps/dev/manual.sql
 
         - name: wait for table to be populated
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: start-cli.sh
+          stdout:
+            directory: tutorial-steps/test/outputs
+          column_width: 75
+          render:
+            skip: true
+          stdin:
+            - file: ../../ksql/code/tutorial-steps/dev/mask.sql
+
+        - name: wait for stream to be masked
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: start-cli.sh
+          stdout:
+            directory: tutorial-steps/test/outputs
+          column_width: 75
+          render:
+            skip: true
+          stdin:
+            - file: ../../ksql/code/tutorial-steps/dev/enrich.sql
+
+        - name: wait stream to be enriched
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+        - action: docker_ksql_cli_session
+          container: ksqldb-cli
+          docker_bootup_file: start-cli.sh
+          stdout:
+            directory: tutorial-steps/test/outputs
+          column_width: 75
+          render:
+            skip: true
+          stdin:
+            - file: ../../ksql/code/tutorial-steps/dev/process.sql
+
+        - name: wait for stream to be processed
           action: sleep
           ms: 5000
           render:
