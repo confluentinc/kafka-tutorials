@@ -5,7 +5,7 @@ For this tutorial, we'll be using a respondent dataset to reflect the userbase t
 {% include_raw tutorials/survey-responses/ksql/code/tutorial-steps/dev/source.sql %}
 </code></pre>
 ++++
-To begin, we first choose to represent our input datasets as either a `TABLE` or a `STREAM`. A `STREAM` represents unbounded, ongoing events while a `TABLE` shows the latest value for a given key. Survey responses are something that may continue to flow into our system––every survey response is valuable in and of itself, and we should care about each one when we do our analysis. Respondent data is something that could change over time. For example, a user could change their user profile which could trigger a new event on the Kafka topic. Because of this, we'll use a `TABLE` for the respondents and a `STREAM` for the survey responses.
+To begin, we first choose to represent our input datasets as either a `TABLE` or a `STREAM`. A `STREAM` represents unbounded, ongoing events while a `TABLE` shows the latest value for a given key. Survey responses are something that may continue to flow into our system--every survey response is valuable in and of itself, and we should care about each one when we do our analysis. Respondent data is something that could change over time. For example, a user could change their user profile which could trigger a new event on the Kafka topic. Because of this, we'll use a `TABLE` for the respondents and a `STREAM` for the survey responses.
 ++++
 <pre class="snippet expand-default"><code class="sql">
 {% include_raw tutorials/survey-responses/ksql/code/tutorial-steps/dev/table_stream.sql %}
@@ -17,7 +17,7 @@ As a quick aside: one of the benefits of building a stream processing applicatio
 {% include_raw tutorials/survey-responses/ksql/code/tutorial-steps/dev/mask.sql %}
 </code></pre>
 ++++
-With our inputs in ksqlDB, we can start to build up a real time stream processing application. First, we enrich the survey result set with the respondent data––this is done through an inner join. By doing so, we can leverage more of the respondent data in our analysis.
+With our inputs in ksqlDB, we can start to build up a real time stream processing application. First, we enrich the survey result set with the respondent data--this is done through an inner join. By doing so, we can leverage more of the respondent data in our analysis.
 ++++
 <pre class="snippet expand-default"><code class="sql">
 {% include_raw tutorials/survey-responses/ksql/code/tutorial-steps/dev/enrich.sql %}
