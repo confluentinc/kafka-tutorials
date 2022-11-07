@@ -1,0 +1,49 @@
+answer:
+  steps:
+    - title:
+      content:
+        - action: skip
+          render:
+            file: tutorials/survey-responses/ksql/markup/dev/answer-short.adoc
+
+dev:
+  steps:
+    - title: Setup your environment
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/provision-cluster.adoc
+
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud_setup.adoc
+
+    - title: Execute ksqlDB code
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/connect.adoc
+
+        - action: skip
+          render:
+            file: shared/markup/ccloud/manual_insert.adoc
+
+        - action: skip
+          render:
+            file: tutorials/survey-responses/ksql/markup/dev/ksqlDB.adoc
+
+    - title: Test with mock data
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/manual_cue.adoc
+
+        - action: skip
+          render:
+            file: tutorials/survey-responses/ksql/markup/dev/manual.adoc
+
+    - title: Cleanup
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/cleanup.adoc
