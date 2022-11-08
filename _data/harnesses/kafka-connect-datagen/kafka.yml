@@ -39,7 +39,7 @@ dev:
 
         - name: give Kafka Connect chance to create the connector
           action: sleep
-          ms: 5000
+          ms: 10000
           render:
             skip: true
 
@@ -51,7 +51,7 @@ dev:
 
         - name: give Kafka Connect further chance to get the data to the topic
           action: sleep
-          ms: 5000
+          ms: 10000
           render:
             skip: true
 
