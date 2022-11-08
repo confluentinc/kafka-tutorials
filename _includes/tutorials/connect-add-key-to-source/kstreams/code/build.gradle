@@ -4,9 +4,6 @@ buildscript {
   repositories {
     mavenCentral()
   }
-  dependencies {
-    classpath "com.commercehub.gradle.plugin:gradle-avro-plugin:0.22.0"
-  }
 }
 
 plugins {
@@ -14,6 +11,7 @@ plugins {
   id "application"
   id "com.google.cloud.tools.jib" version "3.3.0"
   id "com.github.johnrengelman.shadow" version "6.1.0"
+  id "com.github.davidmc24.gradle.plugin.avro" version "1.5.0"
 }
 
 sourceCompatibility = "1.8"
@@ -28,7 +26,6 @@ repositories {
   }
 }
 
-apply plugin: "com.commercehub.gradle.plugin.avro"
 apply plugin: "com.github.johnrengelman.shadow"
 
 dependencies {
