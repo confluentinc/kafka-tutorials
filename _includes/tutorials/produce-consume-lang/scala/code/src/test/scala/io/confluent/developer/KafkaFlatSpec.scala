@@ -22,7 +22,7 @@ trait KafkaFlatSpec extends AnyFlatSpec
   val testTopics: Vector[TopicSpec]
 
   @Rule
-  val kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.1.0"))
+  val kafka = new KafkaContainer(DockerImageName.parse("confluentinc/cp-kafka:7.3.0"))
   lazy val admin: Admin = Admin.create(Map[String, AnyRef]("bootstrap.servers" -> kafka.getBootstrapServers).asJava)
 
   override def beforeAll(): Unit = {

@@ -45,7 +45,7 @@ dependencies {
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
 
     implementation group: 'org.apache.kafka', name: 'kafka-streams', version: '3.1.0'
-    implementation group: 'io.confluent', name: 'kafka-streams-avro-serde', version: '7.1.0'
+    implementation group: 'io.confluent', name: 'kafka-streams-avro-serde', version: '7.3.0'
 
     testImplementation "junit:junit:4.13.2"
     testImplementation "org.apache.kafka:kafka-streams-test-utils:3.1.0"
