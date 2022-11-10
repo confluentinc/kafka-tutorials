@@ -19,6 +19,7 @@ version = "0.0.1"
 
 repositories {
   mavenCentral()
+  mavenLocal()
 
   maven {
     url "https://packages.confluent.io/maven"
@@ -30,9 +31,9 @@ apply plugin: "com.github.johnrengelman.shadow"
 dependencies {
   implementation "org.apache.avro:avro:1.11.1"
   implementation "org.slf4j:slf4j-simple:2.0.3"
-  implementation "org.apache.kafka:kafka-streams:3.1.0"
-  implementation "io.confluent:kafka-streams-avro-serde:7.1.0"
-  testImplementation "org.apache.kafka:kafka-streams-test-utils:3.1.0"
+  implementation "org.apache.kafka:kafka-streams:3.4.0-SNAPSHOT"
+  implementation "io.confluent:kafka-streams-avro-serde:7.3.0"
+  testImplementation "org.apache.kafka:kafka-streams-test-utils:3.4.0-SNAPSHOT"
   testImplementation "junit:junit:4.13.2"
 }
 
