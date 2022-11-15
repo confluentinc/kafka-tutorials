@@ -1102,3 +1102,11 @@ omnichannel-commerce:
   introduction: "Today's retail customers browse and purchase products across many channels — from brick-and-mortar, to web, to mobile applications — and they expect a seamless shopping experience bridging these channels. The omnichannel retail setting is often rife with technical challenges stemming from data residing in disparate data sources. For example, web clickstream, mobile application user activity, and in-store purchase data often reside in different data stores or SaaS platforms. This tutorial enables you to correlate customers' in-store purchase activity with online user behavior, which can then feed downstream omnichannel analytics or improved customer experience (e.g., more relevant product recommendations online based on customers' in-store activity)."
   status:
     confluent: enabled
+
+survey-responses:
+  title: "Analyze survey responses in real time"
+  meta-description: "analyze survey responses in real time"
+  slug: "/survey-responses"
+  introduction: "'Please rate your service today.' 'How likely are you to recommend us to a friend?' Regardless of the questions being asked, surveys are great ways for businesses to capture insights from their customers and even their employees. But these insights go stale and lose value the longer they take to be analyzed. This recipe makes survey analysis real time, allowing you to see results as survey responses happen."
+  status:
+    confluent: disabled

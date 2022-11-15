@@ -1,1 +1,1 @@
-docker-compose exec broker bash
+docker exec -it broker bash

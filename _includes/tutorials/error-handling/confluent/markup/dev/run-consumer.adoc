@@ -4,7 +4,7 @@
 
 ////
 
-Now that you've ran the Kafka Streams application, it should have shut itself down due to reaching the max-error threshold.
+Now that you've run the Kafka Streams application, it should have shut itself down due to reaching the max-error threshold.
 
 Let's now run the Confluent CLI to confirm the output:
 

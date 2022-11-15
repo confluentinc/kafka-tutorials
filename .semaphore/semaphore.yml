@@ -22,6 +22,29 @@ global_job_config:
         fi
       - cache restore gradle-7.5.1
       - sudo update-alternatives --install /usr/bin/gradle gradle ~/.gradle/gradle-7.5.1/bin/gradle 10
+      - |
+        if ! cache has_key cp-7.1.0-images; then
+          docker pull confluentinc/cp-kafka:7.1.0
+          docker pull confluentinc/cp-zookeeper:7.1.0
+          docker pull confluentinc/cp-schema-registry:7.1.0
+          docker pull confluentinc/cp-kafka-connect-base:7.1.0
+          docker pull confluentinc/cp-server-connect-base:7.1.0
+          docker pull confluentinc/ksqldb-server:0.24.0
+          docker pull confluentinc/ksqldb-cli:0.24.0
+          docker save confluentinc/cp-kafka:7.1.0 \
+                      confluentinc/cp-zookeeper:7.1.0 \
+                      confluentinc/cp-schema-registry:7.1.0 \
+                      confluentinc/cp-kafka-connect-base:7.1.0 \
+                      confluentinc/cp-server-connect-base:7.1.0 \
+                      confluentinc/ksqldb-server:0.24.0 \
+                      confluentinc/ksqldb-cli:0.24.0 \
+                      | gzip > cp.tar.gz
+          cache store cp-7.1.0-images cp.tar.gz
+          rm -f cp.tar.gz
+        else
+          docker image inspect confluentinc/cp-kafka:7.1.0 || \
+            (cache restore cp-7.1.0-images && docker load < cp.tar.gz && rm -f cp.tar.gz)
+        fi
       - make install-vault
       - . vault-bin/vault-setup
       - . vault-sem-get-secret aws_credentials
@@ -352,6 +375,10 @@ blocks:
         - name: Logistics
           commands:
             - make -C _includes/tutorials/logistics/ksql-test/code tutorial
+
+        - name: Survey Responses
+          commands:
+            - make -C _includes/tutorials/survey-responses/ksql-test/code tutorial
 
         - name: Mainframe offload
           commands:
