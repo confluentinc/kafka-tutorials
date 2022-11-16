@@ -1,4 +1,4 @@
-We are going to use the https://docs.confluent.io/platform/current/schema-registry/schema_registry_ccloud_tutorial.html#sr-ccloud-tutorial[Confluent Cloud managed Schema Registry] to control our record format. The first step is creating a schema definition which we will use when producing new records.
+We are going to use https://docs.confluent.io/platform/current/schema-registry/index.html[Schema Registry] (managed by Confluent Cloud) to control our record format. The first step is creating a schema definition which we will use when producing new records.
 
 Create the following `orders-avro-schema.json` file: 
 
