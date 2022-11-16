@@ -58,6 +58,7 @@ FROM user_locations
 LEFT JOIN merchants_by_geohash ON SUBSTRING(user_locations.geohash, 1, 6) = 
   merchants_by_geohash.geohash
 PARTITION BY null;
+EMIT CHANGES;
 
 -- Creates a stream of promotion alerts to send a user when their location
 --    intersects with a merchant within a specified distance (0.2 KM)
