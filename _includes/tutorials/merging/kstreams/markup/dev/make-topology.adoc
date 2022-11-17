@@ -3,3 +3,5 @@ Then create the following file at `src/main/java/io/confluent/developer/MergeStr
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/merging/kstreams/code/src/main/java/io/confluent/developer/MergeStreams.java %}</code></pre>
 +++++
+
+Note when using the `merge` operator the keys and values of the two `KStream` objects you're merging must be of the same type.  If you have 2 `KStream` instances with different key and/or value types, you'll have to use the `KStream.map` (or `KStream.mapValues`) operation first to get the types to line-up before merging.
