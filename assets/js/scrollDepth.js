@@ -2,9 +2,7 @@ const SCROLL_DEPTH_LEVELS = [20, 40, 60, 80, 99];
 
 window.addEventListener('DOMContentLoaded', function () {
   let observer
-  const el = document.getElementsByTagName('body')[0];
-    
-  el.style.position = 'relative';
+  const el = document.body;
 
   const initObserver = () => {
     const cb = (entries) => {
@@ -13,6 +11,7 @@ window.addEventListener('DOMContentLoaded', function () {
     const position = Number(target.dataset.depthMarkerId);
 
       if (isIntersecting) {
+
         analytics.track('Scroll Depth', {
           scrollDepth: position === 99 ? 100 : position // triggering at 99% is more consistent than 100%.
         });
