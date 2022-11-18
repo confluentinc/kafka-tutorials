@@ -12,6 +12,10 @@
 @import "asciidoc";
 @import "feedback";
 
+body {
+  position: relative
+}
+
 body,
 select,
 input,
