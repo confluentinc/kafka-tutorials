@@ -8,7 +8,3 @@ github:
 semaphore:
   enable: true
   pipeline_enable: false
-  triggers:
-  - branches
-  - pull_requests
-  branches: []
