@@ -25,7 +25,8 @@ SELECT
   SUBSTRING(geohash, 1, 6) AS geohash, 
   COLLECT_LIST(id) as id_list
 FROM merchant_locations
-GROUP BY SUBSTRING(geohash, 1, 6);
+GROUP BY SUBSTRING(geohash, 1, 6)
+EMIT CHANGES;
 
 -- Creates a stream of user location data including the calculated geohash
 CREATE STREAM user_locations (
@@ -57,7 +58,8 @@ SELECT
 FROM user_locations
 LEFT JOIN merchants_by_geohash ON SUBSTRING(user_locations.geohash, 1, 6) = 
   merchants_by_geohash.geohash
-PARTITION BY null;
+PARTITION BY null
+EMIT CHANGES;
 
 -- Creates a stream of promotion alerts to send a user when their location
 --    intersects with a merchant within a specified distance (0.2 KM)

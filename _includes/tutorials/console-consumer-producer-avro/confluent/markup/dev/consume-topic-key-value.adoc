@@ -1,6 +1,6 @@
 Next, let's open up a consumer to read records from the new topic. 
 
-From the same terminal you used to create the topic above, run the following command to start a console consumer with the `ccloud` CLI:
+From the same terminal you used to create the topic above, run the following command to start a console consumer with the `confluent` CLI:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-avro/confluent/code/tutorial-steps/dev/harness-console-consumer-keys.sh %}</code></pre>
