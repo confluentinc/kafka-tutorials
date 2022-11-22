@@ -36,7 +36,7 @@ allprojects {
         implementation "io.confluent:kafka-streams-avro-serde:7.1.0"
         implementation "com.sksamuel.avro4s:avro4s-core_2.13:4.1.0"
         testImplementation "org.scalatest:scalatest_2.13:3.3.0-SNAP3"
-        testImplementation "org.testcontainers:kafka:1.17.5"
+        testImplementation "org.testcontainers:kafka:1.17.6"
 
         // presentation boiler plate
         implementation "com.lihaoyi:cask_2.13:0.8.0"
