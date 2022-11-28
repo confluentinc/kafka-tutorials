@@ -2,7 +2,7 @@ version: '2'
 
 services:
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.1.0
+    image: confluentinc/cp-zookeeper:7.3.0
     hostname: zookeeper
     container_name: zookeeper
     ports:
@@ -12,7 +12,7 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
 
   broker:
-    image: confluentinc/cp-kafka:7.1.0
+    image: confluentinc/cp-kafka:7.3.0
     hostname: broker
     container_name: broker
     depends_on:
@@ -30,7 +30,7 @@ services:
       KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
 
   schema-registry:
-    image: confluentinc/cp-schema-registry:7.1.0
+    image: confluentinc/cp-schema-registry:7.3.0
     hostname: schema-registry
     container_name: schema-registry
     depends_on:
@@ -42,7 +42,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksqldb-server:
-    image: confluentinc/ksqldb-server:0.24.0
+    image: confluentinc/ksqldb-server:0.28.2
     hostname: ksqldb-server
     container_name: ksqldb-server
     depends_on:
@@ -63,7 +63,7 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
 
   ksqldb-cli:
-    image: confluentinc/ksqldb-cli:0.24.0
+    image: confluentinc/ksqldb-cli:0.28.2
     container_name: ksqldb-cli
     depends_on:
       - broker
