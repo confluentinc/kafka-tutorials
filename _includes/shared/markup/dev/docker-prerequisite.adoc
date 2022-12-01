@@ -1,0 +1,6 @@
+This tutorial installs Confluent Platform using Docker. Before proceeding:
+
+* &#x2022; Install https://docs.docker.com/desktop/[Docker Desktop] (version `4.0.0` or later) or https://docs.docker.com/engine/install/[Docker Engine] (version `19.03.0` or later) if you don't already have it
+* &#x2022; Install the https://docs.docker.com/compose/install/[Docker Compose plugin] if you don't already have it. This isn't necessary if you have Docker Desktop since it includes Docker Compose.
+* &#x2022; Start Docker if it's not already running, either by starting Docker Desktop or, if you manage Docker Engine with `systemd`, https://docs.docker.com/config/daemon/systemd/[via systemctl]
+* &#x2022; Verify that Docker is set up properly by ensuring no errors are output when you run `docker info` and `docker compose version` on the command line

@@ -7,6 +7,12 @@ answer:
             file: tutorials/filtering/kstreams/markup/answer/short-answer.adoc
 dev:
   steps:
+    - title: Prerequisites
+      content:
+        - action: skip
+          render:
+            file: shared/markup/dev/docker-prerequisite.adoc
+
     - title: Initialize the project
       content:
         - action: execute
