@@ -11,7 +11,7 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/rekeying/ksql.yml $(TEMP_DIR) $(SEQUENCE)
-	#bash -c "diff --strip-trailing-cr <(cut -d ',' -f 3- $(STEPS_DIR)/dev/expected-print-input.log|sort) <(cut -d ',' -f 3- $(DEV_OUTPUTS_DIR)/print-input-topic/output-0.log|sort)"
+	bash -c "diff --strip-trailing-cr <(cut -d ',' -f 3- $(STEPS_DIR)/dev/expected-print-input.log|sort) <(cut -d ',' -f 3- $(DEV_OUTPUTS_DIR)/print-input-topic/output-0.log|sort)"
 	diff --strip-trailing-cr --ignore-space-change $(STEPS_DIR)/dev/expected-describe.log $(DEV_OUTPUTS_DIR)/describe-output/output-0.log
 	# Unless ksqlDB adds support for SLEEP, or we split the docker_ksql_cli_session and insert a bash sleep step (a lot of heavy lifting), this option will hopefully suffice for now. It simply greps out the offending KAFKA_STRING mention in the test at the end.
 	# See https://github.com/confluentinc/kafka-tutorials/issues/510
