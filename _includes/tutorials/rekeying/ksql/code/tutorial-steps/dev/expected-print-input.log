@@ -1,12 +1,12 @@
-Key format: KAFKA_INT or KAFKA_STRING
+Key format: ¯\_(ツ)_/¯ - no data processed
 Value format: AVRO
-rowtime: 2020/05/04 23:24:30.376 Z, key: 1, value: {"ID": 294, "RATING": 8.2}, partition: 0
-rowtime: 2020/05/04 23:24:30.684 Z, key: 2, value: {"ID": 294, "RATING": 8.5}, partition: 1
-rowtime: 2020/05/04 23:24:30.781 Z, key: 3, value: {"ID": 354, "RATING": 9.9}, partition: 1
-rowtime: 2020/05/04 23:24:30.949 Z, key: 4, value: {"ID": 354, "RATING": 9.7}, partition: 1
-rowtime: 2020/05/04 23:24:31.099 Z, key: 5, value: {"ID": 782, "RATING": 7.8}, partition: 0
-rowtime: 2020/05/04 23:24:30.560 Z, key: 6, value: {"ID": 782, "RATING": 7.7}, partition: 1
-rowtime: 2020/05/04 23:24:30.873 Z, key: 7, value: {"ID": 128, "RATING": 8.7}, partition: 1
-rowtime: 2020/05/04 23:24:31.021 Z, key: 8, value: {"ID": 128, "RATING": 8.4}, partition: 0
-rowtime: 2020/05/04 23:24:31.178 Z, key: 9, value: {"ID": 780, "RATING": 2.1}, partition: 0
+rowtime: 2022/12/02 21:56:48.720 Z, key: <null>, value: {"OLD": 2, "ID": 294, "RATING": 8.5}, partition: 1
+rowtime: 2022/12/02 21:56:48.829 Z, key: <null>, value: {"OLD": 5, "ID": 782, "RATING": 7.8}, partition: 1
+rowtime: 2022/12/02 21:56:48.875 Z, key: <null>, value: {"OLD": 6, "ID": 782, "RATING": 7.7}, partition: 1
+rowtime: 2022/12/02 21:56:48.946 Z, key: <null>, value: {"OLD": 8, "ID": 128, "RATING": 8.4}, partition: 1
+rowtime: 2022/12/02 21:56:48.652 Z, key: <null>, value: {"OLD": 1, "ID": 294, "RATING": 8.2}, partition: 0
+rowtime: 2022/12/02 21:56:48.757 Z, key: <null>, value: {"OLD": 3, "ID": 354, "RATING": 9.9}, partition: 0
+rowtime: 2022/12/02 21:56:48.793 Z, key: <null>, value: {"OLD": 4, "ID": 354, "RATING": 9.7}, partition: 0
+rowtime: 2022/12/02 21:56:48.910 Z, key: <null>, value: {"OLD": 7, "ID": 128, "RATING": 8.7}, partition: 0
+rowtime: 2022/12/02 21:56:48.982 Z, key: <null>, value: {"OLD": 9, "ID": 780, "RATING": 2.1}, partition: 0
 Topic printing ceased
