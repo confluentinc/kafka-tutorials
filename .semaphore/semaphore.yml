@@ -80,6 +80,7 @@ promotions:
 
 blocks:
   - name: Build the website
+    dependencies: []
     task:
       prologue:
         commands:
@@ -97,6 +98,7 @@ blocks:
             - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
+    dependencies: []
     task:
       prologue:
         commands:
