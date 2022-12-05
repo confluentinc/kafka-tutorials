@@ -98,7 +98,7 @@ blocks:
             - cache store site-$SEMAPHORE_GIT_SHA _site
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
-    dependencies: []
+    dependencies: ["Build the website"]
     task:
       prologue:
         commands:
