@@ -2,72 +2,72 @@
   "inputs": [
     {
       "topic": "ratings",
-      "key": 1,
       "value": {
+        "old": 1,
         "id": 294,
         "rating": 8.2
       }
     },
     {
       "topic": "ratings",
-      "key": 2,
       "value": {
+        "old": 2,
         "id": 294,
         "rating": 8.5
       }
     },
     {
       "topic": "ratings",
-      "key": 3,
       "value": {
+        "old": 3,
         "id": 354,
         "rating": 9.9
       }
     },
     {
       "topic": "ratings",
-      "key": 4,
       "value": {
+        "old": 4,
         "id": 354,
         "rating": 9.7
       }
     },
     {
       "topic": "ratings",
-      "key": 5,
       "value": {
+        "old": 5,
         "id": 782,
         "rating": 7.8
       }
     },
     {
       "topic": "ratings",
-      "key": 6,
       "value": {
+        "old": 6,
         "id": 782,
         "rating": 7.7
       }
     },
     {
       "topic": "ratings",
-      "key": 7,
       "value": {
+        "old": 7,
         "id": 128,
         "rating": 8.7
       }
     },
     {
       "topic": "ratings",
-      "key": 8,
       "value": {
+        "old": 8,
         "id": 128,
         "rating": 8.4
       }
     },
     {
       "topic": "ratings",
-      "key": 9,
       "value": {
+        "old": 9,
         "id": 780,
         "rating": 2.1
       }
