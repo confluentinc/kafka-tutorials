@@ -2,7 +2,7 @@ Name                 : RATINGS_REKEYED
  Field  | Type
 
  ID     | INTEGER          (key)
- RATING | DOUBLE
  OLD    | INTEGER
+ RATING | DOUBLE
 
 For runtime statistics and query details run: DESCRIBE <Stream,Table> EXTENDED;
