@@ -1,12 +1,12 @@
 Key format: KAFKA_INT
 Value format: AVRO
-rowtime: 2020/05/04 23:24:30.376 Z, key: 128, value: {"RATING": 8.4, "OLD": 8}, partition: 0
-rowtime: 2020/05/04 23:24:30.684 Z, key: 128, value: {"RATING": 8.7, "OLD": 7}, partition: 0
-rowtime: 2020/05/04 23:24:30.781 Z, key: 294, value: {"RATING": 8.2, "OLD": 1}, partition: 0
-rowtime: 2020/05/04 23:24:30.949 Z, key: 294, value: {"RATING": 8.5, "OLD": 2}, partition: 0
-rowtime: 2020/05/04 23:24:31.099 Z, key: 354, value: {"RATING": 9.7, "OLD": 4}, partition: 0
-rowtime: 2020/05/04 23:24:30.560 Z, key: 354, value: {"RATING": 9.9, "OLD": 3}, partition: 0
-rowtime: 2020/05/04 23:24:30.873 Z, key: 780, value: {"RATING": 2.1, "OLD": 9}, partition: 1
-rowtime: 2020/05/04 23:24:31.021 Z, key: 782, value: {"RATING": 7.7, "OLD": 6}, partition: 0
-rowtime: 2020/05/04 23:24:31.178 Z, key: 782, value: {"RATING": 7.8, "OLD": 5}, partition: 0
+rowtime: 2020/05/04 23:24:30.376 Z, key: 128, value: {"OLD": 8, "RATING": 8.4}, partition: 0
+rowtime: 2020/05/04 23:24:30.684 Z, key: 128, value: {"OLD": 7, "RATING": 8.7}, partition: 0
+rowtime: 2020/05/04 23:24:30.781 Z, key: 294, value: {"OLD": 1, "RATING": 8.2}, partition: 0
+rowtime: 2020/05/04 23:24:30.949 Z, key: 294, value: {"OLD": 2, "RATING": 8.5}, partition: 0
+rowtime: 2020/05/04 23:24:31.099 Z, key: 354, value: {"OLD": 4, "RATING": 9.7}, partition: 0
+rowtime: 2020/05/04 23:24:30.560 Z, key: 354, value: {"OLD": 3, "RATING": 9.9}, partition: 0
+rowtime: 2020/05/04 23:24:30.873 Z, key: 780, value: {"OLD": 9, "RATING": 2.1}, partition: 1
+rowtime: 2020/05/04 23:24:31.021 Z, key: 782, value: {"OLD": 6, "RATING": 7.7}, partition: 0
+rowtime: 2020/05/04 23:24:31.178 Z, key: 782, value: {"OLD": 5, "RATING": 7.8}, partition: 0
 Topic printing ceased
