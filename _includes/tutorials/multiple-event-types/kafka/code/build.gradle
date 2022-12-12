@@ -45,7 +45,7 @@ repositories {
 apply plugin: "com.github.johnrengelman.shadow"
 
 dependencies {
-    implementation 'com.google.protobuf:protobuf-java:3.21.10'
+    implementation 'com.google.protobuf:protobuf-java:3.21.11'
     implementation 'org.apache.avro:avro:1.11.1'
     implementation 'org.slf4j:slf4j-simple:2.0.5'
     implementation "org.apache.kafka:kafka-streams:3.3.1"
