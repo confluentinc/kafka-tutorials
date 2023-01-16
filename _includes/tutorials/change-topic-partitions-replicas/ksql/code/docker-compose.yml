@@ -61,7 +61,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
   ksqldb-server:
-    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-server:7.4.0-cc-docker-kafka.14-270-rc1
+    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-server:7.4.0-cc-docker-kafka.15-280-rc1
     hostname: ksqldb-server
     container_name: ksqldb-server
     depends_on:
@@ -79,7 +79,7 @@ services:
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
 
   ksqldb-cli:
-    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-cli:7.4.0-cc-docker-kafka.14-270-rc1
+    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-cli:7.4.0-cc-docker-kafka.15-280-rc1
     container_name: ksqldb-cli
     depends_on:
       - broker
