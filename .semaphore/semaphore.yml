@@ -98,7 +98,7 @@ blocks:
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
     run:
-      when: "change_in(['/_includes/tutorials/**/kstreams/', '/_includes/tutorials/**/kafka/', '/_includes/tutorials/**/scala/'])"
+      when: "change_in(['_includes/tutorials/**/kstreams/', '_includes/tutorials/**/kafka/', '_includes/tutorials/**/scala/'])"
     task:
       prologue:
         commands:
@@ -115,7 +115,7 @@ blocks:
 
   - name: Run first block of tests (mostly Kafka and KStreams)
     run:
-      when: "change_in(['/_includes/tutorials/**/kstreams/', '/_includes/tutorials/**/kafka/', '/_includes/tutorials/**/scala/'])"
+      when: "change_in(['_includes/tutorials/**/kstreams/', '_includes/tutorials/**/kafka/', '_includes/tutorials/**/scala/'])"
     execution_time_limit:
       minutes: 20
     task:
@@ -290,7 +290,7 @@ blocks:
 
   - name: Run second block of tests (ksqlDB recipes)
     run:
-      when: "change_in('/_includes/tutorials/**/ksql-test/')"
+      when: "change_in('_includes/tutorials/**/ksql-test/')"
     execution_time_limit:
       minutes: 20
     task:
@@ -416,7 +416,7 @@ blocks:
 
   - name: Run third block of tests (mostly ksqlDB)
     run:
-      when: "change_in('/_includes/tutorials/**/ksql/')"
+      when: "change_in('_includes/tutorials/**/ksql/')"
     execution_time_limit:
       minutes: 20
     task:
