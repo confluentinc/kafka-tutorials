@@ -43,7 +43,7 @@ public class CogroupingStreams {
 
 
     public Topology buildTopology(Properties allProps) {
-        //Touching the file to trigger a build
+        // Touching the file to trigger a build - should only trigger one section
         final StreamsBuilder builder = new StreamsBuilder();
         final String appOneInputTopic = allProps.getProperty("app-one.topic.name");
         final String appTwoInputTopic = allProps.getProperty("app-two.topic.name");
