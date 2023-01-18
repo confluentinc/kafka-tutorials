@@ -11,8 +11,8 @@ plugins {
     id "java"
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 version = "0.0.1"
 
 repositories {
