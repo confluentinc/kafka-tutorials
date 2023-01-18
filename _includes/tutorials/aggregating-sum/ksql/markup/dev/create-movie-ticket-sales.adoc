@@ -5,3 +5,6 @@ Another important characteristic of the data is the timestamp column, `sale_ts`.
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-sum/ksql/code/tutorial-steps/dev/create-movie-ticket-sales.sql %}</code></pre>
 +++++
+
+
+// Adding a dummy change

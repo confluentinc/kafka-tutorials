@@ -99,6 +99,8 @@ blocks:
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
     dependencies: ["Build the website"]
+    run:
+      when: " (branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*', '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*'], {pipeline_file: 'ignore'})"
     task:
       prologue:
         commands:
@@ -115,8 +117,10 @@ blocks:
 
   - name: Run first block of tests (mostly Kafka and KStreams)
     dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*', '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*', '../_data/harnesses/**/kstreams.yml', '../_data/harnesses/**/kafka.yml'], {pipeline_file: 'ignore'})"
     execution_time_limit:
-      minutes: 20
+      minutes: 10
     task:
       prologue:
         commands:
@@ -289,8 +293,10 @@ blocks:
 
   - name: Run second block of tests (ksqlDB recipes)
     dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in('../_includes/tutorials/**/ksql-test/**/*', '../_data/harnesses/**/ksql-test.yml', {pipeline_file: 'ignore'})"
     execution_time_limit:
-      minutes: 20
+      minutes: 10
     task:
       prologue:
         commands:
@@ -414,8 +420,10 @@ blocks:
 
   - name: Run third block of tests (mostly ksqlDB)
     dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in('../_includes/tutorials/**/ksql/**/*', '../_data/harnesses/**/ksql.yml', {pipeline_file: 'ignore'})"
     execution_time_limit:
-      minutes: 20
+      minutes: 10
     task:
       prologue:
         commands:

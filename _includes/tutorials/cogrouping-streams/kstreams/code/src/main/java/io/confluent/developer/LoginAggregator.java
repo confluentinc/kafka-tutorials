@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.kafka.streams.kstream.Aggregator;
 
 public class LoginAggregator implements Aggregator<String, LoginEvent, LoginRollup> {
-
+ 
   @Override
   public LoginRollup apply(final String appId,
                            final LoginEvent loginEvent,
