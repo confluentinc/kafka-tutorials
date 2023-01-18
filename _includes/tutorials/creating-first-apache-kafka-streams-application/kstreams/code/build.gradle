@@ -16,8 +16,8 @@ plugins {
 }
 
 version = "0.0.1"
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 application {
   mainClass.set("io.confluent.developer.KafkaStreamsApplication")
 }
