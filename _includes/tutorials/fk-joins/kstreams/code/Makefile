@@ -4,6 +4,8 @@ TEMP_DIR := $(shell mktemp -d)
 SEQUENCE := "dev, test, prod, ccloud"
 
 tutorial:
+	java --version
+	echo $JAVA_HOME
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/fk-joins/kstreams.yml $(TEMP_DIR) $(SEQUENCE)
