@@ -43,7 +43,7 @@ public class CogroupingStreams {
 
 
     public Topology buildTopology(Properties allProps) {
-        // Another change 6?
+        // Another change 7!!
         final StreamsBuilder builder = new StreamsBuilder();
         final String appOneInputTopic = allProps.getProperty("app-one.topic.name");
         final String appTwoInputTopic = allProps.getProperty("app-two.topic.name");

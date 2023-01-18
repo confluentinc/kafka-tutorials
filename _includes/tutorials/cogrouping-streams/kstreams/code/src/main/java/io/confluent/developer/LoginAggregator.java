@@ -8,7 +8,7 @@ import org.apache.kafka.streams.kstream.Aggregator;
 
 public class LoginAggregator implements Aggregator<String, LoginEvent, LoginRollup> {
   // Adding a change here to trigger a build ++++
-  // What about me?
+  // How many changes??
   @Override
   public LoginRollup apply(final String appId,
                            final LoginEvent loginEvent,
