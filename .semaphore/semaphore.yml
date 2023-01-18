@@ -108,7 +108,7 @@ blocks:
         - name: Tests
           matrix:
             - env_var: JAVA_VERSION
-              values: ["8", "11"]
+              values: ["17"]
           commands:
             - sem-version java $JAVA_VERSION
             - ./gradlew clean test
@@ -168,7 +168,7 @@ blocks:
 
         - name: KStreams Serialization tests
           commands:
-            - sem-version java 11
+            - sem-version java 17
             - make -C _includes/tutorials/serialization/kstreams/code tutorial
 
         - name: Kafka produce and consume in Scala
