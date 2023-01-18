@@ -294,7 +294,7 @@ blocks:
   - name: Run second block of tests (ksqlDB recipes)
     dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
     run:
-      when: "(branch = 'master' OR branch = 'release') OR change_in('../_includes/tutorials/**/ksql-test/**/*', '../_data/harnesses/**/ksql-test.yml', {pipeline_file: 'ignore'})"
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/ksql-test/**/*', '../_data/harnesses/**/ksql-test.yml'], {pipeline_file: 'ignore'})"
     execution_time_limit:
       minutes: 10
     task:
@@ -421,7 +421,7 @@ blocks:
   - name: Run third block of tests (mostly ksqlDB)
     dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
     run:
-      when: "(branch = 'master' OR branch = 'release') OR change_in('../_includes/tutorials/**/ksql/**/*', '../_data/harnesses/**/ksql.yml', {pipeline_file: 'ignore'})"
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/ksql/**/*', '../_data/harnesses/**/ksql.yml'], {pipeline_file: 'ignore'})"
     execution_time_limit:
       minutes: 10
     task:
