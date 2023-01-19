@@ -108,7 +108,7 @@ blocks:
         - name: Tests
           matrix:
             - env_var: JAVA_VERSION
-              values: ["8", "11"]
+              values: ["17"]
           commands:
             - sem-version java $JAVA_VERSION
             - ./gradlew clean test
@@ -121,6 +121,7 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
       jobs:
         - name: KStreams Test Streams schedule operations tests
           commands:
@@ -168,7 +169,6 @@ blocks:
 
         - name: KStreams Serialization tests
           commands:
-            - sem-version java 11
             - make -C _includes/tutorials/serialization/kstreams/code tutorial
 
         - name: Kafka produce and consume in Scala
@@ -295,6 +295,7 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
       jobs:
         - name: Payment Status Check
           commands:
@@ -420,6 +421,7 @@ blocks:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
       jobs:
         - name: KStreams Connect key tests
           commands:
