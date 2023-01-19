@@ -100,7 +100,7 @@ blocks:
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
     dependencies: ["Build the website"]
     run:
-      when: " (branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*', '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*'])"
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*', '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*'])"
     task:
       prologue:
         commands:
