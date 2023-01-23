@@ -19,11 +19,12 @@
   {% endif %}
 
   <title>{{ site.data.tutorials[page.static_data].title }} using {{ site.data.stacks[page.stack].pretty }}</title>
-
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/github.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="{{ "/assets/sass/fonts.css" | relative_url }}" />
   <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
+  <link rel="preconnect" href="https://reveal.clearbit.com" crossorigin/>
+  <script src="https://reveal.clearbit.com/v1/companies/reveal?authorization=pk_3b8bb5ef85b03b3e0d9bd2165914fee4&variable=reveal"></script>
   <script src="https://cdn.optimizely.com/js/15784060578.js"></script>
   <script>
     !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6";analytics.SNIPPET_VERSION="4.13.2";
@@ -156,7 +157,7 @@
 
   {% include footer.html %}
 
-  <script src="{{ "/assets/js/segment.js" | relative_url }}"></script>
+  <script src="{{ "/assets/js/segment.js" | relative_url }}"></script> 
   <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>

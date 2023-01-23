@@ -1,4 +1,7 @@
+
+
 window.addEventListener('DOMContentLoaded', function () {
+  console.log('======================================== 0')
   function copy(node) {
     let copyText;
 
@@ -41,6 +44,17 @@ window.addEventListener('DOMContentLoaded', function () {
 
     // Not tracking this
     return null;
+  }
+
+  function identify (){
+    
+    if ( !window?.reveal) {
+      return;
+    }
+    
+    const payload = { clearbit_company: window.reveal }
+    
+    window.analytics.identify(payload);
   }
 
   // Get the payload to be sent
@@ -100,4 +114,6 @@ window.addEventListener('DOMContentLoaded', function () {
       analytics.track(eventName, { ...payload, location });
     }
   });
+
+  identify();
 });
