@@ -8,8 +8,9 @@ plugins {
     id "java"
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+// Use Java 11 since CP Docker images package Java 11 as of CP 7.3.x
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 version = "0.0.1"
 
 repositories {
