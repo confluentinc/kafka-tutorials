@@ -99,6 +99,8 @@ blocks:
 
   - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
     dependencies: ["Build the website"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*', '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*'])"
     task:
       prologue:
         commands:
@@ -108,19 +110,22 @@ blocks:
         - name: Tests
           matrix:
             - env_var: JAVA_VERSION
-              values: ["8", "11"]
+              values: ["17"]
           commands:
             - sem-version java $JAVA_VERSION
             - ./gradlew clean test
 
   - name: Run first block of tests (mostly Kafka and KStreams)
     dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*', '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*', '../_data/harnesses/**/kstreams.yml', '../_data/harnesses/**/kafka.yml'])"
     execution_time_limit:
-      minutes: 20
+      minutes: 10
     task:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
       jobs:
         - name: KStreams Test Streams schedule operations tests
           commands:
@@ -168,7 +173,6 @@ blocks:
 
         - name: KStreams Serialization tests
           commands:
-            - sem-version java 11
             - make -C _includes/tutorials/serialization/kstreams/code tutorial
 
         - name: Kafka produce and consume in Scala
@@ -289,12 +293,15 @@ blocks:
 
   - name: Run second block of tests (ksqlDB recipes)
     dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/ksql-test/**/*', '../_data/harnesses/**/ksql-test.yml'])"
     execution_time_limit:
-      minutes: 20
+      minutes: 10
     task:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
       jobs:
         - name: Payment Status Check
           commands:
@@ -414,12 +421,15 @@ blocks:
 
   - name: Run third block of tests (mostly ksqlDB)
     dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/ksql/**/*', '../_data/harnesses/**/ksql.yml'])"
     execution_time_limit:
-      minutes: 20
+      minutes: 10
     task:
       prologue:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
       jobs:
         - name: KStreams Connect key tests
           commands:

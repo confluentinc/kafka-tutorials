@@ -1045,12 +1045,12 @@ logistics:
     confluent: enabled
 
 audit-logs:
-  title: "Monitor security threats by analyzing and filtering audit logs"
-  meta-description: "monitor security threats by analyzing and filtering audit logs"
+  title: "Monitor security threats by analyzing and filtering Confluent Cloud audit logs"
+  meta-description: "monitor security threats by analyzing and filtering Confluent Cloud audit logs"
   slug: "/audit-logs"
   introduction: "Audit logs are often captured and stored in SIEM tools to find malicious insiders, monitor changes to policies, protect against data leakage, and ensure regulatory compliance. However, indefinitely storing all audit logs in SIEM tools, irrespective of whether they are of high or low value can be an expensive proposition, often forcing tradeoffs between cost, flexibility, and visibility.
 <BR><BR>
-This recipe demonstrates how to aggregate audit logs in a Kafka topic, filter for specific events, and forward them to Splunk for indexing via the <a href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk Sink connector</a> or route your data to a more cost-effective destination for long-term storage to reduce data indexing, analysis, and storage costs." 
+This recipe demonstrates how to aggregate Confluent Cloud audit logs in a Kafka topic, filter for specific events, and forward them to Splunk for indexing via the <a href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk Sink connector</a> or route your data to a more cost-effective destination for long-term storage to reduce data indexing, analysis, and storage costs."
   introduction-media: "/assets/img/audit-logs.png"
   status:
     confluent: enabled

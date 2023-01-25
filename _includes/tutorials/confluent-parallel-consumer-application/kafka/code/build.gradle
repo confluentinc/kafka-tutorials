@@ -11,8 +11,8 @@ plugins {
     id "java"
 }
 
-sourceCompatibility = "1.8"
-targetCompatibility = "1.8"
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
 version = "0.0.1"
 
 repositories {
@@ -22,7 +22,7 @@ repositories {
 apply plugin: "com.github.johnrengelman.shadow"
 
 dependencies {
-    implementation "io.confluent.parallelconsumer:parallel-consumer-core:0.5.2.2"
+    implementation "io.confluent.parallelconsumer:parallel-consumer-core:0.5.2.4"
     implementation "org.apache.commons:commons-lang3:3.12.0"
     implementation "org.slf4j:slf4j-simple:2.0.0"
     implementation "me.tongfei:progressbar:0.9.3"
@@ -30,7 +30,7 @@ dependencies {
 
     testImplementation "junit:junit:4.13.2"
     testImplementation 'org.awaitility:awaitility:4.2.0'
-    testImplementation "io.confluent.parallelconsumer:parallel-consumer-core:0.5.2.2:tests" // for LongPollingMockConsumer
+    testImplementation "io.confluent.parallelconsumer:parallel-consumer-core:0.5.2.4:tests" // for LongPollingMockConsumer
 }
 
 test {
