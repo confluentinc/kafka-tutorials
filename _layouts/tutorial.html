@@ -95,6 +95,11 @@
             ksqlDB
           </option>
           {% endif %}
+          {% if site.data.tutorials[page.static_data].status.flinksql == 'enabled' %}
+          <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/flinksql.html" {% if page.stack == 'flinksql' %} selected {% endif %}>
+            Flink SQL
+          </option>
+          {% endif %}
           {% if site.data.tutorials[page.static_data].status.kstreams == 'enabled' %}
           <option value="{{ site.data.tutorials[page.static_data].slug | relative_url }}/kstreams.html" {% if page.stack == 'kstreams' %} selected {% endif %}>
             Kafka Streams
@@ -152,6 +157,11 @@
           {% if site.data.tutorials[page.static_data].status.ksql == 'enabled' %}
           <a class="button {% if page.stack == 'ksql' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/ksql.html">
             ksqlDB
+          </a>
+          {% endif %}
+          {% if site.data.tutorials[page.static_data].status.flinksql == 'enabled' %}
+          <a class="button {% if page.stack == 'flinksql' %} is-selected {% endif %}" href="{{ site.data.tutorials[page.static_data].slug | relative_url }}/flinksql.html">
+            Flink SQL
           </a>
           {% endif %}
           {% if site.data.tutorials[page.static_data].status.kstreams == 'enabled' %}
