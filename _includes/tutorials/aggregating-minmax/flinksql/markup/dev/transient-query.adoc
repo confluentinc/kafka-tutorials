@@ -1,0 +1,11 @@
+TODO
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/expected-transient-query.log %}</code></pre>
++++++

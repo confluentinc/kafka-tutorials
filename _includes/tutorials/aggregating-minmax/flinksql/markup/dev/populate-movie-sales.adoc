@@ -1,0 +1,4 @@
+TODO
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/populate-movie-sales.sql %}</code></pre>
++++++
