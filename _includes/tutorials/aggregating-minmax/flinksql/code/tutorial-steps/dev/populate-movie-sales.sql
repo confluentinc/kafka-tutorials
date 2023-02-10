@@ -1,5 +1,5 @@
 INSERT INTO movie_sales VALUES
-    (0,'Avengers: Endgame', 2019, 856980506),
+    (0, 'Avengers: Endgame', 2019, 856980506),
     (1, 'Captain Marvel', 2019, 426829839),
     (2, 'Toy Story 4', 2019, 401486230),
     (3, 'The Lion King', 2019, 385082142),
