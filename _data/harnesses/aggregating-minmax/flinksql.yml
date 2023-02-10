@@ -64,6 +64,13 @@ dev:
                 file: tutorials/aggregating-minmax/flinksql/markup/dev/print-output-topic.adoc
           stdout:
             directory: tutorial-steps/dev/outputs
+    - title: Validate output
+      content:
+        - action: execute
+          file: tutorial-steps/dev/validate-movie-sales-by-year.sh
+          stdout: tutorial-steps/dev/outputs/validate-movie-sales-by-year.log
+          render:
+            file: tutorials/aggregating-minmax/flinksql/markup/dev/validate-movie-sales-by-year.adoc
 
 ccloud:
   steps:
