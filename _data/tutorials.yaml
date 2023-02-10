@@ -168,6 +168,7 @@ aggregating-minmax:
   status:
     ksql: enabled
     kstreams: enabled
+    flinksql: enabled
 
 aggregating-sum:
   title: "How to sum a stream of events"

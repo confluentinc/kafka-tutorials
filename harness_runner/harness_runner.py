@@ -4,6 +4,7 @@ import uuid
 import time
 import signal
 import subprocess
+import flinksql
 import ksql
 
 from util import in_base_dir
@@ -95,7 +96,8 @@ commands = {
     "execute_async": execute_async,
     "make_file": make_file,
     "sleep": sleep,
-    "docker_ksql_cli_session": ksql.docker_ksql_cli_session
+    "docker_ksql_cli_session": ksql.docker_ksql_cli_session,
+    "docker_flinksql_cli_session": flinksql.docker_flinksql_cli_session
 }
 
 def run_command(context, step):

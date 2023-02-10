@@ -1,0 +1,11 @@
+TODO
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This should yield the following output:
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/expected-print-output-topic.log %}</code></pre>
++++++
+
+TODO
