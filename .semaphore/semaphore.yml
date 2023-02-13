@@ -569,3 +569,20 @@ blocks:
         - name: KSQL rekey stream with function tests
           commands:
             - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+
+  - name: Run fourth block of tests (FlinkSql or DataStream API)
+    dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/flinksql/**/*', '../_data/harnesses/**/flinksql.yml'])"
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
+      jobs:
+        - name: Flink SQL hopping windows
+          commands: #The following is a placeholder and needs updated to a Flink SQL when available
+            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial 
+
