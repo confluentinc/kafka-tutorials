@@ -581,4 +581,8 @@ blocks:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
           - sem-version java 17
-    
+      jobs:
+        - name: Flink SQL hopping windows (placeholder)
+          commands:
+            - make -C _includes/tutorials/hopping-windows/flinksql/code tutorial
+
