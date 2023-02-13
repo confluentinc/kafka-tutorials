@@ -581,4 +581,4 @@ blocks:
         commands:
           - echo $SEMAPHORE_WORKFLOW_ID
           - sem-version java 17
-      jobs:
+    
