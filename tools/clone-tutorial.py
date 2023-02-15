@@ -70,10 +70,21 @@ def get_file_paths_for_replacement(file_path):
     return file_paths
 
 
-def handle_harness_files():
-    if orig_single_type_clone != '' and new_single_type_clone != '':
-        orig_harness_file = test_harness_dir + '/' + orig_tutorial_name + '/' + orig_single_type_clone + '.yml'
-        new_harness_file = test_harness_dir + '/' + new_tutorial_name + '/' + new_single_type_clone + '.yml'
+def do_replacements(file_path, from_text, to_text):
+    if from_text is not None and to_text is not None:
+        candidate_files = get_file_paths_for_replacement(file_path)
+        for f in candidate_files:
+            replace_names_in_file(f, from_text, to_text)
+
+
+def handle_harness_files(orig_single_type,
+                         new_single_type,
+                         test_harness_dir,
+                         orig_tutorial_name,
+                         new_tutorial_name):
+    if orig_single_type != '' and new_single_type != '':
+        orig_harness_file = test_harness_dir + '/' + orig_tutorial_name + '/' + orig_single_type + '.yml'
+        new_harness_file = test_harness_dir + '/' + new_tutorial_name + '/' + new_single_type + '.yml'
         shutil.copy(orig_harness_file, new_harness_file)
         replace_names_in_file(new_harness_file, args.orig_name, args.new_name)
     else:
@@ -86,10 +97,9 @@ def handle_harness_files():
 
 
 def ensure_valid_tutorial_names():
-    for tutorial_type in tutorial_types:
-        if os.path.exists(proposed_tutorial):
-            print("A tutorial for %s exists" % proposed_tutorial)
-            exit(1)
+    if os.path.exists(proposed_tutorial):
+        print("A tutorial for %s exists" % proposed_tutorial)
+        exit(1)
     if orig_single_type_clone != '' and orig_single_type_clone not in tutorial_types:
         print("Tutorial type %s unknown" % orig_single_type_clone)
         exit(1)
@@ -129,9 +139,9 @@ shutil.copytree(original_tutorial, proposed_tutorial)
 
 print("Copy the needed YAML files to %s" % test_harness_dir + '/' + new_tutorial_name)
 print("Then do the required replacements for getting the correct paths")
-handle_harness_files()
+handle_harness_files(orig_single_type_clone, new_single_type_clone,
+                     test_harness_dir, orig_tutorial_name, new_tutorial_name)
 
 print("Updating copied files from {old} to {new}".format(old=args.orig_name, new=args.new_name))
-files_to_substitute = get_file_paths_for_replacement(proposed_tutorial)
-for file in files_to_substitute:
-    replace_names_in_file(file, args.orig_name, args.new_name)
+do_replacements(proposed_tutorial, args.orig_name, args.new_name)
+do_replacements(proposed_tutorial, args.orig_main_class, args.new_main_class)
