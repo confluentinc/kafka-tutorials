@@ -45,7 +45,7 @@ services:
       SCHEMA_REGISTRY_KAFKASTORE_CONNECTION_URL: 'zookeeper:2181'
 
   ksql-server:
-    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-server:7.5.0-cc-docker-kafka.16-7-rc1
+    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-server:7.5.0-cc-docker-kafka.17-9-rc1
     hostname: ksql-server
     container_name: ksql-server
     depends_on:
@@ -64,7 +64,7 @@ services:
       KSQL_KSQL_STREAMS_CACHE_MAX_BYTES_BUFFERING: 0
 
   ksql-cli:
-    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-cli:7.5.0-cc-docker-kafka.16-7-rc1
+    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-cli:7.5.0-cc-docker-kafka.17-9-rc1
     container_name: ksql-cli
     depends_on:
       - broker
