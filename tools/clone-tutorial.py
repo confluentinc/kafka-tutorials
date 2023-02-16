@@ -16,6 +16,7 @@
 import argparse
 import os
 import shutil
+import rtyaml
 
 tools_home = os.path.realpath(os.path.dirname(__file__))
 kt_home = os.path.dirname(tools_home)
@@ -32,8 +33,9 @@ parser.add_argument('--new-name', required=True,
                          'session-windows/flinksql')
 parser.add_argument('--orig-main-class', help='Name of original main class (applicable for Java/Flink)')
 parser.add_argument('--new-main-class', help='Name of new main class (applicable for Java/Flink)')
-parser.add_argument('--semaphore-name', required=True, help='The name of the test for semaphore.yml file')
-parser.add_argument('--permalink', required=True, help='The permalink for the tutorial')
+parser.add_argument('--semaphore-test-name', required=True, help='The name of the test for semaphore.yml file')
+parser.add_argument('--permalink', help='The permalink for the tutorial')
+parser.add_argument('--json-file', help="The path to a json file containing these configurations")
 parser.add_argument('--debug', default=False, help='The permalink for the tutorial')
 
 args = parser.parse_args()
@@ -58,7 +60,7 @@ def replace_names_in_file(candidate_file, from_text, to_text):
                 for line in updated_lines:
                     f.write(line)
         except IOError as e:
-            print('Error: problem accessing file {file} due to {error}'.format(file=file, error=e))
+            print('Error: problem accessing file {file} due to {error}'.format(file=candidate_file, error=e))
 
 
 def get_file_paths_for_replacement(file_path):
@@ -75,6 +77,62 @@ def do_replacements(file_path, from_text, to_text):
         candidate_files = get_file_paths_for_replacement(file_path)
         for f in candidate_files:
             replace_names_in_file(f, from_text, to_text)
+
+
+def get_yaml_file(yaml_path):
+    with open(yaml_path) as sf:
+        proj_yml = rtyaml.load(sf)
+        return proj_yml
+
+
+def write_yaml_to_file(yaml_path, yaml):
+    with open(yaml_path, 'w') as sf:
+        rtyaml.dump(yaml, sf)
+
+
+def get_semaphore_test_block(tutorial_type):
+    blocks = {
+        'kstreams': 'Run first block of tests (mostly Kafka and KStreams)',
+        'kafka': 'Run first block of tests (mostly Kafka and KStreams)',
+        'ksql-test': 'Run second block of tests (ksqlDB recipes)',
+        'ksql': 'Run third block of tests (mostly ksqlDB)',
+        'flinksql': 'Run fourth block of tests (FlinkSql or DataStream API)'
+    }
+    return blocks.get(tutorial_type)
+
+
+def update_semaphore_yaml(yaml, block_name, job):
+    for block in yaml["blocks"]:
+        if block["name"] == block_name:
+            jobs = block["task"]["jobs"]
+            jobs.append(job)
+
+    return yaml
+
+
+def update_tutorials_yaml(yaml, tutorial_name, enabled_tutorial_types):
+    if yaml[tutorial_name] is None:
+        yaml[tutorial_name] = {
+            'title': 'ADD A TITLE',
+            'meta-description': 'ADD A META-DESCRIPTION',
+            'canonical': 'confluent',
+            'slug': 'ADD the PERMALINK slug',
+            'question': 'ADD QUESTION for introducing the issue the tutorial solves',
+            'status': {}
+        }
+
+    status = yaml[tutorial_name]['status']
+    for tutorial_type in enabled_tutorial_types:
+        status[tutorial_type] = 'enabled'
+
+    return yaml
+
+
+def create_semaphore_job(semaphore_test_name, tutorial):
+    return {
+        'name': semaphore_test_name,
+        'commands': ['make -C _includes/tutorials/{tutorial}/code tutorial'.format(tutorial=tutorial)]
+    }
 
 
 def handle_harness_files(orig_single_type,
@@ -100,31 +158,33 @@ def ensure_valid_tutorial_names():
     if os.path.exists(proposed_tutorial):
         print("A tutorial for %s exists" % proposed_tutorial)
         exit(1)
-    if orig_single_type_clone != '' and orig_single_type_clone not in tutorial_types:
-        print("Tutorial type %s unknown" % orig_single_type_clone)
+    if orig_tutorial_type != '' and orig_tutorial_type not in tutorial_types:
+        print("Tutorial type %s unknown" % orig_tutorial_type)
         exit(1)
-    elif new_single_type_clone != '' and new_single_type_clone not in tutorial_types:
-        print("Tutorial type %s unknown" % new_single_type_clone)
+    elif new_tutorial_type != '' and new_tutorial_type not in tutorial_types:
+        print("Tutorial type %s unknown" % new_tutorial_type)
         exit(1)
 
 
+semaphore_path = '../.semaphore/semaphore.yml'
+tutorials_yaml_path = '../_data/tutorials.yaml'
 tutorials_dir = kt_home + '/_includes/tutorials'
 test_harness_dir = kt_home + '/_data/harnesses'
 orig_name_parts = str(args.orig_name).split('/')
 orig_tutorial_name = orig_name_parts[0]
 new_tutorial_name_parts = str(args.new_name).split('/')
 new_tutorial_name = new_tutorial_name_parts[0]
-orig_single_type_clone = ''
-new_single_type_clone = ''
+orig_tutorial_type = ''
+new_tutorial_type = ''
 if len(orig_name_parts) > 1:
-    orig_single_type_clone = orig_name_parts[1]
+    orig_tutorial_type = orig_name_parts[1]
 if len(new_tutorial_name_parts) > 1:
-    new_single_type_clone = new_tutorial_name_parts[1]
+    new_tutorial_type = new_tutorial_name_parts[1]
 if args.debug:
     print("Names of tutorial to be cloned " + str(orig_name_parts) + '  ' + orig_tutorial_name
-          + '  ' + str(orig_single_type_clone))
-proposed_tutorial = tutorials_dir + '/' + new_tutorial_name + '/' + new_single_type_clone
-original_tutorial = tutorials_dir + '/' + orig_tutorial_name + '/' + orig_single_type_clone
+          + '  ' + str(orig_tutorial_type))
+proposed_tutorial = tutorials_dir + '/' + new_tutorial_name + '/' + new_tutorial_type
+original_tutorial = tutorials_dir + '/' + orig_tutorial_name + '/' + orig_tutorial_type
 
 if args.debug:
     print('Original tutorial ' + original_tutorial)
@@ -139,9 +199,23 @@ shutil.copytree(original_tutorial, proposed_tutorial)
 
 print("Copy the needed YAML files to %s" % test_harness_dir + '/' + new_tutorial_name)
 print("Then do the required replacements for getting the correct paths")
-handle_harness_files(orig_single_type_clone, new_single_type_clone,
+handle_harness_files(orig_tutorial_type, new_tutorial_type,
                      test_harness_dir, orig_tutorial_name, new_tutorial_name)
 
 print("Updating copied files from {old} to {new}".format(old=args.orig_name, new=args.new_name))
 do_replacements(proposed_tutorial, args.orig_name, args.new_name)
-do_replacements(proposed_tutorial, args.orig_main_class, args.new_main_class)
+
+if args.orig_main_class is not None and args.new_main_class is not None:
+    print("Updating all files update class names")
+    do_replacements(proposed_tutorial, args.orig_main_class, args.new_main_class)
+
+print("Now updating the semaphore.yml file with the added test")
+yaml_obj = get_yaml_file(semaphore_path)
+new_job = create_semaphore_job(args.semaphore_test_name, args.new_name)
+yaml_obj = update_semaphore_yaml(yaml_obj, get_semaphore_test_block(new_tutorial_type), new_job)
+write_yaml_to_file(semaphore_path, yaml_obj)
+
+print("Updating the tutorials.yml file")
+tutorials_yaml = get_yaml_file(tutorials_yaml_path)
+tutorials_yaml = update_tutorials_yaml(tutorials_yaml, new_tutorial_name, [new_tutorial_type])
+write_yaml_to_file(tutorials_yaml_path, tutorials_yaml)
