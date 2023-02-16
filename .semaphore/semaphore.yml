@@ -5,500 +5,583 @@ agent:
     type: s1-prod-ubuntu20-04-amd64-1
 auto_cancel:
   running:
-    when: 'true'
+    when: "true"
 global_job_config:
   secrets:
-  - name: vault_sem2_approle
+    - name: vault_sem2_approle
   prologue:
     commands:
-    - echo $SEMAPHORE_WORKFLOW_ID
-    - checkout
-    - |
-      if ! cache has_key gradle-7.5.1; then
-        mkdir ~/.gradle
-        wget -P ~/.gradle https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
-        unzip ~/.gradle/gradle-7.5.1-bin.zip -d ~/.gradle
-        cache store gradle-7.5.1 ~/.gradle
-      fi
-    - cache restore gradle-7.5.1
-    - sudo update-alternatives --install /usr/bin/gradle gradle ~/.gradle/gradle-7.5.1/bin/gradle
-      10
-    - |
-      if ! cache has_key cp-7.3.0-images; then
-        docker pull confluentinc/cp-kafka:7.3.0
-        docker pull confluentinc/cp-zookeeper:7.3.0
-        docker pull confluentinc/cp-schema-registry:7.3.0
-        docker pull confluentinc/cp-kafka-connect-base:7.3.0
-        docker pull confluentinc/cp-server-connect-base:7.3.0
-        docker pull confluentinc/ksqldb-server:0.28.2
-        docker pull confluentinc/ksqldb-cli:0.28.2
-        docker save confluentinc/cp-kafka:7.3.0 \
-                    confluentinc/cp-zookeeper:7.3.0 \
-                    confluentinc/cp-schema-registry:7.3.0 \
-                    confluentinc/cp-kafka-connect-base:7.3.0 \
-                    confluentinc/cp-server-connect-base:7.3.0 \
-                    confluentinc/ksqldb-server:0.28.2 \
-                    confluentinc/ksqldb-cli:0.28.2 \
-                    | gzip > cp.tar.gz
-        cache store cp-7.3.0-images cp.tar.gz
-        rm -f cp.tar.gz
-      else
-        docker image inspect confluentinc/cp-kafka:7.3.0 || \
-          (cache restore cp-7.3.0-images && docker load < cp.tar.gz && rm -f cp.tar.gz)
-      fi
-    - make install-vault
-    - . vault-bin/vault-setup
-    - . vault-sem-get-secret aws_credentials
-    - . vault-sem-get-secret dockerhub-semaphore-cred
-    - . vault-sem-get-secret artifactory-docker-helm
-    - >
-      aws ecr get-login-password --region us-west-2 | docker login --username AWS
-      --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
-    - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
-    - docker login --username $DOCKER_USER --password $DOCKER_APIKEY confluent-docker.jfrog.io
-    - pip3 install -e harness_runner/
-    - >
-      find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed
-      -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE:
-      \"false\"/g" {}
+      - echo $SEMAPHORE_WORKFLOW_ID
+      - checkout
+      - |
+        if ! cache has_key gradle-7.5.1; then
+          mkdir ~/.gradle
+          wget -P ~/.gradle https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
+          unzip ~/.gradle/gradle-7.5.1-bin.zip -d ~/.gradle
+          cache store gradle-7.5.1 ~/.gradle
+        fi
+      - cache restore gradle-7.5.1
+      - sudo update-alternatives --install /usr/bin/gradle gradle ~/.gradle/gradle-7.5.1/bin/gradle 10
+      - |
+        if ! cache has_key cp-7.3.0-images; then
+          docker pull confluentinc/cp-kafka:7.3.0
+          docker pull confluentinc/cp-zookeeper:7.3.0
+          docker pull confluentinc/cp-schema-registry:7.3.0
+          docker pull confluentinc/cp-kafka-connect-base:7.3.0
+          docker pull confluentinc/cp-server-connect-base:7.3.0
+          docker pull confluentinc/ksqldb-server:0.28.2
+          docker pull confluentinc/ksqldb-cli:0.28.2
+          docker save confluentinc/cp-kafka:7.3.0 \
+                      confluentinc/cp-zookeeper:7.3.0 \
+                      confluentinc/cp-schema-registry:7.3.0 \
+                      confluentinc/cp-kafka-connect-base:7.3.0 \
+                      confluentinc/cp-server-connect-base:7.3.0 \
+                      confluentinc/ksqldb-server:0.28.2 \
+                      confluentinc/ksqldb-cli:0.28.2 \
+                      | gzip > cp.tar.gz
+          cache store cp-7.3.0-images cp.tar.gz
+          rm -f cp.tar.gz
+        else
+          docker image inspect confluentinc/cp-kafka:7.3.0 || \
+            (cache restore cp-7.3.0-images && docker load < cp.tar.gz && rm -f cp.tar.gz)
+        fi
+      - make install-vault
+      - . vault-bin/vault-setup
+      - . vault-sem-get-secret aws_credentials
+      - . vault-sem-get-secret dockerhub-semaphore-cred
+      - . vault-sem-get-secret artifactory-docker-helm
+      - >
+        aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
+      - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
+      - docker login --username $DOCKER_USER --password $DOCKER_APIKEY confluent-docker.jfrog.io
+      - pip3 install -e harness_runner/
+      - >
+        find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed -i -E "s/(\s+)(KSQL_CONFIG_DIR.*)/\1\2\\n\1KSQL_CONFLUENT_SUPPORT_METRICS_ENABLE: \"false\"/g" {}
+
 promotions:
-- name: Deploy to live site
-  pipeline_file: live-site-deploy.yml
-  auto_promote_on:
-  - result: passed
-    branch:
-    - ^release$
-- name: Deploy to staging site
-  pipeline_file: staging-site-deploy.yml
-  auto_promote_on:
-  - result: passed
-    branch:
-    - ^master$
-- name: Stage PRs for review
-  pipeline_file: pr-staging-deploy.yml
-  auto_promote:
-    when: branch != 'master' and branch != 'release' and branch !~ '^dependabot'
+  - name: Deploy to live site
+    pipeline_file: live-site-deploy.yml
+    auto_promote_on:
+      - result: passed
+        branch:
+          - ^release$
+
+  - name: Deploy to staging site
+    pipeline_file: staging-site-deploy.yml
+    auto_promote_on:
+      - result: passed
+        branch:
+          - ^master$
+
+  - name: Stage PRs for review
+    pipeline_file: pr-staging-deploy.yml
+    auto_promote:
+      when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot'"
+
 blocks:
-- name: Build the website
-  dependencies: []
-  task:
-    prologue:
-      commands:
-      - echo $SEMAPHORE_WORKFLOW_ID
-      - checkout
-      - cache restore
-      - npm install
-      - gem install bundler
-      - bundle install
-      - cache store
-    jobs:
-    - name: Compile with Jekyll
-      commands:
-      - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_WORKING_BRANCH"
-      - cache store site-$SEMAPHORE_GIT_SHA _site
-- name: ☕️ Build and Test Java (Kafka and Kafka Streams) Only
-  dependencies:
-  - Build the website
-  run:
-    when: (branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*',
-      '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*'])
-  task:
-    prologue:
-      commands:
-      - echo $SEMAPHORE_WORKFLOW_ID
-      - checkout
-    jobs:
-    - name: Tests
-      matrix:
-      - env_var: JAVA_VERSION
-        values:
-        - '17'
-      commands:
-      - sem-version java $JAVA_VERSION
-      - ./gradlew clean test
-- name: Run first block of tests (mostly Kafka and KStreams)
-  dependencies:
-  - ☕️ Build and Test Java (Kafka and Kafka Streams) Only
-  run:
-    when: (branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*',
-      '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*',
-      '../_data/harnesses/**/kstreams.yml', '../_data/harnesses/**/kafka.yml'])
-  execution_time_limit:
-    minutes: 10
-  task:
-    prologue:
-      commands:
-      - echo $SEMAPHORE_WORKFLOW_ID
-      - sem-version java 17
-    jobs:
-    - name: KStreams Test Streams schedule operations tests
-      commands:
-      - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code
-        tutorial
-    - name: KStreams transforming tests
-      commands:
-      - make -C _includes/tutorials/transforming/kstreams/code tutorial
-    - name: Kafka transforming tests
-      commands:
-      - make -C _includes/tutorials/transforming/kafka/code tutorial
-    - name: KStreams filtering tests
-      commands:
-      - make -C _includes/tutorials/filtering/kstreams/code tutorial
-    - name: KStreams splitting tests
-      commands:
-      - make -C _includes/tutorials/splitting/kstreams/code tutorial
-    - name: KStreams merging tests
-      commands:
-      - make -C _includes/tutorials/merging/kstreams/code tutorial
-    - name: KStreams join stream to table tests
-      commands:
-      - make -C _includes/tutorials/joining-stream-table/kstreams/code tutorial
-    - name: KStreams table to table foreign key join tests
-      commands:
-      - make -C _includes/tutorials/fk-joins/kstreams/code tutorial
-    - name: KStreams tumbling windows tests
-      commands:
-      - make -C _includes/tutorials/tumbling-windows/kstreams/code tutorial
-    - name: KStreams aggregation count tests
-      commands:
-      - make -C _includes/tutorials/aggregating-count/kstreams/code tutorial
-    - name: KStreams aggregation sum tests
-      commands:
-      - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
-    - name: KStreams Serialization tests
-      commands:
-      - make -C _includes/tutorials/serialization/kstreams/code tutorial
-    - name: Kafka produce and consume in Scala
-      commands:
-      - make -C _includes/tutorials/produce-consume-lang/scala/code tutorial
-    - name: Kafka Consumer Application tests
-      commands:
-      - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
-    - name: KStreams Test Converting a KStream to a KTable tests
-      commands:
-      - make -C _includes/tutorials/streams-to-table/kstreams/code tutorial
-    - name: Kafka Producer Application tests
-      commands:
-      - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
-    - name: Kafka Test Kafka Producer with Callbacks tests
-      commands:
-      - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code
-        tutorial
-    - name: KStreams Test Cogrouping Streams tests
-      commands:
-      - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
-    - name: Kafka Connect SMT key tests
-      commands:
-      - make -C _includes/tutorials/connect-add-key-to-source/kafka/code tutorial
-    - name: KStreams emit a final result from a time window
-      commands:
-      - make -C _includes/tutorials/window-final-result/kstreams/code tutorial
-    - name: KStreams aggregation MIN/MAX tests
-      commands:
-      - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
-    - name: KStreams Running Average tests
-      commands:
-      - make -C _includes/tutorials/aggregating-average/kstreams/code tutorial
-    - name: KStreams Test Streams choosing output topic dynamically tests
-      commands:
-      - make -C _includes/tutorials/dynamic-output-topic/kstreams/code tutorial
-    - name: KStreams Test Streams naming changelog and repartition topics tests
-      commands:
-      - make -C _includes/tutorials/naming-changelog-repartition-topics/kstreams/code
-        tutorial
-    - name: Kafka Console Consumer Producer Basics tests
-      commands:
-      - make -C _includes/tutorials/console-consumer-producer-basic/kafka/code tutorial
-    - name: Kafka Console Consumer Producer Avro tests
-      commands:
-      - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
-    - name: Kafka Test Kafka Console Consumer with Primitive Keys and Values tests
-      commands:
-      - make -C _includes/tutorials/console-consumer-primitive-keys-values/kafka/code
-        tutorial
-    - name: Kafka Test Kafka Console Consumer Read Specific Offsets and Partitions
-        tests
-      commands:
-      - make -C _includes/tutorials/console-consumer-read-specific-offsets-partition/kafka/code
-        tutorial
-    - name: Kafka Test Connect Datagen Local
-      commands:
-      - make -C _includes/tutorials/kafka-connect-datagen/kafka/code tutorial
-    - name: Kafka Test Connect Datagen CCloud
-      commands:
-      - make -C _includes/tutorials/kafka-connect-datagen/confluent/code tutorial
-    - name: Kafka Count messages on a topic tutorial tests
-      commands:
-      - make -C _includes/tutorials/count-messages/kafka/code tutorial
-    - name: Kafka Message Ordering tests
-      commands:
-      - make -C _includes/tutorials/message-ordering/kafka/code tutorial
-    - name: KStreams Test Kafka Streams session windows tests
-      commands:
-      - make -C _includes/tutorials/session-windows/kstreams/code tutorial
-    - name: KStreams Test Kafka Streams sliding windows tests
-      commands:
-      - make -C _includes/tutorials/sliding-windows/kstreams/code tutorial
-    - name: KStreams finding distinct events tests
-      commands:
-      - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
-    - name: KStreams How to implement TTLs with KTable data tests
-      commands:
-      - make -C _includes/tutorials/schedule-ktable-ttl/kstreams/code tutorial
-    - name: KStreams Test Kafka Streams uncaught exception handling tests
-      commands:
-      - make -C _includes/tutorials/error-handling/kstreams/code tutorial
-    - name: KStreams KStreams 101 tests
-      commands:
-      - make -C _includes/tutorials/creating-first-apache-kafka-streams-application/kstreams/code
-        tutorial
-    - name: Kafka Test Multiple Event Types tests
-      commands:
-      - make -C _includes/tutorials/multiple-event-types/kafka/code tutorial
-    - name: KStreams How to implement TTLs with KTable with aggregate tests
-      commands:
-      - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
-    - name: Confluent Parallel Consumer tests
-      commands:
-      - make -C _includes/tutorials/confluent-parallel-consumer-application/kafka/code
-        tutorial
-- name: Run second block of tests (ksqlDB recipes)
-  dependencies:
-  - ☕️ Build and Test Java (Kafka and Kafka Streams) Only
-  run:
-    when: (branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/ksql-test/**/*',
-      '../_data/harnesses/**/ksql-test.yml'])
-  execution_time_limit:
-    minutes: 10
-  task:
-    prologue:
-      commands:
-      - echo $SEMAPHORE_WORKFLOW_ID
-      - sem-version java 17
-    jobs:
-    - name: Payment Status Check
-      commands:
-      - make -C _includes/tutorials/payment-status-check/ksql-test/code tutorial
-    - name: Model Retraining
-      commands:
-      - make -C _includes/tutorials/model-retraining/ksql-test/code tutorial
-    - name: Inventory
-      commands:
-      - make -C _includes/tutorials/inventory/ksql-test/code tutorial
-    - name: Firewall Splunk
-      commands:
-      - make -C _includes/tutorials/firewall-splunk/ksql-test/code tutorial
-    - name: Internet of Things
-      commands:
-      - make -C _includes/tutorials/internet-of-things/ksql-test/code tutorial
-    - name: Online Dating
-      commands:
-      - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
-    - name: Loyalty Rewards
-      commands:
-      - make -C _includes/tutorials/loyalty-rewards/ksql-test/code tutorial
-    - name: Dynamic Pricing
-      commands:
-      - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
-    - name: Location Based Alerting
-      commands:
-      - make -C _includes/tutorials/location-based-alerting/ksql-test/code tutorial
-    - name: Aviation
-      commands:
-      - make -C _includes/tutorials/aviation/ksql-test/code tutorial
-    - name: Denormalization
-      commands:
-      - make -C _includes/tutorials/denormalization/ksql-test/code tutorial
-    - name: Customer Journey
-      commands:
-      - make -C _includes/tutorials/customer-journey/ksql-test/code tutorial
-    - name: Messaging Modernization
-      commands:
-      - make -C _includes/tutorials/messaging-modernization/ksql-test/code tutorial
-    - name: Salesforce
-      commands:
-      - make -C _includes/tutorials/salesforce/ksql-test/code tutorial
-    - name: Next Best Offer
-      commands:
-      - make -C _includes/tutorials/next-best-offer/ksql-test/code tutorial
-    - name: Fleet Management
-      commands:
-      - make -C _includes/tutorials/fleet-management/ksql-test/code tutorial
-    - name: DDoS
-      commands:
-      - make -C _includes/tutorials/ddos/ksql-test/code tutorial
-    - name: Datacenter
-      commands:
-      - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
-    - name: Audit logs
-      commands:
-      - make -C _includes/tutorials/audit-logs/ksql-test/code tutorial
-    - name: Discount promo
-      commands:
-      - make -C _includes/tutorials/discount-promo/ksql-test/code tutorial
-    - name: Logistics
-      commands:
-      - make -C _includes/tutorials/logistics/ksql-test/code tutorial
-    - name: Survey Responses
-      commands:
-      - make -C _includes/tutorials/survey-responses/ksql-test/code tutorial
-    - name: Mainframe offload
-      commands:
-      - make -C _includes/tutorials/mainframe-offload/ksql-test/code tutorial
-    - name: Clickstream
-      commands:
-      - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
-    - name: SSH Attack
-      commands:
-      - make -C _includes/tutorials/SSH-attack/ksql-test/code tutorial
-    - name: Credit card activity
-      commands:
-      - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
-    - name: Campaign Finance
-      commands:
-      - make -C _includes/tutorials/campaign-finance/ksql-test/code tutorial
-    - name: IoT Loss Tracking
-      commands:
-      - make -C _includes/tutorials/iot-asset-tracking/ksql-test/code tutorial
-    - name: Omni-channel retail
-      commands:
-      - make -C _includes/tutorials/omnichannel-commerce/ksql-test/code tutorial
-- name: Run third block of tests (mostly ksqlDB)
-  dependencies:
-  - ☕️ Build and Test Java (Kafka and Kafka Streams) Only
-  run:
-    when: (branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/ksql/**/*',
-      '../_data/harnesses/**/ksql.yml'])
-  execution_time_limit:
-    minutes: 10
-  task:
-    prologue:
-      commands:
-      - echo $SEMAPHORE_WORKFLOW_ID
-      - sem-version java 17
-    jobs:
-    - name: KStreams Connect key tests
-      commands:
-      - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
-    - name: KSQL Test ksqlDB nested JSON tests
-      commands:
-      - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
-    - name: KSQL Test ksqlDB heterogeneous JSON tests
-      commands:
-      - make -C _includes/tutorials/ksql-heterogeneous-json/ksql/code tutorial
-    - name: KSQL Time Concepts Tutorial tests
-      commands:
-      - make -C _includes/tutorials/time-concepts/ksql/code tutorial
-    - name: KSQL Multi-joins Test tests
-      commands:
-      - make -C _includes/tutorials/multi-joins/ksql/code tutorial
-    - name: KSQL Test ksqlDB concatenate columns tests
-      commands:
-      - make -C _includes/tutorials/concatenation/ksql/code tutorial
-    - name: KSQL Test ksqlDB column difference tests
-      commands:
-      - make -C _includes/tutorials/column-difference/ksql/code tutorial
-    - name: KSQL geo-distance tests
-      commands:
-      - make -C _includes/tutorials/geo-distance/ksql/code tutorial
-    - name: KSQL aggregation MIN/MAX tests
-      commands:
-      - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
-    - name: KSQL tumbling windows tests
-      commands:
-      - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
-    - name: KSQL session windows tests
-      commands:
-      - make -C _includes/tutorials/session-windows/ksql/code tutorial
-    - name: KSQL aggregation count tests
-      commands:
-      - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
-    - name: KSQL join table to table tests
-      commands:
-      - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
-    - name: KSQL join stream to stream tests
-      commands:
-      - make -C _includes/tutorials/joining-stream-stream/ksql/code tutorial
-    - name: KSQL join stream to table tests
-      commands:
-      - make -C _includes/tutorials/joining-stream-table/ksql/code tutorial
-    - name: KSQL merging tests
-      commands:
-      - make -C _includes/tutorials/merging/ksql/code tutorial
-    - name: KSQL filtering tests
-      commands:
-      - make -C _includes/tutorials/filtering/ksql/code tutorial
-    - name: KSQL splitting tests
-      commands:
-      - make -C _includes/tutorials/splitting/ksql/code tutorial
-    - name: KSQL aggregation sum tests
-      commands:
-      - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
-    - name: KSQL anomaly detection tests
-      commands:
-      - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
-    - name: KSQL flatten nested data
-      commands:
-      - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
-    - name: KSQL finding distinct events tests
-      commands:
-      - make -C _includes/tutorials/finding-distinct/ksql/code tutorial
-    - name: KSQL transforming tests
-      commands:
-      - make -C _includes/tutorials/transforming/ksql/code tutorial
-    - name: KSQL  Connect SMT key tests
-      commands:
-      - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
-    - name: KSQL Test Change number of partitions and replicas
-      commands:
-      - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
-    - name: KSQL masking data tests
-      commands:
-      - make -C _includes/tutorials/masking-data/ksql/code tutorial
-    - name: KSQL Count messages on a topic tutorial tests
-      commands:
-      - make -C _includes/tutorials/count-messages/ksql/code tutorial
-    - name: KSQL Generate streams of test data tests
-      commands:
-      - make -C _includes/tutorials/generate-test-data-streams/ksql/code tutorial
-    - name: KSQL UDF tests
-      commands:
-      - make -C _includes/tutorials/udf/ksql/code tutorial
-    - name: KSQL hopping windows tests
-      commands:
-      - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
-    - name: KSQL deserialization errors tests
-      commands:
-      - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
-    - name: KSQL serialization tests
-      commands:
-      - make -C _includes/tutorials/serialization/ksql/code tutorial
-    - name: KSQL rekey stream tests
-      commands:
-      - make -C _includes/tutorials/rekeying/ksql/code tutorial
-    - name: KSQL connect-sink-timestamp tests
-      commands:
-      - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial
-    - name: KSQL rekey stream with function tests
-      commands:
-      - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
-- name: Run fourth block of tests (FlinkSql or DataStream API)
-  dependencies:
-  - ☕️ Build and Test Java (Kafka and Kafka Streams) Only
-  run:
-    when: (branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/flinksql/**/*',
-      '../_data/harnesses/**/flinksql.yml'])
-  execution_time_limit:
-    minutes: 10
-  task:
-    prologue:
-      commands:
-      - echo $SEMAPHORE_WORKFLOW_ID
-      - sem-version java 17
-    jobs:
-    - name: Flink SQL hopping windows
-      commands:
-      - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
-    - name: Flink SQL tumbling windows
-      commands:
-      - make -C _includes/tutorials/tumbling-windows/flinksql/code tutorial
+  - name: Build the website
+    dependencies: []
+    task:
+      prologue:
+        commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
+          - checkout
+          - cache restore
+          - npm install
+          - gem install bundler
+          - bundle install
+          - cache store
+      jobs:
+        - name: Compile with Jekyll
+          commands:
+            - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_WORKING_BRANCH"
+            - cache store site-$SEMAPHORE_GIT_SHA _site
+
+  - name: "☕️ Build and Test Java (Kafka and Kafka Streams) Only"
+    dependencies: ["Build the website"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*', '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*'])"
+    task:
+      prologue:
+        commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
+          - checkout
+      jobs:
+        - name: Tests
+          matrix:
+            - env_var: JAVA_VERSION
+              values: ["17"]
+          commands:
+            - sem-version java $JAVA_VERSION
+            - ./gradlew clean test
+
+  - name: Run first block of tests (mostly Kafka and KStreams)
+    dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/kstreams/**/*', '../_includes/tutorials/**/kafka/**/*', '../_includes/tutorials/**/scala/**/*', '../_data/harnesses/**/kstreams.yml', '../_data/harnesses/**/kafka.yml'])"
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
+      jobs:
+        - name: KStreams Test Streams schedule operations tests
+          commands:
+            - make -C _includes/tutorials/kafka-streams-schedule-operations/kstreams/code tutorial
+
+        - name: KStreams transforming tests
+          commands:
+            - make -C _includes/tutorials/transforming/kstreams/code tutorial
+
+        - name: Kafka transforming tests
+          commands:
+            - make -C _includes/tutorials/transforming/kafka/code tutorial
+
+        - name: KStreams filtering tests
+          commands:
+            - make -C _includes/tutorials/filtering/kstreams/code tutorial
+
+        - name: KStreams splitting tests
+          commands:
+            - make -C _includes/tutorials/splitting/kstreams/code tutorial
+
+        - name: KStreams merging tests
+          commands:
+            - make -C _includes/tutorials/merging/kstreams/code tutorial
+
+        - name: KStreams join stream to table tests
+          commands:
+            - make -C _includes/tutorials/joining-stream-table/kstreams/code tutorial
+
+        - name: KStreams table to table foreign key join tests
+          commands:
+            - make -C _includes/tutorials/fk-joins/kstreams/code tutorial
+
+        - name: KStreams tumbling windows tests
+          commands:
+            - make -C _includes/tutorials/tumbling-windows/kstreams/code tutorial
+
+        - name: KStreams aggregation count tests
+          commands:
+            - make -C _includes/tutorials/aggregating-count/kstreams/code tutorial
+
+        - name: KStreams aggregation sum tests
+          commands:
+            - make -C _includes/tutorials/aggregating-sum/kstreams/code tutorial
+
+        - name: KStreams Serialization tests
+          commands:
+            - make -C _includes/tutorials/serialization/kstreams/code tutorial
+
+        - name: Kafka produce and consume in Scala
+          commands:
+            - make -C _includes/tutorials/produce-consume-lang/scala/code tutorial
+
+        - name: Kafka Consumer Application tests
+          commands:
+            - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
+
+        - name: KStreams Test Converting a KStream to a KTable tests
+          commands:
+            - make -C _includes/tutorials/streams-to-table/kstreams/code tutorial
+
+        - name: Kafka Producer Application tests
+          commands:
+            - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
+
+        - name: Kafka Test Kafka Producer with Callbacks tests
+          commands:
+            - make -C _includes/tutorials/kafka-producer-application-callback/kafka/code tutorial
+
+        - name: KStreams Test Cogrouping Streams tests
+          commands:
+            - make -C _includes/tutorials/cogrouping-streams/kstreams/code tutorial
+
+        - name: Kafka Connect SMT key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/kafka/code tutorial
+
+        - name: KStreams emit a final result from a time window
+          commands:
+            - make -C _includes/tutorials/window-final-result/kstreams/code tutorial
+
+        - name: KStreams aggregation MIN/MAX tests
+          commands:
+            - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
+
+        - name: KStreams Running Average tests
+          commands:
+            - make -C _includes/tutorials/aggregating-average/kstreams/code tutorial
+
+        - name: KStreams Test Streams choosing output topic dynamically tests
+          commands:
+            - make -C _includes/tutorials/dynamic-output-topic/kstreams/code tutorial
+
+        - name: KStreams Test Streams naming changelog and repartition topics tests
+          commands:
+            - make -C _includes/tutorials/naming-changelog-repartition-topics/kstreams/code tutorial
+
+        - name: Kafka Console Consumer Producer Basics tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-producer-basic/kafka/code tutorial
+
+        - name: Kafka Console Consumer Producer Avro tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
+
+        - name: Kafka Test Kafka Console Consumer with Primitive Keys and Values tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-primitive-keys-values/kafka/code tutorial
+
+        - name: Kafka Test Kafka Console Consumer Read Specific Offsets and Partitions tests
+          commands:
+            - make -C _includes/tutorials/console-consumer-read-specific-offsets-partition/kafka/code tutorial
+
+        - name: Kafka Test Connect Datagen Local
+          commands:
+            - make -C _includes/tutorials/kafka-connect-datagen/kafka/code tutorial
+
+        - name: Kafka Test Connect Datagen CCloud
+          commands:
+            - make -C _includes/tutorials/kafka-connect-datagen/confluent/code tutorial
+
+        - name: Kafka Count messages on a topic tutorial tests
+          commands:
+            - make -C _includes/tutorials/count-messages/kafka/code tutorial
+
+        - name: Kafka Message Ordering tests
+          commands:
+            - make -C _includes/tutorials/message-ordering/kafka/code tutorial
+
+        - name: KStreams Test Kafka Streams session windows tests
+          commands:
+            - make -C _includes/tutorials/session-windows/kstreams/code tutorial
+
+        - name: KStreams Test Kafka Streams sliding windows tests
+          commands:
+            - make -C _includes/tutorials/sliding-windows/kstreams/code tutorial
+
+        - name: KStreams finding distinct events tests
+          commands:
+            - make -C _includes/tutorials/finding-distinct/kstreams/code tutorial
+
+        - name: KStreams How to implement TTLs with KTable data tests
+          commands:
+            - make -C _includes/tutorials/schedule-ktable-ttl/kstreams/code tutorial
+
+        - name: KStreams Test Kafka Streams uncaught exception handling tests
+          commands:
+            - make -C _includes/tutorials/error-handling/kstreams/code tutorial
+
+        - name: KStreams KStreams 101 tests
+          commands:
+            - make -C _includes/tutorials/creating-first-apache-kafka-streams-application/kstreams/code tutorial
+
+        - name: Kafka Test Multiple Event Types tests
+          commands:
+            - make -C _includes/tutorials/multiple-event-types/kafka/code tutorial
+
+        - name: KStreams How to implement TTLs with KTable with aggregate tests
+          commands:
+            - make -C _includes/tutorials/schedule-ktable-ttl-aggregate/kstreams/code tutorial
+
+        - name: Confluent Parallel Consumer tests
+          commands:
+            - make -C _includes/tutorials/confluent-parallel-consumer-application/kafka/code tutorial
+
+  - name: Run second block of tests (ksqlDB recipes)
+    dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/ksql-test/**/*', '../_data/harnesses/**/ksql-test.yml'])"
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
+      jobs:
+        - name: Payment Status Check
+          commands:
+            - make -C _includes/tutorials/payment-status-check/ksql-test/code tutorial
+
+        - name: Model Retraining
+          commands:
+            - make -C _includes/tutorials/model-retraining/ksql-test/code tutorial
+
+        - name: Inventory
+          commands:
+            - make -C _includes/tutorials/inventory/ksql-test/code tutorial
+
+        - name: Firewall Splunk
+          commands:
+            - make -C _includes/tutorials/firewall-splunk/ksql-test/code tutorial
+
+        - name: Internet of Things
+          commands:
+            - make -C _includes/tutorials/internet-of-things/ksql-test/code tutorial
+
+        - name: Online Dating
+          commands:
+            - make -C _includes/tutorials/online-dating/ksql-test/code tutorial
+
+        - name: Loyalty Rewards
+          commands:
+            - make -C _includes/tutorials/loyalty-rewards/ksql-test/code tutorial
+
+        - name: Dynamic Pricing
+          commands:
+            - make -C _includes/tutorials/dynamic-pricing/ksql-test/code tutorial
+
+        - name: Location Based Alerting
+          commands:
+            - make -C _includes/tutorials/location-based-alerting/ksql-test/code tutorial
+
+        - name: Aviation
+          commands:
+            - make -C _includes/tutorials/aviation/ksql-test/code tutorial
+
+        - name: Denormalization
+          commands:
+            - make -C _includes/tutorials/denormalization/ksql-test/code tutorial
+
+        - name: Customer Journey
+          commands:
+            - make -C _includes/tutorials/customer-journey/ksql-test/code tutorial
+
+        - name: Messaging Modernization
+          commands:
+            - make -C _includes/tutorials/messaging-modernization/ksql-test/code tutorial
+
+        - name: Salesforce
+          commands:
+            - make -C _includes/tutorials/salesforce/ksql-test/code tutorial
+
+        - name: Next Best Offer
+          commands:
+            - make -C _includes/tutorials/next-best-offer/ksql-test/code tutorial
+
+        - name: Fleet Management
+          commands:
+            - make -C _includes/tutorials/fleet-management/ksql-test/code tutorial
+
+        - name: DDoS
+          commands:
+            - make -C _includes/tutorials/ddos/ksql-test/code tutorial
+
+        - name: Datacenter
+          commands:
+            - make -C _includes/tutorials/datacenter/ksql-test/code tutorial
+
+        - name: Audit logs
+          commands:
+            - make -C _includes/tutorials/audit-logs/ksql-test/code tutorial
+
+        - name: Discount promo
+          commands:
+            - make -C _includes/tutorials/discount-promo/ksql-test/code tutorial
+
+        - name: Logistics
+          commands:
+            - make -C _includes/tutorials/logistics/ksql-test/code tutorial
+
+        - name: Survey Responses
+          commands:
+            - make -C _includes/tutorials/survey-responses/ksql-test/code tutorial
+
+        - name: Mainframe offload
+          commands:
+            - make -C _includes/tutorials/mainframe-offload/ksql-test/code tutorial
+
+        - name: Clickstream
+          commands:
+            - make -C _includes/tutorials/clickstream/ksql-test/code tutorial
+
+        - name: SSH Attack
+          commands:
+            - make -C _includes/tutorials/SSH-attack/ksql-test/code tutorial
+
+        - name: Credit card activity
+          commands:
+            - make -C _includes/tutorials/credit-card-activity/ksql-test/code tutorial
+
+        - name: Campaign Finance
+          commands:
+            - make -C _includes/tutorials/campaign-finance/ksql-test/code tutorial
+
+        - name: IoT Loss Tracking
+          commands:
+            - make -C _includes/tutorials/iot-asset-tracking/ksql-test/code tutorial
+
+        - name: Omni-channel retail
+          commands:
+            - make -C _includes/tutorials/omnichannel-commerce/ksql-test/code tutorial
+
+  - name: Run third block of tests (mostly ksqlDB)
+    dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/ksql/**/*', '../_data/harnesses/**/ksql.yml'])"
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
+      jobs:
+        - name: KStreams Connect key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/kstreams/code tutorial
+
+        - name: KSQL Test ksqlDB nested JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-nested-json/ksql/code tutorial
+
+        - name: KSQL Test ksqlDB heterogeneous JSON tests
+          commands:
+            - make -C _includes/tutorials/ksql-heterogeneous-json/ksql/code tutorial
+
+        - name: KSQL Time Concepts Tutorial tests
+          commands:
+            - make -C _includes/tutorials/time-concepts/ksql/code tutorial
+
+        - name: KSQL Multi-joins Test tests
+          commands:
+            - make -C _includes/tutorials/multi-joins/ksql/code tutorial
+
+        - name: KSQL Test ksqlDB concatenate columns tests
+          commands:
+            - make -C _includes/tutorials/concatenation/ksql/code tutorial
+
+        - name: KSQL Test ksqlDB column difference tests
+          commands:
+            - make -C _includes/tutorials/column-difference/ksql/code tutorial
+
+        - name: KSQL geo-distance tests
+          commands:
+            - make -C _includes/tutorials/geo-distance/ksql/code tutorial
+
+        - name: KSQL aggregation MIN/MAX tests
+          commands:
+            - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
+
+        - name: KSQL tumbling windows tests
+          commands:
+            - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
+
+        - name: KSQL session windows tests
+          commands:
+            - make -C _includes/tutorials/session-windows/ksql/code tutorial
+
+        - name: KSQL aggregation count tests
+          commands:
+            - make -C _includes/tutorials/aggregating-count/ksql/code tutorial
+
+        - name: KSQL join table to table tests
+          commands:
+            - make -C _includes/tutorials/joining-table-table/ksql/code tutorial
+
+        - name: KSQL join stream to stream tests
+          commands:
+            - make -C _includes/tutorials/joining-stream-stream/ksql/code tutorial
+
+        - name: KSQL join stream to table tests
+          commands:
+            - make -C _includes/tutorials/joining-stream-table/ksql/code tutorial
+
+        - name: KSQL merging tests
+          commands:
+            - make -C _includes/tutorials/merging/ksql/code tutorial
+
+        - name: KSQL filtering tests
+          commands:
+            - make -C _includes/tutorials/filtering/ksql/code tutorial
+
+        - name: KSQL splitting tests
+          commands:
+            - make -C _includes/tutorials/splitting/ksql/code tutorial
+        - name: KSQL aggregation sum tests
+          commands:
+            - make -C _includes/tutorials/aggregating-sum/ksql/code tutorial
+
+        - name: KSQL anomaly detection tests
+          commands:
+            - make -C _includes/tutorials/anomaly-detection/ksql/code tutorial
+
+        - name: KSQL flatten nested data
+          commands:
+            - make -C _includes/tutorials/flatten-nested-data/ksql/code tutorial
+
+        - name: KSQL finding distinct events tests
+          commands:
+            - make -C _includes/tutorials/finding-distinct/ksql/code tutorial
+
+        - name: KSQL transforming tests
+          commands:
+            - make -C _includes/tutorials/transforming/ksql/code tutorial
+
+        - name: KSQL  Connect SMT key tests
+          commands:
+            - make -C _includes/tutorials/connect-add-key-to-source/ksql/code tutorial
+
+        - name: KSQL Test Change number of partitions and replicas
+          commands:
+            - make -C _includes/tutorials/change-topic-partitions-replicas/ksql/code tutorial
+
+        - name: KSQL masking data tests
+          commands:
+            - make -C _includes/tutorials/masking-data/ksql/code tutorial
+
+        - name: KSQL Count messages on a topic tutorial tests
+          commands:
+            - make -C _includes/tutorials/count-messages/ksql/code tutorial
+
+        - name: KSQL Generate streams of test data tests
+          commands:
+            - make -C _includes/tutorials/generate-test-data-streams/ksql/code tutorial
+
+        - name: KSQL UDF tests
+          commands:
+            - make -C _includes/tutorials/udf/ksql/code tutorial
+
+        - name: KSQL hopping windows tests
+          commands:
+            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
+
+        - name: KSQL deserialization errors tests
+          commands:
+            - make -C _includes/tutorials/deserialization-errors/ksql/code tutorial
+
+        - name: KSQL serialization tests
+          commands:
+            - make -C _includes/tutorials/serialization/ksql/code tutorial
+
+        - name: KSQL rekey stream tests
+          commands:
+            - make -C _includes/tutorials/rekeying/ksql/code tutorial
+
+        - name: KSQL connect-sink-timestamp tests
+          commands:
+            - make -C _includes/tutorials/connect-sink-timestamp/ksql/code tutorial
+
+        - name: KSQL rekey stream with function tests
+          commands:
+            - make -C _includes/tutorials/rekeying-function/ksql/code tutorial
+
+  - name: Run fourth block of tests (FlinkSql or DataStream API)
+    dependencies: ["☕️ Build and Test Java (Kafka and Kafka Streams) Only"]
+    run:
+      when: "(branch = 'master' OR branch = 'release') OR change_in(['../_includes/tutorials/**/flinksql/**/*', '../_data/harnesses/**/flinksql.yml'])"
+    execution_time_limit:
+      minutes: 10
+    task:
+      prologue:
+        commands:
+          - echo $SEMAPHORE_WORKFLOW_ID
+          - sem-version java 17
+      jobs:
+        - name: Flink SQL hopping windows
+          commands: #The following is a placeholder and needs updated to a Flink SQL when available
+            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
