@@ -1,1 +1,31 @@
-TODO
+Seeing is believing, so let's query the persistent `movie_sales_by_year` table. First
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This will yield the same output that the transient query did (perhaps in a different order)
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/expected-print-output-topic.log %}</code></pre>
++++++
+
+We could also query the underlying topic directly using `kafka-avro-console-consumer`:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/validate-movie-sales-by-year.sh %}</code></pre>
++++++
+
+This will yield the following results (along with some logging):
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/expected-movie-sales-by-year.log %}</code></pre>
++++++
+
+Observe that the latest value for each key (release year) matches the final min / max aggregate values that we expect. At this point, we could also adjust the `movie-sales-by-year` topic's cleanup policy to `compact` so that only the latest aggregates per year are retained:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/set-topic-cleanup-policy.sh %}</code></pre>
++++++
+
+Kafka log cleanup happens asynchronously, so this wouldn't immediately reduce the topic down to 3 retained messages (one per year). It's included here to show a common Kafka topic configuration used in conjunction with Flink SQL tables sourced by the Upsert Kafka connector, particularly for streaming data sets with many updates per key.

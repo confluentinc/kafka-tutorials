@@ -55,15 +55,9 @@ dev:
               render:
                 file: tutorials/aggregating-minmax/flinksql/markup/dev/create-movie-sales-by-year.adoc
 
-            - file: tutorial-steps/dev/populate-movie-sales-by-year.sql
-              render:
-                file: tutorials/aggregating-minmax/flinksql/markup/dev/populate-movie-sales-by-year.adoc
-
-            - file: tutorial-steps/dev/print-output-topic.sql
-              render:
-                file: tutorials/aggregating-minmax/flinksql/markup/dev/print-output-topic.adoc
           stdout:
             directory: tutorial-steps/dev/outputs
+
     - title: Validate output
       content:
         - action: execute
