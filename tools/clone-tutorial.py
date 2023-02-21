@@ -14,9 +14,10 @@
 
 
 import argparse
+import glob
 import os
-import shutil
 import rtyaml
+import shutil
 
 tools_home = os.path.realpath(os.path.dirname(__file__))
 kt_home = os.path.dirname(tools_home)
@@ -61,6 +62,17 @@ def replace_names_in_file(candidate_file, from_text, to_text):
                     f.write(line)
         except IOError as e:
             print('Error: problem accessing file {file} due to {error}'.format(file=candidate_file, error=e))
+
+
+def find_and_rename_files_with_class_names(new_tutorial_path, previous_class_name, new_class_name):
+    for orig_file_source in glob.glob(new_tutorial_path+'/**/*', recursive=True):
+        path, fullname = os.path.split(orig_file_source)
+        if 'build' not in path:
+            basename, ext = os.path.splitext(fullname)
+            if basename.startswith(previous_class_name):
+                possible_extra = basename.replace(previous_class_name, '')
+                target_source_name = os.path.join(path, new_class_name + possible_extra + '' + ext)
+                os.rename(orig_file_source, target_source_name)
 
 
 def get_file_paths_for_replacement(file_path):
@@ -177,6 +189,8 @@ def handle_harness_files(orig_single_type,
         os.mkdir(test_hrns_dir + '/' + new_tut_name)
     shutil.copy(orig_harness_file, new_harness_file)
     replace_names_in_file(new_harness_file, args.orig_name, args.new_name)
+    replace_names_in_file(new_harness_file, args.orig_main_class, args.new_main_class)
+    replace_names_in_file(new_harness_file, args.orig_main_class+'Test', args.new_main_class+'Test')
     return [new_single_type]
 
 
@@ -234,6 +248,7 @@ do_replacements(proposed_tutorial, args.orig_name, args.new_name)
 if args.orig_main_class is not None and args.new_main_class is not None:
     print("Updating all files update class names")
     do_replacements(proposed_tutorial, args.orig_main_class, args.new_main_class)
+    find_and_rename_files_with_class_names(proposed_tutorial, args.orig_main_class, args.new_main_class)
 
 print("Now updating the semaphore.yml file with the added test")
 yaml_obj = get_yaml_file(semaphore_path)
