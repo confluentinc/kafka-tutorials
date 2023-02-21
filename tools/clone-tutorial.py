@@ -70,8 +70,8 @@ def find_and_rename_files_with_class_names(new_tutorial_path, previous_class_nam
         if 'build' not in path:
             basename, ext = os.path.splitext(fullname)
             if basename.startswith(previous_class_name):
-                possible_extra = basename.replace(previous_class_name, '')
-                target_source_name = os.path.join(path, new_class_name + possible_extra + '' + ext)
+                possible_test = basename.replace(previous_class_name, '')
+                target_source_name = os.path.join(path, new_class_name + possible_test + '' + ext)
                 os.rename(orig_file_source, target_source_name)
 
 
