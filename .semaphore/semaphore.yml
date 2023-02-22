@@ -73,7 +73,7 @@ promotions:
         branch:
           - ^master$
 
-  - name: Stage PRs for review 
+  - name: Stage PRs for review
     pipeline_file: pr-staging-deploy.yml
     auto_promote:
       when: "branch != 'master' and branch != 'release' and branch !~ '^dependabot'"
@@ -182,11 +182,11 @@ blocks:
         - name: Kafka Consumer Application tests
           commands:
             - make -C _includes/tutorials/kafka-consumer-application/kafka/code tutorial
-        
+
         - name: KStreams Test Converting a KStream to a KTable tests
           commands:
             - make -C _includes/tutorials/streams-to-table/kstreams/code tutorial
-            
+
         - name: Kafka Producer Application tests
           commands:
             - make -C _includes/tutorials/kafka-producer-application/kafka/code tutorial
@@ -206,7 +206,7 @@ blocks:
         - name: KStreams emit a final result from a time window
           commands:
             - make -C _includes/tutorials/window-final-result/kstreams/code tutorial
-            
+
         - name: KStreams aggregation MIN/MAX tests
           commands:
             - make -C _includes/tutorials/aggregating-minmax/kstreams/code tutorial
@@ -214,11 +214,11 @@ blocks:
         - name: KStreams Running Average tests
           commands:
             - make -C _includes/tutorials/aggregating-average/kstreams/code tutorial
-            
+
         - name: KStreams Test Streams choosing output topic dynamically tests
           commands:
             - make -C _includes/tutorials/dynamic-output-topic/kstreams/code tutorial
-        
+
         - name: KStreams Test Streams naming changelog and repartition topics tests
           commands:
             - make -C _includes/tutorials/naming-changelog-repartition-topics/kstreams/code tutorial
@@ -226,11 +226,11 @@ blocks:
         - name: Kafka Console Consumer Producer Basics tests
           commands:
             - make -C _includes/tutorials/console-consumer-producer-basic/kafka/code tutorial
-            
+
         - name: Kafka Console Consumer Producer Avro tests
           commands:
             - make -C _includes/tutorials/console-consumer-producer-avro/kafka/code tutorial
-            
+
         - name: Kafka Test Kafka Console Consumer with Primitive Keys and Values tests
           commands:
             - make -C _includes/tutorials/console-consumer-primitive-keys-values/kafka/code tutorial
@@ -242,11 +242,11 @@ blocks:
         - name: Kafka Test Connect Datagen Local
           commands:
             - make -C _includes/tutorials/kafka-connect-datagen/kafka/code tutorial
-            
+
         - name: Kafka Test Connect Datagen CCloud
           commands:
             - make -C _includes/tutorials/kafka-connect-datagen/confluent/code tutorial
-            
+
         - name: Kafka Count messages on a topic tutorial tests
           commands:
             - make -C _includes/tutorials/count-messages/kafka/code tutorial
@@ -281,7 +281,7 @@ blocks:
 
         - name: Kafka Test Multiple Event Types tests
           commands:
-            - make -C _includes/tutorials/multiple-event-types/kafka/code tutorial    
+            - make -C _includes/tutorials/multiple-event-types/kafka/code tutorial
 
         - name: KStreams How to implement TTLs with KTable with aggregate tests
           commands:
@@ -584,5 +584,4 @@ blocks:
       jobs:
         - name: Flink SQL hopping windows
           commands: #The following is a placeholder and needs updated to a Flink SQL when available
-            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial 
-
+            - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
