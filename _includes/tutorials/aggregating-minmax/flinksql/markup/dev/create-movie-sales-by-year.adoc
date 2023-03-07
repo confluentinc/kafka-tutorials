@@ -1,5 +1,6 @@
 Since the output of our transient query looks right, the next step is to make the query persistent. This looks exactly like the transient query, except we first create a new table with the https://nightlies.apache.org/flink/flink-docs-release-1.16/docs/connectors/table/upsert-kafka/[Upsert Kafka] connector and then `INSERT INTO` the table. We use the Upsert Kafka connector because we only care about the most recent aggregates for a given release year (the key column). The `INSERT INTO` statement returns to the CLI prompt right away, having created a persistent stream processing program running in the Flink cluster, continuously processing input records and updating the resulting `movie_sales_by_year` table.
 
+Now go ahead and tun the following two commands in your Flink SQL session:
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/create-movie-sales-by-year.sql %}</code></pre>
 +++++
