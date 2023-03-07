@@ -1,6 +1,9 @@
 ksql:
   pretty: ksqlDB
 
+flinksql:
+  pretty: Flink SQL
+
 kstreams:
   pretty: Kafka Streams
 

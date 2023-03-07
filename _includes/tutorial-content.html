@@ -18,7 +18,7 @@
 
               {% for section in step.content %}
 
-              {% if section.action == "docker_ksql_cli_session" %}
+              {% if section.action == "docker_ksql_cli_session" or section.action == "docker_flinksql_cli_session" %}
 
                 {% if section.render.skip != true %}
                   {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
