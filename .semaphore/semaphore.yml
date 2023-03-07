@@ -404,10 +404,6 @@ blocks:
         - name: KSQL aggregation MIN/MAX tests
           commands:
             - make -C _includes/tutorials/aggregating-minmax/ksql/code tutorial
-<<<<<<< HEAD
-=======
-
->>>>>>> 263166283 (address PR comments)
         - name: KSQL tumbling windows tests
           commands:
             - make -C _includes/tutorials/tumbling-windows/ksql/code tutorial
