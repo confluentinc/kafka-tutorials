@@ -494,7 +494,7 @@ blocks:
     prologue:
       commands:
       - echo $SEMAPHORE_WORKFLOW_ID
-      - sem-version java 17
+      - sem-version java 11
     jobs:
     - name: Flink SQL aggregation MIN/MAX tests
       commands:

@@ -22,7 +22,7 @@ We could also query the underlying topic directly using `kafka-avro-console-cons
 <pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/validate-movie-sales-by-year.sh %}</code></pre>
 +++++
 
-This will yield the following results (along with some logging):
+This will yield the following results:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/expected-movie-sales-by-year.log %}</code></pre>
