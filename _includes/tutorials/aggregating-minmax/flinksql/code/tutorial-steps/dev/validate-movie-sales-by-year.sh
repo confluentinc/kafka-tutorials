@@ -1,4 +1,4 @@
-docker exec -it schema-registry /usr/bin/kafka-avro-console-consumer \
+docker exec -e SCHEMA_REGISTRY_LOG4J_OPTS=" " -it schema-registry /usr/bin/kafka-avro-console-consumer \
   --topic movie-sales-by-year \
   --from-beginning \
   --max-messages 9 \
