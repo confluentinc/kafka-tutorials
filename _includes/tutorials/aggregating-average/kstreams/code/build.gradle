@@ -13,7 +13,7 @@ plugins {
   id "com.google.cloud.tools.jib" version "3.3.1"
   id "idea"
   id "eclipse"
-  id "com.github.davidmc24.gradle.plugin.avro" version "1.5.0"
+  id "com.github.davidmc24.gradle.plugin.avro" version "1.6.0"
 }
 
 sourceCompatibility = JavaVersion.VERSION_17
@@ -39,8 +39,8 @@ dependencies {
   testImplementation "junit:junit:4.13.2"
   testImplementation 'org.hamcrest:hamcrest:2.2'
 
-  testCompileOnly "org.projectlombok:lombok:1.18.24"
-  testAnnotationProcessor "org.projectlombok:lombok:1.18.22"
+  testCompileOnly "org.projectlombok:lombok:1.18.26"
+  testAnnotationProcessor "org.projectlombok:lombok:1.18.26"
 }
 
 test {

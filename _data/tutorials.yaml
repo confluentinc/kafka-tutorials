@@ -1,415 +1,549 @@
 transforming:
-  title: "How to transform a stream of events"
-  meta-description: "transform a field in a stream of events"
+  title: How to transform a stream of events
+  meta-description: transform a field in a stream of events
   canonical: confluent
-  slug: "/transform-a-stream-of-events"
-  question: "How do you transform a field in a stream of events in a Kafka topic?"
-  introduction: "Consider a topic with events that represent movies. Each event has a single attribute that combines its title and its release year into a string. In this tutorial, we'll write a program that creates a new topic with the title and release date turned into their own attributes."
+  slug: /transform-a-stream-of-events
+  question: How do you transform a field in a stream of events in a Kafka topic?
+  introduction: Consider a topic with events that represent movies. Each event has
+    a single attribute that combines its title and its release year into a string.
+    In this tutorial, we'll write a program that creates a new topic with the title
+    and release date turned into their own attributes.
   status:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
     confluent: enabled
-
 filtering:
-  title: "How to filter a stream of events"
-  meta-description: "filter messages in a stream of events"
+  title: How to filter a stream of events
+  meta-description: filter messages in a stream of events
   canonical: confluent
-  slug: "/filter-a-stream-of-events"
-  question: "How do you filter messages in a Kafka topic to contain only those that you're interested in?"
-  introduction: "Consider a topic with events that represent book publications. In this tutorial, we'll write a program that creates a new topic which only contains the events for a particular author."
+  slug: /filter-a-stream-of-events
+  question: How do you filter messages in a Kafka topic to contain only those that
+    you're interested in?
+  introduction: Consider a topic with events that represent book publications. In
+    this tutorial, we'll write a program that creates a new topic which only contains
+    the events for a particular author.
   status:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
     confluent: enabled
-
 splitting:
-  title: "How to split a stream of events into substreams"
-  meta-description: "split a stream of events into substreams"
+  title: How to split a stream of events into substreams
+  meta-description: split a stream of events into substreams
   canonical: confluent
-  slug: "/split-a-stream-of-events-into-substreams"
-  question: "How do you split events in a Kafka topic so that the events are placed into subtopics?"
-  introduction: "Suppose that you have a Kafka topic representing appearances of an actor or actress in a film, with each event denoting the genre. In this tutorial, we'll write a program that splits the stream into substreams based on the genre. We'll have a topic for drama films, a topic for fantasy films, and a topic for everything else. Related pattern: <a href='https://developer.confluent.io/patterns/event-processing/event-router'>Event Router</a>."
-  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg"
+  slug: /split-a-stream-of-events-into-substreams
+  question: How do you split events in a Kafka topic so that the events are placed
+    into subtopics?
+  introduction: 'Suppose that you have a Kafka topic representing appearances of an
+    actor or actress in a film, with each event denoting the genre. In this tutorial,
+    we''ll write a program that splits the stream into substreams based on the genre.
+    We''ll have a topic for drama films, a topic for fantasy films, and a topic for
+    everything else. Related pattern: <a href=''https://developer.confluent.io/patterns/event-processing/event-router''>Event
+    Router</a>.'
+  introduction-media: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg
   status:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
     confluent: enabled
-
 merging:
-  title: "How to merge many streams into one stream"
-  meta-description: "merge many streams into one stream"
+  title: How to merge many streams into one stream
+  meta-description: merge many streams into one stream
   canonical: confluent
-  slug: "/merge-many-streams-into-one-stream"
-  question: "If you have many Kafka topics with events, how do you merge them all into a single topic?"
-  introduction: "Suppose that you have a set of Kafka topics representing songs of a particular genre being played. You might have a topic for rock songs, another for classical songs, and so forth. In this tutorial, we'll write a program that merges all of the song play events into a single topic. Related pattern: <a href='https://developer.confluent.io/patterns/stream-processing/event-stream-merger'>Event Stream Merger</a>."
-  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-stream-merger.svg"
+  slug: /merge-many-streams-into-one-stream
+  question: If you have many Kafka topics with events, how do you merge them all into
+    a single topic?
+  introduction: 'Suppose that you have a set of Kafka topics representing songs of
+    a particular genre being played. You might have a topic for rock songs, another
+    for classical songs, and so forth. In this tutorial, we''ll write a program that
+    merges all of the song play events into a single topic. Related pattern: <a href=''https://developer.confluent.io/patterns/stream-processing/event-stream-merger''>Event
+    Stream Merger</a>.'
+  introduction-media: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-stream-merger.svg
   status:
     ksql: enabled
     kstreams: enabled
     kafka: enabled
     confluent: enabled
-
 joining-stream-table:
-  title: "How to join a stream and a lookup table"
-  meta-description: "join a stream and a lookup table"
+  title: How to join a stream and a lookup table
+  meta-description: join a stream and a lookup table
   canonical: confluent
-  slug: "/join-a-stream-to-a-table"
-  question: "If you have events in a Kafka topic and a table of reference data (also known as a lookup table), how can you join each event in the stream to a piece of data in the table based on a common key?"
-  introduction: "Suppose you have a set of movies that have been released and a stream of ratings from moviegoers about how entertaining they are. In this tutorial, we'll write a program that joins each rating with content about the movie. Related pattern: <a href='https://developer.confluent.io/patterns/stream-processing/event-joiner'>Event Joiner</a>"
-  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-joiner.svg"
+  slug: /join-a-stream-to-a-table
+  question: If you have events in a Kafka topic and a table of reference data (also
+    known as a lookup table), how can you join each event in the stream to a piece
+    of data in the table based on a common key?
+  introduction: 'Suppose you have a set of movies that have been released and a stream
+    of ratings from moviegoers about how entertaining they are. In this tutorial,
+    we''ll write a program that joins each rating with content about the movie. Related
+    pattern: <a href=''https://developer.confluent.io/patterns/stream-processing/event-joiner''>Event
+    Joiner</a>'
+  introduction-media: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-joiner.svg
   status:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
-
 joining-table-table:
-  title: "How to join a table and a table"
-  meta-description: "join a table and a table"
-  slug: "/join-a-table-to-a-table"
-  question: "If you have two tables of reference data in Kafka topics, how can you join the tables on a common key?"
-  introduction: "Suppose you have a set of data about movies and want to add further details, such as who the lead actor was. In this tutorial, we'll write a program that joins each movie to another set of data about movies' lead actors."
+  title: How to join a table and a table
+  meta-description: join a table and a table
+  slug: /join-a-table-to-a-table
+  question: If you have two tables of reference data in Kafka topics, how can you
+    join the tables on a common key?
+  introduction: Suppose you have a set of data about movies and want to add further
+    details, such as who the lead actor was. In this tutorial, we'll write a program
+    that joins each movie to another set of data about movies' lead actors.
   status:
     ksql: enabled
     kstreams: enabled
-
 joining-stream-stream:
-  title: "How to join a stream and a stream"
-  meta-description: "join a stream and a stream"
-  slug: "/join-a-stream-to-a-stream"
-  question: "If you have event streams in two Kafka topics, how can you join them together and create a new topic based on a common identifying attribute, where the new events are enriched from the original topics?"
-  introduction: "Suppose you have two streams containing events for orders and shipments. In this tutorial, we'll write a program that joins these two streams to create a new, enriched one. The new stream will tell us which orders have been successfully shipped, how long it took for them to ship, and the warehouse from which they shipped."
+  title: How to join a stream and a stream
+  meta-description: join a stream and a stream
+  slug: /join-a-stream-to-a-stream
+  question: If you have event streams in two Kafka topics, how can you join them together
+    and create a new topic based on a common identifying attribute, where the new
+    events are enriched from the original topics?
+  introduction: Suppose you have two streams containing events for orders and shipments.
+    In this tutorial, we'll write a program that joins these two streams to create
+    a new, enriched one. The new stream will tell us which orders have been successfully
+    shipped, how long it took for them to ship, and the warehouse from which they
+    shipped.
   status:
     ksql: enabled
     kstreams: enabled
-
 fk-joins:
-  title: "How to join a table and a table with a foreign key"
-  meta-description: "join two tables with different primary keys"
-  slug: "/foreign-key-joins"
-  question: "How can you join two tables with different primary keys?"
-  introduction: "Suppose you are running an internet streaming music service where you offer albums or individual music tracks for sale.  You'd like to track trends in listener preferences by joining the track purchases against the table of albums. The track purchase key doesn't align with the primary key for the album table, but since the value of the track purchase contains the ID of the album, you can extract the album ID from the track purchase and complete a foreign key join against the album table."
+  title: How to join a table and a table with a foreign key
+  meta-description: join two tables with different primary keys
+  slug: /foreign-key-joins
+  question: How can you join two tables with different primary keys?
+  introduction: Suppose you are running an internet streaming music service where
+    you offer albums or individual music tracks for sale.  You'd like to track trends
+    in listener preferences by joining the track purchases against the table of albums.
+    The track purchase key doesn't align with the primary key for the album table,
+    but since the value of the track purchase contains the ID of the album, you can
+    extract the album ID from the track purchase and complete a foreign key join against
+    the album table.
   status:
     kstreams: enabled
-
 rekeying:
-  title: "How to rekey a stream with a value"
-  meta-description: "rekey a stream with a value"
-  slug: "/rekey-a-stream"
-  question: "How can you add a key or change the key to a Kafka topic?"
-  introduction: "Suppose you have an unkeyed stream of movie ratings from moviegoers. Because the stream is not keyed, ratings for the same movie aren't guaranteed to be placed into the same partition. In this tutorial, we'll write a program that creates a new topic keyed by the movie's name. When the key is consistent, we can process these ratings at scale and in parallel."
+  title: How to rekey a stream with a value
+  meta-description: rekey a stream with a value
+  slug: /rekey-a-stream
+  question: How can you add a key or change the key to a Kafka topic?
+  introduction: Suppose you have an unkeyed stream of movie ratings from moviegoers.
+    Because the stream is not keyed, ratings for the same movie aren't guaranteed
+    to be placed into the same partition. In this tutorial, we'll write a program
+    that creates a new topic keyed by the movie's name. When the key is consistent,
+    we can process these ratings at scale and in parallel.
   status:
     ksql: enabled
     kstreams: enabled
-
 rekeying-function:
-  title: "How to rekey a stream with a function"
-  meta-description: "rekey a stream with a function"
-  slug: "/rekey-with-function"
-  question: "How can you rekey records in a Kafka topic, making the key a variation of data currently in the payload?"
-  introduction: "Consider a stream of customer information events keyed by ID. Each event contains a few attributes, including the customer's phone number. In this tutorial, we'll write a program that rekeys the topic by the area code of the phone number. Customers with the same area code will be placed into the same partition in the new topic."
+  title: How to rekey a stream with a function
+  meta-description: rekey a stream with a function
+  slug: /rekey-with-function
+  question: How can you rekey records in a Kafka topic, making the key a variation
+    of data currently in the payload?
+  introduction: Consider a stream of customer information events keyed by ID. Each
+    event contains a few attributes, including the customer's phone number. In this
+    tutorial, we'll write a program that rekeys the topic by the area code of the
+    phone number. Customers with the same area code will be placed into the same partition
+    in the new topic.
   status:
     ksql: enabled
     kstreams: enabled
-
 tumbling-windows:
-  title: "How to create tumbling windows"
-  meta-description: "create tumbling windows"
+  title: How to create tumbling windows
+  meta-description: create tumbling windows
   canonical: confluent
-  slug: "/create-tumbling-windows"
-  question: "If you have time series events in a Kafka topic, how can you group them into fixed-size, non-overlapping, contiguous time intervals?"
-  introduction: "Suppose you have a topic with events that represent movie ratings. In this tutorial, we'll write a program to maintain tumbling windows that count the total number of ratings that each movie has received."
+  slug: /create-tumbling-windows
+  question: If you have time series events in a Kafka topic, how can you group them
+    into fixed-size, non-overlapping, contiguous time intervals?
+  introduction: Suppose you have a topic with events that represent movie ratings.
+    In this tutorial, we'll write a program to maintain tumbling windows that count
+    the total number of ratings that each movie has received.
   status:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
-
 hopping-windows:
-  title: "How to create hopping windows"
-  meta-description: "create hopping windows for time-series events"
-  slug: "/create-hopping-windows"
-  question: "If you have time series events in a Kafka topic, how can you group them into fixed-size, possibly overlapping, contiguous time intervals to identify a specific scenario?"
-  introduction: "You want to build an alerting system that automatically detects if the temperature of a room consistently drops. In this tutorial, we'll write a program that monitors a stream of temperature readings and detects when the temperature consistently drops below 45 degrees Fahrenheit for a period of 10 minutes."
+  title: How to create hopping windows
+  meta-description: create hopping windows for time-series events
+  slug: /create-hopping-windows
+  question: If you have time series events in a Kafka topic, how can you group them
+    into fixed-size, possibly overlapping, contiguous time intervals to identify a
+    specific scenario?
+  introduction: You want to build an alerting system that automatically detects if
+    the temperature of a room consistently drops. In this tutorial, we'll write a
+    program that monitors a stream of temperature readings and detects when the temperature
+    consistently drops below 45 degrees Fahrenheit for a period of 10 minutes.
   status:
     ksql: enabled
-
 session-windows:
-  title: "Create session windows"
-  meta-description: "create session windows for time-series events"
+  title: Create session windows
+  meta-description: create session windows for time-series events
   canonical: confluent
-  slug: "/create-session-windows"
-  question: "If you have time series events in a Kafka topic, how can you group them into variable-size, non-overlapping time intervals based on a configurable inactivity period?"
-  introduction: "Given a topic of click events on a website, there are various ways that we can process it. As well as simply counting the number of clicks in a regular time frame (using hopping or tumbling windows), we can also perform sessionization on the data. Here the length of the time window is based on the concept of a session, which is defined based on a period of inactivity. A given user might visit a website multiple times a day, but in distinct visits. Using session windows, we can analyze the number of clicks and the duration of each visit."
+  slug: /create-session-windows
+  question: If you have time series events in a Kafka topic, how can you group them
+    into variable-size, non-overlapping time intervals based on a configurable inactivity
+    period?
+  introduction: Given a topic of click events on a website, there are various ways
+    that we can process it. As well as simply counting the number of clicks in a regular
+    time frame (using hopping or tumbling windows), we can also perform sessionization
+    on the data. Here the length of the time window is based on the concept of a session,
+    which is defined based on a period of inactivity. A given user might visit a website
+    multiple times a day, but in distinct visits. Using session windows, we can analyze
+    the number of clicks and the duration of each visit.
   status:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
-
 aggregating-count:
-  title: "How to count a stream of events"
-  meta-description: "count the number of events in a stream"
+  title: How to count a stream of events
+  meta-description: count the number of events in a stream
   canonical: confluent
-  slug: "/create-stateful-aggregation-count"
-  question: "How can you count the number of events in a Kafka topic based on some criteria?"
-  introduction: "Suppose you have a topic with events that represent ticket sales for movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams and ksqlDB.  We'll write a program that calculates the total number of tickets sold per movie."
+  slug: /create-stateful-aggregation-count
+  question: How can you count the number of events in a Kafka topic based on some
+    criteria?
+  introduction: Suppose you have a topic with events that represent ticket sales for
+    movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams
+    and ksqlDB.  We'll write a program that calculates the total number of tickets
+    sold per movie.
   status:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
-
 aggregating-minmax:
-  title: "How to find the min/max in a stream of events"
-  meta-description: "find the minimum or maximum value of a field in a stream of events"
-  slug: "/create-stateful-aggregation-minmax"
-  question: "How can you get the minimum or maximum value of a field from all records in a Kafka topic?"
-  introduction: "Suppose you have a topic with events that represent ticket sales of movies. In this tutorial, we'll write a program that calculates the maximum and minimum revenue of movies by year."
+  title: How to find the min/max in a stream of events
+  meta-description: find the minimum or maximum value of a field in a stream of events
+  slug: /create-stateful-aggregation-minmax
+  question: How can you get the minimum or maximum value of a field from all records
+    in a Kafka topic?
+  introduction: Suppose you have a topic with events that represent ticket sales of
+    movies. In this tutorial, we'll write a program that calculates the maximum and
+    minimum revenue of movies by year.
   status:
     ksql: enabled
     kstreams: enabled
-
+    flinksql: enabled
 aggregating-sum:
-  title: "How to sum a stream of events"
-  meta-description: "calculate the sum of one or more fields in a stream of events"
+  title: How to sum a stream of events
+  meta-description: calculate the sum of one or more fields in a stream of events
   canonical: confluent
-  slug: "/create-stateful-aggregation-sum"
-  question: "How can you calculate the sum of one or more fields from all records in a Kafka topic?"
-  introduction: "Suppose you have a topic with events that represent ticket sales for movies. Each event contains the movie that the ticket was purchased for, as well as its price. In this tutorial, we'll write a program that calculates the sum of all ticket sales per movie."
+  slug: /create-stateful-aggregation-sum
+  question: How can you calculate the sum of one or more fields from all records in
+    a Kafka topic?
+  introduction: Suppose you have a topic with events that represent ticket sales for
+    movies. Each event contains the movie that the ticket was purchased for, as well
+    as its price. In this tutorial, we'll write a program that calculates the sum
+    of all ticket sales per movie.
   status:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
-
 serialization:
-  title: "How to convert a stream's serialization format"
-  meta-description: "convert a stream's serialization format like Avro, Protobuf, or JSON,"
-  slug: "/changing-serialization-format"
-  question: "If you have a Kafka topic with the data serialized in a particular format, how can you change that format?"
-  introduction: "Consider a topic with events that represent movie releases. The events in the topic are formatted with Avro. In this tutorial, we'll write a program that creates a new topic with the same events, but formatted with Protobuf."
+  title: How to convert a stream's serialization format
+  meta-description: convert a stream's serialization format like Avro, Protobuf, or
+    JSON,
+  slug: /changing-serialization-format
+  question: If you have a Kafka topic with the data serialized in a particular format,
+    how can you change that format?
+  introduction: Consider a topic with events that represent movie releases. The events
+    in the topic are formatted with Avro. In this tutorial, we'll write a program
+    that creates a new topic with the same events, but formatted with Protobuf.
   status:
     ksql: enabled
     kstreams: enabled
-
 connect-add-key-to-source:
-  title: "Add a key to data ingested through Kafka Connect"
-  meta-description: "add key to a stream of data ingested through Kafka Connect"
-  slug: "/connect-add-key-to-source"
-  question: "How can you stream data from a source system (such as a database) into Kafka using Kafka Connect, and add a key to the data as part of the ingestion?"
-  introduction: "Kafka Connect is the integration API for Apache Kafka. It enables you to stream data from source systems (such as databases, message queues, SaaS platforms, and flat files) into Kafka, and from Kafka to target systems. When you stream data into Kafka, you often need to set the key correctly for partitioning and application logic reasons. In this example, we have a database containing data about cities, and we want to key the resulting Kafka messages by the city_id field. This tutorial will show you different ways of setting the key correctly. It will also cover how to declare the schema and use Kafka Streams to process the data using SpecificAvro."
+  title: Add a key to data ingested through Kafka Connect
+  meta-description: add key to a stream of data ingested through Kafka Connect
+  slug: /connect-add-key-to-source
+  question: How can you stream data from a source system (such as a database) into
+    Kafka using Kafka Connect, and add a key to the data as part of the ingestion?
+  introduction: Kafka Connect is the integration API for Apache Kafka. It enables
+    you to stream data from source systems (such as databases, message queues, SaaS
+    platforms, and flat files) into Kafka, and from Kafka to target systems. When
+    you stream data into Kafka, you often need to set the key correctly for partitioning
+    and application logic reasons. In this example, we have a database containing
+    data about cities, and we want to key the resulting Kafka messages by the city_id
+    field. This tutorial will show you different ways of setting the key correctly.
+    It will also cover how to declare the schema and use Kafka Streams to process
+    the data using SpecificAvro.
   status:
     ksql: enabled
     kafka: enabled
     kstreams: enabled
-
 finding-distinct:
-  title: "How to find distinct values in a stream of events"
-  meta-description: "filter out duplicate events"
+  title: How to find distinct values in a stream of events
+  meta-description: filter out duplicate events
   canonical: confluent
-  slug: "/finding-distinct-events"
-  question: "How can you filter out duplicate events from a Kafka topic based on a field in the event, producing a new stream of unique events per time window?"
-  introduction: "Consider a topic with events that represent clicks on a website. Each event contains an IP address, a URL, and a timestamp. In this tutorial, we'll write a program that filters click events by the IP address within a window of time."
+  slug: /finding-distinct-events
+  question: How can you filter out duplicate events from a Kafka topic based on a
+    field in the event, producing a new stream of unique events per time window?
+  introduction: Consider a topic with events that represent clicks on a website. Each
+    event contains an IP address, a URL, and a timestamp. In this tutorial, we'll
+    write a program that filters click events by the IP address within a window of
+    time.
   status:
     ksql: enabled
     kstreams: enabled
     kafka: disabled
     confluent: enabled
-
 window-final-result:
-  title: "Emit a final result from a time window"
-  meta-description: "emit a final result from a time window"
-  slug: "/window-final-result"
-  question: "How can you count the number of messages in a Kafka topic per key over a time window, with a final result that includes late arrivals?"
-  introduction: "Consider a topic with events that represent sensor warnings (pressure on robotic arms). One warning per time slot is fine, but you don't want to have too many warnings at the same time. In this tutorial, we'll write a program that counts messages from the same sensor and sends a result at the end of the window."
+  title: Emit a final result from a time window
+  meta-description: emit a final result from a time window
+  slug: /window-final-result
+  question: How can you count the number of messages in a Kafka topic per key over
+    a time window, with a final result that includes late arrivals?
+  introduction: Consider a topic with events that represent sensor warnings (pressure
+    on robotic arms). One warning per time slot is fine, but you don't want to have
+    too many warnings at the same time. In this tutorial, we'll write a program that
+    counts messages from the same sensor and sends a result at the end of the window.
   status:
     kstreams: enabled
-
 udf:
-  title: "How to build a User-Defined Function (UDF) to transform events"
-  meta-description: "build a User-Defined Function (UDF) to transform events"
-  slug: "/udf"
-  question: "How can you transform the values of a Kafka topic using a stateless scalar function not already provided by ksqlDB?"
-  introduction: "Consider a topic of stock price events. You want to calculate the <a href=\"https://en.wikipedia.org/wiki/Volume-weighted_average_price\">volume-weighted average price</a> (VWAP) for each event, publishing the result to a new topic. There is no built-in function for VWAP, so we'll write a custom <a href=\"https://docs.confluent.io/current/ksql/docs/developer-guide/udf.html\">KSQL user-defined function</a> (UDF) that performs the calculation."
+  title: How to build a User-Defined Function (UDF) to transform events
+  meta-description: build a User-Defined Function (UDF) to transform events
+  slug: /udf
+  question: How can you transform the values of a Kafka topic using a stateless scalar
+    function not already provided by ksqlDB?
+  introduction: Consider a topic of stock price events. You want to calculate the
+    <a href="https://en.wikipedia.org/wiki/Volume-weighted_average_price">volume-weighted
+    average price</a> (VWAP) for each event, publishing the result to a new topic.
+    There is no built-in function for VWAP, so we'll write a custom <a href="https://docs.confluent.io/current/ksql/docs/developer-guide/udf.html">KSQL
+    user-defined function</a> (UDF) that performs the calculation.
   status:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
-
 deserialization-errors:
-  title: "How to handle deserialization errors"
-  meta-description: "handle deserialization errors in a stream of events"
-  slug: "/handling-deserialization-errors"
-  question: "How can you identify and manage deserialization errors that cause some events from a Kafka topic to not be written into a stream or table?"
-  introduction: "During the development of event streaming applications, it is very common to have situations where some streams or tables are not receiving some events that have been sent to them. Often this happens because there was a deserialization error due to the event not being in the right format, but that is not so trivial to figure out. In this tutorial, we'll write a program that monitors a stream of sensors. Any deserialization error that happens in this stream will be made available in another stream that can be queried to check errors."
+  title: How to handle deserialization errors
+  meta-description: handle deserialization errors in a stream of events
+  slug: /handling-deserialization-errors
+  question: How can you identify and manage deserialization errors that cause some
+    events from a Kafka topic to not be written into a stream or table?
+  introduction: During the development of event streaming applications, it is very
+    common to have situations where some streams or tables are not receiving some
+    events that have been sent to them. Often this happens because there was a deserialization
+    error due to the event not being in the right format, but that is not so trivial
+    to figure out. In this tutorial, we'll write a program that monitors a stream
+    of sensors. Any deserialization error that happens in this stream will be made
+    available in another stream that can be queried to check errors.
   status:
     ksql: enabled
-
 flatten-nested-data:
-  title: "How to flatten deeply nested events"
-  meta-description: "flatten deeply nested events"
-  slug: "/flatten-nested-data"
-  question: "How can you transform a stream of events with nested data into a flattened dataset that is simpler to handle?"
-  introduction: "Consider a topic containing product orders. Each order contains data about the customer and the product, specified as nested data. In this tutorial, we'll write a program that transforms each order into a new version that contains all of the data as flat fields."
+  title: How to flatten deeply nested events
+  meta-description: flatten deeply nested events
+  slug: /flatten-nested-data
+  question: How can you transform a stream of events with nested data into a flattened
+    dataset that is simpler to handle?
+  introduction: Consider a topic containing product orders. Each order contains data
+    about the customer and the product, specified as nested data. In this tutorial,
+    we'll write a program that transforms each order into a new version that contains
+    all of the data as flat fields.
   status:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
-
 generate-test-data-streams:
-  title: "Generate complex streams of test data"
-  meta-description: "generate complex and realistic streams of test data"
-  question: "How can you generate realistic test data in Kafka?"
-  slug: "/generate-streams-of-test-data"
-  introduction: "Perhaps you are building an application, or constructing a pipeline, and you would like some mock data to use in testing. Using this connector, you can generate realistic test data that can also be made referentially consistent across topics."
+  title: Generate complex streams of test data
+  meta-description: generate complex and realistic streams of test data
+  question: How can you generate realistic test data in Kafka?
+  slug: /generate-streams-of-test-data
+  introduction: Perhaps you are building an application, or constructing a pipeline,
+    and you would like some mock data to use in testing. Using this connector, you
+    can generate realistic test data that can also be made referentially consistent
+    across topics.
   status:
     ksql: enabled
     kstreams: disabled
     kafka: enabled
-
 aggregating-average:
-  title: "Compute an average aggregation"
-  meta-description: "compute an average aggregation like count or sum"
-  slug: "/aggregating-average"
-  question: "How can you implement an average aggregation that implements incremental functions, namely `count()` and `sum()`?"
-  introduction: "Kafka Streams natively supports \"incremental\" aggregation functions, in which the aggregation result is updated based on the values captured by each window. Incremental functions include `count()`, `sum()`, `min()`, and `max()`. An average aggregation cannot be computed incrementally. However, as this tutorial shows, it can be implemented by composing incremental functions, namely `count()` and `sum()`. Consider a topic with events that represent movie ratings. In this tutorial, we'll write a program that calculates and maintains a running average rating for each movie."
+  title: Compute an average aggregation
+  meta-description: compute an average aggregation like count or sum
+  slug: /aggregating-average
+  question: How can you implement an average aggregation that implements incremental
+    functions, namely `count()` and `sum()`?
+  introduction: Kafka Streams natively supports "incremental" aggregation functions,
+    in which the aggregation result is updated based on the values captured by each
+    window. Incremental functions include `count()`, `sum()`, `min()`, and `max()`.
+    An average aggregation cannot be computed incrementally. However, as this tutorial
+    shows, it can be implemented by composing incremental functions, namely `count()`
+    and `sum()`. Consider a topic with events that represent movie ratings. In this
+    tutorial, we'll write a program that calculates and maintains a running average
+    rating for each movie.
   status:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
-
 dynamic-output-topic:
-  title: "How to dynamically choose the output topic at runtime"
-  meta-description: "dynamically route records to different Kafka topics at runtime"
+  title: How to dynamically choose the output topic at runtime
+  meta-description: dynamically route records to different Kafka topics at runtime
   canonical: confluent
-  slug: "/dynamic-output-topic"
-  question: "How can you dynamically route records to different Kafka topics, like a \"topic exchange\"?"
-  introduction: "Consider a situation where you want to direct the output of different records to different topics, like a \"topic exchange.\" In this tutorial, you'll learn how to instruct Kafka Streams to choose the output topic at runtime, based on information in each record's header, key, or value. Related pattern: <a href='https://developer.confluent.io/patterns/event-processing/event-router'>Event Router</a>."
-  introduction-media: "https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg"
+  slug: /dynamic-output-topic
+  question: How can you dynamically route records to different Kafka topics, like
+    a "topic exchange"?
+  introduction: 'Consider a situation where you want to direct the output of different
+    records to different topics, like a "topic exchange." In this tutorial, you''ll
+    learn how to instruct Kafka Streams to choose the output topic at runtime, based
+    on information in each record''s header, key, or value. Related pattern: <a href=''https://developer.confluent.io/patterns/event-processing/event-router''>Event
+    Router</a>.'
+  introduction-media: https://raw.githubusercontent.com/confluentinc/event-streaming-patterns/main/docs/img/event-router.svg
   status:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
     confluent: enabled
-
 naming-changelog-repartition-topics:
-  title: "How to name stateful operations in Kafka Streams"
-  meta-description: "name stateful operations"
-  slug: "/naming-stateful-operations"
-  question: "How can you change the topology of an existing Kafka Streams application while retaining compatibility with the existing one?"
-  introduction: "You want to add or remove some operations in your Kafka Streams application. In this tutorial, we'll name the changelog and repartition topics so that the topology updates don't break compatibility."
+  title: How to name stateful operations in Kafka Streams
+  meta-description: name stateful operations
+  slug: /naming-stateful-operations
+  question: How can you change the topology of an existing Kafka Streams application
+    while retaining compatibility with the existing one?
+  introduction: You want to add or remove some operations in your Kafka Streams application.
+    In this tutorial, we'll name the changelog and repartition topics so that the
+    topology updates don't break compatibility.
   status:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
-
 cogrouping-streams:
-  title: "How to combine stream aggregates together in a single larger object"
-  meta-description: "combine stream aggregates together in a single larger object"
+  title: How to combine stream aggregates together in a single larger object
+  meta-description: combine stream aggregates together in a single larger object
   canonical: confluent
-  slug: "/cogrouping-streams"
-  question: "How do you combine aggregate values, like `count`, from multiple streams into a single result?"
-  introduction: "You want to compute the count of user login events per application in your system, grouping the individual result from each source stream into one aggregated object. In this tutorial, we'll cover how to use the Kafka Streams cogroup functionality to accomplish this task with clear, performant code."
+  slug: /cogrouping-streams
+  question: How do you combine aggregate values, like `count`, from multiple streams
+    into a single result?
+  introduction: You want to compute the count of user login events per application
+    in your system, grouping the individual result from each source stream into one
+    aggregated object. In this tutorial, we'll cover how to use the Kafka Streams
+    cogroup functionality to accomplish this task with clear, performant code.
   status:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
     confluent: enabled
-
 console-consumer-producer-basic:
-  title: "Console Producer and Consumer Basics"
-  meta-description: "produce and consume your first Kafka message with the commandline"
+  title: Console Producer and Consumer Basics
+  meta-description: produce and consume your first Kafka message with the commandline
   canonical: confluent
-  slug: "/kafka-console-consumer-producer-basics"
-  question: "What is the simplest way to write messages to and read messages from Kafka?"
-  introduction: "So you are excited to get started with Kafka, and you'd like to produce and consume some basic messages, quickly. In this tutorial, we'll show you how to produce and consume messages from the command line without any code."
-  introduction-media: "/assets/img/cli.png"
+  slug: /kafka-console-consumer-producer-basics
+  question: What is the simplest way to write messages to and read messages from Kafka?
+  introduction: So you are excited to get started with Kafka, and you'd like to produce
+    and consume some basic messages, quickly. In this tutorial, we'll show you how
+    to produce and consume messages from the command line without any code.
+  introduction-media: /assets/img/cli.png
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
     confluent: enabled
-
 console-consumer-producer-avro:
-  title: "Console Producer and Consumer with (de)serializers"
-  meta-description: "produce and consume your first Kafka message, using (de)serializers and Schema Registry, with the commandline"
+  title: Console Producer and Consumer with (de)serializers
+  meta-description: produce and consume your first Kafka message, using (de)serializers
+    and Schema Registry, with the commandline
   canonical: confluent
-  slug: "/kafka-console-consumer-producer-avro"
-  question: "What is the simplest way to write messages to and read messages from Kafka, using (de)serializers and Schema Registry?"
-  introduction: "You'd like to produce and consume some basic messages, using (de)serializers and Schema Registry.  In this tutorial, we'll show you how to produce and consume messages from the command line without any code. Unlike the <a href=\"/tutorials/kafka-console-consumer-producer-basics/confluent.html\">CLI Basics</a> tutorial, this tutorial uses Avro and Schema Registry."
-  introduction-media: "/assets/img/sr.png"
+  slug: /kafka-console-consumer-producer-avro
+  question: What is the simplest way to write messages to and read messages from Kafka,
+    using (de)serializers and Schema Registry?
+  introduction: You'd like to produce and consume some basic messages, using (de)serializers
+    and Schema Registry.  In this tutorial, we'll show you how to produce and consume
+    messages from the command line without any code. Unlike the <a href="/tutorials/kafka-console-consumer-producer-basics/confluent.html">CLI
+    Basics</a> tutorial, this tutorial uses Avro and Schema Registry.
+  introduction-media: /assets/img/sr.png
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
     confluent: enabled
-
 console-consumer-primitive-keys-values:
-  title: "How to use the console consumer to read non-string primitive keys and values"
-  meta-description: "use the console consumer to read non-string primitive keys and values"
-  slug: "/kafka-console-consumer-primitive-keys-values"
-  question: "How do you specify key and value deserializers when running the Kafka console consumer?"
-  introduction: "You want to inspect or debug records written to a topic. Each record key and value is a long and double, respectively. In this tutorial, you'll learn how to specify key and value deserializers with the console consumer."
+  title: How to use the console consumer to read non-string primitive keys and values
+  meta-description: use the console consumer to read non-string primitive keys and
+    values
+  slug: /kafka-console-consumer-primitive-keys-values
+  question: How do you specify key and value deserializers when running the Kafka
+    console consumer?
+  introduction: You want to inspect or debug records written to a topic. Each record
+    key and value is a long and double, respectively. In this tutorial, you'll learn
+    how to specify key and value deserializers with the console consumer.
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
-
 console-consumer-read-specific-offsets-partition:
-  title: "How to read from a specific offset and partition with the Kafka Console Consumer"
-  meta-description: "read from a specific offset and partition with the commandline consumer"
+  title: How to read from a specific offset and partition with the Kafka Console Consumer
+  meta-description: read from a specific offset and partition with the commandline
+    consumer
   canonical: confluent
-  slug: "/kafka-console-consumer-read-specific-offsets-partitions"
-  question: "How can you read from a specific offset and partition of a Kafka topic?"
-  introduction: "You are confirming record arrivals, and you'd like to read from a specific offset in a topic partition. In this tutorial, you'll learn how to use the Kafka console consumer to quickly debug issues by reading from a specific offset, as well as controlling the number of records you read."
+  slug: /kafka-console-consumer-read-specific-offsets-partitions
+  question: How can you read from a specific offset and partition of a Kafka topic?
+  introduction: You are confirming record arrivals, and you'd like to read from a
+    specific offset in a topic partition. In this tutorial, you'll learn how to use
+    the Kafka console consumer to quickly debug issues by reading from a specific
+    offset, as well as controlling the number of records you read.
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
     confluent: enabled
-
 kafka-connect-datagen:
-  title: "How to generate mock data to a Kafka topic using the Datagen Source Connector"
-  meta-description: "generate mock data to a Kafka topic using the Datagen Source Connector"
+  title: How to generate mock data to a Kafka topic using the Datagen Source Connector
+  meta-description: generate mock data to a Kafka topic using the Datagen Source Connector
   canonical: confluent
-  slug: "/kafka-connect-datagen"
-  question: "How can you produce mock data to Kafka topics to test your Kafka applications?"
-  introduction: "In this tutorial, you will learn about testing your Kafka applications. You'll run an instance of the <a href=\"https://www.confluent.io/hub/confluentinc/kafka-connect-datagen\">Kafka Connect Datagen connector</a> to produce mock data to a Kafka cluster."
+  slug: /kafka-connect-datagen
+  question: How can you produce mock data to Kafka topics to test your Kafka applications?
+  introduction: In this tutorial, you will learn about testing your Kafka applications.
+    You'll run an instance of the <a href="https://www.confluent.io/hub/confluentinc/kafka-connect-datagen">Kafka
+    Connect Datagen connector</a> to produce mock data to a Kafka cluster.
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
     confluent: enabled
-
 change-topic-partitions-replicas:
-  title: "How to change the number of partitions and replicas of a Kafka topic"
-  meta-description: "change the number of partitions or replicas of a Kafka topic"
-  slug: "/change-topic-partitions-replicas"
-  question: "How can you change the number of partitions or replicas of a Kafka topic?"
-  introduction: "If you want to change the number of partitions or replicas of your Kafka topic, you can use a streaming transformation to automatically stream all of the messages from the original topic into a new Kafka topic that has the desired number of partitions or replicas."
+  title: How to change the number of partitions and replicas of a Kafka topic
+  meta-description: change the number of partitions or replicas of a Kafka topic
+  slug: /change-topic-partitions-replicas
+  question: How can you change the number of partitions or replicas of a Kafka topic?
+  introduction: If you want to change the number of partitions or replicas of your
+    Kafka topic, you can use a streaming transformation to automatically stream all
+    of the messages from the original topic into a new Kafka topic that has the desired
+    number of partitions or replicas.
   status:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
-
 kafka-consumer-application:
-  title: "How to build your first Apache KafkaConsumer application"
-  meta-description: "build your first Kafka consumer application"
+  title: How to build your first Apache KafkaConsumer application
+  meta-description: build your first Kafka consumer application
   canonical: confluent
-  slug: "/creating-first-apache-kafka-consumer-application"
-  question: "How do you get started building your first Kafka consumer application?"
-  introduction: "You'd like to integrate a KafkaConsumer into your event-driven application, but you're not sure where to start. In this tutorial, you'll build a small application that uses a KafkaConsumer to read records from Kafka."
+  slug: /creating-first-apache-kafka-consumer-application
+  question: How do you get started building your first Kafka consumer application?
+  introduction: You'd like to integrate a KafkaConsumer into your event-driven application,
+    but you're not sure where to start. In this tutorial, you'll build a small application
+    that uses a KafkaConsumer to read records from Kafka.
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
     confluent: enabled
-
 confluent-parallel-consumer-application:
-  title: "How to use the Confluent Parallel Consumer"
-  meta-description: "How to use the Confluent Parallel Consumer"
-  slug: "/confluent-parallel-consumer"
-  question: "How can I consume Kafka topics with a higher degree of parallelism than the partition count?"
-  introduction: "The Confluent Parallel Consumer is an <a href=\"https://github.com/confluentinc/parallel-consumer\">open source</a> Apache 2.0-licensed Java library that enables you to consume from a Kafka topic with a higher degree of parallelism than the number of partitions for the input data (the effective parallelism limit achievable via an Apache Kafka consumer group). This is desirable in many situations, e.g., when partition counts are fixed for a reason beyond your control, or if you need to make a high-latency call out to a database or microservice while consuming and want to increase throughput.<br><br>In this tutorial, you'll first build a small \"hello world\" application that uses the Confluent Parallel Consumer library to read a  handful of records from Kafka. Then you'll write and execute performance tests at a larger scale in order to compare the Confluent Parallel Consumer with a baseline built using a vanilla Apache Kafka consumer group.<br><br>Prepare to meet the Confluent Parallel Consumer!"
+  title: How to use the Confluent Parallel Consumer
+  meta-description: How to use the Confluent Parallel Consumer
+  slug: /confluent-parallel-consumer
+  question: How can I consume Kafka topics with a higher degree of parallelism than
+    the partition count?
+  introduction: The Confluent Parallel Consumer is an <a href="https://github.com/confluentinc/parallel-consumer">open
+    source</a> Apache 2.0-licensed Java library that enables you to consume from a
+    Kafka topic with a higher degree of parallelism than the number of partitions
+    for the input data (the effective parallelism limit achievable via an Apache Kafka
+    consumer group). This is desirable in many situations, e.g., when partition counts
+    are fixed for a reason beyond your control, or if you need to make a high-latency
+    call out to a database or microservice while consuming and want to increase throughput.<br><br>In
+    this tutorial, you'll first build a small "hello world" application that uses
+    the Confluent Parallel Consumer library to read a  handful of records from Kafka.
+    Then you'll write and execute performance tests at a larger scale in order to
+    compare the Confluent Parallel Consumer with a baseline built using a vanilla
+    Apache Kafka consumer group.<br><br>Prepare to meet the Confluent Parallel Consumer!
   status:
     confluent: enabled
     ksql: disabled
@@ -423,13 +557,16 @@ confluent-parallel-consumer-application:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 produce-consume-lang:
-  title: "Produce and Consume Records in non-Java languages"
-  meta-description: "produce and consume events from Kafka in non-Java languages"
-  slug: "/produce-consume-lang"
-  question: "How can you produce and consume events from Kafka using various programming languages, other than Java?"
-  introduction: "In this tutorial, you will enrich and expose a list of books from a library. You will produce an event for each book acquisition (including its title, editor, release date, and so on), and then consume back the same events in order to serve the book collection over HTTP."
+  title: Produce and Consume Records in non-Java languages
+  meta-description: produce and consume events from Kafka in non-Java languages
+  slug: /produce-consume-lang
+  question: How can you produce and consume events from Kafka using various programming
+    languages, other than Java?
+  introduction: In this tutorial, you will enrich and expose a list of books from
+    a library. You will produce an event for each book acquisition (including its
+    title, editor, release date, and so on), and then consume back the same events
+    in order to serve the book collection over HTTP.
   status:
     c: disabled
     csharp: enabled
@@ -437,40 +574,47 @@ produce-consume-lang:
     nodejs: enabled
     python: enabled
     scala: enabled
-
 streams-to-table:
-  title: "How to convert a Kafka Streams KStream to a KTable"
-  meta-description: "convert a Kafka Streams KStream to a KTable"
+  title: How to convert a Kafka Streams KStream to a KTable
+  meta-description: convert a Kafka Streams KStream to a KTable
   canonical: confluent
-  slug: "/kafka-streams-convert-to-ktable"
-  question: "How do you convert a KStream to a KTable without having to perform a dummy aggregation operation?"
-  introduction: "You have a KStream and you need to convert it to a KTable, but you don't need an aggregation operation. With the 2.5 release of Apache Kafka, Kafka Streams introduced a new method, KStream.toTable, which allows users to easily convert a KStream to a KTable without having to perform an aggregation operation."
+  slug: /kafka-streams-convert-to-ktable
+  question: How do you convert a KStream to a KTable without having to perform a dummy
+    aggregation operation?
+  introduction: You have a KStream and you need to convert it to a KTable, but you
+    don't need an aggregation operation. With the 2.5 release of Apache Kafka, Kafka
+    Streams introduced a new method, KStream.toTable, which allows users to easily
+    convert a KStream to a KTable without having to perform an aggregation operation.
   status:
     ksql: disabled
     kstreams: enabled
     kafka: disabled
     confluent: enabled
-
 kafka-producer-application:
-  title: "How to build your first Apache KafkaProducer application"
-  meta-description: "build your first Kafka producer application"
+  title: How to build your first Apache KafkaProducer application
+  meta-description: build your first Kafka producer application
   canonical: confluent
-  slug: "/creating-first-apache-kafka-producer-application"
-  question: "How do you get started building your first Kafka producer application?"
-  introduction: "You'd like to integrate a KafkaProducer into your event-driven application, but you're not sure where to start. In this tutorial, you'll build a small application that uses a KafkaProducer to write records to Kafka."
+  slug: /creating-first-apache-kafka-producer-application
+  question: How do you get started building your first Kafka producer application?
+  introduction: You'd like to integrate a KafkaProducer into your event-driven application,
+    but you're not sure where to start. In this tutorial, you'll build a small application
+    that uses a KafkaProducer to write records to Kafka.
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
     confluent: enabled
-
 kafka-producer-application-callback:
-  title: "How to build an Apache KafkaProducer application with callbacks"
-  meta-description: "build an Kafka producer application and handle responses using the Callback interface"
+  title: How to build an Apache KafkaProducer application with callbacks
+  meta-description: build an Kafka producer application and handle responses using
+    the Callback interface
   canonical: confluent
-  slug: "/kafka-producer-callback-application"
-  question: "How can you use callbacks with a KafkaProducer to handle produce responses?"
-  introduction: "You have an application using a Apache KafkaProducer, and you want an automatic way of handling responses after producing records. In this tutorial, you'll learn how to use the Callback interface to automatically handle responses from producing records."
+  slug: /kafka-producer-callback-application
+  question: How can you use callbacks with a KafkaProducer to handle produce responses?
+  introduction: You have an application using a Apache KafkaProducer, and you want
+    an automatic way of handling responses after producing records. In this tutorial,
+    you'll learn how to use the Callback interface to automatically handle responses
+    from producing records.
   status:
     ksql: disabled
     kstreams: disabled
@@ -484,25 +628,31 @@ kafka-producer-application-callback:
     scala: disabled
     swift: disabled
     confluent: enabled
-
 count-messages:
-  title: "How to count messages in a Kafka topic"
-  meta-description: "count the number of messages in a Kafka topic"
+  title: How to count messages in a Kafka topic
+  meta-description: count the number of messages in a Kafka topic
   canonical: confluent
-  slug: "/how-to-count-messages-on-a-kafka-topic"
-  question: "How can you count the number of messages in a Kafka topic?"
-  introduction: "It can be useful to know how many messages are currently in a topic, but you cannot calculate this directly based on the offsets, because you need to consider the topic's retention policy, log compaction, and potential duplicate messages. In this example, we'll take a topic of pageview data and see how we can count all of the messages in the topic. Note that the time complexity for this tutorial is O(n) (linear); processing time will depend on the number of messages in the topic, and large data sets will require long running times."
+  slug: /how-to-count-messages-on-a-kafka-topic
+  question: How can you count the number of messages in a Kafka topic?
+  introduction: It can be useful to know how many messages are currently in a topic,
+    but you cannot calculate this directly based on the offsets, because you need
+    to consider the topic's retention policy, log compaction, and potential duplicate
+    messages. In this example, we'll take a topic of pageview data and see how we
+    can count all of the messages in the topic. Note that the time complexity for
+    this tutorial is O(n) (linear); processing time will depend on the number of messages
+    in the topic, and large data sets will require long running times.
   status:
     ksql: enabled
     kafka: enabled
     confluent: enabled
-
 kafka-streams-schedule-operations:
-  title: "How to schedule operations in Kafka Streams"
-  meta-description: "schedule operations in Kafka Streams that execute at regular intervals"
-  slug: "/kafka-streams-schedule-operations"
-  question: "How can you schedule recurring operations in Kafka Streams?"
-  introduction: "You'd like to have some periodic functionality execute in your Kafka Streams application. In this tutorial, you'll learn how to use punctuations in Kafka Streams to execute work at regular intervals."
+  title: How to schedule operations in Kafka Streams
+  meta-description: schedule operations in Kafka Streams that execute at regular intervals
+  slug: /kafka-streams-schedule-operations
+  question: How can you schedule recurring operations in Kafka Streams?
+  introduction: You'd like to have some periodic functionality execute in your Kafka
+    Streams application. In this tutorial, you'll learn how to use punctuations in
+    Kafka Streams to execute work at regular intervals.
   status:
     ksql: disabled
     kstreams: enabled
@@ -515,24 +665,31 @@ kafka-streams-schedule-operations:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 message-ordering:
-  title: "How to maintain message ordering and no message duplication"
-  meta-description: "maintain message order and prevent duplication in a Kafka topic partition using the idempotent producer"
-  slug: "/message-ordering"
-  question: "How can you maintain the order of messages and prevent message duplication in a Kafka topic partition?"
-  introduction: "If your application needs to maintain message ordering and prevent duplication, you can enable idempotency for your Apache Kafka producer. An idempotent producer has a unique producer ID and uses sequence IDs for each message, allowing the broker to ensure, on a per-partition basis, that it is committing ordered messages with no duplication."
+  title: How to maintain message ordering and no message duplication
+  meta-description: maintain message order and prevent duplication in a Kafka topic
+    partition using the idempotent producer
+  slug: /message-ordering
+  question: How can you maintain the order of messages and prevent message duplication
+    in a Kafka topic partition?
+  introduction: If your application needs to maintain message ordering and prevent
+    duplication, you can enable idempotency for your Apache Kafka producer. An idempotent
+    producer has a unique producer ID and uses sequence IDs for each message, allowing
+    the broker to ensure, on a per-partition basis, that it is committing ordered
+    messages with no duplication.
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
-
 masking-data:
-  title: "Masking data"
-  meta-description: "remove or obfuscate fields in Kafka records by masking them"
-  slug: "/masking-data"
-  question: "How can you mask fields in a Kafka topic?"
-  introduction: "Suppose you have a topic that contains personally identifiable information (PII), and you want to mask those fields. In this tutorial, we'll write a program that persists the events in the original topic to a new Kafka topic with the PII removed or obfuscated."
+  title: Masking data
+  meta-description: remove or obfuscate fields in Kafka records by masking them
+  slug: /masking-data
+  question: How can you mask fields in a Kafka topic?
+  introduction: Suppose you have a topic that contains personally identifiable information
+    (PII), and you want to mask those fields. In this tutorial, we'll write a program
+    that persists the events in the original topic to a new Kafka topic with the PII
+    removed or obfuscated.
   status:
     ksql: enabled
     kstreams: disabled
@@ -545,15 +702,24 @@ masking-data:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 anomaly-detection:
-  title: "Anomaly detection"
-  meta-description: "detect anomalies in a stream of Kafka events"
-  slug: "/anomaly-detection"
-  question: "If you have time series events in a Kafka topic, how can you find anomalous events?"
-  introduction: "A common technique of fraudsters is to disguise transactions under the name of a popular company, the idea being that the chances of them being recognized is very low. For example, transactions labeled Verizon, Citibank, or USPS are likely to look similar and blend in with legitimate transactions. This tutorial shows you how to identify this pattern of behavior by detecting abnormal transactions that occur within a window of time.
+  title: Anomaly detection
+  meta-description: detect anomalies in a stream of Kafka events
+  slug: /anomaly-detection
+  question: If you have time series events in a Kafka topic, how can you find anomalous
+    events?
+  introduction: >-
+    A common technique of fraudsters is to disguise transactions under the name of
+    a popular company, the idea being that the chances of them being recognized is
+    very low. For example, transactions labeled Verizon, Citibank, or USPS are likely
+    to look similar and blend in with legitimate transactions. This tutorial shows
+    you how to identify this pattern of behavior by detecting abnormal transactions
+    that occur within a window of time.
 
-                 Normally, a group of these transactions will occur within a 24 hour period. In fraud detection, financial institutions will categorize this behavior as unusual and alert their fraud team to investigate immediately. Other example use cases include detecting ATM fraud or unusual credit card activity."
+    Normally, a group of these transactions will occur within a 24 hour period. In
+    fraud detection, financial institutions will categorize this behavior as unusual
+    and alert their fraud team to investigate immediately. Other example use cases
+    include detecting ATM fraud or unusual credit card activity.
   status:
     ksql: enabled
     kstreams: disabled
@@ -566,24 +732,36 @@ anomaly-detection:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 time-concepts:
-  title: "Event-time semantics"
-  meta-description: "extract the timestamp within the Kafka record payload to achieve event-time semantics"
-  slug: "/time-concepts"
-  question: "What is the difference between using the timestamp from the record metadata and using the timestamp within the record payload?"
-  introduction: "By default, time-based aggregations in Kafka Streams and ksqlDB (<a href=\"/tutorials/create-tumbling-windows/ksql.html\">tumbling windows</a>, <a href=\"/tutorials/create-hopping-windows/ksql.html\">hopping windows</a>, etc.) operate on the timestamp in the record metadata, which could be either 'CreateTime' (the producer system time) or 'LogAppendTime' (the broker system time), depending on the <a href=\"https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#message.timestamp.type\">message.timestamp.type</a> configuration value. 'CreateTime' helps with event time semantics, but in some use cases, the desired event time is a timestamp embedded inside the record payload. This tutorial shows you how to use a timestamp retrieved either from the record metadata or from a field in the record payload."
+  title: Event-time semantics
+  meta-description: extract the timestamp within the Kafka record payload to achieve
+    event-time semantics
+  slug: /time-concepts
+  question: What is the difference between using the timestamp from the record metadata
+    and using the timestamp within the record payload?
+  introduction: By default, time-based aggregations in Kafka Streams and ksqlDB (<a
+    href="/tutorials/create-tumbling-windows/ksql.html">tumbling windows</a>, <a href="/tutorials/create-hopping-windows/ksql.html">hopping
+    windows</a>, etc.) operate on the timestamp in the record metadata, which could
+    be either 'CreateTime' (the producer system time) or 'LogAppendTime' (the broker
+    system time), depending on the <a href="https://docs.confluent.io/platform/current/installation/configuration/topic-configs.html#message.timestamp.type">message.timestamp.type</a>
+    configuration value. 'CreateTime' helps with event time semantics, but in some
+    use cases, the desired event time is a timestamp embedded inside the record payload.
+    This tutorial shows you how to use a timestamp retrieved either from the record
+    metadata or from a field in the record payload.
   status:
     ksql: enabled
     kstreams: disabled
     kafka: disabled
-
 ksql-nested-json:
-  title: "Working with nested JSON"
-  meta-description: "select fields from a stream of Kafka records that are contained in nested JSON"
-  slug: "/working-with-nested-json"
-  question: "How can you select fields from a stream of records when the fields are contained in deeply nested JSON?"
-  introduction: "Suppose you have a topic with records formatted in JSON, and it contains nested objects. In this tutorial, we'll write a query that accesses fields in those nested objects."
+  title: Working with nested JSON
+  meta-description: select fields from a stream of Kafka records that are contained
+    in nested JSON
+  slug: /working-with-nested-json
+  question: How can you select fields from a stream of records when the fields are
+    contained in deeply nested JSON?
+  introduction: Suppose you have a topic with records formatted in JSON, and it contains
+    nested objects. In this tutorial, we'll write a query that accesses fields in
+    those nested objects.
   status:
     ksql: enabled
     kstreams: disabled
@@ -596,13 +774,16 @@ ksql-nested-json:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 ksql-heterogeneous-json:
-  title: "Working with heterogenous JSON records"
-  meta-description: "work with heterogenous JSON records that have different structures or different values"
-  slug: "/working-with-json-different-structure"
-  question: "How do you select fields from a stream of records with different structures and possibly different values?"
-  introduction: "Suppose you have a topic with records formatted in JSON, but not all of the records have the same structure and value types. In this tutorial, we'll write a query that handles the different structures and pulls out specific fields."
+  title: Working with heterogenous JSON records
+  meta-description: work with heterogenous JSON records that have different structures
+    or different values
+  slug: /working-with-json-different-structure
+  question: How do you select fields from a stream of records with different structures
+    and possibly different values?
+  introduction: Suppose you have a topic with records formatted in JSON, but not all
+    of the records have the same structure and value types. In this tutorial, we'll
+    write a query that handles the different structures and pulls out specific fields.
   status:
     ksql: enabled
     kstreams: disabled
@@ -615,13 +796,16 @@ ksql-heterogeneous-json:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 multi-joins:
-  title: "Multi-join expressions"
-  meta-description: "collapse multiple joins into a single statement"
-  slug: "/multi-joins"
-  question: "How can you join multiple streams or tables together using a single expression in ksqlDB?"
-  introduction: "Suppose you have two tables, one for customers and one for items, and one stream containing orders made at an online store. In this tutorial, we'll build a stream of all orders and customers who made purchases, including details of the purchased items."
+  title: Multi-join expressions
+  meta-description: collapse multiple joins into a single statement
+  slug: /multi-joins
+  question: How can you join multiple streams or tables together using a single expression
+    in ksqlDB?
+  introduction: Suppose you have two tables, one for customers and one for items,
+    and one stream containing orders made at an online store. In this tutorial, we'll
+    build a stream of all orders and customers who made purchases, including details
+    of the purchased items.
   status:
     ksql: enabled
     kstreams: disabled
@@ -634,13 +818,14 @@ multi-joins:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 concatenation:
-  title: "Concatenation"
-  meta-description: "concatenate values from multiple columns into a single one"
-  slug: "/concatenation"
-  question: "How can you concatenate values from multiple columns into a single column?"
-  introduction: "Suppose you have a table and you need to combine two or more columns into a single value. In this tutorial, we'll show how to use the concatenation operator to create a single value from multiple columns."
+  title: Concatenation
+  meta-description: concatenate values from multiple columns into a single one
+  slug: /concatenation
+  question: How can you concatenate values from multiple columns into a single column?
+  introduction: Suppose you have a table and you need to combine two or more columns
+    into a single value. In this tutorial, we'll show how to use the concatenation
+    operator to create a single value from multiple columns.
   status:
     ksql: enabled
     kstreams: disabled
@@ -653,13 +838,14 @@ concatenation:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 column-difference:
-  title: "Column Difference"
-  meta-description: "calculate the difference between two columns"
-  slug: "/column-difference"
-  question: "How can you calculate the difference between two columns?"
-  introduction: "Suppose you have a table or stream and you need to calculate the difference between two columns. In this tutorial, we'll show how to calculate the difference between two columns."
+  title: Column Difference
+  meta-description: calculate the difference between two columns
+  slug: /column-difference
+  question: How can you calculate the difference between two columns?
+  introduction: Suppose you have a table or stream and you need to calculate the difference
+    between two columns. In this tutorial, we'll show how to calculate the difference
+    between two columns.
   status:
     ksql: enabled
     kstreams: disabled
@@ -672,13 +858,17 @@ column-difference:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 geo-distance:
-  title: "Calculating lat-long distance"
-  meta-description: "calculate lat-long distance"
-  slug: "/geo-distance"
-  question: "How can you calculate the distance between two latitude and longitude points?"
-  introduction: "Suppose you work for a company that insures cellphones. The company records events that would result in an insurance claim, such as a customer dropping their phone in water. The company has data about where the event occurred and the latitude and longitude data for repair shops. In this tutorial, we'll calculate the closest repair shop to each customer in kilometers."
+  title: Calculating lat-long distance
+  meta-description: calculate lat-long distance
+  slug: /geo-distance
+  question: How can you calculate the distance between two latitude and longitude
+    points?
+  introduction: Suppose you work for a company that insures cellphones. The company
+    records events that would result in an insurance claim, such as a customer dropping
+    their phone in water. The company has data about where the event occurred and
+    the latitude and longitude data for repair shops. In this tutorial, we'll calculate
+    the closest repair shop to each customer in kilometers.
   status:
     ksql: enabled
     kstreams: disabled
@@ -691,13 +881,16 @@ geo-distance:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 sliding-windows:
-  title: "How to create sliding windows"
-  meta-description: "create sliding windows"
-  slug: "/sliding-windows"
-  question: "How can you create windowed calculations on time series data with small advances in time?"
-  introduction: "You have time series records and you want to create windowed aggregations with small increments in time. You could use hopping windows, but hopping windows aren't the best solution with small time increments. In this tutorial, we'll show how you can achieve efficient windowed aggregations with small advances in time."
+  title: How to create sliding windows
+  meta-description: create sliding windows
+  slug: /sliding-windows
+  question: How can you create windowed calculations on time series data with small
+    advances in time?
+  introduction: You have time series records and you want to create windowed aggregations
+    with small increments in time. You could use hopping windows, but hopping windows
+    aren't the best solution with small time increments. In this tutorial, we'll show
+    how you can achieve efficient windowed aggregations with small advances in time.
   status:
     ksql: disabled
     kstreams: enabled
@@ -710,24 +903,34 @@ sliding-windows:
     ruby: disabled
     scala: disabled
     swift: disabled
-
-
 connect-sink-timestamp:
-  title: "Timezone conversion and Kafka Connect JDBC sink"
-  meta-description: "convert a timestamp into a different timezone and sync that data to Postgres"
-  slug: "/connect-sink-timestamp"
-  question: "How can you convert a timestamp into a different timezone and sync that data to a PostgreSQL database?"
-  introduction: "Suppose you want to create reports from a database and all of the timestamps must be in a particular timezone, which happens to be different from the timezone of the Kafka data source. This examples shows how you can convert timestamp data into another timezone and use a Kafka connector to send that data to a PostgreSQL database."
+  title: Timezone conversion and Kafka Connect JDBC sink
+  meta-description: convert a timestamp into a different timezone and sync that data
+    to Postgres
+  slug: /connect-sink-timestamp
+  question: How can you convert a timestamp into a different timezone and sync that
+    data to a PostgreSQL database?
+  introduction: Suppose you want to create reports from a database and all of the
+    timestamps must be in a particular timezone, which happens to be different from
+    the timezone of the Kafka data source. This examples shows how you can convert
+    timestamp data into another timezone and use a Kafka connector to send that data
+    to a PostgreSQL database.
   status:
     ksql: enabled
     kstreams: disabled
-
 schedule-ktable-ttl:
-  title: "How to implement TTL-based cleanup to expire data in a KTable"
-  meta-description: "implement TTLs to expire data in a KTable"
-  slug: "/schedule-ktable-ttl"
-  question: "How can you delete KTable data (in the topic and in the state store) based on TTL?"
-  introduction: "You have a KStreams application or ksqlDB application which uses KTables from a topic in Kafka. You want to purge older data if it is considered too old, or to manage the size of the topic and the state store. Although the Kafka Streams API does not natively include any notion of a TTL (Time To Live) for KTables, this tutorial shows you how to expire messages by making clever use of tombstones and writing them out to topics underlying the KTable, using a state store containing TTLs."
+  title: How to implement TTL-based cleanup to expire data in a KTable
+  meta-description: implement TTLs to expire data in a KTable
+  slug: /schedule-ktable-ttl
+  question: How can you delete KTable data (in the topic and in the state store) based
+    on TTL?
+  introduction: You have a KStreams application or ksqlDB application which uses KTables
+    from a topic in Kafka. You want to purge older data if it is considered too old,
+    or to manage the size of the topic and the state store. Although the Kafka Streams
+    API does not natively include any notion of a TTL (Time To Live) for KTables,
+    this tutorial shows you how to expire messages by making clever use of tombstones
+    and writing them out to topics underlying the KTable, using a state store containing
+    TTLs.
   status:
     ksql: disabled
     kstreams: enabled
@@ -740,14 +943,17 @@ schedule-ktable-ttl:
     ruby: disabled
     scala: disabled
     swift: disabled
-
 error-handling:
-  title: "Handling uncaught exceptions"
-  meta-description: "handle uncaught exceptions"
+  title: Handling uncaught exceptions
+  meta-description: handle uncaught exceptions
   canonical: confluent
-  slug: "/error-handling"
-  question: "How can you handle uncaught exceptions?"
-  introduction: "You have an event streaming application, and you want to make sure that it's robust in the face of unexpected errors. Depending on the situation, you'll want the application to either continue running or shut down.  In this tutorial, you'll learn how to use the `StreamsUncaughtExceptionHandler` to provide this functionality."
+  slug: /error-handling
+  question: How can you handle uncaught exceptions?
+  introduction: You have an event streaming application, and you want to make sure
+    that it's robust in the face of unexpected errors. Depending on the situation,
+    you'll want the application to either continue running or shut down.  In this
+    tutorial, you'll learn how to use the `StreamsUncaughtExceptionHandler` to provide
+    this functionality.
   status:
     ksql: disabled
     kstreams: enabled
@@ -761,21 +967,36 @@ error-handling:
     scala: disabled
     swift: disabled
     confluent: enabled
-
 schedule-ktable-ttl-aggregate:
-  title: "How to implement TTL-based cleanup to expire data in a KTable created via aggregate"
-  meta-description: "implement TTLs to expire data in the middle of a topology"
-  slug: "/schedule-ktable-ttl-aggregate"
-  question: "How can you periodically expire KTable records in the middle of a topology created using `aggregate()` or other stateful functions?"
-  introduction: "You have a KStreams application which creates KTables in the middle of a topology, using the `aggregate()` function, and the state store grows over time. An example of this type of KTable usage is in a workflow application scenario, where `aggregate()` is used to handle a fixed set of updates to a certain workflow instance. Once the workflow is completed, this data is no longer needed in the state store. In other data aggregation use cases, you may simply want to remove older data to keep the state store size manageable. Although the Kafka Streams API does not natively include a notion of a TTL (Time To Live) for KTables, this tutorial shows you a way to manage the size of state stores that underlie KTables built on `aggregate()` steps.<br><br>
-In a previous tutorial, we showed how to purge KTables which are created directly from an input topic. See <a href=\"/tutorials/schedule-ktable-ttl/kstreams.html\">Expire data in a KTable with TTLs</a>.
-<br><br>
-The example shows a fixed TTL per key, based on the last update for that key. This may not serve all needs, but it is sufficient to illustrate the
-mechanism by which we can purge data from a KTable. The transformer uses a state store to store the last updated time seen for a key,
-and periodically (via a punctuator) scans its list of keys to see if any of them have exceeded a configured cutoff period (TTL). If they have met the condition for purging, then a
-signal (via a wrapper object) is sent onward in the pipeline to the downstream `aggregate()` function, so that the key is removed from the KTable's own internal store. This is because the `groupBy()` API will swallow a null key or null value.
-<br><br>
-For a refresh on scheduling logic using a punctuator, have a look at the <a href=\"/tutorials/kafka-streams-schedule-operations/kstreams.html\">Scheduling Operations</a> tutorial."
+  title: How to implement TTL-based cleanup to expire data in a KTable created via
+    aggregate
+  meta-description: implement TTLs to expire data in the middle of a topology
+  slug: /schedule-ktable-ttl-aggregate
+  question: How can you periodically expire KTable records in the middle of a topology
+    created using `aggregate()` or other stateful functions?
+  introduction: You have a KStreams application which creates KTables in the middle
+    of a topology, using the `aggregate()` function, and the state store grows over
+    time. An example of this type of KTable usage is in a workflow application scenario,
+    where `aggregate()` is used to handle a fixed set of updates to a certain workflow
+    instance. Once the workflow is completed, this data is no longer needed in the
+    state store. In other data aggregation use cases, you may simply want to remove
+    older data to keep the state store size manageable. Although the Kafka Streams
+    API does not natively include a notion of a TTL (Time To Live) for KTables, this
+    tutorial shows you a way to manage the size of state stores that underlie KTables
+    built on `aggregate()` steps.<br><br> In a previous tutorial, we showed how to
+    purge KTables which are created directly from an input topic. See <a href="/tutorials/schedule-ktable-ttl/kstreams.html">Expire
+    data in a KTable with TTLs</a>. <br><br> The example shows a fixed TTL per key,
+    based on the last update for that key. This may not serve all needs, but it is
+    sufficient to illustrate the mechanism by which we can purge data from a KTable.
+    The transformer uses a state store to store the last updated time seen for a key,
+    and periodically (via a punctuator) scans its list of keys to see if any of them
+    have exceeded a configured cutoff period (TTL). If they have met the condition
+    for purging, then a signal (via a wrapper object) is sent onward in the pipeline
+    to the downstream `aggregate()` function, so that the key is removed from the
+    KTable's own internal store. This is because the `groupBy()` API will swallow
+    a null key or null value. <br><br> For a refresh on scheduling logic using a punctuator,
+    have a look at the <a href="/tutorials/kafka-streams-schedule-operations/kstreams.html">Scheduling
+    Operations</a> tutorial.
   status:
     ksql: disabled
     kstreams: enabled
@@ -788,325 +1009,513 @@ For a refresh on scheduling logic using a punctuator, have a look at the <a href
     ruby: disabled
     scala: disabled
     swift: disabled
-
-
 optimize-producer-throughput:
-  title: "How to optimize your Kafka producer for throughput"
-  meta-description: "How to optimize your Apache Kafka producer application for throughput, set configuration parameters and test baseline using kafka-producer-perf-test"
-  slug: "/optimize-producer-throughput"
-  question: "How can you optimize your Kafka producer application for throughput?"
-  introduction: "When optimizing for performance, you'll typically need to consider tradeoffs between throughput and latency. Because of Kafka’s design, it isn't hard to write large volumes of data into it. But many of the Kafka configuration parameters have default settings that optimize for latency. If your use case calls for higher throughput, this tutorial walks you through how to use `kafka-producer-perf-test` to measure baseline performance and tune your producer for large volumes of data."
+  title: How to optimize your Kafka producer for throughput
+  meta-description: How to optimize your Apache Kafka producer application for throughput,
+    set configuration parameters and test baseline using kafka-producer-perf-test
+  slug: /optimize-producer-throughput
+  question: How can you optimize your Kafka producer application for throughput?
+  introduction: When optimizing for performance, you'll typically need to consider
+    tradeoffs between throughput and latency. Because of Kafka’s design, it isn't
+    hard to write large volumes of data into it. But many of the Kafka configuration
+    parameters have default settings that optimize for latency. If your use case calls
+    for higher throughput, this tutorial walks you through how to use `kafka-producer-perf-test`
+    to measure baseline performance and tune your producer for large volumes of data.
   status:
     confluent: enabled
-
 creating-first-apache-kafka-streams-application:
-  title: "How to build your first Apache Kafka Streams application"
-  meta-description: "build your first Kafka Streams application"
+  title: How to build your first Apache Kafka Streams application
+  meta-description: build your first Kafka Streams application
   canonical: confluent
-  slug: "/creating-first-apache-kafka-streams-application"
-  question: "How do you get started building your first Kafka Streams application?"
-  introduction: "You'd like to get started with Kafka Streams, but you're not sure where to start. In this tutorial, you'll build a small stream processing application and produce some sample data to test it. After you complete this tutorial, you can go more in depth in the <a href='https://developer.confluent.io/learn-kafka/kafka-streams/get-started/'>Kafka Streams 101</a> course."
-  introduction-media: "/assets/img/streams-app.png"
+  slug: /creating-first-apache-kafka-streams-application
+  question: How do you get started building your first Kafka Streams application?
+  introduction: You'd like to get started with Kafka Streams, but you're not sure
+    where to start. In this tutorial, you'll build a small stream processing application
+    and produce some sample data to test it. After you complete this tutorial, you
+    can go more in depth in the <a href='https://developer.confluent.io/learn-kafka/kafka-streams/get-started/'>Kafka
+    Streams 101</a> course.
+  introduction-media: /assets/img/streams-app.png
   status:
     confluent: enabled
     kstreams: enabled
-
 multiple-event-types:
-  title: "Handling multiple event types in a topic"
+  title: Handling multiple event types in a topic
   canonical: confluent
-  meta-description: "handling multiple event types"
-  slug: "/multiple-event-type-topics"
-  question: "How can you have multiple event types in a topic and maintain topic-name subject constraints?"
-  introduction: "You have distinct but related event types and you want to produce them to the same topic, but you also want to maintain topic-name subject constraints. Why produce different events to the
-  same topic? One reason would be you have low-traffic topics and you'd like to consolodate them to reduce overhead for the brokers.  Or you need to get the exact order of different events
-  and by producing them to the same topic you are guaranteed correct ordering per-partition.<br/>  
+  meta-description: handling multiple event types
+  slug: /multiple-event-type-topics
+  question: How can you have multiple event types in a topic and maintain topic-name
+    subject constraints?
+  introduction: >-
+    You have distinct but related event types and you want to produce them to the
+    same topic, but you also want to maintain topic-name subject constraints. Why
+    produce different events to the same topic? One reason would be you have low-traffic
+    topics and you'd like to consolodate them to reduce overhead for the brokers. 
+    Or you need to get the exact order of different events and by producing them to
+    the same topic you are guaranteed correct ordering per-partition.<br/>
 
-  To do multiple events with topic-name constraints you'll need to use 
-  <a href='https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#schema-references'>schema references</a>, which is a schema that contains a field representing an object which is reference to another schema.
-  In this tutorial you'll learn about using schema references with both Protobuf and Avro. <br/> 
-  For more information on multiple event topics you can read <a href='https://www.confluent.io/blog/put-several-event-types-kafka-topic/'>Put several event types in a Kafka Topic</a> by
-  Martin Kleppmann and <a href='https://www.confluent.io/blog/multiple-event-types-in-the-same-kafka-topic/'>Putting Several Event Types in the Same Topic – Revisited</a> by Robert Yokota."
-  
+    To do multiple events with topic-name constraints you'll need to use <a href='https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html#schema-references'>schema
+    references</a>, which is a schema that contains a field representing an object
+    which is reference to another schema. In this tutorial you'll learn about using
+    schema references with both Protobuf and Avro. <br/> For more information on multiple
+    event topics you can read <a href='https://www.confluent.io/blog/put-several-event-types-kafka-topic/'>Put
+    several event types in a Kafka Topic</a> by Martin Kleppmann and <a href='https://www.confluent.io/blog/multiple-event-types-in-the-same-kafka-topic/'>Putting
+    Several Event Types in the Same Topic – Revisited</a> by Robert Yokota.
   status:
     ksql: disabled
     kstreams: disabled
     kafka: enabled
     confluent: enabled
-
-
 fleet-management:
-  title: "Optimize fleet management"
+  title: Optimize fleet management
   canonical: confluent
-  meta-description: "enrich fleet location data with data about each vehicle for a real-time view of consolidated information on the entire fleet"
-  slug: "/fleet-management"
-  introduction: "More and more, fleet management relies on knowing real-time information on vehicle availability, their locations, and integrating that with data from vehicle telematics. This enables businesses to improve operational efficiency by optimizing travel routes, lowering fuel consumption, and automating service schedules. This tutorial combines fleet locations with individual vehicle information, so organizations can have a real-time consolidated view of their entire fleet."
-  introduction-media: "/assets/img/fleet.png"
+  meta-description: enrich fleet location data with data about each vehicle for a
+    real-time view of consolidated information on the entire fleet
+  slug: /fleet-management
+  introduction: More and more, fleet management relies on knowing real-time information
+    on vehicle availability, their locations, and integrating that with data from
+    vehicle telematics. This enables businesses to improve operational efficiency
+    by optimizing travel routes, lowering fuel consumption, and automating service
+    schedules. This tutorial combines fleet locations with individual vehicle information,
+    so organizations can have a real-time consolidated view of their entire fleet.
+  introduction-media: /assets/img/fleet.png
   status:
     confluent: enabled
-
 inventory:
-  title: "Optimize omni-channel inventory"
+  title: Optimize omni-channel inventory
   canonical: confluent
-  meta-description: "use ksqlDB to ensure an up-to-date snapshot of your inventory at all times"
-  slug: "/inventory"
-  introduction: "Having an up-to-date, real-time view of inventory on every item is essential in today's online marketplaces. This helps businesses maintain the optimum level of inventory—not too much and not too little—so that they can meet customer demand while minimizing inventory holding costs. This tutorial demonstrates how to track and update inventory in real time, so you always have an up-to-date snapshot of your stock for both your customers and merchandising teams"
-  introduction-media: "/assets/img/inventory.jpg"
+  meta-description: use ksqlDB to ensure an up-to-date snapshot of your inventory
+    at all times
+  slug: /inventory
+  introduction: Having an up-to-date, real-time view of inventory on every item is
+    essential in today's online marketplaces. This helps businesses maintain the optimum
+    level of inventory—not too much and not too little—so that they can meet customer
+    demand while minimizing inventory holding costs. This tutorial demonstrates how
+    to track and update inventory in real time, so you always have an up-to-date snapshot
+    of your stock for both your customers and merchandising teams
+  introduction-media: /assets/img/inventory.jpg
   status:
     confluent: enabled
-
 credit-card-activity:
-  title: "Detect unusual credit card activity"
-  meta-description: "analyze total credit card spend and flag accounts for possible case of credit card theft"
-  slug: "/credit-card-activity"
-  introduction: "One way many financial institutions detect fraud is to check for unusual activity in a short period of time, raising a red flag to promptly alert their customers and confirm any recent unexpected purchases. Fraud can involve using stolen credit cards, forging checks and account numbers, multiple duplicate transactions, and more. This tutorial analyzes a customer’s typical credit card spend, and flags the account when there are instances of excessive spending as a possible case of credit card theft."
-  introduction-media: "/assets/img/credit-card-activity.jpg"
+  title: Detect unusual credit card activity
+  meta-description: analyze total credit card spend and flag accounts for possible
+    case of credit card theft
+  slug: /credit-card-activity
+  introduction: One way many financial institutions detect fraud is to check for unusual
+    activity in a short period of time, raising a red flag to promptly alert their
+    customers and confirm any recent unexpected purchases. Fraud can involve using
+    stolen credit cards, forging checks and account numbers, multiple duplicate transactions,
+    and more. This tutorial analyzes a customer’s typical credit card spend, and flags
+    the account when there are instances of excessive spending as a possible case
+    of credit card theft.
+  introduction-media: /assets/img/credit-card-activity.jpg
   status:
     confluent: enabled
-
 online-dating:
-  title: "Match users for online dating"
-  meta-description: "track repeated interactions between users of a social network or dating site"
-  slug: "/online-dating"
-  introduction: "When it comes to online dating, matching users based on mutual interests and their personal preferences, while enabling real-time communication are key to finding the right counterpart. This tutorial enables developers to dynamically determine which pairs of people have connected and are ripe to get the ball rolling."
-  introduction-media: "/assets/img/dating.png"
+  title: Match users for online dating
+  meta-description: track repeated interactions between users of a social network
+    or dating site
+  slug: /online-dating
+  introduction: When it comes to online dating, matching users based on mutual interests
+    and their personal preferences, while enabling real-time communication are key
+    to finding the right counterpart. This tutorial enables developers to dynamically
+    determine which pairs of people have connected and are ripe to get the ball rolling.
+  introduction-media: /assets/img/dating.png
   status:
     confluent: enabled
-
 datacenter:
-  title: "Analyze datacenter power usage"
-  meta-description: "analyze telemetry data from datacenter power electrical smart panels"
-  slug: "/datacenter"
-  introduction: "For businesses that provide cloud infrastructure across multiple data centers with isolated tenants, you may have an accounting unit to accurately monitor and invoice your customers. Oftentimes these data centers consume large amounts of electricity and are constructed with smart electrical panels that control the power supplies to multiple customer tenants. This tutorial demonstrates how to accurately bill each customer by capturing and analyzing telemetry data from these smart panels."
-  introduction-media: "/assets/img/datacenter.jpg"
+  title: Analyze datacenter power usage
+  meta-description: analyze telemetry data from datacenter power electrical smart
+    panels
+  slug: /datacenter
+  introduction: For businesses that provide cloud infrastructure across multiple data
+    centers with isolated tenants, you may have an accounting unit to accurately monitor
+    and invoice your customers. Oftentimes these data centers consume large amounts
+    of electricity and are constructed with smart electrical panels that control the
+    power supplies to multiple customer tenants. This tutorial demonstrates how to
+    accurately bill each customer by capturing and analyzing telemetry data from these
+    smart panels.
+  introduction-media: /assets/img/datacenter.jpg
   status:
     confluent: enabled
-
 internet-of-things:
-  title: "Flag unhealthy IoT devices"
-  meta-description: "process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation"
-  slug: "/internet-of-things"
-  introduction: "Organizations are turning towards the Internet of Things (IoT) to provide immediately actionable insights into the health and performance of various devices. However, each device can emit high volumes of telemetry data, making it difficult to accurately analyze and determine if and when something needs attention in real time. This tutorial shows you how to process and coalesce that telemetry data using ksqlDB and flag devices that warrant more investigation."
-  introduction-media: "/assets/img/iot.jpg"
+  title: Flag unhealthy IoT devices
+  meta-description: process and coalesce that telemetry data using ksqlDB and flag
+    devices that warrant more investigation
+  slug: /internet-of-things
+  introduction: Organizations are turning towards the Internet of Things (IoT) to
+    provide immediately actionable insights into the health and performance of various
+    devices. However, each device can emit high volumes of telemetry data, making
+    it difficult to accurately analyze and determine if and when something needs attention
+    in real time. This tutorial shows you how to process and coalesce that telemetry
+    data using ksqlDB and flag devices that warrant more investigation.
+  introduction-media: /assets/img/iot.jpg
   status:
     confluent: enabled
-
 denormalization:
-  title: "Enrich orders with change data capture (CDC)"
-  meta-description: "enrich change data capture (CDC)  by streaming orders from a SQL Server, denormalizing the data, and writing to Snowflake"
-  slug: "/denormalization"
-  introduction: "Change data capture (CDC) plays a vital role to ensure recently changed data is quickly ingested, transformed, and used by downstream analytics platforms and applications. If you have transactional events being written to a database, such as sales orders from a marketplace, you can use CDC to capture and denormalize these change events into a single table of enriched data to provide better query performance and consumption. This tutorial demonstrates this principle by streaming data from a SQL Server, denormalizing the data, and writing it to Snowflake."
-  introduction-media: "/assets/img/denormalized-data.png"
+  title: Enrich orders with change data capture (CDC)
+  meta-description: enrich change data capture (CDC)  by streaming orders from a SQL
+    Server, denormalizing the data, and writing to Snowflake
+  slug: /denormalization
+  introduction: Change data capture (CDC) plays a vital role to ensure recently changed
+    data is quickly ingested, transformed, and used by downstream analytics platforms
+    and applications. If you have transactional events being written to a database,
+    such as sales orders from a marketplace, you can use CDC to capture and denormalize
+    these change events into a single table of enriched data to provide better query
+    performance and consumption. This tutorial demonstrates this principle by streaming
+    data from a SQL Server, denormalizing the data, and writing it to Snowflake.
+  introduction-media: /assets/img/denormalized-data.png
   status:
     confluent: enabled
-
 dynamic-pricing:
-  title: "Build a dynamic pricing strategy"
-  meta-description: "use ksqlDB to set dynamic pricing in an online marketplace"
-  slug: "/dynamic-pricing"
-  introduction: "As consumers increasingly transact digitally and online comparison shopping has become common practice, implementing a dynamic pricing strategy is essential to stay competitive. This tutorial helps you keep track of pricing trends and statistics, such as lowest, median, and average prices over a given timeframe, so both buyers and sellers can make dynamic offers based on historical sales activity."
-  introduction-media: "/assets/img/pricing.jpg"
+  title: Build a dynamic pricing strategy
+  meta-description: use ksqlDB to set dynamic pricing in an online marketplace
+  slug: /dynamic-pricing
+  introduction: As consumers increasingly transact digitally and online comparison
+    shopping has become common practice, implementing a dynamic pricing strategy is
+    essential to stay competitive. This tutorial helps you keep track of pricing trends
+    and statistics, such as lowest, median, and average prices over a given timeframe,
+    so both buyers and sellers can make dynamic offers based on historical sales activity.
+  introduction-media: /assets/img/pricing.jpg
   status:
     confluent: enabled
-
 payment-status-check:
-  title: "Automate instant payment verifications"
-  meta-description: "validate payments against available funds and anti-money laundering (AML) policies"
-  slug: "/payment-status-check"
-  introduction: "As digital transactions become the new norm, it’s critical to check customer payment requests in real time for suspicious activity. This means financial institutions must verify the payment by checking it against any regulatory restrictions before proceeding to process it. This tutorial shows you how to validate these payments against available funds and anti-money laundering (AML) policies."
-  introduction-media: "/assets/img/payment.jpg"
+  title: Automate instant payment verifications
+  meta-description: validate payments against available funds and anti-money laundering
+    (AML) policies
+  slug: /payment-status-check
+  introduction: As digital transactions become the new norm, it’s critical to check
+    customer payment requests in real time for suspicious activity. This means financial
+    institutions must verify the payment by checking it against any regulatory restrictions
+    before proceeding to process it. This tutorial shows you how to validate these
+    payments against available funds and anti-money laundering (AML) policies.
+  introduction-media: /assets/img/payment.jpg
   status:
     confluent: enabled
-
 salesforce:
-  title: "Handle corrupted data from Salesforce"
-  meta-description: "stream changes of Salesforce records and identifies gap events"
-  slug: "/salesforce"
-  introduction: "Salesforce sends a notification when a change to a Salesforce record occurs as part of a create, update, delete, or undelete operation. However, if there is corrupt data in Salesforce, it sends a gap event instead of a change event, and these gap events should be properly handled to avoid discrepancies between Salesforce reports and internal dashboards. This tutorial demonstrates how to process Salesforce data and filter corrupt events, which allows a downstream application to appropriately process and reconcile those events for accurate reporting and analytics. For a more detailed explanation of this use case, read <a href='https://www.confluent.io/blog/streaming-etl-sfdc-data-for-real-time-customer-analytics'>Streaming ETL SFDC Data for Real-Time Customer Analytics</a>."
-  introduction-media: "/assets/img/salesforce.jpg"
+  title: Handle corrupted data from Salesforce
+  meta-description: stream changes of Salesforce records and identifies gap events
+  slug: /salesforce
+  introduction: Salesforce sends a notification when a change to a Salesforce record
+    occurs as part of a create, update, delete, or undelete operation. However, if
+    there is corrupt data in Salesforce, it sends a gap event instead of a change
+    event, and these gap events should be properly handled to avoid discrepancies
+    between Salesforce reports and internal dashboards. This tutorial demonstrates
+    how to process Salesforce data and filter corrupt events, which allows a downstream
+    application to appropriately process and reconcile those events for accurate reporting
+    and analytics. For a more detailed explanation of this use case, read <a href='https://www.confluent.io/blog/streaming-etl-sfdc-data-for-real-time-customer-analytics'>Streaming
+    ETL SFDC Data for Real-Time Customer Analytics</a>.
+  introduction-media: /assets/img/salesforce.jpg
   status:
     confluent: enabled
-
 SSH-attack:
-  title: "Detect and analyze SSH attacks"
-  meta-description: "process Syslog data and stream out pairs of usernames and IP addresses from failed login attempts"
-  slug: "/SSH-attack"
-  introduction: "There are lots of ways SSH can be abused, but one of the most straightforward ways to detect suspicious activity is to monitor for rejected logins. This tutorial processes Syslog data to detect failed logins, while streaming out those pairs of usernames and IP addresses. With ksqlDB, you can filter and react to unwanted events in real time to minimize damage rather than performing historical analysis of Syslog data from cold storage."
-  introduction-media: "/assets/img/ssh-attack.jpg"
+  title: Detect and analyze SSH attacks
+  meta-description: process Syslog data and stream out pairs of usernames and IP addresses
+    from failed login attempts
+  slug: /SSH-attack
+  introduction: There are lots of ways SSH can be abused, but one of the most straightforward
+    ways to detect suspicious activity is to monitor for rejected logins. This tutorial
+    processes Syslog data to detect failed logins, while streaming out those pairs
+    of usernames and IP addresses. With ksqlDB, you can filter and react to unwanted
+    events in real time to minimize damage rather than performing historical analysis
+    of Syslog data from cold storage.
+  introduction-media: /assets/img/ssh-attack.jpg
   status:
     confluent: enabled
-
 firewall-splunk:
-  title: "Identify firewall deny events"
-  meta-description: "use ksqlDB to identify and filter firewall deny events from Splunk"
-  slug: "/firewall-splunk"
-  introduction: "In the security information and event management (SIEM) world, it's critical to have a scalable cyber intelligence platform to swiftly identify potential security threats and vulnerabilities, such as firewall deny events. But with each source having its own set of collectors generating different data flows, there  is often too much aggregate information for you to analyze and take action in a timely and cost-effective manner. This recipe demonstrates how you can intercept those data flows as they arrive from their sources, and analyze or filter the data before sending to an aggregator. 
-<BR><BR>
-Learn to optimize Splunk data ingestion by using the <a href=\"https://docs.confluent.io/kafka-connect-splunk-s2s/current/overview.html\">Splunk S2S Source connector</a> to offload data that would normally be sent to a Splunk HTTP Event Collector (HEC). The stream processing application filters for “deny” events, removes unnecessary fields to reduce message size, and sends the new, targeted set of events to Splunk for cost-effective indexing. 
-<BR><BR>
-You can also extend this solution to intercept data from a variety of SIEM vendors and create a vendor-agnostic solution that leverages multiple tools and analytics solutions."
-  introduction-media: "/assets/img/firewall.png"
+  title: Identify firewall deny events
+  meta-description: use ksqlDB to identify and filter firewall deny events from Splunk
+  slug: /firewall-splunk
+  introduction: In the security information and event management (SIEM) world, it's
+    critical to have a scalable cyber intelligence platform to swiftly identify potential
+    security threats and vulnerabilities, such as firewall deny events. But with each
+    source having its own set of collectors generating different data flows, there  is
+    often too much aggregate information for you to analyze and take action in a timely
+    and cost-effective manner. This recipe demonstrates how you can intercept those
+    data flows as they arrive from their sources, and analyze or filter the data before
+    sending to an aggregator. <BR><BR> Learn to optimize Splunk data ingestion by
+    using the <a href="https://docs.confluent.io/kafka-connect-splunk-s2s/current/overview.html">Splunk
+    S2S Source connector</a> to offload data that would normally be sent to a Splunk
+    HTTP Event Collector (HEC). The stream processing application filters for “deny”
+    events, removes unnecessary fields to reduce message size, and sends the new,
+    targeted set of events to Splunk for cost-effective indexing. <BR><BR> You can
+    also extend this solution to intercept data from a variety of SIEM vendors and
+    create a vendor-agnostic solution that leverages multiple tools and analytics
+    solutions.
+  introduction-media: /assets/img/firewall.png
   status:
     confluent: enabled
-
 aviation:
-  title: "Notify passengers of flight updates"
-  meta-description: "use a stream of flight updates to notify passengers if their flight is delayed"
-  slug: "/aviation"
-  introduction: "Worse than having a flight delayed is not being notified about the important changes that come with it, such as new boarding times, cancellations, gate changes, and estimated arrivals. This tutorial shows how ksqlDB can help airlines combine passenger, flight booking, and current flight plan data to immediately alert a passenger about flight updates in real time. You can also meet the requirements for different use cases at the same time, for example you can export the impacted flight information to the analytics team for further processing and send the flight information to a AWS Lambda function to notify the customer. Additionally, if you're interested in extending this recipe to include an open source flight dataset, you can use real air traffic surveillance data from <a href=\"https://opensky-network.org\">OpenSky Network</a>, a non-profit community-based receiver network."
-  introduction-media: "/assets/img/flight.png"
+  title: Notify passengers of flight updates
+  meta-description: use a stream of flight updates to notify passengers if their flight
+    is delayed
+  slug: /aviation
+  introduction: Worse than having a flight delayed is not being notified about the
+    important changes that come with it, such as new boarding times, cancellations,
+    gate changes, and estimated arrivals. This tutorial shows how ksqlDB can help
+    airlines combine passenger, flight booking, and current flight plan data to immediately
+    alert a passenger about flight updates in real time. You can also meet the requirements
+    for different use cases at the same time, for example you can export the impacted
+    flight information to the analytics team for further processing and send the flight
+    information to a AWS Lambda function to notify the customer. Additionally, if
+    you're interested in extending this recipe to include an open source flight dataset,
+    you can use real air traffic surveillance data from <a href="https://opensky-network.org">OpenSky
+    Network</a>, a non-profit community-based receiver network.
+  introduction-media: /assets/img/flight.png
   status:
     confluent: enabled
-
 clickstream:
-  title: "Understand user behavior with clickstream data"
-  meta-description: "process clickstream data to understand the behavior of online users"
-  slug: "/clickstream"
-  introduction: "Analyzing clickstream data enables businesses to optimize webpages and determine the effectiveness of their web presence by better understanding their users’ click activity and navigation patterns. Because clickstream data often involves large data volumes, stream processing is a natural fit, as it quickly processes data as soon as it is ingested for analysis. This tutorial enables you to measure key statistics on visitor activity over a given time frame, such as how many webpages they are viewing, how long they’re engaging with the website, and more."
-  introduction-media: "/assets/img/clickstream.png"
+  title: Understand user behavior with clickstream data
+  meta-description: process clickstream data to understand the behavior of online
+    users
+  slug: /clickstream
+  introduction: Analyzing clickstream data enables businesses to optimize webpages
+    and determine the effectiveness of their web presence by better understanding
+    their users’ click activity and navigation patterns. Because clickstream data
+    often involves large data volumes, stream processing is a natural fit, as it quickly
+    processes data as soon as it is ingested for analysis. This tutorial enables you
+    to measure key statistics on visitor activity over a given time frame, such as
+    how many webpages they are viewing, how long they’re engaging with the website,
+    and more.
+  introduction-media: /assets/img/clickstream.png
   status:
     confluent: enabled
-
 messaging-modernization:
-  title: "Integrate legacy messaging systems with Kafka"
-  meta-description: "integrate legacy messaging systems, such as RabbitMQ, TIBCO EMS, IBM MQ, and ActiveMQ, with Kafka"
-  slug: "/messaging-modernization"
-  introduction: "Traditional message queues (MQs) such as RabbitMQ, TIBCO EMS, IBM MQ, and ActiveMQ have been widely used for decades to handle message distribution and inter-service communication across distributed applications. However, they can no longer keep up with the needs of modern applications across hybrid and multicloud environments for high volume throughput, asynchronicity, and heterogeneous datasets. They are riddled with many challenges – they lack persistence and were designed to support point-to-point message delivery. This recipe shows how to perform real-time stream processing in-flight by leveraging a connector to read critical data from legacy messaging systems into Kafka."
-  introduction-media: "/assets/img/message-modernization.png"
+  title: Integrate legacy messaging systems with Kafka
+  meta-description: integrate legacy messaging systems, such as RabbitMQ, TIBCO EMS,
+    IBM MQ, and ActiveMQ, with Kafka
+  slug: /messaging-modernization
+  introduction: Traditional message queues (MQs) such as RabbitMQ, TIBCO EMS, IBM
+    MQ, and ActiveMQ have been widely used for decades to handle message distribution
+    and inter-service communication across distributed applications. However, they
+    can no longer keep up with the needs of modern applications across hybrid and
+    multicloud environments for high volume throughput, asynchronicity, and heterogeneous
+    datasets. They are riddled with many challenges – they lack persistence and were
+    designed to support point-to-point message delivery. This recipe shows how to
+    perform real-time stream processing in-flight by leveraging a connector to read
+    critical data from legacy messaging systems into Kafka.
+  introduction-media: /assets/img/message-modernization.png
   status:
     confluent: enabled
-
 loyalty-rewards:
-  title: "Build customer loyalty programs"
-  meta-description: "track customers' purchasing patterns, generating tailored rewards for a loyalty scheme"
-  slug: "/loyalty-rewards"
-  introduction: "Customer loyalty programs are everywhere in retail, even if it's as simple as 'Get 10 stamps for a free coffee.' However, in order to create a more sophisticated rewards program that engages customers at the right place and time, multiple data streams need to be aggregated to properly apply the right promotions. This tutorial showcases how a coffee shop has implemented three separate promotions at the same time:
-<BR>
-<ul>
-<li>A simple 'the more you buy, the bigger your discount' benefit
-<li>An online version of 'Buy N, get 1 free' recurring reward
-<li>A customizable program that looks at individual customer behavior and offers tailored personalized rewards 
-</ul>"
-  introduction-media: "/assets/img/loyalty.png"
+  title: Build customer loyalty programs
+  meta-description: track customers' purchasing patterns, generating tailored rewards
+    for a loyalty scheme
+  slug: /loyalty-rewards
+  introduction: 'Customer loyalty programs are everywhere in retail, even if it''s
+    as simple as ''Get 10 stamps for a free coffee.'' However, in order to create
+    a more sophisticated rewards program that engages customers at the right place
+    and time, multiple data streams need to be aggregated to properly apply the right
+    promotions. This tutorial showcases how a coffee shop has implemented three separate
+    promotions at the same time: <BR> <ul> <li>A simple ''the more you buy, the bigger
+    your discount'' benefit <li>An online version of ''Buy N, get 1 free'' recurring
+    reward <li>A customizable program that looks at individual customer behavior and
+    offers tailored personalized rewards </ul>'
+  introduction-media: /assets/img/loyalty.png
   status:
     confluent: enabled
-
 customer-journey:
-  title: "Get a full view of a customer’s online journey"
-  meta-description: "use ksqlDB to track a customer journey through web pages online"
-  slug: "/customer-journey"
-  introduction: "To unlock improved conversion rates and personalized experiences, many companies often want to know which web pages visitors have browsed and engaged with. Analyzing online behavior can be useful to better understand customer behavior and needs, improve each webpage’s relevancy, and tailor customer support interactions. This recipe showcases how to run real-time analyses of the customer journey by leveraging ksqlDB to collect web pages visited  and send the list out for downstream analytics."
-  introduction-media: "/assets/img/customer-journey.png"
+  title: Get a full view of a customer’s online journey
+  meta-description: use ksqlDB to track a customer journey through web pages online
+  slug: /customer-journey
+  introduction: To unlock improved conversion rates and personalized experiences,
+    many companies often want to know which web pages visitors have browsed and engaged
+    with. Analyzing online behavior can be useful to better understand customer behavior
+    and needs, improve each webpage’s relevancy, and tailor customer support interactions.
+    This recipe showcases how to run real-time analyses of the customer journey by
+    leveraging ksqlDB to collect web pages visited  and send the list out for downstream
+    analytics.
+  introduction-media: /assets/img/customer-journey.png
   status:
     confluent: enabled
-
 next-best-offer:
-  title: "Create personalized banking promotions"
-  meta-description: "use ksqlDB to present relevant offers to banking customers"
-  slug: "/next-best-offer"
-  introduction: "Consumers often face never-ending generic marketing messages not tailored to their needs, resulting in poor customer conversion rates. A better approach is known as 'Next Best Offer,' which leverages predictive analytics to analyze a customer’s spending habits and activities to create more targeted promotions. This recipe demonstrates how ksqlDB can take customer banking information to create a predictive analytics model and improve customer conversions through personalized marketing efforts."
-  introduction-media: "/assets/img/next-best-offer.png"
+  title: Create personalized banking promotions
+  meta-description: use ksqlDB to present relevant offers to banking customers
+  slug: /next-best-offer
+  introduction: Consumers often face never-ending generic marketing messages not tailored
+    to their needs, resulting in poor customer conversion rates. A better approach
+    is known as 'Next Best Offer,' which leverages predictive analytics to analyze
+    a customer’s spending habits and activities to create more targeted promotions.
+    This recipe demonstrates how ksqlDB can take customer banking information to create
+    a predictive analytics model and improve customer conversions through personalized
+    marketing efforts.
+  introduction-media: /assets/img/next-best-offer.png
   status:
     confluent: enabled
-
 ddos:
-  title: "Detect a Slowloris DDoS attack"
-  meta-description: "use ksqlDB to detect network disruption attacks by processing packet data"
-  slug: "/ddos"
-  introduction: "Distributed denial-of-service (DDoS) attacks are a specific type of cyberattack in which a targeted system is flooded with malicious network requests using multiple hosts and IP addresses. The distributed nature of these attacks, along with their increased occurrence, sophistication, and strength, makes them one of the most severe forms of cyber attacks that’s getting progressively  difficult to mitigate. This recipe shows a strategy for ingesting and processing network packet data to quickly detect a specific DDoS attack known as Slowloris."
-  introduction-media: "/assets/img/slowloris.png"
+  title: Detect a Slowloris DDoS attack
+  meta-description: use ksqlDB to detect network disruption attacks by processing
+    packet data
+  slug: /ddos
+  introduction: Distributed denial-of-service (DDoS) attacks are a specific type of
+    cyberattack in which a targeted system is flooded with malicious network requests
+    using multiple hosts and IP addresses. The distributed nature of these attacks,
+    along with their increased occurrence, sophistication, and strength, makes them
+    one of the most severe forms of cyber attacks that’s getting progressively  difficult
+    to mitigate. This recipe shows a strategy for ingesting and processing network
+    packet data to quickly detect a specific DDoS attack known as Slowloris.
+  introduction-media: /assets/img/slowloris.png
   status:
     confluent: enabled
-
 mainframe-offload:
-  title: "Modernize and offload mainframe data"
-  meta-description: "modernize and offload mainframes data to a more modern data-store"
-  slug: "/mainframe-offload"
-  introduction: "Mainframes have historically underpinned many mission-critical applications as the de facto solution for many high performance batch processes. However, as organizations look to modernize their data infrastructure, it becomes increasingly expensive and complex to access and integrate mainframe data to other more modern distributed applications, microservices, and data platforms. Thus, many organizations have turned to Kafka to become a modern datastore that is in real-time sync with the mainframe. This recipe showcases how to leverage a real-time cache in ksqlDB, which can be used to offload mainframe calls to Kafka."
-  introduction-media: "/assets/img/mainframe.png"
+  title: Modernize and offload mainframe data
+  meta-description: modernize and offload mainframes data to a more modern data-store
+  slug: /mainframe-offload
+  introduction: Mainframes have historically underpinned many mission-critical applications
+    as the de facto solution for many high performance batch processes. However, as
+    organizations look to modernize their data infrastructure, it becomes increasingly
+    expensive and complex to access and integrate mainframe data to other more modern
+    distributed applications, microservices, and data platforms. Thus, many organizations
+    have turned to Kafka to become a modern datastore that is in real-time sync with
+    the mainframe. This recipe showcases how to leverage a real-time cache in ksqlDB,
+    which can be used to offload mainframe calls to Kafka.
+  introduction-media: /assets/img/mainframe.png
   status:
     confluent: enabled
-
 discount-promo:
-  title: "Assess marketing promotional campaign efficacy"
-  meta-description: "use ksqlDB to track the success of discounts for a small online business"
-  slug: "/discount-promo"
-  introduction: "Oftentimes retailers will run promotions to drive sales and move inventory. However, if retailers are looking to build complex promotional strategies that involve multiple discounts using different coupon codes, it can be difficult to track the overall effectiveness of the marketing program. This recipe shows how ksqlDB can help track the performance of a multi-discount code promotion by understanding the average order value organized by discount percentage and the number of items purchased."
-  introduction-media: "/assets/img/discount.png"
+  title: Assess marketing promotional campaign efficacy
+  meta-description: use ksqlDB to track the success of discounts for a small online
+    business
+  slug: /discount-promo
+  introduction: Oftentimes retailers will run promotions to drive sales and move inventory.
+    However, if retailers are looking to build complex promotional strategies that
+    involve multiple discounts using different coupon codes, it can be difficult to
+    track the overall effectiveness of the marketing program. This recipe shows how
+    ksqlDB can help track the performance of a multi-discount code promotion by understanding
+    the average order value organized by discount percentage and the number of items
+    purchased.
+  introduction-media: /assets/img/discount.png
   status:
     confluent: enabled
-
 logistics:
-  title: "Track order shipments in real time"
-  meta-description: "track vehicles while delivering orders"
-  slug: "/logistics"
-  introduction: "Customers today expect organizations to provide real-time visibility into their order status to help ensure shipments are received in a timely manner. However, aggregating data from multiple different data sources and continuously processing it in real time as locations change can be rather daunting. This recipe makes it easy by walking through how to compute delivery estimates based on a vehicle’s current location, so you can provide your customers with real-time status updates on their orders."
-  introduction-media: "/assets/img/logistics.png"
+  title: Track order shipments in real time
+  meta-description: track vehicles while delivering orders
+  slug: /logistics
+  introduction: Customers today expect organizations to provide real-time visibility
+    into their order status to help ensure shipments are received in a timely manner.
+    However, aggregating data from multiple different data sources and continuously
+    processing it in real time as locations change can be rather daunting. This recipe
+    makes it easy by walking through how to compute delivery estimates based on a
+    vehicle’s current location, so you can provide your customers with real-time status
+    updates on their orders.
+  introduction-media: /assets/img/logistics.png
   status:
     confluent: enabled
-
 audit-logs:
-  title: "Monitor security threats by analyzing and filtering Confluent Cloud audit logs"
-  meta-description: "monitor security threats by analyzing and filtering Confluent Cloud audit logs"
-  slug: "/audit-logs"
-  introduction: "Audit logs are often captured and stored in SIEM tools to find malicious insiders, monitor changes to policies, protect against data leakage, and ensure regulatory compliance. However, indefinitely storing all audit logs in SIEM tools, irrespective of whether they are of high or low value can be an expensive proposition, often forcing tradeoffs between cost, flexibility, and visibility.
-<BR><BR>
-This recipe demonstrates how to aggregate Confluent Cloud audit logs in a Kafka topic, filter for specific events, and forward them to Splunk for indexing via the <a href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk Sink connector</a> or route your data to a more cost-effective destination for long-term storage to reduce data indexing, analysis, and storage costs."
-  introduction-media: "/assets/img/audit-logs.png"
+  title: Monitor security threats by analyzing and filtering Confluent Cloud audit
+    logs
+  meta-description: monitor security threats by analyzing and filtering Confluent
+    Cloud audit logs
+  slug: /audit-logs
+  introduction: Audit logs are often captured and stored in SIEM tools to find malicious
+    insiders, monitor changes to policies, protect against data leakage, and ensure
+    regulatory compliance. However, indefinitely storing all audit logs in SIEM tools,
+    irrespective of whether they are of high or low value can be an expensive proposition,
+    often forcing tradeoffs between cost, flexibility, and visibility. <BR><BR> This
+    recipe demonstrates how to aggregate Confluent Cloud audit logs in a Kafka topic,
+    filter for specific events, and forward them to Splunk for indexing via the <a
+    href='https://docs.confluent.io/cloud/current/connectors/cc-splunk-sink.html#cc-splunk-sink'>Splunk
+    Sink connector</a> or route your data to a more cost-effective destination for
+    long-term storage to reduce data indexing, analysis, and storage costs.
+  introduction-media: /assets/img/audit-logs.png
   status:
     confluent: enabled
-
 model-retraining:
-  title: "Retrain a machine learning model"
-  meta-description: "use ksqlDB to evaluate the predictions of a machine learning model and send data to retrain the model when needed"
-  slug: "/model-retraining"
-  introduction: "Today’s leading companies leverage  machine learning (ML) models to help better understand and predict customer needs. The process of training an ML model involves leveraging an ML algorithm, and providing it with training data from which to learn. Every so often, you will need to retrain your model if the data distributions have deviated significantly from those of the original training set. ksqlDB makes this easy by triggering the retraining process whenever the prediction error is greater than a defined threshold This recipe walks through how to take an existing ML pipeline, with results stored in MongoDB, and trigger the retraining process once the prediction error exceeds a certain threshold, in this case, 15%. 
-<BR><BR>
-The generated example is based on a factory for fish processing. In the first step, the fish size (length and height) is measured. The model then predicts the weight of the fish based on its size and species, which will determine a selling price. By retraining the model, we can help maximize revenue by accurately determining the optimal selling price. This recipe is based on the blog post <a href='https://www.confluent.io/blog/how-baader-built-a-predictive-analytics-machine-learning-system-with-kafka-and-rstudio/'>Apache Kafka and R: Real-Time Prediction and Model (Re)training</a>, by Patrick Neff."
-  introduction-media: "/assets/img/ml.png"
+  title: Retrain a machine learning model
+  meta-description: use ksqlDB to evaluate the predictions of a machine learning model
+    and send data to retrain the model when needed
+  slug: /model-retraining
+  introduction: 'Today’s leading companies leverage  machine learning (ML) models
+    to help better understand and predict customer needs. The process of training
+    an ML model involves leveraging an ML algorithm, and providing it with training
+    data from which to learn. Every so often, you will need to retrain your model
+    if the data distributions have deviated significantly from those of the original
+    training set. ksqlDB makes this easy by triggering the retraining process whenever
+    the prediction error is greater than a defined threshold This recipe walks through
+    how to take an existing ML pipeline, with results stored in MongoDB, and trigger
+    the retraining process once the prediction error exceeds a certain threshold,
+    in this case, 15%. <BR><BR> The generated example is based on a factory for fish
+    processing. In the first step, the fish size (length and height) is measured.
+    The model then predicts the weight of the fish based on its size and species,
+    which will determine a selling price. By retraining the model, we can help maximize
+    revenue by accurately determining the optimal selling price. This recipe is based
+    on the blog post <a href=''https://www.confluent.io/blog/how-baader-built-a-predictive-analytics-machine-learning-system-with-kafka-and-rstudio/''>Apache
+    Kafka and R: Real-Time Prediction and Model (Re)training</a>, by Patrick Neff.'
+  introduction-media: /assets/img/ml.png
   status:
     confluent: enabled
-
 location-based-alerting:
-  title: "Create geolocation-based customer alerts and promotions"
-  meta-description: "create real-time, personalized, location-based alerts"
-  slug: "/location-based-alerting"
-  introduction: "In an effort to build more personalized offers and promotions, organizations have turned toward geolocation alerts. This uses the merchant and mobile user’s geolocations to alert customers of the latest promotions when they near one of their stores. However, this can be difficult because it requires determining the distance between static store location data and continuous streams of geolocation data from hundreds of thousands of mobile devices. This recipe showcases how to do this easily with ksqlDB by aggregating and comparing merchant and mobile user geolocation data to produce user proximity alerts and notifications."
-  introduction-media: "/assets/img/geolocation.png"
+  title: Create geolocation-based customer alerts and promotions
+  meta-description: create real-time, personalized, location-based alerts
+  slug: /location-based-alerting
+  introduction: In an effort to build more personalized offers and promotions, organizations
+    have turned toward geolocation alerts. This uses the merchant and mobile user’s
+    geolocations to alert customers of the latest promotions when they near one of
+    their stores. However, this can be difficult because it requires determining the
+    distance between static store location data and continuous streams of geolocation
+    data from hundreds of thousands of mobile devices. This recipe showcases how to
+    do this easily with ksqlDB by aggregating and comparing merchant and mobile user
+    geolocation data to produce user proximity alerts and notifications.
+  introduction-media: /assets/img/geolocation.png
   status:
     confluent: enabled
-
 campaign-finance:
-  title: "Analyze political campaign fundraising performance"
-  meta-description: "Analyze political campaign fundraising performance"
-  slug: "/campaign-finance"
-  introduction: "Oftentimes political analysts need to perform in-depth financial analysis to get insights into campaign performance, predict future contributions from their base of support, and optimize their ongoing strategy. Data from the <a href='https://www.fec.gov/data/browse-data/?tab=bulk-data'>Federal Election Commission of the United States of America</a> provides all the statements and reports filed with the Commission to help feed this analysis. This recipe walks through how to leverage Kafka and ksqlDB to analyze and slice this campaign financial data in various ways, such as grouping by party affiliation, counting contributions for particular candidate, and more."
-  introduction-media: "/assets/img/campaign.jpg"
+  title: Analyze political campaign fundraising performance
+  meta-description: Analyze political campaign fundraising performance
+  slug: /campaign-finance
+  introduction: Oftentimes political analysts need to perform in-depth financial analysis
+    to get insights into campaign performance, predict future contributions from their
+    base of support, and optimize their ongoing strategy. Data from the <a href='https://www.fec.gov/data/browse-data/?tab=bulk-data'>Federal
+    Election Commission of the United States of America</a> provides all the statements
+    and reports filed with the Commission to help feed this analysis. This recipe
+    walks through how to leverage Kafka and ksqlDB to analyze and slice this campaign
+    financial data in various ways, such as grouping by party affiliation, counting
+    contributions for particular candidate, and more.
+  introduction-media: /assets/img/campaign.jpg
   status:
     confluent: enabled
-
 iot-asset-tracking:
-  title: "Identify Offline Devices via IoT Data"
-  meta-description: "Identify Offline Devices via IoT Data"
-  slug: "/iot-asset-tracking"
-  question: "Which devices in the fleet have unexpectedly stopped reporting telemetry?"
-  introduction: "Whether monitoring a fleet of vehicles, manufacturing equipment, or a network of smart home appliances, Internet of Things (IoT) use cases involve collecting and analyzing device telemetry data. Proactively identifying when devices stop sharing telemetry data is a particularly important function of an IoT asset tracking system, as it helps to determine when a device might need maintenance. Streaming is a natural fit for these use cases given their real-time requirements, as well as the high volume and velocity of data being generated and processed at a given time. This recipe demonstrates how to leverage ksqlDB to determine which devices’ telemetry data has gone dark."
-  introduction-media: "/assets/img/iot-asset-tracking.png"
+  title: Identify Offline Devices via IoT Data
+  meta-description: Identify Offline Devices via IoT Data
+  slug: /iot-asset-tracking
+  question: Which devices in the fleet have unexpectedly stopped reporting telemetry?
+  introduction: Whether monitoring a fleet of vehicles, manufacturing equipment, or
+    a network of smart home appliances, Internet of Things (IoT) use cases involve
+    collecting and analyzing device telemetry data. Proactively identifying when devices
+    stop sharing telemetry data is a particularly important function of an IoT asset
+    tracking system, as it helps to determine when a device might need maintenance.
+    Streaming is a natural fit for these use cases given their real-time requirements,
+    as well as the high volume and velocity of data being generated and processed
+    at a given time. This recipe demonstrates how to leverage ksqlDB to determine
+    which devices’ telemetry data has gone dark.
+  introduction-media: /assets/img/iot-asset-tracking.png
   status:
     confluent: enabled
-
 omnichannel-commerce:
-  title: "Correlate customer behavior across in-store and online channels"
-  meta-description: "Correlate customer behavior across in-store and online channels"
-  slug: "/omnichannel-commerce"
-  question: "What are in-store shoppers doing online around the time that they purchase?"
-  introduction: "Today's retail customers browse and purchase products across many channels — from brick-and-mortar, to web, to mobile applications — and they expect a seamless shopping experience bridging these channels. The omnichannel retail setting is often rife with technical challenges stemming from data residing in disparate data sources. For example, web clickstream, mobile application user activity, and in-store purchase data often reside in different data stores or SaaS platforms. This tutorial enables you to correlate customers' in-store purchase activity with online user behavior, which can then feed downstream omnichannel analytics or improved customer experience (e.g., more relevant product recommendations online based on customers' in-store activity)."
+  title: Correlate customer behavior across in-store and online channels
+  meta-description: Correlate customer behavior across in-store and online channels
+  slug: /omnichannel-commerce
+  question: What are in-store shoppers doing online around the time that they purchase?
+  introduction: Today's retail customers browse and purchase products across many
+    channels — from brick-and-mortar, to web, to mobile applications — and they expect
+    a seamless shopping experience bridging these channels. The omnichannel retail
+    setting is often rife with technical challenges stemming from data residing in
+    disparate data sources. For example, web clickstream, mobile application user
+    activity, and in-store purchase data often reside in different data stores or
+    SaaS platforms. This tutorial enables you to correlate customers' in-store purchase
+    activity with online user behavior, which can then feed downstream omnichannel
+    analytics or improved customer experience (e.g., more relevant product recommendations
+    online based on customers' in-store activity).
   status:
     confluent: enabled
-
 survey-responses:
-  title: "Analyze survey responses in real time"
-  meta-description: "analyze survey responses in real time"
-  slug: "/survey-responses"
-  introduction: "'Please rate your service today.' 'How likely are you to recommend us to a friend?' Regardless of the questions being asked, surveys are great ways for businesses to capture insights from their customers and even their employees. But these insights go stale and lose value the longer they take to be analyzed. This recipe makes survey analysis real time, allowing you to see results as survey responses happen."
+  title: Analyze survey responses in real time
+  meta-description: analyze survey responses in real time
+  slug: /survey-responses
+  introduction: '''Please rate your service today.'' ''How likely are you to recommend
+    us to a friend?'' Regardless of the questions being asked, surveys are great ways
+    for businesses to capture insights from their customers and even their employees.
+    But these insights go stale and lose value the longer they take to be analyzed.
+    This recipe makes survey analysis real time, allowing you to see results as survey
+    responses happen.'
   status:
     confluent: disabled
