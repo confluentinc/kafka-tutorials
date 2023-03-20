@@ -494,8 +494,8 @@ blocks:
     prologue:
       commands:
       - echo $SEMAPHORE_WORKFLOW_ID
-      - sem-version java 17
+      - sem-version java 11
     jobs:
-    - name: Flink SQL hopping windows
+    - name: Flink SQL aggregation MIN/MAX tests
       commands:
-      - make -C _includes/tutorials/hopping-windows/ksql/code tutorial
+      - make -C _includes/tutorials/aggregating-minmax/flinksql/code tutorial
