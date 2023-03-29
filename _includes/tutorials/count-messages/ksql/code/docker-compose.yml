@@ -49,7 +49,7 @@ services:
     # To connect to ksqlDB CLI
     #   docker exec --interactive --tty ksqldb ksql http://localhost:8088
     # *-----------------------------*
-    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-server:0.704000760.1-rc1
+    image: 519856050701.dkr.ecr.us-west-2.amazonaws.com/docker/prod/confluentinc/ksqldb-server:0.28.3-rc5
     container_name: ksqldb
     depends_on:
       - broker
