@@ -29,7 +29,7 @@ If you are interested in testing tutorials locally see the [Testing Locally](#te
 - gradle
 - [Docker Compose](https://docs.docker.com/compose/)
 
-On the Mac, you can get the dependencies like this:
+On a Mac, you can get the dependencies like this:
 
 ```
 brew install ruby node
