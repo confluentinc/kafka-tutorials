@@ -577,7 +577,7 @@ The `ksqldb-latest` branch builds against the latest `master` branch of ksqlDB, 
 
 1. Open a pull request from `master` to `release`. A pull request into the `release` branch denotes a request to update the live site.
 
-- Title the PR “KT release [date]”
+- Title the PR “KT release [DD-MM-YYYY]”
 - In the description add links to PRs that resulted in new tutorials, content changes, or any other noteworthy addition, e.g.:
 ```
 This release contains:
