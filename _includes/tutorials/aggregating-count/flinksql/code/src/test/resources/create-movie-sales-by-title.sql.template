@@ -1,0 +1,13 @@
+CREATE TABLE movie_ticket_sales_by_title (
+    title STRING,
+    tickets_sold BIGINT,
+    PRIMARY KEY (title) NOT ENFORCED
+) WITH (
+    'connector' = 'upsert-kafka',
+    'topic' = 'movie-ticket-sales-by-title',
+    'properties.bootstrap.servers' = 'localhost:KAFKA_PORT',
+    'key.format' = 'raw',
+    'value.format' = 'avro-confluent',
+    'value.avro-confluent.url' = 'http://localhost:SCHEMA_REGISTRY_PORT',
+    'value.fields-include' = 'EXCEPT_KEY'
+);
