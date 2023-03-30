@@ -596,7 +596,7 @@ plus many other small fixes
 
 3. Look at the staging site from different browsers. Ensure that you get approval from required reviewers. Submit PRs with fixes, if needed.
 
-4. Once the PR is approved, merge the PR via `Squash and Merge`.
+4. Once the PR is approved, merge the PR via `Merge commit`.
 
 ### Deploy to live site
 
