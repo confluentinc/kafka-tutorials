@@ -1,0 +1,5 @@
+Let's add a small amount of data to our table, so we can see our query work. Go ahead and paste this statement into the Flink SQL CLI now.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-count/flinksql/code/tutorial-steps/dev/populate-movie-sales.sql %}</code></pre>
++++++

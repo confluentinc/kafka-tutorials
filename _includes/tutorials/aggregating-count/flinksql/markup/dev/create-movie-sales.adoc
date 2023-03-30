@@ -1,0 +1,8 @@
+Our tutorial computes the highest grossing and lowest grossing films per year in our data set. To keep things simple, we're going to create a table backed by a Kafka topic with annual sales data in it. In a real-world data pipeline, this would probably be the output of another table that takes a stream of individual sales events and aggregates them into annual totals, but we'll save ourselves that trouble and just create the annual sales data directly.
+
+This line of Flink SQL DDL creates a table and its underlying Kafka topic to represent the annual sales totals.
+Note that we are defining the schema for the table, which includes four fields: `id`, `title`, `release_year`, and `total_sales`. We are also specifying that the underlying Kafka topic—which Flink SQL will auto-create—be called `movie-sales` and have just one partition (the default `num.partitions` configured in the broker), and that its messages will be in Avro format.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-count/flinksql/code/tutorial-steps/dev/create-movie-sales.sql %}</code></pre>
++++++

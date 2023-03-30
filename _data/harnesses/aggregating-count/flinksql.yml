@@ -1,0 +1,156 @@
+dev:
+  steps:
+    - title: Prerequisites
+      content:
+        - action: skip
+          render:
+            file: shared/markup/dev/docker-prerequisite.adoc
+
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/dev/init.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Write the program interactively using the CLI
+      content:
+        - action: docker_flinksql_cli_session
+          container: flink-sql-client
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 20
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/dev/start-cli.adoc
+          stdin:
+            - file: tutorial-steps/dev/create-movie-sales.sql
+              render:
+                file: tutorials/aggregating-count/flinksql/markup/dev/create-movie-sales.adoc
+
+            - file: tutorial-steps/dev/populate-movie-sales.sql
+              render:
+                file: tutorials/aggregating-count/flinksql/markup/dev/populate-movie-sales.adoc
+
+            - file: tutorial-steps/dev/transient-query.sql
+              render:
+                file: tutorials/aggregating-count/flinksql/markup/dev/transient-query.adoc
+
+            - file: tutorial-steps/dev/create-movie-sales-by-year.sql
+              render:
+                file: tutorials/aggregating-count/flinksql/markup/dev/create-movie-sales-by-year.adoc
+
+            - file: tutorial-steps/dev/populate-movie-sales-by-year.sql
+              render:
+                file: tutorials/aggregating-count/flinksql/markup/dev/populate-movie-sales-by-year.adoc
+
+
+          stdout:
+            directory: tutorial-steps/dev/outputs
+
+    - title: Validate output
+      content:
+        - action: execute
+          file: tutorial-steps/dev/validate-movie-sales-by-year.sh
+          stdout: tutorial-steps/dev/outputs/validate-movie-sales-by-year.log
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/dev/validate-movie-sales-by-year.adoc
+
+test:
+  steps:
+    - title: Decide what testing tools to use
+      content:
+        - action: skip
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/test-architecture.adoc
+
+    - title: Create the test skeleton
+      content:
+        - action: execute
+          file: tutorial-steps/test/make-test-dirs.sh
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/make-test-dirs.adoc
+
+        - action: make_file
+          file: build.gradle
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/make-build-gradle.adoc
+
+        - action: execute
+          file: tutorial-steps/test/gradle-wrapper.sh
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/make-gradle-wrapper.adoc
+
+    - title: Create SQL resources
+      content:
+        - action: make_file
+          file: src/test/resources/create-movie-sales.sql.template
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-create-movie-sales.sql.template.adoc
+
+        - action: make_file
+          file: src/test/resources/populate-movie-sales.sql
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-populate-movie-sales.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/create-movie-sales-by-year.sql.template
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-create-movie-sales-by-year.sql.template.adoc
+
+        - action: make_file
+          file: src/test/resources/populate-movie-sales-by-year.sql
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-populate-movie-sales-by-year.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/query-movie-sales-by-year.sql
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-query-movie-sales-by-year.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/expected-movie-sales-by-year.txt
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-expected-movie-sales-by-year.txt.adoc
+
+    - title: Write a test
+      content:
+        - action: make_file
+          file: src/test/java/io/confluent/developer/AbstractFlinkKafkaTest.java
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/make-test-base.adoc
+
+        - action: make_file
+          file: src/test/java/io/confluent/developer/FlinkSqlAggregatingCountTest.java
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/make-test.adoc
+
+    - title: Invoke the test
+      content:
+        - action: execute
+          file: tutorial-steps/test/invoke-test.sh
+          render:
+            file: tutorials/aggregating-count/flinksql/markup/test/invoke-test.adoc
+
+ccloud:
+  steps:
+    - title: Run your app to Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc

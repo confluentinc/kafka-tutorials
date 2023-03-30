@@ -212,6 +212,7 @@ aggregating-count:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
+    flinksql: enabled
 aggregating-minmax:
   title: How to find the min/max in a stream of events
   meta-description: find the minimum or maximum value of a field in a stream of events
