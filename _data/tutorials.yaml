@@ -1357,7 +1357,7 @@ ddos:
   status:
     confluent: enabled
 mainframe-offload:
-  title: Modernize and offload mainframe data
+  title: Integrate Mainframe Data
   meta-description: modernize and offload mainframes data to a more modern data-store
   slug: /mainframe-offload
   introduction: Mainframes have historically underpinned many mission-critical applications
