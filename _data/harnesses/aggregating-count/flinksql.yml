@@ -39,13 +39,13 @@ dev:
           render:
             file: tutorials/aggregating-count/flinksql/markup/dev/start-cli.adoc
           stdin:
-            - file: tutorial-steps/dev/create-movie-sales.sql
+            - file: tutorial-steps/dev/create-movie-ticket-sales.sql
               render:
-                file: tutorials/aggregating-count/flinksql/markup/dev/create-movie-sales.adoc
+                file: tutorials/aggregating-count/flinksql/markup/dev/create-movie-ticket-sales.adoc
 
-            - file: tutorial-steps/dev/populate-movie-sales.sql
+            - file: tutorial-steps/dev/populate-movie-ticket-sales.sql
               render:
-                file: tutorials/aggregating-count/flinksql/markup/dev/populate-movie-sales.adoc
+                file: tutorials/aggregating-count/flinksql/markup/dev/populate-movie-ticket-sales.adoc
 
             - file: tutorial-steps/dev/transient-query.sql
               render:
