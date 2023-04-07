@@ -1,1 +1,1 @@
-mkdir aggregate-minmax && cd aggregate-minmax
+mkdir aggregate-count && cd aggregate-count

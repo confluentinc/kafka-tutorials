@@ -1,4 +1,6 @@
- release_year min_total_sales max_total_sales
-         2017       412563408       517218368
-         2019       385082142       856980506
-         2018       324512774       700059566\
+           title TICKETS_SOLD
+---------------- -----------
+          Aliens           1     
+        Die Hard           3     
+The Big Lebowski           2
+   The Godfather           4

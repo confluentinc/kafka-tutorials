@@ -51,13 +51,13 @@ dev:
               render:
                 file: tutorials/aggregating-count/flinksql/markup/dev/transient-query.adoc
 
-            - file: tutorial-steps/dev/create-movie-sales-by-year.sql
+            - file: tutorial-steps/dev/create-movie-sales-by-title.sql
               render:
-                file: tutorials/aggregating-count/flinksql/markup/dev/create-movie-sales-by-year.adoc
+                file: tutorials/aggregating-count/flinksql/markup/dev/create-movie-sales-by-title.adoc
 
-            - file: tutorial-steps/dev/populate-movie-sales-by-year.sql
+            - file: tutorial-steps/dev/populate-movie-sales-by-title.sql
               render:
-                file: tutorials/aggregating-count/flinksql/markup/dev/populate-movie-sales-by-year.adoc
+                file: tutorials/aggregating-count/flinksql/markup/dev/populate-movie-sales-by-title.adoc
 
 
           stdout:

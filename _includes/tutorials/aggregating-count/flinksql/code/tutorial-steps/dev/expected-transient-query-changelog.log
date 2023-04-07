@@ -1,16 +1,17 @@
- op release_year min_total_sales max_total_sales
- +I         2019       426829839       426829839
- +I         2017       412563408       412563408
- -U         2019       426829839       426829839
- +U         2019       401486230       426829839
- +I         2018       324512774       324512774
- -U         2019       401486230       426829839
- +U         2019       401486230       856980506
- -U         2017       412563408       412563408
- +U         2017       412563408       517218368
- -U         2018       324512774       324512774
- +U         2018       324512774       678815482
- -U         2019       401486230       856980506
- +U         2019       385082142       856980506
- -U         2018       324512774       678815482
- +U         2018       324512774       700059566
+ op                          title         TICKETS_SOLD
+ +I                         Aliens                    1
+ +I                       Die Hard                    1
+ -U                       Die Hard                    1
+ +U                       Die Hard                    2
+ +I                  The Godfather                    1
+ -U                       Die Hard                    2
+ +U                       Die Hard                    3
+ -U                  The Godfather                    1
+ +U                  The Godfather                    2
+ +I               The Big Lebowski                    1
+ -U               The Big Lebowski                    1
+ +U               The Big Lebowski                    2
+ -U                  The Godfather                    2
+ +U                  The Godfather                    3
+ -U                  The Godfather                    3
+ +U                  The Godfather                    4
