@@ -1,5 +1,5 @@
 docker exec -e SCHEMA_REGISTRY_LOG4J_OPTS=" " -it schema-registry /usr/bin/kafka-avro-console-consumer \
-  --topic movie-sales-by-year \
+  --topic movie-ticket-sales-by-title \
   --from-beginning \
   --max-messages 9 \
   --timeout-ms 10000 \

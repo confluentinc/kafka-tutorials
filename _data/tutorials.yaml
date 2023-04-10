@@ -205,8 +205,8 @@ aggregating-count:
   question: How can you count the number of events in a Kafka topic based on some
     criteria?
   introduction: Suppose you have a topic with events that represent ticket sales for
-    movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams
-    and ksqlDB.  We'll write a program that calculates the total number of tickets
+    movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams,
+    ksqlDB, and Flink SQL.  We'll write a program that calculates the total number of tickets
     sold per movie.
   status:
     ksql: enabled

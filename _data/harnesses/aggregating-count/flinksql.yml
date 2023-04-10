@@ -66,10 +66,10 @@ dev:
     - title: Validate output
       content:
         - action: execute
-          file: tutorial-steps/dev/validate-movie-sales-by-year.sh
-          stdout: tutorial-steps/dev/outputs/validate-movie-sales-by-year.log
+          file: tutorial-steps/dev/validate-movie-sales-by-title.sh
+          stdout: tutorial-steps/dev/outputs/validate-movie-sales-by-title.log
           render:
-            file: tutorials/aggregating-count/flinksql/markup/dev/validate-movie-sales-by-year.adoc
+            file: tutorials/aggregating-count/flinksql/markup/dev/validate-movie-sales-by-title.adoc
 
 test:
   steps:

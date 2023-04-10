@@ -1,8 +1,7 @@
 CREATE TABLE movie_ticket_sales_by_title (
     title STRING,
-    sales_ts STRING,
-    total_ticket_value INT
-    PRIMARY KEY (title)
+    tickets_sold INT
+    PRIMARY KEY (title NOT ENFORCED)
 ) WITH (
     'connector' = 'upsert-kafka',
     'topic' = 'movie-ticket-sales-by-title',

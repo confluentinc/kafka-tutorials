@@ -1,5 +1,4 @@
 SELECT
-    release_year,
-    min_total_sales,
-    max_total_sales
-FROM movie_sales_by_year;
+    title,
+    tickets_sold
+FROM movie_ticket_sales_by_title;
