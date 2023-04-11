@@ -7,5 +7,5 @@ tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/aggregating-count/flinksql.yml $(TEMP_DIR) $(SEQUENCE)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-movie-sales-by-year.log $(DEV_OUTPUTS_DIR)/validate-movie-sales-by-year.log
+	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-movie-sales-by-title.log $(DEV_OUTPUTS_DIR)/validate-movie-sales-by-title.log
 	reset
