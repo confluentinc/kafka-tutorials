@@ -109,24 +109,24 @@ test:
             file: tutorials/aggregating-count/flinksql/markup/test/create-resource-populate-movie-sales.sql.adoc
 
         - action: make_file
-          file: src/test/resources/create-movie-sales-by-year.sql.template
+          file: src/test/resources/create-movie-sales-by-title.sql.template
           render:
-            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-create-movie-sales-by-year.sql.template.adoc
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-create-movie-sales-by-title.sql.template.adoc
 
         - action: make_file
-          file: src/test/resources/populate-movie-sales-by-year.sql
+          file: src/test/resources/populate-movie-sales-by-title.sql
           render:
-            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-populate-movie-sales-by-year.sql.adoc
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-populate-movie-sales-by-title.sql.adoc
 
         - action: make_file
-          file: src/test/resources/query-movie-sales-by-year.sql
+          file: src/test/resources/query-movie-sales-by-title.sql
           render:
-            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-query-movie-sales-by-year.sql.adoc
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-query-movie-sales-by-title.sql.adoc
 
         - action: make_file
-          file: src/test/resources/expected-movie-sales-by-year.txt
+          file: src/test/resources/expected-movie-sales-by-title.txt
           render:
-            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-expected-movie-sales-by-year.txt.adoc
+            file: tutorials/aggregating-count/flinksql/markup/test/create-resource-expected-movie-sales-by-title.txt.adoc
 
     - title: Write a test
       content:

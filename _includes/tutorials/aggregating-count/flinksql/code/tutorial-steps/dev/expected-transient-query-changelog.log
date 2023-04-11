@@ -1,4 +1,4 @@
- op                          title         TICKETS_SOLD
+ op                          title         tickets_sold
  +I                         Aliens                    1
  +I                       Die Hard                    1
  -U                       Die Hard                    1

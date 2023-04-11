@@ -1,11 +1,11 @@
-INSERT INTO movie_sales
-VALUES (0, 'Avengers: Endgame', 2019, 856980506),
-       (1, 'Captain Marvel', 2019, 426829839),
-       (2, 'Toy Story 4', 2019, 401486230),
-       (3, 'The Lion King', 2019, 385082142),
-       (4, 'Black Panther', 2018, 700059566),
-       (5, 'Avengers: Infinity War', 2018, 678815482),
-       (6, 'Deadpool 2', 2018, 324512774),
-       (7, 'Beauty and the Beast', 2017, 517218368),
-       (8, 'Wonder Woman', 2017, 412563408),
-       (9, 'Star Wars Ep. VIII: The Last Jedi', 2017, 517218368);
+INSERT INTO movie_ticket_sales VALUES
+    ('Aliens', '2019-07-18T10:00:00Z', 10),
+    ('Die Hard', '2019-07-18T10:00:00Z', 12),
+    ('Die Hard', '2019-07-18T10:01:00Z', 12),
+    ('The Godfather', '2019-07-18T10:01:31Z', 12),
+    ('Die Hard', '2019-07-18T10:01:36Z', 24),
+    ('The Godfather', '2019-07-18T10:02:00Z', 18),
+    ('The Big Lebowski', '2019-07-18T11:03:21Z', 12),
+    ('The Big Lebowski', '2019-07-18T11:03:50Z', 12),
+    ('The Godfather', '2019-07-18T11:40:00Z', 36),
+    ('The Godfather', '2019-07-18T11:40:09Z', 18);
