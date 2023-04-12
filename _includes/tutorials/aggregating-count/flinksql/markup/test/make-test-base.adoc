@@ -1,0 +1,8 @@
+Create the following abstract test class at `src/test/java/io/confluent/developer/AbstractFlinkKafkaTest.java`:
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/aggregating-count/flinksql/code/src/test/java/io/confluent/developer/AbstractFlinkKafkaTest.java %}</code></pre>
++++++
+
+Take a look at this class. It contains the functionality and utility methods that any Flink SQL test would use. Namely, it
+encapsulates Kafka broker and Schema Registry Testcontainer management and includes utility methods for dynamically configuring Flink SQL Kafka connectors and processing Table API results.
