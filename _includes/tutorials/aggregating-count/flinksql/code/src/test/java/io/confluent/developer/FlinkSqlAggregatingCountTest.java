@@ -24,7 +24,7 @@ public class FlinkSqlAggregatingCountTest extends AbstractFlinkKafkaTest {
     // cause this INSERT to terminate once the latest offset of movie_sales table is reached.
     streamTableEnv.executeSql(getResourceFileContents("populate-movie-sales-by-title.sql"));
 
-    // execute query on result table that should have movie sales aggregated by release year
+    // execute query on result table that should have movie sales aggregated by title
     TableResult tableResult = streamTableEnv.executeSql(getResourceFileContents("query-movie-sales-by-title.sql"));
 
     // Compare actual and expected results. Convert result output to line sets to compare so that order
