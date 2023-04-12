@@ -499,3 +499,6 @@ blocks:
     - name: Flink SQL aggregation MIN/MAX tests
       commands:
       - make -C _includes/tutorials/aggregating-minmax/flinksql/code tutorial
+    - name: Flink SQL test for aggregating count
+      commands:
+      - make -C _includes/tutorials/aggregating-count/flinksql/code tutorial
