@@ -37,7 +37,7 @@ public class TumblingWindow {
         allProps.put(StreamsConfig.DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass());
         allProps.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, SpecificAvroSerde.class);
         allProps.put(StreamsConfig.DEFAULT_TIMESTAMP_EXTRACTOR_CLASS_CONFIG, RatingTimestampExtractor.class.getName());
-        allProps.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+        allProps.put(StreamsConfig.STATESTORE_CACHE_MAX_BYTES_CONFIG, 0);
         try {
             allProps.put(StreamsConfig.STATE_DIR_CONFIG,
                       Files.createTempDirectory("tumbling-windows").toAbsolutePath().toString());
