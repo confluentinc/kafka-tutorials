@@ -61,7 +61,7 @@ public class RunningAverage {
     config.put(REPLICATION_FACTOR_CONFIG, envProps.getProperty("default.topic.replication.factor"));
     config.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, envProps.getProperty("offset.reset.policy"));
 
-    config.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+    config.put(StreamsConfig.STATESTORE_CACHE_MAX_BYTES_CONFIG, 0);
 
     return config;
   }

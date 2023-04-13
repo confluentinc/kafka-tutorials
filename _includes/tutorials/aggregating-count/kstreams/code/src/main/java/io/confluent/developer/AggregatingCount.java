@@ -100,7 +100,7 @@ public class AggregatingCount {
     }
     allProps.put(StreamsConfig.APPLICATION_ID_CONFIG, allProps.getProperty("application.id"));
     allProps.put(StreamsConfig.STATE_DIR_CONFIG, TestUtils.tempDirectory().getPath());
-    allProps.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+    allProps.put(StreamsConfig.STATESTORE_CACHE_MAX_BYTES_CONFIG, 0);
 
     Topology topology = this.buildTopology(allProps, this.ticketSaleSerde(allProps));
     this.createTopics(allProps);
