@@ -140,7 +140,7 @@ public class KafkaStreamsKTableTTLExample {
 
     // These two settings are only required in this contrived example so that the
     // streamsConfiguration.put(StreamsConfig.COMMIT_INTERVAL_MS_CONFIG, 0);
-    // streamsConfiguration.put(StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG, 0);
+    // streamsConfiguration.put(StreamsConfig.STATESTORE_CACHE_MAX_BYTES_CONFIG, 0);
     return envProps;
   }
 
