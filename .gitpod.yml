@@ -1,0 +1,17 @@
+image: gitpod/workspace-full
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+
+tasks:
+  - name: Get-CLI
+    init: |
+      curl -L --http1.1 https://cnfl.io/cli | sudo sh -s -- -b /usr/local/bin
+  - name: Run Docker
+    command: |
+     docker compose up -f _includes/tutorials/$tutorial/$type/code/docker-compose.yml -d
+  - name: Go to tutorial
+    command: |
+      cd _includes/tutorials/$tutorial/$type
