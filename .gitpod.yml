@@ -16,4 +16,4 @@ tasks:
     command: |
       cd _includes/tutorials/$tutorial/$type
 
-workspaceLocation: /workspace/kafka-tutorials/_includes/tutorials/$tutorial/$type/code/src
+workspaceLocation: kafka-tutorials/_includes/tutorials/$tutorial/$type/code/src
