@@ -14,7 +14,6 @@ tasks:
       mkdir -p /workspace/$tutorial
       cp -R /workspace/kafka-tutorials/_includes/tutorials/$tutorial/$type/code/ /workspace/$tutorial/
       rm -rf /workspace/$tutorial/tutorial-steps
-      rm -rf /workspace/kafka-tutorials/
   - name: Run Docker
     command: |
       docker compose -f $tutorial/docker-compose.yml up -d
