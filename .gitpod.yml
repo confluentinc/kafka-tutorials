@@ -11,9 +11,9 @@ tasks:
       curl -L --http1.1 https://cnfl.io/cli | sudo sh -s -- -b /usr/local/bin
   - name: Set Workspace
     command: |
-      mkdir -p /workspace/$tutorial
-      cp -R /workspace/kafka-tutorials/_includes/tutorials/$tutorial/$type/code/ /workspace/$tutorial/
-      rm -rf /workspace/$tutorial/tutorial-steps
+      mkdir -p /workspace/kafka-tutorials/$tutorial
+      cp -R /workspace/kafka-tutorials/_includes/tutorials/$tutorial/$type/code/ /workspace/kafka-tutorials/$tutorial/
+      rm -rf /workspace/kafka-tutorials/$tutorial/tutorial-steps
   - name: Run Docker
     command: |
       docker compose -f $tutorial/docker-compose.yml up -d
