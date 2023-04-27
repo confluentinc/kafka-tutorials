@@ -1,0 +1,50 @@
+dev:
+  steps:
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/custom-connector/confluent/markup/dev/init.adoc
+
+    - title: Provision your Kafka cluster
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/ccloud-setup-self.adoc
+
+    - title: Write the custom connector code
+      content:
+        - action: skip
+          render:
+            file: tutorials/custom-connector/confluent/markup/dev/write-connector.adoc
+
+    - title: Package the custom connector
+      content:
+        - action: skip
+          render:
+            file: tutorials/custom-connector/confluent/markup/dev/package-connector.adoc
+
+    - title: Add the custom connector plugin to Confluent Cloud
+      content:
+          - action: skip
+            render:
+              file: tutorials/custom-connector/confluent/markup/dev/add-connector-plugin.adoc
+
+    - title: Provision an instance of the custom connector in Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/custom-connector/confluent/markup/dev/provision-connector.adoc
+
+    - title: Verify the status of the custom connector in Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: tutorials/custom-connector/confluent/markup/dev/verify-connector.adoc
+
+    - title: Delete the connector
+      content:
+      - action: skip
+        render:
+          file: tutorials/custom-connector/confluent/markup/dev/delete-connector.adoc
