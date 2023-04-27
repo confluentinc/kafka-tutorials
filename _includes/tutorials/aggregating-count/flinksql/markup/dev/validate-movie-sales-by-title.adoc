@@ -1,0 +1,37 @@
+Seeing is believing, so let's query the persistent `movie_ticket_sales_by_title` table. First set the result mode back to `table`:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-count/flinksql/code/tutorial-steps/dev/set-result-mode-table.sql %}</code></pre>
++++++
+
+Then query the `movie_ticket_sales_by_title` table:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-count/flinksql/code/tutorial-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This will yield the same output that the transient query did (perhaps in a different order)
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-count/flinksql/code/tutorial-steps/dev/expected-print-output-topic.log %}</code></pre>
++++++
+
+We could also query the underlying topic directly using `kafka-avro-console-consumer`. Open a new terminal window and run the following command:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-count/flinksql/code/tutorial-steps/dev/validate-movie-sales-by-title.sh %}</code></pre>
++++++
+
+This will yield the following results:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-count/flinksql/code/tutorial-steps/dev/expected-movie-sales-by-title.log %}</code></pre>
++++++
+
+Observe that the latest value for each key (title) matches the final aggregate value of tickets sold that we expect. At this point, we could also adjust the `movie-ticket-sales-by-title` topic's cleanup policy to `compact` so that only the latest aggregates per title are retained:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/aggregating-count/flinksql/code/tutorial-steps/dev/set-topic-cleanup-policy.sh %}</code></pre>
++++++
+
+Kafka log cleanup happens asynchronously, so this wouldn't immediately reduce the topic down to 4 retained messages (one per movie title). It's included here to show a common Kafka topic configuration used in conjunction with Flink SQL tables sourced by the Upsert Kafka connector, particularly for streaming data sets with many updates per key.
