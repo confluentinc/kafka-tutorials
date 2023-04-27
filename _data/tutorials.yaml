@@ -206,8 +206,8 @@ aggregating-count:
     criteria?
   introduction: Suppose you have a topic with events that represent ticket sales for
     movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams,
-    ksqlDB, and Flink SQL.  We'll write a program that calculates the total number of tickets
-    sold per movie.
+    ksqlDB, and Flink SQL.  We'll write a program that calculates the total number
+    of tickets sold per movie.
   status:
     ksql: enabled
     kstreams: enabled
@@ -358,6 +358,18 @@ generate-test-data-streams:
     ksql: enabled
     kstreams: disabled
     kafka: enabled
+custom-connector:
+  title: 1.17.0
+  meta-description: Build and run a custom connector on Confluent Cloud
+  canonical: confluent
+  slug: /custom-connector
+  introduction: 'While Confluent Cloud offers many pre-built <a href=''https://docs.confluent.io/cloud/current/connectors/index.html#supported-connectors''>managed
+    connectors</a>, you may also upload and run custom connectors on Confluent Cloud — either an existing open source connector that you''d like to use,
+    or a connector that you''ve written. In this tutorial, we''ll write a simple source connector plugin, package it so that it can be uploaded to Confluent Cloud, and then run
+    the connector. As a developer, you want to write code. Let Confluent Cloud do the rest.'
+  question: How do I write, package, and run a custom connector on Confluent Cloud?
+  status:
+    confluent: enabled
 aggregating-average:
   title: Compute an average aggregation
   meta-description: compute an average aggregation like count or sum
