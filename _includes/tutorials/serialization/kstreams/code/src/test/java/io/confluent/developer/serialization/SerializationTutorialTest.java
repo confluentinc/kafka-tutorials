@@ -33,8 +33,9 @@ public class SerializationTutorialTest {
 
     final SpecificAvroSerde<Movie> avroSerde = tutorial.movieAvroSerde(envProps);
     final KafkaProtobufSerde<MovieProtos.Movie> protobufSerde = tutorial.movieProtobufSerde(envProps);
-
+    
     Topology topology = tutorial.buildTopology(envProps, avroSerde, protobufSerde);
+    streamsProps.put("statestore.cache.max.bytes", 0);
     TopologyTestDriver testDriver = new TopologyTestDriver(topology, streamsProps);
 
     testDriver

@@ -205,13 +205,14 @@ aggregating-count:
   question: How can you count the number of events in a Kafka topic based on some
     criteria?
   introduction: Suppose you have a topic with events that represent ticket sales for
-    movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams
-    and ksqlDB.  We'll write a program that calculates the total number of tickets
+    movies. In this tutorial, you'll see an example of 'groupby count' in Kafka Streams,
+    ksqlDB, and Flink SQL.  We'll write a program that calculates the total number of tickets
     sold per movie.
   status:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
+    flinksql: enabled
 aggregating-minmax:
   title: How to find the min/max in a stream of events
   meta-description: find the minimum or maximum value of a field in a stream of events
@@ -1357,7 +1358,7 @@ ddos:
   status:
     confluent: enabled
 mainframe-offload:
-  title: Modernize and offload mainframe data
+  title: Integrate Mainframe Data
   meta-description: modernize and offload mainframes data to a more modern data-store
   slug: /mainframe-offload
   introduction: Mainframes have historically underpinned many mission-critical applications

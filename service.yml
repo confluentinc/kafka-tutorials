@@ -11,3 +11,4 @@ semaphore:
   branches:
   - master
   - release
+  - ksqldb-latest
