@@ -1,0 +1,7 @@
+In your terminal, run:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/custom-connector/confluent/code/tutorial-steps/dev/package-connector.sh %}</code></pre>
++++++
+
+This generates the connector zip in the `target/components/packages/` directory.
