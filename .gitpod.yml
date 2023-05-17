@@ -1,0 +1,22 @@
+github:
+  prebuilds:
+    master: true
+    branches: true
+
+tasks:
+  - name: Terminal
+    init: |
+      mkdir tutorial-workspace
+      mv _includes/tutorials/kafka-producer-application/kafka/code/* tutorial-workspace
+      rm -rf -- !(tutorial-workspace)
+      rm -rf tutorial-workspace/tutorial-steps
+    command: gp sync-done code-copy
+  - command: curl -L --http1.1 https://cnfl.io/cli | sudo sh -s -- -b /usr/local/bin
+  - command: gp preview http://kafka-tutorials-staging.s3-website-us-west-2.amazonaws.com/gitpod-example/creating-first-apache-kafka-producer-application/gitpod.html ; exit ; clear
+    openIn: right
+  - init: gp sync-await code-copy
+    command: docker compose -f tutorial-workspace/docker-compose.yml up -d
+
+vscode:
+  extensions:
+    - github.github-vscode-theme

@@ -1,0 +1,48 @@
+dev:
+  steps:
+    - title: Background
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/gitpod/background.adoc
+
+    - title: Application tour
+      content:
+        - action: skip
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/gitpod/app-tour.adoc
+
+    - title: Compile the KafkaProducer application
+      content:
+        - action: execute
+          file: tutorial-steps/gitpod/build-uberjar.sh
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/gitpod/build-uberjar.adoc
+
+    - title: Create a topic
+      content:
+        - action: execute
+          file: tutorial-steps/gitpod/harness-create-topic.sh
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/gitpod/create-topic.adoc
+
+    - title: Run the KafkaProducer application
+      content:
+        - action: execute
+          file: tutorial-steps/gitpod/run-dev-app.sh
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/gitpod/run-dev-app.adoc
+
+    - title: Confirm records sent by consuming from topic
+      content:
+        - action: execute_async
+          file: tutorial-steps/gitpod/harness-console-consumer.sh
+          stdout: tutorial-steps/gitpod/outputs/actual-output.txt
+          render:
+            file: tutorials/kafka-producer-application/kafka/markup/gitpod/run-consumer.adoc
+
+        - name: wait for the consumer to read the messages
+          action: sleep
+          ms: 5000
+          render:
+            skip: true
