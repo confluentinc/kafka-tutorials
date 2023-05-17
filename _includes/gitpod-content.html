@@ -1,0 +1,216 @@
+<div>
+  <section class="section" data-tracking-location="Run it">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-full">
+          {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
+          <div class="tutorial-try-it-step content" data-tracking-location="Step {{ forloop.index }}">
+            <h2
+              class="title tutorial-section-item-title"
+              id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
+            <div class="content-item">
+              <div class="item-display">
+
+              {% for section in step.content %}
+
+              {% if section.action == "docker_ksql_cli_session" or section.action == "docker_flinksql_cli_session" %}
+
+                {% if section.render.skip != true %}
+                  {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+                  {{ prose | asciidocify }}
+                {% endif %}
+
+                {% for subsection in section.stdin %}
+                  {% capture prose %}{% include {{ subsection.render.file }} %}{% endcapture %}
+                  {{ prose | asciidocify }}
+                {% endfor %}
+
+              {% elsif section.render.skip != true %}
+
+                {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+                {{ prose | asciidocify }}
+
+              {% endif %}
+
+              {% endfor %}
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% if site.data.harnesses[page.static_data][page.stack].test %}
+  <section class="section" data-tracking-location="Test it">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-full">
+          <h2 class="title tutorial-section-title" id="test-it">Test it</h2>
+
+          {% for step in site.data.harnesses[page.static_data][page.stack].test.steps %}
+          <div class="tutorial-try-it-step content" data-tracking-location="Step {{ forloop.index }}">
+            <h2
+              class="title tutorial-section-item-title"
+              id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
+            <div class="content-item">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="item-display">
+
+              {% for section in step.content %}
+
+              {% if section.render.skip != true %}
+
+              {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+              {{ prose | asciidocify }}
+
+              {% endif %}
+
+              {% endfor %}
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+  {% if site.data.harnesses[page.static_data][page.stack].perftest %}
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-full">
+          <h2 class="title tutorial-section-title" id="perf-test-it">
+            Performance test it
+          </h2>
+
+          {% for step in site.data.harnesses[page.static_data][page.stack].perftest.steps %}
+          <div class="tutorial-try-it-step content">
+            <h2
+                    class="title tutorial-section-item-title"
+                    id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
+            <div class="content-item">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="item-display">
+
+                {% for section in step.content %}
+
+                {% if section.render.skip != true %}
+
+                {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+                {{ prose | asciidocify }}
+
+                {% endif %}
+
+                {% endfor %}
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+{% if site.data.harnesses[page.static_data][page.stack].prod %}
+  <section class="section" data-tracking-location="Take it to production">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-full">
+          <h2 class="title tutorial-section-title" id="take-it-to-prod">
+            Take it to production
+          </h2>
+
+          {% for step in site.data.harnesses[page.static_data][page.stack].prod.steps %}
+          <div class="tutorial-try-it-step content" data-tracking-location="Step {{ forloop.index }}">
+            <h2
+              class="title tutorial-section-item-title"
+              id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
+            <div class="content-item">
+              <div class="num">{{ forloop.index }}</div>
+              <div class="item-display">
+
+              {% for section in step.content %}
+
+              {% if section.render.skip != true %}
+
+              {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+              {{ prose | asciidocify }}
+
+              {% endif %}
+
+              {% endfor %}
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endif %}
+{% if site.data.harnesses[page.static_data][page.stack].ccloud %}
+<section class="section" data-tracking-location="Deploy on Confluent Cloud">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-full">
+        <h2
+          class="title tutorial-section-title"
+          id="deploy-on-confluent-cloud"
+        >
+          Deploy on Confluent Cloud
+        </h2>
+
+        {% for step in site.data.harnesses[page.static_data][page.stack].ccloud.steps %}
+        <div class="tutorial-try-it-step content" data-tracking-location="Step {{ forloop.index }}">
+          <h2
+            class="title tutorial-section-item-title"
+            id="{{ step.title | slugify }}"
+          >
+            {{ step.title }}
+          </h2>
+
+          <div class="content-item">
+            <div class="num">{{ forloop.index }}</div>
+            <div class="item-display">
+
+            {% for section in step.content %}
+
+            {% if section.render.skip != true %}
+
+            {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+            {{ prose | asciidocify }}
+
+            {% endif %}
+
+            {% endfor %}
+
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+</div>
