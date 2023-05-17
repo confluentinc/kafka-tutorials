@@ -13,9 +13,6 @@ kafka:
 confluent:
   pretty: Confluent
 
-gitpod:
-  pretty: Gitpod
-
 # use for the produce-consume-lang tutorial only
 c:
   pretty: C
