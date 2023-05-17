@@ -1,0 +1,83 @@
+---
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+  {% include vendors.html %}
+
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta class="swiftype" name="site-id" data-type="integer" content="3" />
+  <meta class="swiftype" name="docs-boost" data-type="integer" content="6" />
+  <meta class="swiftype" name="contentType" data-type="string" content="tutorial" />
+  <meta name="description" content="In this tutorial, learn how to {{ site.data.tutorials[page.static_data].meta-description }} using {{ site.data.stacks[page.stack].pretty }}, with step-by-step instructions and examples.">
+  {% if site.data.tutorials[page.static_data].canonical %}
+    {% unless page.stack == site.data.tutorials[page.static_data].canonical or page.stack == 'ksql' %}
+      <link rel="canonical" href="{{ site.url }}{{ site.data.tutorials[page.static_data].slug }}/{{ site.data.tutorials[page.static_data].canonical }}.html" />
+    {% endunless %}
+  {% endif %}
+
+  <title>{{ site.data.tutorials[page.static_data].title }} using {{ site.data.stacks[page.stack].pretty }}</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/github.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="{{ "/assets/sass/fonts.css" | relative_url }}" />
+  <link rel="stylesheet" href="{{ "/assets/sass/main.css" | relative_url }}" />
+  <link rel="preconnect" href="https://reveal.clearbit.com" crossorigin/>
+  <script src="https://reveal.clearbit.com/v1/companies/reveal?authorization=pk_3b8bb5ef85b03b3e0d9bd2165914fee4&variable=reveal"></script>
+  <script src="https://cdn.optimizely.com/js/15784060578.js"></script>
+  <script>
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","debug","page","once","off","on","addSourceMiddleware","addIntegrationMiddleware","setAnonymousId","addDestinationMiddleware"];analytics.factory=function(e){return function(){var t=Array.prototype.slice.call(arguments);t.unshift(e);analytics.push(t);return analytics}};for(var e=0;e<analytics.methods.length;e++){var key=analytics.methods[e];analytics[key]=analytics.factory(key)}analytics.load=function(key,e){var t=document.createElement("script");t.type="text/javascript";t.async=!0;t.src="https://cdn.segment.com/analytics.js/v1/" + key + "/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n);analytics._loadOptions=e};analytics._writeKey="az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6";analytics.SNIPPET_VERSION="4.13.2";
+    analytics.load("az10o8Nrc5rgWtPla1QHrg1rTjPdYFV6");
+    analytics.page();
+    }}();
+  </script>
+  <script src="../assets/js/feedback.js"></script>
+</head>
+<body class="pg-tutorial" data-tracking-location="page > layout">
+
+  {% include feedback-button.html %}
+
+  <section class="hero" data-tracking-location="body > hero">
+    <div class="hero-body">
+      <div class="container">
+        <div class="headline">
+          <h1>{{ site.data.tutorials[page.static_data].title }}</h1>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="tutorial-markup" data-tracking-location="body">
+    {% if page.help_wanted %}
+    {% include contribute-tutorial.html %}
+    {% else %}
+      {% if page.help_wanted_lang %}
+      {% include contribute-tutorial-lang.html %}
+      {% else %}
+      {% include gitpod-content.html %}
+      <section class="section">
+        <div class="container">
+          <ul class="breadcrumb" data-tracking-location="breadcrumb-bottom">
+            <li><a href="{{ "/" | relative_url }}">&lt; Back to tutorials</a></li>
+          </ul>
+        </div>
+      </section>
+      {% endif %}
+    {% endif %}
+  </div>
+
+  {% include footer.html %}
+
+  <script src="{{ "/assets/js/segment.js" | relative_url }}"></script>
+  <script src="{{ "/assets/js/jquery.min.js" | relative_url }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/languages/scala.min.js"></script>
+  <script src="{{ "/assets/js/tutorial.js" | relative_url }}"></script>
+  <script src="{{ "/assets/js/nav.js" | relative_url }}"></script>
+  <script src="{{ "/assets/js/scrollDepth.js" | relative_url }}"></script>
+  <script src="https://use.fontawesome.com/releases/v5.9.0/js/all.js"></script>
+</body>
+</html>
