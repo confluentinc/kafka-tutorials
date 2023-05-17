@@ -29,3 +29,6 @@ harness_runner/harness_runner.pyc
 
 # Ignore Gradle build output directory
 build
+
+# Ignore this directory that gets used for gitpod tutorials
+tutorial-workspace
