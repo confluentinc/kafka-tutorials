@@ -55,6 +55,7 @@ global_job_config:
       aws ecr get-login-password --region us-west-2 | docker login --username AWS
       --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
     - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
+    - echo "test"
     - pip3 install -e harness_runner/
     - >
       find _includes/tutorials/**/ksql -name docker-compose.yml | xargs -I {} sed
