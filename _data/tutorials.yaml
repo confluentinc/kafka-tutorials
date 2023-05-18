@@ -604,12 +604,12 @@ streams-to-table:
     kafka: disabled
     confluent: enabled
 kafka-producer-application:
-  title: How to build your first Apache KafkaProducer application
+  title: How to build your first Apache Kafka® producer application
   meta-description: build your first Kafka producer application
   canonical: confluent
   slug: /creating-first-apache-kafka-producer-application
   question: How do you get started building your first Kafka producer application?
-  introduction: You'd like to integrate a KafkaProducer into your event-driven application,
+  introduction: You'd like to integrate a Kafka producer into your event-driven application,
     but you're not sure where to start. In this tutorial, you'll build a small application
     that uses a KafkaProducer to write records to Kafka.
   status:

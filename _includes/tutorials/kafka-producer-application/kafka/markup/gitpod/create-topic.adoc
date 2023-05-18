@@ -1,0 +1,20 @@
+
+In this step we're going to create a topic for use during this tutorial. Before proceeding, ensure that Kafka is up and running by listing topics:
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/gitpod/list-topics.sh %}</code></pre>
++++++
+
+You should see the `__consumer_offsets` and `_schemas` topics listed. If you see an error like `No such container: broker`, the images may still be downloading in the terminal named `Docker`.
+
+When Kafka is up and running, run this command to open a shell on the broker Docker container
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/gitpod/open-docker-shell.sh %}</code></pre>
++++++
+
+Next, create the topic that the producer can write to
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-producer-application/kafka/code/tutorial-steps/gitpod/create-topic.sh %}</code></pre>
++++++
+
+Enter `CTRL+D` to exit the broker shell.
