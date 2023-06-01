@@ -13,3 +13,5 @@ And it should produce the following output:
 +++++
 
 Notice that the duplicate IP addresses have an `IP_COUNT` value greater than one.  So our next step is to filter out the duplicates by only selecting records where the `IP_COUNT` column equals `1`.
+
+You'll also notice that each ip-address + url combo have the same timestamp value.  That's because this this statement https://docs.ksqldb.io/en/latest/developer-guide/ksqldb-reference/aggregate-functions/#earliest_by_offset[EARLIEST_BY_OFFSET(ROWTIME)] selects the earliest `ROWTIME`, the event timestamp, for the composite key of ip-address and url.  This is the desired behavior because when you add the de-duplication, you'll only want the event timestamp of the first user click for the unique ip-address and url pair.
