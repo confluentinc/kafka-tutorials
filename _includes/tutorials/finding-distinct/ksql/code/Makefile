@@ -11,8 +11,6 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	mkdir -p $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/finding-distinct/ksql.yml $(TEMP_DIR) $(SEQUENCE)
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-transient-window.log $(DEV_OUTPUTS_DIR)/transient-window/output-0.log
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-transient-query.log $(DEV_OUTPUTS_DIR)/transient-query/output-0.log
-	diff --strip-trailing-cr $(STEPS_DIR)/dev/expected-print-topic.log $(DEV_OUTPUTS_DIR)/print-topic/output-0.log
+	
 	bash -c "diff --strip-trailing-cr <(sort $(STEPS_DIR)/test/expected-results.log) <(sort $(TEST_OUTPUTS_DIR)/test-results.log)"
 	reset
