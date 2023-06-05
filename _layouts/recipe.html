@@ -61,9 +61,6 @@
       {% if site.data.tutorials[page.static_data].introduction-media %}
         <img class="example-image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
       {% endif %}
-      <ul class="breadcrumb" data-tracking-location="breadcrumb-top">
-        <li><a href="{{ "/" | relative_url }}">&lt; Back to tutorials</a></li>
-      </ul>
       <a href="{{ site.github_url }}/tree/master/_includes/tutorials/{{ page.static_data }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
       {% unless page.help_wanted %}
         <div class="example">
