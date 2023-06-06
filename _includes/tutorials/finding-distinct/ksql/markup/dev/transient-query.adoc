@@ -1,9 +1,9 @@
 In the first statement above, we created the query that finds click events, naming it `DETECTED_CLICKS`. We modeled it as a table since the query performs aggregations.
 
-As we're grouping by ip-address, url and timestamp, these columns will become part of the primary key of the table.
+As we're grouping by ip-address and url, these columns will become part of the primary key of the table.
 Primary key columns are stored in the Kafka message's key. As we'll need them in the value later, we use `AS_VALUE` to copy the columns into the value and set their name. To avoid the value column names clashing with the key columns, we add aliases to rename the key columns.
 
-As it stands, the key of the `DETECTED_CLICKS` table contains the ip-address, url, timestamp columns, and as the table is windowed, the window start time. Wouldn't it be nice if the key was just the IP address?
+As it stands, the key of the `DETECTED_CLICKS` table contains the ip-address, and url columns, and as the table is windowed, the window start time. Wouldn't it be nice if the key was just the IP address?
 You'll take care of that as well as finding distinct IP addresses with the next two queries.
 
 The second statement declares a stream on top of the `DETECTED_CLICKS` table, defining only the value columns we're interested in.
