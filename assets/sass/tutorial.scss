@@ -4,8 +4,7 @@
   background: $color_white;
 
   .section {
-    padding-top: 35px;
-    padding-bottom: 35px;
+    padding: 35px 0 0 0;
 
     .tutorial-section-title {
       font-size: 35px;
@@ -17,7 +16,7 @@
 
     .tutorial-section-item-title {
       font-size: 28px;
-      margin-top: 40px;
+      margin-top: 20px;
     }
 
     .example-image {
@@ -109,7 +108,7 @@
   }
 
   .example {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 
     .example-content {
       display: flex;
@@ -128,7 +127,10 @@
     }
 
     .text {
-      @include p;
+      font-size: 1rem;
+      font-weight: 400;
+      color: $color_black;
+      line-height: 1.5;
     }
 
     .image {
@@ -181,6 +183,7 @@
 
   .tutorial-navigation {
     display: inline-block;
+    margin-bottom: 0;
 
     li {
       margin-left: 0;
@@ -194,7 +197,7 @@
     }
 
     ul {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       margin-top: 10px;
 
       a {

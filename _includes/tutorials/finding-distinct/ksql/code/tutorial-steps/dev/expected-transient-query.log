@@ -1,12 +1,11 @@
-+-----------------------------------------+-----------------------------------------+-----------------------------------------+
-|IP_ADDRESS                               |URL                                      |TIMESTAMP                                |
-+-----------------------------------------+-----------------------------------------+-----------------------------------------+
-|10.0.0.1                                 |https://docs.confluent.io/current/tutoria|2021-01-17T14:50:43+00:00                |
-|                                         |ls/examples/kubernetes/gke-base/docs/inde|                                         |
-|                                         |x.html                                   |                                         |
-|10.0.0.12                                |https://www.confluent.io/hub/confluentinc|2021-01-17T14:53:44+00:01                |
-|                                         |/kafka-connect-datagen                   |                                         |
-|10.0.0.13                                |https://www.confluent.io/hub/confluentinc|2021-01-17T14:56:45+00:03                |
-|                                         |/kafka-connect-datagen                   |                                         |
++--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+
+|IP_ADDRESS                                        |URL                                               |TIMESTAMP                                         |
++--------------------------------------------------+--------------------------------------------------+--------------------------------------------------+
+|10.0.0.1                                          |https://docs.confluent.io/current/tutorials/exampl|2023-05-31 17:40:03.024                           |
+|                                                  |es/kubernetes/gke-base/docs/index.html            |                                                  |
+|10.0.0.12                                         |https://www.confluent.io/hub/confluentinc/kafka-co|2023-05-31 17:40:03.052                           |
+|                                                  |nnect-datagen                                     |                                                  |
+|10.0.0.13                                         |https://www.confluent.io/hub/confluentinc/kafka-co|2023-05-31 17:40:03.077                           |
+|                                                  |nnect-datagen                                     |                                                  |
 Limit Reached
 Query terminated
