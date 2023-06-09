@@ -1,157 +1,123 @@
 answer:
   steps:
-    - title:
-      content:
-        - action: skip
-          render:
-            file: tutorials/multi-joins/ksql/markup/answer/multi-way-join.adoc
+  - title: ~
+    content:
+    - action: skip
+      render:
+        file: tutorials/multi-joins/ksql/markup/answer/multi-way-join.adoc
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/multi-joins/ksql/markup/dev/init.adoc
-
-        - change_directory: multi-joins
-          action: execute
-          file: tutorial-steps/dev/make-dirs.sh
-          render:
-            file: tutorials/multi-joins/ksql/markup/dev/make-dirs.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/multi-joins/ksql/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/multi-joins/ksql/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Create input tables and streams 
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          stdout:
-            directory: tutorial-steps/dev/outputs
-          column_width: 17
-          render:
-            file: tutorials/multi-joins/ksql/markup/dev/start-cli.adoc
-          stdin:
-            - file: tutorial-steps/dev/create-inputs-customers.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/create-inputs-customers.adoc
-            - file: tutorial-steps/dev/create-inputs-items.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/create-inputs-items.adoc
-
-            - file: tutorial-steps/dev/create-inputs-orders.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/create-inputs-orders.adoc
-
-            - file: tutorial-steps/dev/populate-table-customers.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/populate-table-customers.adoc
-
-            - file: tutorial-steps/dev/populate-table-items.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/populate-table-items.adoc
-
-            - file: tutorial-steps/dev/populate-stream-orders.sql
-              render:
-                file: tutorials/multi-joins/ksql/markup/dev/populate-stream-orders.adoc
-
-    - title: Create the multi-way join stream
-      content:
-       - action: docker_ksql_cli_session
-         container: ksqldb-cli
-         docker_bootup_file: tutorial-steps/dev/start-cli.sh
-         stdout:
-           directory: tutorial-steps/dev/outputs
-         column_width: 17
-         render:
-           skip: true
-         stdin:
-           - file: tutorial-steps/dev/set-properties.sql
-             render:
-               file: tutorials/multi-joins/ksql/markup/dev/set-properties.adoc
-
-           - file: tutorial-steps/dev/multi-way-join.sql
-             render:
-               file: tutorials/multi-joins/ksql/markup/dev/multi-way-join.adoc
-
-           - file: tutorial-steps/dev/transient-query.sql
-             render:
-               file: tutorials/multi-joins/ksql/markup/dev/transient-query.adoc
-
-           - file: tutorial-steps/dev/print-topic.sql
-             render:
-               file: tutorials/multi-joins/ksql/markup/dev/print-topic.adoc
-         stdout:
-           directory: tutorial-steps/dev/outputs
-
-    - title: Write your statements to a file
-      content:
-        - action: make_file
-          file: src/statements.sql
-          render:
-            file: tutorials/multi-joins/ksql/markup/dev/make-src-file.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/multi-joins/ksql/markup/dev/init.adoc
+    - change_directory: multi-joins
+      action: execute
+      file: tutorial-steps/dev/make-dirs.sh
+      render:
+        file: tutorials/multi-joins/ksql/markup/dev/make-dirs.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/multi-joins/ksql/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/multi-joins/ksql/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Create input tables and streams
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      stdout:
+        directory: tutorial-steps/dev/outputs
+      column_width: 17
+      render:
+        file: tutorials/multi-joins/ksql/markup/dev/start-cli.adoc
+      stdin:
+      - file: tutorial-steps/dev/create-inputs-customers.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/create-inputs-customers.adoc
+      - file: tutorial-steps/dev/create-inputs-items.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/create-inputs-items.adoc
+      - file: tutorial-steps/dev/create-inputs-orders.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/create-inputs-orders.adoc
+      - file: tutorial-steps/dev/populate-table-customers.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/populate-table-customers.adoc
+      - file: tutorial-steps/dev/populate-table-items.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/populate-table-items.adoc
+      - file: tutorial-steps/dev/populate-stream-orders.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/populate-stream-orders.adoc
+  - title: Create the multi-way join stream
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      stdout:
+        directory: tutorial-steps/dev/outputs
+      column_width: 17
+      render:
+        skip: true
+      stdin:
+      - file: tutorial-steps/dev/set-properties.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/set-properties.adoc
+      - file: tutorial-steps/dev/multi-way-join.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/multi-way-join.adoc
+      - file: tutorial-steps/dev/transient-query.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/transient-query.adoc
+      - file: tutorial-steps/dev/print-topic.sql
+        render:
+          file: tutorials/multi-joins/ksql/markup/dev/print-topic.adoc
+  - title: Write your statements to a file
+    content:
+    - action: make_file
+      file: src/statements.sql
+      render:
+        file: tutorials/multi-joins/ksql/markup/dev/make-src-file.adoc
 test:
   steps:
-    - title: Create the test data
-      content:
-        - action: make_file
-          file: test/input.json
-          render:
-            file: tutorials/multi-joins/ksql/markup/test/make-test-input.adoc
-
-        - action: make_file
-          file: test/output.json
-          render:
-            file: tutorials/multi-joins/ksql/markup/test/make-test-output.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/run-tests.sh
-          stdout: tutorial-steps/test/outputs/test-results.log
-          render:
-            file: tutorials/multi-joins/ksql/markup/test/run-tests.adoc
-
-prod:
-  steps:
-    - title: Send the statements to the REST API
-      content:
-        - action: skip
-          render:
-            file: tutorials/multi-joins/ksql/markup/prod/submit-to-api.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
+  - title: Create the test data
+    content:
+    - action: make_file
+      file: test/input.json
+      render:
+        file: tutorials/multi-joins/ksql/markup/test/make-test-input.adoc
+    - action: make_file
+      file: test/output.json
+      render:
+        file: tutorials/multi-joins/ksql/markup/test/make-test-output.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/run-tests.sh
+      stdout: tutorial-steps/test/outputs/test-results.log
+      render:
+        file: tutorials/multi-joins/ksql/markup/test/run-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud.adoc

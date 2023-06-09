@@ -1,195 +1,140 @@
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/init.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Create a topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/harness-create-topic.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/create-topic.adoc
-            
-
-    - title: Configure the project
-      content:
-        - action: make_file
-          file: build.gradle
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-build-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/gradle-wrapper.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-gradle-wrapper.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-config-dir.adoc
-
-        - action: make_file
-          file: configuration/dev.properties
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-dev-file.adoc
-
-        - action: skip
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/explain-properties.adoc
-
-    - title: Create the Kafka Consumer Application
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-src-dir.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-src-dir.adoc
-            
-        - action: make_file
-          file: src/main/java/io/confluent/developer/KafkaConsumerApplication.java
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-consumer-app.adoc 
-
-    - title: Create supporting classes
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/ConsumerRecordsHandler.java
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/make-supporting-classes.adoc 
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/FileWritingRecordsHandler.java
-          render:
-            skip: true
-
-    - title: Compile and run the Kafka Consumer program
-      content:
-        - action: execute
-          file: tutorial-steps/dev/build-uberjar.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/build-uberjar.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/run-dev-app.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/run-dev-app.adoc
-
-    - title: Produce sample data to the input topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/harness-console-producer.sh
-          stdin: tutorial-steps/dev/input.txt
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/run-producer.adoc
-
-        - name: wait for producer
-          action: sleep
-          ms: 5000
-          render:
-            skip: true
-
-    - title: Inspect the consumed records
-      content:
-        - action: execute
-          file: tutorial-steps/dev/print-consumer-file-results.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.txt
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/dev/print-consumer-file-results.adoc
-
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/init.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Create a topic
+    content:
+    - action: execute
+      file: tutorial-steps/dev/harness-create-topic.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/create-topic.adoc
+  - title: Configure the project
+    content:
+    - action: make_file
+      file: build.gradle
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/make-build-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/gradle-wrapper.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/make-gradle-wrapper.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-configuration-dir.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/make-config-dir.adoc
+    - action: make_file
+      file: configuration/dev.properties
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/make-dev-file.adoc
+    - action: skip
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/explain-properties.adoc
+  - title: Create the Kafka Consumer Application
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-src-dir.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/make-src-dir.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/KafkaConsumerApplication.java
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/make-consumer-app.adoc
+  - title: Create supporting classes
+    content:
+    - action: make_file
+      file: src/main/java/io/confluent/developer/ConsumerRecordsHandler.java
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/make-supporting-classes.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/FileWritingRecordsHandler.java
+      render:
+        skip: true
+  - title: Compile and run the Kafka Consumer program
+    content:
+    - action: execute
+      file: tutorial-steps/dev/build-uberjar.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/build-uberjar.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/run-dev-app.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/run-dev-app.adoc
+  - title: Produce sample data to the input topic
+    content:
+    - action: execute
+      file: tutorial-steps/dev/harness-console-producer.sh
+      stdin: tutorial-steps/dev/input.txt
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/run-producer.adoc
+    - name: wait for producer
+      action: sleep
+      ms: 5000
+      render:
+        skip: true
+  - title: Inspect the consumed records
+    content:
+    - action: execute
+      file: tutorial-steps/dev/print-consumer-file-results.sh
+      stdout: tutorial-steps/dev/outputs/actual-output.txt
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/dev/print-consumer-file-results.adoc
 test:
   steps:
-    - title: Create a test configuration file
-      content:
-        - action: make_file
-          file: configuration/test.properties
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/test/make-test-file.adoc
-
-    - title: Write a test for the consumer application
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-dir.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/test/make-test-dir.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/KafkaConsumerApplicationTest.java
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/test/make-consumer-application-test.adoc
-
-    - title: Write a test for the records ConsumerRecordsHandler
-      content:
-        - action: make_file
-          file: src/test/java/io/confluent/developer/FileWritingRecordsHandlerTest.java
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/test/make-consumer-records-handler-test.adoc
-
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/invoke-tests.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/test/invoke-tests.adoc
-
-prod:
-  steps:
-    - title: Create a production configuration file
-      content:
-        - action: make_file
-          file: configuration/prod.properties
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/prod/make-prod-file.adoc
-
-    - title: Build a Docker image
-      content:
-        - action: execute
-          file: tutorial-steps/prod/build-image.sh
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/prod/build-image.adoc
-
-    - title: Launch the container
-      content:
-        - action: skip
-          render:
-            file: tutorials/kafka-consumer-application/kafka/markup/prod/launch-container.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
+  - title: Create a test configuration file
+    content:
+    - action: make_file
+      file: configuration/test.properties
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/test/make-test-file.adoc
+  - title: Write a test for the consumer application
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-dir.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/test/make-test-dir.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/KafkaConsumerApplicationTest.java
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/test/make-consumer-application-test.adoc
+  - title: Write a test for the records ConsumerRecordsHandler
+    content:
+    - action: make_file
+      file: src/test/java/io/confluent/developer/FileWritingRecordsHandlerTest.java
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/test/make-consumer-records-handler-test.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/invoke-tests.sh
+      render:
+        file: tutorials/kafka-consumer-application/kafka/markup/test/invoke-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud-properties.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud-properties.adoc
