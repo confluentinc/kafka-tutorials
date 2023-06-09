@@ -1,1 +1,0 @@
-[{"@type":"connector_list","statementText":"SHOW CONNECTORS;","warnings":[],"connectors":[{"name":"CLICKS","type":"source","className":"io.mdrogalis.voluble.VolubleSourceConnector","state":"RUNNING (1/1 tasks RUNNING)"},{"name":"NETWORK_TRAFFIC","type":"source","className":"io.mdrogalis.voluble.VolubleSourceConnector","state":"RUNNING (1/1 tasks RUNNING)"}]}]

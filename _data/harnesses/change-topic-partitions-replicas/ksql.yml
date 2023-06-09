@@ -1,155 +1,122 @@
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/init.adoc
-
-        - change_directory: change-topic-partitions-replicas
-          action: execute
-          file: tutorial-steps/dev/make-dirs.sh
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/make-dirs.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Create the original topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/create-topic.sh
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/create-topic.adoc
-
-    - title: Describe the original topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/describe-original-topic.sh
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/describe-original-topic.adoc
-
-    - title: Write the program interactively using the CLI
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 24
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/start-cli.adoc
-          stdin:
-            - file: tutorial-steps/dev/create-original-stream.sql
-              render:
-                file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/create-inputs.adoc
-
-            - file: tutorial-steps/dev/create-new-stream.sql
-              render:
-                file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/create-new-stream.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
-
-    - title: Describe the new topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/describe-new-topic.sh
-          stdout: tutorial-steps/dev/outputs/actual-describe-from-topic2.txt
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/describe-new-topic.adoc
-
-    - title: Write your statements to a file
-      content:
-        - action: make_file
-          file: src/statements.sql
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/make-src-file.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/init.adoc
+    - change_directory: change-topic-partitions-replicas
+      action: execute
+      file: tutorial-steps/dev/make-dirs.sh
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/make-dirs.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Create the original topic
+    content:
+    - action: execute
+      file: tutorial-steps/dev/create-topic.sh
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/create-topic.adoc
+  - title: Describe the original topic
+    content:
+    - action: execute
+      file: tutorial-steps/dev/describe-original-topic.sh
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/describe-original-topic.adoc
+  - title: Write the program interactively using the CLI
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      column_width: 24
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/start-cli.adoc
+      stdin:
+      - file: tutorial-steps/dev/create-original-stream.sql
+        render:
+          file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/create-inputs.adoc
+      - file: tutorial-steps/dev/create-new-stream.sql
+        render:
+          file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/create-new-stream.adoc
+      stdout:
+        directory: tutorial-steps/dev/outputs
+  - title: Describe the new topic
+    content:
+    - action: execute
+      file: tutorial-steps/dev/describe-new-topic.sh
+      stdout: tutorial-steps/dev/outputs/actual-describe-from-topic2.txt
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/describe-new-topic.adoc
+  - title: Write your statements to a file
+    content:
+    - action: make_file
+      file: src/statements.sql
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/make-src-file.adoc
 test:
   steps:
-    - title: Run the console Kafka producer
-      content:
-        - action: execute
-          file: tutorial-steps/test/harness-console-producer.sh
-          stdin: test/input.txt
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/test/produce-data-input.adoc
-
-        - name: wait for producer to write records
-          action: sleep
-          ms: 2000
-          render:
-            skip: true
-
-    - title: Produce data to the original Kafka topic
-      content:
-        - action: make_file
-          file: test/input.txt
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/test/make-test-input.adoc
-
-    - title: View the data in the original topic (partition 0)
-      content:
-        - action: execute
-          file: tutorial-steps/test/harness-console-consumer-topic1-partition-0.sh
-          stdout: tutorial-steps/test/outputs/actual-output-topic1-partition-0.txt
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/test/consume-data-topic1-partition-0.adoc
-
-    - title: View the data in the new topic (partition 0)
-      content:
-        - action: execute
-          file: tutorial-steps/test/harness-console-consumer-topic2-partition-0.sh
-          stdout: tutorial-steps/test/outputs/actual-output-topic2-partition-0.txt
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/test/consume-data-topic2-partition-0.adoc
-
-    - title: View the data in the new topic (partition 1)
-      content:
-        - action: execute
-          file: tutorial-steps/test/harness-console-consumer-topic2-partition-1.sh
-          stdout: tutorial-steps/test/outputs/actual-output-topic2-partition-1.txt
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/test/consume-data-topic2-partition-1.adoc
-
-prod:
-  steps:
-    - title: Send the statements to the REST API
-      content:
-        - action: skip
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/prod/submit-to-api.adoc
-
-    - title: Clean up Docker containers
-      content:
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            file: tutorials/change-topic-partitions-replicas/ksql/markup/dev/clean-up.adoc
-
+  - title: Run the console Kafka producer
+    content:
+    - action: execute
+      file: tutorial-steps/test/harness-console-producer.sh
+      stdin: test/input.txt
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/test/produce-data-input.adoc
+    - name: wait for producer to write records
+      action: sleep
+      ms: 2000
+      render:
+        skip: true
+  - title: Produce data to the original Kafka topic
+    content:
+    - action: make_file
+      file: test/input.txt
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/test/make-test-input.adoc
+  - title: View the data in the original topic (partition 0)
+    content:
+    - action: execute
+      file: tutorial-steps/test/harness-console-consumer-topic1-partition-0.sh
+      stdout: tutorial-steps/test/outputs/actual-output-topic1-partition-0.txt
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/test/consume-data-topic1-partition-0.adoc
+  - title: View the data in the new topic (partition 0)
+    content:
+    - action: execute
+      file: tutorial-steps/test/harness-console-consumer-topic2-partition-0.sh
+      stdout: tutorial-steps/test/outputs/actual-output-topic2-partition-0.txt
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/test/consume-data-topic2-partition-0.adoc
+  - title: View the data in the new topic (partition 1)
+    content:
+    - action: execute
+      file: tutorial-steps/test/harness-console-consumer-topic2-partition-1.sh
+      stdout: tutorial-steps/test/outputs/actual-output-topic2-partition-1.txt
+      render:
+        file: tutorials/change-topic-partitions-replicas/ksql/markup/test/consume-data-topic2-partition-1.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud.adoc

@@ -1,168 +1,119 @@
 dev:
   steps:
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/init.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/make-config-dir.adoc
-
-    - title: Provision your Kafka cluster
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/ccloud-setup-self.adoc
-
-    - title: Write the cluster information into a local file
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/config-create-java.adoc
-
-    - title: Download and setup the Confluent CLI
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/get-ccloud.adoc
-
-    - title: Configure the project
-      content:
-        - action: make_file
-          file: build.gradle
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/make-build-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/gradle-wrapper.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/make-gradle-wrapper.adoc
-
-        - action: make_file
-          file: configuration/dev.properties
-          render:
-            file: tutorials/finding-distinct/confluent/markup/dev/make-config-file.adoc
-
-    - title: Update the properties file with Confluent Cloud information
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/append-ccloud-config.adoc
-
-    - title: Create a schema for the events
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-avro-dir.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/make-avro-dir.adoc
-
-        - action: make_file
-          file: src/main/avro/click.avsc
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/make-avro-schema.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/build-project.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/build-project.adoc
-
-    - title: Create the Kafka Streams topology
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-src-dir.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/make-src-dir.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/FindDistinctEvents.java
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/make-topology.adoc
-
-    - title: Compile and run the Kafka Streams program
-      content:
-        - action: execute
-          file: tutorial-steps/dev/build-uberjar.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/build-uberjar.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/run-dev-app.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/dev/run-dev-app.adoc
-
-    - title: Produce sample click events to the input topic
-      content:
-        - action: skip
-          render:
-            file: tutorials/finding-distinct/confluent/markup/dev/ccloud-run-produce.adoc
-
-    - title: Consume distinct events from the output topic
-      content:
-        - action: skip
-          render:
-            file: tutorials/finding-distinct/confluent/markup/dev/ccloud-run-consume.adoc
-
-    - title: Teardown Confluent Cloud resources
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/ccloud-destroy.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/init.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-configuration-dir.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/make-config-dir.adoc
+  - title: Provision your Kafka cluster
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/ccloud-setup-self.adoc
+  - title: Write the cluster information into a local file
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/config-create-java.adoc
+  - title: Download and setup the Confluent CLI
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/get-ccloud.adoc
+  - title: Configure the project
+    content:
+    - action: make_file
+      file: build.gradle
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/make-build-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/gradle-wrapper.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/make-gradle-wrapper.adoc
+    - action: make_file
+      file: configuration/dev.properties
+      render:
+        file: tutorials/finding-distinct/confluent/markup/dev/make-config-file.adoc
+  - title: Update the properties file with Confluent Cloud information
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/append-ccloud-config.adoc
+  - title: Create a schema for the events
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-avro-dir.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/make-avro-dir.adoc
+    - action: make_file
+      file: src/main/avro/click.avsc
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/make-avro-schema.adoc
+    - action: execute
+      file: tutorial-steps/dev/build-project.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/build-project.adoc
+  - title: Create the Kafka Streams topology
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-src-dir.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/make-src-dir.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/FindDistinctEvents.java
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/make-topology.adoc
+  - title: Compile and run the Kafka Streams program
+    content:
+    - action: execute
+      file: tutorial-steps/dev/build-uberjar.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/build-uberjar.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/run-dev-app.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/dev/run-dev-app.adoc
+  - title: Produce sample click events to the input topic
+    content:
+    - action: skip
+      render:
+        file: tutorials/finding-distinct/confluent/markup/dev/ccloud-run-produce.adoc
+  - title: Consume distinct events from the output topic
+    content:
+    - action: skip
+      render:
+        file: tutorials/finding-distinct/confluent/markup/dev/ccloud-run-consume.adoc
+  - title: Teardown Confluent Cloud resources
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/ccloud-destroy.adoc
 test:
   steps:
-    - title: Create a test configuration file
-      content:
-        - action: make_file
-          file: configuration/test.properties
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/test/make-test-file.adoc
-
-    - title: Write a test
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-dir.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/test/make-test-dir.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/FindDistinctEventsTest.java
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/test/make-test.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/invoke-tests.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/test/invoke-tests.adoc
-
-prod:
-  steps:
-    - title: Create a production configuration file
-      content:
-        - action: make_file
-          file: configuration/prod.properties
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/prod/make-prod-file.adoc
-
-    - title: Build a Docker image
-      content:
-        - action: execute
-          file: tutorial-steps/prod/build-image.sh
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/prod/build-image.adoc
-
-    - title: Launch the container
-      content:
-        - action: skip
-          render:
-            file: tutorials/finding-distinct/kstreams/markup/prod/launch-container.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
+  - title: Create a test configuration file
+    content:
+    - action: make_file
+      file: configuration/test.properties
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/test/make-test-file.adoc
+  - title: Write a test
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-dir.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/test/make-test-dir.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/FindDistinctEventsTest.java
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/test/make-test.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/invoke-tests.sh
+      render:
+        file: tutorials/finding-distinct/kstreams/markup/test/invoke-tests.adoc
