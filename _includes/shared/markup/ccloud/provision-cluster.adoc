@@ -1,1 +1,1 @@
-Provision a Kafka cluster in link:https://www.confluent.io/confluent-cloud/tryfree/\?next=tutorials/ksql-recipe-{{ page.static_data }}[Confluent Cloud].
+Provision a Kafka cluster in link:https://www.confluent.io/confluent-cloud/tryfree/?next=tutorials/ksql-recipe-{{ page.static_data }}[Confluent Cloud].
