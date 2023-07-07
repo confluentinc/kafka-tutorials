@@ -1,5 +1,0 @@
-First, create a new configuration file at `configuration/prod.properties` with the following content. Be sure to fill in the addresses of your production hosts and change any other parameters that make sense for your setup.
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/sliding-windows/kstreams/code/configuration/prod.properties %}</code></pre>
-+++++
