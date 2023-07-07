@@ -1,7 +1,0 @@
-First, create a directory for the configuration:
-
-+++++
-<pre class="snippet"><code class="bash">{%
-    include_raw tutorials/window-final-result/kstreams/code/tutorial-steps/prod/make-configuration-dir.sh
-%}</code></pre>
-+++++

@@ -1,152 +1,120 @@
 answer:
   steps:
-    - title:
-      content:
-        - action: skip
-          render:
-            file: tutorials/geo-distance/ksql/markup/answer/geo-distance.adoc
+  - title: ~
+    content:
+    - action: skip
+      render:
+        file: tutorials/geo-distance/ksql/markup/answer/geo-distance.adoc
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/geo-distance/ksql/markup/dev/init.adoc
-
-        - change_directory: geo-distance
-          action: execute
-          file: tutorial-steps/dev/make-dirs.sh
-          render:
-            file: tutorials/geo-distance/ksql/markup/dev/make-dirs.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/geo-distance/ksql/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/geo-distance/ksql/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Create streams and tables interactively using the CLI
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 20
-          render:
-            file: tutorials/geo-distance/ksql/markup/dev/start-cli.adoc
-          stdin:
-            - file: tutorial-steps/dev/create-repair-ref-table.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/create-repair-ref-table.adoc
-
-            - file: tutorial-steps/dev/populate-repair-ref-table.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/populate-repair-ref-table.adoc
-
-            - file: tutorial-steps/dev/create-insurance-event-stream.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/create-insurance-event-stream.adoc
-
-            - file: tutorial-steps/dev/populate-insurance-event-stream.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/populate-insurance-event-stream.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
-
-    - title: Calculate lat-long distances
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 20
-          render:
-            skip: true
-          stdin:
-            - file: tutorial-steps/dev/set-properties.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/set-properties.adoc
-
-            - file: tutorial-steps/dev/create-insurance-location-stream.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/create-insurance-location-stream.adoc
-
-            - file: tutorial-steps/dev/view-insurance-location-stream.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/view-insurance-location-stream.adoc
-
-            - file: tutorial-steps/dev/geo-distance-query.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/geo-distance-query.adoc
-
-            - file: tutorial-steps/dev/persistent-geo-distance-query.sql
-              render:
-                file: tutorials/geo-distance/ksql/markup/dev/persistent-geo-distance-query.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
-
-    - title: Write your statements to a file
-      content:
-        - action: make_file
-          file: src/statements.sql
-          render:
-            file: tutorials/geo-distance/ksql/markup/dev/make-src-file.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/geo-distance/ksql/markup/dev/init.adoc
+    - change_directory: geo-distance
+      action: execute
+      file: tutorial-steps/dev/make-dirs.sh
+      render:
+        file: tutorials/geo-distance/ksql/markup/dev/make-dirs.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/geo-distance/ksql/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/geo-distance/ksql/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Create streams and tables interactively using the CLI
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      column_width: 20
+      render:
+        file: tutorials/geo-distance/ksql/markup/dev/start-cli.adoc
+      stdin:
+      - file: tutorial-steps/dev/create-repair-ref-table.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/create-repair-ref-table.adoc
+      - file: tutorial-steps/dev/populate-repair-ref-table.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/populate-repair-ref-table.adoc
+      - file: tutorial-steps/dev/create-insurance-event-stream.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/create-insurance-event-stream.adoc
+      - file: tutorial-steps/dev/populate-insurance-event-stream.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/populate-insurance-event-stream.adoc
+      stdout:
+        directory: tutorial-steps/dev/outputs
+  - title: Calculate lat-long distances
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      column_width: 20
+      render:
+        skip: true
+      stdin:
+      - file: tutorial-steps/dev/set-properties.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/set-properties.adoc
+      - file: tutorial-steps/dev/create-insurance-location-stream.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/create-insurance-location-stream.adoc
+      - file: tutorial-steps/dev/view-insurance-location-stream.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/view-insurance-location-stream.adoc
+      - file: tutorial-steps/dev/geo-distance-query.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/geo-distance-query.adoc
+      - file: tutorial-steps/dev/persistent-geo-distance-query.sql
+        render:
+          file: tutorials/geo-distance/ksql/markup/dev/persistent-geo-distance-query.adoc
+      stdout:
+        directory: tutorial-steps/dev/outputs
+  - title: Write your statements to a file
+    content:
+    - action: make_file
+      file: src/statements.sql
+      render:
+        file: tutorials/geo-distance/ksql/markup/dev/make-src-file.adoc
 test:
   steps:
-    - title: Create the test data
-      content:
-        - action: make_file
-          file: test/input.json
-          render:
-            file: tutorials/geo-distance/ksql/markup/test/make-test-input.adoc
-
-        - action: make_file
-          file: test/output.json
-          render:
-            file: tutorials/geo-distance/ksql/markup/test/make-test-output.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/run-tests.sh
-          stdout: tutorial-steps/test/outputs/test-results.log
-          render:
-            file: tutorials/geo-distance/ksql/markup/test/run-tests.adoc
-
-prod:
-  steps:
-    - title: Send the statements to the REST API
-      content:
-        - action: skip
-          render:
-            file: tutorials/geo-distance/ksql/markup/prod/submit-to-api.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
+  - title: Create the test data
+    content:
+    - action: make_file
+      file: test/input.json
+      render:
+        file: tutorials/geo-distance/ksql/markup/test/make-test-input.adoc
+    - action: make_file
+      file: test/output.json
+      render:
+        file: tutorials/geo-distance/ksql/markup/test/make-test-output.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/run-tests.sh
+      stdout: tutorial-steps/test/outputs/test-results.log
+      render:
+        file: tutorials/geo-distance/ksql/markup/test/run-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud.adoc
