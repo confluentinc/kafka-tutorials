@@ -1,247 +1,180 @@
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: execute
-          file: tutorial-steps/dev/workdir.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/1_0-make-directories.adoc
-
-        - change_directory: window-final-result
-          action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/1_1-make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/1_2-start-docker-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-
-    - title: Initialize the project
-      content:
-        - action: make_file
-          file: build.gradle
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/2_1-build-file.adoc
-
-        - action: make_file
-          file: settings.gradle
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/2_2-settings-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/gradle-wrapper.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/2_3-gradle-wrapper.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-resources-dir.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/2_4-resources-dir.adoc
-
-        - action: make_file
-          file: src/main/resources/application.conf
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/2_5-conf-file.adoc
-
-        - action: make_file
-          file: src/main/resources/logback.xml
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/2_6-log-file.adoc
-
-    - title: Create a schema for the events
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-avro-dir.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/3_0-avro-dir.adoc
-
-        - action: make_file
-          file: src/main/avro/pressure-alert.avsc
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/3_1-pressure-schema.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/build-project.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/3_2-build-project.adoc
-
-    - title: Add the helper gradle tasks
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-helper-package.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/4_0-helper-package.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/helper/TopicCreation.java
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/4_1-topic-task.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/helper/SchemaPublication.java
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/4_2-schema-task.adoc
-
-        - action: skip
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/4_3-gradle-tasks.adoc
-
-    - title: Create the timestamp extractor
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/PressureDatetimeExtractor.java
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/5_0-timestamp-extractor.adoc
-
-    - title: Create the Kafka Streams topology
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/WindowFinalResult.java
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/6_0-stream-topology.adoc
-
-    - title: Compile and run the Kafka Streams program
-      content:
-        - action: execute_async
-          file: tutorial-steps/dev/run-project.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/7_0-gradle-run.adoc
-
-        - action: skip
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/7_1-java-cp.adoc
-
-    - title: Produce events to the input topic
-      content:
-        - action: skip
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/8_0-produce-input.adoc
-
-        - name: wait for the cp platform to be fully started
-          action: sleep
-          ms: 5000
-          render:
-            skip: true
-
-        - action: execute
-          file: tutorial-steps/dev/run-producer-execute.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/8_1-produce-input.adoc
-
-    - title: Consume events from the output topic
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/helper/ResultConsumer.java
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/9_0-consume-output.adoc
-
-        - action: skip
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/9_1-consume-output.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/run-consumer-execute.sh
-          stdout: tutorial-steps/dev/outputs/actual-count.txt
-          render:
-            skip: true
-
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 3000
-          render:
-            skip: true
-
-        - action: skip
-          file: tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-consumer.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/dev/9_2-consume-output.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: execute
+      file: tutorial-steps/dev/workdir.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/1_0-make-directories.adoc
+    - change_directory: window-final-result
+      action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/1_1-make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/1_2-start-docker-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Initialize the project
+    content:
+    - action: make_file
+      file: build.gradle
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/2_1-build-file.adoc
+    - action: make_file
+      file: settings.gradle
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/2_2-settings-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/gradle-wrapper.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/2_3-gradle-wrapper.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-resources-dir.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/2_4-resources-dir.adoc
+    - action: make_file
+      file: src/main/resources/application.conf
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/2_5-conf-file.adoc
+    - action: make_file
+      file: src/main/resources/logback.xml
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/2_6-log-file.adoc
+  - title: Create a schema for the events
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-avro-dir.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/3_0-avro-dir.adoc
+    - action: make_file
+      file: src/main/avro/pressure-alert.avsc
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/3_1-pressure-schema.adoc
+    - action: execute
+      file: tutorial-steps/dev/build-project.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/3_2-build-project.adoc
+  - title: Add the helper gradle tasks
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-helper-package.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/4_0-helper-package.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/helper/TopicCreation.java
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/4_1-topic-task.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/helper/SchemaPublication.java
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/4_2-schema-task.adoc
+    - action: skip
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/4_3-gradle-tasks.adoc
+  - title: Create the timestamp extractor
+    content:
+    - action: make_file
+      file: src/main/java/io/confluent/developer/PressureDatetimeExtractor.java
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/5_0-timestamp-extractor.adoc
+  - title: Create the Kafka Streams topology
+    content:
+    - action: make_file
+      file: src/main/java/io/confluent/developer/WindowFinalResult.java
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/6_0-stream-topology.adoc
+  - title: Compile and run the Kafka Streams program
+    content:
+    - action: execute_async
+      file: tutorial-steps/dev/run-project.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/7_0-gradle-run.adoc
+    - action: skip
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/7_1-java-cp.adoc
+  - title: Produce events to the input topic
+    content:
+    - action: skip
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/8_0-produce-input.adoc
+    - name: wait for the cp platform to be fully started
+      action: sleep
+      ms: 5000
+      render:
+        skip: true
+    - action: execute
+      file: tutorial-steps/dev/run-producer-execute.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/8_1-produce-input.adoc
+  - title: Consume events from the output topic
+    content:
+    - action: make_file
+      file: src/main/java/io/confluent/developer/helper/ResultConsumer.java
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/9_0-consume-output.adoc
+    - action: skip
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/9_1-consume-output.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/run-consumer-execute.sh
+      stdout: tutorial-steps/dev/outputs/actual-count.txt
+      render:
+        skip: true
+    - name: wait for the consumer to read the messages
+      action: sleep
+      ms: 3000
+      render:
+        skip: true
+    - action: skip
+      file: tutorials/window-final-result/kstreams/code/tutorial-steps/dev/run-consumer.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/dev/9_2-consume-output.adoc
 test:
   steps:
-    - title: Create a test configuration file
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-config-dir.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/test/1_0-make-test-config-dir.adoc
-
-        - action: make_file
-          file: src/test/resources/test.properties
-          render:
-            file: tutorials/window-final-result/kstreams/markup/test/1_1-make-test-conf.adoc
-
-    - title: Write a test
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-dir.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/test/2_0-make-test-dir.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/WindowFinalResultTest.java
-          render:
-            file: tutorials/window-final-result/kstreams/markup/test/2_1-make-test-class.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/PressureDatetimeExtractorTest.java
-          render:
-            file: tutorials/window-final-result/kstreams/markup/test/2_2-make-test-class-ts.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/invoke-tests.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/test/3_0-invoke-tests.adoc
-prod:
-  steps:
-    - title: Create a production configuration file
-      content:
-        - action: execute
-          file: tutorial-steps/prod/make-configuration-dir.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/prod/1_0-make-prod-conf-dir.adoc
-
-        - action: make_file
-          file: configuration/prod.properties
-          render:
-            file: tutorials/window-final-result/kstreams/markup/prod/1_1-make-prod-conf.adoc
-
-    - title: Build a Docker image
-      content:
-        - action: execute
-          file: tutorial-steps/prod/build-image.sh
-          render:
-            file: tutorials/window-final-result/kstreams/markup/prod/2_0-build-image.adoc
-
-    - title: Launch the container
-      content:
-        - action: skip
-          render:
-            file: tutorials/window-final-result/kstreams/markup/prod/3_0-launch-container.adoc
-        - action: execute
-          file: tutorial-steps/prod/clean-up.sh
-          render:
-            skip: true
-
+  - title: Create a test configuration file
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-config-dir.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/test/1_0-make-test-config-dir.adoc
+    - action: make_file
+      file: src/test/resources/test.properties
+      render:
+        file: tutorials/window-final-result/kstreams/markup/test/1_1-make-test-conf.adoc
+  - title: Write a test
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-dir.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/test/2_0-make-test-dir.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/WindowFinalResultTest.java
+      render:
+        file: tutorials/window-final-result/kstreams/markup/test/2_1-make-test-class.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/PressureDatetimeExtractorTest.java
+      render:
+        file: tutorials/window-final-result/kstreams/markup/test/2_2-make-test-class-ts.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/invoke-tests.sh
+      render:
+        file: tutorials/window-final-result/kstreams/markup/test/3_0-invoke-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud.adoc

@@ -1,9 +1,0 @@
-In your terminal, execute the following command to invoke the Jib plugin and build a docker image for the producer app:
-
-+++++
-<pre class="snippet"><code class="bash">{%
-    include_raw tutorials/produce-consume-lang/scala/code/tutorial-steps/prod/build-producer.sh
-%}</code></pre>
-+++++
-
-Reference the gradle task configuration of `packageProducer` in the _build.gradle_ file for details.

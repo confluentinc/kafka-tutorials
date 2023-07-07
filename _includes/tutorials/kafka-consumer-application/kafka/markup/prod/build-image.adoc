@@ -1,5 +1,0 @@
-In your terminal, execute the following to invoke the Jib plugin to build an image:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-consumer-application/kafka/code/tutorial-steps/prod/build-image.sh %}</code></pre>
-+++++

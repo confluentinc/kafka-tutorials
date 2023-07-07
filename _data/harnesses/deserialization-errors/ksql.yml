@@ -1,149 +1,121 @@
 answer:
   steps:
-    - title:
-      content:
-        - action: skip
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/answer-sql.adoc
-
+  - title: ~
+    content:
+    - action: skip
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/answer-sql.adoc
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/init.adoc
-
-        - change_directory: deserialization-errors
-          action: execute
-          file: tutorial-steps/dev/make-dirs.sh
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/make-dirs.adoc
-
-    - title: Create a log4J configuration
-      content:
-        - action: make_file
-          file: ./log4j/log4j.properties
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/log4j.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Create the input topic with a stream
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 45
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/start-cli.adoc
-          stdin:
-            - file: tutorial-steps/dev/create-inputs.sql
-              render:
-                file: tutorials/deserialization-errors/ksql/markup/dev/create-inputs.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
-
-    - title: Produce events to the input topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer.sh
-          stdin: tutorial-steps/dev/input-events.json
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/run-producer.adoc
-
-    - title: Checking for deserialization errors
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 43
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/start-cli.adoc
-          stdin:
-            - file: tutorial-steps/dev/set-properties.sql
-              render:
-                file: tutorials/deserialization-errors/ksql/markup/dev/set-properties.adoc
-            - file: tutorial-steps/dev/transient-query.sql
-              render:
-                file: tutorials/deserialization-errors/ksql/markup/dev/transient-query.adoc
-            - file: tutorial-steps/dev/check-errors-query.sql
-              render:
-                file: tutorials/deserialization-errors/ksql/markup/dev/check-errors-query.adoc
-            - file: tutorial-steps/dev/print-topic.sql
-              render:
-                file: tutorials/deserialization-errors/ksql/markup/dev/print-topic.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
-
-    - title: Write your statements to a file
-      content:
-        - action: make_file
-          file: src/statements.sql
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/dev/make-src-file.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/init.adoc
+    - change_directory: deserialization-errors
+      action: execute
+      file: tutorial-steps/dev/make-dirs.sh
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/make-dirs.adoc
+  - title: Create a log4J configuration
+    content:
+    - action: make_file
+      file: ./log4j/log4j.properties
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/log4j.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Create the input topic with a stream
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      column_width: 45
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/start-cli.adoc
+      stdin:
+      - file: tutorial-steps/dev/create-inputs.sql
+        render:
+          file: tutorials/deserialization-errors/ksql/markup/dev/create-inputs.adoc
+      stdout:
+        directory: tutorial-steps/dev/outputs
+  - title: Produce events to the input topic
+    content:
+    - action: execute
+      file: tutorial-steps/dev/console-producer.sh
+      stdin: tutorial-steps/dev/input-events.json
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/run-producer.adoc
+  - title: Checking for deserialization errors
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      column_width: 43
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/start-cli.adoc
+      stdin:
+      - file: tutorial-steps/dev/set-properties.sql
+        render:
+          file: tutorials/deserialization-errors/ksql/markup/dev/set-properties.adoc
+      - file: tutorial-steps/dev/transient-query.sql
+        render:
+          file: tutorials/deserialization-errors/ksql/markup/dev/transient-query.adoc
+      - file: tutorial-steps/dev/check-errors-query.sql
+        render:
+          file: tutorials/deserialization-errors/ksql/markup/dev/check-errors-query.adoc
+      - file: tutorial-steps/dev/print-topic.sql
+        render:
+          file: tutorials/deserialization-errors/ksql/markup/dev/print-topic.adoc
+      stdout:
+        directory: tutorial-steps/dev/outputs
+  - title: Write your statements to a file
+    content:
+    - action: make_file
+      file: src/statements.sql
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/dev/make-src-file.adoc
 test:
   steps:
-    - title: Create the test data
-      content:
-        - action: make_file
-          file: test/input.json
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/test/make-test-input.adoc
-
-        - action: make_file
-          file: test/output.json
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/test/make-test-output.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/run-tests.sh
-          stdout: tutorial-steps/test/outputs/test-results.log
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/test/run-tests.adoc
-
-prod:
-  steps:
-    - title: Send the statements to the REST API
-      content:
-        - action: skip
-          render:
-            file: tutorials/deserialization-errors/ksql/markup/prod/submit-to-api.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
+  - title: Create the test data
+    content:
+    - action: make_file
+      file: test/input.json
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/test/make-test-input.adoc
+    - action: make_file
+      file: test/output.json
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/test/make-test-output.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/run-tests.sh
+      stdout: tutorial-steps/test/outputs/test-results.log
+      render:
+        file: tutorials/deserialization-errors/ksql/markup/test/run-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud.adoc

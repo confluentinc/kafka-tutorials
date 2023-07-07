@@ -1,152 +1,122 @@
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/init.adoc
-
-        - change_directory: rekey-with-function
-          action: execute
-          file: tutorial-steps/dev/make-dirs.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/make-dirs.adoc
-
-        - action: make_file
-          file: build.gradle
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/make-build-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/gradle-wrapper.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/make-gradle-wrapper.adoc
-
-    - title: Implement the KSQL User-defined Function 
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-src-dir.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/make-src-dir.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/RegexReplace.java
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/make-udf.adoc 
-
-    - title: Build and Copy the KSQL User-defined Function 
-      content:
-        - action: execute
-          file: tutorial-steps/dev/build-jar.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/build-jar.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Write the program interactively using the CLI
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 20
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/start-cli.adoc
-          stdin:
-            - file: tutorial-steps/dev/show-functions.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/show-functions.adoc
-            - file: tutorial-steps/dev/describe-function.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/describe-function.adoc
-            - file: tutorial-steps/dev/create-customers-stream.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/create-customers-stream.adoc
-            - file: tutorial-steps/dev/populate-stream.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/populate-stream.adoc
-            - file: tutorial-steps/dev/set-properties.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/set-properties.adoc
-            - file: tutorial-steps/dev/key-query.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/key-query.adoc
-            - file: tutorial-steps/dev/continuous-rekey.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/continuous-rekey.adoc
-            - file: tutorial-steps/dev/query-rekeyed-stream.sql
-              render:
-                file: tutorials/rekeying-function/ksql/markup/dev/query-rekeyed-stream.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
-
-    - title: Write your statements to a file
-      content:
-        - action: make_file
-          file: src/statements.sql
-          render:
-            file: tutorials/rekeying-function/ksql/markup/dev/make-src-file.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/init.adoc
+    - change_directory: rekey-with-function
+      action: execute
+      file: tutorial-steps/dev/make-dirs.sh
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/make-dirs.adoc
+    - action: make_file
+      file: build.gradle
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/make-build-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/gradle-wrapper.sh
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/make-gradle-wrapper.adoc
+  - title: Implement the KSQL User-defined Function
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-src-dir.sh
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/make-src-dir.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/RegexReplace.java
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/make-udf.adoc
+  - title: Build and Copy the KSQL User-defined Function
+    content:
+    - action: execute
+      file: tutorial-steps/dev/build-jar.sh
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/build-jar.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Write the program interactively using the CLI
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      column_width: 20
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/start-cli.adoc
+      stdin:
+      - file: tutorial-steps/dev/show-functions.sql
+        render:
+          file: tutorials/rekeying-function/ksql/markup/dev/show-functions.adoc
+      - file: tutorial-steps/dev/describe-function.sql
+        render:
+          file: tutorials/rekeying-function/ksql/markup/dev/describe-function.adoc
+      - file: tutorial-steps/dev/create-customers-stream.sql
+        render:
+          file: tutorials/rekeying-function/ksql/markup/dev/create-customers-stream.adoc
+      - file: tutorial-steps/dev/populate-stream.sql
+        render:
+          file: tutorials/rekeying-function/ksql/markup/dev/populate-stream.adoc
+      - file: tutorial-steps/dev/set-properties.sql
+        render:
+          file: tutorials/rekeying-function/ksql/markup/dev/set-properties.adoc
+      - file: tutorial-steps/dev/key-query.sql
+        render:
+          file: tutorials/rekeying-function/ksql/markup/dev/key-query.adoc
+      - file: tutorial-steps/dev/continuous-rekey.sql
+        render:
+          file: tutorials/rekeying-function/ksql/markup/dev/continuous-rekey.adoc
+      - file: tutorial-steps/dev/query-rekeyed-stream.sql
+        render:
+          file: tutorials/rekeying-function/ksql/markup/dev/query-rekeyed-stream.adoc
+      stdout:
+        directory: tutorial-steps/dev/outputs
+  - title: Write your statements to a file
+    content:
+    - action: make_file
+      file: src/statements.sql
+      render:
+        file: tutorials/rekeying-function/ksql/markup/dev/make-src-file.adoc
 test:
   steps:
-    - title: Write a test
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-dir.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/test/make-test-dir.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/RegexReplaceTest.java
-          render:
-            file: tutorials/rekeying-function/ksql/markup/test/make-test.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/invoke-tests.sh
-          render:
-            file: tutorials/rekeying-function/ksql/markup/test/invoke-tests.adoc
-
-prod:
-  steps:
-    - title: Send the statements to the REST API
-      content:
-        - action: skip
-          render:
-            file: tutorials/rekeying-function/ksql/markup/prod/submit-to-api.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
+  - title: Write a test
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-dir.sh
+      render:
+        file: tutorials/rekeying-function/ksql/markup/test/make-test-dir.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/RegexReplaceTest.java
+      render:
+        file: tutorials/rekeying-function/ksql/markup/test/make-test.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/invoke-tests.sh
+      render:
+        file: tutorials/rekeying-function/ksql/markup/test/invoke-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud.adoc
