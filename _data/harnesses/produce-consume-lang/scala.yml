@@ -1,266 +1,183 @@
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: execute
-          file: tutorial-steps/dev/project-dirs.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/1_0-create-project-dirs.adoc
-
-        - change_directory: produce-consume-scala
-          action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/1_1-make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/1_2-start-docker-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Initialize the project
-      content:
-        - action: make_file
-          file: build.gradle
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_0-create-build-file.adoc
-
-        - action: make_file
-          file: settings.gradle
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_1-settings-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/gradle-wrapper.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_2-gradle-wrapper.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-resources-dir.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_3-resources-dir.adoc
-
-        - action: make_file
-          file: src/main/resources/application.conf
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_4-add-config-file.adoc
-
-        - action: make_file
-          file: src/main/resources/logback.xml
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_5-add-logging-conf.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-sources-dir.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_6-sources-dir.adoc
-
-        - action: make_file
-          file: src/main/scala/io/confluent/developer/Configuration.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_7-add-config-parser.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-subprojects-sources-dir.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/2_8-subprojects-sources-dir.adoc
-
-    - title: Create a schema for the events
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-schema-package.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/3_0-schema-package.adoc
-
-        - action: make_file
-          file: src/main/scala/io/confluent/developer/schema/Book.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/3_1-schema-case-class.adoc
-
-        - action: make_file
-          file: src/main/scala/io/confluent/developer/schema/BookType.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/3_3-schema-case-class.adoc
-
-    - title: Set up the serialization method
-      content:
-        - action: make_file
-          file: src/main/scala/io/confluent/developer/schema/ScalaReflectionSerde.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/3_4-schema-serde.adoc
-
-        - action: make_file
-          file: src/main/scala/io/confluent/developer/schema/package.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/3_5-utils-implicits.adoc
-
-    - title: Add the Gradle helper tasks
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-helper-package.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/4_0-helper-package.adoc
-
-        - action: make_file
-          file: src/main/scala/io/confluent/developer/helper/TopicCreation.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/4_1-topic-task.adoc
-
-        - action: make_file
-          file: src/main/scala/io/confluent/developer/helper/SchemaPublication.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/4_2-schema-task.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/run-helpers.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/4_3-gradle-executions.adoc
-
-    - title: Write the producer
-      content:
-        - action: make_file
-          file: app-producer/src/main/scala/io/confluent/developer/produce/Producer.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/5_0-produce-narrative.adoc
-
-    - title: Run the producer
-      content:
-        - action: skip
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/5_1-produce-example.adoc
-
-        - action: make_file
-          file: ./data.csv
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/5_2-produce-dataset.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/produce.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/5_3-produce-execution.adoc
-
-    - title: Write the consumer
-      content:
-        - action: make_file
-          file: app-consumer/src/main/scala/io/confluent/developer/consume/Consumer.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/6_0-consume-narrative.adoc
-
-    - title: Run the consumer
-      content:
-        - action: skip
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/6_1-consume-execution.adoc
-
-        - action: skip
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/dev/6_2-consume-result.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: execute
+      file: tutorial-steps/dev/project-dirs.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/1_0-create-project-dirs.adoc
+    - change_directory: produce-consume-scala
+      action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/1_1-make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/1_2-start-docker-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Initialize the project
+    content:
+    - action: make_file
+      file: build.gradle
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_0-create-build-file.adoc
+    - action: make_file
+      file: settings.gradle
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_1-settings-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/gradle-wrapper.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_2-gradle-wrapper.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-resources-dir.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_3-resources-dir.adoc
+    - action: make_file
+      file: src/main/resources/application.conf
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_4-add-config-file.adoc
+    - action: make_file
+      file: src/main/resources/logback.xml
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_5-add-logging-conf.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-sources-dir.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_6-sources-dir.adoc
+    - action: make_file
+      file: src/main/scala/io/confluent/developer/Configuration.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_7-add-config-parser.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-subprojects-sources-dir.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/2_8-subprojects-sources-dir.adoc
+  - title: Create a schema for the events
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-schema-package.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/3_0-schema-package.adoc
+    - action: make_file
+      file: src/main/scala/io/confluent/developer/schema/Book.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/3_1-schema-case-class.adoc
+    - action: make_file
+      file: src/main/scala/io/confluent/developer/schema/BookType.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/3_3-schema-case-class.adoc
+  - title: Set up the serialization method
+    content:
+    - action: make_file
+      file: src/main/scala/io/confluent/developer/schema/ScalaReflectionSerde.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/3_4-schema-serde.adoc
+    - action: make_file
+      file: src/main/scala/io/confluent/developer/schema/package.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/3_5-utils-implicits.adoc
+  - title: Add the Gradle helper tasks
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-helper-package.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/4_0-helper-package.adoc
+    - action: make_file
+      file: src/main/scala/io/confluent/developer/helper/TopicCreation.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/4_1-topic-task.adoc
+    - action: make_file
+      file: src/main/scala/io/confluent/developer/helper/SchemaPublication.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/4_2-schema-task.adoc
+    - action: execute
+      file: tutorial-steps/dev/run-helpers.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/4_3-gradle-executions.adoc
+  - title: Write the producer
+    content:
+    - action: make_file
+      file: app-producer/src/main/scala/io/confluent/developer/produce/Producer.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/5_0-produce-narrative.adoc
+  - title: Run the producer
+    content:
+    - action: skip
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/5_1-produce-example.adoc
+    - action: make_file
+      file: ./data.csv
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/5_2-produce-dataset.adoc
+    - action: execute
+      file: tutorial-steps/dev/produce.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/5_3-produce-execution.adoc
+  - title: Write the consumer
+    content:
+    - action: make_file
+      file: app-consumer/src/main/scala/io/confluent/developer/consume/Consumer.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/6_0-consume-narrative.adoc
+  - title: Run the consumer
+    content:
+    - action: skip
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/6_1-consume-execution.adoc
+    - action: skip
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/dev/6_2-consume-result.adoc
 test:
   steps:
-    - title: Create the test configuration files
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-config-dir.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/1_0-make-test-config-dir.adoc
-
-        - action: make_file
-          file: src/test/resources/application.conf
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/1_1-make-test-app-conf.adoc
-
-        - action: make_file
-          file: src/test/resources/logback-test.xml
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/1_2-make-test-log-conf.adoc
-
-    - title: Write a the test classes
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-sources-dir.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/2_0-make-test-sources-dir.adoc
-
-        - action: make_file
-          file: src/test/scala/io/confluent/developer/KafkaFlatSpec.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/2_1-write-test-trait.adoc
-
-        - action: execute
-          file: tutorial-steps/test/make-subprojects-test-sources-dir.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/2_2-make-subprojects-test-sources-dir.adoc
-
-        - action: make_file
-          file: app-producer/src/test/scala/io/confluent/developer/produce/ProducerSpec.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/2_3-write-produce-func-test.adoc
-
-        - action: make_file
-          file: app-consumer/src/test/scala/io/confluent/developer/consume/ConsumerSpec.scala
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/2_4-write-consume-func-test.adoc
-
-    - title: Run the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/run-unit-test-dir.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/test/3_0-run-the-tests.adoc
-
-prod:
-  steps:
-    - title: Build the consumer Docker image
-      content:
-        - action: execute
-          file: tutorial-steps/prod/build-consumer.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/prod/1_0-consumer-docker-image.adoc
-
-    - title: Build the producer Docker image
-      content:
-        - action: execute
-          file: tutorial-steps/prod/build-producer.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/prod/2_0-producer-docker-image.adoc
-
-    - title: Launch the containers
-      content:
-        - action: execute_async
-          file: tutorial-steps/prod/run-consumer-container.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/prod/3_0-run-consumer-container.adoc
-
-        - action: execute
-          file: tutorial-steps/prod/run-producer-container.sh
-          render:
-            file: tutorials/produce-consume-lang/scala/markup/prod/3_1-run-producer-container.adoc
-
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 30000
-          render:
-            skip: true
-
-        - action: execute
-          file: tutorial-steps/prod/http-call-output.sh
-          stdout: tutorial-steps/prod/outputs/actual-result.json
-          render:
-            skip: true
-
-        - action: execute
-          file: tutorial-steps/prod/clean-up.sh
-          render:
-            skip: true
+  - title: Create the test configuration files
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-config-dir.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/1_0-make-test-config-dir.adoc
+    - action: make_file
+      file: src/test/resources/application.conf
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/1_1-make-test-app-conf.adoc
+    - action: make_file
+      file: src/test/resources/logback-test.xml
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/1_2-make-test-log-conf.adoc
+  - title: Write a the test classes
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-sources-dir.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/2_0-make-test-sources-dir.adoc
+    - action: make_file
+      file: src/test/scala/io/confluent/developer/KafkaFlatSpec.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/2_1-write-test-trait.adoc
+    - action: execute
+      file: tutorial-steps/test/make-subprojects-test-sources-dir.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/2_2-make-subprojects-test-sources-dir.adoc
+    - action: make_file
+      file: app-producer/src/test/scala/io/confluent/developer/produce/ProducerSpec.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/2_3-write-produce-func-test.adoc
+    - action: make_file
+      file: app-consumer/src/test/scala/io/confluent/developer/consume/ConsumerSpec.scala
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/2_4-write-consume-func-test.adoc
+  - title: Run the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/run-unit-test-dir.sh
+      render:
+        file: tutorials/produce-consume-lang/scala/markup/test/3_0-run-the-tests.adoc

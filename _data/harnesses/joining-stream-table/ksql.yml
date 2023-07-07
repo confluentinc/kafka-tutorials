@@ -1,130 +1,99 @@
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/dev/init.adoc
-
-        - change_directory: join-stream-and-table
-          action: execute
-          file: tutorial-steps/dev/make-dirs.sh
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/dev/make-dirs.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Write the program interactively using the CLI
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          column_width: 20
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/dev/start-cli.adoc
-          stdin:
-            - file: tutorial-steps/dev/create-movies-table.sql
-              render:
-                file: tutorials/joining-stream-table/ksql/markup/dev/create-inputs.adoc
-
-            - file: tutorial-steps/dev/create-ratings-stream.sql
-              render:
-                file: tutorials/joining-stream-table/ksql/markup/dev/create-ratings-stream.adoc
-
-            - file: tutorial-steps/dev/populate-movies.sql
-              render:
-                file: tutorials/joining-stream-table/ksql/markup/dev/populate-movies.adoc
-
-            - file: tutorial-steps/dev/populate-ratings.sql
-              render:
-                file: tutorials/joining-stream-table/ksql/markup/dev/populate-ratings.adoc
-
-            - file: tutorial-steps/dev/set-properties.sql
-              render:
-                file: tutorials/joining-stream-table/ksql/markup/dev/set-properties.adoc
-
-            - file: tutorial-steps/dev/transient-join.sql
-              render:
-                file: tutorials/joining-stream-table/ksql/markup/dev/transient-join.adoc
-
-            - file: tutorial-steps/dev/continuous-join.sql
-              render:
-                file: tutorials/joining-stream-table/ksql/markup/dev/continuous-join.adoc
-
-            - file: tutorial-steps/dev/print-output-topic.sql
-              render:
-                file: tutorials/joining-stream-table/ksql/markup/dev/print-output-topic.adoc
-          stdout:
-            directory: tutorial-steps/dev/outputs
-
-    - title: Write your statements to a file
-      content:
-        - action: make_file
-          file: src/statements.sql
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/dev/make-src-file.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/dev/init.adoc
+    - change_directory: join-stream-and-table
+      action: execute
+      file: tutorial-steps/dev/make-dirs.sh
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/dev/make-dirs.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Write the program interactively using the CLI
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      column_width: 20
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/dev/start-cli.adoc
+      stdin:
+      - file: tutorial-steps/dev/create-movies-table.sql
+        render:
+          file: tutorials/joining-stream-table/ksql/markup/dev/create-inputs.adoc
+      - file: tutorial-steps/dev/create-ratings-stream.sql
+        render:
+          file: tutorials/joining-stream-table/ksql/markup/dev/create-ratings-stream.adoc
+      - file: tutorial-steps/dev/populate-movies.sql
+        render:
+          file: tutorials/joining-stream-table/ksql/markup/dev/populate-movies.adoc
+      - file: tutorial-steps/dev/populate-ratings.sql
+        render:
+          file: tutorials/joining-stream-table/ksql/markup/dev/populate-ratings.adoc
+      - file: tutorial-steps/dev/set-properties.sql
+        render:
+          file: tutorials/joining-stream-table/ksql/markup/dev/set-properties.adoc
+      - file: tutorial-steps/dev/transient-join.sql
+        render:
+          file: tutorials/joining-stream-table/ksql/markup/dev/transient-join.adoc
+      - file: tutorial-steps/dev/continuous-join.sql
+        render:
+          file: tutorials/joining-stream-table/ksql/markup/dev/continuous-join.adoc
+      - file: tutorial-steps/dev/print-output-topic.sql
+        render:
+          file: tutorials/joining-stream-table/ksql/markup/dev/print-output-topic.adoc
+      stdout:
+        directory: tutorial-steps/dev/outputs
+  - title: Write your statements to a file
+    content:
+    - action: make_file
+      file: src/statements.sql
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/dev/make-src-file.adoc
 test:
   steps:
-    - title: Create the test data
-      content:
-        - action: make_file
-          file: test/input.json
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/test/make-test-input.adoc
-
-        - action: make_file
-          file: test/output.json
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/test/make-test-output.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/run-tests.sh
-          stdout: tutorial-steps/test/outputs/test-results.log
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/test/run-tests.adoc
-
-prod:
-  steps:
-    - title: Send the statements to the REST API
-      content:
-        - action: skip
-          render:
-            file: tutorials/joining-stream-table/ksql/markup/prod/submit-to-api.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
+  - title: Create the test data
+    content:
+    - action: make_file
+      file: test/input.json
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/test/make-test-input.adoc
+    - action: make_file
+      file: test/output.json
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/test/make-test-output.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/run-tests.sh
+      stdout: tutorial-steps/test/outputs/test-results.log
+      render:
+        file: tutorials/joining-stream-table/ksql/markup/test/run-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud.adoc

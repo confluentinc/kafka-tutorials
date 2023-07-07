@@ -1,5 +1,0 @@
-Launch your statements into production by sending them to the REST API with the following command:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/session-windows/ksql/code/tutorial-steps/prod/send-to-api.sh %}</code></pre>
-+++++
