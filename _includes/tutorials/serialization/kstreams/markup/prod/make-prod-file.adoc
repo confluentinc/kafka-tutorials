@@ -1,6 +1,0 @@
-First, create a new configuration file at `configuration/prod.properties` with the following content.
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/serialization/kstreams/code/configuration/prod.properties %}</code></pre>
-+++++
-

@@ -1,166 +1,122 @@
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/connect-add-key-to-source/ksql/markup/dev/init.adoc
-        - action: execute
-          file: tutorial-steps/dev/make-dirs.sh
-          render:
-            file: tutorials/connect-add-key-to-source/ksql/markup/dev/make-dirs.adoc
-            
-    - title: Prepare the source data
-      content:
-        - change_directory: connect-add-key-to-source
-          action: make_file
-          file: cities.sql
-          render:
-            file: tutorials/connect-add-key-to-source/ksql/markup/dev/make-sql-commandfile.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/connect-add-key-to-source/ksql/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/connect-add-key-to-source/ksql/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-            
-    - title: Check the source data
-      content:
-        - action: execute
-          file: tutorial-steps/dev/query-postgres.sh
-          stdout: tutorial-steps/dev/outputs/query-postgres.log
-          render:
-            file: tutorials/connect-add-key-to-source/ksql/markup/dev/query-postgres.adoc
-
-    - title: Create the connector
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          stdout:
-            directory: tutorial-steps/dev/outputs
-          column_width: 20
-          render:
-            skip: true
-          stdin:
-            - file: tutorial-steps/dev/create-connector.sql
-              render:
-                file: tutorials/connect-add-key-to-source/ksql/markup/dev/create-connector.adoc
-
-        - action: sleep
-          ms: 5000
-          render:
-            skip: true
-
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          stdout:
-            directory: tutorial-steps/dev/outputs
-          column_width: 20
-          render:
-            skip: true
-          stdin:
-            - file: tutorial-steps/dev/check-connector.sql
-              render:
-                file: tutorials/connect-add-key-to-source/ksql/markup/dev/check-connector.adoc
-            - file: tutorial-steps/dev/describe-connector.sql
-              render:
-                file: tutorials/connect-add-key-to-source/ksql/markup/dev/describe-connector.adoc
-            
-    - title: Consume events from the output topic
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          stdout:
-            directory: tutorial-steps/dev/outputs
-          column_width: 20
-          render:
-            skip: true
-          stdin:
-            - file: tutorial-steps/dev/consume-topic.sql
-              render:
-                file: tutorials/connect-add-key-to-source/ksql/markup/dev/consume-topic.adoc
-
-    - title: Declare the topic as a ksqlDB table
-      content:
-        - action: docker_ksql_cli_session
-          container: ksqldb-cli
-          docker_bootup_file: tutorial-steps/dev/start-cli.sh
-          stdout:
-            directory: tutorial-steps/dev/outputs
-          column_width: 20
-          render:
-            skip: true
-          stdin:
-            - file: tutorial-steps/dev/create-table.sql
-              render:
-                file: tutorials/connect-add-key-to-source/ksql/markup/dev/create-table.adoc
-            - file: tutorial-steps/dev/query-table.sql
-              render:
-                file: tutorials/connect-add-key-to-source/ksql/markup/dev/query-table.adoc
-
-    - title: Clean up
-      content:
-      - action: execute
-        file: tutorial-steps/dev/clean-up.sh
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/connect-add-key-to-source/ksql/markup/dev/init.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-dirs.sh
+      render:
+        file: tutorials/connect-add-key-to-source/ksql/markup/dev/make-dirs.adoc
+  - title: Prepare the source data
+    content:
+    - change_directory: connect-add-key-to-source
+      action: make_file
+      file: cities.sql
+      render:
+        file: tutorials/connect-add-key-to-source/ksql/markup/dev/make-sql-commandfile.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/connect-add-key-to-source/ksql/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/connect-add-key-to-source/ksql/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Check the source data
+    content:
+    - action: execute
+      file: tutorial-steps/dev/query-postgres.sh
+      stdout: tutorial-steps/dev/outputs/query-postgres.log
+      render:
+        file: tutorials/connect-add-key-to-source/ksql/markup/dev/query-postgres.adoc
+  - title: Create the connector
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      stdout:
+        directory: tutorial-steps/dev/outputs
+      column_width: 20
+      render:
+        skip: true
+      stdin:
+      - file: tutorial-steps/dev/create-connector.sql
         render:
-          file: tutorials/connect-add-key-to-source/ksql/markup/dev/clean-up.adoc
-
-
-prod:
-  steps:
-    - title: Write your statements to a file
-      content:
-        - action: skip
-          file: src/statements.sql
-          render:
-            file: tutorials/connect-add-key-to-source/ksql/markup/dev/make-src-file.adoc
-
-    - title: Send the statements to the REST endpoint
-      content:
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            skip: true
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-        - action: skip
-          render:
-            file: tutorials/connect-add-key-to-source/ksql/markup/prod/submit-to-api.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
-
+          file: tutorials/connect-add-key-to-source/ksql/markup/dev/create-connector.adoc
+    - action: sleep
+      ms: 5000
+      render:
+        skip: true
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      stdout:
+        directory: tutorial-steps/dev/outputs
+      column_width: 20
+      render:
+        skip: true
+      stdin:
+      - file: tutorial-steps/dev/check-connector.sql
+        render:
+          file: tutorials/connect-add-key-to-source/ksql/markup/dev/check-connector.adoc
+      - file: tutorial-steps/dev/describe-connector.sql
+        render:
+          file: tutorials/connect-add-key-to-source/ksql/markup/dev/describe-connector.adoc
+  - title: Consume events from the output topic
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      stdout:
+        directory: tutorial-steps/dev/outputs
+      column_width: 20
+      render:
+        skip: true
+      stdin:
+      - file: tutorial-steps/dev/consume-topic.sql
+        render:
+          file: tutorials/connect-add-key-to-source/ksql/markup/dev/consume-topic.adoc
+  - title: Declare the topic as a ksqlDB table
+    content:
+    - action: docker_ksql_cli_session
+      container: ksqldb-cli
+      docker_bootup_file: tutorial-steps/dev/start-cli.sh
+      stdout:
+        directory: tutorial-steps/dev/outputs
+      column_width: 20
+      render:
+        skip: true
+      stdin:
+      - file: tutorial-steps/dev/create-table.sql
+        render:
+          file: tutorials/connect-add-key-to-source/ksql/markup/dev/create-table.adoc
+      - file: tutorial-steps/dev/query-table.sql
+        render:
+          file: tutorials/connect-add-key-to-source/ksql/markup/dev/query-table.adoc
+  - title: Clean up
+    content:
+    - action: execute
+      file: tutorial-steps/dev/clean-up.sh
+      render:
+        file: tutorials/connect-add-key-to-source/ksql/markup/dev/clean-up.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud.adoc
