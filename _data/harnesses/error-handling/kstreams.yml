@@ -1,179 +1,130 @@
 answer:
   steps:
-    - title:
-      content:
-        - action: skip
-          render:
-            file: tutorials/error-handling/kstreams/markup/answer/error-handling-answer.adoc
-
+  - title: ~
+    content:
+    - action: skip
+      render:
+        file: tutorials/error-handling/kstreams/markup/answer/error-handling-answer.adoc
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/init.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Configure the project
-      content:
-        - action: make_file
-          file: build.gradle
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-build-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/gradle-wrapper.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-gradle-wrapper.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-config-dir.adoc
-
-        - action: make_file
-          file: configuration/dev.properties
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-dev-file.adoc
-            
-    - title: Create an exception handler implementation
-      content:
-        - action: execute
-          file: tutorial-steps/dev/make-src-dir.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-src-dir.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/MaxFailuresUncaughtExceptionHandler.java
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-exception-handler.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/ProcessorException.java
-          render:
-            skip: true          
-         
-    - title: Create the Kafka Streams topology
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/StreamsUncaughtExceptionHandling.java
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/make-topology.adoc 
-
-    - title: Compile and run the Kafka Streams program
-      content:
-        - action: execute
-          file: tutorial-steps/dev/build-uberjar.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/build-uberjar.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/run-dev-app.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/run-dev-app.adoc
-
-    - title: Consume data from the output topic
-      content:
-        - action: execute_async
-          file: tutorial-steps/dev/console-consumer.sh
-          stdout: tutorial-steps/dev/outputs/actual-output.txt
-          render:
-            file: tutorials/error-handling/kstreams/markup/dev/run-consumer.adoc
-
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 60000
-          render:
-            skip: true
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/init.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Configure the project
+    content:
+    - action: make_file
+      file: build.gradle
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/make-build-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/gradle-wrapper.sh
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/make-gradle-wrapper.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-configuration-dir.sh
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/make-config-dir.adoc
+    - action: make_file
+      file: configuration/dev.properties
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/make-dev-file.adoc
+  - title: Create an exception handler implementation
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-src-dir.sh
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/make-src-dir.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/MaxFailuresUncaughtExceptionHandler.java
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/make-exception-handler.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/ProcessorException.java
+      render:
+        skip: true
+  - title: Create the Kafka Streams topology
+    content:
+    - action: make_file
+      file: src/main/java/io/confluent/developer/StreamsUncaughtExceptionHandling.java
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/make-topology.adoc
+  - title: Compile and run the Kafka Streams program
+    content:
+    - action: execute
+      file: tutorial-steps/dev/build-uberjar.sh
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/build-uberjar.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/run-dev-app.sh
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/run-dev-app.adoc
+  - title: Consume data from the output topic
+    content:
+    - action: execute_async
+      file: tutorial-steps/dev/console-consumer.sh
+      stdout: tutorial-steps/dev/outputs/actual-output.txt
+      render:
+        file: tutorials/error-handling/kstreams/markup/dev/run-consumer.adoc
+    - name: wait for the consumer to read the messages
+      action: sleep
+      ms: 60000
+      render:
+        skip: true
 test:
   steps:
-    - title: Create a test configuration file
-      content:
-        - action: make_file
-          file: configuration/test.properties
-          render:
-            file: tutorials/error-handling/kstreams/markup/test/make-test-file.adoc
-
-    - title: Write a test
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-dir.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/test/make-test-dir.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/StreamsUncaughtExceptionHandlingTest.java
-          render:
-            file: tutorials/error-handling/kstreams/markup/test/make-topology-test.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/MaxFailuresUncaughtExceptionHandlerTest.java
-          render:
-            skip: true
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/invoke-tests.sh
-          stdout: tutorial-steps/dev/outputs/unit-test-output.txt
-          render:
-            file: tutorials/error-handling/kstreams/markup/test/invoke-tests.adoc
-
-prod:
-  steps:
-    - title: Create a production configuration file
-      content:
-        - action: make_file
-          file: configuration/prod.properties
-          render:
-            file: tutorials/error-handling/kstreams/markup/prod/make-prod-file.adoc
-
-    - title: Build a Docker image
-      content:
-        - action: execute
-          file: tutorial-steps/prod/build-image.sh
-          render:
-            file: tutorials/error-handling/kstreams/markup/prod/build-image.adoc
-
-    - title: Launch the container
-      content:
-        - action: skip
-          render:
-            file: tutorials/error-handling/kstreams/markup/prod/launch-container.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
+  - title: Create a test configuration file
+    content:
+    - action: make_file
+      file: configuration/test.properties
+      render:
+        file: tutorials/error-handling/kstreams/markup/test/make-test-file.adoc
+  - title: Write a test
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-dir.sh
+      render:
+        file: tutorials/error-handling/kstreams/markup/test/make-test-dir.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/StreamsUncaughtExceptionHandlingTest.java
+      render:
+        file: tutorials/error-handling/kstreams/markup/test/make-topology-test.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/MaxFailuresUncaughtExceptionHandlerTest.java
+      render:
+        skip: true
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/invoke-tests.sh
+      stdout: tutorial-steps/dev/outputs/unit-test-output.txt
+      render:
+        file: tutorials/error-handling/kstreams/markup/test/invoke-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud-properties.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud-properties.adoc

@@ -1,7 +1,0 @@
-Launch your statements into production by sending them to the REST API with the following command:
-
-+++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/ksql/code/tutorial-steps/prod/send-to-api.sh %}</code></pre>
-+++++
-
-In the steps above, we customized `cache.max.bytes.buffering` interactively via the CLI. Since this setting can affect overall throughput, it's a good idea to assess its impact on disk I/O in production environments. The Kafka Streams documentation details https://docs.confluent.io/platform/current/streams/developer-guide/memory-mgmt.html#record-caches-in-the-dsl[the relevant internal mechanisms].

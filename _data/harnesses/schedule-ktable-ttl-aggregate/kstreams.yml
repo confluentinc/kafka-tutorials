@@ -1,225 +1,168 @@
 dev:
   steps:
-    - title: Prerequisites
-      content:
-        - action: skip
-          render:
-            file: shared/markup/dev/docker-prerequisite.adoc
-
-    - title: Initialize the project
-      content:
-        - action: execute
-          file: tutorial-steps/dev/init.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/init.adoc
-
-    - title: Get Confluent Platform
-      content:
-        - action: make_file
-          file: docker-compose.yml
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-docker-compose.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/docker-compose-up.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/start-compose.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/wait-for-containers.sh
-          render:
-            skip: true
-
-    - title: Configure the project
-      content:
-        - action: make_file
-          file: build.gradle
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-build-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/gradle-wrapper.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-gradle-wrapper.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-configuration-dir.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-config-dir.adoc
-
-        - action: make_file
-          file: configuration/dev.properties
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-dev-file.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/make-src-dir.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-src-dir.adoc
-
-    - title: Create the Kafka Streams topology
-      content:
-        - action: make_file
-          file: src/main/java/io/confluent/developer/TTLKTableTombstoneEmitter.java
-          render:
-           file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-ttl-emitter.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/ValueWrapper.java
-          render:
-           file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-value-wrapper.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/AggregateObject.java
-          render:
-           file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-aggregate-object.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/serdes/JSONSerdeCompatible.java
-          render:
-           file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-json-serde-compatible.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/serdes/JSONSerde.java
-          render:
-           file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-json-serde.adoc
-
-        - action: make_file
-          file: src/main/java/io/confluent/developer/KafkaStreamsKTableTTLExample.java
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-topology.adoc
-
-    - title: Compile and run the Kafka Streams program
-      content:
-        - action: execute
-          file: tutorial-steps/dev/build-uberjar.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/build-uberjar.adoc
-
-        - action: execute_async
-          file: tutorial-steps/dev/run-dev-app.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/run-dev-app.adoc
-
-        - name: wait for the app to start
-          action: sleep
-          ms: 30000
-          render:
-            skip: true
-
-
-    - title: Enter some data into KTable
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer-ktable.sh
-          stdin: tutorial-steps/dev/input/input-ktable-1.txt
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/publish-ktable-data-1.adoc
-
-    - title: Enter some data into KStream
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer-kstream.sh
-          stdin: tutorial-steps/dev/input/input-kstream-1.txt
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/publish-kstream-data-1.adoc
-
-    - title: Consume data from the output topic
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-consumer-1.sh
-          stdout: tutorial-steps/dev/outputs/join-output-1.txt
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/run-consumer-1.adoc
-
-        - name: wait for the consumer to read the messages
-          action: sleep
-          ms: 65000
-          render:
-            skip: true
-
-    - title: Wait 65 seconds and enter some data into KTable
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer-ktable.sh
-          stdin: tutorial-steps/dev/input/input-ktable-2.txt
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/publish-ktable-data-2.adoc
-
-    - title: Now enter some KStream data with the old keys
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-producer-kstream.sh
-          stdin: tutorial-steps/dev/input/input-kstream-1.txt
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/publish-kstream-data-2.adoc
-
-    - title: Consume data from the output topic 2nd time
-      content:
-        - action: execute
-          file: tutorial-steps/dev/console-consumer-2.sh
-          stdout: tutorial-steps/dev/outputs/join-output-2.txt
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/run-consumer-2.adoc
-
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/init.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Configure the project
+    content:
+    - action: make_file
+      file: build.gradle
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-build-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/gradle-wrapper.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-gradle-wrapper.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-configuration-dir.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-config-dir.adoc
+    - action: make_file
+      file: configuration/dev.properties
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-dev-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-src-dir.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-src-dir.adoc
+  - title: Create the Kafka Streams topology
+    content:
+    - action: make_file
+      file: src/main/java/io/confluent/developer/TTLKTableTombstoneEmitter.java
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-ttl-emitter.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/ValueWrapper.java
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-value-wrapper.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/AggregateObject.java
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-aggregate-object.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/serdes/JSONSerdeCompatible.java
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-json-serde-compatible.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/serdes/JSONSerde.java
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-json-serde.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/KafkaStreamsKTableTTLExample.java
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/make-topology.adoc
+  - title: Compile and run the Kafka Streams program
+    content:
+    - action: execute
+      file: tutorial-steps/dev/build-uberjar.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/build-uberjar.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/run-dev-app.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/run-dev-app.adoc
+    - name: wait for the app to start
+      action: sleep
+      ms: 30000
+      render:
+        skip: true
+  - title: Enter some data into KTable
+    content:
+    - action: execute
+      file: tutorial-steps/dev/console-producer-ktable.sh
+      stdin: tutorial-steps/dev/input/input-ktable-1.txt
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/publish-ktable-data-1.adoc
+  - title: Enter some data into KStream
+    content:
+    - action: execute
+      file: tutorial-steps/dev/console-producer-kstream.sh
+      stdin: tutorial-steps/dev/input/input-kstream-1.txt
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/publish-kstream-data-1.adoc
+  - title: Consume data from the output topic
+    content:
+    - action: execute
+      file: tutorial-steps/dev/console-consumer-1.sh
+      stdout: tutorial-steps/dev/outputs/join-output-1.txt
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/run-consumer-1.adoc
+    - name: wait for the consumer to read the messages
+      action: sleep
+      ms: 65000
+      render:
+        skip: true
+  - title: Wait 65 seconds and enter some data into KTable
+    content:
+    - action: execute
+      file: tutorial-steps/dev/console-producer-ktable.sh
+      stdin: tutorial-steps/dev/input/input-ktable-2.txt
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/publish-ktable-data-2.adoc
+  - title: Now enter some KStream data with the old keys
+    content:
+    - action: execute
+      file: tutorial-steps/dev/console-producer-kstream.sh
+      stdin: tutorial-steps/dev/input/input-kstream-1.txt
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/publish-kstream-data-2.adoc
+  - title: Consume data from the output topic 2nd time
+    content:
+    - action: execute
+      file: tutorial-steps/dev/console-consumer-2.sh
+      stdout: tutorial-steps/dev/outputs/join-output-2.txt
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/dev/run-consumer-2.adoc
 test:
   steps:
-    - title: Create a test configuration file
-      content:
-        - action: make_file
-          file: configuration/test.properties
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/test/make-test-file.adoc
-
-    - title: Write a test
-      content:
-        - action: execute
-          file: tutorial-steps/test/make-test-dir.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/test/make-test-dir.adoc
-
-        - action: make_file
-          file: src/test/java/io/confluent/developer/KafkaStreamsKTableTTLExampleTest.java
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/test/make-topology-test.adoc
-
-    - title: Invoke the tests
-      content:
-        - action: execute
-          file: tutorial-steps/test/invoke-tests.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/test/invoke-tests.adoc
-
-prod:
-  steps:
-    - title: Create a production configuration file
-      content:
-        - action: make_file
-          file: configuration/prod.properties
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/prod/make-prod-file.adoc
-
-    - title: Build a Docker image
-      content:
-        - action: execute
-          file: tutorial-steps/prod/build-image.sh
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/prod/build-image.adoc
-
-    - title: Launch the container
-      content:
-        - action: skip
-          render:
-            file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/prod/launch-container.adoc
-
-        - action: execute
-          file: tutorial-steps/dev/clean-up.sh
-          render:
-            skip: true
+  - title: Create a test configuration file
+    content:
+    - action: make_file
+      file: configuration/test.properties
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/test/make-test-file.adoc
+  - title: Write a test
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-dir.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/test/make-test-dir.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/KafkaStreamsKTableTTLExampleTest.java
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/test/make-topology-test.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/invoke-tests.sh
+      render:
+        file: tutorials/schedule-ktable-ttl-aggregate/kstreams/markup/test/invoke-tests.adoc
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
-      content:
-        - action: skip
-          render:
-            file: shared/markup/ccloud/try-ccloud-properties.adoc
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud-properties.adoc
