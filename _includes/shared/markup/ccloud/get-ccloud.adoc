@@ -1,3 +1,1 @@
-This tutorial has some steps for Kafka topic management and/or reading from or writing to Kafka topics, for which you can use the Confluent Cloud Console or install the Confluent CLI.
-Instructions for installing Confluent CLI and configuring it to your Confluent Cloud environment is available from within the Confluent Cloud Console: navigate to your Kafka cluster, click on the `CLI and tools` link, and run through the steps in the `Confluent CLI` tab.
-
+This tutorial has some steps for Kafka topic management and producing and consuming events, for which you can use the Confluent Cloud Console or the Confluent CLI. Follow the instructions https://docs.confluent.io/confluent-cli/current/install.html[here] to install the Confluent CLI, and then follow https://docs.confluent.io/confluent-cli/current/connect.html[these steps] connect the CLI to your Confluent Cloud cluster.
