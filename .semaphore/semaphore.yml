@@ -14,38 +14,28 @@ global_job_config:
     - echo $SEMAPHORE_WORKFLOW_ID
     - checkout
     - |
-      if ! cache has_key gradle-7.5.1; then
-        mkdir ~/.gradle
-        wget -P ~/.gradle https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
-        unzip ~/.gradle/gradle-7.5.1-bin.zip -d ~/.gradle
-        cache store gradle-7.5.1 ~/.gradle
-      fi
-    - cache restore gradle-7.5.1
+      mkdir ~/.gradle
+      wget -P ~/.gradle https://services.gradle.org/distributions/gradle-7.5.1-bin.zip
+      unzip ~/.gradle/gradle-7.5.1-bin.zip -d ~/.gradle
     - sudo update-alternatives --install /usr/bin/gradle gradle ~/.gradle/gradle-7.5.1/bin/gradle
       10
     - |
-      if ! cache has_key cp-7.3.0-images; then
-        docker pull confluentinc/cp-kafka:7.3.0
-        docker pull confluentinc/cp-zookeeper:7.3.0
-        docker pull confluentinc/cp-schema-registry:7.3.0
-        docker pull confluentinc/cp-kafka-connect-base:7.3.0
-        docker pull confluentinc/cp-server-connect-base:7.3.0
-        docker pull confluentinc/ksqldb-server:0.28.2
-        docker pull confluentinc/ksqldb-cli:0.28.2
-        docker save confluentinc/cp-kafka:7.3.0 \
-                    confluentinc/cp-zookeeper:7.3.0 \
-                    confluentinc/cp-schema-registry:7.3.0 \
-                    confluentinc/cp-kafka-connect-base:7.3.0 \
-                    confluentinc/cp-server-connect-base:7.3.0 \
-                    confluentinc/ksqldb-server:0.28.2 \
-                    confluentinc/ksqldb-cli:0.28.2 \
-                    | gzip > cp.tar.gz
-        cache store cp-7.3.0-images cp.tar.gz
-        rm -f cp.tar.gz
-      else
-        docker image inspect confluentinc/cp-kafka:7.3.0 || \
-          (cache restore cp-7.3.0-images && docker load < cp.tar.gz && rm -f cp.tar.gz)
-      fi
+      docker pull confluentinc/cp-kafka:7.3.0
+      docker pull confluentinc/cp-zookeeper:7.3.0
+      docker pull confluentinc/cp-schema-registry:7.3.0
+      docker pull confluentinc/cp-kafka-connect-base:7.3.0
+      docker pull confluentinc/cp-server-connect-base:7.3.0
+      docker pull confluentinc/ksqldb-server:0.28.2
+      docker pull confluentinc/ksqldb-cli:0.28.2
+      docker save confluentinc/cp-kafka:7.3.0 \
+                  confluentinc/cp-zookeeper:7.3.0 \
+                  confluentinc/cp-schema-registry:7.3.0 \
+                  confluentinc/cp-kafka-connect-base:7.3.0 \
+                  confluentinc/cp-server-connect-base:7.3.0 \
+                  confluentinc/ksqldb-server:0.28.2 \
+                  confluentinc/ksqldb-cli:0.28.2 \
+                  | gzip > cp.tar.gz
+      rm -f cp.tar.gz
     - make install-vault
     - . vault-bin/vault-setup
     - . vault-sem-get-secret aws_credentials
@@ -85,16 +75,13 @@ blocks:
       commands:
       - echo $SEMAPHORE_WORKFLOW_ID
       - checkout
-      - cache restore
       - npm install
       - gem install bundler
       - bundle install
-      - cache store
     jobs:
     - name: Compile with Jekyll
       commands:
       - bundle exec jekyll build --baseurl "/$SEMAPHORE_GIT_WORKING_BRANCH"
-      - cache store site-$SEMAPHORE_GIT_SHA _site
 - name: ☕️ Build and Test Java (Kafka and Kafka Streams) Only
   dependencies:
   - Build the website
