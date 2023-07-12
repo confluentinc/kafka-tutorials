@@ -1,1 +1,1 @@
-confluent kafka topic produce input-topic --parse-key --delimiter ":"
+confluent kafka topic produce input-topic --parse-key
