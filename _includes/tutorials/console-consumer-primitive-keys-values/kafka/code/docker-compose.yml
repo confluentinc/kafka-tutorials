@@ -72,6 +72,8 @@ services:
       KSQL_CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: '1'
       KSQL_CONNECT_LOG4J_APPENDER_STDOUT_LAYOUT_CONVERSIONPATTERN: "[%d] %p %X{connector.context}%m (%c:%L)%n"
       KSQL_CONNECT_PLUGIN_PATH: '/usr/share/java,/home/appuser/confluent-hub-components/,/data/connect-jars'
+    volumes:
+       - ./primitives.json:/schema/primitives.json
     
     command: 
       # In the command section, $ are replaced with $$ to avoid the error 'Invalid interpolation format for "command" option'
@@ -80,7 +82,7 @@ services:
       - |
         echo "Installing connector plugins"
         mkdir -p /home/appuser/confluent-hub-components/
-        confluent-hub install --no-prompt --component-dir /home/appuser/confluent-hub-components/ --worker-configs /dev/null mdrogalis/voluble:0.3.0
+        confluent-hub install --no-prompt --component-dir /home/appuser/confluent-hub-components/ --worker-configs /dev/null confluentinc/kafka-connect-datagen:0.6.0
         #
         echo "Launching ksqlDB"
         /etc/confluent/docker/run &
@@ -98,15 +100,14 @@ services:
         echo -e "\n--\n+> Creating Data Generator source"
         curl -X PUT http://localhost:8083/connectors/example/config \
          -i -H "Content-Type: application/json" -d'{
-            "connector.class": "io.mdrogalis.voluble.VolubleSourceConnector",
-            "genkp.example.with" : "#{Number.randomNumber}",
-            "genvp.example.with" : "#{Address.latitude}",
-            "topic.example.records.exactly" : 10,
-            "transforms": "CastLong,CastDouble",
-            "transforms.CastLong.type": "org.apache.kafka.connect.transforms.Cast$$Key",
-            "transforms.CastLong.spec": "int64",
-            "transforms.CastDouble.type": "org.apache.kafka.connect.transforms.Cast$$Value",
-            "transforms.CastDouble.spec": "float64",
+            "connector.class": "io.confluent.kafka.connect.datagen.DatagenConnector",
+            "schema.filename": "/schema/primitives.json",
+            "schema.keyfield": "key_field",
+            "kafka.topic" : "example",
+            "iterations" : 10,
+            "transforms": "extractValue",
+            "transforms.extractValue.type": "org.apache.kafka.connect.transforms.ExtractField$$Value",
+            "transforms.extractValue.field": "value_field",
             "key.converter": "org.apache.kafka.connect.converters.LongConverter",
             "key.converter.schemas.enable" : "false",
             "value.converter": "org.apache.kafka.connect.converters.DoubleConverter",
