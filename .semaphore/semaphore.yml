@@ -24,27 +24,29 @@ global_job_config:
     - sudo update-alternatives --install /usr/bin/gradle gradle ~/.gradle/gradle-7.5.1/bin/gradle
       10
     - |
-      if ! cache has_key cp-7.3.0-images; then
-        docker pull confluentinc/cp-kafka:7.3.0
-        docker pull confluentinc/cp-zookeeper:7.3.0
-        docker pull confluentinc/cp-schema-registry:7.3.0
-        docker pull confluentinc/cp-kafka-connect-base:7.3.0
-        docker pull confluentinc/cp-server-connect-base:7.3.0
-        docker pull confluentinc/ksqldb-server:0.28.2
-        docker pull confluentinc/ksqldb-cli:0.28.2
-        docker save confluentinc/cp-kafka:7.3.0 \
-                    confluentinc/cp-zookeeper:7.3.0 \
-                    confluentinc/cp-schema-registry:7.3.0 \
-                    confluentinc/cp-kafka-connect-base:7.3.0 \
-                    confluentinc/cp-server-connect-base:7.3.0 \
-                    confluentinc/ksqldb-server:0.28.2 \
-                    confluentinc/ksqldb-cli:0.28.2 \
+      cache delete cp-7.3.0-images
+      cache delete cp-7.4.0-images
+      if ! cache has_key cp-7.4.0-images; then
+        docker pull confluentinc/cp-kafka:7.4.0
+        docker pull confluentinc/cp-zookeeper:7.4.0
+        docker pull confluentinc/cp-schema-registry:7.4.0
+        docker pull confluentinc/cp-kafka-connect-base:7.4.0
+        docker pull confluentinc/cp-server-connect-base:7.4.0
+        docker pull confluentinc/ksqldb-server:0.29.0
+        docker pull confluentinc/ksqldb-cli:0.29.0
+        docker save confluentinc/cp-kafka:7.4.0 \
+                    confluentinc/cp-zookeeper:7.4.0 \
+                    confluentinc/cp-schema-registry:7.4.0 \
+                    confluentinc/cp-kafka-connect-base:7.4.0 \
+                    confluentinc/cp-server-connect-base:7.4.0 \
+                    confluentinc/ksqldb-server:0.29.0 \
+                    confluentinc/ksqldb-cli:0.29.0 \
                     | gzip > cp.tar.gz
-        cache store cp-7.3.0-images cp.tar.gz
+        cache store cp-7.4.0-images cp.tar.gz
         rm -f cp.tar.gz
       else
-        docker image inspect confluentinc/cp-kafka:7.3.0 || \
-          (cache restore cp-7.3.0-images && docker load < cp.tar.gz && rm -f cp.tar.gz)
+        docker image inspect confluentinc/cp-kafka:7.4.0 || \
+          (cache restore cp-7.4.0-images && docker load < cp.tar.gz && rm -f cp.tar.gz)
       fi
     - make install-vault
     - . vault-bin/vault-setup
