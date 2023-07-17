@@ -1,5 +1,5 @@
 CREATE SOURCE CONNECTOR IF NOT EXISTS recipe_ibmmq_transactions WITH (
-  'connector.class'          = 'IbmMQSource',
+  'connector.class'          = 'io.confluent.connect.ibm.mq.IbmMQSourceConnector',
   'kafka.api.key'            = '<my-kafka-api-key>',
   'kafka.api.secret'         = '<my-kafka-api-secret>',
   'kafka.topic'              = 'mq_transactions',
