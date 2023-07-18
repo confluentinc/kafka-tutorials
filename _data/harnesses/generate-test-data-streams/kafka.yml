@@ -87,7 +87,7 @@ dev:
           file: tutorial-steps/dev/create-connector-03.sh
           stdout: tutorial-steps/dev/outputs/create-connector-03.out
           render:
-            file: tutorials/generate-test-data-streams/kafka/markup/dev/create-connector-03.adoc  
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/create-connector-02.adoc #creates 2 connectors in one page
 
         - action: sleep
           ms: 5000
