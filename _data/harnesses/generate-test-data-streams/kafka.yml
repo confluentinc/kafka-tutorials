@@ -83,6 +83,23 @@ dev:
           render:
             file: tutorials/generate-test-data-streams/kafka/markup/dev/check-connector-02.adoc
 
+        - action: execute
+          file: tutorial-steps/dev/create-connector-03.sh
+          stdout: tutorial-steps/dev/outputs/create-connector-03.out
+          render:
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/create-connector-02.adoc #creates 2 connectors in one page
+
+        - action: sleep
+          ms: 5000
+          render:
+            skip: true
+
+        - action: execute
+          file: tutorial-steps/dev/check-connector-03.sh
+          stdout: tutorial-steps/dev/outputs/check-connector-03.out
+          render:
+            file: tutorials/generate-test-data-streams/kafka/markup/dev/check-connector-02.adoc #confirms 2 connectors in one page
+
     - title: Consume events from the test topics
       content:
         - action: execute
