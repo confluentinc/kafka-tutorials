@@ -1,15 +1,16 @@
-Key     (-1 bytes):	
-Payload (161 bytes):	{"user_agent": {"string": "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)"}, "source_ip": {"string": "104.26.97.183"}, "path": {"string": "omnis_est/odit.avi"}, "host": {"string": "www.edmond-weissnat.co"}}
+Key     (4 bytes):
+Payload (122 bytes):	{"store_id": 5, "store_order_id": 1179, "coupon_code": 1046, "date": 18486, "status": "accepted", "order_lines": [{"product_id": 79, "category": "pizza", "quantity": 3, "unit_price": 19.609999999999999, "net_price": 58.829999999999998}, {"product_id": 6, "category": "pizza", "quantity": 3, "unit_price": 13.640000000000001, "net_price": 40.920000000000002}, {"product_id": 95, "category": "wings", "quantity": 1, "unit_price": 24.899999999999999, "net_price": 24.899999999999999}, {"product_id": 37, "category": "pizza", "quantity": 3, "unit_price": 14.619999999999999, "net_price": 43.859999999999999}]}
 --
-Key     (-1 bytes):	
-Payload (189 bytes):	{"user_agent": {"string": "Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36"}, "source_ip": {"string": "35.161.154.175"}, "path": {"string": "dolore_excepturi/error.mp3"}, "host": {"string": "www.annmarie-moore.co"}}
+% Reached end of topic pizza_orders [0] at offset 180
+Key     (4 bytes):
+Payload (50 bytes):	{"store_id": 3, "store_order_id": 1180, "coupon_code": 1898, "date": 18811, "status": "accepted", "order_lines": [{"product_id": 22, "category": "calzone", "quantity": 5, "unit_price": 2.79, "net_price": 13.949999999999999}]}
 --
-Key     (-1 bytes):	
-Payload (136 bytes):	{"user_agent": {"string": "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/54.0"}, "source_ip": {"string": "220.72.31.248"}, "path": {"string": "neque_ut/in.html"}, "host": {"string": "www.mervin-torphy.com"}}
+% Reached end of topic pizza_orders [0] at offset 181
+Key     (4 bytes):
+Payload (99 bytes):	{"store_id": 1, "store_order_id": 1181, "coupon_code": 1991, "date": 18840, "status": "accepted", "order_lines": [{"product_id": 6, "category": "pizza", "quantity": 3, "unit_price": 13.640000000000001, "net_price": 40.920000000000002}, {"product_id": 80, "category": "dessert", "quantity": 5, "unit_price": 12.69, "net_price": 63.450000000000003}, {"product_id": 27, "category": "salad", "quantity": 4, "unit_price": 9.2200000000000006, "net_price": 36.880000000000003}]}
 --
-Key     (-1 bytes):	
-Payload (154 bytes):	{"user_agent": {"string": "Mozilla/4.0 (compatible; MSIE 7.0; AOL 9.0; Windows NT 5.1; .NET CLR 1.1.4322)"}, "source_ip": {"string": "175.177.231.111"}, "path": {"string": "et_exercitationem/nihil.css"}, "host": {"string": "www.sarah-cassin.biz"}}
+Key     (4 bytes):
+Payload (98 bytes):	{"store_id": 3, "store_order_id": 1182, "coupon_code": 1268, "date": 18075, "status": "accepted", "order_lines": [{"product_id": 52, "category": "wings", "quantity": 1, "unit_price": 5.6799999999999997, "net_price": 5.6799999999999997}, {"product_id": 33, "category": "salad", "quantity": 3, "unit_price": 10.880000000000001, "net_price": 32.640000000000001}, {"product_id": 4, "category": "calzone", "quantity": 1, "unit_price": 19.039999999999999, "net_price": 19.039999999999999}]}
 --
-Key     (-1 bytes):	
-Payload (143 bytes):	{"user_agent": {"string": "Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.11) Gecko GranParadiso/3.0.11"}, "source_ip": {"string": "48.240.212.93"}, "path": {"string": "quos_nam/vel.json"}, "host": {"string": "www.joe-swaniawski.io"}}
---
+Key     (4 bytes):
+Payload (126 bytes):	{"store_id": 8, "store_order_id": 1183, "coupon_code": 1125, "date": 18781, "status": "accepted", "order_lines": [{"product_id": 59, "category": "calzone", "quantity": 3, "unit_price": 5.7400000000000002, "net_price": 17.219999999999999}, {"product_id": 14, "category": "dessert", "quantity": 2, "unit_price": 18.32, "net_price": 36.640000000000001}, {"product_id": 42, "category": "dessert", "quantity": 1, "unit_price": 6.6100000000000003, "net_price": 6.6100000000000003}, {"product_id": 7, "category": "salad", "quantity": 2, "unit_price": 18.25, "net_price": 36.5}]}
