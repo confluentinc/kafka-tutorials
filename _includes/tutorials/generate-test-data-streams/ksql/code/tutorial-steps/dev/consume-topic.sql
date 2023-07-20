@@ -1,1 +1,1 @@
-PRINT clicks LIMIT 5;
+PRINT pizza_orders LIMIT 5;
