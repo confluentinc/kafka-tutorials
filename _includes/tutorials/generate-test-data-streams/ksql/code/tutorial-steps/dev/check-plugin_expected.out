@@ -1,1 +1,1 @@
-"io.mdrogalis.voluble.VolubleSourceConnector"
+"io.confluent.kafka.connect.datagen.DatagenConnector"
