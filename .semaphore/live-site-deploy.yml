@@ -15,7 +15,6 @@ blocks:
             - make install-vault
             - . vault-bin/vault-setup
             - . vault-sem-get-secret aws_credentials
-            - cache restore
             - npm install
             - gem install bundler
             - bundle install

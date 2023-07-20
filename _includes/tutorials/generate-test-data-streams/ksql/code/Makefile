@@ -1,13 +1,10 @@
 STEPS_DIR := tutorial-steps
 DEV_OUTPUTS_DIR := $(STEPS_DIR)/dev/outputs
-PROD_OUTPUTS_DIR := $(STEPS_DIR)/prod/outputs
 TEMP_DIR := $(shell mktemp -d)
 
 tutorial:
 	rm -r $(DEV_OUTPUTS_DIR) || true
 	mkdir $(DEV_OUTPUTS_DIR)
-	rm -r $(PROD_OUTPUTS_DIR) || true
-	mkdir $(PROD_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/generate-test-data-streams/ksql.yml $(TEMP_DIR)
 
 	# ---
@@ -35,8 +32,6 @@ tutorial:
 	# Unless ksqlDB adds support for SLEEP, or we split the docker_ksql_cli_session and insert a bash sleep step (a lot of heavy lifting), this option will hopefully suffice for now. It simply greps out the offending KAFKA_STRING mention in the test at the end.
 	# See https://github.com/confluentinc/kafka-tutorials/issues/510
 	bash -c "diff <(wc -l $(STEPS_DIR)/dev/consume-topic_expected.log|awk '{print \$$1}')   <(grep -v \"Value format: AVRO or KAFKA_STRING\" $(DEV_OUTPUTS_DIR)/consume-topic/output-0.log|wc -l|awk '{print \$$1}')"
-	bash -c "diff <(wc -l $(STEPS_DIR)/dev/join-streams-do_expected.log|awk '{print \$$1}') <(wc -l $(DEV_OUTPUTS_DIR)/join-streams-do/output-0.log|awk '{print \$$1}')"
-	bash -c "diff <(wc -l $(STEPS_DIR)/dev/query-stream-01_expected.log|awk '{print \$$1}') <(wc -l $(DEV_OUTPUTS_DIR)/query-stream-01/output-1.log|awk '{print \$$1}')"
 	# Since the PRINT header output is relevant to check we test that here
 	# Added grep -v to deal with same issue as https://github.com/confluentinc/kafka-tutorials/issues/510
 	bash -c "diff <(head -n2 $(STEPS_DIR)/dev/consume-topic_expected.log)   <(grep -v \"Value format: AVRO or KAFKA_STRING\" $(DEV_OUTPUTS_DIR)/consume-topic/output-0.log|grep -v rowtime|head -n2 )"

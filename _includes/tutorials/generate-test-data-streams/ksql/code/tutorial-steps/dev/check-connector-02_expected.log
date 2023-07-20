@@ -1,5 +1,6 @@
- Connector Name | Type   | Class                                       | Status
------------------------------------------------------------------------------------------------------
- CLICKS          | SOURCE | io.mdrogalis.voluble.VolubleSourceConnector | RUNNING (1/1 tasks RUNNING)
- NETWORK_TRAFFIC | SOURCE | io.mdrogalis.voluble.VolubleSourceConnector | RUNNING (1/1 tasks RUNNING)
------------------------------------------------------------------------------------------------------
+Connector Name | Type   | Class                                               | Status
+-------------------------------------------------------------------------------------------------------------
+ FLEET_LOCATION | SOURCE | io.confluent.kafka.connect.datagen.DatagenConnector | RUNNING (1/1 tasks RUNNING)
+ FLEET_SENSORS  | SOURCE | io.confluent.kafka.connect.datagen.DatagenConnector | RUNNING (1/1 tasks RUNNING)
+ PIZZA_ORDERS   | SOURCE | io.confluent.kafka.connect.datagen.DatagenConnector | RUNNING (1/1 tasks RUNNING)
+-------------------------------------------------------------------------------------------------------------
