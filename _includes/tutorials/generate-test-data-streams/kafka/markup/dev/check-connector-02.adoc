@@ -1,4 +1,4 @@
-Check that the connector is running:
+Check that the fleet connector is running:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/kafka/code/tutorial-steps/dev/check-connector-02.sh %}</code></pre>
@@ -9,3 +9,4 @@ You should see that the state is `RUNNING`:
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/generate-test-data-streams/kafka/code/tutorial-steps/dev/check-connector-02_expected.log %}</code></pre>
 +++++
+
