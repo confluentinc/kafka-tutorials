@@ -1,15 +1,15 @@
-Key     (-1 bytes):	
-Payload (30 bytes):	{"mac": {"string": "0f:68:80:67:1b:70"}, "bytes_sent": {"string": "3181"}}
+Key     (4 bytes):
+Payload (11 bytes):	{"vehicle_id": 5712, "engine_temperature": 172, "average_rpm": 2359}
 --
-Key     (-1 bytes):	
-Payload (30 bytes):	{"mac": {"string": "41:4f:20:bf:22:c7"}, "bytes_sent": {"string": "3279"}}
+Key     (4 bytes):
+Payload (11 bytes):	{"vehicle_id": 2255, "engine_temperature": 195, "average_rpm": 2444}
 --
-Key     (-1 bytes):	
-Payload (30 bytes):	{"mac": {"string": "35:36:f7:71:92:10"}, "bytes_sent": {"string": "2950"}}
+Key     (4 bytes):
+Payload (11 bytes):	{"vehicle_id": 5973, "engine_temperature": 233, "average_rpm": 2194}
 --
-Key     (-1 bytes):	
-Payload (28 bytes):	{"mac": {"string": "35:36:f7:71:92:10"}, "bytes_sent": {"string": "65"}}
+Key     (4 bytes):
+Payload (12 bytes):	{"vehicle_id": 8429, "engine_temperature": 194, "average_rpm": 4729}
 --
-Key     (-1 bytes):	
-Payload (30 bytes):	{"mac": {"string": "0e:1c:5f:e9:9a:33"}, "bytes_sent": {"string": "2552"}}
+Key     (4 bytes):
+Payload (11 bytes):	{"vehicle_id": 2816, "engine_temperature": 180, "average_rpm": 3598}
 --

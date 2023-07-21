@@ -11,11 +11,6 @@ dev:
       file: tutorial-steps/dev/init.sh
       render:
         file: tutorials/generate-test-data-streams/ksql/markup/dev/init.adoc
-    - action: execute
-      file: tutorial-steps/dev/make-dirs.sh
-      render:
-        file: tutorials/generate-test-data-streams/ksql/markup/dev/make-dirs.adoc
-      stdout: tutorial-steps/dev/outputs/make-dirs.out
   - title: Get Confluent Platform
     content:
     - action: make_file
@@ -117,6 +112,9 @@ dev:
       - file: tutorial-steps/dev/create-connector-02.sql
         render:
           file: tutorials/generate-test-data-streams/ksql/markup/dev/create-connector-02.adoc
+      - file: tutorial-steps/dev/create-connector-03.sql
+        render:
+          file: tutorials/generate-test-data-streams/ksql/markup/dev/create-connector-03.adoc
     - action: sleep
       ms: 5000
       render:

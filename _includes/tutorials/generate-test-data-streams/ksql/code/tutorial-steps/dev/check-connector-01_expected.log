@@ -1,4 +1,4 @@
- Connector Name | Type   | Class                                       | Status
------------------------------------------------------------------------------------------------------
- CLICKS         | SOURCE | io.mdrogalis.voluble.VolubleSourceConnector | RUNNING (1/1 tasks RUNNING)
------------------------------------------------------------------------------------------------------
+ Connector Name | Type   | Class                                               | Status
+-------------------------------------------------------------------------------------------------------------
+ PIZZA_ORDERS   | SOURCE | io.confluent.kafka.connect.datagen.DatagenConnector | RUNNING (1/1 tasks RUNNING)
+-------------------------------------------------------------------------------------------------------------
