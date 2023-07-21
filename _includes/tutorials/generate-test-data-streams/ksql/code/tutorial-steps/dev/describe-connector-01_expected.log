@@ -1,5 +1,5 @@
-Name                 : CLICKS
-Class                : io.mdrogalis.voluble.VolubleSourceConnector
+Name                 : PIZZA_ORDERS
+Class                : io.confluent.kafka.connect.datagen.DatagenConnector
 Type                 : source
 State                : RUNNING
 WorkerId             : ksqldb:8083

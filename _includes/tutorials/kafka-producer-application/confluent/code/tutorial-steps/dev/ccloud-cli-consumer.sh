@@ -1,1 +1,1 @@
-confluent kafka topic consume output-topic -b --print-key --delimiter " : "
+confluent kafka topic consume output-topic --print-key --delimiter " : " --from-beginning

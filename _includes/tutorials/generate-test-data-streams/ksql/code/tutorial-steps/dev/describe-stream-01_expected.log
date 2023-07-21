@@ -1,9 +1,11 @@
-Name                 : CLICKS
- Field      | Type
-----------------------------------------
- USER_AGENT | VARCHAR(STRING)
- SOURCE_IP  | VARCHAR(STRING)
- PATH       | VARCHAR(STRING)
- HOST       | VARCHAR(STRING)
-----------------------------------------
+Name                 : PIZZA_ORDERS
+ Field          | Type
+-------------------------------------------------------------------------------------------------------------------------------------
+ STORE_ID       | INTEGER
+ STORE_ORDER_ID | INTEGER
+ COUPON_CODE    | INTEGER
+ DATE           | DATE
+ STATUS         | VARCHAR(STRING)
+ ORDER_LINES    | ARRAY<STRUCT<PRODUCT_ID INTEGER, CATEGORY VARCHAR(STRING), QUANTITY INTEGER, UNIT_PRICE DOUBLE, NET_PRICE DOUBLE>>
+-------------------------------------------------------------------------------------------------------------------------------------
 For runtime statistics and query details run: DESCRIBE <Stream,Table> EXTENDED;

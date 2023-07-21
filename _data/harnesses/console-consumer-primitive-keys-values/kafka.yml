@@ -13,6 +13,11 @@ dev:
           render:
             file: tutorials/console-consumer-primitive-keys-values/kafka/markup/dev/init.adoc
 
+        - action: make_file
+          file: primitives.json
+          render:
+            skip: true
+
     - title: Get Confluent Platform
       content:
         - action: make_file
