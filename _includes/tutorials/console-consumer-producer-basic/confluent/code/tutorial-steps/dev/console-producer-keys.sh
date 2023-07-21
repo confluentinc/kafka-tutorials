@@ -1,1 +1,1 @@
-confluent kafka topic produce orders --parse-key --delimiter ":"
+confluent kafka topic produce orders --parse-key
