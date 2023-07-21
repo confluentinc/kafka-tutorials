@@ -1,46 +1,25 @@
-Now let's see how you can generate streams of data that is related and consistent. 
+Now let's see how you can generate streams of data that is related and consistent. You are going to use https://github.com/confluentinc/kafka-connect-datagen/tree/master#use-a-bundled-schema-specification[bundled schemas] available in the Kafka Connect `DatagenConnector`.
 
-Consider an example where we want to generate some dummy data about network devices. The stream of events would have fields such as
 
--> The MAC address of the device
+Consider an example where we want to generate some dummy data for tracking sensors on a fleet of delivery trucks.  There will be two streams of data: (1) the current location of each truck, and (2) truck sensor information from each truck.  The first stream representing the location of the trucks would contain the following fields:
 
--> The number of bytes sent
+-> *Vehicle id (primary key / unique identifier)*
 
-Now let's imagine that instead of generating lots of random MAC addresses, we want a limited set so that the data is more realistic, tying it back to a fixed set of imaginary devices. Each device will have some characteristics: 
+-> *Current location of the truck expressed in longitude and latitude*
 
--> MAC address (primary key / unique identifier)
+The second stream will contain sensor readings attached to the truck.  Now instead of generating lots of random sensor data, we want a limited set so that it's more realistic, tying it back to a fixed set of imaginary trucks. Each sensor reading will provide the following information:
 
--> Device name
+-> *Vehicle id (primary key / unique identifier)*
 
--> Location 
+-> *Engine Temerature*
 
-Run the following to create the connector:
+-> *Average RPM*
 
+For building the two related streams you'll need to create two datagen connectors.
+
+Run the following to create the fleet managment location datagen connector:
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/create-connector-02.sql %}</code></pre>
 +++++
 
-The connector settings can be understood as follows: 
-
-* **Devices**
-
-->  `genkp` sets the https://dius.github.io/java-faker/apidocs/com/github/javafaker/Internet.html#macAddress--[macAddress] as the primitive key
-
--> The `city` and `country` are set as nested values in the `location` entity
-
--> `records.exactly` limits the number of records produced to 10
-
-* **Traffic**
-
--> Not all messages in Kafka are keyed, and this shows an example of generating null keys by setting the null rate to 100% (`null.rate` has a value between 0 and 1).
-
-[source,sql]
-----
-'genkp.traffic.with'                = '#{Number.randomDigit}',
-'attrkp.traffic.null.rate'           = 1,
-----
-
--> The MAC address of the device is set as one of the existing keys on `devices` 
-
--> The rate at which messages are produced is limited to two per second (`throttle.ms' = 500`)
 

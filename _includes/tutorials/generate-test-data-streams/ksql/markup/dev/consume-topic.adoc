@@ -4,7 +4,7 @@ With the connector running let's now inspect the data that's being generated to 
 <pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/consume-topic.sql %}</code></pre>
 +++++
 
-You should see 5 messages and then the command will exit. Observe that the one message is being generated per second, which is what was specified in the `'topic.clicks.throttle.ms'    = 1000` setting.
+You should see 5 messages and then the command will exit. Observe that the one message is being generated per second, which is what was specified in the `'max.interval'    = 1000` setting.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/consume-topic_expected.log %}</code></pre>
