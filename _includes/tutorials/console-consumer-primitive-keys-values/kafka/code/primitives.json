@@ -1,4 +1,5 @@
-{ "type": "record",
+{ 
+  "type": "record",
   "name": "primitives",
   "namespace": "io.confluent.avro.random.generator",
   "fields":

@@ -1,8 +1,7 @@
-Now let's see how you can generate streams of data that is related and consistent. You are going to use https://github.com/confluentinc/kafka-connect-datagen/tree/master#use-a-bundled-schema-specification[bundled schemas] available in the Kafka Connect `DatagenConnector`.
+Now let's see how you can generate streams of data that are related and consistent. You are going to use https://github.com/confluentinc/kafka-connect-datagen/tree/master#use-a-bundled-schema-specification[bundled schemas] available in the Kafka Connect `DatagenConnector`.
 
 
-Consider an example where we want to generate some dummy data for tracking sensors on a fleet of delivery trucks.  There will be two streams of data,
-the current location of a given truck.  The first stream representing the location of the trucks would contain the following fields:
+Consider an example where we want to generate some dummy data for tracking sensors on a fleet of delivery trucks.  There will be two streams of data: (1) the current location of each truck, and (2) truck sensor information from each truck.  The first stream representing the location of the trucks would contain the following fields:
 
 -> *Vehicle id (primary key / unique identifier)*
 
@@ -23,12 +22,4 @@ Run the following to create the fleet managment location stream:
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/kafka/code/tutorial-steps/dev/create-connector-02.sh %}</code></pre>
 +++++
-
-Then create the fleet management sensor reading stream you'll execute the following:
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/generate-test-data-streams/kafka/code/tutorial-steps/dev/create-connector-03.sh %}</code></pre>
-+++++
-
-When looking at the connector setting notice the `quickstart` entry in the `JSON`, this is where you specify a bundle schema the datagen connector provides.  By generating two streams of data with related keys you'll be able to join records or perform aggregations with the related keys.
 

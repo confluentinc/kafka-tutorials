@@ -1,4 +1,4 @@
-Connector Name | Type   | Class                                               | Status
+ Connector Name | Type   | Class                                               | Status
 -------------------------------------------------------------------------------------------------------------
  PIZZA_ORDERS   | SOURCE | io.confluent.kafka.connect.datagen.DatagenConnector | RUNNING (1/1 tasks RUNNING)
 -------------------------------------------------------------------------------------------------------------
