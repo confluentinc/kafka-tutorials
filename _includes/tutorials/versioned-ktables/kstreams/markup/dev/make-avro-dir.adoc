@@ -1,0 +1,8 @@
+
+This tutorial uses 4 streams.  The three input streams have a record type of `LoginEvent` used to represent a user logging into an application.  The fourth stream is an output stream that writes a `LoginRollup` object out to a topic.  In the next steps you'll create the Avro schemas for these objects.
+
+Create a directory for the schemas that represent the events in the stream:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/versioned-ktables/kstreams/code/tutorial-steps/dev/make-avro-dir.sh %}</code></pre>
++++++

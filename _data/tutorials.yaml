@@ -360,10 +360,12 @@ custom-connector:
   meta-description: Build and run a custom connector on Confluent Cloud
   canonical: confluent
   slug: /custom-connector
-  introduction: 'While Confluent Cloud offers many pre-built <a href=''https://docs.confluent.io/cloud/current/connectors/index.html#supported-connectors''>managed
-    connectors</a>, you may also upload and run custom connectors on Confluent Cloud — either an existing open source connector that you''d like to use,
-    or a connector that you''ve written. In this tutorial, we''ll write a simple source connector plugin, package it so that it can be uploaded to Confluent Cloud, and then run
-    the connector. As a developer, you want to write code. Let Confluent Cloud do the rest.'
+  introduction: While Confluent Cloud offers many pre-built <a href='https://docs.confluent.io/cloud/current/connectors/index.html#supported-connectors'>managed
+    connectors</a>, you may also upload and run custom connectors on Confluent Cloud
+    — either an existing open source connector that you'd like to use, or a connector
+    that you've written. In this tutorial, we'll write a simple source connector plugin,
+    package it so that it can be uploaded to Confluent Cloud, and then run the connector.
+    As a developer, you want to write code. Let Confluent Cloud do the rest.
   question: How do I write, package, and run a custom connector on Confluent Cloud?
   status:
     confluent: enabled
@@ -1525,3 +1527,14 @@ survey-responses:
     responses happen.'
   status:
     confluent: disabled
+versioned-ktables:
+  title: Working with versioned KTables
+  meta-description: Working with versioned KTables
+  canonical: confluent
+  slug: /versioned-ktables
+  question: How can you ensure that out of order data on KStream joins with a record in a KTable with the correct timestamp?
+  introduction:  It used to be in Kafka Streams that state stores only maintained the latest record for a given key.  This could be an 
+  an issue when joining time-sensitive data in a KStream where you want to join with a record from the KTable with the correct timestamp,
+  not necessarily the latest record.
+  status:
+    kstreams: enabled

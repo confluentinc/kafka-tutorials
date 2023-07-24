@@ -1,0 +1,150 @@
+answer:
+  steps:
+  - title: ~
+    content:
+    - action: skip
+      render:
+        file: tutorials/cogrouping-streams/confluent/markup/answer/short-answer.adoc
+dev:
+  steps:
+  - title: Prerequisites
+    content:
+    - action: skip
+      render:
+        file: shared/markup/dev/docker-prerequisite.adoc
+  - title: Initialize the project
+    content:
+    - action: execute
+      file: tutorial-steps/dev/init.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/init.adoc
+  - title: Get Confluent Platform
+    content:
+    - action: make_file
+      file: docker-compose.yml
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-docker-compose.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/docker-compose-up.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/start-compose.adoc
+    - action: execute
+      file: tutorial-steps/dev/wait-for-containers.sh
+      render:
+        skip: true
+  - title: Configure the project
+    content:
+    - action: make_file
+      file: build.gradle
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-build-file.adoc
+    - action: execute
+      file: tutorial-steps/dev/gradle-wrapper.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-gradle-wrapper.adoc
+    - action: execute
+      file: tutorial-steps/dev/make-configuration-dir.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-config-dir.adoc
+    - action: make_file
+      file: configuration/dev.properties
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-dev-file.adoc
+  - title: Create a schema for the model object
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-avro-dir.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-avro-dir.adoc
+    - action: make_file
+      file: src/main/avro/login-event.avsc
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-login-event-schema.adoc
+    - action: make_file
+      file: src/main/avro/login-rollup.avsc
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-login-rollup-schema.adoc
+    - action: execute
+      file: tutorial-steps/dev/build-project.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/build-project.adoc
+  - title: Create the Kafka Streams topology
+    content:
+    - action: execute
+      file: tutorial-steps/dev/make-src-dir.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-src-dir.adoc
+    - action: make_file
+      file: src/main/java/io/confluent/developer/CogroupingStreams.java
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-topology.adoc
+  - title: Implement a Cogrouping Aggregator
+    content:
+    - action: make_file
+      file: src/main/java/io/confluent/developer/LoginAggregator.java
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/make-aggregator.adoc
+  - title: Compile and run the Kafka Streams program
+    content:
+    - action: execute
+      file: tutorial-steps/dev/build-uberjar.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/build-uberjar.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/run-dev-app.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/run-dev-app.adoc
+    - name: wait for streams app to be fully running
+      action: sleep
+      ms: 10000
+      render:
+        skip: true
+  - title: Consume data from the output topic
+    content:
+    - action: execute_async
+      file: tutorial-steps/dev/console-consumer.sh
+      stdout: tutorial-steps/dev/outputs/actual-output.json
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/dev/run-consumer.adoc
+    - name: wait for the consumer to read the messages
+      action: sleep
+      ms: 15000
+      render:
+        skip: true
+test:
+  steps:
+  - title: Create a test configuration file
+    content:
+    - action: make_file
+      file: configuration/test.properties
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/test/make-test-file.adoc
+  - title: Test the LoginAggregator class
+    content:
+    - action: execute
+      file: tutorial-steps/test/make-test-dir.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/test/make-test-dir.adoc
+    - action: make_file
+      file: src/test/java/io/confluent/developer/LoginAggregatorTest.java
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/test/make-aggregator-test.adoc
+  - title: Test the Cogrouping Topology
+    content:
+    - action: make_file
+      file: src/test/java/io/confluent/developer/CogroupingStreamsTest.java
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/test/make-topology-test.adoc
+  - title: Invoke the tests
+    content:
+    - action: execute
+      file: tutorial-steps/test/invoke-tests.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/test/invoke-tests.adoc
+ccloud:
+  steps:
+  - title: Run your app to Confluent Cloud
+    content:
+    - action: skip
+      render:
+        file: shared/markup/ccloud/try-ccloud-properties.adoc
