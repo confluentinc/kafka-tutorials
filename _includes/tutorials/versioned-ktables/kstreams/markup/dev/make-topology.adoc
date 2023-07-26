@@ -1,0 +1,38 @@
+////
+In this file you describe the Kafka streams topology, and should cover the main points of the tutorial.
+The text assumes a method buildTopology exists and constructs the Kafka Streams application.  Feel free to modify the text below to suit your needs.
+////
+
+Before you create the Java class to run the `Cogrouping` example, let's dive into the main point of this tutorial, how we use cogrouping:
+
+++++
+<pre class="snippet">
+    <code class="java">
+        final Aggregator&lt;String, LoginEvent, LoginRollup&gt; loginAggregator = new LoginAggregator();
+
+        final KGroupedStream&lt;String, LoginEvent&gt; appOneGrouped = appOneStream.groupByKey();
+        final KGroupedStream&lt;String, LoginEvent&gt; appTwoGrouped = appTwoStream.groupByKey();
+        final KGroupedStream&lt;String, LoginEvent&gt; appThreeGrouped = appThreeStream.groupByKey();
+
+        appOneGrouped.cogroup(loginAggregator)
+            .cogroup(appTwoGrouped, loginAggregator)
+            .cogroup(appThreeGrouped, loginAggregator)
+            .aggregate(() -&gt; new LoginRollup(new HashMap&lt;>()), Materialized.with(Serdes.String(), loginRollupSerde))
+            .toStream().to(totalResultOutputTopic, Produced.with(stringSerde, loginRollupSerde));
+    </code>
+</pre>
+++++
+
+You're using the cogrouping functionality here to get an overall grouping of logins per application.  Kafka Streams creates this total grouping by using an `Aggregator` who knows how to extract records from each grouped stream.  Your `Aggregator` instance here knows how to correctly combine each `LoginEvent` into the larger `LoginRollup` object.  You'll learn more about `Aggregator` in the next step.
+
+Next, you have three input streams: `appOneStream`, `appTwoStream`, and `appThreeStream`.  You need the intermediate object `KGroupedStream`, so you execute the `groupByKey()` method on each stream.  For this tutorial, we have assumed the incoming records already have keys.  In cases where records lack keys, you need to use a key-selecting method (`selectKey()`, `map()`, or `groupBy()`) to successfully group by key.
+
+Now with your `KGroupedStream` objects, you start creating your larger aggregate by calling `KGroupedStream.cogroup()` on the first stream, using your `Aggregator`.  This first step returns a `CogroupedKStream` instance.  Then for each remaining `KGroupedStream`, you execute `CogroupedKSteam.cogroup()` using one of the `KGroupedStream` instances and the `Aggregator` you created previously.  You repeat this sequence of calls for all of the `KGroupedStream` objects you want to combine into an overall aggregate.
+
+For more background on cogrouping functionality in stream you can https://cwiki.apache.org/confluence/display/KAFKA/KIP-150+-+Kafka-Streams+Cogroup[read the KIP-150 proposal].
+
+
+Now go ahead and create the Java file at `src/main/java/io/confluent/developer/VersionedKTableExample.java`.
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/versioned-ktables/kstreams/code/src/main/java/io/confluent/developer/VersionedKTableExample.java %}</code></pre>
++++++

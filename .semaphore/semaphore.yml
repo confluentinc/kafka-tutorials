@@ -249,8 +249,11 @@ blocks:
       - make -C _includes/tutorials/confluent-parallel-consumer-application/kafka/code
         tutorial
     - name: Kafka Generate streams of test data tests
-      commands: 
+      commands:
       - make -C _includes/tutorials/generate-test-data-streams/kafka/code tutorial
+    - name: Kafka Streams versioned KTable tests
+      commands:
+      - make -C _includes/tutorials/versioned-ktables/kstreams/code tutorial
 - name: Run second block of tests (ksqlDB recipes)
   dependencies:
   - ☕️ Build and Test Java (Kafka and Kafka Streams) Only
