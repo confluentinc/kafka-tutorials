@@ -23,4 +23,4 @@ This renaming means the streams application `count()` processor now uses a new s
 
 Your original data is still there, but Kafka Streams isn't using the previously created state store and changelog topic.
 
-You can close this consumer for now with a `Ctrl-C`.
+You can close this consumer for now with `Ctrl-C`.

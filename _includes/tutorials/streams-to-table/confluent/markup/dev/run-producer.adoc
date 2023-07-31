@@ -21,5 +21,5 @@ Then enter these records either one at time or copy-paste all of them into the t
 <pre class="snippet"><code class="shell">{% include_raw tutorials/streams-to-table/kstreams/code/tutorial-steps/dev/input.txt %}</code></pre>
 +++++
 
-After you've sent the records, you can close the producer with a `Ctrl-C` command.
+After you've sent the records, you can close the producer with `Ctrl-C`.
 

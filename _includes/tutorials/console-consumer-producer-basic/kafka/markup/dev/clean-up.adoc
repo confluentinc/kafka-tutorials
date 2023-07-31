@@ -1,6 +1,6 @@
 You're all done now!
 
-Go back to your open windows and stop any console producers and consumers with a `Ctrl-C` then close the container shells with a `Ctrl-D` command.
+Go back to your open windows and stop any console producers and consumers with `Ctrl-C` then close the container shells with `Ctrl-D`.
 
 Then you can shut down the stack by running:
 

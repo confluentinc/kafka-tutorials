@@ -18,4 +18,4 @@ After a few seconds you should see something like this (your output will vary de
 
 You'll notice you sent 12 records, but only 6 went to the first partition.  The reason for this is the way Kafka calculates the partition assignment for a given record.  Kafka calculates the partition by taking the hash of the key modulo the number of partitions.  So, even though you have 2 partitions, depending on what the key hash value is, you aren't guaranteed an even distribution of records across partitions.
 
-Go ahead and shut down the current consumer with a `Ctrl-C`
+Go ahead and shut down the current consumer with `Ctrl-C`.

@@ -29,5 +29,5 @@ Then enter these records either one at time or copy-paste all of them into the t
 <pre class="snippet"><code class="shell">{% include_raw tutorials/streams-to-table/kstreams/code/tutorial-steps/dev/input.txt %}</code></pre>
 +++++
 
-After you've sent the records, you can close the producer with a `Ctrl-C` command, but keep the broker container shell open as you'll still need it for the next few steps.
+After you've sent the records, you can close the producer with `Ctrl-C`, but keep the broker container shell open as you'll still need it for the next few steps.
 
