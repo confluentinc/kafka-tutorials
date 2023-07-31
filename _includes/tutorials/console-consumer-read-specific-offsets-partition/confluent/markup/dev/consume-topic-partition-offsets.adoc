@@ -19,4 +19,4 @@ After a few seconds you should see something like this
 
 As you can see, you've consumed records starting from offset `3` to the end of the log.
 
-Go ahead and shut down the current consumer with `Ctrl-C`
+Go ahead and shut down the current consumer with `Ctrl-C`.
