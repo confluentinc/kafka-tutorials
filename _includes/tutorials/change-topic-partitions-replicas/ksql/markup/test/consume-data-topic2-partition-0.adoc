@@ -12,4 +12,4 @@ You should see some of the records in this partition. In this example, the parti
 
 Notice that the ordering of the data is still maintained per key.
 
-Close the consumer by entering `CTRL+C`.
+Close the consumer with `Ctrl-C`.

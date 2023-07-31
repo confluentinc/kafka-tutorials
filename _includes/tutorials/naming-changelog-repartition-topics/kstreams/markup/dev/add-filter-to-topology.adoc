@@ -31,7 +31,7 @@ Here's an image of the relevant part of the updated topology (view a `https://zz
 
 **(Note that changelog topics don't show up in `Topology.describe()`)**
 
-Now, in the terminal running the streams application, do a `CTRL+C`, then restart the app with the following command:
+Now, in the terminal running the streams application, use `Ctrl-C`, then restart the app with the following command:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/render-run-dev-app-no-name-filter.sh %}</code></pre>

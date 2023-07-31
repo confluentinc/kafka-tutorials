@@ -10,4 +10,4 @@ You should see 5 messages and then the command will exit. Observe that the one m
 <pre class="snippet"><code class="shell">{% include_raw tutorials/generate-test-data-streams/kafka/code/tutorial-steps/dev/consume-topic-01_expected.log %}</code></pre>
 +++++
 
-You can also run this without the `-c5` argument to see a continuous stream of messages. If you do this, press `Ctrl+C` to return to the command prompt. 
+You can also run this without the `-c5` argument to see a continuous stream of messages. If you do this, press `Ctrl-C` to return to the command prompt. 

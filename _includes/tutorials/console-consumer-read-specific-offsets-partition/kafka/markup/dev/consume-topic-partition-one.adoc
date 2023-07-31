@@ -1,6 +1,6 @@
 In the previous step, you consumed records from the first partition of your topic.  In this step you'll consume the rest of your records from the second partition `1`.
 
-If you haven't done so already, close the previous console consumer with a `CTRL+C`.
+If you haven't done so already, close the previous console consumer with `Ctrl-C`.
 
 Then start a new console consumer to read only records from the second partition:
 
@@ -16,4 +16,4 @@ After a few seconds you should see something like this
 
 As you'd expect, the remaining 9 records are on the second partition.
 
-Go ahead and shut down the current consumer with a `CTRL+C`
+Go ahead and shut down the current consumer with `Ctrl-C`.
