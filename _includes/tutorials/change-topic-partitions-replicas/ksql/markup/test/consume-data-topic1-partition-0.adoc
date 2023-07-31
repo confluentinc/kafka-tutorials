@@ -10,4 +10,4 @@ You should see all the records in this partition.
 <pre class="snippet"><code class="text">{% include_raw tutorials/change-topic-partitions-replicas/ksql/code/tutorial-steps/test/expected-data-from-topic1-partition-0.sh %}</code></pre>
 +++++
 
-Close the consumer by entering `CTRL+C`.
+Close the consumer with `Ctrl-C`.

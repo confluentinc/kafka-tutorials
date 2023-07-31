@@ -10,7 +10,7 @@ The output should look like the following:
 <pre class="snippet"><code class="sql">{% include_raw tutorials/anomaly-detection/ksql/code/tutorial-steps/dev/print-accounts-to-monitor.log %}</code></pre>
 +++++
 
-Note that if you were to alter the `LIMIT` of results to something greater than 1, you would not see any other accounts flagged even though Victor von Frankenstein had a transaction that was flagged as suspicious. If you decided to rerun the query with a new limit, enter `Ctrl+D` to terminate the query. +
+Note that if you were to alter the `LIMIT` of results to something greater than 1, you would not see any other accounts flagged even though Victor von Frankenstein had a transaction that was flagged as suspicious. If you decided to rerun the query with a new limit, use `Ctrl-D` to terminate the query. +
 
 
 Events within the Kafka topic `accounts_to_monitor` can be used to drive monitoring and alerting applications that could take action such as placing a hold on the account, notifying the card holder, etc. +
