@@ -1,6 +1,6 @@
 Using a terminal window, run the following command to start a Confluent CLI producer:
 
-```bash
+```plaintext
 confluent kafka topic produce input-topic
 ```
 
