@@ -1,7 +1,7 @@
 Leaving your original terminal running, open another to consume the events that have been filtered by your application:
 
-```bash
-confluent kafka topic consume movie-revenue -b --print-key
+```
+confluent kafka topic consume movie-revenue --from-beginning --print-key
 ```
 
 After the consumer starts, you should see the following messages. Note that for every key (movie), a sequence of output records (sum) is emitted. Each record represents an update to the sum, which is sent on every movie event specifically because caching is disabled in the code with `StreamsConfig.CACHE_MAX_BYTES_BUFFERING_CONFIG` set to `0`. Read more on `https://docs.confluent.io/current/streams/developer-guide/memory-mgmt.html#record-caches-in-the-dsl[Record caches in the DSL]`.

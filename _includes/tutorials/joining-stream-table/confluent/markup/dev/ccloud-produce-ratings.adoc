@@ -1,6 +1,6 @@
 Run the following in a new terminal window. This process is the most fun if you can see this and the previous terminal (which is consuming the rated movies) at the same time. If your terminal program lets you do horizontal split panes, try it that way:
 
-```bash
+```
 confluent kafka topic produce ratings --value-format avro --schema src/main/avro/rating.avsc
 ```
 
