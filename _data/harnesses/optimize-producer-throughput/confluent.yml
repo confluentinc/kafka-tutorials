@@ -32,7 +32,7 @@ dev:
           render:
             file: shared/markup/ccloud/config-broker-only-create.adoc
 
-    - title: Download and setup the Confluent CLI
+    - title: Download and set up the Confluent CLI
       content:
         - action: skip
           render:
