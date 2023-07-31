@@ -42,7 +42,7 @@ dev:
     - action: skip
       render:
         file: tutorials/anomaly-detection/ksql/markup/dev/start-cli.adoc
-  - title: Setup ksqlDB stream, table and insert data
+  - title: Set up ksqlDB stream, table and insert data
     content:
     - action: docker_ksql_cli_session
       container: ksqldb-cli
