@@ -1,6 +1,6 @@
 To produce the input events to their respective topics, you'll want two terminals running. To send the rock songs to their topic, open up a terminal and run the following:
 
-```
+```plaintext
 confluent kafka topic produce rock-song-events \
       --value-format avro \
       --schema src/main/avro/song_event.avsc

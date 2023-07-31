@@ -8,7 +8,7 @@ Now that you've run the Kafka Streams application, it should have shut itself do
 
 Let's now run the Confluent CLI to confirm the output:
 
-```
+```plaintext
 confluent kafka topic consume output-topic --from-beginning
 ```
 

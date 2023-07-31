@@ -4,7 +4,7 @@ In this step we're going to create a topic for use during this tutorial.
 
 Open a new terminal window and then run this command to create the topic that the producer can write to
 
-```
+```plaintext
 confluent kafka topic create output-topic
 ```
 

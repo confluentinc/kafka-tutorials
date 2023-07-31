@@ -1,6 +1,6 @@
 Leaving your original terminal running, open another to consume the events that have been filtered by your application:
 
-```
+```plaintext
 confluent kafka topic consume movie-revenue --from-beginning --print-key
 ```
 

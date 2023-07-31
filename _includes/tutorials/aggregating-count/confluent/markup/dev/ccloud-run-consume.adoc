@@ -1,6 +1,6 @@
 Run the following command to start a Confluent CLI consumer to view consume the events that have been filtered by your application:
 
-```
+```plaintext
 confluent kafka topic consume movie-tickets-sold -b --print-key
 ```
 

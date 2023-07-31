@@ -2,7 +2,7 @@ Leave your original terminal running. To consume the output events from each of 
 
 First, to consume the events of drama films, run the following:
 
-```
+```plaintext
 confluent kafka topic consume drama-acting-events --from-beginning --value-format avro
 ```
 
@@ -14,7 +14,7 @@ This should yield the following messages:
 
 Second, to consume those from fantasy films, run the following:
 
-```
+```plaintext
 confluent kafka topic consume fantasy-acting-events --from-beginning --value-format avro
 ```
 

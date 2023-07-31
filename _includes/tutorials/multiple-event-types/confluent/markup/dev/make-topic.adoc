@@ -4,7 +4,7 @@ Since you are going to produce records using Protobuf and Avro serialization, yo
 
 Use the following commands to create the topics:
 
-```
+```plaintext
 confluent kafka topic create avro-events
 confluent kafka topic create proto-events
 ```

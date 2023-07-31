@@ -1,6 +1,6 @@
 Using a terminal window, run the following command to start a Confluent CLI producer:
 
-```
+```plaintext
 confluent kafka topic produce parallel-consumer-input-topic --parse-key
 ```
 
