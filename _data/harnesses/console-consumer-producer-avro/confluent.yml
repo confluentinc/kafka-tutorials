@@ -14,7 +14,7 @@ dev:
           render:
             file: shared/markup/ccloud/ccloud-setup-self.adoc
 
-    - title: Download and setup the Confluent CLI
+    - title: Download and set up the Confluent CLI
       content:
         - action: skip
           render:

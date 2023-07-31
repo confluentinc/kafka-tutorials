@@ -8,7 +8,7 @@ answer:
 
 dev:
   steps:
-    - title: Setup your environment
+    - title: Set up your environment
       content:
         - action: skip
           render:
