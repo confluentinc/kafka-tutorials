@@ -17,4 +17,4 @@ The output from the consumer can vary if you added any of your own records, but 
 ++++
 
 
-Now close the consumer with a `CTRL+C` then the broker shell with a `CTRL+D`
+Now close the consumer with `Ctrl-C` then the broker shell with `Ctrl-D`.

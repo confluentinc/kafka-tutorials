@@ -6,4 +6,4 @@ Copy these records and paste them into the `kafka-console-producer` prompt that 
 <pre class="snippet"><code class="json">{% include_raw tutorials/message-ordering/kafka/code/test/input.txt %}</code></pre>
 +++++
 
-Stop the producer by entering `CTRL+C`.
+Stop the producer with `Ctrl-C`.

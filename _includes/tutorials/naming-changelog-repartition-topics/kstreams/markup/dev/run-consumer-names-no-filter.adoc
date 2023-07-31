@@ -19,4 +19,4 @@ For this run you should see all six records plus three new records:
 
 Since you used data resulting in new keys, `2-1, 2-2, 2-3` looks correct.
 
-You can close this consumer for now with a `CTRL+C`.
+You can close this consumer for now with `Ctrl-C`.

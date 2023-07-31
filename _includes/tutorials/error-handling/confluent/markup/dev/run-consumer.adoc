@@ -32,4 +32,4 @@ GO
 
 You'll notice there are some duplicated values in the output.  This duplication is to be expected, as the streams application is running with the default processing mode of `AT_LEAST_ONCE`. Duplicate values is one thing to consider when using `REPLACE_THREAD` with the `StreamsUncaughtExceptionHander`, since this is analogous to using retries with the `KafkaProducer`.  If you don't want duplicate values, you should consider running with the processing mode of `EXACTLY_ONCE`
 
-Enter `Ctrl+C` to exit.
+Enter `Ctrl-C` to exit.

@@ -10,4 +10,4 @@ Each line represents input data for the KafkaConsumer application. To send all o
 <pre class="snippet"><code class="json">{% include_raw tutorials/kafka-consumer-application/kafka/code/tutorial-steps/dev/input.txt %}</code></pre>
 +++++
 
-Enter `Ctrl+C` to exit.
+Enter `Ctrl-C` to exit.

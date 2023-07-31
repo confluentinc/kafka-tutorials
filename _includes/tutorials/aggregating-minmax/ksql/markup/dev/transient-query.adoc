@@ -1,6 +1,6 @@
 With our test data in place, let's try a query to compute the min and max. A `SELECT` statement with an `EMIT CHANGES` in ksqlDB is called a _transient_ push query, meaning that after we stop it, it is gone and will not keep processing the input stream. We'll create a _persistent_ query, the contrast to a transient push query, a few steps from now.
 
-If you're familiar with SQL, the text of the query itself is fairly self-explanatory. We are calculating the highest and lowest grossing movie figures by year using `MIN` and `MAX` aggregations on the `TOTAL_SALES` column. This query will keep running, continuing to return results until you hit CTRL-C. Most ksqlDB queries are _continuous queries_ that run forever in this way; there is always potentially more input available in the source stream, so the query never finishes on its own.
+If you're familiar with SQL, the text of the query itself is fairly self-explanatory. We are calculating the highest and lowest grossing movie figures by year using `MIN` and `MAX` aggregations on the `TOTAL_SALES` column. This query will keep running, continuing to return results until you use `Ctrl-C`. Most ksqlDB queries are _continuous queries_ that run forever in this way; there is always potentially more input available in the source stream, so the query never finishes on its own.
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/ksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
 +++++

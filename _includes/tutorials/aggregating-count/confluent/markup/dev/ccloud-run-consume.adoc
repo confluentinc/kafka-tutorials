@@ -12,4 +12,4 @@ The consumer prompt will hang, waiting for more events to arrive. To continue st
 <pre class="snippet"><code class="json">{% include_raw tutorials/aggregating-count/kstreams/code/tutorial-steps/dev/outputs/actual-output-events.json %}</code></pre>
 +++++
 
-Enter `Ctrl+C` to exit.
+Use `Ctrl-C` to exit.
