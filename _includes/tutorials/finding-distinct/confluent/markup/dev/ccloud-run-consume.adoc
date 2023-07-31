@@ -1,6 +1,6 @@
 Run the following command to start a Confluent CLI consumer to view the distinct click events:
 
-```bash
+```plaintext
 confluent kafka topic consume distinct-clicks -b --value-format avro
 ```
 

@@ -1,6 +1,6 @@
 Now run a console consumer that will read topics from the output topic to confirm your application published the expected records.
 
-```bash
+```plaintext
 confluent kafka topic consume output-topic --print-key --delimiter " : " --from-beginning
 ```
 
