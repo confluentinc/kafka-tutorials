@@ -19,4 +19,4 @@ Then copy-paste the following records to send.  You'll use data resulting in dif
 <pre class="snippet"><code class="json">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/named-input.txt %}</code></pre>
 +++++
 
-After you've sent the records, you can shut down the console-producer with a `CTRL+C`.
+After you've sent the records, you can shut down the console-producer with a `Ctrl-C`.

@@ -1,6 +1,6 @@
 Now that we've produced full key-value pairs from the command line, you'll want to consume full key-value pairs from the command line as well.
 
-If your console consumer from the previous step is still open, shut it down with a `CTRL+C`.  Then run the following command to re-open the console consumer but now it will print the full key-value pair.  Note the added properties of `print.key` and `key.separator`.  You should also take note that there's a different key separator used here, you don't have to use the same one between console producers and consumers.
+If your console consumer from the previous step is still open, shut it down with a `Ctrl-C`.  Then run the following command to re-open the console consumer but now it will print the full key-value pair.  Note the added properties of `print.key` and `key.separator`.  You should also take note that there's a different key separator used here, you don't have to use the same one between console producers and consumers.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/console-consumer-producer-basic/kafka/code/tutorial-steps/dev/console-consumer-keys.sh %}</code></pre>

@@ -21,4 +21,4 @@ After a few seconds you should see output like the following:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/streams-to-table/kstreams/code/tutorial-steps/dev/expected-streams-output.txt %}</code></pre>
 +++++
 
-Now that you've confirmed the streams output, close this consumer with a `CTRL+C`.
+Now that you've confirmed the streams output, close this consumer with a `Ctrl-C`.

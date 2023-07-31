@@ -15,4 +15,4 @@ After the consumer starts you should see the following output in a few seconds:
 
 One word of caution with using the `--from-beginning` flag. As the name implies this setting forces the consumer retrieve _**every record**_ currently on the topic.  So it's best to use when testing  and learning and not on a production topic.
 
-Again, once you've received all records, close this console consumer by entering a `CTRL+C`.
+Again, once you've received all records, close this console consumer with a `Ctrl-C`.

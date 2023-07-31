@@ -21,7 +21,7 @@ Here's an image of the relevant part of the updated topology with stateful opera
 
 You'll notice the other processor names have shifted, but since these are **_stateless_**, that's ok and it won't break topology compatibility.
 
-In the terminal running the streams application, do a `CTRL+C`, then restart the streams application with this command:
+In the terminal running the streams application, do a `Ctrl-C`, then restart the streams application with this command:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/render-run-dev-app-names-with-filter.sh %}</code></pre>

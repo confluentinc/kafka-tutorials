@@ -10,4 +10,4 @@ Depending on the cadence and values you produce in the steps above, you should s
 <pre class="snippet"><code class="json">{% include_raw tutorials/finding-distinct/kstreams/code/tutorial-steps/dev/expected-output-events.json %}</code></pre>
 +++++
 
-Enter `Ctrl+C` to exit.
+Enter `Ctrl-C` to exit.

@@ -1,6 +1,6 @@
 You're all done now!
 
-Go back to your open windows and stop any console consumers with a `CTRL+C` then close the container shells with a `CTRL+D` command.
+Go back to your open windows and stop any console consumers with a `Ctrl-C` then close the container shells with a `Ctrl-D` command.
 
 Then you can shut down the docker container by running:
 

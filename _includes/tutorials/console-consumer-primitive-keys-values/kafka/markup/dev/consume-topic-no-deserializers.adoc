@@ -24,4 +24,4 @@ After the consumer starts up, you'll get some output, but nothing readable is on
 
 The output looks like this because you are consuming records with a `Long` key and a `Double` value, but you haven't provided the correct deserializer for longs or doubles.
 
-Close the consumer with a `Ctrl+C` command, but keep the container shell open.
+Close the consumer with a `Ctrl-C` command, but keep the container shell open.

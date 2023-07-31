@@ -12,4 +12,4 @@ This illustrates that for the consumer, message order is not maintained across t
 <pre class="snippet"><code class="shell">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-output-consumer-all-partitions.txt %}</code></pre>
 ++++
 
-Close the consumer with a `CTRL+C`.
+Close the consumer with a `Ctrl-C`.

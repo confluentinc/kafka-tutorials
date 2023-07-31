@@ -20,4 +20,4 @@ We'll send the exact same data from before, as we want to update the counts for 
 <pre class="snippet"><code class="json">{% include_raw tutorials/naming-changelog-repartition-topics/kstreams/code/tutorial-steps/dev/input.txt %}</code></pre>
 +++++
 
-After you've sent the records, you can shut down the console-producer with a `CTRL+C`.
+After you've sent the records, you can shut down the console-producer with a `Ctrl-C`.

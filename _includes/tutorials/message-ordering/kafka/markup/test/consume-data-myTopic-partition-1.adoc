@@ -10,4 +10,4 @@ You should see only some of the records in this partition.
 <pre class="snippet"><code class="text">{% include_raw tutorials/message-ordering/kafka/code/tutorial-steps/test/expected-data-from-myTopic-partition-1.sh %}</code></pre>
 +++++
 
-Close the consumer by entering `CTRL+C`.
+Close the consumer with `Ctrl-C`.

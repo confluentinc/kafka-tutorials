@@ -1,6 +1,6 @@
 So far you've learned how to consume records from a specific partition. When you specify the partition, you can optionally specify the offset to start consuming from.  Specifying a specific offset can be helpful when debugging an issue, in that you can skip consuming records that you know aren't a potential problem.
 
-If you haven't done so already, close the previous console consumer with a `CTRL+C`.
+If you haven't done so already, close the previous console consumer with a `Ctrl-C`.
 
 From the previous step you know there are 6 records in the second partition.  In this step you'll only consume records starting from offset 3, so you should only see the last 3 records on the screen. The changes in this command include removing the `--from-beginning` property and adding an `--offset` flag
 
@@ -19,4 +19,4 @@ After a few seconds you should see something like this
 
 As you can see, you've consumed records starting from offset `3` to the end of the log.
 
-Go ahead and shut down the current consumer with a `CTRL+C`
+Go ahead and shut down the current consumer with a `Ctrl-C`
