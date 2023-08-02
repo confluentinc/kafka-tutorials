@@ -4,7 +4,7 @@ answer:
     content:
     - action: skip
       render:
-        file: tutorials/cogrouping-streams/confluent/markup/answer/short-answer.adoc
+        file: tutorials/versioned-ktables/kstreams/markup/dev/short-answer.adoc
 dev:
   steps:
   - title: Prerequisites
@@ -50,24 +50,6 @@ dev:
       file: configuration/dev.properties
       render:
         file: tutorials/versioned-ktables/kstreams/markup/dev/make-dev-file.adoc
-  - title: Create a schema for the model object
-    content:
-    - action: execute
-      file: tutorial-steps/dev/make-avro-dir.sh
-      render:
-        file: tutorials/versioned-ktables/kstreams/markup/dev/make-avro-dir.adoc
-    - action: make_file
-      file: src/main/avro/login-event.avsc
-      render:
-        file: tutorials/versioned-ktables/kstreams/markup/dev/make-login-event-schema.adoc
-    - action: make_file
-      file: src/main/avro/login-rollup.avsc
-      render:
-        file: tutorials/versioned-ktables/kstreams/markup/dev/make-login-rollup-schema.adoc
-    - action: execute
-      file: tutorial-steps/dev/build-project.sh
-      render:
-        file: tutorials/versioned-ktables/kstreams/markup/dev/build-project.adoc
   - title: Create the Kafka Streams topology
     content:
     - action: execute
@@ -78,12 +60,6 @@ dev:
       file: src/main/java/io/confluent/developer/VersionedKTableExample.java
       render:
         file: tutorials/versioned-ktables/kstreams/markup/dev/make-topology.adoc
-  - title: Implement a Cogrouping Aggregator
-    content:
-    - action: make_file
-      file: src/main/java/io/confluent/developer/LoginAggregator.java
-      render:
-        file: tutorials/versioned-ktables/kstreams/markup/dev/make-aggregator.adoc
   - title: Compile and run the Kafka Streams program
     content:
     - action: execute
@@ -119,17 +95,7 @@ test:
       file: configuration/test.properties
       render:
         file: tutorials/versioned-ktables/kstreams/markup/test/make-test-file.adoc
-  - title: Test the LoginAggregator class
-    content:
-    - action: execute
-      file: tutorial-steps/test/make-test-dir.sh
-      render:
-        file: tutorials/versioned-ktables/kstreams/markup/test/make-test-dir.adoc
-    - action: make_file
-      file: src/test/java/io/confluent/developer/LoginAggregatorTest.java
-      render:
-        file: tutorials/versioned-ktables/kstreams/markup/test/make-aggregator-test.adoc
-  - title: Test the Cogrouping Topology
+  - title: Test the Versioned KTable Topology
     content:
     - action: make_file
       file: src/test/java/io/confluent/developer/VersionedKTableExampleTest.java

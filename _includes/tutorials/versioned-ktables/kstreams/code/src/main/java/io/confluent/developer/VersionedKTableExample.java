@@ -1,82 +1,60 @@
 package io.confluent.developer;
 
 
-import io.confluent.common.utils.TestUtils;
-import io.confluent.developer.avro.LoginEvent;
-import io.confluent.developer.avro.LoginRollup;
-import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
-import io.confluent.kafka.serializers.KafkaAvroDeserializer;
-import io.confluent.kafka.serializers.KafkaAvroSerializer;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
-import org.apache.avro.specific.SpecificRecord;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
-import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.apache.kafka.streams.KafkaStreams;
+import org.apache.kafka.streams.KeyValue;
 import org.apache.kafka.streams.StreamsBuilder;
-import org.apache.kafka.streams.StreamsConfig;
 import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.kstream.Aggregator;
-import org.apache.kafka.streams.kstream.Consumed;
-import org.apache.kafka.streams.kstream.KGroupedStream;
-import org.apache.kafka.streams.kstream.KStream;
-import org.apache.kafka.streams.kstream.Materialized;
-import org.apache.kafka.streams.kstream.Produced;
+import org.apache.kafka.streams.kstream.*;
+import org.apache.kafka.streams.state.KeyValueBytesStoreSupplier;
+import org.apache.kafka.streams.state.Stores;
+import org.apache.kafka.streams.state.VersionedBytesStoreSupplier;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.concurrent.CountDownLatch;
 
 public class VersionedKTableExample {
 
 
     public Topology buildTopology(Properties allProps) {
         final StreamsBuilder builder = new StreamsBuilder();
-        final String appOneInputTopic = allProps.getProperty("app-one.topic.name");
-        final String appTwoInputTopic = allProps.getProperty("app-two.topic.name");
-        final String appThreeInputTopic = allProps.getProperty("app-three.topic.name");
+        final String streamInputTopic = allProps.getProperty("stream.topic.name");
+        final String tableInputTopic = allProps.getProperty("table.topic.name");
         final String totalResultOutputTopic = allProps.getProperty("output.topic.name");
 
         final Serde<String> stringSerde = Serdes.String();
-        final Serde<LoginEvent> loginEventSerde = getSpecificAvroSerde(allProps);
-        final Serde<LoginRollup> loginRollupSerde = getSpecificAvroSerde(allProps);
 
+        final VersionedBytesStoreSupplier versionedStoreSupplier = Stores.persistentVersionedKeyValueStore("versioned-ktable-store", Duration.ofMinutes(10));
+        final KeyValueBytesStoreSupplier persistentStoreSupplier = Stores.persistentKeyValueStore("non-versioned-table");
 
-        final KStream<String, LoginEvent> appOneStream = builder.stream(appOneInputTopic, Consumed.with(stringSerde, loginEventSerde));
-        final KStream<String, LoginEvent> appTwoStream = builder.stream(appTwoInputTopic, Consumed.with(stringSerde, loginEventSerde));
-        final KStream<String, LoginEvent> appThreeStream = builder.stream(appThreeInputTopic, Consumed.with(stringSerde, loginEventSerde));
+        final KStream<String, String> streamInput = builder.stream(streamInputTopic, Consumed.with(stringSerde, stringSerde));
 
-        final Aggregator<String, LoginEvent, LoginRollup> loginAggregator = new LoginAggregator();
+        final KTable<String, String> tableInput = builder.table(tableInputTopic,
+                Materialized.<String, String>as(versionedStoreSupplier)
+                        .withKeySerde(stringSerde)
+                        .withValueSerde(stringSerde));
+        final ValueJoiner<String, String, String> valueJoiner = (val1, val2) -> val1 + " " + val2;
 
-        final KGroupedStream<String, LoginEvent> appOneGrouped = appOneStream.groupByKey();
-        final KGroupedStream<String, LoginEvent> appTwoGrouped = appTwoStream.groupByKey();
-        final KGroupedStream<String, LoginEvent> appThreeGrouped = appThreeStream.groupByKey();
-
-        appOneGrouped.cogroup(loginAggregator)
-            .cogroup(appTwoGrouped, loginAggregator)
-            .cogroup(appThreeGrouped, loginAggregator)
-            .aggregate(() -> new LoginRollup(new HashMap<>()), Materialized.with(Serdes.String(), loginRollupSerde))
-            .toStream().to(totalResultOutputTopic, Produced.with(stringSerde, loginRollupSerde));
+        streamInput.join(tableInput, valueJoiner)
+                .peek((key, value) -> System.out.println("Joined value: " + value))
+                .to(totalResultOutputTopic,
+                        Produced.with(stringSerde, stringSerde));
 
         return builder.build();
-    }
-
-    static <T extends SpecificRecord> SpecificAvroSerde<T> getSpecificAvroSerde(final Properties allProps) {
-        final SpecificAvroSerde<T> specificAvroSerde = new SpecificAvroSerde<>();
-        specificAvroSerde.configure((Map)allProps, false);
-        return specificAvroSerde;
     }
 
     public void createTopics(final Properties allProps) {
@@ -85,24 +63,19 @@ public class VersionedKTableExample {
             final List<NewTopic> topics = new ArrayList<>();
 
             topics.add(new NewTopic(
-                allProps.getProperty("app-one.topic.name"),
-                Integer.parseInt(allProps.getProperty("app-one.topic.partitions")),
-                Short.parseShort(allProps.getProperty("app-one.topic.replication.factor"))));
+                    allProps.getProperty("stream.topic.name"),
+                    Integer.parseInt(allProps.getProperty("stream.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("stream.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                allProps.getProperty("app-two.topic.name"),
-                Integer.parseInt(allProps.getProperty("app-two.topic.partitions")),
-                Short.parseShort(allProps.getProperty("app-two.topic.replication.factor"))));
+                    allProps.getProperty("table.topic.name"),
+                    Integer.parseInt(allProps.getProperty("table.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("table.topic.replication.factor"))));
 
             topics.add(new NewTopic(
-                allProps.getProperty("app-three.topic.name"),
-                Integer.parseInt(allProps.getProperty("app-three.topic.partitions")),
-                Short.parseShort(allProps.getProperty("app-three.topic.replication.factor"))));
-
-            topics.add(new NewTopic(
-                allProps.getProperty("output.topic.name"),
-                Integer.parseInt(allProps.getProperty("output.topic.partitions")),
-                Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
+                    allProps.getProperty("output.topic.name"),
+                    Integer.parseInt(allProps.getProperty("output.topic.partitions")),
+                    Short.parseShort(allProps.getProperty("output.topic.replication.factor"))));
 
             client.createTopics(topics);
         }
@@ -110,10 +83,9 @@ public class VersionedKTableExample {
 
     public Properties loadEnvProperties(String fileName) throws IOException {
         final Properties allProps = new Properties();
-        final FileInputStream input = new FileInputStream(fileName);
-        allProps.load(input);
-        input.close();
-
+        try (final FileInputStream input = new FileInputStream(fileName)) {
+            allProps.load(input);
+        }
         return allProps;
     }
 
@@ -153,57 +125,93 @@ public class VersionedKTableExample {
         System.exit(0);
     }
 
-    static class TutorialDataGenerator {
-        final Properties properties;
-
-
-        public TutorialDataGenerator(final Properties properties) {
-            this.properties = properties;
-        }
+    record TutorialDataGenerator(Properties properties) {
 
         public void generate() {
             properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-            properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, KafkaAvroSerializer.class);
+            properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 
-            try (Producer<String, LoginEvent> producer = new KafkaProducer<String, LoginEvent>(properties)) {
-                HashMap<String, List<LoginEvent>> entryData = new HashMap<>();
+            try (Producer<String, String> producer = new KafkaProducer<>(properties)) {
+                HashMap<String, List<KeyValue<String, String>>> entryData = new HashMap<>();
+                HashMap<String, List<Long>> dataTimestamps = new HashMap<>();
+                Instant now = Instant.now();
 
-                List<LoginEvent> messages1 = Arrays.asList(new LoginEvent("one", "Ted", 12456L),
-                    new LoginEvent("one", "Ted", 12457L),
-                    new LoginEvent("one", "Carol", 12458L),
-                    new LoginEvent("one", "Carol", 12458L),
-                    new LoginEvent("one", "Alice", 12458L),
-                    new LoginEvent("one", "Carol", 12458L));
-                final String topic1 = properties.getProperty("app-one.topic.name");
-                entryData.put(topic1, messages1);
-
-                List<LoginEvent> messages2 = Arrays.asList(new LoginEvent("two", "Bob", 12456L),
-                    new LoginEvent("two", "Carol", 12457L),
-                    new LoginEvent("two", "Ted", 12458L),
-                    new LoginEvent("two", "Carol", 12459L));
-                final String topic2 = properties.getProperty("app-two.topic.name");
-                entryData.put(topic2, messages2);
-
-                List<LoginEvent> messages3 = Arrays.asList(new LoginEvent("three", "Bob", 12456L),
-                    new LoginEvent("three", "Alice", 12457L),
-                    new LoginEvent("three", "Alice", 12458L),
-                    new LoginEvent("three", "Carol", 12459L));
-                final String topic3 = properties.getProperty("app-three.topic.name");
-                entryData.put(topic3, messages3);
-
-
-                entryData.forEach((topic, list) ->
-                    list.forEach(message ->
-                        producer.send(new ProducerRecord<String, LoginEvent>(topic, message.getAppId(), message), (metadata, exception) -> {
-                            if (exception != null) {
-                                exception.printStackTrace(System.out);
-                            } else {
-                                System.out.printf("Produced record at offset %d to topic %s %n", metadata.offset(), metadata.topic());
-                            }
-                        })
-                    )
+                List<KeyValue<String, String>> streamMessagesOutOfOrder = Arrays.asList(
+                        KeyValue.pair("one", "peanut butter and"),
+                        KeyValue.pair("two", "ham and"),
+                        KeyValue.pair("three", "cheese and"),
+                        KeyValue.pair("four", "tea and"),
+                        KeyValue.pair("five", "coffee with")
                 );
+                final String topic1 = properties.getProperty("stream.topic.name");
+                entryData.put(topic1, streamMessagesOutOfOrder);
+
+                List<Long> timestamps = Arrays.asList(
+                        now.minus(50, ChronoUnit.SECONDS).toEpochMilli(),
+                        now.minus(40, ChronoUnit.SECONDS).toEpochMilli(),
+                        now.minus(30, ChronoUnit.SECONDS).toEpochMilli(),
+                        now.minus(20, ChronoUnit.SECONDS).toEpochMilli(),
+                        now.minus(10, ChronoUnit.SECONDS).toEpochMilli()
+                );
+                dataTimestamps.put(topic1, timestamps);
+
+                List<KeyValue<String, String>> tableMessagesOriginal = Arrays.asList(
+                        KeyValue.pair("one", "jelly"),
+                        KeyValue.pair("two", "cheese"),
+                        KeyValue.pair("three", "crackers"),
+                        KeyValue.pair("four", "biscuits"),
+                        KeyValue.pair("five", "cream"));
+                final String topic2 = properties.getProperty("table.topic.name");
+                entryData.put(topic2, tableMessagesOriginal);
+                dataTimestamps.put(topic2, timestamps);
+
+
+                produceRecords(entryData, producer, dataTimestamps);
+                entryData.clear();
+                dataTimestamps.clear();
+
+                List<KeyValue<String, String>> tableMessagesLater = Arrays.asList(
+                        KeyValue.pair("one", "sardines"),
+                        KeyValue.pair("two", "an old tire"),
+                        KeyValue.pair("three", "fish eyes"),
+                        KeyValue.pair("four", "moldy bread"),
+                        KeyValue.pair("five", "lots of salt"));
+                entryData.put(topic2, tableMessagesLater);
+
+                List<Long> forwardTimestamps = Arrays.asList(
+                        now.plus(50, ChronoUnit.SECONDS).toEpochMilli(),
+                        now.plus(40, ChronoUnit.SECONDS).toEpochMilli(),
+                        now.plus(30, ChronoUnit.SECONDS).toEpochMilli(),
+                        now.plus(30, ChronoUnit.SECONDS).toEpochMilli(),
+                        now.plus(30, ChronoUnit.SECONDS).toEpochMilli()
+                );
+                dataTimestamps.put(topic2, forwardTimestamps);
+
+                produceRecords(entryData, producer, dataTimestamps);
+
             }
+        }
+
+        private static void produceRecords(HashMap<String, List<KeyValue<String, String>>> entryData,
+                                           Producer<String, String> producer,
+                                           HashMap<String, List<Long>> timestampsMap) {
+            entryData.forEach((topic, list) ->
+                    {
+                        List<Long> timestamps = timestampsMap.get(topic);
+                        for (int i = 0; i < list.size(); i++) {
+                            long timestamp = timestamps.get(i);
+                            String key = list.get(i).key;
+                            String value = list.get(i).value;
+                            producer.send(new ProducerRecord<>(topic, 0, timestamp, key, value), (metadata, exception) -> {
+                                if (exception != null) {
+                                    exception.printStackTrace(System.out);
+                                } else {
+                                    System.out.printf("Produced record at offset %d to topic %s %n", metadata.offset(), metadata.topic());
+                                }
+                            });
+                        }
+                    }
+            );
         }
     }
 

@@ -1,28 +1,20 @@
 package io.confluent.developer;
 
-import static org.junit.Assert.assertEquals;
-
-
-import io.confluent.developer.avro.LoginEvent;
-import io.confluent.developer.avro.LoginRollup;
-import io.confluent.kafka.streams.serdes.avro.SpecificAvroSerde;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.TreeMap;
 import org.apache.kafka.common.serialization.Deserializer;
 import org.apache.kafka.common.serialization.Serde;
 import org.apache.kafka.common.serialization.Serdes;
 import org.apache.kafka.common.serialization.Serializer;
-import org.apache.kafka.streams.TestInputTopic;
-import org.apache.kafka.streams.TestOutputTopic;
-import org.apache.kafka.streams.Topology;
-import org.apache.kafka.streams.TopologyTestDriver;
+import org.apache.kafka.streams.*;
 import org.junit.Test;
+
+import java.io.IOException;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Properties;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class VersionedKTableExampleTest {
@@ -30,86 +22,89 @@ public class VersionedKTableExampleTest {
     private final static String TEST_CONFIG_FILE = "configuration/test.properties";
 
     @Test
-    public void cogroupingTest() throws IOException {
+    public void versionedKTableTest() throws IOException {
         final VersionedKTableExample instance = new VersionedKTableExample();
         final Properties allProps = instance.loadEnvProperties(TEST_CONFIG_FILE);
 
-        final String appOneInputTopicName = allProps.getProperty("app-one.topic.name");
-        final String appTwoInputTopicName = allProps.getProperty("app-two.topic.name");
-        final String appThreeInputTopicName = allProps.getProperty("app-three.topic.name");
+        final String streamInputTopicName = allProps.getProperty("stream.topic.name");
+        final String tableInputTopicName = allProps.getProperty("table.topic.name");
         final String totalResultOutputTopicName = allProps.getProperty("output.topic.name");
-      
+
         final Topology topology = instance.buildTopology(allProps);
-        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps)) {
+        try (final TopologyTestDriver testDriver = new TopologyTestDriver(topology, allProps);
+             final Serde<String> stringSerde = Serdes.String()) {
+            final Serializer<String> stringSerializer = stringSerde.serializer();
+            final Deserializer<String> keyDeserializer = stringSerde.deserializer();
 
-            final Serde<String> stringAvroSerde = Serdes.String();
-            final SpecificAvroSerde<LoginEvent> loginEventSerde = VersionedKTableExample.getSpecificAvroSerde(allProps);
-            final SpecificAvroSerde<LoginRollup> rollupSerde = VersionedKTableExample.getSpecificAvroSerde(allProps);
+            final TestInputTopic<String, String> streamInputTopic = testDriver.createInputTopic(streamInputTopicName, stringSerializer, stringSerializer);
+            final TestInputTopic<String, String> tableInputTopic = testDriver.createInputTopic(tableInputTopicName, stringSerializer, stringSerializer);
 
-            final Serializer<String> keySerializer = stringAvroSerde.serializer();
-            final Deserializer<String> keyDeserializer = stringAvroSerde.deserializer();
-            final Serializer<LoginEvent> loginEventSerializer = loginEventSerde.serializer();
+            final TestOutputTopic<String, String> outputTopic = testDriver.createOutputTopic(totalResultOutputTopicName, keyDeserializer, stringSerde.deserializer());
 
+            Instant now = Instant.now();
 
-            final TestInputTopic<String, LoginEvent>  appOneInputTopic = testDriver.createInputTopic(appOneInputTopicName, keySerializer, loginEventSerializer);
-            final TestInputTopic<String, LoginEvent>  appTwoInputTopic = testDriver.createInputTopic(appTwoInputTopicName, keySerializer, loginEventSerializer);
-            final TestInputTopic<String, LoginEvent>  appThreeInputTopic = testDriver.createInputTopic(appThreeInputTopicName, keySerializer, loginEventSerializer);
+            List<KeyValue<String, String>> streamMessagesOutOfOrder = Arrays.asList(
+                    KeyValue.pair("one", "peanut butter and"),
+                    KeyValue.pair("two", "ham and"),
+                    KeyValue.pair("three", "cheese and"),
+                    KeyValue.pair("four", "tea and"),
+                    KeyValue.pair("five", "coffee with")
+            );
 
-            final TestOutputTopic<String, LoginRollup> outputTopic = testDriver.createOutputTopic(totalResultOutputTopicName, keyDeserializer, rollupSerde.deserializer());
+            List<Long> timestamps = Arrays.asList(
+                    now.minus(50, ChronoUnit.SECONDS).toEpochMilli(),
+                    now.minus(40, ChronoUnit.SECONDS).toEpochMilli(),
+                    now.minus(30, ChronoUnit.SECONDS).toEpochMilli(),
+                    now.minus(20, ChronoUnit.SECONDS).toEpochMilli(),
+                    now.minus(10, ChronoUnit.SECONDS).toEpochMilli()
+            );
 
+            List<KeyValue<String, String>> tableMessagesOriginal = Arrays.asList(
+                    KeyValue.pair("one", "jelly"),
+                    KeyValue.pair("two", "cheese"),
+                    KeyValue.pair("three", "crackers"),
+                    KeyValue.pair("four", "biscuits"),
+                    KeyValue.pair("five", "cream"));
 
-            final List<LoginEvent> appOneEvents = new ArrayList<>();
-            appOneEvents.add(LoginEvent.newBuilder().setAppId("one").setUserId("foo").setTime(5L).build());
-            appOneEvents.add(LoginEvent.newBuilder().setAppId("one").setUserId("bar").setTime(6l).build());
-            appOneEvents.add(LoginEvent.newBuilder().setAppId("one").setUserId("bar").setTime(7L).build());
+            List<KeyValue<String, String>> tableMessagesLater = Arrays.asList(
+                    KeyValue.pair("one", "sardines"),
+                    KeyValue.pair("two", "an old tire"),
+                    KeyValue.pair("three", "fish eyes"),
+                    KeyValue.pair("four", "moldy bread"),
+                    KeyValue.pair("five", "lots of salt"));
 
-            final List<LoginEvent> appTwoEvents = new ArrayList<>();
-            appTwoEvents.add(LoginEvent.newBuilder().setAppId("two").setUserId("foo").setTime(5L).build());
-            appTwoEvents.add(LoginEvent.newBuilder().setAppId("two").setUserId("foo").setTime(6l).build());
-            appTwoEvents.add(LoginEvent.newBuilder().setAppId("two").setUserId("bar").setTime(7L).build());
+            List<Long> forwardTimestamps = Arrays.asList(
+                    now.plus(50, ChronoUnit.SECONDS).toEpochMilli(),
+                    now.plus(40, ChronoUnit.SECONDS).toEpochMilli(),
+                    now.plus(30, ChronoUnit.SECONDS).toEpochMilli(),
+                    now.plus(30, ChronoUnit.SECONDS).toEpochMilli(),
+                    now.plus(30, ChronoUnit.SECONDS).toEpochMilli()
+            );
+            sendEvents(tableInputTopic, tableMessagesOriginal, timestamps);
+            sendEvents(tableInputTopic, tableMessagesLater, forwardTimestamps);
+            sendEvents(streamInputTopic, streamMessagesOutOfOrder, timestamps);
 
-            final List<LoginEvent> appThreeEvents = new ArrayList<>();
-            appThreeEvents.add(LoginEvent.newBuilder().setAppId("three").setUserId("foo").setTime(5L).build());
-            appThreeEvents.add(LoginEvent.newBuilder().setAppId("three").setUserId("foo").setTime(6l).build());
-            appThreeEvents.add(LoginEvent.newBuilder().setAppId("three").setUserId("bar").setTime(7L).build());
-            appThreeEvents.add(LoginEvent.newBuilder().setAppId("three").setUserId("bar").setTime(9L).build());
+            final List<KeyValue<String, String>> actualEvents = outputTopic.readKeyValuesToList();
+            final List<KeyValue<String, String>> expectedEvents = Arrays.asList(
+                    KeyValue.pair("one", "peanut butter and jelly"),
+                    KeyValue.pair("two", "ham and cheese"),
+                    KeyValue.pair("three", "cheese and crackers"),
+                    KeyValue.pair("four", "tea and biscuits"),
+                    KeyValue.pair("five", "coffee with cream")
+            );
 
-            final Map<String, Map<String, Long>> expectedEventRollups = new TreeMap<>();
-            final Map<String, Long> expectedAppOneRollup = new HashMap<>();
-            final LoginRollup expectedLoginRollup = new LoginRollup(expectedEventRollups);
-            expectedAppOneRollup.put("foo", 1L);
-            expectedAppOneRollup.put("bar", 2L);
-            expectedEventRollups.put("one", expectedAppOneRollup);
-
-            final Map<String, Long> expectedAppTwoRollup = new HashMap<>();
-            expectedAppTwoRollup.put("foo", 2L);
-            expectedAppTwoRollup.put("bar", 1L);
-            expectedEventRollups.put("two", expectedAppTwoRollup);
-
-            final Map<String, Long> expectedAppThreeRollup = new HashMap<>();
-            expectedAppThreeRollup.put("foo", 2L);
-            expectedAppThreeRollup.put("bar", 2L);
-            expectedEventRollups.put("three", expectedAppThreeRollup);
-
-            sendEvents(appOneEvents, appOneInputTopic);
-            sendEvents(appTwoEvents, appTwoInputTopic);
-            sendEvents(appThreeEvents, appThreeInputTopic);
-
-            final List<LoginRollup> actualLoginEventResults = outputTopic.readValuesToList();
-            final Map<String, Map<String, Long>> actualRollupMap = new HashMap<>();
-            for (LoginRollup actualLoginEventResult : actualLoginEventResults) {
-                  actualRollupMap.putAll(actualLoginEventResult.getLoginByAppAndUser());
-            }
-            final LoginRollup actualLoginRollup = new LoginRollup(actualRollupMap);
-
-            assertEquals(expectedLoginRollup, actualLoginRollup);
+            assertEquals(expectedEvents, actualEvents);
         }
     }
 
-
-    private void sendEvents(List<LoginEvent> events, TestInputTopic<String, LoginEvent> testInputTopic) {
-        for (LoginEvent event : events) {
-             testInputTopic.pipeInput(event.getAppId(), event);
+    private void sendEvents(final TestInputTopic<String, String> topic,
+                            final List<KeyValue<String, String>> input,
+                            final List<Long> timestamps) {
+        for (int i = 0; i < input.size(); i++) {
+            final long timestamp = timestamps.get(i);
+            final String key = input.get(i).key;
+            final String value = input.get(i).value;
+            topic.pipeInput(key, value, timestamp);
         }
     }
 }
