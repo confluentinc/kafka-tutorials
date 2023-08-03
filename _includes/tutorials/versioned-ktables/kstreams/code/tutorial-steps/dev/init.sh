@@ -1,1 +1,1 @@
-mkdir cogrouping-streams && cd cogrouping-streams
+mkdir versioned-ktables && cd versioned-ktables
