@@ -1,6 +1,4 @@
-docker exec -it broker /usr/bin/kafka-configs \
-  --bootstrap-server localhost:29092 \
-  --entity-type topics \
-  --entity-name movie-ticket-sales-by-title \
-  --alter \
-  --add-config cleanup.policy=compact
+docker exec -it confluent-cli confluent kafka topic update movie-ticket-sales-by-title \
+  --config cleanup.policy=compact \
+  --url http://rest-proxy:8082 \
+  --no-authentication
