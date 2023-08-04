@@ -78,10 +78,15 @@ dev:
   - title: Consume data from the output topic
     content:
     - action: execute_async
-      file: tutorial-steps/dev/console-consumer.sh
-      stdout: tutorial-steps/dev/outputs/actual-output.json
+      file: tutorial-steps/dev/harness-console-consumer.sh
+      stdout: tutorial-steps/dev/outputs/actual-output.txt
       render:
         file: tutorials/versioned-ktables/kstreams/markup/dev/run-consumer.adoc
+    - action: execute_async
+      file: tutorial-steps/dev/harness-console-consumer-verify-table.sh
+      stdout: tutorial-steps/dev/outputs/actual-output-validate-table.txt
+      render:
+        skip: true
     - name: wait for the consumer to read the messages
       action: sleep
       ms: 15000
@@ -97,6 +102,10 @@ test:
         file: tutorials/versioned-ktables/kstreams/markup/test/make-test-file.adoc
   - title: Test the Versioned KTable Topology
     content:
+    - action: execute
+      file: tutorial-steps/test/make-test-dir.sh
+      render:
+        file: tutorials/versioned-ktables/kstreams/markup/test/make-test-dir.adoc  
     - action: make_file
       file: src/test/java/io/confluent/developer/VersionedKTableExampleTest.java
       render:

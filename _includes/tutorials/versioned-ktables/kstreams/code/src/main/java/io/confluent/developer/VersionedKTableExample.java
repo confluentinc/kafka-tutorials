@@ -157,9 +157,9 @@ public class VersionedKTableExample {
 
                 List<KeyValue<String, String>> tableMessagesOriginal = Arrays.asList(
                         KeyValue.pair("one", "jelly"),
-                        KeyValue.pair("two", "cheese"),
+                        KeyValue.pair("two", "eggs"),
                         KeyValue.pair("three", "crackers"),
-                        KeyValue.pair("four", "biscuits"),
+                        KeyValue.pair("four", "crumpets"),
                         KeyValue.pair("five", "cream"));
                 final String topic2 = properties.getProperty("table.topic.name");
                 entryData.put(topic2, tableMessagesOriginal);
