@@ -30,5 +30,5 @@ You should see something similar to this output.  Take note of the timestamps of
 semantically correct temporal join.
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/versioned-ktables/kstreams/code/tutorial-steps/dev/expected-output.txt %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/versioned-ktables/kstreams/code/tutorial-steps/dev/expected-output-validate-table.txt %}</code></pre>
 +++++
