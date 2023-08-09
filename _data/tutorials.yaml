@@ -360,10 +360,12 @@ custom-connector:
   meta-description: Build and run a custom connector on Confluent Cloud
   canonical: confluent
   slug: /custom-connector
-  introduction: 'While Confluent Cloud offers many pre-built <a href=''https://docs.confluent.io/cloud/current/connectors/index.html#supported-connectors''>managed
-    connectors</a>, you may also upload and run custom connectors on Confluent Cloud — either an existing open source connector that you''d like to use,
-    or a connector that you''ve written. In this tutorial, we''ll write a simple source connector plugin, package it so that it can be uploaded to Confluent Cloud, and then run
-    the connector. As a developer, you want to write code. Let Confluent Cloud do the rest.'
+  introduction: While Confluent Cloud offers many pre-built <a href='https://docs.confluent.io/cloud/current/connectors/index.html#supported-connectors'>managed
+    connectors</a>, you may also upload and run custom connectors on Confluent Cloud
+    — either an existing open source connector that you'd like to use, or a connector
+    that you've written. In this tutorial, we'll write a simple source connector plugin,
+    package it so that it can be uploaded to Confluent Cloud, and then run the connector.
+    As a developer, you want to write code. Let Confluent Cloud do the rest.
   question: How do I write, package, and run a custom connector on Confluent Cloud?
   status:
     confluent: enabled
@@ -1525,3 +1527,16 @@ survey-responses:
     responses happen.'
   status:
     confluent: disabled
+versioned-ktables:
+  title: Versioned KTables for temporal join accuracy
+  meta-description: Ensure proper stream-table temporal join semantics using a versioned state store to back your KTable
+  canonical: confluent
+  slug: /versioned-ktables
+  question: How can you ensure proper temporal semantics in stream-table joins?
+  introduction: It used to be when Kafka Streams executes a stream-table join the stream side event would join the the latest available
+      record with the same key on the table side.  But sometimes it's important for the stream event to match up with a table record by timestamp
+      as well as key, think of a stream of stock transactions and a table of stock prices - it's essential the transaction joins with the stock price
+      at the time of the transaction, not the latest price.  A versioned state store tracks multiple record versions for the same key, 
+      rather than the single latest record per key, as is the case for standard non-versioned stores.
+  status:
+    kstreams: enabled
