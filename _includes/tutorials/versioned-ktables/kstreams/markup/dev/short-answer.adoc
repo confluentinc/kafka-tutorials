@@ -1,8 +1,8 @@
 You can run your application with link:https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud].
 
 
-In the Kafka Streams application use a `VersionedKeyValueStore` when creating your `KTable` the retention time shown is just
-a placeholder you are free to use any time that suits your event streaming requirements.
+In the Kafka Streams application use a `VersionedKeyValueStore` when creating your `KTable`.  The [history] retention time shown is just
+a placeholder - you are free to use any time that suits your event streaming requirements.
 
 ++++
 <pre class="snippet">

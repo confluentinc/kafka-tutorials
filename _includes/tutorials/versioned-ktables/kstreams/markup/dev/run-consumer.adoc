@@ -4,7 +4,7 @@
 
 ////
 
-Now that you have sent the login events, let's run a consumer to read the cogrouped output from your streams application
+Now that you have sent the login events, let's run a consumer to read the output from your streams application
 
 
 +++++
@@ -19,7 +19,7 @@ You should see something like this
 +++++
 
 
-To prove that the topic for table does contain the invalid entries run another console consumer command to inspect the contents:
+To prove that the topic backing the KTable does contain the invalid entries run another console consumer command to inspect the contents:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/versioned-ktables/kstreams/code/tutorial-steps/dev/console-consumer-verify-table.sh %}</code></pre>
@@ -27,7 +27,7 @@ To prove that the topic for table does contain the invalid entries run another c
 
 
 You should see something similar to this output.  Take note of the timestamps of the entries, they show our invalid entries arrived after the correct ones and taking into account the application populates the topics *_before starting_* the Kafka Streams application, you can see how the versioned `KTable` ensures a
-semantical correct temporal join.
+semantically correct temporal join.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/versioned-ktables/kstreams/code/tutorial-steps/dev/expected-output.txt %}</code></pre>

@@ -1529,11 +1529,11 @@ survey-responses:
     confluent: disabled
 versioned-ktables:
   title: Versioned KTables for temporal join accuracy
-  meta-description: Ensure proper stream-table temporal join semantics using a versioned statestore to back your KTable
+  meta-description: Ensure proper stream-table temporal join semantics using a versioned state store to back your KTable
   canonical: confluent
   slug: /versioned-ktables
-  question: How can you ensure your stream-table join results are as correct as possible?
-  introduction: It used to be when Kafka Streams executes a stream-table join the stream side event would join the the latest avaialble
+  question: How can you ensure proper temporal semantics in stream-table joins?
+  introduction: It used to be when Kafka Streams executes a stream-table join the stream side event would join the the latest available
       record with the same key on the table side.  But sometimes it's important for the stream event to match up with a table record by timestamp
       as well as key, think of a stream of stock transactions and a table of stock prices - it's essential the transaction joins with the stock price
       at the time of the transaction, not the latest price.  A versioned state store tracks multiple record versions for the same key, 

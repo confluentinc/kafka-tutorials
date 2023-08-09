@@ -43,7 +43,7 @@ public class VersionedKTableExampleTest {
 
             Instant now = Instant.now();
 
-            List<KeyValue<String, String>> streamMessagesOutOfOrder = Arrays.asList(
+            List<KeyValue<String, String>> streamMessages = Arrays.asList(
                     KeyValue.pair("one", "peanut butter and"),
                     KeyValue.pair("two", "ham and"),
                     KeyValue.pair("three", "cheese and"),
@@ -82,7 +82,7 @@ public class VersionedKTableExampleTest {
             );
             sendEvents(tableInputTopic, tableMessagesOriginal, timestamps);
             sendEvents(tableInputTopic, tableMessagesLater, forwardTimestamps);
-            sendEvents(streamInputTopic, streamMessagesOutOfOrder, timestamps);
+            sendEvents(streamInputTopic, streamMessages, timestamps);
 
             final List<KeyValue<String, String>> actualEvents = outputTopic.readKeyValuesToList();
             final List<KeyValue<String, String>> expectedEvents = Arrays.asList(

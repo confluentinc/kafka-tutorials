@@ -100,7 +100,7 @@ test:
       file: configuration/test.properties
       render:
         file: tutorials/versioned-ktables/kstreams/markup/test/make-test-file.adoc
-  - title: Test the Versioned KTable Topology
+  - title: Test the versioned KTable topology
     content:
     - action: execute
       file: tutorial-steps/test/make-test-dir.sh

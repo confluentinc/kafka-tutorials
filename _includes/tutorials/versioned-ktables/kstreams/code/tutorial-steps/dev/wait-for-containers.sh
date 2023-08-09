@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function readiness_probe {
-    nc -z -w 2 0.0.0.0 29092
+    nc -z -w 2 0.0.0.0 9092
 }
 
 echo "Waiting for the broker to become available ..."
