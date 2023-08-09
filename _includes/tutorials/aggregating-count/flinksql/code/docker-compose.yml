@@ -97,7 +97,7 @@ services:
       KAFKA_REST_SCHEMA_REGISTRY_URL: 'http://schema-registry:8081'
 
   confluent-cli:
-    image: confluentinc/confluent-cli:latest # TODO
+    image: confluentinc/confluent-cli:3.27.0
     hostname: confluent-cli
     container_name: confluent-cli
     depends_on:
