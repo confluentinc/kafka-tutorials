@@ -1,0 +1,4 @@
+Finally, create the following file at `src/test/resources/expected-shipped-orders.txt` that contains our test's expected output:
++++++
+<pre class="snippet"><code class="text">{% include_raw tutorials/joining-stream-stream/flinksql/code/src/test/resources/expected-shipped-orders.txt %}</code></pre>
++++++
