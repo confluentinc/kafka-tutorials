@@ -107,6 +107,7 @@ joining-stream-stream:
   status:
     ksql: enabled
     kstreams: enabled
+    flinksql: enabled
 fk-joins:
   title: How to join a table and a table with a foreign key
   meta-description: join two tables with different primary keys
@@ -1529,14 +1530,19 @@ survey-responses:
     confluent: disabled
 versioned-ktables:
   title: Versioned KTables for temporal join accuracy
-  meta-description: Ensure proper stream-table temporal join semantics using a versioned state store to back your KTable
+  meta-description: Ensure proper stream-table temporal join semantics using a versioned
+    state store to back your KTable
   canonical: confluent
   slug: /versioned-ktables
   question: How can you ensure proper temporal semantics in stream-table joins?
-  introduction: It used to be when Kafka Streams executes a stream-table join the stream side event would join the the latest available
-      record with the same key on the table side.  But sometimes it's important for the stream event to match up with a table record by timestamp
-      as well as key, think of a stream of stock transactions and a table of stock prices - it's essential the transaction joins with the stock price
-      at the time of the transaction, not the latest price.  A versioned state store tracks multiple record versions for the same key, 
-      rather than the single latest record per key, as is the case for standard non-versioned stores.
+  introduction: It used to be when Kafka Streams executes a stream-table join the
+    stream side event would join the the latest available record with the same key
+    on the table side.  But sometimes it's important for the stream event to match
+    up with a table record by timestamp as well as key, think of a stream of stock
+    transactions and a table of stock prices - it's essential the transaction joins
+    with the stock price at the time of the transaction, not the latest price.  A
+    versioned state store tracks multiple record versions for the same key, rather
+    than the single latest record per key, as is the case for standard non-versioned
+    stores.
   status:
     kstreams: enabled
