@@ -1,11 +1,22 @@
-INSERT INTO movie_sales
-VALUES (0, 'Avengers: Endgame', 2019, 856980506),
-       (1, 'Captain Marvel', 2019, 426829839),
-       (2, 'Toy Story 4', 2019, 401486230),
-       (3, 'The Lion King', 2019, 385082142),
-       (4, 'Black Panther', 2018, 700059566),
-       (5, 'Avengers: Infinity War', 2018, 678815482),
-       (6, 'Deadpool 2', 2018, 324512774),
-       (7, 'Beauty and the Beast', 2017, 517218368),
-       (8, 'Wonder Woman', 2017, 412563408),
-       (9, 'Star Wars Ep. VIII: The Last Jedi', 2017, 517218368);
+INSERT INTO shipments
+VALUES ('shipment_1',   1, 'Bar Harbor',     1659312000),
+       ('shipment_2',   2, 'Boston',         1659571200),
+       ('shipment_3',   3, 'Providence',     1659830400),
+       ('shipment_4',   4, 'Springfield',    1660089600),
+       ('shipment_5',   5, 'Bar Harbor',     1660348800),
+       ('shipment_6',   6, 'Boston',         1660608000),
+       ('shipment_7',   7, 'Jackson Hole',   1660867200),
+       ('shipment_8',   8, 'Whitefish'   ,   1661126400),
+       ('shipment_9',   9, 'Jackson Hole',   1661385600),
+       ('shipment_10', 10, 'Columbia Falls', 1661644800);
+
+
+
+
+
+
+
+
+
+
+
