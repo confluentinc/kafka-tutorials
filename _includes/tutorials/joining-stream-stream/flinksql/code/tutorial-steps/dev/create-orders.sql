@@ -7,7 +7,7 @@ CREATE TABLE orders (
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'orders',
-    'properties.bootstrap.servers' = 'localhost:KAFKA_PORT',
+    'properties.bootstrap.servers' = 'broker:9092',
     'scan.startup.mode' = 'earliest-offset',
     'key.format' = 'raw',
     'key.fields' = 'id',

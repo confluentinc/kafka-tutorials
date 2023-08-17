@@ -7,7 +7,7 @@ CREATE TABLE shipments (
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'shipments',
-    'properties.bootstrap.servers' = 'localhost:KAFKA_PORT',
+    'properties.bootstrap.servers' = 'broker:9092',
     'scan.startup.mode' = 'earliest-offset',
     'key.format' = 'raw',
     'key.fields' = 'id',

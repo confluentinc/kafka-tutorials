@@ -76,11 +76,11 @@ test:
   - title: Create the test data
     content:
     - action: make_file
-      file: test/input.json
+      file: src/test/input.json
       render:
         file: tutorials/joining-stream-stream/flinksql/markup/test/make-test-input.adoc
     - action: make_file
-      file: test/output.json
+      file: src/test/output.json
       render:
         file: tutorials/joining-stream-stream/flinksql/markup/test/make-test-output.adoc
   - title: Invoke the tests

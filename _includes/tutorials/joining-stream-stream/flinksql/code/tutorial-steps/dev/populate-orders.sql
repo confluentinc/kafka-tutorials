@@ -1,4 +1,11 @@
-INSERT INTO orders (id, order_ts, total_amount, customer_name) VALUES (1, '2019-03-29T06:01:18Z', 133548.84, 'Ricardo Ferreira');
-INSERT INTO orders (id, order_ts, total_amount, customer_name) VALUES (2, '2019-03-29T17:02:20Z', 164839.31, 'Tim Berglund');
-INSERT INTO orders (id, order_ts, total_amount, customer_name) VALUES (3, '2019-03-29T13:44:10Z', 90427.66, 'Robin Moffatt');
-INSERT INTO orders (id, order_ts, total_amount, customer_name) VALUES (4, '2019-03-29T11:58:25Z', 33462.11, 'Viktor Gamov');
+INSERT INTO orders
+VALUES ( 1, 404.89, 'Art Vandelay',    1659312000),
+       ( 2,  50.45, 'Bob Sacamanto',   1659571200),
+       ( 3, 113.23, 'Bilbo Baggins',   1659830400),
+       ( 4,  90.43, 'Harry Potter',    1660089600),
+       ( 5, 495.22, 'John Hechinger',  1660348800),
+       ( 6, 410.13, 'Mandelorean',     1660608000),
+       ( 7, 333.84, 'Jane Smith',      1660867200),
+       ( 8,  26.14, 'HJ Pennypacker' , 1661126400),
+       ( 9, 450.77, 'Colonel Mustard', 1661385600),
+       ( 10,195.13, 'Prof. Jones',     1661644800);

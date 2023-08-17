@@ -1,5 +1,5 @@
 Create a file at `test/input.json` with the inputs for testing:
 
 +++++
-<pre class="snippet"><code class="json">{% include_raw tutorials/joining-stream-stream/ksql/code/test/input.json %}</code></pre>
+<pre class="snippet"><code class="json">{% include_raw tutorials/joining-stream-stream/ksql/code/src/test/input.json %}</code></pre>
 +++++

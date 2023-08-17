@@ -9,14 +9,4 @@ VALUES ('shipment_1',   1, 'Bar Harbor',     1659312000),
        ('shipment_8',   8, 'Whitefish'   ,   1661126400),
        ('shipment_9',   9, 'Jackson Hole',   1661385600),
        ('shipment_10', 10, 'Columbia Falls', 1661644800);
-
-
-
-
-
-
-
-
-
-
-
+       
