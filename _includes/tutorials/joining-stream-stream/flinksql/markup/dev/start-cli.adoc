@@ -1,4 +1,4 @@
-To begin developing interactively, open up the ksqlDB CLI:
+The best way to interact with Flink SQL when you're learning how things work is with the Flink SQL CLI. Fire it up as follows:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/flinksql/code/tutorial-steps/dev/start-cli.sh %}</code></pre>

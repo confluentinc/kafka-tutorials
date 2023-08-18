@@ -5,17 +5,14 @@ dev:
     - action: skip
       render:
         file: shared/markup/dev/docker-prerequisite.adoc
+
   - title: Initialize the project
     content:
     - action: execute
       file: tutorial-steps/dev/init.sh
       render:
         file: tutorials/joining-stream-stream/flinksql/markup/dev/init.adoc
-    - change_directory: join-stream-and-stream
-      action: execute
-      file: tutorial-steps/dev/make-dirs.sh
-      render:
-        file: tutorials/joining-stream-stream/flinksql/markup/dev/make-dirs.adoc
+
   - title: Get Confluent Platform
     content:
     - action: make_file
@@ -30,6 +27,7 @@ dev:
       file: tutorial-steps/dev/wait-for-containers.sh
       render:
         skip: true
+        
   - title: Write the program interactively using the CLI
     content:
     - action: docker_ksql_cli_session
