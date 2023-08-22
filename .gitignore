@@ -29,3 +29,5 @@ harness_runner/harness_runner.pyc
 
 # Ignore Gradle build output directory
 build
+
+**/tutorial-steps/dev/outputs/
