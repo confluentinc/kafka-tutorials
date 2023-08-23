@@ -2,12 +2,11 @@ CREATE TABLE shipments (
     id VARCHAR, 
     order_id INT, 
     warehouse VARCHAR,
-    ship_ts BIGINT,
-    ship_ts_ltz as TO_TIMESTAMP_LTZ(ship_ts, 3)
+    ship_ts_raw BIGINT
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'shipments',
-    'properties.bootstrap.servers' = 'broker:9092',
+    'properties.bootstrap.servers' = 'broker:29092',
     'scan.startup.mode' = 'earliest-offset',
     'key.format' = 'raw',
     'key.fields' = 'id',

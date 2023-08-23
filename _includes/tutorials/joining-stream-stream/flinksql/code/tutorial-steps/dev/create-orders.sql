@@ -2,12 +2,11 @@ CREATE TABLE orders (
     id INT, 
     total_amount DOUBLE, 
     customer_name VARCHAR,
-    order_ts BIGINT,
-    order_ts_ltz as TO_TIMESTAMP_LTZ(order_ts, 3)
+    order_ts_raw BIGINT
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'orders',
-    'properties.bootstrap.servers' = 'broker:9092',
+    'properties.bootstrap.servers' = 'broker:29092',
     'scan.startup.mode' = 'earliest-offset',
     'key.format' = 'raw',
     'key.fields' = 'id',
