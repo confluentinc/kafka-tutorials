@@ -1,7 +1,0 @@
-Secondly, you'll need a table represent the shipments:
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-stream/flinksql/code/tutorial-steps/dev/create-shipments.sql %}</code></pre>
-+++++
-
-You'll notice with both tables you take the event time represented as a `BIGINT` and use them to create a `TIMESTAMP` column that you can use in your query to specify a timeframe events needed to occur within each other, an https://nightlies.apache.org/flink/flink-docs-master/docs/dev/table/sql/queries/joins/#interval-joins[Interval join].

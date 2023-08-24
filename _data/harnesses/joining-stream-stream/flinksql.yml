@@ -37,22 +37,19 @@ dev:
       render:
         file: tutorials/joining-stream-stream/flinksql/markup/dev/start-cli.adoc
       stdin:
-      - file: tutorial-steps/dev/create-orders-stream.sql
+      - file: tutorial-steps/dev/create-orders-table.sql
         render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/create-orders-stream.adoc
-      - file: tutorial-steps/dev/create-shipments-stream.sql
+          file: tutorials/joining-stream-stream/flinksql/markup/dev/create-orders-table.adoc
+      - file: tutorial-steps/dev/create-shipments-table.sql
         render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/create-shipments-stream.adoc
+          file: tutorials/joining-stream-stream/flinksql/markup/dev/create-shipments-table.adoc
       - file: tutorial-steps/dev/populate-orders.sql
         render:
           file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-orders.adoc
       - file: tutorial-steps/dev/populate-shipments.sql
         render:
           file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipments.adoc
-      - file: tutorial-steps/dev/set-properties.sql
-        render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/set-properties.adoc
-      - file: tutorial-steps/dev/transient-join.sql
+      - file: tutorial-steps/dev/create-order-shipments-join.sql
         render:
           file: tutorials/joining-stream-stream/flinksql/markup/dev/transient-join.adoc
       - file: tutorial-steps/dev/continuous-join.sql
