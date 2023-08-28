@@ -1,9 +1,8 @@
 CREATE TABLE orders (
-    id INT, 
-    total_amount DOUBLE, 
+    id INT,
+    total_amount DOUBLE,
     customer_name VARCHAR,
-    order_ts BIGINT,
-    order_ts_ltz as TO_TIMESTAMP_LTZ(order_ts, 3)
+    order_ts_raw BIGINT
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'orders',

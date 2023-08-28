@@ -1,9 +1,8 @@
 CREATE TABLE shipments (
-    id VARCHAR, 
-    order_id INT, 
+    id VARCHAR,
+    order_id INT,
     warehouse VARCHAR,
-    ship_ts BIGINT,
-    ship_ts_ltz as TO_TIMESTAMP_LTZ(ship_ts, 3)
+    ship_ts_raw BIGINT
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'shipments',

@@ -49,42 +49,109 @@ dev:
       - file: tutorial-steps/dev/populate-shipments.sql
         render:
           file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipments.adoc
-      - file: tutorial-steps/dev/create-order-shipments-join.sql
+      - file: tutorial-steps/dev/create-join-results-table.sql
         render:
           file: tutorials/joining-stream-stream/flinksql/markup/dev/transient-join.adoc
-      - file: tutorial-steps/dev/continuous-join.sql
+      - file: tutorial-steps/dev/populate-shipped-orders-table.sql
         render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/continuous-join.adoc
-      - file: tutorial-steps/dev/print-output-topic.sql
-        render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/print-output-topic.adoc
+          file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipped-orders-table.adoc
+
+
       stdout:
         directory: tutorial-steps/dev/outputs
-  - title: Write your statements to a file
+
+  - title: Validate output
     content:
     - action: make_file
-      file: src/statements.sql
+      file: tutorial-steps/dev/print-output-topic.sql
       render:
-        file: tutorials/joining-stream-stream/flinksql/markup/dev/make-src-file.adoc
+        file: tutorials/joining-stream-stream/flinksql/markup/dev/validate-shipped-orders-table.adoc
 test:
   steps:
-  - title: Create the test data
-    content:
-    - action: make_file
-      file: src/test/input.json
-      render:
-        file: tutorials/joining-stream-stream/flinksql/markup/test/make-test-input.adoc
-    - action: make_file
-      file: src/test/output.json
-      render:
-        file: tutorials/joining-stream-stream/flinksql/markup/test/make-test-output.adoc
-  - title: Invoke the tests
-    content:
-    - action: execute
-      file: tutorial-steps/test/run-tests.sh
-      stdout: tutorial-steps/test/outputs/test-results.log
-      render:
-        file: tutorials/joining-stream-stream/flinksql/markup/test/run-tests.adoc
+    - title: Decide what testing tools to use
+      content:
+        - action: skip
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/test-architecture.adoc
+
+    - title: Create the test skeleton
+      content:
+        - action: execute
+          file: tutorial-steps/test/make-test-dirs.sh
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/make-test-dirs.adoc
+
+        - action: make_file
+          file: build.gradle
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/make-build-gradle.adoc
+
+        - action: execute
+          file: tutorial-steps/test/gradle-wrapper.sh
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/make-gradle-wrapper.adoc
+
+    - title: Create SQL resources
+      content:
+        - action: make_file
+          file: src/test/resources/create-orders.sql.template
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-create-orders.sql.template.adoc
+
+        - action: make_file
+          file: src/test/resources/create-shipments.sql.template
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-create-shipments.sql.template.adoc
+
+        - action: make_file
+          file: src/test/resources/populate-orders.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-populate-orders.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/populate-shipments.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-populate-shipments.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/create-movie-sales-by-title.sql.template
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-create-movie-sales-by-title.sql.template.adoc
+
+        - action: make_file
+          file: src/test/resources/populate-movie-sales-by-title.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-populate-movie-sales-by-title.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/query-movie-sales-by-title.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-query-movie-sales-by-title.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/expected-movie-sales-by-title.txt
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-expected-movie-sales-by-title.txt.adoc
+
+    - title: Write a test
+      content:
+        - action: make_file
+          file: src/test/java/io/confluent/developer/AbstractFlinkKafkaTest.java
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/make-test-base.adoc
+
+        - action: make_file
+          file: src/test/java/io/confluent/developer/FlinkSqlIntervalJoinTest.java
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/make-test.adoc
+
+    - title: Invoke the test
+      content:
+        - action: execute
+          file: tutorial-steps/test/invoke-test.sh
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/test/invoke-test.adoc
+
 ccloud:
   steps:
   - title: Run your app to Confluent Cloud

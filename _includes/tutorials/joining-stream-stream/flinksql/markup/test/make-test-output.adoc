@@ -1,3 +1,0 @@
-Similarly, create a file at `test/output.json` with the expected outputs:
-
-+
