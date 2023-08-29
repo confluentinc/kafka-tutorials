@@ -121,17 +121,17 @@ public class AbstractFlinkKafkaTest {
    * the tableau results printed via the Table API where the order of results is nondeterministic.
    *
    * @param s multiline String
-   * @return set of String's where each member is one line
+   * @return set of Strings where each member is one line
    */
   protected static Set<String> stringToLineSet(String s) {
     return Sets.newHashSet(Arrays.asList(s.split("\\r?\\n")));
   }
 
   /**
-   * Given a Flink Table API `TableResult` respresenting a SELECT statement result,
+   * Given a Flink Table API `TableResult` representing a SELECT statement result,
    * capture and return the statement's tableau results.
    *
-   * @param tableResult Flink Table API `TableResult` respresenting a SELECT statement result
+   * @param tableResult Flink Table API `TableResult` representing a SELECT statement result
    * @return the SELECT statement's tableau results
    */
   protected static String tableauResults(TableResult tableResult) {

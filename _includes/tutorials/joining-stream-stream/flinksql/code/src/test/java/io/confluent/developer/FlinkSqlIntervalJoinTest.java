@@ -5,8 +5,9 @@ import org.apache.flink.table.api.TableResult;
 import org.junit.Test;
 
 import java.util.Optional;
+import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class FlinkSqlIntervalJoinTest extends AbstractFlinkKafkaTest {
 
@@ -27,7 +28,7 @@ public class FlinkSqlIntervalJoinTest extends AbstractFlinkKafkaTest {
     // cause this INSERT to terminate once the latest offset is reached.
     streamTableEnv.executeSql(getResourceFileContents("populate-shipped-orders-table.sql"));
 
-    // execute query on result table that should have movie sales aggregated by release year
+    // execute query on result table that should have joined shipments with orders
     TableResult tableResult = streamTableEnv.executeSql(getResourceFileContents("query-join-order-shipments.sql"));
 
     // Compare actual and expected results. Convert result output to line sets to compare so that order
