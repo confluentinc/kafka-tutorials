@@ -10,10 +10,12 @@ CREATE TABLE shipped_orders (
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'shipped_orders',
-    'properties.bootstrap.servers' = 'broker:29092',
+    'properties.bootstrap.servers' = 'localhost:KAFKA_PORT',
     'scan.startup.mode' = 'earliest-offset',
+    'scan.bounded.mode' = 'latest-offset',
     'key.format' = 'raw',
     'key.fields' = 'ship_id',
-    'value.format' = 'json',
+    'value.format' = 'avro',
     'value.fields-include' = 'ALL'
 );
+

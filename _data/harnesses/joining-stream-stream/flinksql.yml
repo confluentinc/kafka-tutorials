@@ -114,24 +114,24 @@ test:
             file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-populate-shipments.sql.adoc
 
         - action: make_file
-          file: src/test/resources/create-movie-sales-by-title.sql.template
+          file: src/test/resources/create-shipped-orders.sql.template
           render:
-            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-create-movie-sales-by-title.sql.template.adoc
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-shipped-orders.sql.adoc
 
         - action: make_file
-          file: src/test/resources/populate-movie-sales-by-title.sql
+          file: src/test/resources/populate-shipped-orders-table.sql
           render:
-            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-populate-movie-sales-by-title.sql.adoc
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-populate-shipped-orders-table.sql.adoc
 
         - action: make_file
-          file: src/test/resources/query-movie-sales-by-title.sql
+          file: src/test/resources/query-shipped-orders.sql
           render:
-            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-query-movie-sales-by-title.sql.adoc
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-query-shipped-orders.sql.adoc
 
         - action: make_file
-          file: src/test/resources/expected-movie-sales-by-title.txt
+          file: src/test/resources/expected-shipped-orders.txt
           render:
-            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-expected-movie-sales-by-title.txt.adoc
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-expected-shipped-orders.txt.adoc
 
     - title: Write a test
       content:
