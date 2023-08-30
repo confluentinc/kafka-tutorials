@@ -14,7 +14,7 @@ Then query the `shipped_orders` table:
 This will yield the same output that the transient query did (perhaps in a different order)
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/flinksql/code/tutorial-steps/dev/expected-print-output-topic.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/flinksql/code/tutorial-steps/dev/expected-shipped-orders.log %}</code></pre>
 +++++
 
 We could also query the underlying topic directly using `console-consumer`. Open a new terminal window and run the following command:
@@ -26,5 +26,5 @@ We could also query the underlying topic directly using `console-consumer`. Open
 This will yield the following results:
 
 +++++
-<pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/flinksql/code/tutorial-steps/dev/expected-shipped-orders.log %}</code></pre>
+<pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/flinksql/code/tutorial-steps/dev/expected-print-output-topic.log %}</code></pre>
 +++++
