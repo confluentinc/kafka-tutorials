@@ -10,6 +10,6 @@ CREATE TABLE orders (
     'scan.startup.mode' = 'earliest-offset',
     'key.format' = 'raw',
     'key.fields' = 'id',
-    'value.format' = 'avro',
+    'value.format' = 'json',
     'value.fields-include' = 'ALL'
 );

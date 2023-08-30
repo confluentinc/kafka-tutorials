@@ -14,7 +14,7 @@ CREATE TABLE shipped_orders (
     'scan.startup.mode' = 'earliest-offset',
     'key.format' = 'raw',
     'key.fields' = 'ship_id',
-    'value.format' = 'avro',
+    'value.format' = 'json',
     'value.fields-include' = 'ALL'
 );
 
