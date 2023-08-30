@@ -4,6 +4,7 @@ package io.confluent.developer;
 import com.google.common.io.Resources;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.flink.api.common.restartstrategy.RestartStrategies;
+import org.apache.flink.configuration.Configuration;
 import org.apache.flink.contrib.streaming.state.EmbeddedRocksDBStateBackend;
 import org.apache.flink.runtime.client.JobCancellationException;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
@@ -22,9 +23,12 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.time.ZoneId;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import static org.testcontainers.containers.KafkaContainer.KAFKA_PORT;
 
@@ -45,8 +49,9 @@ public class AbstractFlinkKafkaTest {
     env.setParallelism(4);
     env.getConfig().setRestartStrategy(RestartStrategies.noRestart());
     env.setStateBackend(new EmbeddedRocksDBStateBackend());
-    streamTableEnv = StreamTableEnvironment.create(env, EnvironmentSettings.newInstance().inStreamingMode().build());
-
+    Configuration configuration = new Configuration();
+    configuration.setString("table.local-time-zone", "UTC");
+    streamTableEnv = StreamTableEnvironment.create(env, EnvironmentSettings.newInstance().inStreamingMode().withConfiguration(configuration).build());
 
     // Start Kafka and Schema Registry Testcontainers. Set the exposed ports that test subclasses
     // can use to dynamically configure Kafka connectors. Schema Registry enables connectors to
@@ -116,7 +121,7 @@ public class AbstractFlinkKafkaTest {
   }
 
   /**
-   * Utility method to convert a String containing multiple lines into a set of String's where
+   * Utility method to convert a String containing multiple lines into a set of Strings where
    * each String is one line. This is useful for creating Flink SQL integration tests based on
    * the tableau results printed via the Table API where the order of results is nondeterministic.
    *
@@ -124,7 +129,8 @@ public class AbstractFlinkKafkaTest {
    * @return set of Strings where each member is one line
    */
   protected static Set<String> stringToLineSet(String s) {
-    return Sets.newHashSet(Arrays.asList(s.split("\\r?\\n")));
+    return s.lines().map(line -> line.replaceAll("\\s", ""))
+            .collect(Collectors.toSet());
   }
 
   /**
