@@ -30,8 +30,8 @@ dev:
         
   - title: Write the program interactively using the CLI
     content:
-    - action: docker_ksql_cli_session
-      container: ksqldb-cli
+    - action: docker_flink_sql_cli_session
+      container: flink_sql_client
       docker_bootup_file: tutorial-steps/dev/start-cli.sh
       column_width: 20
       render:
@@ -56,14 +56,14 @@ dev:
         render:
           file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipped-orders-table.adoc
 
-
       stdout:
         directory: tutorial-steps/dev/outputs
 
   - title: Validate output
     content:
     - action: make_file
-      file: tutorial-steps/dev/print-output-topic.sql
+      file: tutorial-steps/dev/validate-shipped-orders.sh
+      stdout: tutorial-steps/dev/outputs/actual-shipped-orders.txt
       render:
         file: tutorials/joining-stream-stream/flinksql/markup/dev/validate-shipped-orders-table.adoc
 test:

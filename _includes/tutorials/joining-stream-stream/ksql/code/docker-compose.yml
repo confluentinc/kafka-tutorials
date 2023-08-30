@@ -42,40 +42,34 @@ services:
       SCHEMA_REGISTRY_HOST_NAME: schema-registry
       SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'broker:9092'
 
-  flink-sql-client:
-    image: cnfldemos/flink-sql-client-kafka:1.16.0-scala_2.12-java11
-    hostname: flink-sql-client
-    container_name: flink-sql-client
+  ksqldb-server:
+    image: confluentinc/ksqldb-server:0.28.2
+    hostname: ksqldb-server
+    container_name: ksqldb-server
     depends_on:
-      - flink-jobmanager
-    environment:
-      FLINK_JOBMANAGER_HOST: flink-jobmanager
-    volumes:
-      - ./settings/:/settings
-
-  flink-jobmanager:
-    image: cnfldemos/flink-kafka:1.16.0-scala_2.12-java11
-    hostname: flink-jobmanager
-    container_name: flink-jobmanager
+      - broker
+      - schema-registry
     ports:
-      - "9081:9081"
-    command: jobmanager
+      - "8088:8088"
     environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: flink-jobmanager
-        rest.bind-port: 9081
-
-  flink-taskmanager:
-    image: cnfldemos/flink-kafka:1.16.0-scala_2.12-java11
-    hostname: flink-taskmanager
-    container_name: flink-taskmanager
+      KSQL_CONFIG_DIR: "/etc/ksqldb"
+      KSQL_LOG4J_OPTS: "-Dlog4j.configuration=file:/etc/ksqldb/log4j.properties"
+      KSQL_BOOTSTRAP_SERVERS: "broker:9092"
+      KSQL_HOST_NAME: ksqldb-server
+      KSQL_LISTENERS: "http://0.0.0.0:8088"
+      KSQL_CACHE_MAX_BYTES_BUFFERING: 0
+      KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
+  ksqldb-cli:
+    image: confluentinc/ksqldb-cli:0.28.2
+    container_name: ksqldb-cli
     depends_on:
-      - flink-jobmanager
-    command: taskmanager
-    scale: 1
+      - broker
+      - ksqldb-server
+    entrypoint: /bin/sh
+    tty: true
     environment:
-      - |
-        FLINK_PROPERTIES=
-        jobmanager.rpc.address: flink-jobmanager
-        taskmanager.numberOfTaskSlots: 10
+      KSQL_CONFIG_DIR: "/etc/ksqldb"
+    volumes:
+      - ./src:/opt/app/src
+      - ./test:/opt/app/test
+      
