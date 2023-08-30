@@ -37,10 +37,12 @@ global_job_config:
                   | gzip > cp.tar.gz
       rm -f cp.tar.gz
     - make install-vault
+    - unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY; unset AWS_SESSION_TOKEN
     - . vault-bin/vault-setup
     - . vault-sem-get-secret aws_credentials
     - . vault-sem-get-secret dockerhub-semaphore-cred
     - . vault-sem-get-secret artifactory-docker-helm
+    - aws sts get-caller-identity
     - >
       aws ecr get-login-password --region us-west-2 | docker login --username AWS
       --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
