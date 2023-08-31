@@ -1,0 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id "java"
+}
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+version = "0.0.1"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation "com.google.guava:guava:31.1-jre"
+    testImplementation "junit:junit:4.13.2"
+    testImplementation 'org.testcontainers:testcontainers:1.17.6'
+    testImplementation 'org.testcontainers:kafka:1.17.6'
+    testImplementation "org.apache.flink:flink-sql-connector-kafka:1.17.1"
+    testImplementation "org.apache.flink:flink-sql-avro-confluent-registry:1.17.1"
+    testImplementation "org.apache.flink:flink-test-utils:1.17.1"
+    testImplementation "org.apache.flink:flink-test-utils-junit:1.17.1"
+    testImplementation 'org.apache.flink:flink-json:1.17.1'
+    testImplementation "org.apache.flink:flink-table-api-java-bridge:1.17.0"
+    testImplementation "org.apache.flink:flink-table-planner_2.12:1.17.1"
+    testImplementation "org.apache.flink:flink-table-planner_2.12:1.17.1:tests"
+    testImplementation "org.apache.flink:flink-statebackend-rocksdb:1.17.1"
+}
