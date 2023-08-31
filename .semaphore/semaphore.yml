@@ -46,7 +46,7 @@ global_job_config:
     - aws sts get-caller-identity
     - >
       aws ecr get-login-password --region us-west-2 | docker login --username AWS
-      --password-stdin "519856050701.dkr.ecr.us-west-2.amazonaws.com"
+      --password-stdin "368821881613.dkr.ecr.us-west-2.amazonaws.com"
     - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
     - pip3 install -e harness_runner/
     - >
