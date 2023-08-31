@@ -37,6 +37,8 @@ global_job_config:
                   | gzip > cp.tar.gz
       rm -f cp.tar.gz
     - make install-vault
+    - aws sts get-caller-identity
+    - aws sts get-caller-identity | jq -r .Account
     - unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY; unset AWS_SESSION_TOKEN
     - . vault-bin/vault-setup
     - . vault-sem-get-secret aws_credentials
