@@ -59,7 +59,6 @@ services:
       KSQL_LISTENERS: "http://0.0.0.0:8088"
       KSQL_CACHE_MAX_BYTES_BUFFERING: 0
       KSQL_KSQL_SCHEMA_REGISTRY_URL: "http://schema-registry:8081"
-
   ksqldb-cli:
     image: confluentinc/ksqldb-cli:0.28.2
     container_name: ksqldb-cli
@@ -73,3 +72,4 @@ services:
     volumes:
       - ./src:/opt/app/src
       - ./test:/opt/app/test
+      

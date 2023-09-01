@@ -491,3 +491,6 @@ blocks:
     - name: Flink SQL test for aggregating count
       commands:
       - make -C _includes/tutorials/aggregating-count/flinksql/code tutorial
+    - name: Flink SQL test for joins
+      commands:
+      - make -C _includes/tutorials/joining-stream-stream/flinksql/code tutorial
