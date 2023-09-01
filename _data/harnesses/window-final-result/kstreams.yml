@@ -109,7 +109,7 @@ dev:
         file: tutorials/window-final-result/kstreams/markup/dev/8_0-produce-input.adoc
     - name: wait for the cp platform to be fully started
       action: sleep
-      ms: 5000
+      ms: 10000
       render:
         skip: true
     - action: execute
@@ -132,7 +132,7 @@ dev:
         skip: true
     - name: wait for the consumer to read the messages
       action: sleep
-      ms: 3000
+      ms: 10000
       render:
         skip: true
     - action: skip
