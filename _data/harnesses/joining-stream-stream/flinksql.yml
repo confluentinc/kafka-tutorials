@@ -134,9 +134,9 @@ test:
             file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-populate-shipped-orders-table.sql.adoc
 
         - action: make_file
-          file: src/test/resources/query-shipped-orders.sql
+          file: src/test/resources/query-join-order-shipments.sql
           render:
-            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-query-shipped-orders.sql.adoc
+            file: tutorials/joining-stream-stream/flinksql/markup/test/create-resource-query-join-order-shipments.sql.adoc
 
         - action: make_file
           file: src/test/resources/expected-shipped-orders.txt
