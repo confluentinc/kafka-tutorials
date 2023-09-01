@@ -614,13 +614,13 @@ kafka-producer-application:
     kafka: enabled
     confluent: enabled
 kafka-producer-application-callback:
-  title: How to build an Apache KafkaProducer application with callbacks
+  title: How to build an Apache Kafka &#174; producer application with callbacks
   meta-description: build an Kafka producer application and handle responses using
     the Callback interface
   canonical: confluent
   slug: /kafka-producer-callback-application
-  question: How can you use callbacks with a KafkaProducer to handle produce responses?
-  introduction: You have an application using a Apache KafkaProducer, and you want
+  question: How can you use callbacks with a KafkaProducer to handle responses from the broker?
+  introduction: You have an application using an Apache Kafka producer, and you want
     an automatic way of handling responses after producing records. In this tutorial,
     you'll learn how to use the Callback interface to automatically handle responses
     from producing records.
