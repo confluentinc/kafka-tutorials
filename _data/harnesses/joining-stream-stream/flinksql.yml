@@ -30,31 +30,36 @@ dev:
         
   - title: Write the program interactively using the CLI
     content:
-    - action: docker_flink_sql_cli_session
-      container: flink_sql_client
+    - action: docker_flinksql_cli_session
+      container: flink-sql-client
       docker_bootup_file: tutorial-steps/dev/start-cli.sh
       column_width: 20
       render:
-        file: tutorials/joining-stream-stream/flinksql/markup/dev/start-cli.adoc
+        file: tutorials/aggregating-count/flinksql/markup/dev/start-cli.adoc
       stdin:
-      - file: tutorial-steps/dev/create-orders-table.sql
-        render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/create-orders-table.adoc
-      - file: tutorial-steps/dev/create-shipments-table.sql
-        render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/create-shipments-table.adoc
-      - file: tutorial-steps/dev/populate-orders.sql
-        render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-orders.adoc
-      - file: tutorial-steps/dev/populate-shipments.sql
-        render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipments.adoc
-      - file: tutorial-steps/dev/create-join-results-table.sql
-        render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/transient-join.adoc
-      - file: tutorial-steps/dev/populate-shipped-orders-table.sql
-        render:
-          file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipped-orders-table.adoc
+        - file: tutorial-steps/dev/create-orders-table.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/dev/create-orders-table.adoc
+
+        - file: tutorial-steps/dev/create-shipments-table.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/dev/create-shipments-table.adoc
+
+        - file: tutorial-steps/dev/populate-orders.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-orders.adoc
+
+        - file: tutorial-steps/dev/populate-shipments.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipments.adoc
+
+        - file: tutorial-steps/dev/create-join-results-table.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/dev/transient-join.adoc
+
+        - file: tutorial-steps/dev/populate-shipped-orders-table.sql
+          render:
+            file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipped-orders-table.adoc
 
       stdout:
         directory: tutorial-steps/dev/outputs
