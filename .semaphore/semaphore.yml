@@ -38,7 +38,6 @@ global_job_config:
       rm -f cp.tar.gz
     - make install-vault
     - . vault-bin/vault-setup
-    - . vault-sem-get-secret aws_credentials
     - . vault-sem-get-secret dockerhub-semaphore-cred
     - . vault-sem-get-secret artifactory-docker-helm
     - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY

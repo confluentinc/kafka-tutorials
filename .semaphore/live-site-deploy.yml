@@ -14,7 +14,6 @@ blocks:
             - checkout
             - make install-vault
             - . vault-bin/vault-setup
-            - . vault-sem-get-secret aws_credentials
             - npm install
             - gem install bundler
             - bundle install
