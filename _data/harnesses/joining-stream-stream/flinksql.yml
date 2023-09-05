@@ -66,16 +66,12 @@ dev:
 
   - title: Validate output
     content:
-    - action: execute_async
+    - action: execute
       file: tutorial-steps/dev/validate-shipped-orders.sh
       stdout: tutorial-steps/dev/outputs/actual-shipped-orders.txt
       render:
         file: tutorials/joining-stream-stream/flinksql/markup/dev/validate-shipped-orders-table.adoc
-    - name: wait for the consumers to read all the messages
-      action: sleep
-      ms: 15000
-      render:
-        skip: true
+
 test:
   steps:
     - title: Decide what testing tools to use
