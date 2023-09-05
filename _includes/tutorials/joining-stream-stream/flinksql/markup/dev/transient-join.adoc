@@ -1,7 +1,7 @@
 Let's join these event streams together to gain some insight into the order-to-shipping process.  Then we'll discuss some of the concepts used in the query to enable retrieving your desired results.
 NOTE: There are several columns in the results so it's best to set the result mode to `TABLEAU` using the following command:
 ++++
-<pre class="snippet"><code class="sql"> SET sql-client.execution.result-mode=tableau; </code></pre>
+<pre class="snippet"><code class="text"> SET sql-client.execution.result-mode=tableau; </code></pre>
 ++++
 
 

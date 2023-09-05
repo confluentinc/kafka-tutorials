@@ -61,6 +61,12 @@ dev:
           render:
             file: tutorials/joining-stream-stream/flinksql/markup/dev/populate-shipped-orders-table.adoc
 
+    - name: wait for table execution to complete
+      action: sleep
+      ms: 10000
+      render:
+         skip: true
+
       stdout:
         directory: tutorial-steps/dev/outputs
 

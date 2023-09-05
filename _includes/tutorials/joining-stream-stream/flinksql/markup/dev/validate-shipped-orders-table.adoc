@@ -17,7 +17,7 @@ This will yield the same output that the transient query did (perhaps in a diffe
 <pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/flinksql/code/tutorial-steps/dev/expected-shipped-orders.log %}</code></pre>
 +++++
 
-We could also query the underlying topic directly using `console-consumer`. Open a new terminal window and run the following command:
+We could also query the underlying topic directly using `kafka-console-consumer`. Open a new terminal window and run the following command:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/joining-stream-stream/flinksql/code/tutorial-steps/dev/validate-shipped-orders.sh %}</code></pre>
