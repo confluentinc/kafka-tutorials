@@ -110,6 +110,7 @@ include '_includes:tutorials:creating-first-apache-kafka-streams-application:kst
 include '_includes:tutorials:creating-first-apache-kafka-streams-application:confluent:code'
 include '_includes:tutorials:multiple-event-types:kafka:code'
 include '_includes:tutorials:multiple-event-types:confluent:code'
+include '_includes:tutorials:versioned-ktables:kstreams:code'
 // <end>
 
 // if new tutorial wasn't included in `settings.gradle` build will fail
