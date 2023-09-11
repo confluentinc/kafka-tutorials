@@ -18,7 +18,7 @@ The `peek` function allows you to observe and act on events and they flow throug
 
 Once the topology is defined within the builder, the `buildTopology` function returns an instance of the `Topology` created from `builder.build`. Separating the building of the `Topology` in a function is useful for testing purposes, which we will see in the **Test It** section of the tutorial.
 
-Now go ahead and create the full Java source file at `src/main/java/io/confluent/developer/KafkaStreamsApplication.java`.
+Now go ahead and create the full Java source file at +++<code class="copy-inline">src/main/java/io/confluent/developer/KafkaStreamsApplication.java</code>+++.
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/creating-first-apache-kafka-streams-application/kstreams/code/src/main/java/io/confluent/developer/KafkaStreamsApplication.java %}</code></pre>
