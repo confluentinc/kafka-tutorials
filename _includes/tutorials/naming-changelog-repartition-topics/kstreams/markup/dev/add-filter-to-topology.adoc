@@ -26,7 +26,7 @@ Here's an image of the relevant part of the updated topology (view a `https://zz
 
 ++++
 <br />
-<img src="{{ "/assets/tutorial_images/naming-changelog-repartition-topics/no-names-with-filter.png"  | relative_url }}" />
+<img src="{{ "/assets/tutorial_images/naming-changelog-repartition-topics/no-names-with-filter.png"  | relative_url }}" alt="Kafka Streams Sub-topology" />
 ++++
 
 **(Note that changelog topics don't show up in `Topology.describe()`)**

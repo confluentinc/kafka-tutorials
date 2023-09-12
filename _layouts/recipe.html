@@ -59,7 +59,7 @@
   <section class="section" data-tracking-location="body">
     <div class="container">
       {% if site.data.tutorials[page.static_data].introduction-media %}
-        <img class="example-image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
+        <img class="example-image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" alt="" />
       {% endif %}
       <a href="{{ site.github_url }}/tree/master/_includes/tutorials/{{ page.static_data }}" class="btn-edit"><img src="{{ "/assets/img/icon-edit.svg" | relative_url }}" alt="Edit this page" /></a>
       {% unless page.help_wanted %}
@@ -70,7 +70,7 @@
                <BR><BR>To see this tutorial in action, <a href="https://www.confluent.io/confluent-cloud/tryfree/?next=tutorials/ksql-recipe-{{ page.static_data }}">click here</a> to launch it now. It will pre-populate the ksqlDB code in the Confluent Cloud Console and provide mock data or stubbed out code to connect to a real data source. For more detailed instructions, follow the steps below.
             </div>
             {% if site.data.tutorials[page.static_data].introduction-media %}
-              <img class="image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" />
+              <img class="image" src="{{ site.data.tutorials[page.static_data].introduction-media | relative_url }}" alt="" />
             {% endif %}
           </div>
         </div>
