@@ -10,4 +10,4 @@ include::_includes/shared/markup/ccloud/ccloud-sr-produce.adoc[]
 <pre class="snippet"><code class="json">{% include_raw tutorials/aggregating-sum/confluent/code/tutorial-steps/dev/input-events.json %}</code></pre>
 +++++
 
-Enter `Ctrl+C` to exit.
+Use `Ctrl-C` to exit.

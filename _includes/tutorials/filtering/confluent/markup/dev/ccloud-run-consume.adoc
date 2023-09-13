@@ -1,7 +1,7 @@
 Run the following command to start a Confluent CLI consumer to view the distinct click events:
 
-```bash
-confluent kafka topic consume filtered-publications -b --value-format avro
+```plaintext
+confluent kafka topic consume filtered-publications --from-beginning --value-format avro
 ```
 
 Depending on the cadence and values you produce in the steps above, you should see messages similar to the following:
@@ -10,4 +10,4 @@ Depending on the cadence and values you produce in the steps above, you should s
 <pre class="snippet"><code class="json">{% include_raw tutorials/filtering/kstreams/code/tutorial-steps/dev/expected-output-events.json %}</code></pre>
 +++++
 
-Enter `Ctrl+C` to exit.
+Enter `Ctrl-C` to exit.

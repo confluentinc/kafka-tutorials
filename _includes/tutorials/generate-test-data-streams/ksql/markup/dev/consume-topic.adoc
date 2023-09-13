@@ -10,4 +10,4 @@ You should see 5 messages and then the command will exit. Observe that the one m
 <pre class="snippet"><code class="shell">{% include_raw tutorials/generate-test-data-streams/ksql/code/tutorial-steps/dev/consume-topic_expected.log %}</code></pre>
 +++++
 
-You can also run this without the `LIMIT 5` to see a continuous stream of messages. If you do this, press `Ctrl+C` to return to the ksqlDB prompt. 
+You can also run this without the `LIMIT 5` to see a continuous stream of messages. If you do this, press `Ctrl-C` to return to the ksqlDB prompt. 

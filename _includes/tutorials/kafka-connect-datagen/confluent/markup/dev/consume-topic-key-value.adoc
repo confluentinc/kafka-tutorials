@@ -13,4 +13,4 @@ After the consumer starts, you should see the following output in a few seconds:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen/confluent/code/tutorial-steps/dev/consume-topic_expected.log %}</code></pre>
 +++++
 
-When you are done, type `Ctrl+C`.
+When you are done, type `Ctrl-C`.

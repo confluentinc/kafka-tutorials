@@ -16,4 +16,4 @@ Note that because we configured the Confluent Parallel Consumer to use `KEY` ord
 because these values have the same `event-promo` key. Similarly, `All streams lead to Kafka` appears before `Consume gently down the stream`
 because these values have the same `fun-line` key.
 
-At this point you can stop the Confluent Parallel Consumer application by entering `Ctrl+C` in the terminal window where it's running.
+At this point you can stop the Confluent Parallel Consumer application with `Ctrl-C` in the terminal window where it's running.

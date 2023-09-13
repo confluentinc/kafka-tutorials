@@ -1,0 +1,6 @@
+Next, create the table for the join result with the following file at `src/test/resources/create-shipped-orders.sql.template`:
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/joining-stream-stream/flinksql/code/src/test/resources/create-shipped-orders.sql.template %}</code></pre>
++++++
+
+Note again we specify the bootstrap servers configuration port with `KAFKA_PORT` which our test code will replace with the actual port.

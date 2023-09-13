@@ -1,6 +1,6 @@
 Leaving your original terminals running, open another to consume the events that have been merged:
 
-```bash
+```plaintext
 confluent kafka topic consume all-song-events \
       --from-beginning \
       --value-format avro
