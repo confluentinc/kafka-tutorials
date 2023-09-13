@@ -8,5 +8,5 @@ You can also read messages from a specified partition and offset using the https
 
 ++++
 <br />
-<img src="{{ "/assets/tutorial_images/console-consumer-read-specific-offsets-partition/offset-partition.png" | relative_url }}" />
+<img src="{{ "/assets/tutorial_images/console-consumer-read-specific-offsets-partition/offset-partition.png" | relative_url }}" alt="Confluent Cloud Console Message Viewer" />
 ++++
