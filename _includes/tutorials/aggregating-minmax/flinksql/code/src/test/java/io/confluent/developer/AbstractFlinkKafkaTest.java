@@ -141,7 +141,7 @@ public class AbstractFlinkKafkaTest {
 
     // The given table result may come from a table backed by the Kafka or Upsert Kafka connector,
     // both of which perform unbounded (neverending) scans. So, in order to prevent tests from blocking
-    // on called to this method, we kick off a thread to kill the underlying job once output has
+    // on calls to this method, we kick off a thread to kill the underlying job once output has
     // been printed.
     //
     // Note: as of Flink 1.17.0, the Kafka connector will support bounded scanning, which would obviate

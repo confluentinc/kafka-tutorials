@@ -493,3 +493,6 @@ blocks:
     - name: Flink SQL test for joins
       commands:
       - make -C _includes/tutorials/joining-stream-stream/flinksql/code tutorial
+    - name: Flink SQL test for splitting
+      commands:
+      - make -C _includes/tutorials/splitting/flinksql/code tutorial
