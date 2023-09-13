@@ -24,6 +24,6 @@ You should see output events that are entirely upper case:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/creating-first-apache-kafka-streams-application/kstreams/code/tutorial-steps/dev/expected-consume-transformed-output.txt %}</code></pre>
 +++++
 
-Once you are done with observing the behavior of the application, stop the consumers and the Kafka Streams application with `ctrl-c` in the appropriate terminal windows.
+Once you are done with observing the behavior of the application, stop the consumers and the Kafka Streams application with `Ctrl-C` in the appropriate terminal windows.
 
 Finally, shutdown Confluent Platform by invoking `docker compose down -v`.

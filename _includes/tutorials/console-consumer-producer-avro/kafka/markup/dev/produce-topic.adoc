@@ -19,4 +19,4 @@ Try typing one line at a time, hit enter and go back to the console consumer win
 +++++
 
 
-Once you've sent all the records you should see the same output in your console consumer window. After you've confirmed receiving all records, go ahead and close the consumer by entering `CTRL+C`.
+Once you've sent all the records you should see the same output in your console consumer window. After you've confirmed receiving all records, go ahead and close the consumer with `Ctrl-C`.

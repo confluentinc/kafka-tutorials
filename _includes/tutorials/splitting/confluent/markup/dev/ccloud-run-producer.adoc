@@ -1,6 +1,6 @@
 In a new terminal, run:
 
-```bash
+```plaintext
 confluent kafka topic produce acting-events --value-format avro --schema src/main/avro/acting_event.avsc
 ```
 

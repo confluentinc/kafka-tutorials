@@ -1,6 +1,6 @@
 Using a terminal window, run the following command to start a Confluent CLI producer:
 
-```
+```plaintext
 confluent kafka topic produce parallel-consumer-input-topic --parse-key
 ```
 
@@ -10,4 +10,4 @@ Each line represents input data for the Confluent Parallel Consumer application.
 <pre class="snippet"><code class="json">{% include_raw tutorials/confluent-parallel-consumer-application/kafka/code/tutorial-steps/dev/input.txt %}</code></pre>
 +++++
 
-Enter `Ctrl+C` to exit.
+Enter `Ctrl-C` to exit.

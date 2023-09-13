@@ -1,6 +1,6 @@
 Run the following command to start a Confluent CLI consumer to view consume the events that have been filtered by your application:
 
-```bash
+```plaintext
 confluent kafka topic consume movie-tickets-sold -b --print-key
 ```
 
@@ -12,4 +12,4 @@ The consumer prompt will hang, waiting for more events to arrive. To continue st
 <pre class="snippet"><code class="json">{% include_raw tutorials/aggregating-count/kstreams/code/tutorial-steps/dev/outputs/actual-output-events.json %}</code></pre>
 +++++
 
-Enter `Ctrl+C` to exit.
+Use `Ctrl-C` to exit.

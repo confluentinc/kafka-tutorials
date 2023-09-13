@@ -1,6 +1,6 @@
 Now that your Kafka Streams application is running, open a new terminal window, change directories (`cd`) into the `session-windows` directory and start a console-consumer to confirm the output:
 
-```bash
+```plaintext
 confluent kafka topic consume output-topic --from-beginning --print-key
 ```
 

@@ -1,6 +1,6 @@
 With our test data in place, let's try a query to compute the min and max. A `SELECT` statement in Flink SQL is called a _continuous query_ because it will continue to run and produce results dynamically. This query is _transient_, meaning that after we stop it, it is gone and will not keep processing the input stream. Further, the results aren't persisted anywhere. We'll create a _persistent_ query, the contrast to a transient push query, a few steps from now.
 
-If you're familiar with SQL, the text of the query itself is fairly self-explanatory. We are calculating the highest and lowest grossing movie figures by year using `MIN` and `MAX` aggregations on the `total_sales` column. This query will keep running, continuing to return results until you hit CTRL-C.
+If you're familiar with SQL, the text of the query itself is fairly self-explanatory. We are calculating the highest and lowest grossing movie figures by year using `MIN` and `MAX` aggregations on the `total_sales` column. This query will keep running, continuing to return results until you use `Ctrl-C`.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/aggregating-minmax/flinksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>

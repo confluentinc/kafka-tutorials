@@ -38,12 +38,8 @@ global_job_config:
       rm -f cp.tar.gz
     - make install-vault
     - . vault-bin/vault-setup
-    - . vault-sem-get-secret aws_credentials
     - . vault-sem-get-secret dockerhub-semaphore-cred
     - . vault-sem-get-secret artifactory-docker-helm
-    - >
-      aws ecr get-login-password --region us-west-2 | docker login --username AWS
-      --password-stdin "$(aws sts get-caller-identity | jq -r .Account).dkr.ecr.us-west-2.amazonaws.com"
     - docker login --username $DOCKERHUB_USER --password $DOCKERHUB_APIKEY
     - pip3 install -e harness_runner/
     - >
@@ -249,8 +245,11 @@ blocks:
       - make -C _includes/tutorials/confluent-parallel-consumer-application/kafka/code
         tutorial
     - name: Kafka Generate streams of test data tests
-      commands: 
+      commands:
       - make -C _includes/tutorials/generate-test-data-streams/kafka/code tutorial
+    - name: Kafka Streams versioned KTable tests
+      commands:
+      - make -C _includes/tutorials/versioned-ktables/kstreams/code tutorial
 - name: Run second block of tests (ksqlDB recipes)
   dependencies:
   - ☕️ Build and Test Java (Kafka and Kafka Streams) Only
@@ -491,3 +490,6 @@ blocks:
     - name: Flink SQL test for aggregating count
       commands:
       - make -C _includes/tutorials/aggregating-count/flinksql/code tutorial
+    - name: Flink SQL test for joins
+      commands:
+      - make -C _includes/tutorials/joining-stream-stream/flinksql/code tutorial
