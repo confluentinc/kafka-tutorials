@@ -1,0 +1,7 @@
+The primary choices for programming language in which to write our tests are Java and Python given the need for Flink's Table API. We'll write ours in Java.
+
+To start our test project, make new directories for test source code and resources within the same `aggregate-minmax` folder that you created earlier:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/test/make-test-dirs.sh %}</code></pre>
++++++

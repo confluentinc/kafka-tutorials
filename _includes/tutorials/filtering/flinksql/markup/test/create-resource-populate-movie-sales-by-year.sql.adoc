@@ -1,0 +1,4 @@
+Create the following file at `src/test/resources/populate-movie-sales-by-year.sql`:
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/filtering/flinksql/code/src/test/resources/populate-movie-sales-by-year.sql %}</code></pre>
++++++
