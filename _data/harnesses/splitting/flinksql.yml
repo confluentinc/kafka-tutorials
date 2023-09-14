@@ -55,9 +55,17 @@ dev:
               render:
                 file: tutorials/splitting/flinksql/markup/dev/transient-query-other.adoc
 
-            - file: tutorial-steps/dev/create-acting-event-streams-per-genre.sql
+            - file: tutorial-steps/dev/create-acting-events-drama.sql
               render:
-                file: tutorials/splitting/flinksql/markup/dev/create-acting-events-per-genre.adoc
+                file: tutorials/splitting/flinksql/markup/dev/create-acting-events-drama.adoc
+
+            - file: tutorial-steps/dev/create-acting-events-fantasy.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/create-acting-events-fantasy.adoc
+
+            - file: tutorial-steps/dev/create-acting-events-other.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/create-acting-events-other.adoc
 
           stdout:
             directory: tutorial-steps/dev/outputs
@@ -65,8 +73,8 @@ dev:
     - title: Validate output
       content:
         - action: execute
-          file: tutorial-steps/dev/validate-acting-events-per-genre.sh
-          stdout: tutorial-steps/dev/outputs/validate-acting-events-per-genre.log
+          file: tutorial-steps/dev/validate-acting-events-fantasy.sh
+          stdout: tutorial-steps/dev/outputs/validate-acting-events-fantasy.log
           render:
             file: tutorials/splitting/flinksql/markup/dev/validate-acting-events-per-genre.adoc
 
