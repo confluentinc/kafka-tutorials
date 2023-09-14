@@ -99,34 +99,33 @@ test:
     - title: Create SQL resources
       content:
         - action: make_file
-          file: src/test/resources/create-movie-sales.sql.template
+          file: src/test/resources/create-all-publications.sql.template
           render:
-            file: tutorials/filtering/flinksql/markup/test/create-resource-create-movie-sales.sql.template.adoc
+            file: tutorials/filtering/flinksql/markup/test/create-all-publications.sql.template.adoc
 
         - action: make_file
-          file: src/test/resources/populate-movie-sales.sql
+          file: src/test/resources/populate-publication-events.sql
           render:
-            file: tutorials/filtering/flinksql/markup/test/create-resource-populate-movie-sales.sql.adoc
+            file: tutorials/filtering/flinksql/markup/test/create-resource-populate-publication-events.sql.adoc
+        - action: make_file
+          file: src/test/resources/create-publications-by-author.sql.template
+          render:
+            file: tutorials/filtering/flinksql/markup/test/create-resource-create-publications-by-author.sql.template.adoc
 
         - action: make_file
-          file: src/test/resources/create-movie-sales-by-year.sql.template
+          file: src/test/resources/populate-publications-by-author.sql
           render:
-            file: tutorials/filtering/flinksql/markup/test/create-resource-create-movie-sales-by-year.sql.template.adoc
+            file: tutorials/filtering/flinksql/markup/test/create-resource-populate-publications-by-author.sql.adoc
 
         - action: make_file
-          file: src/test/resources/populate-movie-sales-by-year.sql
+          file: src/test/resources/query-publications-by-author.sql
           render:
-            file: tutorials/filtering/flinksql/markup/test/create-resource-populate-movie-sales-by-year.sql.adoc
+            file: tutorials/filtering/flinksql/markup/test/create-resource-query-publications-by-author.sql.adoc
 
         - action: make_file
-          file: src/test/resources/query-movie-sales-by-year.sql
+          file: src/test/resources/expected-publications-by-author.txt
           render:
-            file: tutorials/filtering/flinksql/markup/test/create-resource-query-movie-sales-by-year.sql.adoc
-
-        - action: make_file
-          file: src/test/resources/expected-movie-sales-by-year.txt
-          render:
-            file: tutorials/filtering/flinksql/markup/test/create-resource-expected-movie-sales-by-year.txt.adoc
+            file: tutorials/filtering/flinksql/markup/test/create-resource-expected-publications-by-author.txt.adoc
 
     - title: Write a test
       content:

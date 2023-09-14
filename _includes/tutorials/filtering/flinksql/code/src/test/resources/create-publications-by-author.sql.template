@@ -4,7 +4,7 @@ CREATE TABLE george_martin_books (
 ) WITH (
     'connector' = 'kafka',
     'topic' = 'george_martin_books',
-    'properties.bootstrap.servers' = 'broker:9092',
+    'properties.bootstrap.servers' = 'localhost:KAFKA_PORT',
     'scan.startup.mode' = 'earliest-offset',
     'key.format' = 'raw',
     'key.fields' = 'id',

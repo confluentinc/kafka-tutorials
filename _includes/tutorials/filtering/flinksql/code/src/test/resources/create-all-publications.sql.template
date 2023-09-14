@@ -1,16 +1,15 @@
-CREATE TABLE movie_sales (
-    id INT,
+CREATE TABLE publication_events (
+    book_id INT,
+    author STRING,
     title STRING,
-    release_year INT,
-    total_sales INT
+    
 ) WITH (
     'connector' = 'kafka',
-    'topic' = 'movie-sales',
+    'topic' = 'publication_events',
     'properties.bootstrap.servers' = 'localhost:KAFKA_PORT',
     'scan.startup.mode' = 'earliest-offset',
     'key.format' = 'raw',
     'key.fields' = 'id',
-    'value.format' = 'avro-confluent',
-    'value.avro-confluent.url' = 'http://localhost:SCHEMA_REGISTRY_PORT',
+    'value.format' = 'json',
     'value.fields-include' = 'EXCEPT_KEY'
 );
