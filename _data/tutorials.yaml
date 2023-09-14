@@ -46,6 +46,7 @@ splitting:
     kstreams: enabled
     kafka: enabled
     confluent: enabled
+    flinksql: enabled
 merging:
   title: How to merge many streams into one stream
   meta-description: merge many streams into one stream
