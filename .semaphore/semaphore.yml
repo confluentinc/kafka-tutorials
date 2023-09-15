@@ -496,3 +496,7 @@ blocks:
     - name: Flink SQL test for splitting
       commands:
       - make -C _includes/tutorials/splitting/flinksql/code tutorial
+    - name: Flink SQL test for filtering
+      commands:
+      - make -C _includes/tutorials/filtering/flinksql/code tutorial
+      
