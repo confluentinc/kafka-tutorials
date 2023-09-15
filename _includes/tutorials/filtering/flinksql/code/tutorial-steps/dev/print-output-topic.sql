@@ -1,4 +1,4 @@
 SELECT
     book_id,
-    total_ticket_value
+    title
 FROM george_martin_books;

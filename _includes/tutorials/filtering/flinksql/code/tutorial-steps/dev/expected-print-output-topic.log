@@ -1,4 +1,5 @@
- release_year min_total_sales max_total_sales
-         2019       385082142       856980506
-         2018       324512774       700059566
-         2017       412563408       517218368
+    book_id                          title
+           1         A Song of Ice and Fire
+           3                   Fire & Blood
+           6              A Dream of Spring
+           8                 The Ice Dragon

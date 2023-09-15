@@ -1,4 +1,5 @@
- release_year min_total_sales max_total_sales
-         2017       412563408       517218368
-         2019       385082142       856980506
-         2018       324512774       700059566\
+    book_id                         author                          title
+           1            George R. R. Martin         A Song of Ice and Fire
+           3            George R. R. Martin                   Fire & Blood
+           6            George R. R. Martin              A Dream of Spring
+           8            George R. R. Martin                 The Ice Dragon

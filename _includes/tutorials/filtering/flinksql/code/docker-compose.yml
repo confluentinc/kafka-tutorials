@@ -22,17 +22,6 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LOG_DIRS: /tmp/kraft-combined-logs
       CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
-  schema-registry:
-    image: confluentinc/cp-schema-registry:7.3.0
-    hostname: schema-registry
-    container_name: schema-registry
-    depends_on:
-    - broker
-    ports:
-    - 8081:8081
-    environment:
-      SCHEMA_REGISTRY_HOST_NAME: schema-registry
-      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: broker:9092
   flink-sql-client:
     image: cnfldemos/flink-sql-client-kafka:1.16.0-scala_2.12-java11
     hostname: flink-sql-client
