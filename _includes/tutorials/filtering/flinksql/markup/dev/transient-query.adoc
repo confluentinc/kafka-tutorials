@@ -1,0 +1,17 @@
+With our test data in place, let's try a query to compute the min and max. A `SELECT` statement in Flink SQL is called a _continuous query_ because it will continue to run and produce results dynamically. This query is _transient_, meaning that after we stop it, it is gone and will not keep processing the input stream. Further, the results aren't persisted anywhere. We'll create a _persistent_ query, the contrast to a transient push query, a few steps from now.
+
+If you're familiar with SQL, the text of the query itself is fairly self-explanatory. We are only selecting books written by George R. R. Martin using a `WHERE` clause. This query will keep running, continuing to return results until you use `Ctrl-C`.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/dev/transient-query.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/dev/expected-transient-query.log %}</code></pre>
++++++
+
+Enter `Q` to return to the Flink SQL prompt.
+
+Note that these results were materialized in memory and printed in a human readable table representation because the default `sql-client.execution.result-mode` configuration value is `table`.
