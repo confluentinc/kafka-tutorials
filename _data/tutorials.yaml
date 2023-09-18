@@ -28,6 +28,7 @@ filtering:
     kstreams: enabled
     kafka: enabled
     confluent: enabled
+    flinksql: enabled
 splitting:
   title: How to split a stream of events into substreams
   meta-description: split a stream of events into substreams
@@ -621,7 +622,8 @@ kafka-producer-application-callback:
     the Callback interface
   canonical: confluent
   slug: /kafka-producer-callback-application
-  question: How can you use callbacks with a KafkaProducer to handle responses from the broker?
+  question: How can you use callbacks with a KafkaProducer to handle responses from
+    the broker?
   introduction: You have an application using an Apache Kafka producer, and you want
     an automatic way of handling responses after producing records. In this tutorial,
     you'll learn how to use the Callback interface to automatically handle responses
