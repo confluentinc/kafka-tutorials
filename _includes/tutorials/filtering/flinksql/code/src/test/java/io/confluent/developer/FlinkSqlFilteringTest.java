@@ -30,7 +30,7 @@ public class FlinkSqlFilteringTest extends AbstractFlinkKafkaTest {
     // Compare actual and expected results. Convert result output to line sets to compare so that order
     // doesn't matter, because the grouped result order doesn't matter -- 2017's could come before or after 2019's.
     String actualTableauResults = tableauResults(tableResult);
-    String expectedTableauResults = getResourceFileContents("expected-expected-publications-by-author.txt");
+    String expectedTableauResults = getResourceFileContents("expected-publications-by-author.txt");
     assertEquals(stringToLineSet(actualTableauResults), stringToLineSet(expectedTableauResults));
   }
 

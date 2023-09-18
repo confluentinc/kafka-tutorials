@@ -1,5 +1,7 @@
-    book_id                         author                          title
-           1            George R. R. Martin         A Song of Ice and Fire
-           3            George R. R. Martin                   Fire & Blood
-           6            George R. R. Martin              A Dream of Spring
-           8            George R. R. Martin                 The Ice Dragon
++----+-------------+--------------------------------+
+| op |     book_id |                          title |
++----+-------------+--------------------------------+
+| +I |           1 |         A Song of Ice and Fire |
+| +I |           3 |                   Fire & Blood |
+| +I |           6 |              A Dream of Spring |
+| +I |           8 |                 The Ice Dragon |
