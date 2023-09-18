@@ -1,4 +1,4 @@
-Since the output of our transient query looks right, the next step is to make the query persistent. This looks exactly like the transient query, except we first create a new table. The `INSERT INTO` statement returns to the CLI prompt right away, having created a persistent stream processing program running in the Flink cluster, continuously processing input records and updating the resulting `george_marting_books` table.
+Since the output of our transient query looks right, the next step is to make the query persistent. This looks exactly like the transient query, except we first create a new table. The `INSERT INTO` statement returns to the CLI prompt right away, having created a persistent stream processing program running in the Flink cluster, continuously processing input records and updating the resulting `george_martin_books` table.
 
 Now go ahead and tun the following two commands in your Flink SQL session:
 +++++

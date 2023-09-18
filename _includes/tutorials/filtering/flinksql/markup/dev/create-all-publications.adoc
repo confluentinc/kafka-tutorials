@@ -1,7 +1,7 @@
 Our tutorial demonstrates how to filter results when selecting from a table. To keep things simple, we're going to create a table backed by a Kafka topic with published book events.
 
 This line of Flink SQL DDL creates a table and its underlying Kafka topic to represent events generated when a publisher releases a new book.
-Note that we are defining the schema for the table, which includes four fields: `book_id`, `author`, and `title` . We are also specifying that the underlying Kafka topic—which Flink SQL will auto-create—be called `publication_events` and have just one partition (the default `num.partitions` configured in the broker), and that its messages will be in Json format.
+Note that we are defining the schema for the table, which includes four fields: `book_id`, `author`, and `title` . We are also specifying that the underlying Kafka topic—which Flink SQL will auto-create—be called `publication_events` and have just one partition (the default `num.partitions` configured in the broker), and that its messages will be in JSON format.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/dev/create-all-publications.sql %}</code></pre>
