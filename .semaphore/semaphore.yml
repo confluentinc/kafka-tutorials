@@ -499,4 +499,6 @@ blocks:
     - name: Flink SQL test for filtering
       commands:
       - make -C _includes/tutorials/filtering/flinksql/code tutorial
-      
+    - name: Flink SQL test for deduplication
+      commands:
+      - make -C _includes/tutorials/finding-distinct/flinksql/code tutorial

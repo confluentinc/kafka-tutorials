@@ -1,0 +1,26 @@
+Let's join these event streams together to gain some insight into the order-to-shipping process.  Then we'll discuss some of the concepts used in the query to enable retrieving your desired results.
+NOTE: There are several columns in the results so it's best to set the result mode to `TABLEAU` using the following command:
+++++
+<pre class="snippet"><code class="text"> SET sql-client.execution.result-mode=tableau; </code></pre>
+++++
+
+
+Otherwise, in the default `TABLE` format, the columns will scroll off the screen to the right.
+Now execute the following query and study its output.
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/create-order-shipments-join.sql %}</code></pre>
+++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/expected-transient.log %}</code></pre>
++++++
+
+Earlier we talked about the event timestamps stored as a `BIGINT` type which is great for flexibity, but hard to read and gain some meaning from the value. So to address that issue you used the `FROM_UNIXTIME` function for both the order and shipment timestamp.  `FROM_UNIXTIME` converts a numeric type (an epoch based timestamp in this case) to a formatted string in the default format of `yyyy-MM-dd HH:mm:ss`, which is now an easily understood format.
+
+You also used additional https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/functions/systemfunctions/#temporal-functions[temporal functions], `TO_TIMESTAMP`, `TIMESTAMPDIFF`, and `INTERVAL`.  `TO_TIMESTAMP` converts a date string, like the one returned from `TO_TIMESTAMP` into a timestamp suitable for other functions such as `TIMESTAMPDIFF` and `INTERVAL`.  You used `TIMESTAMPDIFF` to calculate the difference, in hours, between accepting the order and when it was shipped to the customer.
+
+The query we issued performs an _inner join_ between the orders and shipments. This kind of join only emits events when there's a match on the criteria of both sides of the join. In effect, this only joins orders that have successfully shipped. Additionally you used the `INTERVAL` function to perform an https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/sql/queries/joins/#interval-joins[interval join], which also needs a sql timestamp to specify an addition join requirement that order and shipment occured within seven days of eachother.
+

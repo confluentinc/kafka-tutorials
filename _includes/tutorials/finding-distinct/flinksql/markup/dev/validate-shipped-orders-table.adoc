@@ -1,0 +1,30 @@
+Seeing is believing, so let's query the persistent `shipped_orders` table. First set the result mode back to `tableau`:
+
+++++
+<pre class="snippet"><code class="sql"> SET sql-client.execution.result-mode=tableau; </code></pre>
+++++
+
+
+Then query the `shipped_orders` table:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This will yield the same output that the transient query did (perhaps in a different order)
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/expected-shipped-orders.log %}</code></pre>
++++++
+
+We could also query the underlying topic directly using `kafka-console-consumer`. Open a new terminal window and run the following command:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/validate-shipped-orders.sh %}</code></pre>
++++++
+
+This will yield the following results:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/expected-print-output-topic.log %}</code></pre>
++++++

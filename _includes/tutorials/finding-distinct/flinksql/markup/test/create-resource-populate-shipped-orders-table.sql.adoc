@@ -1,0 +1,4 @@
+Now create the sql file that will populate the join table: `src/test/resources/populate-shipped-orders-table.sql`.
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/src/test/resources/populate-shipped-orders-table.sql %}</code></pre>
++++++
