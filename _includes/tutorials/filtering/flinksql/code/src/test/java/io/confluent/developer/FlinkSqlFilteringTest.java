@@ -23,6 +23,7 @@ public class FlinkSqlFilteringTest extends AbstractFlinkKafkaTest {
     // by setting 'scan.bounded.mode' = 'latest-offset' in the movie_sales CREATE TABLE statement, which will
     // cause this INSERT to terminate once the latest offset of movie_sales table is reached.
     streamTableEnv.executeSql(getResourceFileContents("populate-publication-events.sql"));
+    streamTableEnv.executeSql(getResourceFileContents("populate-publications-by-author.sql"));
 
     // execute query on result table that should have movie sales aggregated by release year
     TableResult tableResult = streamTableEnv.executeSql(getResourceFileContents("query-publications-by-author.sql"));
