@@ -1,0 +1,7 @@
+Next, create the test implementation at `src/test/java/io/confluent/developer/FlinkSqlFilteringTest.java`:
+
++++++
+<pre class="snippet"><code class="java">{% include_raw tutorials/filtering/flinksql/code/src/test/java/io/confluent/developer/FlinkSqlFilteringTest.java %}</code></pre>
++++++
+
+The test itself it straightforward to follow. It executes the SQL from our resource files, then runs a select statement against the final output `TABLE` of our application and compares the results to what's expected.
