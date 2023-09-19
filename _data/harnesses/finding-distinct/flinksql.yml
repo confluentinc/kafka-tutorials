@@ -45,13 +45,13 @@ dev:
           render:
             file: tutorials/finding-distinct/flinksql/markup/dev/populate-clicks.adoc
 
-        - file: tutorial-steps/dev/create-join-results-table.sql
+        - file: tutorial-steps/dev/deduplicate-click-events.sql
           render:
-            file: tutorials/finding-distinct/flinksql/markup/dev/transient-join.adoc
+            file: tutorials/finding-distinct/flinksql/markup/dev/transient-deduplication.adoc
 
-        - file: tutorial-steps/dev/populate-shipped-orders-table.sql
+        - file: tutorial-steps/dev/create-deduplicated-clicks-table.sql
           render:
-            file: tutorials/finding-distinct/flinksql/markup/dev/populate-shipped-orders-table.adoc
+            file: tutorials/finding-distinct/flinksql/markup/dev/populate-deduplicated-clicks-table.adoc
 
       stdout:
         directory: tutorial-steps/dev/outputs
@@ -65,10 +65,10 @@ dev:
   - title: Validate output
     content:
     - action: execute
-      file: tutorial-steps/dev/validate-shipped-orders.sh
-      stdout: tutorial-steps/dev/outputs/actual-shipped-orders.txt
+      file: tutorial-steps/dev/validate-deduplicated-clicks.sh
+      stdout: tutorial-steps/dev/outputs/actual-deduplicated-clicks.txt
       render:
-        file: tutorials/finding-distinct/flinksql/markup/dev/validate-shipped-orders-table.adoc
+        file: tutorials/finding-distinct/flinksql/markup/dev/validate-deduplicated-clicks-table.adoc
 
 test:
   steps:

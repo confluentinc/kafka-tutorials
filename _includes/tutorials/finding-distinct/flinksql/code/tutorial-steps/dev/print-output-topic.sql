@@ -1,1 +1,1 @@
-SELECT * FROM shipped_orders LIMIT 3;
+SELECT * FROM deduplicated_clicks;

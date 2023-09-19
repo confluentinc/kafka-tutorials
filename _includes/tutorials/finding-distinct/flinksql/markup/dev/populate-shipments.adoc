@@ -1,5 +1,0 @@
-In a similar manner, create the following shipments:
-
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/populate-shipments.sql %}</code></pre>
-+++++

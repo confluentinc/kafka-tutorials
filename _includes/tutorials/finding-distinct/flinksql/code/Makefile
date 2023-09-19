@@ -11,6 +11,6 @@ tutorial:
 	mkdir $(DEV_OUTPUTS_DIR)
 	mkdir $(TEST_OUTPUTS_DIR)
 	harness-runner ../../../../../_data/harnesses/finding-distinct/flinksql.yml $(TEMP_DIR) $(SEQUENCE)
-	bash -c "diff --strip-trailing-cr <(cat $(STEPS_DIR)/dev/expected-print-output-topic.log | sort) <(cat $(DEV_OUTPUTS_DIR)/actual-shipped-orders.txt | sort)"
+	bash -c "diff --strip-trailing-cr <(cat $(STEPS_DIR)/dev/expected-print-output-topic.log | sort) <(cat $(DEV_OUTPUTS_DIR)/actual-deduplicated-clicks.txt | sort)"
 	
 	reset
