@@ -51,7 +51,11 @@ dev:
 
         - file: tutorial-steps/dev/create-deduplicated-clicks-table.sql
           render:
-            file: tutorials/finding-distinct/flinksql/markup/dev/populate-deduplicated-clicks-table.adoc
+            file: tutorials/finding-distinct/flinksql/markup/dev/create-deduplicated-clicks-table.adoc
+
+        - file: tutorial-steps/dev/populate-deduplicated-clicks-table.sql
+          render:
+            file: tutorials/finding-distinct/flinksql/markup/dev/populate-deduplicated-clicks-table.adoc    
 
       stdout:
         directory: tutorial-steps/dev/outputs
