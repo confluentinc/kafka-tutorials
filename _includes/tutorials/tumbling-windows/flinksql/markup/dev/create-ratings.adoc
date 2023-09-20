@@ -1,0 +1,11 @@
+First, you'll need to create a stream to represent movie ratings.  The line of Flink SQL DDL below creates a table and its underlying Kafka topic.
+Note that we are defining the schema for the table, which includes five fields: `rating_id`, the internal ID of the rating; `title`, the title of the movie being rated; `release_year`, the year the movie was released; `rating`, the floating-point rating of the movie from 0 to 10; and `ts`, the timestamp when the rating was submitted. The statement also specifies the underlying Kafka topic as `ratings`, that it should have a single partition (the default `num.partitions` configured in the broker), and defines Avro as its data format.
+
+The timestamp is an important attribute since we’ll be modeling the number of ratings that each movie receives over time. Also, because we are going to aggregate over time windows, we
+must define a https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/create/#watermark[watermark strategy]. In this case, we use strictly ascending timestamps, i.e., any
+row with a timestamp that is less than or equal to the latest observed event timestamp is considered late and ignored. This is safe for this tutorial since we will insert events in ascending timestamp order,
+but for other scenarios a delayed watermark strategy may be more appropriate. Such a strategy defined the grace period during which late data can arrive and impact tumbling window aggregations rather than be ignored.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/create-ratings.sql %}</code></pre>
++++++
