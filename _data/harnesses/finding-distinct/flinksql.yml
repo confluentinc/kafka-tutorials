@@ -119,7 +119,7 @@ test:
         - action: make_file
           file: src/test/resources/populate-deduplicated-clicks-table.sql
           render:
-            file: tutorials/finding-distinct/flinksql/markup/test/create-resource-populate-shipped-orders-table.sql.adoc
+            file: tutorials/finding-distinct/flinksql/markup/test/create-resource-populate-deduplicated-clicks-table.sql.adoc
 
         - action: make_file
           file: src/test/resources/query-deduplicated-clicks.sql

@@ -1,4 +1,4 @@
-Create the following file at `src/test/resources/create-clicks-table.sql.template`. Again, note the `KAFKA_PORT` placeholder since this table uses the Upsert Kafka connector and hence must be able to communicate with Kafka and Schema Registry.
+Create the following file at `src/test/resources/create-clicks-table.sql.template`. Note the `KAFKA_PORT` placeholder.
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/src/test/resources/create-clicks-table.sql.template %}</code></pre>
 +++++

@@ -1,7 +1,7 @@
-First, you'll need to create a table to represent click events from users.  Notice that we're intentionally adding some dupliate entries that we'll eventually need to deduplicate.
+First, you'll need to create a table to represent click events from users.  Notice that we're intentionally adding some duplicate entries that we'll eventually need to deduplicate.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/create-clicks-table.sql %}</code></pre>
 +++++
 
-Note that we are using the field `clicks_ts_raw` as the record's timestamp. This is going to be important later on when we write a query to deduplicate these events and knowing when each event occured is important.
+Note that we are using the field `clicks_ts_raw` as the record's timestamp. This is going to be important later on when we write a query to deduplicate these events and knowing when each event occurred is important.
