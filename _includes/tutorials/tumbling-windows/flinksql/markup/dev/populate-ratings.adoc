@@ -1,0 +1,5 @@
+Now, produce a few events that represent movie ratings over time. Note how the timestamps are varying across different hours of the day.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/populate-ratings.sql %}</code></pre>
++++++

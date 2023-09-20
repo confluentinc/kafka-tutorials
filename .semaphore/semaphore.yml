@@ -499,4 +499,6 @@ blocks:
     - name: Flink SQL test for filtering
       commands:
       - make -C _includes/tutorials/filtering/flinksql/code tutorial
-      
+    - name: Flink SQL tumbling windows tests
+      commands:
+      - make -C _includes/tutorials/tumbling-windows/flinksql/code tutorial

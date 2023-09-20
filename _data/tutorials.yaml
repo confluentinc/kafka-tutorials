@@ -165,6 +165,7 @@ tumbling-windows:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
+    flinksql: enabled
 hopping-windows:
   title: How to create hopping windows
   meta-description: create hopping windows for time-series events

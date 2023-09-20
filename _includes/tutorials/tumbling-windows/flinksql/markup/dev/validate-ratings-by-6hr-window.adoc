@@ -1,0 +1,29 @@
+Seeing is believing, so let's query the persistent `ratings_by_6hr_window` table. First set the result mode back to `table`:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/set-result-mode-table.sql %}</code></pre>
++++++
+
+Then query the `ratings_by_6hr_window` table:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/print-ratings-by-6hr-window.sql %}</code></pre>
++++++
+
+This will yield the same output that the transient query did:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/expected-print-ratings-by-6hr-window.log %}</code></pre>
++++++
+
+We could also query the underlying topic directly using `kafka-avro-console-consumer`. Open a new terminal window and run the following command:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/validate-ratings-by-6hr-window.sh %}</code></pre>
++++++
+
+This will yield the following results:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/expected-ratings-by-6hr-window.log %}</code></pre>
++++++
