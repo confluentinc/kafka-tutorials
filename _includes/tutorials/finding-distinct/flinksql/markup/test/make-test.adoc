@@ -1,7 +1,7 @@
-Next, create the test implementation at `src/test/java/io/confluent/developer/FlinkSqlIntervalJoinTest.java`:
+Next, create the test implementation at `src/test/java/io/confluent/developer/FlinkSqlFindingDistinctTest.java`:
 
 +++++
-<pre class="snippet"><code class="java">{% include_raw tutorials/finding-distinct/flinksql/code/src/test/java/io/confluent/developer/FlinkSqlIntervalJoinTest.java %}</code></pre>
+<pre class="snippet"><code class="java">{% include_raw tutorials/finding-distinct/flinksql/code/src/test/java/io/confluent/developer/FlinkSqlFindingDistinctTest.java %}</code></pre>
 +++++
 
 The test itself is straightforward to follow. It executes the SQL from our resource files, then runs a select statement against the final output `TABLE` of our application and compares the results to what's expected.

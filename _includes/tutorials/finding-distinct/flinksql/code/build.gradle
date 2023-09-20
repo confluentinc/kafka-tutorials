@@ -6,6 +6,7 @@ buildscript {
 
 plugins {
     id "java"
+    id "idea"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11

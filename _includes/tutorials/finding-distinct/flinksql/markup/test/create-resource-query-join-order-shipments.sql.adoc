@@ -1,4 +1,0 @@
-Next, create the following file at `src/test/resources/query-join-order-shipments.sql` to select all results from the join table:
-+++++
-<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/src/test/resources/query-join-order-shipments.sql %}</code></pre>
-+++++

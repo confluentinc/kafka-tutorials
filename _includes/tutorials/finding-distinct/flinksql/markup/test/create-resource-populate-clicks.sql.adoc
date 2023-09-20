@@ -1,0 +1,4 @@
+Create the following file at `src/test/resources/populate-clicks.sql`:
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/src/test/resources/populate-clicks.sql %}</code></pre>
++++++
