@@ -1,0 +1,19 @@
+Let's now https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/sql/queries/deduplication/[deduplicate] these click events. Execute the following query and study its output.
+
+++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/deduplicate-click-events.sql %}</code></pre>
+++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/expected-transient.log %}</code></pre>
++++++
+
+
+What you've done here is to select the desired columns from a sub-query.  The sub-query orders events by time and assigns a unique number to each row.  This process makes it possible to eliminate duplicate records where the row number is greater than one.  Let's discuss the critical parts of the sub-query:
+
+. `ROW_NUMBER()` starting at one, this asigns a unique, sequential number to each row
+. `PARTITION BY` specifies how to partition the data for deduplication this should be the column or columns where you want eliminate duplicate values. In our case here it's the key of the table, `ip_address`
+. `ORDER BY` orders by the provided column and it's required to be a https://nightlies.apache.org/flink/flink-docs-release-1.17/docs/dev/table/concepts/time_attributes/[time attribute].  The time attibute column can be processing time (system time of the machine running the Flink job) or event time.  By default `ORDER BY` puts rows in ascending (`asc`) order.  By using `asc` order you'll keep the *_first_* row.  Should you want to keep the *_last_* row you should use `ORDER BY <time_attribute> desc`
+
