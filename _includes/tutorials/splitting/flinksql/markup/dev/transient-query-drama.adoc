@@ -1,6 +1,6 @@
 With our test data in place, let's execute a query to find all of the actor / movie combinations for drama films.
 
-This query will keep running, continuing to return results until you quit by entering `Q`.
+This query will continue to return results until you quit by entering `Q`.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/transient-query-drama.sql %}</code></pre>
@@ -14,7 +14,7 @@ This should yield the following output:
 
 Enter `Q` to return to the Flink SQL prompt.
 
-Note that these results were materialized in memory and printed in a human readable table representation because the default `sql-client.execution.result-mode` configuration value is `table`. You can view non-materialized streaming results as a changelog by running `SET 'sql-client.execution.result-mode' = 'changelog';`
+Note that these results were materialized in memory and printed in a human-readable table representation because the default `sql-client.execution.result-mode` configuration value is `'table'`. You can view non-materialized streaming results as a changelog by running `SET 'sql-client.execution.result-mode' = 'changelog';`
 and rerunning the same query. The results will look like this:
 
 +++++
