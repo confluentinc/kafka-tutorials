@@ -4,7 +4,7 @@ Note that we are defining the schema for the table, which includes five fields: 
 The timestamp is an important attribute since we’ll be modeling the number of ratings that each movie receives over time. Also, because we are going to aggregate over time windows, we
 must define a https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/create/#watermark[watermark strategy]. In this case, we use strictly ascending timestamps, i.e., any
 row with a timestamp that is less than or equal to the latest observed event timestamp is considered late and ignored. This is safe for this tutorial since we will insert events in ascending timestamp order,
-but for other scenarios a delayed watermark strategy may be more appropriate. This would allow a grace period during which late data can arrive and impact tumbling window aggregations rather than be ignored.
+but for other scenarios a delayed watermark strategy may be more appropriate. This would allow a grace period during which late data can arrive, impacting tumbling window aggregations rather than being ignored.
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/create-ratings.sql %}</code></pre>
