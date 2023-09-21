@@ -1,0 +1,24 @@
+Seeing is believing, so let's query the persistent `deduplicated_clicks` table.
+
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This will yield the same output that the transient query did (perhaps in a different order)
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/expected-deduplicated-clicks.log %}</code></pre>
++++++
+
+We could also query the underlying topic directly using `kafka-console-consumer`. Open a new terminal window and run the following command:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/validate-deduplicated-clicks.sh %}</code></pre>
++++++
+
+This will yield the following results:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/finding-distinct/flinksql/code/tutorial-steps/dev/expected-print-output-topic.log %}</code></pre>
++++++
