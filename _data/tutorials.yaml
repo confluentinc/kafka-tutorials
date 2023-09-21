@@ -290,6 +290,7 @@ finding-distinct:
     kstreams: enabled
     kafka: disabled
     confluent: enabled
+    flinksql: enabled
 window-final-result:
   title: Emit a final result from a time window
   meta-description: emit a final result from a time window
