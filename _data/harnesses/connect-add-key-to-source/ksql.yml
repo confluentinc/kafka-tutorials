@@ -115,7 +115,7 @@ dev:
         file: tutorials/connect-add-key-to-source/ksql/markup/dev/clean-up.adoc
 ccloud:
   steps:
-  - title: Run your app to Confluent Cloud
+  - title: Run your app with Confluent Cloud
     content:
     - action: skip
       render:

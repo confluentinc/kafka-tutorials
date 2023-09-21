@@ -1,0 +1,6 @@
+First, you'll need to create a stream to represent the actor / movie combinations.  This line of Flink SQL DDL creates a table and its underlying Kafka topic.
+Note that we are defining the schema for the table, which includes three fields: `name`, actor's name; `title`, the title of the movie the actor is in; and `genre`, the genre of the movie. The statement also specifies the underlying Kafka topic as `acting-events`, that it should have a single partition (the default `num.partitions` configured in the broker), and defines Avro as its data format.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/create-acting-events.sql %}</code></pre>
++++++

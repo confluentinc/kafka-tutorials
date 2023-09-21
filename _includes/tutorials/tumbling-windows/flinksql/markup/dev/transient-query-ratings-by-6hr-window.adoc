@@ -1,0 +1,29 @@
+With our test data in place, let's figure out how many ratings were given to each movie in tumbling (i.e., consecutive and non-overlapping) 6-hour intervals (and also what the average rating is for each window).
+To do that, we issue the following transient query to aggregate the ratings, grouped by the movie’s title. This query uses
+a windowing table-valued function (TVF) to compute the ratings count and average rating for 6-hour time windows. It also captures the window start and end times.
+
+This query will continue to return results until you quit by entering `Q`.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/transient-query-ratings-by-6hr-window.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/expected-transient-query-ratings-by-6hr-window.log %}</code></pre>
++++++
+
+Observe that the sum of all rating counts is 10, whereas there are 11 ratings in the `ratings` table. Why is this? First, remember that we defined a strictly ascending timestamps watermark strategy. Second, keep in mind that a windowed aggregation does not emit intermediate results but only a final result.
+So, in this case, the rating with `rating_id` 10 and timestamp `2023-07-10 01:00:00` served to "close" the window ending at `2023-07-10 00:00:00.000` because its event time is later than the window end time.
+
+Enter `Q` to return to the Flink SQL prompt.
+
+Note that these results were materialized in memory and printed in a human-readable table representation because the default `sql-client.execution.result-mode` configuration value is `'table'`. You can view non-materialized streaming results as a changelog by running `SET 'sql-client.execution.result-mode' = 'changelog';`
+and rerunning the same query. The results will look like this:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/expected-transient-query-changelog-ratings-by-6hr-window.log %}</code></pre>
++++++
+
+Or, as a third option, you can see streaming results non-materialized and inline in the SQL client by running ``SET 'sql-client.execution.result-mode' = 'tableau';`` and rerunning the query once more. In this case, the results will look very similar to `changelog` mode results. This is because tables sourced by the Kafka connector are _unbounded_ and can thus only be queried in `streaming` mode. For further reading on these Flink SQL concepts, consult the documentation on  https://nightlies.apache.org/flink/flink-docs-release-1.16/docs/dev/table/sqlclient/#sql-client-result-modes[SQL client result modes]  and https://nightlies.apache.org/flink/flink-docs-release-1.16/docs/dev/datastream/execution_mode/[streaming vs. batch execution]

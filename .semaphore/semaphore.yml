@@ -493,3 +493,15 @@ blocks:
     - name: Flink SQL test for joins
       commands:
       - make -C _includes/tutorials/joining-stream-stream/flinksql/code tutorial
+    - name: Flink SQL test for splitting
+      commands:
+      - make -C _includes/tutorials/splitting/flinksql/code tutorial
+    - name: Flink SQL test for filtering
+      commands:
+      - make -C _includes/tutorials/filtering/flinksql/code tutorial
+    - name: Flink SQL tumbling windows tests
+      commands:
+      - make -C _includes/tutorials/tumbling-windows/flinksql/code tutorial
+    - name: Flink SQL test for deduplication
+      commands:
+      - make -C _includes/tutorials/finding-distinct/flinksql/code tutorial

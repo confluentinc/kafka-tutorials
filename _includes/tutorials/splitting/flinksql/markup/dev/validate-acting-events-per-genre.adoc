@@ -1,0 +1,31 @@
+Seeing is believing, so let's query the persistent `acting_events_fantasy` table. First set the result mode back to `table`:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/set-result-mode-table.sql %}</code></pre>
++++++
+
+Then query the `acting_events_fantasy` table:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/print_acting_events_fantasy.sql %}</code></pre>
++++++
+
+This will yield the same output that the transient query did:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/expected-print-acting-events-fantasy.log %}</code></pre>
++++++
+
+We could also query the underlying topic directly using `kafka-avro-console-consumer`. Open a new terminal window and run the following command:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/validate-acting-events-fantasy.sh %}</code></pre>
++++++
+
+This will yield the following results:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/expected-acting-events-fantasy.log %}</code></pre>
++++++
+
+Now go ahead and query the `acting_events_drama` and `acting_events_other` tables similarly.
