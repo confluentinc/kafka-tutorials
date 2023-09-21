@@ -14,7 +14,7 @@ This should yield the following output:
 
 Enter `Q` to return to the Flink SQL prompt.
 
-Note that these results were materialized in memory and printed in a human readable table representation because the default `sql-client.execution.result-mode` configuration value is `table`. You can view non-materialized streaming results as a changelog by running `SET 'sql-client.execution.result-mode' = 'changelog';`
+Note that these results were materialized in memory and printed in a human-readable table representation because the default `sql-client.execution.result-mode` configuration value is `'table'`. You can view non-materialized streaming results as a changelog by running `SET 'sql-client.execution.result-mode' = 'changelog';`
 and rerunning the same query. The results will look like this:
 
 +++++
