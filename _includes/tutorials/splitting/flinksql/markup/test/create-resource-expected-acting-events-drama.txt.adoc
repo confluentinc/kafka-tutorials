@@ -1,0 +1,4 @@
+Finally, create the following file at `src/test/resources/expected-acting-events-drama.txt` that contains our test's expected output:
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/splitting/flinksql/code/src/test/resources/expected-acting-events-drama.txt %}</code></pre>
++++++

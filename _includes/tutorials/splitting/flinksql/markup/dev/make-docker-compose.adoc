@@ -1,0 +1,4 @@
+Next, create the following `docker-compose.yml` file to obtain Confluent Platform (for Kafka in the cloud, see https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud]). The Docker Compose file will start three Apache Flink® containers that have Kafka connector dependencies preinstalled: an interactive Flink SQL client (`flink-sql-client`) that sends streaming SQL jobs to the Flink Job Manager (`flink-job-manager`), which in turn assigns tasks to the Flink Task Manager (`flink-task-manager`) in the Flink cluster.
++++++
+<pre class="snippet"><code class="dockerfile">{% include_raw tutorials/splitting/flinksql/code/docker-compose.yml %}</code></pre>
++++++

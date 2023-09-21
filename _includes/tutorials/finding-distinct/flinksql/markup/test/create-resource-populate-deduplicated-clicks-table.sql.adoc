@@ -1,0 +1,4 @@
+Now create the SQL file that will populate the deduped table: `src/test/resources/populate-deduplicated-clicks-table.sql`.
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/finding-distinct/flinksql/code/src/test/resources/populate-deduplicated-clicks-table.sql %}</code></pre>
++++++

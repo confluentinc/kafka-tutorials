@@ -3,10 +3,10 @@ Therefore, this one error needs to show up somewhere.
 With the https://docs.ksqldb.io/en/latest/reference/processing-log/[KSQL Processing Log] feature enabled, you can query a stream called `KSQL_PROCESSING_LOG` to check for deserialization errors.
 
 The query below is extracting some of the data available in the processing log.
-As we configured the processing log to include the payload of the message, we can also use the `encode` method to convert the record from `base64` encoded into a human readable `utf8` encoding:
+As we configured the processing log to include the payload of the message, we can also use the `encode` method to convert the record from `base64` encoded into a human-readable `utf8` encoding:
 
 The query below is extracting some of the data available in the processing log.
-As we configured the processing log to include the payload of the message, we can also use the `encode` method to convert the record from `base64` encoded into a human readable `utf8` encoding:
+As we configured the processing log to include the payload of the message, we can also use the `encode` method to convert the record from `base64` encoded into a human-readable `utf8` encoding:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/deserialization-errors/ksql/code/tutorial-steps/dev/check-errors-query.sql %}</code></pre>
