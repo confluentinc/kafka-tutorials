@@ -1,0 +1,158 @@
+dev:
+  steps:
+    - title: Prerequisites
+      content:
+        - action: skip
+          render:
+            file: shared/markup/dev/docker-prerequisite.adoc
+
+    - title: Initialize the project
+      content:
+        - action: execute
+          file: tutorial-steps/dev/init.sh
+          render:
+            file: tutorials/splitting/flinksql/markup/dev/init.adoc
+
+    - title: Get Confluent Platform
+      content:
+        - action: make_file
+          file: docker-compose.yml
+          render:
+            file: tutorials/splitting/flinksql/markup/dev/make-docker-compose.adoc
+
+        - action: execute_async
+          file: tutorial-steps/dev/docker-compose-up.sh
+          render:
+            file: tutorials/splitting/flinksql/markup/dev/start-compose.adoc
+
+        - action: execute
+          file: tutorial-steps/dev/wait-for-containers.sh
+          render:
+            skip: true
+
+    - title: Write the program interactively using the CLI
+      content:
+        - action: docker_flinksql_cli_session
+          container: flink-sql-client
+          docker_bootup_file: tutorial-steps/dev/start-cli.sh
+          column_width: 20
+          render:
+            file: tutorials/splitting/flinksql/markup/dev/start-cli.adoc
+          stdin:
+            - file: tutorial-steps/dev/create-acting-events.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/create-acting-events.adoc
+
+            - file: tutorial-steps/dev/populate-acting-events.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/populate-acting-events.adoc
+
+            - file: tutorial-steps/dev/transient-query-drama.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/transient-query-drama.adoc
+
+            - file: tutorial-steps/dev/transient-query-other.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/transient-query-other.adoc
+
+            - file: tutorial-steps/dev/create-acting-events-drama.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/create-acting-events-drama.adoc
+
+            - file: tutorial-steps/dev/create-acting-events-fantasy.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/create-acting-events-fantasy.adoc
+
+            - file: tutorial-steps/dev/create-acting-events-other.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/create-acting-events-other.adoc
+
+          stdout:
+            directory: tutorial-steps/dev/outputs
+
+    - title: Validate output
+      content:
+        - action: execute
+          file: tutorial-steps/dev/validate-acting-events-fantasy.sh
+          stdout: tutorial-steps/dev/outputs/validate-acting-events-fantasy.log
+          render:
+            file: tutorials/splitting/flinksql/markup/dev/validate-acting-events-per-genre.adoc
+
+test:
+  steps:
+    - title: Decide what testing tools to use
+      content:
+        - action: skip
+          render:
+            file: tutorials/splitting/flinksql/markup/test/test-architecture.adoc
+
+    - title: Create the test skeleton
+      content:
+        - action: execute
+          file: tutorial-steps/test/make-test-dirs.sh
+          render:
+            file: tutorials/splitting/flinksql/markup/test/make-test-dirs.adoc
+
+        - action: make_file
+          file: build.gradle
+          render:
+            file: tutorials/splitting/flinksql/markup/test/make-build-gradle.adoc
+
+        - action: execute
+          file: tutorial-steps/test/gradle-wrapper.sh
+          render:
+            file: tutorials/splitting/flinksql/markup/test/make-gradle-wrapper.adoc
+
+    - title: Create SQL resources
+      content:
+        - action: make_file
+          file: src/test/resources/create-acting-events.sql.template
+          render:
+            file: tutorials/splitting/flinksql/markup/test/create-resource-create-acting-events.sql.template.adoc
+
+        - action: make_file
+          file: src/test/resources/populate-acting-events.sql
+          render:
+            file: tutorials/splitting/flinksql/markup/test/create-resource-populate-acting-events.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/create-acting-events-drama.sql.template
+          render:
+            file: tutorials/splitting/flinksql/markup/test/create-resource-create-acting-events-drama.sql.template.adoc
+
+        - action: make_file
+          file: src/test/resources/query-acting-events-drama.sql
+          render:
+            file: tutorials/splitting/flinksql/markup/test/create-resource-query-acting-events-drama.sql.adoc
+
+        - action: make_file
+          file: src/test/resources/expected-acting-events-drama.txt
+          render:
+            file: tutorials/splitting/flinksql/markup/test/create-resource-expected-acting-events-drama.txt.adoc
+
+    - title: Write a test
+      content:
+        - action: make_file
+          file: src/test/java/io/confluent/developer/AbstractFlinkKafkaTest.java
+          render:
+            file: tutorials/splitting/flinksql/markup/test/make-test-base.adoc
+
+        - action: make_file
+          file: src/test/java/io/confluent/developer/FlinkSqlSplitStreamTest.java
+          render:
+            file: tutorials/splitting/flinksql/markup/test/make-test.adoc
+
+    - title: Invoke the test
+      content:
+        - action: execute
+          file: tutorial-steps/test/invoke-test.sh
+          render:
+            file: tutorials/splitting/flinksql/markup/test/invoke-test.adoc
+
+ccloud:
+  steps:
+    - title: Run your app with Confluent Cloud
+      content:
+        - action: skip
+          render:
+            file: shared/markup/ccloud/try-ccloud.adoc

@@ -28,6 +28,7 @@ filtering:
     kstreams: enabled
     kafka: enabled
     confluent: enabled
+    flinksql: enabled
 splitting:
   title: How to split a stream of events into substreams
   meta-description: split a stream of events into substreams
@@ -46,6 +47,7 @@ splitting:
     kstreams: enabled
     kafka: enabled
     confluent: enabled
+    flinksql: enabled
 merging:
   title: How to merge many streams into one stream
   meta-description: merge many streams into one stream
@@ -163,6 +165,7 @@ tumbling-windows:
     ksql: enabled
     kstreams: enabled
     confluent: enabled
+    flinksql: enabled
 hopping-windows:
   title: How to create hopping windows
   meta-description: create hopping windows for time-series events
@@ -287,6 +290,7 @@ finding-distinct:
     kstreams: enabled
     kafka: disabled
     confluent: enabled
+    flinksql: enabled
 window-final-result:
   title: Emit a final result from a time window
   meta-description: emit a final result from a time window
@@ -620,7 +624,8 @@ kafka-producer-application-callback:
     the Callback interface
   canonical: confluent
   slug: /kafka-producer-callback-application
-  question: How can you use callbacks with a KafkaProducer to handle responses from the broker?
+  question: How can you use callbacks with a KafkaProducer to handle responses from
+    the broker?
   introduction: You have an application using an Apache Kafka producer, and you want
     an automatic way of handling responses after producing records. In this tutorial,
     you'll learn how to use the Callback interface to automatically handle responses

@@ -235,7 +235,7 @@ perftest:
 
 ccloud:
   steps:
-    - title: Run your app to Confluent Cloud
+    - title: Run your app with Confluent Cloud
       content:
         - action: skip
           render:

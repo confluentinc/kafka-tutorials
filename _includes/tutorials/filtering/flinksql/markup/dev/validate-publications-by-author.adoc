@@ -1,0 +1,29 @@
+Seeing is believing, so let's query the persistent `george_martin_books` table. First let's ensure the result mode is set to `table`:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/dev/set-result-mode-table.sql %}</code></pre>
++++++
+
+Then query the `george_martin_books` table:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/dev/print-output-topic.sql %}</code></pre>
++++++
+
+This will yield the same output that the transient query did (perhaps in a different order)
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/dev/expected-print-output-topic.log %}</code></pre>
++++++
+
+We could also query the underlying topic directly using `kafka-console-consumer`. Open a new terminal window and run the following command:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/dev/validate-publications-by-author.sh %}</code></pre>
++++++
+
+This will yield the following results:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/filtering/flinksql/code/tutorial-steps/dev/expected-books-by-author.log %}</code></pre>
++++++
