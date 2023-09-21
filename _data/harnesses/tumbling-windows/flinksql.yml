@@ -58,6 +58,12 @@ dev:
           stdout:
             directory: tutorial-steps/dev/outputs
 
+        - name: wait for table execution to complete
+          action: sleep
+          ms: 10000
+          render:
+             skip: true
+
     - title: Validate output
       content:
         - action: execute
