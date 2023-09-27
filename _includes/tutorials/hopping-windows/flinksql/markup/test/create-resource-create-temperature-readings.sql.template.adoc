@@ -2,8 +2,8 @@ We could always inline the SQL statements in our Java test code, but creating se
 
 There are a handful of resources to create for our test. These mirror the queries that we developed earlier.
 
-Create the following file at `src/test/resources/create-ratings.sql.template`. Note the `KAFKA_PORT` and `SCHEMA_REGISTRY_PORT` placeholders in this file. Our test will dynamically assign these to the ports that Testcontainers assigns.
+Create the following file at `src/test/resources/create-temperature-readings.sql.template`. Note the `KAFKA_PORT` and `SCHEMA_REGISTRY_PORT` placeholders in this file. Our test will dynamically assign these to the ports that Testcontainers assigns.
 
 +++++
-<pre class="snippet"><code class="groovy">{% include_raw tutorials/tumbling-windows/flinksql/code/src/test/resources/create-ratings.sql.template %}</code></pre>
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/hopping-windows/flinksql/code/src/test/resources/create-temperature-readings.sql.template %}</code></pre>
 +++++

@@ -1,0 +1,5 @@
+Next, create the following file at `src/test/resources/query-temperature-by-10min-window.sql`:
+
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/hopping-windows/flinksql/code/src/test/resources/query-temperature-by-10min-window.sql %}</code></pre>
++++++
