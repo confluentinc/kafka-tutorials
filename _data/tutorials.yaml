@@ -174,11 +174,12 @@ hopping-windows:
     into fixed-size, possibly overlapping, contiguous time intervals to identify a
     specific scenario?
   introduction: You want to build an alerting system that automatically detects if
-    the temperature of a room consistently drops. In this tutorial, we'll write a
+    the temperature of a room drops below a threshold over a period of time. In this tutorial, we'll write a
     program that monitors a stream of temperature readings and detects when the temperature
-    consistently drops below 45 degrees Fahrenheit for a period of 10 minutes.
+    drops below 45 degrees Fahrenheit for a period of 10 minutes.
   status:
     ksql: enabled
+    flinksql: enabled
 session-windows:
   title: Create session windows
   meta-description: create session windows for time-series events
