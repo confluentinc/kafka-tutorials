@@ -54,15 +54,18 @@
 
         <div class="card">
           <div class="title">
-            <img src="{{ "/assets/img/icon-kafka-blue.svg" | relative_url }}" />
-            <div>CLI</div>
-            <!-- Using Apache Kafka and Confluent CLIs to produce and consume events -->
+            <img src="{{ "/assets/img/icon-flink.png" | relative_url }}" />
+            <div>Flink SQL</div>
+            <!-- Building event streaming applications with Flink SQL-->
           </div>
            <ul>
-            <li><a href="{{ "/kafka-console-consumer-producer-basics/confluent.html" | relative_url }}">Basic Produce and Consume</a></li>
-            <li><a href="{{ "/kafka-console-consumer-producer-avro/confluent.html" | relative_url }}">CLI with (de)serializers</a></li>
-            <li><a href="{{ "/kafka-console-consumer-primitive-keys-values/kafka.html" | relative_url }}">Primitive keys and values</a></li>
-            <li><a href="{{ "/kafka-console-consumer-read-specific-offsets-partitions/confluent.html" | relative_url }}">Read from an offset and partition</a></li>
+            <li><a href="{{ "/create-stateful-aggregation-count/flinksql.html" | relative_url }}">Aggregations: counting</a></li>
+            <li><a href="{{ "/create-stateful-aggregation-minmax/flinksql.html" | relative_url }}">Aggregations: min-max</a></li>
+            <li><a href="{{ "/join-a-stream-to-a-stream/flinksql.html" | relative_url }}">Temporal joins</a></li>
+            <li><a href="{{ "/filter-a-stream-of-events/flinksql.html" | relative_url }}">Filtering</a></li>
+            <li><a href="{{ "/create-tumbling-windows/flinksql.html" | relative_url }}">Tumbling windows</a></li>
+            <li><a href="{{ "/split-a-stream-of-events-into-substreams/flinksql.html" | relative_url }}">Splitting event streams</a></li>
+            <li><a href="{{ "/finding-distinct-events/flinksql.html" | relative_url }}">Deduplication</a></li>
           </ul>
         </div>
 
@@ -209,6 +212,20 @@
 
        <div class="cards fourth-card-row">
 
+        <div class="card">
+          <div class="title">
+            <img src="{{ "/assets/img/icon-kafka-blue.svg" | relative_url }}" />
+            <div>CLI</div>
+            <!-- Using Apache Kafka and Confluent CLIs to produce and consume events -->
+          </div>
+           <ul>
+            <li><a href="{{ "/kafka-console-consumer-producer-basics/confluent.html" | relative_url }}">Basic Produce and Consume</a></li>
+            <li><a href="{{ "/kafka-console-consumer-producer-avro/confluent.html" | relative_url }}">CLI with (de)serializers</a></li>
+            <li><a href="{{ "/kafka-console-consumer-primitive-keys-values/kafka.html" | relative_url }}">Primitive keys and values</a></li>
+            <li><a href="{{ "/kafka-console-consumer-read-specific-offsets-partitions/confluent.html" | relative_url }}">Read from an offset and partition</a></li>
+          </ul>
+        </div>
+
          <div class="card">
           <div class="title">
             <img src="{{ "/assets/img/icon-function.svg"  | relative_url }}" />
@@ -237,6 +254,9 @@
             <li><a href="{{ "/geo-distance/ksql.html" | relative_url }}">Calculate lat-long distance</a></li>
           </ul>
         </div>
+      </div>
+       <!-- END fourth card row -->
+       <div class="cards fifth-card-row">
 
         <div class="card card-cta">
           <div class="title">
@@ -261,7 +281,7 @@
         </div>
       </div>
     </div>
-      <!-- END fourth-card row-->
+      <!-- END fifth-card row-->
     </div>
 
 
