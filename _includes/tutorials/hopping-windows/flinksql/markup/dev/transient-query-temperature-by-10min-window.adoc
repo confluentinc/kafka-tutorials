@@ -14,6 +14,9 @@ This should yield the following output:
 <pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/flinksql/code/tutorial-steps/dev/expected-transient-query-temperature-by-10min-window.log %}</code></pre>
 +++++
 
+Because the 10-minute hopping windows overlap by 5 minutes, a given reading will be used in the calculations for two consecutive windows. For example, the reading from `02:20:30` is used
+when calculating the average for both the `[02:15, 02:25)` and `[02:20, 02:30)` windows.
+
 Observe that there is no result for the window starting at `02:45` and ending at `02:55` despite there being a reading within that window. Why is this? First, remember that we defined a strictly ascending timestamps watermark strategy. Second, keep in mind that a windowed aggregation does not emit intermediate results but only a final result.
 So, in this case, the window ending at `02:55` will remain "open" until a reading later than the window end time is received.
 
