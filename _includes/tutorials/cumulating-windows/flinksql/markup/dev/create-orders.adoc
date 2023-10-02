@@ -1,0 +1,11 @@
+First, you'll need to create a stream to represent orders.  The line of Flink SQL DDL below creates a table and its underlying Kafka topic.
+Note that we are defining the schema for the table, which includes five fields: `order_id`, the unique order ID; `item_id`, the ID of the item in the order; `quantity`, the quantity of items orders; `unit_price`, the price per item; and `ts`, the timestamp of the order. The statement also specifies the underlying Kafka topic as `orders`, that it should have a single partition (the default `num.partitions` configured in the broker), and defines Avro as its data format.
+
+The timestamp is an important attribute since we’ll be summing revenue. Also, because we are going to aggregate over time windows, we
+must define a https://nightlies.apache.org/flink/flink-docs-stable/docs/dev/table/sql/create/#watermark[watermark strategy]. In this case, we use strictly ascending timestamps, i.e., any
+row with a timestamp that is less than or equal to the latest observed event timestamp is considered late and ignored. This is safe for this tutorial since we will insert events in ascending timestamp order,
+but for other scenarios, a delayed watermark strategy may be more appropriate. This would allow a grace period during which late data can arrive, impacting cumulating window aggregations rather than being ignored.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/cumulating-windows/flinksql/code/tutorial-steps/dev/create-orders.sql %}</code></pre>
++++++
