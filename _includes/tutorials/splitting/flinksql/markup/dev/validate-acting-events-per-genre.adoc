@@ -1,4 +1,4 @@
-Seeing is believing, so let's query the persistent `acting_events_fantasy` table. First set the result mode back to `table`:
+Seeing is believing, so let's query the persistent `acting_events_fantasy` table. First, set the result mode back to `table`:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/set-result-mode-table.sql %}</code></pre>
