@@ -1,0 +1,5 @@
+Now, produce a few events that represent temperature readings over time. Note how the timestamps vary across different hours of the day.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/hopping-windows/flinksql/code/tutorial-steps/dev/populate-temperature-readings.sql %}</code></pre>
++++++
