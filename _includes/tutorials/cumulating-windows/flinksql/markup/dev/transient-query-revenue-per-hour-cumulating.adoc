@@ -1,0 +1,21 @@
+With our test data in place, let's figure out the revenue over 10-minute windows that also "fire early" every 5 minutes within the window.
+
+To do that, we issue the following transient query to sum revenue (`quantity * unit_price`). This query uses
+a windowing table-valued function (TVF) to compute the revenue for 10-minute windows that also "fire early" every 5 minutes. It also captures the window start and end times.
+
+This query will continue to return results until you quit by entering `Q`.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/cumulating-windows/flinksql/code/tutorial-steps/dev/transient-query-revenue-per-hour-cumulating.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/cumulating-windows/flinksql/code/tutorial-steps/dev/expected-transient-query-revenue-per-hour-cumulating.log %}</code></pre>
++++++
+
+Observe that there is no result for the windows starting at `02:30` and ending at `02:35` or `02:40` despite there being an order within these windows. Why is this? First, remember that we defined a strictly ascending timestamps watermark strategy. Second, keep in mind that a windowed aggregation does not emit intermediate results but only a final result.
+So, in this case, the windows ending at `02:35` and `02:40` will remain "open" until an order later than the window end time is received.
+
+Enter `Q` to return to the Flink SQL prompt.
