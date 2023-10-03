@@ -1,0 +1,32 @@
+With our test data in place, let's figure out the average temperature over 10-minute windows that start every 5 minutes.
+To do that, we issue the following transient query to aggregate the temperature readings, grouped by the sensor ID. This query uses
+a windowing table-valued function (TVF) to compute the average temperature for 10-minute windows that start every 5 minutes. It also captures the window start and end times.
+
+This query will continue to return results until you quit by entering `Q`.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/hopping-windows/flinksql/code/tutorial-steps/dev/transient-query-temperature-by-10min-window.sql %}</code></pre>
++++++
+
+This should yield the following output:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/flinksql/code/tutorial-steps/dev/expected-transient-query-temperature-by-10min-window.log %}</code></pre>
++++++
+
+Because the 10-minute hopping windows overlap by 5 minutes, a given reading will be used in the calculations for two consecutive windows. For example, the reading from `02:20:30` is used
+when calculating the average for both the `[02:15, 02:25)` and `[02:20, 02:30)` windows.
+
+Observe that there is no result for the window starting at `02:45` and ending at `02:55` despite there being a reading within that window. Why is this? First, remember that we defined a strictly ascending timestamps watermark strategy. Second, keep in mind that a windowed aggregation does not emit intermediate results but only a final result.
+So, in this case, the window ending at `02:55` will remain "open" until a reading later than the window end time is received.
+
+Enter `Q` to return to the Flink SQL prompt.
+
+Note that these results were materialized in memory and printed in a human-readable table representation because the default `sql-client.execution.result-mode` configuration value is `'table'`. You can view non-materialized streaming results as a changelog by running `SET 'sql-client.execution.result-mode' = 'changelog';`
+and rerunning the same query. The results will look like this:
+
++++++
+<pre class="snippet"><code class="shell">{% include_raw tutorials/hopping-windows/flinksql/code/tutorial-steps/dev/expected-transient-query-changelog-temperature-by-10min-window.log %}</code></pre>
++++++
+
+Or, as a third option, you can see streaming results non-materialized and inline in the SQL client by running ``SET 'sql-client.execution.result-mode' = 'tableau';`` and rerunning the query once more. In this case, the results will look very similar to `changelog` mode results. This is because tables sourced by the Kafka connector are _unbounded_ and can thus only be queried in `streaming` mode. For further reading on these Flink SQL concepts, consult the documentation on  https://nightlies.apache.org/flink/flink-docs-release-1.16/docs/dev/table/sqlclient/#sql-client-result-modes[SQL client result modes]  and https://nightlies.apache.org/flink/flink-docs-release-1.16/docs/dev/datastream/execution_mode/[streaming vs. batch execution]

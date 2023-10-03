@@ -2,17 +2,17 @@ Instead of running a local Kafka cluster, you may use https://www.confluent.io/c
 
 1. Sign up for https://www.confluent.io/confluent-cloud/tryfree/[Confluent Cloud], a fully managed Apache Kafka service.
   
-2. After you log in to Confluent Cloud Console, click on `Add cloud environment` and name the environment `learn-kafka`. Using a new environment keeps your learning resources separate from your other Confluent Cloud resources.
+2. After you log in to Confluent Cloud Console, click `Environments` in the lefthand navigation, click on `Add cloud environment`, and name the environment `learn-kafka`. Using a new environment keeps your learning resources separate from your other Confluent Cloud resources.
 
-3. From the `Billing & payment` section in the Menu, apply the promo code `CC100KTS` to receive an additional $100 free usage on Confluent Cloud (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
+3. From the `Billing & payment` section in the menu, apply the promo code `CC100KTS` to receive an additional $100 free usage on Confluent Cloud (https://www.confluent.io/confluent-cloud-promo-disclaimer[details]).
 
-4. Click on https://confluent.cloud/learn[LEARN] and follow the instructions to launch a Kafka cluster and to enable Schema Registry.
+4. Click on https://confluent.cloud/learn[LEARN] and follow the instructions to launch a Kafka cluster and enable Schema Registry.
 
 +++++
 <img src="{{ "/assets/img/ccloud-home.png" | relative_url }}" alt="Confluent Cloud" width=800 />
 +++++
 
-Next, from the Confluent Cloud Console, click on `Clients` to get the cluster-specific configurations, e.g. Kafka cluster bootstrap servers and credentials, Confluent Cloud Schema Registry and credentials, etc., and set the appropriate parameters in your client application.
+Next, from the Confluent Cloud Console, click on `Clients` to get the cluster-specific configurations, e.g., Kafka cluster bootstrap servers and credentials, Confluent Cloud Schema Registry and credentials, etc., and set the appropriate parameters in your client application.
 In the case of this tutorial, add the following properties to the client application's input properties file, substituting all curly braces with your Confluent Cloud values.
 
 +++++

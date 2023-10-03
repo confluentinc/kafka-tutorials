@@ -13,7 +13,7 @@ dev:
           render:
             file: tutorials/splitting/flinksql/markup/dev/init.adoc
 
-    - title: Get Confluent Platform
+    - title: Get Confluent Platform and Apache Flink®
       content:
         - action: make_file
           file: docker-compose.yml

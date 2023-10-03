@@ -8,7 +8,7 @@ First, what do we want in an automated integration test? For starters:
 . *Real running services* that our application depends on
 . *Small resource footprint* so that developers can run the test locally
 . *Low enough latency* so that development iterations aren't hampered -- not as low latency as is required for a unit test, but test duration should be on the order of seconds
-. *Isolation* so that many tests can run concurrently on the same machine when this test gets run on a build automation server, e.g., no hardcoded ports
+. *Isolation* so that many tests can run concurrently on the same machine when this test gets run on a build automation server, e.g., no hard-coded ports
 
 Luckily, tools are at our disposal to solve these problems. We'll use https://www.testcontainers.org/[Testcontainers] to run
 containerized Kafka and Schema Registry servers on dynamic ports, Flink's support for local execution environments so that we don't need to spin up a Flink cluster, and Flink's Table API
