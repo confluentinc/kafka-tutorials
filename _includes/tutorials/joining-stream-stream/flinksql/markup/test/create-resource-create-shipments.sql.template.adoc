@@ -1,4 +1,4 @@
-We could always inline the SQL statements in our Java test code, but creating separate resource files makes our test more readable and easier to maintain. Further, we can imagine parametrizing URLs as well so that we can have a single set of source controlled queries to use in tests as well as staging or production environments.
+We could always inline the SQL statements in our Java test code, but creating separate resource files makes our test more readable and easier to maintain. Further, we can imagine parametrizing URLs as well so that we can have a single set of source-controlled queries to use in tests as well as staging or production environments.
 
 There are a handful of resources to create for our test. These mirror the queries that we developed earlier.
 

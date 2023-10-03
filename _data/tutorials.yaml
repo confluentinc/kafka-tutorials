@@ -174,11 +174,25 @@ hopping-windows:
     into fixed-size, possibly overlapping, contiguous time intervals to identify a
     specific scenario?
   introduction: You want to build an alerting system that automatically detects if
-    the temperature of a room consistently drops. In this tutorial, we'll write a
+    the temperature of a room drops below a threshold over a period of time. In this tutorial, we'll write a
     program that monitors a stream of temperature readings and detects when the temperature
-    consistently drops below 45 degrees Fahrenheit for a period of 10 minutes.
+    drops below 45 degrees Fahrenheit for a period of 10 minutes.
   status:
     ksql: enabled
+    flinksql: enabled
+cumulating-windows:
+  title: How to create cumulating windows
+  meta-description: create cumulating windows for time-series events
+  slug: /create-cumulating-windows
+  question: If you have time series events in a Kafka topic, how can you simultaneously group them
+    into fixed-size tumbling windows in addition to splitting each tumbling window into several windows having the same
+    window start but having window ends that vary by a fixed step size?
+  introduction: You want to build an hourly revenue dashboard that also outputs revenue at the half hour mark so that
+    you can simultaneously look at the hourly trend alongside any trends within the hour (e.g., does revenue
+    peak earlier in the hour or later?). In this tutorial, we'll write a streaming application that aggregates revenue from
+    a table of orders and outputs hourly revenue in addition to revenue at the end of the first half hour of each hour.
+  status:
+    flinksql: enabled
 session-windows:
   title: Create session windows
   meta-description: create session windows for time-series events
