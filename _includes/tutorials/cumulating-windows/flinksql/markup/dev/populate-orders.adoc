@@ -1,0 +1,5 @@
+Now, produce a few events that represent orders over time. Note how the timestamps vary across different times of the day.
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/cumulating-windows/flinksql/code/tutorial-steps/dev/populate-orders.sql %}</code></pre>
++++++
