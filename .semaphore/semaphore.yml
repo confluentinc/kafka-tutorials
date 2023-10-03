@@ -505,6 +505,9 @@ blocks:
     - name: Flink SQL hopping windows tests
       commands:
       - make -C _includes/tutorials/hopping-windows/flinksql/code tutorial
+    - name: Flink SQL cumulating windows tests
+      commands:
+      - make -C _includes/tutorials/cumulating-windows/flinksql/code tutorial
     - name: Flink SQL test for deduplication
       commands:
       - make -C _includes/tutorials/finding-distinct/flinksql/code tutorial

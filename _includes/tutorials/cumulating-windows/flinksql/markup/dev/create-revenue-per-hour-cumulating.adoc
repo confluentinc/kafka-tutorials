@@ -1,0 +1,5 @@
+Since the output of our transient query looks right, the next step is to make it persistent with the following `CREATE TABLE AS SELECT` statement. Go ahead and execute the following statement in your Flink SQL session:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/cumulating-windows/flinksql/code/tutorial-steps/dev/create-revenue-per-hour-cumulating.sql %}</code></pre>
++++++
