@@ -1,0 +1,4 @@
+Then run this command that will populate the table:
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/top-n/flinksql/code/tutorial-steps/dev/populate-deduplicated-clicks-table.sql %}</code></pre>
++++++

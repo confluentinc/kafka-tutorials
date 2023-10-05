@@ -1,0 +1,5 @@
+Now let's insert the following click events:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/top-n/flinksql/code/tutorial-steps/dev/populate-clicks.sql %}</code></pre>
++++++

@@ -1,0 +1,4 @@
+Create the following file at `src/test/resources/create-clicks-table.sql.template`. Note the `KAFKA_PORT` placeholder.
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/top-n/flinksql/code/src/test/resources/create-clicks-table.sql.template %}</code></pre>
++++++

@@ -1,0 +1,6 @@
+Next, create the table for deduplicated results with the following file at `src/test/resources/create-deduplicated-clicks-table.sql.template`:
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/top-n/flinksql/code/src/test/resources/create-deduplicated-clicks-table.sql.template %}</code></pre>
++++++
+
+Note again we specify the bootstrap servers configuration port with `KAFKA_PORT` which our test code will replace with the actual port.

@@ -1,0 +1,4 @@
+Next, create the following file at `src/test/resources/query-deduplicated-clicks.sql` to select all results from the deduplicated table:
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/top-n/flinksql/code/src/test/resources/query-deduplicated-clicks.sql %}</code></pre>
++++++

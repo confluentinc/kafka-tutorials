@@ -1,0 +1,4 @@
+Finally, create the following file at `src/test/resources/expected-deduplicated-clicks.txt` that contains our test's expected output:
++++++
+<pre class="snippet"><code class="text">{% include_raw tutorials/top-n/flinksql/code/src/test/resources/expected-deduplicated-clicks.txt %}</code></pre>
++++++
