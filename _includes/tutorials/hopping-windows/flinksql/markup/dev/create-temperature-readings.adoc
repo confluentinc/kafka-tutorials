@@ -9,3 +9,5 @@ but for other scenarios, a delayed watermark strategy may be more appropriate. T
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/hopping-windows/flinksql/code/tutorial-steps/dev/create-temperature-readings.sql %}</code></pre>
 +++++
+
+{% include  shared/markup/dev/flink_sql_cloud_with.adoc %}

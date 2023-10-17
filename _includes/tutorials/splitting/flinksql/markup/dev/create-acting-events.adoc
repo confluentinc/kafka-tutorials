@@ -4,3 +4,5 @@ Note that we are defining the schema for the table, which includes three fields:
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/create-acting-events.sql %}</code></pre>
 +++++
+
+{% include  shared/markup/dev/flink_sql_cloud_with.adoc %}
