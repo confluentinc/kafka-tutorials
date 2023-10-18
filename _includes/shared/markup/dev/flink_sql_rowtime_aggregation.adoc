@@ -1,0 +1,2 @@
+NOTE: If you have a table that does not have an explicit timestamp column you can use the `SYSTEM` column `$rowtime` for the `DESCRIPTOR` parameter when performing windowed aggregations with Flink SQL in Confluent Cloud.
+

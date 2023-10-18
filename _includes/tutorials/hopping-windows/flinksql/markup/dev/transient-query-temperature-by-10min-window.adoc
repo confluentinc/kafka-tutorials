@@ -8,6 +8,8 @@ This query will continue to return results until you quit by entering `Q`.
 <pre class="snippet"><code class="sql">{% include_raw tutorials/hopping-windows/flinksql/code/tutorial-steps/dev/transient-query-temperature-by-10min-window.sql %}</code></pre>
 +++++
 
+{% include  shared/markup/dev/flink_sql_rowtime_aggregation.adoc %}
+
 This should yield the following output:
 
 +++++
