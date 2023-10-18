@@ -1,1 +1,2 @@
-NOTE: Confluent Cloud manages several options for you when using Flink SQL. So, if you run this tutorial on Confluent Cloud, you can copy just the `CREATE TABLE` statements without the `WITH` clause when creating tables.
+Confluent Cloud manages several options for you when using Flink SQL. So, if you run this tutorial on Confluent Cloud, you can copy just the `CREATE TABLE` statements without the `WITH` clause when creating tables.
+Consult the https://docs.confluent.io/cloud/current/flink/reference/statements/create-table.html#with-options[Flink SQL WITH documentation] for the full list supported options when creating a table.
