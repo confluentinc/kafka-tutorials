@@ -1,5 +1,8 @@
-CREATE TABLE acting_events_fantasy
-WITH (
+CREATE TABLE acting_events_fantasy (
+    name  STRING,
+    title STRING
+)
+    WITH (
     'connector' = 'kafka',
     'topic' = 'acting-events-fantasy',
     'properties.bootstrap.servers' = 'broker:9092',
@@ -10,7 +13,4 @@ WITH (
     'value.format' = 'avro-confluent',
     'value.avro-confluent.url' = 'http://schema-registry:8081',
     'value.fields-include' = 'ALL'
-) AS
-    SELECT name, title
-    FROM acting_events
-    WHERE genre = 'fantasy';
+);
