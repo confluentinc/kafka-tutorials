@@ -64,7 +64,7 @@ dev:
 
         - name: wait for table execution to complete
           action: sleep
-          ms: 10000
+          ms: 30000
           render:
              skip: true
 
