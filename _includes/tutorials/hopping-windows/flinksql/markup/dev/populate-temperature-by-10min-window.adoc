@@ -1,0 +1,5 @@
+Next execute the following statement in your Flink SQL session to populate the table:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/hopping-windows/flinksql/code/tutorial-steps/dev/populate-temperature-by-10min-window.sql %}</code></pre>
++++++
