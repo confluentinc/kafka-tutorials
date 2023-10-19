@@ -14,4 +14,4 @@ CREATE TABLE temperature_by_10min_window (
     'value.format' = 'avro-confluent',
     'value.avro-confluent.url' = 'http://schema-registry:8081',
     'value.fields-include' = 'ALL'
-) 
+); 

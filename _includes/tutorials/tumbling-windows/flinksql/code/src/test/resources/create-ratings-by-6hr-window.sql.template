@@ -15,4 +15,4 @@ CREATE TABLE ratings_by_6hr_window (
     'value.format' = 'avro-confluent',
     'value.avro-confluent.url' = 'http://localhost:SCHEMA_REGISTRY_PORT',
     'value.fields-include' = 'ALL'
-) 
+); 
