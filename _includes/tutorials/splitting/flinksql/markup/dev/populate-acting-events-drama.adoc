@@ -1,0 +1,3 @@
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/splitting/flinksql/code/tutorial-steps/dev/populate-acting-events-drama.sql %}</code></pre>
++++++

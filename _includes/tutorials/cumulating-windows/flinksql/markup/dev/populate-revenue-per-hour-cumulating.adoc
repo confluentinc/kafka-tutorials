@@ -1,0 +1,3 @@
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/cumulating-windows/flinksql/code/tutorial-steps/dev/populate-revenue-per-hour-cumulating.sql %}</code></pre>
++++++
