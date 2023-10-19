@@ -18,6 +18,7 @@ public class FlinkSqlHoppingWindowTest extends AbstractFlinkKafkaTest {
     streamTableEnv.executeSql(getResourceFileContents("populate-temperature-readings.sql"));
     streamTableEnv.executeSql(getResourceFileContents("create-temperature-by-10min-window.sql.template",
         Optional.of(kafkaPort), Optional.of(schemaRegistryPort)));
+    streamTableEnv.executeSql(getResourceFileContents("populate-temperature-by-10min-window.sql"));
 
     TableResult tableResult = streamTableEnv.executeSql(getResourceFileContents("query-temperature-by-10min-window.sql"));
 
