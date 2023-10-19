@@ -18,6 +18,7 @@ public class FlinkSqlTumblingWindowTest extends AbstractFlinkKafkaTest {
     streamTableEnv.executeSql(getResourceFileContents("populate-ratings.sql"));
     streamTableEnv.executeSql(getResourceFileContents("create-ratings-by-6hr-window.sql.template",
         Optional.of(kafkaPort), Optional.of(schemaRegistryPort)));
+    streamTableEnv.executeSql(getResourceFileContents("populate-ratings-by-6hr-window.sql"));
 
     TableResult tableResult = streamTableEnv.executeSql(getResourceFileContents("query-ratings-by-6hr-window.sql"));
 
