@@ -1,4 +1,4 @@
-Since the output of our transient query looks right, the next step is to make it persistent with the following `CREATE TABLE AS SELECT` statement. Go ahead and execute the following statement in your Flink SQL session:
+Since the output of our transient query looks right, the next step is to make it persistent with the following `CREATE TABLE` statement. Go ahead and execute the following statement in your Flink SQL session:
 
 +++++
 <pre class="snippet"><code class="sql">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/create-ratings-by-6hr-window.sql %}</code></pre>
