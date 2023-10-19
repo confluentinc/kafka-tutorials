@@ -1,5 +1,5 @@
 CREATE TABLE temperature_by_10min_window (
-     sensor_id INT,
+    sensor_id INT,
     avg_temperature DOUBLE,
     window_start TIMESTAMP(3),
     window_end TIMESTAMP(3)
