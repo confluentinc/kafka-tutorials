@@ -17,7 +17,8 @@ public class FlinkSqlSplitStreamTest extends AbstractFlinkKafkaTest {
         Optional.of(kafkaPort), Optional.of(schemaRegistryPort))).await();
     streamTableEnv.executeSql(getResourceFileContents("populate-acting-events.sql"));
     streamTableEnv.executeSql(getResourceFileContents("create-acting-events-drama.sql.template",
-        Optional.of(kafkaPort), Optional.of(schemaRegistryPort)));
+        Optional.of(kafkaPort), Optional.of(schemaRegistryPort))).await();
+    streamTableEnv.executeSql(getResourceFileContents("populate-acting-events-drama.sql"));
 
     // execute query on result table that should have drama acting events
     TableResult tableResult = streamTableEnv.executeSql(getResourceFileContents("query-acting-events-drama.sql"));
