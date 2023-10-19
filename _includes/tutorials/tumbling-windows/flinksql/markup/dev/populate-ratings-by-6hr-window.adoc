@@ -1,0 +1,5 @@
+Now let's insert data into the table with the following statement:
+
++++++
+<pre class="snippet"><code class="sql">{% include_raw tutorials/tumbling-windows/flinksql/code/tutorial-steps/dev/populate-ratings-by-6hr-window.sql %}</code></pre>
++++++

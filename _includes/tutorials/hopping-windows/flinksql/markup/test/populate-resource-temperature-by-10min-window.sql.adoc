@@ -1,0 +1,5 @@
+Then create the following file at `src/test/resources/populate-temperature-by-10min-window.sql` that inserts data into the table:
+
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/hopping-windows/flinksql/code/src/test/resources/populate-temperature-by-10min-window.sql %}</code></pre>
++++++
