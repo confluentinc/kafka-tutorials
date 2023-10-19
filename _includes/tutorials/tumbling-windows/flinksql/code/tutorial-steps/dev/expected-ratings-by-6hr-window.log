@@ -1,8 +1,8 @@
-{"title":{"string":"Die Hard"},"rating_count":2,"avg_rating":{"double":6.35},"window_start":1688860800000,"window_end":1688882400000}
-{"title":{"string":"The Big Lebowski"},"rating_count":1,"avg_rating":{"double":4.2},"window_start":1688860800000,"window_end":1688882400000}
-{"title":{"string":"Die Hard"},"rating_count":1,"avg_rating":{"double":5.1},"window_start":1688882400000,"window_end":1688904000000}
-{"title":{"string":"Tree of Life"},"rating_count":2,"avg_rating":{"double":5.25},"window_start":1688882400000,"window_end":1688904000000}
-{"title":{"string":"The Big Lebowski"},"rating_count":1,"avg_rating":{"double":9.9},"window_start":1688882400000,"window_end":1688904000000}
-{"title":{"string":"A Walk in the Clouds"},"rating_count":2,"avg_rating":{"double":4.8},"window_start":1688904000000,"window_end":1688925600000}
-{"title":{"string":"Super Mario Bros."},"rating_count":1,"avg_rating":{"double":3.5},"window_start":1688925600000,"window_end":1688947200000}
+{"title":{"string":"Die Hard"},"rating_count":{"long":2},"avg_rating":{"double":6.35},"window_start":{"long":1688860800000},"window_end":{"long":1688882400000}}
+{"title":{"string":"The Big Lebowski"},"rating_count":{"long":1},"avg_rating":{"double":4.2},"window_start":{"long":1688860800000},"window_end":{"long":1688882400000}}
+{"title":{"string":"Die Hard"},"rating_count":{"long":1},"avg_rating":{"double":5.1},"window_start":{"long":1688882400000},"window_end":{"long":1688904000000}}
+{"title":{"string":"Tree of Life"},"rating_count":{"long":2},"avg_rating":{"double":5.25},"window_start":{"long":1688882400000},"window_end":{"long":1688904000000}}
+{"title":{"string":"The Big Lebowski"},"rating_count":{"long":1},"avg_rating":{"double":9.9},"window_start":{"long":1688882400000},"window_end":{"long":1688904000000}}
+{"title":{"string":"A Walk in the Clouds"},"rating_count":{"long":2},"avg_rating":{"double":4.8},"window_start":{"long":1688904000000},"window_end":{"long":1688925600000}}
+{"title":{"string":"Super Mario Bros."},"rating_count":{"long":1},"avg_rating":{"double":3.5},"window_start":{"long":1688925600000},"window_end":{"long":1688947200000}}
 Processed a total of 7 messages
