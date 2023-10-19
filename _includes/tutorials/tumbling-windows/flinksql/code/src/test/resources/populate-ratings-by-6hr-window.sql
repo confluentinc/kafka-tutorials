@@ -1,4 +1,4 @@
-INSTERT INTO ratings_by_6hr_window
+INSERT INTO ratings_by_6hr_window
     SELECT title,
        COUNT(*) AS rating_count,
        AVG(rating) AS avg_rating,

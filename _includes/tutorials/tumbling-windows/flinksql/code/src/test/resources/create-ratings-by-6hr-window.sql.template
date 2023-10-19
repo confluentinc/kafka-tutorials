@@ -1,6 +1,6 @@
 CREATE TABLE ratings_by_6hr_window (
    title STRING,
-    rating_count INT,
+    rating_count BIGINT,
     avg_rating DOUBLE,
     window_start TIMESTAMP(3),
     window_end TIMESTAMP(3)
