@@ -1,5 +1,9 @@
-CREATE TABLE temperature_by_10min_window
-WITH (
+CREATE TABLE temperature_by_10min_window (
+    sensor_id INT,
+    avg_temperature DOUBLE,
+    window_start TIMESTAMP(3),
+    window_end TIMESTAMP(3)
+) WITH (
     'connector' = 'kafka',
     'topic' = 'temperature-by-10min-window',
     'properties.bootstrap.servers' = 'broker:9092',
@@ -10,10 +14,4 @@ WITH (
     'value.format' = 'avro-confluent',
     'value.avro-confluent.url' = 'http://schema-registry:8081',
     'value.fields-include' = 'ALL'
-) AS
-    SELECT sensor_id,
-        AVG(temperature) AS avg_temperature,
-        window_start,
-        window_end
-    FROM TABLE(HOP(TABLE temperature_readings, DESCRIPTOR(ts), INTERVAL '5' MINUTES, INTERVAL '10' MINUTES))
-    GROUP BY sensor_id, window_start, window_end;
+); 

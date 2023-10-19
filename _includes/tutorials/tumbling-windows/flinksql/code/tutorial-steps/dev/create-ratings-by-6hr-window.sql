@@ -1,5 +1,10 @@
-CREATE TABLE ratings_by_6hr_window
-WITH (
+CREATE TABLE ratings_by_6hr_window (
+    title STRING,
+    rating_count BIGINT,
+    avg_rating DOUBLE,
+    window_start TIMESTAMP(3),
+    window_end TIMESTAMP(3)
+) WITH (
     'connector' = 'kafka',
     'topic' = 'ratings-by-6hr-window',
     'properties.bootstrap.servers' = 'broker:9092',
@@ -10,11 +15,4 @@ WITH (
     'value.format' = 'avro-confluent',
     'value.avro-confluent.url' = 'http://schema-registry:8081',
     'value.fields-include' = 'ALL'
-) AS
-    SELECT title,
-       COUNT(*) AS rating_count,
-       AVG(rating) AS avg_rating,
-       window_start,
-       window_end
-    FROM TABLE(TUMBLE(TABLE ratings, DESCRIPTOR(ts), INTERVAL '6' HOURS))
-    GROUP BY title, window_start, window_end;
+);
