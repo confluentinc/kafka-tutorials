@@ -1,8 +1,8 @@
-{"sensor_id":{"int":0},"avg_temperature":{"double":55.0},"window_start":1673748600000,"window_end":1673749200000}
-{"sensor_id":{"int":0},"avg_temperature":{"double":52.5},"window_start":1673748900000,"window_end":1673749500000}
-{"sensor_id":{"int":0},"avg_temperature":{"double":47.5},"window_start":1673749200000,"window_end":1673749800000}
-{"sensor_id":{"int":0},"avg_temperature":{"double":42.5},"window_start":1673749500000,"window_end":1673750100000}
-{"sensor_id":{"int":0},"avg_temperature":{"double":42.5},"window_start":1673749800000,"window_end":1673750400000}
-{"sensor_id":{"int":0},"avg_temperature":{"double":47.5},"window_start":1673750100000,"window_end":1673750700000}
-{"sensor_id":{"int":0},"avg_temperature":{"double":52.5},"window_start":1673750400000,"window_end":1673751000000}
+{"sensor_id":{"int":0},"avg_temperature":{"double":55.0},"window_start":{"long":1673748600000},"window_end":{"long":1673749200000}}
+{"sensor_id":{"int":0},"avg_temperature":{"double":52.5},"window_start":{"long":1673748900000},"window_end":{"long":1673749500000}}
+{"sensor_id":{"int":0},"avg_temperature":{"double":47.5},"window_start":{"long":1673749200000},"window_end":{"long":1673749800000}}
+{"sensor_id":{"int":0},"avg_temperature":{"double":42.5},"window_start":{"long":1673749500000},"window_end":{"long":1673750100000}}
+{"sensor_id":{"int":0},"avg_temperature":{"double":42.5},"window_start":{"long":1673749800000},"window_end":{"long":1673750400000}}
+{"sensor_id":{"int":0},"avg_temperature":{"double":47.5},"window_start":{"long":1673750100000},"window_end":{"long":1673750700000}}
+{"sensor_id":{"int":0},"avg_temperature":{"double":52.5},"window_start":{"long":1673750400000},"window_end":{"long":1673751000000}}
 Processed a total of 7 messages
