@@ -59,13 +59,25 @@ dev:
               render:
                 file: tutorials/splitting/flinksql/markup/dev/create-acting-events-drama.adoc
 
+            - file: tutorial-steps/dev/populate-acting-events-drama.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/populate-acting-events-drama.adoc
+
             - file: tutorial-steps/dev/create-acting-events-fantasy.sql
               render:
                 file: tutorials/splitting/flinksql/markup/dev/create-acting-events-fantasy.adoc
 
+            - file: tutorial-steps/dev/populate-acting-events-fantasy.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/populate-acting-events-fantasy.adoc
+
             - file: tutorial-steps/dev/create-acting-events-other.sql
               render:
                 file: tutorials/splitting/flinksql/markup/dev/create-acting-events-other.adoc
+
+            - file: tutorial-steps/dev/populate-acting-events-other.sql
+              render:
+                file: tutorials/splitting/flinksql/markup/dev/populate-acting-events-other.adoc
 
           stdout:
             directory: tutorial-steps/dev/outputs
@@ -119,6 +131,11 @@ test:
           file: src/test/resources/create-acting-events-drama.sql.template
           render:
             file: tutorials/splitting/flinksql/markup/test/create-resource-create-acting-events-drama.sql.template.adoc
+
+        - action: make_file
+          file: src/test/resources/populate-acting-events-drama.sql
+          render:
+            file: tutorials/splitting/flinksql/markup/test/create-resource-populate-acting-events-drama.sql.adoc
 
         - action: make_file
           file: src/test/resources/query-acting-events-drama.sql
