@@ -1,0 +1,5 @@
+Next, create the following file at `src/test/resources/populate-revenue-per-hour-cumulating.sql`.
+
++++++
+<pre class="snippet"><code class="groovy">{% include_raw tutorials/cumulating-windows/flinksql/code/src/test/resources/populate-revenue-per-hour-cumulating.sql %}</code></pre>
++++++

@@ -17,6 +17,8 @@ public class FlinkSqlCumulatingWindowTest extends AbstractFlinkKafkaTest {
         Optional.of(kafkaPort), Optional.of(schemaRegistryPort))).await();
     streamTableEnv.executeSql(getResourceFileContents("populate-orders.sql"));
     streamTableEnv.executeSql(getResourceFileContents("create-revenue-per-hour-cumulating.sql.template",
+        Optional.of(kafkaPort), Optional.of(schemaRegistryPort))).await();
+    streamTableEnv.executeSql(getResourceFileContents("populate-revenue-per-hour-cumulating.sql",
         Optional.of(kafkaPort), Optional.of(schemaRegistryPort)));
 
     TableResult tableResult = streamTableEnv.executeSql(getResourceFileContents("query-revenue-per-hour-cumulating.sql"));
