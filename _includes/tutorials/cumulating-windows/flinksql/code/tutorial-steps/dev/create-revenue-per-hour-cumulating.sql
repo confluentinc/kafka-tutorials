@@ -1,5 +1,8 @@
-CREATE TABLE revenue_per_hour_cumulating
-WITH (
+CREATE TABLE revenue_per_hour_cumulating (
+    revenue DOUBLE,
+    window_start TIMESTAMP(3),
+    window_end TIMESTAMP(3)
+) WITH (
     'connector' = 'kafka',
     'topic' = 'revenue-per-hour-cumulating',
     'properties.bootstrap.servers' = 'broker:9092',
@@ -10,9 +13,4 @@ WITH (
     'value.format' = 'avro-confluent',
     'value.avro-confluent.url' = 'http://schema-registry:8081',
     'value.fields-include' = 'ALL'
-) AS
-    SELECT ROUND(SUM(quantity * unit_price), 2) AS revenue,
-        window_start,
-        window_end
-    FROM TABLE(CUMULATE(TABLE orders, DESCRIPTOR(ts), INTERVAL '5' MINUTES, INTERVAL '10' MINUTES))
-    GROUP BY window_start, window_end;
+);

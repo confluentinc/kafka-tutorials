@@ -5,3 +5,5 @@ First, you'll need to create a table to represent click events from users.  Noti
 +++++
 
 Note that we are using the field `clicks_ts_raw` as the record's timestamp. This is going to be important later on when we write a query to deduplicate these events and knowing when each event occurred is important.
+
+{% include  shared/markup/dev/flink_sql_cloud_with.adoc %}
