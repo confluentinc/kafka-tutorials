@@ -65,7 +65,7 @@ protobuf {
     generatedFilesBaseDir = "${project.buildDir}/generated-main-proto-java"
 
     protoc {
-        artifact = 'com.google.protobuf:protoc:3.22.2'
+        artifact = 'com.google.protobuf:protoc:3.25.1'
     }
 }
 
