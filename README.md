@@ -309,7 +309,7 @@ cd kafka-tutorials
 If you have `pip3` installed locally:
 
 ```bash
-(cd /harness_runner/ && pip3 install -e .)
+(cd harness_runner/ && pip3 install -e .)
 ```
 
 If you don't have `pip3` installed locally, create a `Dockerfile` with the following content:
