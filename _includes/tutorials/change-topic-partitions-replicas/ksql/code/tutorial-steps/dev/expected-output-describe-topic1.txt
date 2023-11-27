@@ -1,2 +1,2 @@
 Topic: topic1	TopicId: MtGWXVWVSM2aiFLL3Lvwug	PartitionCount: 1	ReplicationFactor: 1	Configs: 
-	Topic: topic1	Partition: 0	Leader: 101	Replicas: 101	Isr: 101
+	Topic: topic1	Partition: 0	Leader: 1	Replicas: 1	Isr: 1

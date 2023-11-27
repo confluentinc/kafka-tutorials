@@ -9,7 +9,6 @@ buildscript {
 
 plugins {
     id "java"
-    id "com.google.cloud.tools.jib" version "2.6.0"
     id "idea"
     id "eclipse"
     id "com.github.davidmc24.gradle.plugin.avro" version "1.5.0"
