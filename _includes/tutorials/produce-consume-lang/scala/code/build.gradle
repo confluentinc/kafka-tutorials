@@ -1,12 +1,11 @@
 plugins {
-    id "com.google.cloud.tools.jib" version "3.3.1"
+    
     id "com.github.johnrengelman.shadow" version "6.1.0"
 }
 
 allprojects {
     version = "0.1.0-SNAPSHOT"
     group = "io.confluent.developer"
-
     apply plugin: 'java'
     apply plugin: 'scala'
 
@@ -57,7 +56,6 @@ allprojects {
 
 configure(subprojects) {
     apply plugin: 'application'
-    apply plugin: 'com.google.cloud.tools.jib'
     apply plugin: 'com.github.johnrengelman.shadow'
 
     dependencies {
@@ -74,19 +72,16 @@ configure(subprojects) {
     }
 
     test.dependsOn spec
-    tasks.jib.dependsOn build
 }
 
 configure(project('produce-consume-scala-producer-app')) {
     shadowJar.archiveBaseName = "app-producer"
     mainClassName = 'io.confluent.developer.produce.Producer'
-    jib.to.image = "io.confluent.developer/scala-producer:${version}"
 }
 
 configure(project('produce-consume-scala-consumer-app')) {
     shadowJar.archiveBaseName = "app-consumer"
     mainClassName = 'io.confluent.developer.consume.Consumer'
-    jib.to.image = "io.confluent.developer/scala-consumer:${version}"
 }
 
 task topicCreation(type: JavaExec) {
