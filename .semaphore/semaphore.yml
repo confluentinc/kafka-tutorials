@@ -66,7 +66,7 @@ blocks:
       - echo $SEMAPHORE_WORKFLOW_ID
       - checkout
       - npm install
-      - gem install bundler
+      - gem install bundler -v 2.4.22
       - bundle install
     jobs:
     - name: Compile with Jekyll
