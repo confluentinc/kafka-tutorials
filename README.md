@@ -33,7 +33,7 @@ On a Mac, you can get the dependencies like this:
 
 ```
 brew install ruby node
-gem install bundler
+gem install bundler -v 2.4.22
 ```
 
 You'll now have an executable called harness-runner on your path. (Note that if you use Python, you likely already have the `pyyaml` package installed.)
