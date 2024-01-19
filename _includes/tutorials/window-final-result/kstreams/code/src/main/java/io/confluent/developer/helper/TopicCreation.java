@@ -1,6 +1,5 @@
 package io.confluent.developer.helper;
 
-import com.jasongoodwin.monads.Try;
 import com.typesafe.config.Config;
 import com.typesafe.config.ConfigFactory;
 import org.apache.kafka.clients.admin.AdminClient;
@@ -11,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
-import java.util.Optional;
 import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 
@@ -55,21 +53,22 @@ public class TopicCreation {
             result.values().forEach((topicName, future) -> {
                 NewTopic topic = topics.get(topicName);
                 future.whenComplete((aVoid, maybeError) ->
-                        Optional
-                                .ofNullable(maybeError)
-                                .map(Try::<Void>failure)
-                                .orElse(Try.successful(null))
-
-                                .onFailure(throwable -> logger.error("Topic creation didn't complete:", throwable))
-                                .onSuccess((anOtherVoid) -> logger.info(
-                                        String.format(
-                                                "Topic %s, has been successfully created " +
-                                                        "with %s partitions and replicated %s times",
-                                                topic.name(),
-                                                topic.numPartitions(),
-                                                topic.replicationFactor() - 1
-                                        )
-                                )));
+                    {
+                        if (maybeError != null) {
+                            logger.error("Topic creation didn't complete:", maybeError);
+                        } else {
+                            logger.info(
+                                    String.format(
+                                            "Topic %s, has been successfully created " +
+                                                    "with %s partitions and replicated %s times",
+                                            topic.name(),
+                                            topic.numPartitions(),
+                                            topic.replicationFactor() - 1
+                                    )
+                            );
+                        }
+                    }
+                );
             });
 
             result.all().get();
