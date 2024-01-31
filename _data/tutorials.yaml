@@ -1077,7 +1077,7 @@ multiple-event-types:
     You have distinct but related event types and you want to produce them to the
     same topic, but you also want to maintain topic-name subject constraints. Why
     produce different events to the same topic? One reason would be you have low-traffic
-    topics and you'd like to consolodate them to reduce overhead for the brokers. 
+    topics and you'd like to consolidate them to reduce overhead for the brokers. 
     Or you need to get the exact order of different events and by producing them to
     the same topic you are guaranteed correct ordering per-partition.<br/>
 
