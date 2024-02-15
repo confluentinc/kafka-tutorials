@@ -1,7 +1,7 @@
 package io.confluent.developer;
 
 import io.confluent.developer.proto.CustomerEventProto;
-import io.confluent.developer.proto.PageViewProto;
+import io.confluent.developer.proto.PageviewProto;
 import io.confluent.developer.proto.PurchaseProto;
 import io.confluent.kafka.serializers.protobuf.KafkaProtobufDeserializer;
 import io.confluent.kafka.serializers.protobuf.KafkaProtobufDeserializerConfig;
@@ -71,7 +71,7 @@ public class MultiEventProtobufProduceConsumeApp implements AutoCloseable {
                             eventTracker.add(String.format("Protobuf Purchase event -> %s", customerEvent.getPurchase().getItem()));
                             break;
                         case PAGE_VIEW:
-                            eventTracker.add(String.format("Protobuf Pageview event -> %s", customerEvent.getPageView().getUrl()));
+                            eventTracker.add(String.format("Protobuf Pageview event -> %s", customerEvent.getPageview().getUrl()));
                             break;
                         default:
                             LOG.error("Unexpected type - this shouldn't happen");
@@ -83,18 +83,18 @@ public class MultiEventProtobufProduceConsumeApp implements AutoCloseable {
 
     public List<CustomerEventProto.CustomerEvent> protobufEvents() {
         CustomerEventProto.CustomerEvent.Builder customerEventBuilder = CustomerEventProto.CustomerEvent.newBuilder();
-        PageViewProto.PageView.Builder pageViewBuilder = PageViewProto.PageView.newBuilder();
+        PageviewProto.Pageview.Builder pageViewBuilder = PageviewProto.Pageview.newBuilder();
         PurchaseProto.Purchase.Builder purchaseBuilder = PurchaseProto.Purchase.newBuilder();
         List<CustomerEventProto.CustomerEvent> events = new ArrayList<>();
 
-        PageViewProto.PageView pageView = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/traps").setIsSpecial(false).build();
-        PageViewProto.PageView pageViewII = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/bombs").setIsSpecial(false).build();
-        PageViewProto.PageView pageViewIII = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/bait").setIsSpecial(true).build();
+        PageviewProto.Pageview pageView = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/traps").setIsSpecial(false).build();
+        PageviewProto.Pageview pageViewII = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/bombs").setIsSpecial(false).build();
+        PageviewProto.Pageview pageViewIII = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/bait").setIsSpecial(true).build();
         PurchaseProto.Purchase purchase = purchaseBuilder.setCustomerId(CUSTOMER_ID).setItem("road-runner-bait").setAmount(99.99).build();
 
-        events.add(customerEventBuilder.setId(CUSTOMER_ID).setPageView(pageView).build());
-        events.add(customerEventBuilder.setId(CUSTOMER_ID).setPageView(pageViewII).build());
-        events.add(customerEventBuilder.setId(CUSTOMER_ID).setPageView(pageViewIII).build());
+        events.add(customerEventBuilder.setId(CUSTOMER_ID).setPageview(pageView).build());
+        events.add(customerEventBuilder.setId(CUSTOMER_ID).setPageview(pageViewII).build());
+        events.add(customerEventBuilder.setId(CUSTOMER_ID).setPageview(pageViewIII).build());
         events.add((customerEventBuilder.setId(CUSTOMER_ID).setPurchase(purchase)).build());
 
         return events;
