@@ -25,7 +25,7 @@ public void produceAvroEvents(final Supplier<Producer<String, SpecificRecordBase
 <4> Specifying **_to disable_** automatic schema registration
 <5> Setting to use the latest schema
 
-You have a very similar approach with the Avro producer as you did with the Protobuf version, but take a took at the type at annotation one - it's an abstract class, `SpecificRecordBase` that every Avro generated class inherits from.  Since the schema for the Avro multi-event topic uses a `union` at the top level, you don't know the concrete type.  Since you want to use the customer id as the key you need to access the field in a map-like fashion by using the field name as it exists in the schema.  This is possible because `SpecificRecordBase` implements the `GenericRecord` interface which provides the `get` method for retrieving a field value by name.
+You have a very similar approach with the Avro producer as you did with the Protobuf version, but take a took at the type at annotation one - it's an abstract class, `SpecificRecordBase` that every Avro generated class inherits from.  Since the schema for the Avro multi-event topic uses a `union` at the top level, you don't know the concrete type.  Since you want to use the customer ID as the key you need to access the field in a map-like fashion by using the field name as it exists in the schema.  This is possible because `SpecificRecordBase` implements the `GenericRecord` interface which provides the `get` method for retrieving a field value by name.
 
 But the biggest difference is the configurations you provide to the producer for the Avro serializer, namely disabling automatic schema registration, otherwise it would override the union schema as the latest one.  Additionally since you've set `use.latest.version` to `true` the serializer looks up the latest version, the union schema, and will use that for serialization. https://www.confluent.io/blog/multiple-event-types-in-the-same-kafka-topic/#avro-unions-with-schema-references[This blog post] by Robert Yokota explains this mechanism in detail.
 
@@ -39,8 +39,8 @@ consumerRecords.forEach(consumerRec -> {
   if (avroRecord instanceof Purchase) {    <2>
       Purchase purchase = (Purchase) avroRecord;  <3>
       eventTracker.add(purchase.getItem());
-  } else if (avroRecord instanceof PageView) {
-      PageView pageView = (PageView) avroRecord;
+  } else if (avroRecord instanceof Pageview) {
+      Pageview pageView = (Pageview) avroRecord;
       eventTracker.add(pageView.getUrl());
 
 // details left out for clarity
@@ -64,10 +64,9 @@ Before you go on to create the application we should mention quickly about the d
 <1> Specifying to use the Avro deserializer for the Avro consumer
 <2> Setting the Avro deserializer to use the specific reader
 
-It should come as no surprise that you need to set the deserializer class to `KafkaAvroDeserializer` for the Avro consumer.  But when working with multiple types, you still need to set the configuration for a specific type.  With Avro, even with the `union` schema you'll still need to specify to set the `SPECIFIC_AVRO_READER_CONFIG` to `true` to get the concrete types.
+It should come as no surprise that you need to set the deserializer class to `KafkaAvroDeserializer` for the Avro consumer.  But when working with multiple types, you still need to set the configuration for a specific type.  With Avro, even with the `union` schema, you'll still need to specify to set the `SPECIFIC_AVRO_READER_CONFIG` to `true` to get the concrete types.
 
-
-Now go ahead and create the `src/main/java/io/confluent/developer/MultiEventAvroProduceConsumeApp.java` file:
+Go ahead and create the `src/main/java/io/confluent/developer/MultiEventAvroProduceConsumeApp.java` file:
 
 +++++
 <pre class="snippet"><code class="java">{% include_raw tutorials/multiple-event-types/kafka/code/src/main/java/io/confluent/developer/MultiEventAvroProduceConsumeApp.java %}</code></pre>
