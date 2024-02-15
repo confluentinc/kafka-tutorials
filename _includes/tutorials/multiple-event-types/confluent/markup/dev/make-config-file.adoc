@@ -1,4 +1,4 @@
-Then create a development configuration file at `configuration/dev.properties`:
+Then, create a development configuration file at `configuration/dev.properties`:
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/multiple-event-types/confluent/code/configuration/dev.properties %}</code></pre>

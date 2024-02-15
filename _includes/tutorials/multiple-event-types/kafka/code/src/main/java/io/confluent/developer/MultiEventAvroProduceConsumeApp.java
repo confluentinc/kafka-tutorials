@@ -1,6 +1,6 @@
 package io.confluent.developer;
 
-import io.confluent.developer.avro.PageView;
+import io.confluent.developer.avro.Pageview;
 import io.confluent.developer.avro.Purchase;
 import io.confluent.kafka.serializers.AbstractKafkaSchemaSerDeConfig;
 import io.confluent.kafka.serializers.KafkaAvroDeserializer;
@@ -70,8 +70,8 @@ public class MultiEventAvroProduceConsumeApp implements AutoCloseable{
                     if (avroRecord instanceof Purchase) {
                         Purchase purchase = (Purchase) avroRecord;
                         eventTracker.add(String.format("Avro Purchase event -> %s",purchase.getItem()));
-                    } else if (avroRecord instanceof PageView) {
-                        PageView pageView = (PageView) avroRecord;
+                    } else if (avroRecord instanceof Pageview) {
+                        Pageview pageView = (Pageview) avroRecord;
                         eventTracker.add(String.format("Avro Pageview event -> %s",pageView.getUrl()));
                     } else {
                         LOG.error("Unexpected type - this shouldn't happen");
@@ -83,13 +83,13 @@ public class MultiEventAvroProduceConsumeApp implements AutoCloseable{
 
 
     public List<SpecificRecordBase> avroEvents() {
-        PageView.Builder pageViewBuilder = PageView.newBuilder();
+        Pageview.Builder pageViewBuilder = Pageview.newBuilder();
         Purchase.Builder purchaseBuilder = Purchase.newBuilder();
         List<SpecificRecordBase> events = new ArrayList<>();
 
-        PageView pageView = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/traps").setIsSpecial(false).build();
-        PageView pageViewII = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/bombs").setIsSpecial(false).build();
-        PageView pageViewIII = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/bait").setIsSpecial(true).build();
+        Pageview pageView = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/traps").setIsSpecial(false).build();
+        Pageview pageViewII = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/bombs").setIsSpecial(false).build();
+        Pageview pageViewIII = pageViewBuilder.setCustomerId(CUSTOMER_ID).setUrl("http://acme/bait").setIsSpecial(true).build();
         Purchase purchase = purchaseBuilder.setCustomerId(CUSTOMER_ID).setItem("road-runner-bait").setAmount(99.99).build();
 
         events.add(pageView);
