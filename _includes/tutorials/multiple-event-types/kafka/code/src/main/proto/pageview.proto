@@ -1,9 +1,9 @@
 syntax = "proto3";
 
 package io.confluent.developer.proto;
-option java_outer_classname = "PageViewProto";
+option java_outer_classname = "PageviewProto";
 
-message PageView {
+message Pageview {
   string url = 1;
   bool is_special = 2;
   string customer_id = 3;
