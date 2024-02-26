@@ -7,26 +7,26 @@ Now you'll take a similar step and create the Avro schemas; this is done for com
 
 
 
-So to get started create a directory for the avro schemas:
+To get started, create a directory for the Avro schemas:
 ++++
 <pre class="snippet"><code class="bash">{% include_raw tutorials/multiple-event-types/kafka/code/tutorial-steps/dev/make-avro-dir.sh %}</code></pre>
 ++++
 
-Then create this schema file for the purchase domain object at `src/main/avro/purchase.avsc`
+Then, create this schema file for the purchase domain object at `src/main/avro/purchase.avsc`
 
 +++++
 <pre class="snippet"><code class="json">{% include_raw tutorials/multiple-event-types/kafka/code/src/main/avro/purchase.avsc %}</code></pre>
 +++++
 
-Right away you'll notice one difference is that you write Avro schemas in `JSON` while Protobuf more closely resembles a programming language.
+Right away, you'll notice one difference is that you write Avro schemas in `JSON` while Protobuf more closely resembles a programming language.
 
 In this tutorial we won't go into details about Avro.  For more information  you can read the https://avro.apache.org/docs/1.10.2/[Apache Avro documentation],  https://avro.apache.org/docs/1.10.2/gettingstartedjava.html[Getting Started (Java) guide], and the https://avro.apache.org/docs/1.10.2/spec.html[Avro Specification].
 
 
-Next create the schema for the page-view object at `src/main/avro/page-view.avsc`
+Next, create the schema for the pageview object at `src/main/avro/pageview.avsc`
 
 +++++
-<pre class="snippet"><code class="json">{% include_raw tutorials/multiple-event-types/kafka/code/src/main/avro/page-view.avsc %}</code></pre>
+<pre class="snippet"><code class="json">{% include_raw tutorials/multiple-event-types/kafka/code/src/main/avro/pageview.avsc %}</code></pre>
 +++++
 
 Now that you have the schemas in place for your two domain objects, you'll create a third schema that references the other two.
@@ -36,12 +36,12 @@ Go ahead and create the file `src/main/avro/all-events.avsc` now:
 ----
 [
   "io.confluent.developer.avro.Purchase",
-  "io.confluent.developer.avro.PageView"
+  "io.confluent.developer.avro.Pageview"
 ]
 ----
 
 The `all-events.avsc` file contains an https://avro.apache.org/docs/1.10.2/spec.html#Unions[Avro Union].  The union type in Avro is analogous to the Protobuf `oneof` field in that it indicates that a field might have more than one datatype.
 
-But with Avro, a `union` can be a top-level element, hence you don't have to create a wrapper or container class, the Avro schema itself is a union and it can represent either of the types listed in the union.  To be clear you could create an Avro schema for a wrapper class and provide a `union` field within the schema, but we're not going to cover that approach in this tutorial.  The GitHub repo for the https://github.com/bbejeck/multiple-events-kafka-summit-europe-2021/blob/main/src/main/avro/customer_event.avsc[Multiple Events in Schema Registry Kafka Summit Europe 2021 presentation] contains an example of using an outer Avro class containing a union field.
+On the other hand, with Avro, a `union` can be a top-level element, so you don't have to create a wrapper or container class; the Avro schema itself is a union and it can represent either of the types listed in the union.  To be clear, you could create an Avro schema for a wrapper class and provide a `union` field within the schema, but we're not going to cover that approach in this tutorial.  The GitHub repo for the https://github.com/bbejeck/multiple-events-kafka-summit-europe-2021/blob/main/src/main/avro/customer_event.avsc[Multiple Events in Schema Registry Kafka Summit Europe 2021 presentation] contains an example of using an outer Avro class containing a union field.
 
 

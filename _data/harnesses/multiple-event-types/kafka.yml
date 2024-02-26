@@ -63,7 +63,7 @@ dev:
       render:
         skip: true
     - action: make_file
-      file: src/main/proto/page-view.proto
+      file: src/main/proto/pageview.proto
       render:
         skip: true
     - action: make_file
@@ -84,7 +84,7 @@ dev:
       render:
         skip: true
     - action: make_file
-      file: src/main/avro/page-view.avsc
+      file: src/main/avro/pageview.avsc
       render:
         skip: true
     - action: make_file
