@@ -1,4 +1,4 @@
-In this step we’re going to create the topics needed for this tutorial.
+In this step, we’re going to create the topics needed for this tutorial.
 
 Since you are going to produce records using Protobuf and Avro serialization, you'll need two topics.
 
