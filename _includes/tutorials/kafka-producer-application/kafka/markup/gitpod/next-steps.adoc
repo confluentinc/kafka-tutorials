@@ -1,0 +1,5 @@
+Now that you have a working producer application and a way to test with `kafka-console-consumer`, you may want to modify the application to do something more interesting. For example, the program ends after printing each line from the file. How might you modify it to print a record every second? How would you change it to emit results of an API call every second and never end? Can you figure out how to emit weather data from https://open-meteo.com/[Open-Meteo] every second for your current location and store the results in a `temperature` topic?
+
+When you are done tinkering, ensure that you shut down your Gitpod workspace so that you don't waste credits or incur cost unecessarily. You can do this by navigating to https://gitpod.io/workspaces[https://gitpod.io/workspaces], clicking the three dots on the right of the running workspace, and clicking `Delete` followed by `Delete Workspace`.
+
+Once everything is cleaned up, head on back to Confluent Developer to try link:{{ site.url }}[another tutorial]!
