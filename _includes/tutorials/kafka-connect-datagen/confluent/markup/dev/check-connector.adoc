@@ -1,6 +1,6 @@
 To check the status of the connector from the command line, you have the same two options as provisioning.
 
-*Option 1.* Using the `ccloud` CLI.
+*Option 1.* Using the Confluent CLI.
 
 +++++
 <pre class="snippet"><code class="shell">{% include_raw tutorials/kafka-connect-datagen/confluent/code/tutorial-steps/dev/check-connector.sh %}</code></pre>
