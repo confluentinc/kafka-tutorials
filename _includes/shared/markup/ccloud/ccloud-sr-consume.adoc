@@ -1,7 +1,0 @@
-You will be prompted for the Confluent Cloud Schema Registry credentials as shown below, which you can find in the `configuration/ccloud.properties` configuration file.
-Look for the configuration parameter `basic.auth.user.info`, whereby the ":" is the delimiter between the key and secret.
-
-```
-Enter your Schema Registry API key:
-Enter your Schema Registry API secret:
-```
