@@ -24,9 +24,9 @@ spec:
         level: pipeline
     whitelist:
       branches:
-      - master
-      - release
-      - ksqldb-latest
+      - 'master'
+      - 'release'
+      - 'ksqldb-latest'
   custom_permissions: true
   debug_permissions:
   - empty
