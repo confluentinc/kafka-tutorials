@@ -1,0 +1,41 @@
+github:
+  prebuilds:
+    master: true
+    branches: true
+
+tasks:
+  - name: Open tutorial in browser
+    command: gp preview https://developer.confluent.io/tutorials/creating-first-apache-kafka-producer-application/kafka.html
+  - name: Docker
+    init: gp sync-await code-copy
+    command: docker compose -f tutorial-workspace/docker-compose.yml up -d ; exit ; clear
+  - name: Terminal
+    before: gp preview https://developer.confluent.io/tutorials/creating-first-apache-kafka-producer-application/kafka.html
+    init: |
+      curl -L --http1.1 https://cnfl.io/cli | sudo sh -s -- -b /usr/local/bin
+      mkdir tutorial-workspace
+      mv _includes/tutorials/kafka-producer-application/kafka/code/* tutorial-workspace
+      rm -rf -- !(tutorial-workspace)
+      rm -rf tutorial-workspace/tutorial-steps .git* .semaphore/
+      sdk default java 17.0.7.fx-zulu
+    command: gp sync-done code-copy ; cd tutorial-workspace ; clear
+
+vscode:
+  extensions:
+    - github.github-vscode-theme
+    - vscjava.vscode-java-pack
+    - vscjava.vscode-java-debug
+
+ports:
+  # zookeeper
+  - port: 2181
+    onOpen: ignore
+    visibility: private
+  # broker
+  - port: 29092
+    onOpen: ignore
+    visibility: private
+  # SR
+  - port: 8081
+    onOpen: ignore
+    visibility: private

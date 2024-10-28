@@ -1,0 +1,4 @@
+This tutorial walks you through how to write a basic Kafka producer application in Java.
+
+The complete source code for this tutorial application resides in the `tutorial-workspace` directory of the Gitpod
+workspace. Also, Kafka starts up automatically in Docker.

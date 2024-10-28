@@ -1,0 +1,48 @@
+<div>
+  <section class="section" data-tracking-location="Run it">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-full">
+          {% for step in site.data.harnesses[page.static_data][page.stack].dev.steps %}
+          <div class="tutorial-try-it-step content" data-tracking-location="Step {{ forloop.index }}">
+            <h2
+              class="title tutorial-section-item-title"
+              id="{{ step.title | slugify }}"
+            >
+              {{ step.title }}
+            </h2>
+            <div class="content-item">
+              <div class="item-display">
+
+              {% for section in step.content %}
+
+              {% if section.action == "docker_ksql_cli_session" or section.action == "docker_flinksql_cli_session" %}
+
+                {% if section.render.skip != true %}
+                  {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+                  {{ prose | asciidocify }}
+                {% endif %}
+
+                {% for subsection in section.stdin %}
+                  {% capture prose %}{% include {{ subsection.render.file }} %}{% endcapture %}
+                  {{ prose | asciidocify }}
+                {% endfor %}
+
+              {% elsif section.render.skip != true %}
+
+                {% capture prose %}{% include {{ section.render.file }} %}{% endcapture %}
+                {{ prose | asciidocify }}
+
+              {% endif %}
+
+              {% endfor %}
+
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
